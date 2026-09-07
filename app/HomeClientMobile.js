@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, useInView, AnimatePresence, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
@@ -96,7 +96,7 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
   useEffect(() => {
     if (reduceMotion) return // pas de rotation auto si l'utilisateur préfère moins de mouvement
     const id = setInterval(() => {
-      if (!pausedRef.current) setActive(a => (a + 1) % GALLERY_ITEMS.length)
+      setActive(a => (a + 1) % GALLERY_ITEMS.length)
     }, intervalMs)
     return () => clearInterval(id)
   }, [GALLERY_ITEMS.length, intervalMs, reduceMotion])
@@ -1323,18 +1323,18 @@ export default function HomePageMobile() {
   return (
     <div style={{ paddingTop: 0 }}>
       <Hero />
+      <ProjectsSection />
       <StatsSection />
+      <DomainesSection />
       <TrustStacksMarquee />
       <ServicesPreview />
-      <DomainesSection />
       <PricingCallout />
       <Process />
-      <ProjectsSection />
-      <GeoSectionHome />
-      <ProjectFormHome />
       <FAQSectionHome />
       <ConversionMarquee />
       <Testimonials />
+      <GeoSectionHome />
+      <ProjectFormHome />
       <PageCTA message="Comme eux, donnez à votre activité la présence digitale qu'elle mérite." cta="Rejoindre nos clients" />
     </div>
   )

@@ -1222,9 +1222,6 @@ function ArchiveTunnelSection() {
             animation: projectsMarquee 22s linear infinite;
             will-change: transform;
           }
-          .projects-marquee-track:hover {
-            animation-play-state: paused;
-          }
         `}</style>
         <div className="projects-marquee-track" style={{ display: 'flex', gap: '1.5rem', width: 'max-content', paddingBottom: '1rem' }}>
           {LOOP_ITEMS.map((p, i) => (
@@ -1738,19 +1735,20 @@ export default function HomePageDesktop() {
   return (
     <div style={{ paddingTop: 0 }}>
       <Hero />
+      <ArchiveTunnelSection />
       <StatsSection />
+      <DomainesSection />
       <TrustStacksMarquee />
       <ServicesPreview />
-      <DomainesSection />
       <PricingCallout />
       <WhyUs />
-      <ArchiveTunnelSection />
-      <GeoSectionHome />
 
-      <ProjectFormHome />
       <FAQSectionHome />
       <ConversionMarquee />
       <Testimonials />
+
+      <GeoSectionHome />
+      <ProjectFormHome />
 
       <PageCTA
         message="Comme eux, donnez à votre activité la présence digitale qu'elle mérite."

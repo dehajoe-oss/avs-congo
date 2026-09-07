@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -144,13 +144,7 @@ function StudioWordmark() {
       >
         {renderChars('AKATECH')}
         <br />
-        <span style={{
-          display: 'inline-block',
-          background: 'linear-gradient(to bottom, #88ca53 0%, rgba(136,202,83,.15) 90%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-        }}>
+        <span style={{ display: 'inline-block' }}>
           {renderChars('STUDIO.')}
         </span>
       </div>
