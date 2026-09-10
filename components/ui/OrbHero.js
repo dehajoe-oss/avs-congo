@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
      labels   – tableau de { text, x, y } pour les labels flottants
      orbColor – couleur principale (défaut vert AKATech)
    ───────────────────────────────────────────────────────────── */
-export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
+export default function OrbHeroBg({ labels, orbColor = '#f89203' }) {
   // Dérive une version plus sombre/saturée pour les glows
   const orbDim = orbColor + '55'
   const orbFaint = orbColor + '18'
@@ -30,7 +30,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
   return (
     <div style={{
       position: 'absolute', inset: 0, zIndex: 0,
-      background: 'linear-gradient(160deg, #030806 0%, #050f08 40%, #060e09 100%)',
+      background: '#0c0a09',
       overflow: 'hidden',
     }}>
 
@@ -53,7 +53,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
           width: '70vw', height: '70vw',
           maxWidth: 900, maxHeight: 900,
           borderRadius: '50%',
-          background: `radial-gradient(circle, ${orbColor}22 0%, ${orbColor}08 35%, transparent 70%)`,
+          background: `none`,
           zIndex: 2, pointerEvents: 'none',
         }}
       />
@@ -67,7 +67,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
           width: '45vw', height: '45vw',
           maxWidth: 600, maxHeight: 600,
           borderRadius: '50%',
-          background: `radial-gradient(circle, ${orbColor}44 0%, ${orbColor}18 40%, transparent 70%)`,
+          background: `none`,
           zIndex: 3, pointerEvents: 'none',
         }}
       />
@@ -81,7 +81,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
           width: '22vw', height: '22vw',
           maxWidth: 280, maxHeight: 280,
           borderRadius: '50%',
-          background: `radial-gradient(circle, ${orbColor}cc 0%, ${orbColor}88 30%, ${orbColor}33 60%, transparent 80%)`,
+          background: `none`,
           boxShadow: `0 0 80px ${orbColor}66, 0 0 160px ${orbColor}33`,
           zIndex: 4, pointerEvents: 'none',
         }}
@@ -96,7 +96,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
           width: '7vw', height: '3vw',
           maxWidth: 80, maxHeight: 36,
           borderRadius: '50%',
-          background: `radial-gradient(ellipse, rgba(255,255,255,0.55) 0%, transparent 75%)`,
+          background: `none`,
           zIndex: 5, pointerEvents: 'none', filter: 'blur(2px)',
         }}
       />
@@ -192,7 +192,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
         transition={{ duration: 9, repeat: Infinity, ease: 'linear', repeatDelay: 3 }}
         style={{
           position: 'absolute', left: 0, right: 0, height: 1,
-          background: `linear-gradient(90deg,transparent,${orbColor}44,transparent)`,
+          background: `${orbColor}`,
           zIndex: 6, pointerEvents: 'none',
         }}
       />
@@ -201,7 +201,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
         transition={{ duration: 13, repeat: Infinity, ease: 'linear', repeatDelay: 2, delay: 4 }}
         style={{
           position: 'absolute', left: 0, right: 0, height: '1px',
-          background: `linear-gradient(90deg,transparent,${orbColor}22,transparent)`,
+          background: `${orbColor}`,
           zIndex: 6, pointerEvents: 'none',
         }}
       />
@@ -209,7 +209,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
       {/* ── Overlay gradient pour lisibilité du texte ── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 7,
-        background: 'linear-gradient(to bottom, rgba(3,8,6,.55) 0%, rgba(3,8,6,.15) 40%, rgba(3,8,6,.6) 80%, rgba(3,8,6,.92) 100%)',
+        background: 'rgba(12, 10, 9, 0.75) 40%, rgba(3,8,6,.6) 80%, rgba(3,8,6,.92) 100%)',
         pointerEvents: 'none',
       }} />
 
@@ -248,7 +248,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
             animationDelay: `${i * 0.3}s`,
           }} />
           <span style={{
-            fontFamily: "'JetBrains Mono',monospace",
+            fontFamily: "'Poppins', sans-serif",
             fontSize: '0.6rem', fontWeight: 600,
             color: 'rgba(255,255,255,0.7)',
             letterSpacing: '.1em', textTransform: 'uppercase',
@@ -262,7 +262,7 @@ export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
       {/* ── Vignette coins ── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(3,8,6,.7) 100%)',
+        background: 'none',
       }} />
     </div>
   )

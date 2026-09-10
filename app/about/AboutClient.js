@@ -57,7 +57,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
   useWordReveal(sectionRef, textRef, wordsRef)
   return (
     <p ref={textRef} style={{
-      fontFamily: "'JetBrains Mono',monospace",
+      fontFamily: "'Poppins', sans-serif",
       fontSize: 'clamp(1.6rem,3.2vw,2.6rem)',
       fontWeight: 700,
       lineHeight: 1.32,
@@ -72,7 +72,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
         <span key={i} ref={el => { wordsRef.current[i] = el }}
           style={{ display: 'inline-block', marginRight: '0.28em', opacity: 0.08,
             filter: 'blur(9px)', willChange: 'opacity, filter',
-            color: green.has(word) ? '#5a8738' : 'inherit' }}>
+            color: green.has(word) ? '#f89203' : 'inherit' }}>
           {word}
         </span>
       ))}
@@ -96,7 +96,7 @@ function TiltCard({ children, style = {}, intensity = 12, perspective = 900 }) {
     rafRef.current = requestAnimationFrame(() => {
       el.style.transform = `perspective(${perspective}px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.03,1.03,1.03)`
       el.style.transition = 'transform .07s linear'
-      if (glowRef.current) { glowRef.current.style.background = `radial-gradient(240px circle at ${px}% ${py}%,rgba(90, 135, 56,.12),transparent 65%)`; glowRef.current.style.opacity = '1' }
+      if (glowRef.current) { glowRef.current.style.background = `none`; glowRef.current.style.opacity = '1' }
     })
   }
   const reset = () => {
@@ -171,10 +171,10 @@ function HeroAbout() {
   }, [])
 
   return (
-    <section style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden', background: '#060e09' }}>
+    <section style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden', background: '#0c0a09' }}>
       <div ref={layerBgRef} style={{ position: 'absolute', inset: '-8%', zIndex: 1, willChange: 'transform, filter', transition: 'transform .1s ease-out' }}>
         <AuroraHero labels={[]} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 20%, rgba(6,14,9,.95) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.85)' }} />
       </div>
 
       {/* Titre géant bas-gauche + bloc texte centré verticalement à droite — gabarit hero "page title" (réf. Helious) */}
@@ -195,7 +195,7 @@ function HeroAbout() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#5a8738', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#f89203', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -204,21 +204,21 @@ function HeroAbout() {
         .hr-row { position: relative; z-index: 10; height: 100%; }
         .hr-title {
           position: absolute; left: 8vw; bottom: 4.5rem; margin: 0;
-          font-family: 'JetBrains Mono', monospace; font-weight: 800;
+          font-family: 'Poppins', sans-serif; font-weight: 800;
           font-size: clamp(4.5rem, 13vw, 15rem); line-height: .92; letter-spacing: -.04em;
           color: rgba(255,255,255,.95);
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #5a8738;
+          margin-left: .15em; font-size: .3em; color: #f89203;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
           margin: auto 0; max-width: 360px; height: fit-content;
         }
         .hr-kicker {
-          font-family: 'JetBrains Mono', monospace; font-size: .62rem; font-weight: 700;
-          color: #5a8738; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
+          color: #f89203; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -270,27 +270,27 @@ function AboutStatsSlide() {
       position: 'sticky', top: '14vh',
       display: 'flex', flexDirection: 'column', gap: '1.4rem',
       paddingTop: '.4rem',
-      borderTop: '1px solid rgba(90, 135, 56,.18)',
+      borderTop: '1px solid rgba(248, 146, 3,.18)',
     }}>
       {/* compteur */}
       <div>
-        <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', letterSpacing: '.15em', color: T.textMuted, opacity: .6 }}>
+        <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', letterSpacing: '.15em', color: T.textMuted, opacity: .6 }}>
           {String(i + 1).padStart(2, '0')}/{String(ABOUT_STATS.length).padStart(2, '0')}
         </span>
       </div>
       {/* chiffre */}
       <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: '.3rem', minHeight: 92, animation: 'aboutStatIn .45s cubic-bezier(.22,1,.36,1)' }}>
-        <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(2.6rem,4vw,3.4rem)', fontWeight: 800, lineHeight: 1, color: T.textMain, letterSpacing: '-.02em' }}>
+        <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(2.6rem,4vw,3.4rem)', fontWeight: 800, lineHeight: 1, color: T.textMain, letterSpacing: '-.02em' }}>
           <AboutStatNumber target={cur.target} suffix={cur.suffix} />
         </span>
-        <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.85rem', fontWeight: 700, letterSpacing: '.04em', color: T.textMain, margin: 0 }}>{cur.label}</p>
+        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.85rem', fontWeight: 700, letterSpacing: '.04em', color: T.textMain, margin: 0 }}>{cur.label}</p>
         <p style={{ fontSize: '.74rem', lineHeight: 1.5, color: T.textMuted, opacity: .75, margin: 0, maxWidth: 190 }}>{cur.sub}</p>
       </div>
       {/* barre de progression */}
-      <div style={{ width: '100%', height: 2, borderRadius: 2, background: 'rgba(90, 135, 56,.16)', overflow: 'hidden', marginTop: '.4rem' }}>
+      <div style={{ width: '100%', height: 2, borderRadius: 2, background: 'rgba(248, 146, 3,.16)', overflow: 'hidden', marginTop: '.4rem' }}>
         <span key={i} style={{
           display: 'block', height: '100%', width: '100%',
-          background: 'linear-gradient(135deg, #6e9f45, #5a8738)',
+          background: '#f89203',
           transformOrigin: 'left center',
           transform: 'scaleX(0)',
           animation: `aboutStatsProgress ${SLIDE_MS}ms linear forwards`,
@@ -311,7 +311,7 @@ function StatsFounderSection() {
 
   return (
     <section ref={sectionRef} style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 700, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(90, 135, 56,.05),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 700, height: 400, borderRadius: '50%', background: 'none', pointerEvents: 'none' }} />
       <style>{`
         .stats-founder-grid {
           display: grid;
@@ -330,7 +330,7 @@ function StatsFounderSection() {
         {/* h2 — au-dessus des 2 colonnes, aligné à gauche, même style que les autres sections */}
         <div style={{ maxWidth: 1200, margin: '0 auto 3rem', textAlign: 'left' }}>
           <BlurReveal delay={0.12}>
-            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain }}>
+            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
               <GhostTitle text="MISSION & VISION" />
               Mission & <GreenUnderline><span className="text-gradient">vision</span></GreenUnderline>
             </h2>
@@ -366,18 +366,18 @@ function StatsFounderSection() {
           />
 
           {/* Photo + identité + portfolio */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', padding: '1.2rem 1.4rem', borderRadius: 16, background: 'rgba(90, 135, 56,.06)', border: '1px solid rgba(90, 135, 56,.2)', marginBottom: '1.8rem' }}>
-            <div style={{ width: 60, height: 60, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '2px solid rgba(90, 135, 56,.5)', boxShadow: '0 0 16px rgba(90, 135, 56,.2)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', padding: '1.2rem 1.4rem', borderRadius: 16, background: 'rgba(248, 146, 3,.06)', border: '1px solid rgba(248, 146, 3,.2)', marginBottom: '1.8rem' }}>
+            <div style={{ width: 60, height: 60, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '2px solid rgba(248, 146, 3,.5)', boxShadow: '0 0 16px rgba(248, 146, 3,.2)' }}>
               <LazyImg
                 src={cld('/images/dr_poutya.jpeg')}
                 alt="Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 10%' }}
-                placeholder={<div style={{ width: 60, height: 60, background: 'rgba(90, 135, 56,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5a8738', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '1.2rem' }}>E</div>}
+                placeholder={<div style={{ width: 60, height: 60, background: 'rgba(248, 146, 3,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.2rem' }}>E</div>}
               />
             </div>
             <div>
-              <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.95rem', color: T.textMain, marginBottom: '.2rem' }}>Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU</div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '.55rem' }}>Médecin Vétérinaire & Spécialiste QHSE · Directrice Générale, AVS Congo</div>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.95rem', color: T.textMain, marginBottom: '.2rem' }}>Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU</div>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '.55rem' }}>Médecin Vétérinaire & Spécialiste QHSE · Directrice Générale, AVS Congo</div>
               <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-ghost btn-sm">
                 <ExternalLink size={11} /> <HoverSlideText text="Me contacter" />
               </a>
@@ -401,22 +401,22 @@ function TimelineSection() {
         {/* h2 — trait rouge, aligné à gauche */}
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <BlurReveal delay={0.12}>
-            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain }}>
+            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
               <GhostTitle text="L'HISTOIRE D'AVS CONGO" />
               L'histoire d'<GreenUnderline><span className="text-gradient">AVS CONGO</span></GreenUnderline>
             </h2>
           </BlurReveal>
         </div>
         <div style={{ position: 'relative' }}>
-          <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, background: `linear-gradient(to bottom, transparent, ${T.green}, transparent)`, transform: 'translateX(-50%)' }} />
+          <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, background: `${T.green}`, transform: 'translateX(-50%)' }} />
           {TIMELINE.map(({ year, title, desc }, i) => (
             <BlurReveal key={year} delay={i * 0.15} direction={i % 2 === 0 ? 'left' : 'right'}>
               <div style={{ display: 'flex', justifyContent: i % 2 === 0 ? 'flex-start' : 'flex-end', marginBottom: '3rem', position: 'relative' }}>
-                <div style={{ position: 'absolute', left: '50%', top: '1.2rem', transform: 'translateX(-50%)', width: 14, height: 14, borderRadius: '50%', background: 'linear-gradient(135deg, #6e9f45, #5a8738)', border: '3px solid rgba(90, 135, 56,.3)', boxShadow: '0 0 16px rgba(90, 135, 56,.4)', zIndex: 1 }} />
+                <div style={{ position: 'absolute', left: '50%', top: '1.2rem', transform: 'translateX(-50%)', width: 14, height: 14, borderRadius: '50%', background: '#f89203', border: '3px solid rgba(248, 146, 3,.3)', boxShadow: '0 0 16px rgba(248, 146, 3,.4)', zIndex: 1 }} />
                 <motion.div className="sku-card" whileHover={{ y: -4, scale: 1.01 }} style={{ width: '44%', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, background: 'radial-gradient(circle at 100% 0%,rgba(90, 135, 56,.1),transparent 70%)', pointerEvents: 'none' }} />
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem', fontWeight: 800, color: T.green, letterSpacing: '.08em', marginBottom: '.5rem' }}>{year}</div>
-                  <h3 style={{ fontSize: '.95rem', fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", marginBottom: '.4rem' }}>{title}</h3>
+                  <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, background: 'none', pointerEvents: 'none' }} />
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.9rem', fontWeight: 800, color: T.green, letterSpacing: '.08em', marginBottom: '.5rem' }}>{year}</div>
+                  <h3 style={{ fontSize: '.95rem', fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", marginBottom: '.4rem' }}>{title}</h3>
                   <p style={{ fontSize: '.8rem', color: T.textSub, lineHeight: 1.6 }}>{desc}</p>
                 </motion.div>
               </div>
@@ -434,12 +434,12 @@ function ValuesSection() {
   const dirs = ['right', 'up', 'left', 'up']
   return (
     <section style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(10rem,18vw,18rem)', fontWeight: 900, color: T.light ? 'rgba(90, 135, 56,.04)' : 'rgba(90, 135, 56,.03)', lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>VALUES</div>
+      <div style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(10rem,18vw,18rem)', fontWeight: 900, color: T.light ? 'rgba(248, 146, 3,.04)' : 'rgba(248, 146, 3,.03)', lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>VALUES</div>
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         {/* h2 — trait rouge, aligné à gauche */}
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <BlurReveal delay={0.12}>
-            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain }}>
+            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
               <GhostTitle text="CE QUI NOUS DISTINGUE" />
               Ce qui nous <GreenUnderline><span className="text-gradient">distingue</span></GreenUnderline>
             </h2>
@@ -449,11 +449,11 @@ function ValuesSection() {
           {VALUES.map(({ icon: Icon, title, desc }, i) => (
             <BlurReveal key={title} delay={i * 0.1} direction={dirs[i % dirs.length]}>
               <motion.div className="sku-card" whileHover={{ y: -5 }} style={{ padding: '2rem', height: '100%', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: 0, right: 0, width: 80, height: 80, background: 'radial-gradient(circle at 100% 0%,rgba(90, 135, 56,.1),transparent 70%)', pointerEvents: 'none' }} />
-                <div style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(90, 135, 56,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem' }}>
+                <div style={{ position: 'absolute', top: 0, right: 0, width: 80, height: 80, background: 'none', pointerEvents: 'none' }} />
+                <div style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem' }}>
                   <Icon size={24} style={{ color: T.green }} />
                 </div>
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", marginBottom: '.5rem' }}>{title}</h3>
+                <h3 style={{ fontSize: '1rem', fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", marginBottom: '.5rem' }}>{title}</h3>
                 <p style={{ fontSize: '.82rem', color: T.textSub, lineHeight: 1.65 }}>{desc}</p>
               </motion.div>
             </BlurReveal>
@@ -476,7 +476,7 @@ function SkillsSection() {
       {/* h2 — au-dessus des 2 colonnes, aligné à gauche, même style que les autres sections */}
       <div style={{ maxWidth: 1200, margin: '0 auto 3rem', textAlign: 'left', position: 'relative', zIndex: 1 }}>
         <BlurReveal delay={0.12}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
             <GhostTitle text="EXCELLENCE VÉTÉRINAIRE & QHSE" />
             Excellence vétérinaire &{' '}
             <GreenUnderline><span className="text-gradient">normes QHSE</span></GreenUnderline>
@@ -495,8 +495,8 @@ function SkillsSection() {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem' }}>
             {SKILLS.map((s, i) => (
               <motion.span key={s} initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .3 + i * .04 }}
-                whileHover={{ y: -2, background: 'rgba(90, 135, 56,.15)' }}
-                style={{ padding: '.35rem .85rem', background: 'rgba(90, 135, 56,.07)', border: `1px solid ${T.border}`, borderRadius: 100, fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em', cursor: 'default', transition: 'all .2s' }}>
+                whileHover={{ y: -2, background: 'rgba(248, 146, 3,.15)' }}
+                style={{ padding: '.35rem .85rem', background: 'rgba(248, 146, 3,.07)', border: `1px solid ${T.border}`, borderRadius: 100, fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em', cursor: 'default', transition: 'all .2s' }}>
                 {s}
               </motion.span>
             ))}
@@ -506,7 +506,7 @@ function SkillsSection() {
           <TiltCard intensity={10} style={{ borderRadius: 16 }}>
             <div style={{ borderRadius: 16, overflow: 'hidden', border: `1px solid ${T.border}`, boxShadow: '8px 8px 32px rgba(0,0,0,.3)', height: 400 }}>
               <LazyImg src={'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80'} alt="Clinique Vétérinaire AVS" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                placeholder={<div style={{ height: '100%', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Award size={48} style={{ color: 'rgba(90, 135, 56,.3)' }} /></div>} />
+                placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Award size={48} style={{ color: 'rgba(248, 146, 3,.3)' }} /></div>} />
             </div>
           </TiltCard>
         </BlurReveal>
@@ -534,9 +534,9 @@ function FlagBadge({ code, primary }) {
     AO: ['#c8102e', '#000000', '#fcd116'],
     FR: ['#002395', '#fff',     '#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#5a8738', '#fff', '#5a8738']
+  const [c1, c2, c3] = colors[code] || ['#f89203', '#fff', '#f89203']
   return (
-    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(90, 135, 56,.5)' : '1px solid rgba(255,255,255,.12)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(90, 135, 56,.2)' : '0 2px 8px rgba(0,0,0,.2)' }}>
+    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(248, 146, 3,.5)' : '1px solid rgba(255,255,255,.12)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(248, 146, 3,.2)' : '0 2px 8px rgba(0,0,0,.2)' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />
@@ -553,7 +553,7 @@ function RayonSection() {
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
           <BlurReveal direction="left">
-            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, marginBottom: '1.2rem' }}>
+            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, marginBottom: '1.2rem' }}>
               <GhostTitle text="OÙ INTERVENONS-NOUS ?" />
               Où intervenons-<GreenUnderline><span className="text-gradient">nous ?</span></GreenUnderline>
             </h2>
@@ -565,7 +565,7 @@ function RayonSection() {
             />
             <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
               {['Pointe-Noire & Kouilou', 'Interventions en Ferme', 'Urgences 24/7', 'FCFA (XAF)'].map(b => (
-                <span key={b} style={{ padding: '.3rem .85rem', borderRadius: 100, background: 'rgba(90, 135, 56,.08)', border: '1px solid rgba(90, 135, 56,.2)', fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 600, color: '#5a8738' }}>{b}</span>
+                <span key={b} style={{ padding: '.3rem .85rem', borderRadius: 100, background: 'rgba(248, 146, 3,.08)', border: '1px solid rgba(248, 146, 3,.2)', fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 600, color: '#f89203' }}>{b}</span>
               ))}
             </div>
           </BlurReveal>
@@ -576,12 +576,12 @@ function RayonSection() {
                   initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   transition={{ delay: i * .06, duration: .45, ease: [.22,1,.36,1] }}
                   whileHover={{ y: -4 }}
-                  style={{ padding: '1.1rem 1.2rem', borderRadius: 14, background: primary ? 'linear-gradient(135deg, rgba(90, 135, 56,.14), rgba(90, 135, 56,.05))' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(90, 135, 56,.35)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.8rem', position: 'relative', overflow: 'hidden' }}>
-                  {primary && <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, background: 'radial-gradient(circle at 100% 0%,rgba(90, 135, 56,.12),transparent 70%)', pointerEvents: 'none' }} />}
+                  style={{ padding: '1.1rem 1.2rem', borderRadius: 14, background: primary ? 'rgba(248, 146, 3, 0.08)' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(248, 146, 3,.35)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.8rem', position: 'relative', overflow: 'hidden' }}>
+                  {primary && <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, background: 'none', pointerEvents: 'none' }} />}
                   <FlagBadge code={code} primary={primary} />
                   <div>
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.82rem', color: primary ? '#5a8738' : T.textMain }}>{name}</div>
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: T.textMuted }}>{note}</div>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.82rem', color: primary ? '#f89203' : T.textMain }}>{name}</div>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: T.textMuted }}>{note}</div>
                   </div>
                 </motion.div>
               ))}

@@ -1,7 +1,7 @@
 'use client'
 import { useCallback, useLayoutEffect, useRef, useState, useEffect } from 'react'
 import { gsap } from 'gsap'
-import { Moon, Sun, ShoppingBag } from 'lucide-react'
+import { Moon, Sun, ShoppingCart, User, UserCheck } from 'lucide-react'
 import Logo from '@/components/ui/Logo'
 import { useTheme } from '@/lib/theme'
 import { useShop } from '@/lib/shopContext'
@@ -14,7 +14,7 @@ import './StaggeredMenu.css'
    Port fidèle du composant du portfolio personnel :
    panel plein écran depuis la droite, balayage de
    couleur à l'ouverture, ghost-cycle text au survol,
-   items numérotés. Accent #5a8738 (vs #FF5500 origine).
+   items numérotés. Accent #f89203 (vs #FF5500 origine).
    items = NAV_LINKS { label, href } — navigation par
    route Next.js (site multi-pages, pas d'ancres).
    ═══════════════════════════════════════════════ */
@@ -46,7 +46,7 @@ function NavItemWithGhost({ it, idx, isActive, closeMenu }) {
 
 export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
   const T = useTheme()
-  const { cartCount, openCart } = useShop()
+  const { cartCount, openCart, currentUser } = useShop()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const openRef = useRef(false)
@@ -261,7 +261,7 @@ export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  const SWIPE_COLORS = ['#5a8738', null]
+  const SWIPE_COLORS = ['#f89203', null]
 
   return (
     <>
@@ -271,37 +271,55 @@ export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
           <Logo size={18} showTag={false} animate={false} />
         </TransitionLink>
         <div className="sm-header-right">
+          {/* Bouton Chariot */}
           <button
             onClick={openCart}
             className="sm-header-theme"
-            title="Mon Panier AVS"
+            title="Mon Chariot AVS"
             type="button"
-            aria-label="Ouvrir le panier"
+            aria-label="Ouvrir le chariot d'achat"
             style={{ position: 'relative' }}
           >
-            <ShoppingBag size={14} />
+            <ShoppingCart size={15} />
             {cartCount > 0 && (
               <span
                 style={{
                   position: 'absolute',
                   top: '-4px',
                   right: '-4px',
-                  background: '#5a8738',
+                  background: '#ff5722',
                   color: '#ffffff',
                   borderRadius: '100px',
-                  fontSize: '0.6rem',
-                  fontWeight: 800,
-                  width: '15px',
-                  height: '15px',
+                  fontSize: '0.62rem',
+                  fontWeight: 900,
+                  width: '16px',
+                  height: '16px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  boxShadow: '0 2px 6px rgba(255,87,34,0.4)',
                 }}
               >
                 {cartCount}
               </span>
             )}
           </button>
+
+          {/* Bouton Compte Client */}
+          <TransitionLink
+            href="/mon-compte"
+            className="sm-header-theme"
+            title={currentUser ? `Connecté : ${currentUser.fullName}` : "Mon Compte Éleveur"}
+            aria-label="Mon compte"
+          >
+            {currentUser ? (
+              <UserCheck size={15} style={{ color: '#fb923c' }} />
+            ) : (
+              <User size={15} />
+            )}
+          </TransitionLink>
+
+          {/* Switch thème */}
           <button
             onClick={T.toggle}
             className="sm-header-theme"
@@ -335,7 +353,7 @@ export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
         </div>
       </header>
 
-    <div className={'sm-root' + (open ? ' sm-root--open' : '')} style={{ '--sm-accent': '#5a8738' }}>
+    <div className={'sm-root' + (open ? ' sm-root--open' : '')} style={{ '--sm-accent': '#f89203' }}>
       <div ref={preLayersRef} className="sm-prelayers" aria-hidden="true">
         {SWIPE_COLORS.map((c, i) => (
           <div

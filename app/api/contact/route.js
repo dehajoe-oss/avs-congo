@@ -157,8 +157,8 @@ export async function POST(request) {
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;background:#0a120c;">
 
           <!-- Header marque -->
-          <div style="padding:28px 32px;background:linear-gradient(135deg,#0d1a11 0%,#0a120c 100%);border-bottom:1px solid rgba(90,135,56,.25);">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.1em;color:#5a8738;text-transform:uppercase;">
+          <div style="padding:28px 32px;background:#1c1917;border-bottom:1px solid rgba(248, 146, 3,.25);">
+            <div style="font-family:'Poppins', sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:#f89203;text-transform:uppercase;">
               Agro Véto Services Congo
             </div>
             <div style="margin-top:4px;font-size:11px;color:rgba(255,255,255,.4);">
@@ -172,7 +172,7 @@ export async function POST(request) {
             <h2 style="margin:0 0 6px;color:#f2ede8;font-size:20px;font-weight:800;">
               ${safeName}
             </h2>
-            <div style="display:inline-block;padding:5px 12px;border-radius:100px;background:rgba(90,135,56,.12);border:1px solid rgba(90,135,56,.3);font-size:12px;font-weight:700;color:#8ab866;margin-bottom:24px;">
+            <div style="display:inline-block;padding:5px 12px;border-radius:100px;background:rgba(248, 146, 3,.12);border:1px solid rgba(248, 146, 3,.3);font-size:12px;font-weight:700;color:#8ab866;margin-bottom:24px;">
               ${projectLabel}
             </div>
 
@@ -181,7 +181,7 @@ export async function POST(request) {
               <tr>
                 <td style="padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px 0 0 10px;border-right:none;">
                   <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:5px;">Email</div>
-                  <a href="mailto:${safeEmail}" style="font-size:13px;color:#5a8738;text-decoration:none;font-weight:600;">${safeEmail}</a>
+                  <a href="mailto:${safeEmail}" style="font-size:13px;color:#f89203;text-decoration:none;font-weight:600;">${safeEmail}</a>
                 </td>
                 <td style="padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:0 10px 10px 0;">
                   <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:5px;">WhatsApp / Tél</div>
@@ -203,12 +203,12 @@ export async function POST(request) {
             <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px;">
               Description du projet
             </div>
-            <p style="color:#e8e4df;line-height:1.7;font-size:14px;background:rgba(90,135,56,.05);padding:18px;border-radius:10px;border-left:3px solid #5a8738;margin:0 0 28px;">
+            <p style="color:#e8e4df;line-height:1.7;font-size:14px;background:rgba(248, 146, 3,.05);padding:18px;border-radius:10px;border-left:3px solid #f89203;margin:0 0 28px;">
               ${safeMessage}
             </p>
 
             <!-- CTA -->
-            <a href="mailto:${safeEmail}" style="display:inline-block;padding:13px 26px;border-radius:100px;background:#5a8738;color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;">
+            <a href="mailto:${safeEmail}" style="display:inline-block;padding:13px 26px;border-radius:100px;background:#f89203;color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;">
               Répondre à ${safeName.split(' ')[0]} →
             </a>
 

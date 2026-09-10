@@ -30,11 +30,11 @@ const TECH_STACK = [
 function HeroServices() {
   const T = useTheme()
   return (
-    <section style={{ height: '100vh', minHeight: 600, width: '100%', background: '#060e09', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+    <section style={{ height: '100vh', minHeight: 600, width: '100%', background: '#0c0a09', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
       <AuroraHero labels={[]} />
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1, padding: '72px 5% 0' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
-          <h1 style={{ position: 'relative', fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: 'rgba(255,255,255,.88)', letterSpacing: '-.04em', lineHeight: 1.1, marginBottom: '1.2rem' }}>
+          <h1 style={{ position: 'relative', fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: 'rgba(255,255,255,.88)', letterSpacing: '-.04em', lineHeight: 1.1, marginBottom: '1.2rem' }}>
             <GhostTitle text="NOS PRESTATIONS" />
             NOS{' '}
             <GreenUnderline><span className="text-gradient">PRESTATIONS</span></GreenUnderline>
@@ -68,7 +68,7 @@ function ServicesList() {
     <section id="services-list" ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="CHOISISSEZ VOTRE SOLUTION" />
             Choisissez votre <GreenUnderline><span className="text-gradient">solution</span></GreenUnderline>
           </h2>
@@ -80,7 +80,7 @@ function ServicesList() {
             const Ic = ICON_MAP[s.icon] || Globe
             return (
               <button key={s.title} onClick={() => setActive(i)}
-                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
+                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? '#f89203' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
                 <Ic size={14} />{s.title}
               </button>
             )
@@ -104,18 +104,18 @@ function ServicesList() {
             {/* Image */}
             <div className="svc-detail-img" style={{ borderRadius: 20, overflow: 'hidden', border: `1px solid ${T.border}`, boxShadow: '8px 8px 40px rgba(0,0,0,.3)', aspectRatio: '1 / 1', width: '100%', maxWidth: 380, margin: '0 auto' }}>
               <LazyImg src={svc.img} alt={svc.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                placeholder={<div style={{ height: '100%', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(90, 135, 56,.3)' }} /></div>} />
+                placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(248, 146, 3,.3)' }} /></div>} />
             </div>
 
             {/* Content */}
             <div className="svc-detail-body">
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' }}>
-                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(90, 135, 56,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(248, 146, 3,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Icon size={24} style={{ color: T.green }} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.greenSub, letterSpacing: '.1em' }}>{svc.n}</div>
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: T.textMain, fontFamily: "'JetBrains Mono',monospace" }}>{svc.title}</h3>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.greenSub, letterSpacing: '.1em' }}>{svc.n}</div>
+                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: T.textMain, fontFamily: "'Poppins', sans-serif" }}>{svc.title}</h3>
                 </div>
               </div>
 
@@ -129,10 +129,10 @@ function ServicesList() {
                 ))}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(95,145,55,.05)' : 'rgba(90, 135, 56,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(234, 88, 12,.05)' : 'rgba(248, 146, 3,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
                 <div>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem', fontWeight: 800, color: T.green }}>{svc.price}</div>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', color: T.textMuted, display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.9rem', fontWeight: 800, color: T.green }}>{svc.price}</div>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: T.textMuted, display: 'flex', alignItems: 'center', gap: 4 }}>
                     <Timer size={10} style={{ color: T.green }} />Délai : {svc.del}
                   </div>
                 </div>
@@ -156,7 +156,7 @@ function TechSection() {
     <section ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="DES TECHNOLOGIES ÉPROUVÉES" />
             Des technologies <GreenUnderline><span className="text-gradient">éprouvées</span></GreenUnderline>
           </h2>
@@ -166,7 +166,7 @@ function TechSection() {
             <motion.div key={cat} className="sku-card"
               initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * .08 }}
               style={{ padding: '1.4rem' }}>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: '1rem', borderBottom: `1px solid ${T.border}`, paddingBottom: '.6rem' }}>{cat}</div>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: '1rem', borderBottom: `1px solid ${T.border}`, paddingBottom: '.6rem' }}>{cat}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '.4rem' }}>
                 {items.map(item => (
                   <span key={item} style={{ fontSize: '.82rem', color: T.textSub, display: 'flex', alignItems: 'center', gap: '.4rem' }}>

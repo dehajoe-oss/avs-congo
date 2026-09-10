@@ -58,7 +58,7 @@ export default function ShopClient() {
         background: T.light ? '#f6f8fa' : '#070d06',
         color: T.light ? '#0f172a' : '#f3f4f6',
         minHeight: '100vh',
-        fontFamily: "'Space Grotesk', sans-serif",
+        fontFamily: "'Poppins', sans-serif",
       }}
     >
       <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 1.5rem' }}>
@@ -72,9 +72,9 @@ export default function ShopClient() {
               gap: '6px',
               padding: '6px 14px',
               borderRadius: '100px',
-              background: 'rgba(90, 135, 56, 0.15)',
-              border: '1px solid rgba(90, 135, 56, 0.35)',
-              color: '#5a8738',
+              background: 'rgba(248, 146, 3, 0.15)',
+              border: '1px solid rgba(248, 146, 3, 0.35)',
+              color: '#f89203',
               fontSize: '0.75rem',
               fontWeight: 700,
               textTransform: 'uppercase',
@@ -130,7 +130,7 @@ export default function ShopClient() {
                 gap: '10px',
               }}
             >
-              <CreditCard size={20} color="#5a8738" />
+              <CreditCard size={20} color="#f89203" />
               <div>
                 <div style={{ fontSize: '0.82rem', fontWeight: 800 }}>Paiement KKiaPay</div>
                 <div style={{ fontSize: '0.72rem', color: T.light ? '#6b7280' : '#9ca3af' }}>Mobile Money & CB sécurisé</div>
@@ -148,7 +148,7 @@ export default function ShopClient() {
                 gap: '10px',
               }}
             >
-              <Truck size={20} color="#5a8738" />
+              <Truck size={20} color="#f89203" />
               <div>
                 <div style={{ fontSize: '0.82rem', fontWeight: 800 }}>Livraison Pointe-Noire</div>
                 <div style={{ fontSize: '0.72rem', color: T.light ? '#6b7280' : '#9ca3af' }}>Socoprise, Tié-Tié, Loandjili</div>
@@ -166,7 +166,7 @@ export default function ShopClient() {
                 gap: '10px',
               }}
             >
-              <ShieldCheck size={20} color="#5a8738" />
+              <ShieldCheck size={20} color="#f89203" />
               <div>
                 <div style={{ fontSize: '0.82rem', fontWeight: 800 }}>Contrôle Vétérinaire</div>
                 <div style={{ fontSize: '0.72rem', color: T.light ? '#6b7280' : '#9ca3af' }}>Garantie Dr POUTYA</div>
@@ -226,8 +226,8 @@ export default function ShopClient() {
                   style={{
                     padding: '8px 16px',
                     borderRadius: '100px',
-                    border: `1px solid ${active ? '#5a8738' : 'rgba(255,255,255,0.1)'}`,
-                    background: active ? '#5a8738' : (T.light ? '#ffffff' : 'rgba(255,255,255,0.04)'),
+                    border: `1px solid ${active ? '#f89203' : 'rgba(255,255,255,0.1)'}`,
+                    background: active ? '#f89203' : (T.light ? '#ffffff' : 'rgba(255,255,255,0.04)'),
                     color: active ? '#ffffff' : 'inherit',
                     fontSize: '0.8rem',
                     fontWeight: 700,
@@ -295,7 +295,7 @@ export default function ShopClient() {
                           left: '12px',
                           padding: '4px 10px',
                           borderRadius: '100px',
-                          background: 'rgba(90, 135, 56, 0.95)',
+                          background: 'rgba(248, 146, 3, 0.95)',
                           color: '#ffffff',
                           fontSize: '0.7rem',
                           fontWeight: 800,
@@ -310,7 +310,7 @@ export default function ShopClient() {
 
                   {/* Détails du produit */}
                   <div style={{ padding: '1.4rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#5a8738', fontWeight: 700, textTransform: 'uppercase', marginBottom: '4px' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#f89203', fontWeight: 700, textTransform: 'uppercase', marginBottom: '4px' }}>
                       {product.categoryLabel}
                     </div>
 
@@ -327,7 +327,7 @@ export default function ShopClient() {
                       <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.2rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
                         {product.specs.slice(0, 3).map((spec, i) => (
                           <li key={i} style={{ fontSize: '0.75rem', color: T.light ? '#6b7280' : '#d1d5db', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <Check size={13} color="#5a8738" />
+                            <Check size={13} color="#f89203" />
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -336,7 +336,7 @@ export default function ShopClient() {
 
                     {/* Prix */}
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginBottom: '1.2rem' }}>
-                      <span style={{ fontSize: '1.4rem', fontWeight: 900, color: '#5a8738' }}>
+                      <span style={{ fontSize: '1.4rem', fontWeight: 900, color: '#f89203' }}>
                         {product.price.toLocaleString('fr-FR')} FCFA
                       </span>
                       <span style={{ fontSize: '0.75rem', color: T.light ? '#6b7280' : '#9ca3af' }}>
@@ -391,9 +391,9 @@ export default function ShopClient() {
                             flex: 1,
                             padding: '10px 14px',
                             borderRadius: '10px',
-                            border: '1px solid #5a8738',
-                            background: 'rgba(90, 135, 56, 0.15)',
-                            color: '#5a8738',
+                            border: '1px solid #f89203',
+                            background: 'rgba(248, 146, 3, 0.15)',
+                            color: '#f89203',
                             fontSize: '0.82rem',
                             fontWeight: 700,
                             cursor: 'pointer',
@@ -415,7 +415,7 @@ export default function ShopClient() {
                           padding: '11px 16px',
                           borderRadius: '10px',
                           border: 'none',
-                          background: '#5a8738',
+                          background: '#f89203',
                           color: '#ffffff',
                           fontSize: '0.85rem',
                           fontWeight: 800,
@@ -447,13 +447,13 @@ export default function ShopClient() {
               transform: 'translateX(-50%)',
               zIndex: 90,
               background: '#0e1710',
-              border: '2px solid #5a8738',
+              border: '2px solid #f89203',
               borderRadius: '100px',
               padding: '10px 24px',
               display: 'flex',
               alignItems: 'center',
               gap: '20px',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(90, 135, 56, 0.4)',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(248, 146, 3, 0.4)',
               color: '#ffffff',
             }}
           >
@@ -463,7 +463,7 @@ export default function ShopClient() {
                   width: '32px',
                   height: '32px',
                   borderRadius: '50%',
-                  background: '#5a8738',
+                  background: '#f89203',
                   color: '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
@@ -485,7 +485,7 @@ export default function ShopClient() {
                 padding: '9px 18px',
                 borderRadius: '100px',
                 border: 'none',
-                background: '#5a8738',
+                background: '#f89203',
                 color: '#ffffff',
                 fontSize: '0.82rem',
                 fontWeight: 800,

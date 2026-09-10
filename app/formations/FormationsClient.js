@@ -74,12 +74,12 @@ export default function FormationsClient() {
             animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(95,145,55,.1)' : 'rgba(90, 135, 56,.1)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
               <GraduationCap size={13} />
               CENTRE DE FORMATION & FERMES-ÉCOLES
             </div>
 
-            <h1 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', lineHeight: 1.05, letterSpacing: '-.03em', marginBottom: '1.2rem', color: T.textMain }}>
+            <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', lineHeight: 1.05, letterSpacing: '-.03em', marginBottom: '1.2rem', color: T.textMain }}>
               Formations Pratiques & Certifiantes
             </h1>
 
@@ -104,11 +104,11 @@ export default function FormationsClient() {
       <section style={{ padding: '2.5rem 5%', borderBottom: `1px solid ${T.border}`, background: T.light ? 'rgba(0,0,0,.02)' : 'rgba(255,255,255,.02)' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(95,145,55,.1)' : 'rgba(90, 135, 56,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <Award size={20} />
             </div>
             <div>
-              <h3 style={{ margin: '0 0 .3rem', fontSize: '.95rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textMain }}>
+              <h3 style={{ margin: '0 0 .3rem', fontSize: '.95rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
                 Attestations Certifiantes
               </h3>
               <p style={{ margin: 0, fontSize: '.8rem', color: T.textMuted, lineHeight: 1.5 }}>
@@ -118,11 +118,11 @@ export default function FormationsClient() {
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(95,145,55,.1)' : 'rgba(90, 135, 56,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <Users size={20} />
             </div>
             <div>
-              <h3 style={{ margin: '0 0 .3rem', fontSize: '.95rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textMain }}>
+              <h3 style={{ margin: '0 0 .3rem', fontSize: '.95rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
                 Immersion Ferme-École
               </h3>
               <p style={{ margin: 0, fontSize: '.8rem', color: T.textMuted, lineHeight: 1.5 }}>
@@ -132,11 +132,11 @@ export default function FormationsClient() {
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(95,145,55,.1)' : 'rgba(90, 135, 56,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <ShieldCheck size={20} />
             </div>
             <div>
-              <h3 style={{ margin: '0 0 .3rem', fontSize: '.95rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textMain }}>
+              <h3 style={{ margin: '0 0 .3rem', fontSize: '.95rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
                 Suivi Post-Formation
               </h3>
               <p style={{ margin: 0, fontSize: '.8rem', color: T.textMuted, lineHeight: 1.5 }}>
@@ -150,10 +150,10 @@ export default function FormationsClient() {
       {/* ── CATALOGUE DES MODULES ── */}
       <section id="catalogue" style={{ padding: '4.5rem 5%', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', maxWidth: 700, margin: '0 auto 3rem' }}>
-          <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 700, color: T.green, letterSpacing: '.08em', textTransform: 'uppercase' }}>
+          <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 700, color: T.green, letterSpacing: '.08em', textTransform: 'uppercase' }}>
             PROGRAMMES DISPONIBLES
           </span>
-          <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 900, fontStyle: 'italic', color: T.textMain, margin: '.4rem 0 1rem' }}>
+          <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 900, fontStyle: 'italic', color: T.textMain, margin: '.4rem 0 1rem' }}>
             Choisissez votre spécialisation
           </h2>
           <p style={{ fontSize: '.92rem', color: T.textSub, lineHeight: 1.6 }}>
@@ -170,7 +170,7 @@ export default function FormationsClient() {
             >
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '.8rem', marginBottom: '1rem' }}>
-                  <span style={{ fontSize: '.7rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.green, background: T.light ? 'rgba(95,145,55,.1)' : 'rgba(90, 135, 56,.1)', padding: '.25rem .7rem', borderRadius: 6 }}>
+                  <span style={{ fontSize: '.7rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.green, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', padding: '.25rem .7rem', borderRadius: 6 }}>
                     {mod.category}
                   </span>
                   <span style={{ fontSize: '.72rem', color: T.textMuted, display: 'flex', alignItems: 'center', gap: '.3rem' }}>
@@ -178,7 +178,7 @@ export default function FormationsClient() {
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, fontFamily: "'JetBrains Mono',monospace", color: T.textMain, lineHeight: 1.35, marginBottom: '1rem' }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: T.textMain, lineHeight: 1.35, marginBottom: '1rem' }}>
                   {mod.title}
                 </h3>
 
@@ -193,7 +193,7 @@ export default function FormationsClient() {
                   </div>
                 </div>
 
-                <h4 style={{ fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '.6rem' }}>
+                <h4 style={{ fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '.6rem' }}>
                   Programme & Compétences :
                 </h4>
                 <ul style={{ paddingLeft: '1.1rem', margin: '0 0 1.8rem', display: 'flex', flexDirection: 'column', gap: '.45rem' }}>
@@ -208,7 +208,7 @@ export default function FormationsClient() {
               <div style={{ paddingTop: '1.2rem', borderTop: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div>
                   <span style={{ display: 'block', fontSize: '.7rem', color: T.textMuted }}>Tarif inscription :</span>
-                  <span style={{ fontSize: '1.2rem', fontWeight: 900, fontFamily: "'JetBrains Mono',monospace", color: T.green }}>
+                  <span style={{ fontSize: '1.2rem', fontWeight: 900, fontFamily: "'Poppins', sans-serif", color: T.green }}>
                     {mod.price}
                   </span>
                 </div>
@@ -231,10 +231,10 @@ export default function FormationsClient() {
           <div style={{ background: T.light ? '#ffffff' : '#0a170d', border: `2px solid ${T.green}`, borderRadius: 20, maxWidth: 520, width: '100%', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.2rem' }}>
               <div>
-                <span style={{ fontSize: '.7rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.green }}>
+                <span style={{ fontSize: '.7rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.green }}>
                   {selectedModule.category}
                 </span>
-                <h3 style={{ margin: '.2rem 0 0', fontSize: '1.1rem', fontWeight: 800, fontFamily: "'JetBrains Mono',monospace", color: T.textMain }}>
+                <h3 style={{ margin: '.2rem 0 0', fontSize: '1.1rem', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
                   {selectedModule.title}
                 </h3>
               </div>
@@ -248,10 +248,10 @@ export default function FormationsClient() {
 
             {submitted ? (
               <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
-                <div style={{ width: 50, height: 50, borderRadius: '50%', background: 'rgba(90, 135, 56,.2)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <div style={{ width: 50, height: 50, borderRadius: '50%', background: 'rgba(248, 146, 3,.2)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
                   <CheckCircle2 size={28} />
                 </div>
-                <h4 style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '1.1rem', fontWeight: 800, color: T.textMain, marginBottom: '.5rem' }}>
+                <h4 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: T.textMain, marginBottom: '.5rem' }}>
                   Pré-inscription transmise !
                 </h4>
                 <p style={{ fontSize: '.82rem', color: T.textMuted, marginBottom: '1.5rem' }}>
@@ -268,7 +268,7 @@ export default function FormationsClient() {
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                     Nom & Prénom du candidat *
                   </label>
                   <input
@@ -283,7 +283,7 @@ export default function FormationsClient() {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                       Numéro Téléphone / WhatsApp *
                     </label>
                     <input
@@ -297,7 +297,7 @@ export default function FormationsClient() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                       Nombre de participants
                     </label>
                     <input
@@ -311,7 +311,7 @@ export default function FormationsClient() {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                     Adresse Email (optionnelle)
                   </label>
                   <input
@@ -324,7 +324,7 @@ export default function FormationsClient() {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                     Vos attentes ou situation actuelle
                   </label>
                   <textarea

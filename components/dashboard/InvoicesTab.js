@@ -23,7 +23,7 @@ import InvoicePreview from './InvoicePreview'
 import { computeInvoiceTotals, formatMoney, emptyInvoiceForm } from '@/lib/invoice-calc'
 
 const STATUS_LABELS = { ENVOYEE: 'Envoyée', PAYEE: 'Payée', ANNULEE: 'Annulée' }
-const STATUS_COLORS = { ENVOYEE: '#5b8def', PAYEE: '#5a8738', ANNULEE: '#e05e5e' }
+const STATUS_COLORS = { ENVOYEE: '#5b8def', PAYEE: '#f89203', ANNULEE: '#e05e5e' }
 
 function StatusPill({ status }) {
   const color = STATUS_COLORS[status] || '#9aa0a6'
@@ -351,7 +351,7 @@ export default function InvoicesTab({ T, CARD }) {
                 </div>
               </div>
             ))}
-            <button onClick={addLine} style={{ padding: 10, background: 'rgba(90, 135, 56,.08)', color: T.green, border: `1px dashed ${T.green}`, borderRadius: 8, fontSize: '.78rem', fontWeight: 700, cursor: 'pointer' }}>
+            <button onClick={addLine} style={{ padding: 10, background: 'rgba(248, 146, 3,.08)', color: T.green, border: `1px dashed ${T.green}`, borderRadius: 8, fontSize: '.78rem', fontWeight: 700, cursor: 'pointer' }}>
               + Ajouter une ligne
             </button>
 
@@ -470,7 +470,7 @@ export default function InvoicesTab({ T, CARD }) {
             }}>
               <div style={{ minWidth: 0, flex: 1, cursor: 'pointer' }} onClick={() => openEditInvoice(inv)}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontSize: '.9rem', fontWeight: 900, color: T.textMain }}>{inv.number}</span>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.9rem', fontWeight: 900, color: T.textMain }}>{inv.number}</span>
                   <StatusPill status={inv.status} />
                 </div>
                 <div style={{ fontSize: '.75rem', color: T.textSub, marginTop: 2 }}>
@@ -524,7 +524,7 @@ export default function InvoicesTab({ T, CARD }) {
                 <AlertTriangle size={18} />
               </div>
               <div>
-                <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '1.1rem', color: T.textMain }}>Supprimer cette facture ?</div>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '1.1rem', color: T.textMain }}>Supprimer cette facture ?</div>
                 <div style={{ fontSize: '.8rem', color: T.textSub, marginTop: 4 }}>{deleteTarget.label}</div>
               </div>
             </div>

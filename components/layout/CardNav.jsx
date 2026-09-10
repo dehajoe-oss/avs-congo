@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
-import { Moon, Sun, Orbit, ShoppingBag, User } from 'lucide-react'
+import { Moon, Sun, Orbit, ShoppingCart, User, UserCheck } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { useShop } from '@/lib/shopContext'
 import { HoverSlideText } from '@/components/ui/index'
@@ -148,29 +148,34 @@ export default function CardNav() {
   return (
     <div className="aka-nav-container">
       <nav ref={navRef} className={'aka-card-nav' + (open ? ' is-open' : '')} style={{
-        '--nav-bg': open ? (T.light ? 'rgba(248,248,248,0.88)' : 'rgba(6,14,9,0.85)') : 'transparent',
-        '--nav-blur': open ? 'blur(20px) saturate(160%)' : 'none',
-        
-        '--nav-hline': '#5a8738',
-        '--nav-btn-border': !open ? 'rgba(255,255,255,0.3)' : 'rgba(242,237,232,.15)',
-        '--nav-btn-bg': !open ? 'rgba(0,0,0,0.18)' : 'rgba(255,255,255,.05)',
-        '--nav-btn-color': '#5a8738',
-        '--card1-bg': T.light ? '#f0eeeb' : '#0d1a11',
-        '--card2-bg': T.light ? '#eaf5e2' : '#0a1f10',
-        '--card3-bg': T.light ? '#ffffff' : '#060e09',
+        '--nav-bg': open
+          ? (T.light ? 'rgba(252, 252, 250, 0.96)' : 'rgba(18, 15, 13, 0.96)')
+          : (T.light ? 'rgba(255, 255, 255, 0.92)' : 'rgba(14, 11, 10, 0.92)'),
+        '--nav-blur': 'blur(20px) saturate(180%)',
+        '--nav-border': T.light ? '1.5px solid rgba(0, 0, 0, 0.12)' : '1.5px solid rgba(255, 255, 255, 0.18)',
+        '--nav-shadow': T.light
+          ? '0 12px 36px -4px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(248, 146, 3, 0.2)'
+          : '0 16px 44px -4px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(248, 146, 3, 0.35)',
+        '--nav-hline': '#ffffff',
+        '--card1-bg': T.light ? '#fbf8f5' : '#1c1917',
+        '--card2-bg': T.light ? '#fff7ed' : '#261a10',
+        '--card3-bg': T.light ? '#ffffff' : '#0c0a09',
         '--card-text': T.light ? '#0a0c16' : '#f2ede8',
         '--card1-border': T.light ? '2px solid #050505' : '2px solid #050505',
         '--card2-border': T.light ? '2px solid #050505' : '2px solid #050505',
         '--card3-border': T.light ? '2px solid #050505' : '2px solid #050505',
         '--card-shadow': T.light ? '4px 4px 0px #050505' : '4px 4px 0px #050505',
         '--card3-label': T.light ? 'rgba(10,20,10,0.5)' : 'rgba(242,237,232,0.5)',
-        '--card1-link-hover': T.light ? '#2f6a17' : '#6e9f45',
-        '--theme-green': T.green,
+        '--card1-link-hover': T.light ? '#c2410c' : '#fb923c',
+        '--theme-green': '#f89203',
       }}>
         <div className="aka-nav-top">
-          <button className={'aka-hamburger' + (open ? ' open' : '')} onClick={toggle} aria-label="Menu" type="button">
-            <div className="aka-hline" />
-            <div className="aka-hline" />
+          <button className={'aka-nav-menu-btn' + (open ? ' open' : '')} onClick={toggle} aria-label="Menu de navigation" type="button">
+            <div className="aka-hamburger">
+              <div className="aka-hline" />
+              <div className="aka-hline" />
+            </div>
+            <span className="aka-menu-label">Menu</span>
           </button>
 
           <TransitionLink href="/" className="aka-nav-logo" onClick={closeNav}>
@@ -178,49 +183,45 @@ export default function CardNav() {
           </TransitionLink>
 
           <div className="aka-nav-right">
+            {/* Bouton Chariot — icône seule */}
             <button
               onClick={openCart}
-              className="btn-ghost btn-sm"
-              title="Mon Panier AVS"
+              className="aka-nav-pill aka-nav-pill--icon-only"
+              title="Mon Chariot AVS"
               type="button"
-              style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '6px' }}
+              aria-label="Mon Chariot AVS"
             >
-              <ShoppingBag size={14} />
-              <span>Panier</span>
+              <ShoppingCart size={16} className="aka-nav-pill-icon" />
               {cartCount > 0 && (
-                <span style={{
-                  background: '#5a8738',
-                  color: '#ffffff',
-                  borderRadius: '100px',
-                  fontSize: '0.65rem',
-                  fontWeight: 800,
-                  padding: '1px 6px',
-                  marginLeft: '2px',
-                }}>
+                <span className="aka-cart-badge">
                   {cartCount}
                 </span>
               )}
             </button>
 
+            {/* Bouton Compte Client — icône seule */}
             <TransitionLink
               href="/mon-compte"
-              className="btn-ghost btn-sm"
-              title={currentUser ? currentUser.fullName : "Mon Compte Éleveur"}
-              style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+              className="aka-nav-pill aka-nav-pill--icon-only"
+              title={currentUser ? `Connecté : ${currentUser.fullName}` : "Mon Compte Éleveur"}
+              aria-label={currentUser ? `Connecté : ${currentUser.fullName}` : "Mon Compte Éleveur"}
             >
-              <User size={14} />
-              <span>{currentUser ? currentUser.fullName.split(' ')[0] : 'Compte'}</span>
+              {currentUser ? (
+                <UserCheck size={16} className="aka-nav-pill-icon aka-user-active" />
+              ) : (
+                <User size={16} className="aka-nav-pill-icon" />
+              )}
             </TransitionLink>
 
             <button
               onClick={handleExplorerToggle}
-              className={(inExplorer ? 'btn-raised btn-sm' : 'btn-ghost btn-sm')}
+              className={`aka-nav-pill ${inExplorer ? 'aka-nav-pill--active' : ''}`}
               title={inExplorer ? "Retour au site" : "Mode Explorer — globe des projets"}
               aria-pressed={inExplorer}
               type="button"
             >
-              <Orbit size={13} />
-              <span><HoverSlideText text="Explorer" /></span>
+              <Orbit size={14} className="aka-nav-pill-icon" />
+              <span className="aka-nav-pill-label"><HoverSlideText text="Explorer" /></span>
             </button>
             <button onClick={T.toggle} className="aka-theme-btn" title={T.light ? 'Mode sombre' : 'Mode clair'} type="button">
               {T.light ? <Moon size={13} /> : <Sun size={13} />}

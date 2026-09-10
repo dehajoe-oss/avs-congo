@@ -16,7 +16,7 @@
   height: 100vh;
   overflow: hidden;
   background: #030806;
-  border-top: 1px solid rgba(90, 135, 56, 0.12);
+  border-top: 1px solid rgba(248, 146, 3, 0.12);
 }
 
 .pt-webgl-container {
@@ -32,12 +32,12 @@
   display: flex; flex-direction: column; gap: .4rem;
 }
 .pt-eyebrow {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Poppins', sans-serif;
   font-size: .64rem; letter-spacing: .38em; text-transform: uppercase;
-  color: rgba(90, 135, 56, 0.75);
+  color: rgba(248, 146, 3, 0.75);
 }
 .pt-count {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Poppins', sans-serif;
   font-size: .75rem; color: rgba(255, 255, 255, 0.45);
 }
 
@@ -55,13 +55,13 @@
 .pt-ui-title {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   font-size: clamp(2.6rem, 9vw, 8rem);
   letter-spacing: -.02em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.88);
-  text-shadow: 0 0 40px rgba(90, 135, 56, 0.4);
+  text-shadow: 0 0 40px rgba(248, 146, 3, 0.4);
   mix-blend-mode: difference;
   transition: opacity .15s linear;
   white-space: nowrap;
@@ -71,13 +71,13 @@
 .pt-hover-title {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, calc(-50% + 8px));
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   font-size: clamp(2.6rem, 9vw, 8rem);
   letter-spacing: -.02em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 0 30px rgba(90, 135, 56, 0.55);
+  text-shadow: 0 0 30px rgba(248, 146, 3, 0.55);
   mix-blend-mode: difference;
   opacity: 0;
   transition: opacity .2s ease, transform .2s ease;
@@ -89,11 +89,11 @@
 .pt-hint {
   position: absolute; bottom: 2.2rem; left: 0; right: 0;
   text-align: center; z-index: 6; pointer-events: none;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Poppins', sans-serif;
   font-size: .68rem; letter-spacing: .04em;
   color: rgba(255, 255, 255, 0.4);
 }
-.pt-hint strong { color: rgba(90, 135, 56, 0.85); }
+.pt-hint strong { color: rgba(248, 146, 3, 0.85); }
 
 /* ── Fallback mobile (réutilisé par ExplorerClient) ─────────── */
 .pt-mobile-fallback {
@@ -106,12 +106,12 @@
 .pt-mobile-fallback .pt-glow { position: absolute; inset: 0; }
 .pt-grid-overlay {
   background-image:
-    linear-gradient(rgba(90, 135, 56, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(90, 135, 56, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(248, 146, 3, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248, 146, 3, 0.045) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 .pt-glow {
-  background: radial-gradient(circle at 50% 50%, rgba(90, 135, 56, 0.1) 0%, transparent 60%);
+  background: none;
 }
 .pt-mobile-card { position: relative; z-index: 1; max-width: 360px; }
 .pt-mobile-card h2 {
@@ -119,13 +119,13 @@
   font-size: 2rem; color: #fff; margin-bottom: 1rem; line-height: 1;
 }
 .pt-mobile-card p {
-  font-family: 'JetBrains Mono', monospace; font-size: .82rem;
+  font-family: 'Poppins', sans-serif; font-size: .82rem;
   color: rgba(255, 255, 255, 0.5); line-height: 1.6; margin-bottom: 1.8rem;
 }
 .pt-mobile-card a {
   display: inline-flex; align-items: center; gap: .5rem;
-  background: linear-gradient(135deg, #6e9f45, #5a8738);
-  color: #04140a; font-family: 'JetBrains Mono', monospace;
+  background: #f89203;
+  color: #04140a; font-family: 'Poppins', sans-serif;
   font-weight: 700; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase;
   padding: .85rem 1.6rem; border-radius: 999px; text-decoration: none;
 }

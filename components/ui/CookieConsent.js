@@ -74,16 +74,16 @@ export default function CookieConsent() {
           className="cookie-consent-card"
         >
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '.7rem', marginBottom: '.7rem' }}>
-            <div style={{ width: 34, height: 34, borderRadius: 10, background: 'rgba(110, 159, 69,.16)', border: '2px solid rgba(110, 159, 69,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <Cookie size={18} color="#6e9f45" />
+            <div style={{ width: 34, height: 34, borderRadius: 10, background: 'rgba(251, 146, 60,.16)', border: '2px solid rgba(251, 146, 60,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Cookie size={18} color="#fb923c" />
             </div>
-            <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.15rem', color: cardText, letterSpacing: '-.01em', paddingTop: '.2rem' }}>
+            <h2 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.15rem', color: cardText, letterSpacing: '-.01em', paddingTop: '.2rem' }}>
               On peut parler cookies deux secondes ?
             </h2>
           </div>
 
           {!expanded ? (
-            <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.8rem', lineHeight: 1.65, color: cardSub, marginBottom: '1.3rem' }}>
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.8rem', lineHeight: 1.65, color: cardSub, marginBottom: '1.3rem' }}>
               Des cookies essentiels font tourner le site et nous permettent de mesurer la fréquentation de façon anonyme. Avec votre accord, on active aussi des cookies analytiques pour mieux comprendre votre navigation.
             </p>
           ) : (
@@ -131,7 +131,7 @@ export default function CookieConsent() {
               onClick={() => setExpanded(false)}
               style={{
                 display: 'block', margin: '.9rem auto 0', background: 'none', border: 'none',
-                fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', color: 'rgba(255,255,255,.45)',
+                fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', color: 'rgba(255,255,255,.45)',
                 cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px',
               }}
             >
@@ -139,7 +139,7 @@ export default function CookieConsent() {
             </button>
           )}
 
-          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.66rem', lineHeight: 1.6, color: 'rgba(255,255,255,.4)', marginTop: '1.1rem' }}>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.66rem', lineHeight: 1.6, color: 'rgba(255,255,255,.4)', marginTop: '1.1rem' }}>
             Vous pouvez changer d&apos;avis à tout moment. Des questions sur vos données&nbsp;? Écrivez à{' '}
             <a href="mailto:wthomasss06@gmail.com" style={{ color: 'rgba(255,255,255,.6)' }}>wthomasss06@gmail.com</a>.
           </p>
@@ -157,7 +157,7 @@ function btnStyle(bg, color, ghost = false) {
     background: bg,
     color,
     border: ghost ? 'none' : '1px solid rgba(255,255,255,.1)',
-    fontFamily: "'Barlow Condensed',sans-serif",
+    fontFamily: "'Poppins', sans-serif",
     fontWeight: 900, fontStyle: 'italic',
     fontSize: ghost ? '.78rem' : '.85rem',
     textTransform: ghost ? 'none' : 'uppercase',
@@ -181,7 +181,7 @@ function PrefRow({ title, desc, value, onChange, locked = false, cardText, cardS
         style={{
           flexShrink: 0, marginTop: 2,
           width: 36, height: 20, borderRadius: 100,
-          background: (locked || value) ? '#6e9f45' : 'rgba(255,255,255,.15)',
+          background: (locked || value) ? '#fb923c' : 'rgba(255,255,255,.15)',
           border: 'none', position: 'relative',
           cursor: locked ? 'default' : 'pointer',
           opacity: locked ? .6 : 1,
@@ -195,8 +195,8 @@ function PrefRow({ title, desc, value, onChange, locked = false, cardText, cardS
         }} />
       </button>
       <div>
-        <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.78rem', color: cardText }}>{title}</div>
-        <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', color: cardSub, marginTop: 2 }}>{desc}</div>
+        <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.78rem', color: cardText }}>{title}</div>
+        <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', color: cardSub, marginTop: 2 }}>{desc}</div>
       </div>
     </div>
   )

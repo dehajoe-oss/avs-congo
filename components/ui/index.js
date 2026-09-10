@@ -39,7 +39,7 @@ export function LaserBeam({ position = 'right', intensity = 'medium', style = {}
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(to bottom, transparent 0%, #5a8738 20%, #aaffd4 45%, #5a8738 70%, transparent 100%)',
+        background: '#f89203',
         borderRadius: 2,
         filter: 'blur(0.4px)',
       }} />
@@ -51,7 +51,7 @@ export function LaserBeam({ position = 'right', intensity = 'medium', style = {}
         transform: 'translateX(-50%)',
         width: glowMap[intensity],
         height: '100%',
-        background: 'linear-gradient(to bottom, transparent, rgba(90, 135, 56,.22) 30%, rgba(90, 135, 56,.22) 65%, transparent)',
+        background: 'rgba(248, 146, 3, 0.22)',
         filter: 'blur(28px)',
         borderRadius: '50%',
       }} />
@@ -65,7 +65,7 @@ export function LaserBeam({ position = 'right', intensity = 'medium', style = {}
         height: 6,
         borderRadius: '50%',
         background: '#aaffd4',
-        boxShadow: '0 0 12px 4px rgba(90, 135, 56,.7), 0 0 28px 10px rgba(90, 135, 56,.3)',
+        boxShadow: '0 0 12px 4px rgba(248, 146, 3,.7), 0 0 28px 10px rgba(248, 146, 3,.3)',
         animation: 'laserSpark 3.2s ease-in-out infinite',
       }} />
     </div>
@@ -183,9 +183,9 @@ export function LazyImg({ src, alt, style, className, placeholder }) {
   const [error, setError] = useState(false)
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', ...(!loaded && !error ? { background: 'linear-gradient(135deg,#0a1a0e,#060e09)' } : {}) }}>
+    <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', ...(!loaded && !error ? { background: '#1c1917' } : {}) }}>
       {!loaded && !error && (
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg,#0a1a0e 0%,#0e2416 40%,#0a1a0e 80%)', backgroundSize: '200% 100%', animation: 'shimmer 1.6s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', inset: 0, background: '#1c1917', backgroundSize: '200% 100%', animation: 'shimmer 1.6s ease-in-out infinite' }} />
       )}
       {!error && (
         <img src={src} alt={alt || ''} loading="lazy" decoding="async" className={className}
@@ -240,9 +240,9 @@ export function MicroCursor() {
         width: hovering ? 36 : 8,
         height: hovering ? 36 : 8,
         borderRadius: '50%',
-        background: hovering ? 'transparent' : '#5a8738',
-        border: hovering ? '2px solid rgba(90, 135, 56,.6)' : 'none',
-        boxShadow: hovering ? '0 0 14px rgba(90, 135, 56,.3)' : '0 0 8px rgba(90, 135, 56,.7)',
+        background: hovering ? 'transparent' : '#f89203',
+        border: hovering ? '2px solid rgba(248, 146, 3,.6)' : 'none',
+        boxShadow: hovering ? '0 0 14px rgba(248, 146, 3,.3)' : '0 0 8px rgba(248, 146, 3,.7)',
         pointerEvents: 'none',
         zIndex: 99999,
         transition: 'width .2s, height .2s, left .05s, top .05s, background .2s',
@@ -276,7 +276,7 @@ export function BackToTop() {
       initial={{ opacity: 0, scale: .6, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: .6, y: 20 }}
-      whileHover={{ scale: 1.08, rotate: -4, boxShadow: '6px 8px 0px #050505, 0 0 24px rgba(110, 159, 69,.45)' }}
+      whileHover={{ scale: 1.08, rotate: -4, boxShadow: '6px 8px 0px #050505, 0 0 24px rgba(251, 146, 60,.45)' }}
       whileTap={{ scale: .94, rotate: 0, boxShadow: '2px 2px 0px #050505' }}
       transition={{ type: 'spring', stiffness: 400, damping: 18 }}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -284,7 +284,7 @@ export function BackToTop() {
       style={{
         position: 'fixed', bottom: '6.5rem', right: '2rem', zIndex: 8999,
         width: 48, height: 48, borderRadius: 999,
-        background: 'linear-gradient(135deg, #6e9f45, #5a8738)',
+        background: '#f89203',
         border: '3px solid #050505',
         boxShadow: '4px 4px 0px #050505',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -355,7 +355,7 @@ export function FloatingWA() {
           width: 54, height: 54, borderRadius: 999,
           background: '#25d366',
           border: '3px solid #050505',
-          boxShadow: hov ? '6px 8px 0px #050505, 0 0 22px rgba(110, 159, 69,.4)' : '4px 4px 0px #050505',
+          boxShadow: hov ? '6px 8px 0px #050505, 0 0 22px rgba(251, 146, 60,.4)' : '4px 4px 0px #050505',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           transform: hov ? 'translate(-2px, -4px) rotate(-3deg) scale(1.06)' : 'translate(0, 0) rotate(0deg) scale(1)',
           transition: 'transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s cubic-bezier(.34,1.56,.64,1)',
@@ -379,7 +379,7 @@ export function MarqueeStrip() {
     <div style={{ overflow: 'hidden', padding: '1.2rem 0', background: T.bgAlt, borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}` }}>
       <div style={{ display: 'flex', animation: 'marquee 28s linear infinite', width: 'max-content', gap: '2rem' }}>
         {[...items, ...items].map((item, i) => (
-          <span key={i} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.textMuted, letterSpacing: '.02em', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '.6rem' }}>
+          <span key={i} style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.textMuted, letterSpacing: '.02em', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '.6rem' }}>
             <span style={{ width: 5, height: 5, borderRadius: '50%', background: T.green, display: 'inline-block', flexShrink: 0 }} />
             {item}
           </span>
@@ -398,11 +398,11 @@ export function SectionCTA({ message, cta, href = 'https://wa.me/242060000000', 
   if (variant === 'strong') return (
     <motion.section ref={ref} initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
       style={{ padding: '5rem 5%', background: T.bg, borderTop: `1px solid ${T.border}`, position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(90, 135, 56,.10),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'none', pointerEvents: 'none' }} />
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .18 }} />
       <div style={{ position: 'relative', zIndex: 1, maxWidth: 680, margin: '0 auto' }}>
         <motion.h2 initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .1 }}
-          style={{ fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, fontFamily: "'JetBrains Mono',monospace", color: 'rgba(255,255,255,.92)', letterSpacing: '-.03em', marginBottom: '1.5rem', lineHeight: 1.2 }}>
+          style={{ fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: 'rgba(255,255,255,.92)', letterSpacing: '-.03em', marginBottom: '1.5rem', lineHeight: 1.2 }}>
           {message}
         </motion.h2>
         <motion.a href={href} target="_blank" rel="noreferrer" className="btn-raised"
@@ -437,13 +437,13 @@ export function PageCTA({ message, cta, href = 'https://wa.me/242060000000' }) {
   return (
     <section ref={ref} className="page-cta-trigger" style={{ padding: '7.5rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: T.light ? .15 : .12 }} />
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 760, height: 480, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(90, 135, 56,.13),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 760, height: 480, borderRadius: '50%', background: 'none', pointerEvents: 'none' }} />
       <motion.div initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }} animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}} transition={{ duration: .7, ease: [.22, 1, .36, 1] }}
         style={{ position: 'relative', zIndex: 1, maxWidth: 920, margin: '0 auto' }}>
         <h2 style={{
           position: 'relative',
           fontSize: 'clamp(2.15rem, 6vw, 4.8rem)', fontWeight: 900, fontStyle: 'italic',
-          fontFamily: "'Barlow Condensed',sans-serif", textTransform: 'uppercase',
+          fontFamily: "'Poppins', sans-serif", textTransform: 'uppercase',
           color: T.textMain, letterSpacing: '-.01em', lineHeight: .98, marginBottom: '2.8rem',
         }}>
           <GhostTitle text={message} />
@@ -467,7 +467,7 @@ export function PageCTA({ message, cta, href = 'https://wa.me/242060000000' }) {
 // Soulignement animé vert ondulé qui se dessine de gauche à droite
 // puis pulse en boucle. S'adapte à la largeur du texte.
 // Usage : <GreenUnderline>Votre texte vert</GreenUnderline>
-export function GreenUnderline({ children, style = {}, color = '#5a8738' }) {
+export function GreenUnderline({ children, style = {}, color = '#f89203' }) {
   const uid = useRef(`gu${Math.random().toString(36).slice(2,6)}`).current
   const totalLen = 380 // longueur approximative du nouveau path (02 / Original Path B)
   const pathD = "M5 24.2592C26.233 20.2879 47.7083 16.9968 69.135 13.8421C98.0469 9.5853 128.407 4.02322 158.059 5.14674C172.583 5.69708 187.686 8.66104 201.598 11.9696C207.232 13.3093 215.437 14.9471 220.137 18.3619C224.401 21.4596 220.737 25.6575 217.184 27.6168C208.309 32.5097 197.199 34.281 186.698 34.8486C183.159 35.0399 147.197 36.2657 155.105 26.5837C158.11 22.9053 162.993 20.6229 167.764 18.7924C178.386 14.7164 190.115 12.1115 201.624 10.3984C218.367 7.90626 235.528 7.06127 252.521 7.49276C258.455 7.64343 264.389 7.92791 270.295 8.41825C280.321 9.25056 296 10.8932 305 13.0242"

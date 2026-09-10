@@ -38,7 +38,7 @@ function FooterSlogan({ textMuted }) {
           style={{
             position: 'absolute', right: 0, width: '100%', textAlign: 'right',
             fontSize: '.78rem', fontWeight: 700, letterSpacing: '.04em', textTransform: 'uppercase',
-            color: textMuted, margin: 0, fontFamily: "'JetBrains Mono',monospace",
+            color: textMuted, margin: 0, fontFamily: "'Poppins', sans-serif",
           }}
         >
           {FOOTER_SLOGANS[i]}
@@ -71,7 +71,7 @@ function AskAIStrip({ T }) {
   return (
     <div style={{ padding: '2.2rem 0', textAlign: 'center' }}>
       
-      <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginBottom: '1rem' }}>
+      <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginBottom: '1rem' }}>
         Demandez à l'IA ce qu'elle sait d'Agro Véto Services Congo
       </p>
       <div style={{ display: 'flex', gap: '.6rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -80,7 +80,7 @@ function AskAIStrip({ T }) {
             className="aka-ask-btn"
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.5rem', padding: '.75rem .95rem', borderRadius: 14, background: 'transparent', border: 'none', cursor: 'pointer', minWidth: 70 }}>
             <img src={p.icon} alt={p.label} width={22} height={22} style={{ borderRadius: 0, display: 'block' }} />
-            <span style={{ fontSize: '.6rem', fontFamily: "'JetBrains Mono',monospace", color: 'rgba(255,255,255,.5)' }}>
+            <span style={{ fontSize: '.6rem', fontFamily: "'Poppins', sans-serif", color: 'rgba(255,255,255,.5)' }}>
               <HoverSlideText text={copied === p.id ? 'Copié !' : p.label} />
             </span>
           </button>
@@ -127,14 +127,14 @@ function StudioWordmark() {
         style={{
           position: 'relative',
           display: 'inline-block',
-          fontFamily: "'Barlow Condensed',sans-serif",
+          fontFamily: "'Poppins', sans-serif",
           fontSize: 'clamp(4rem, 17vw, 21rem)',
           fontWeight: 900,
           fontStyle: 'italic',
           letterSpacing: '-.02em',
           lineHeight: 0.82,
           transform: 'translateY(5%)',
-          background: 'linear-gradient(to bottom, rgba(255,255,255,.9) 0%, rgba(255,255,255,.05) 85%)',
+          background: 'rgba(255,255,255,.85)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
@@ -215,7 +215,7 @@ export default function Footer() {
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(2,5,4,.55)' }} />
         {/* Fondu bas — assombrit progressivement pour que le wordmark
             géant se détache proprement en bas, comme dans la référence. */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 0%, rgba(2,5,4,.55) 55%, #020504 92%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.9)' }} />
       </div>
 
       {/* ── Header : logo + slogan rotatif ─────────────────────── */}
@@ -239,7 +239,7 @@ export default function Footer() {
 
           {/* Menu */}
           <div>
-            <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'JetBrains Mono',monospace" }}>
+            <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'Poppins', sans-serif" }}>
               Menu
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -255,7 +255,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'JetBrains Mono',monospace" }}>
+            <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'Poppins', sans-serif" }}>
               Services
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -271,7 +271,7 @@ export default function Footer() {
 
           {/* Socials */}
           <div>
-            <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'JetBrains Mono',monospace" }}>
+            <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'Poppins', sans-serif" }}>
               Réseaux
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -293,7 +293,7 @@ export default function Footer() {
           {/* Contact + CTA */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem' }}>
             <div style={{ width: '100%' }}>
-              <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'JetBrains Mono',monospace" }}>
+              <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'Poppins', sans-serif" }}>
                 Contact
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
@@ -322,7 +322,7 @@ export default function Footer() {
       {/* ── Copyright bar ──────────────────────────────────────── */}
       <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '1.2rem 5% 1.6rem', fontSize: '.7rem', color: muted }}>
         © {year}{' '}
-        <TransitionLink href="/" style={{ color: 'rgba(90, 135, 56,.8)' }}><HoverSlideText text="AGRO VÉTO SERVICES CONGO S.A.R.L.U." /></TransitionLink>
+        <TransitionLink href="/" style={{ color: 'rgba(248, 146, 3,.8)' }}><HoverSlideText text="AGRO VÉTO SERVICES CONGO S.A.R.L.U." /></TransitionLink>
         {' '} · Pointe-Noire, République du Congo
       </div>
     </footer>

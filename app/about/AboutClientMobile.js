@@ -44,9 +44,9 @@ function FlagBadge({ code, primary }) {
     AO: ['#c8102e','#000000','#fcd116'],
     FR: ['#002395','#fff','#ed2939'],
   }
-  const [c1,c2,c3] = colors[code] || ['#5a8738','#fff','#5a8738']
+  const [c1,c2,c3] = colors[code] || ['#f89203','#fff','#f89203']
   return (
-    <div style={{ width:32,height:32,borderRadius:8,overflow:'hidden',flexShrink:0,border:primary?'1.5px solid rgba(90, 135, 56,.5)':'1px solid rgba(255,255,255,.12)',display:'flex',flexDirection:'column',boxShadow:primary?'0 0 10px rgba(90, 135, 56,.2)':'none' }}>
+    <div style={{ width:32,height:32,borderRadius:8,overflow:'hidden',flexShrink:0,border:primary?'1.5px solid rgba(248, 146, 3,.5)':'1px solid rgba(255,255,255,.12)',display:'flex',flexDirection:'column',boxShadow:primary?'0 0 10px rgba(248, 146, 3,.2)':'none' }}>
       <div style={{flex:1,background:c1}}/><div style={{flex:1,background:c2}}/><div style={{flex:1,background:c3}}/>
     </div>
   )
@@ -59,11 +59,11 @@ function HeroAbout() {
     <section style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', background: T.bg }}>
       <div style={{ position: 'absolute', inset: '-8%', zIndex: 1 }}>
         <AuroraHero labels={[]} />
-        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to bottom, transparent 20%, ${T.bg} 100%)`, opacity: T.light ? 1 : .95 }} />
+        <div style={{ position: 'absolute', inset: 0, background: `${T.bg}`, opacity: T.light ? 1 : .95 }} />
       </div>
       <div style={{ position: 'relative', zIndex: 10, width: '100%', padding: '7rem 5% 4rem' }}>
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, ease: [.22,1,.36,1] }}>
-          <h1 style={{ position: 'relative', fontSize: 'clamp(2rem,7vw,3rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.1, marginBottom: '1.2rem' }}>
+          <h1 style={{ position: 'relative', fontSize: 'clamp(2rem,7vw,3rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.1, marginBottom: '1.2rem' }}>
             <GhostTitle text="DE LA SANTÉ ANIMALE À L'EXCELLENCE QHSE." />
             De la santé animale,<br />
             <GreenUnderline><span className="text-gradient">à l'excellence QHSE.</span></GreenUnderline>
@@ -75,17 +75,17 @@ function HeroAbout() {
         {/* Photo grid */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .2 }}
           style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '180px 130px', gap: '.75rem' }}>
-          <div style={{ gridRow: '1 / 3', borderRadius: 14, overflow: 'hidden', border: '1px solid rgba(90, 135, 56,.2)', boxShadow: '6px 6px 24px rgba(0,0,0,.3)' }}>
+          <div style={{ gridRow: '1 / 3', borderRadius: 14, overflow: 'hidden', border: '1px solid rgba(248, 146, 3,.2)', boxShadow: '6px 6px 24px rgba(0,0,0,.3)' }}>
             <LazyImg src={cld('/images/dr_poutya.jpeg')} alt="Agro Véto Services Congo" style={{ width:'100%',height:'100%',objectFit:'cover' }}
-              placeholder={<div style={{ height:'100%',background:'linear-gradient(135deg,#0a1a0e,#060e09)',display:'flex',alignItems:'center',justifyContent:'center' }}><Users size={28} style={{color:'rgba(90, 135, 56,.3)'}}/></div>} />
+              placeholder={<div style={{ height:'100%',background:'#1c1917',display:'flex',alignItems:'center',justifyContent:'center' }}><Users size={28} style={{color:'rgba(248, 146, 3,.3)'}}/></div>} />
           </div>
-          <div style={{ borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(90, 135, 56,.15)' }}>
+          <div style={{ borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(248, 146, 3,.15)' }}>
             <LazyImg src={cld('/images/about-2.webp')} alt="Bureau" style={{ width:'100%',height:'100%',objectFit:'cover' }}
-              placeholder={<div style={{ height:'100%',background:'linear-gradient(135deg,#0a1a0e,#060e09)',display:'flex',alignItems:'center',justifyContent:'center' }}><Monitor size={22} style={{color:'rgba(90, 135, 56,.3)'}}/></div>} />
+              placeholder={<div style={{ height:'100%',background:'#1c1917',display:'flex',alignItems:'center',justifyContent:'center' }}><Monitor size={22} style={{color:'rgba(248, 146, 3,.3)'}}/></div>} />
           </div>
-          <div style={{ borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(90, 135, 56,.15)' }}>
+          <div style={{ borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(248, 146, 3,.15)' }}>
             <LazyImg src={cld('/images/about-3.webp')} alt="Dev" style={{ width:'100%',height:'100%',objectFit:'cover' }}
-              placeholder={<div style={{ height:'100%',background:'linear-gradient(135deg,#0a1a0e,#060e09)',display:'flex',alignItems:'center',justifyContent:'center' }}><Code size={22} style={{color:'rgba(90, 135, 56,.3)'}}/></div>} />
+              placeholder={<div style={{ height:'100%',background:'#1c1917',display:'flex',alignItems:'center',justifyContent:'center' }}><Code size={22} style={{color:'rgba(248, 146, 3,.3)'}}/></div>} />
           </div>
         </motion.div>
       </div>
@@ -110,7 +110,7 @@ function StatsSection() {
     <section ref={ref} style={{ padding: '5rem 5% 6rem', background: T.bg, position: 'relative', overflow: 'hidden' }}>
 
       {/* Halo */}
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 320, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(90, 135, 56,.04),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 320, borderRadius: '50%', background: 'none', pointerEvents: 'none' }} />
 
       {/* Séparateur haut */}
       <div style={{ position: 'absolute', top: 0, left: '5%', right: '5%', height: 1, background: T.border }} />
@@ -137,7 +137,7 @@ function StatsSection() {
 
               {/* Chiffre géant */}
               <div style={{
-                fontFamily: "'JetBrains Mono',monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 900,
                 fontSize: 'clamp(3rem,12vw,5rem)',
                 lineHeight: 1,
@@ -150,10 +150,10 @@ function StatsSection() {
 
               {/* Label principal */}
               <div style={{
-                fontFamily: "'JetBrains Mono',monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 'clamp(.65rem,2.5vw,.78rem)',
                 fontWeight: 700,
-                color: T.light ? '#3d6023' : '#5a8738',
+                color: T.light ? '#c2410c' : '#f89203',
                 letterSpacing: '.02em',
                 marginBottom: '.15rem',
               }}>
@@ -162,7 +162,7 @@ function StatsSection() {
 
               {/* Sous-label */}
               <div style={{
-                fontFamily: "'JetBrains Mono',monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 'clamp(.58rem,2.2vw,.68rem)',
                 color: T.textMuted,
                 letterSpacing: '.02em',
@@ -189,45 +189,45 @@ function FounderSection() {
   return (
     <section ref={ref} style={{ padding: '5rem 5%', background: T.bg, position: 'relative' }}>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}>
-        <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '1.2rem' }}>
+        <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '1.2rem' }}>
           <GhostTitle text="MISSION & VISION" />
           Mission &  <GreenUnderline><span className="text-gradient">vision</span></GreenUnderline>
         </h2>
-        <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.2rem' }}>
+        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.2rem' }}>
           <strong>AGRO VÉTO SERVICES CONGO</strong> accompagne les éleveurs, fermes et PME agropastorales au Congo pour propulser leur productivité et garantir la sécurité sanitaire.
         </p>
         <motion.p initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .08 }}
-          style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1rem' }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1rem' }}>
           {'Nous apportons aux exploitations un suivi vétérinaire de pointe, des intrants certifiés et des aliments '}
-          <span style={{ color: '#5a8738' }}>haute performance</span>
+          <span style={{ color: '#f89203' }}>haute performance</span>
           {', adaptés au climat et '}
-          <span style={{ color: '#5a8738' }}>aux réalités locales</span>
+          <span style={{ color: '#f89203' }}>aux réalités locales</span>
           {"."}
         </motion.p>
         <motion.p initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .14 }}
-          style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '2rem' }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '2rem' }}>
           {'Notre engagement repose sur la '}
-          <span style={{ color: '#5a8738' }}>rigueur scientifique</span>
+          <span style={{ color: '#f89203' }}>rigueur scientifique</span>
           {', la '}
-          <span style={{ color: '#5a8738' }}>biosécurité</span>
+          <span style={{ color: '#f89203' }}>biosécurité</span>
           {" et l'"}
-          <span style={{ color: '#5a8738' }}>impact durable</span>
+          <span style={{ color: '#f89203' }}>impact durable</span>
           {'.'}
         </motion.p>
 
         {/* Photo + identité + portfolio */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.1rem', borderRadius: 14, background: 'rgba(90, 135, 56,.06)', border: '1px solid rgba(90, 135, 56,.2)', marginBottom: '1.5rem' }}>
-          <div style={{ width: 56, height: 56, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '2px solid rgba(90, 135, 56,.5)', boxShadow: '0 0 14px rgba(90, 135, 56,.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.1rem', borderRadius: 14, background: 'rgba(248, 146, 3,.06)', border: '1px solid rgba(248, 146, 3,.2)', marginBottom: '1.5rem' }}>
+          <div style={{ width: 56, height: 56, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '2px solid rgba(248, 146, 3,.5)', boxShadow: '0 0 14px rgba(248, 146, 3,.2)' }}>
             <LazyImg
               src={cld('/images/dr_poutya.jpeg')}
               alt="Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU"
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 10%' }}
-              placeholder={<div style={{ width: 56, height: 56, background: 'rgba(90, 135, 56,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5a8738', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '1.1rem' }}>E</div>}
+              placeholder={<div style={{ width: 56, height: 56, background: 'rgba(248, 146, 3,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.1rem' }}>E</div>}
             />
           </div>
           <div>
-            <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.9rem', color: T.textMain, marginBottom: '.15rem' }}>Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU</div>
-            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.58rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.45rem' }}>Fondatrice & Directrice Générale · Vétérinaire & QHSE</div>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.9rem', color: T.textMain, marginBottom: '.15rem' }}>Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU</div>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.58rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.45rem' }}>Fondatrice & Directrice Générale · Vétérinaire & QHSE</div>
             <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-ghost btn-sm">
               <ExternalLink size={10} /> <HoverSlideText text="Me contacter" />
             </a>
@@ -250,21 +250,21 @@ function TimelineSection() {
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .18 }} />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="L'HISTOIRE D'AVS CONGO" />
             L'évolution d'<GreenUnderline><span className="text-gradient">AVS Congo</span></GreenUnderline>
           </h2>
         </motion.div>
         <div style={{ position: 'relative', paddingLeft: '1.5rem' }}>
-          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 1, background: `linear-gradient(to bottom, transparent, ${T.green}, transparent)` }} />
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 1, background: `${T.green}` }} />
           {TIMELINE.map(({ year, title, desc }, i) => (
             <motion.div key={year}
               initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: i * .12 }}
               style={{ position: 'relative', marginBottom: '2rem' }}>
-              <div style={{ position: 'absolute', left: '-1.8rem', top: '1.1rem', width: 12, height: 12, borderRadius: '50%', background: 'linear-gradient(135deg, #6e9f45, #5a8738)', border: '2.5px solid rgba(90, 135, 56,.3)', boxShadow: '0 0 10px rgba(90, 135, 56,.4)' }} />
+              <div style={{ position: 'absolute', left: '-1.8rem', top: '1.1rem', width: 12, height: 12, borderRadius: '50%', background: '#f89203', border: '2.5px solid rgba(248, 146, 3,.3)', boxShadow: '0 0 10px rgba(248, 146, 3,.4)' }} />
               <div className="sku-card" style={{ padding: '1.2rem 1.4rem' }}>
-                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.85rem', fontWeight: 800, color: T.green, letterSpacing: '.08em', marginBottom: '.35rem' }}>{year}</div>
-                <h3 style={{ fontSize: '.92rem', fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", marginBottom: '.3rem' }}>{title}</h3>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.85rem', fontWeight: 800, color: T.green, letterSpacing: '.08em', marginBottom: '.35rem' }}>{year}</div>
+                <h3 style={{ fontSize: '.92rem', fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", marginBottom: '.3rem' }}>{title}</h3>
                 <p style={{ fontSize: '.78rem', color: T.textSub, lineHeight: 1.6 }}>{desc}</p>
               </div>
             </motion.div>
@@ -283,7 +283,7 @@ function ValuesSection() {
   return (
     <section ref={ref} style={{ padding: '5rem 5%', background: T.bg }}>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-        <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+        <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
           <GhostTitle text="CE QUI NOUS DISTINGUE" />
           Ce qui nous <GreenUnderline><span className="text-gradient">distingue</span></GreenUnderline>
         </h2>
@@ -293,10 +293,10 @@ function ValuesSection() {
           <motion.div key={title} className="sku-card"
             initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * .1 }}
             style={{ padding: '1.5rem' }}>
-            <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(90, 135, 56,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+            <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
               <Icon size={20} style={{ color: T.green }} />
             </div>
-            <h3 style={{ fontSize: '.95rem', fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", marginBottom: '.4rem' }}>{title}</h3>
+            <h3 style={{ fontSize: '.95rem', fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", marginBottom: '.4rem' }}>{title}</h3>
             <p style={{ fontSize: '.8rem', color: T.textSub, lineHeight: 1.65 }}>{desc}</p>
           </motion.div>
         ))}
@@ -313,18 +313,18 @@ function SkillsSection() {
   return (
     <section ref={ref} style={{ padding: '5rem 5%', background: T.bgAlt }}>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem' }}>
-        <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.8rem' }}>
+        <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.8rem' }}>
           <GhostTitle text="LES TECHNOLOGIES QUI FONT LA DIFFÉRENCE" />
           Les technologies qui font <GreenUnderline><span className="text-gradient">la différence</span></GreenUnderline>
         </h2>
-        <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.5rem' }}>
+        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.5rem' }}>
           J'utilise les meilleures technologies modernes — sélectionnées pour leur performance, leur fiabilité et leur adéquation avec vos besoins réels.
         </p>
       </motion.div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.45rem' }}>
         {SKILLS.map((s, i) => (
           <motion.span key={s} initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .2 + i * .04 }}
-            style={{ padding: '.32rem .8rem', background: 'rgba(90, 135, 56,.07)', border: `1px solid ${T.border}`, borderRadius: 100, fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', fontWeight: 600, color: T.green, letterSpacing: '.05em' }}>
+            style={{ padding: '.32rem .8rem', background: 'rgba(248, 146, 3,.07)', border: `1px solid ${T.border}`, borderRadius: 100, fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', fontWeight: 600, color: T.green, letterSpacing: '.05em' }}>
             {s}
           </motion.span>
         ))}
@@ -333,7 +333,7 @@ function SkillsSection() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .35 }}
         style={{ marginTop: '2rem', borderRadius: 14, overflow: 'hidden', border: `1px solid ${T.border}`, height: 220 }}>
         <LazyImg src={cld('/images/about-4.webp')} alt="Développeur" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          placeholder={<div style={{ height: '100%', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Code size={36} style={{ color: 'rgba(90, 135, 56,.3)' }} /></div>} />
+          placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Code size={36} style={{ color: 'rgba(248, 146, 3,.3)' }} /></div>} />
       </motion.div>
     </section>
   )
@@ -349,16 +349,16 @@ function RayonSection() {
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .18 }} />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.8rem' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.8rem' }}>
             <GhostTitle text="OÙ INTERVENONS-NOUS ?" />
             Où intervenons-<GreenUnderline><span className="text-gradient">nous ?</span></GreenUnderline>
           </h2>
-          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.2rem' }}>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.2rem' }}>
             Basés à <strong style={{ color: T.textMain }}>Pointe-Noire (Socoprise)</strong>, nous accompagnons les éleveurs et PME à travers la République du Congo et l'Afrique Centrale.
           </p>
           <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', marginBottom: '1.8rem' }}>
             {['Clinique 24/7', 'Intervention terrain', 'FCFA & Mobile Money'].map(b => (
-              <span key={b} style={{ padding: '.28rem .75rem', borderRadius: 100, background: 'rgba(90, 135, 56,.08)', border: '1px solid rgba(90, 135, 56,.2)', fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: '#5a8738' }}>{b}</span>
+              <span key={b} style={{ padding: '.28rem .75rem', borderRadius: 100, background: 'rgba(248, 146, 3,.08)', border: '1px solid rgba(248, 146, 3,.2)', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#f89203' }}>{b}</span>
             ))}
           </div>
         </motion.div>
@@ -366,11 +366,11 @@ function RayonSection() {
           {PAYS.map(({ code, name, note, primary }, i) => (
             <motion.div key={name}
               initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * .07 }}
-              style={{ padding: '.85rem 1rem', borderRadius: 12, background: primary ? 'linear-gradient(135deg,rgba(90, 135, 56,.14),rgba(90, 135, 56,.05))' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(90, 135, 56,.35)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.65rem' }}>
+              style={{ padding: '.85rem 1rem', borderRadius: 12, background: primary ? 'rgba(248, 146, 3, 0.08)' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(248, 146, 3,.35)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.65rem' }}>
               <FlagBadge code={code} primary={primary} />
               <div>
-                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.75rem', color: primary ? '#5a8738' : T.textMain }}>{name}</div>
-                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.58rem', color: T.textMuted }}>{note}</div>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.75rem', color: primary ? '#f89203' : T.textMain }}>{name}</div>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.58rem', color: T.textMuted }}>{note}</div>
               </div>
             </motion.div>
           ))}

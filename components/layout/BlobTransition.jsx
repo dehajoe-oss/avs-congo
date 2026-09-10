@@ -58,7 +58,7 @@ export function BlobTransitionProvider({ children }) {
     const grid = document.createElement('div')
     Object.assign(grid.style, {
       position: 'absolute', inset: '0',
-      backgroundImage: 'linear-gradient(rgba(90, 135, 56,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(90, 135, 56,.04) 1px,transparent 1px)',
+      backgroundImage: 'linear-gradient(rgba(248, 146, 3,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(248, 146, 3,.04) 1px,transparent 1px)',
       backgroundSize: '48px 48px',
     })
     layer.appendChild(grid)
@@ -69,7 +69,7 @@ export function BlobTransitionProvider({ children }) {
       transform: 'translate(-50%,-50%)',
       width: 'min(600px, 90vw)', height: 'min(600px, 90vw)',
       borderRadius: '50%',
-      background: 'radial-gradient(circle, rgba(90, 135, 56,.12) 0%, transparent 65%)',
+      background: 'none',
     })
     layer.appendChild(glow)
 
@@ -81,8 +81,8 @@ export function BlobTransitionProvider({ children }) {
       transform: 'translate(-50%,-50%)',
       borderRadius: ORGANIC_RADIUS,
       background: 'transparent',
-      border: '2px solid rgba(90, 135, 56,.55)',
-      boxShadow: '0 0 60px 10px rgba(90, 135, 56,.45), inset 0 0 40px rgba(90, 135, 56,.25)',
+      border: '2px solid rgba(248, 146, 3,.55)',
+      boxShadow: '0 0 60px 10px rgba(248, 146, 3,.45), inset 0 0 40px rgba(248, 146, 3,.25)',
       pointerEvents: 'none',
       opacity: '0',
     })

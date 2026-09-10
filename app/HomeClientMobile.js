@@ -37,7 +37,7 @@ function TiltCard({ children, style = {}, className = '', intensity = 14, perspe
       el.style.transform = `perspective(${perspective}px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.04,1.04,1.04)`
       el.style.transition = 'transform .07s linear'
       if (glowRef.current) {
-        glowRef.current.style.background = `radial-gradient(260px circle at ${px}% ${py}%, rgba(90, 135, 56,.13) 0%, transparent 65%)`
+        glowRef.current.style.background = `none`
         glowRef.current.style.opacity = '1'
       }
     })
@@ -164,8 +164,8 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
               overflow: 'hidden',
               zIndex: 10 - abs,
               cursor: 'pointer',
-              border: isActive ? '1.5px solid rgba(90, 135, 56,.6)' : '1px solid rgba(255,255,255,.1)',
-              boxShadow: isActive ? '0 0 0 3px rgba(90, 135, 56,.15), 0 8px 24px rgba(0,0,0,.6)' : '0 4px 14px rgba(0,0,0,.4)',
+              border: isActive ? '1.5px solid rgba(248, 146, 3,.6)' : '1px solid rgba(255,255,255,.1)',
+              boxShadow: isActive ? '0 0 0 3px rgba(248, 146, 3,.15), 0 8px 24px rgba(0,0,0,.6)' : '0 4px 14px rgba(0,0,0,.4)',
               transformStyle: 'preserve-3d',
             }}>
             <LazyImg
@@ -176,12 +176,12 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
             <div style={{
               position: 'absolute', inset: 0,
               background: isActive
-                ? 'linear-gradient(to bottom, transparent 45%, rgba(0,0,0,.8) 100%)'
-                : 'linear-gradient(to bottom, rgba(0,0,0,.1) 0%, rgba(0,0,0,.65) 100%)',
+                ? 'rgba(0, 0, 0, 0.70)'
+                : 'rgba(0, 0, 0, 0.55)',
             }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '.45rem .7rem' }}>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 700, color: '#fff', letterSpacing: '-.01em', lineHeight: 1.2 }}>{p.title}</div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.55rem', color: 'rgba(90, 135, 56,.9)', marginTop: '.05rem' }}>{p.type}</div>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 700, color: '#fff', letterSpacing: '-.01em', lineHeight: 1.2 }}>{p.title}</div>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.55rem', color: 'rgba(248, 146, 3,.9)', marginTop: '.05rem' }}>{p.type}</div>
             </div>
             {draggable && isActive && p.url && (
               <a href={p.url} target="_blank" rel="noreferrer" onClick={e => e.stopPropagation()}
@@ -189,7 +189,7 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
                   position: 'absolute', top: '.5rem', right: '.5rem', zIndex: 21,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   width: 26, height: 26, borderRadius: '50%',
-                  background: 'rgba(90, 135, 56,.92)', color: '#04140a',
+                  background: 'rgba(248, 146, 3,.92)', color: '#04140a',
                 }}>
                 <ExternalLink size={12} />
               </a>
@@ -224,9 +224,9 @@ function HeroSloganCycle() {
         <motion.p key={index}
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
           transition={{ duration: .45, ease: 'easeOut' }}
-          style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.9rem,4.4vw,3.2rem)', lineHeight: 1.18, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '4px 4px 0px rgba(0,0,0,.55)', textAlign: 'center', margin: 0 }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.9rem,4.4vw,3.2rem)', lineHeight: 1.18, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '4px 4px 0px rgba(0,0,0,.55)', textAlign: 'center', margin: 0 }}>
           {before}
-          <span style={{ display: 'inline-block', background: 'linear-gradient(135deg, var(--pop-lime), var(--g1))', color: '#050505', padding: '.1em .35em', border: '3px solid #050505', borderRadius: '.18em', boxShadow: '5px 5px 0px #fff, 0 0 32px var(--pop-lime-glow)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
+          <span style={{ display: 'inline-block', background: '#f89203', color: '#050505', padding: '.1em .35em', border: '3px solid #050505', borderRadius: '.18em', boxShadow: '5px 5px 0px #fff, 0 0 32px var(--pop-lime-glow)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
             {highlight}
           </span>
         </motion.p>
@@ -318,28 +318,18 @@ function Hero() {
     <section id="home-hero" style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#030806' }}>
 
       <div ref={layerBgRef} style={{ position: 'absolute', zIndex: 1, width: '115%', height: '115%', willChange: 'transform, filter', transition: 'transform .1s ease-out', pointerEvents: 'none' }}>
-        <img src={cld('/images/hero-bg.webp')} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(3,8,6,.95) 0%, rgba(3,8,6,.78) 45%, rgba(3,8,6,.28) 100%)' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 15%, rgba(3,8,6,.92) 100%)' }} />
-        <motion.div
-          style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
-          animate={{ background: [
-            'radial-gradient(700px circle at 25% 38%, rgba(90, 135, 56,.055) 0%, transparent 62%)',
-            'radial-gradient(700px circle at 72% 58%, rgba(90, 135, 56,.075) 0%, transparent 62%)',
-            'radial-gradient(700px circle at 25% 38%, rgba(90, 135, 56,.055) 0%, transparent 62%)',
-          ]}}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-        />
+        <img src={cld('/images/hero-bg.webp')} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'blur(3px)', transform: 'scale(1.04)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.50)' }} />
         <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .13, pointerEvents: 'none' }} />
       </div>
 
-      <div ref={layerMidRef} style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '4rem 5% 0', willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out', textAlign: 'center' }}>
+      <div ref={layerMidRef} style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '5.2rem 5% 0', willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out', textAlign: 'center' }}>
 
         <HeroSloganCycle />
 
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
-          style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.92rem', color: 'rgba(255,255,255,.68)', maxWidth: 420, margin: '0 auto 1.4rem', lineHeight: 1.55 }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.92rem', color: 'rgba(255,255,255,.68)', maxWidth: 420, margin: '0 auto 1.4rem', lineHeight: 1.55 }}>
           Clinique vétérinaire, provenderie certifiée, poussins Cobb 500 et audits qualité au Congo.
         </motion.p>
 
@@ -356,10 +346,10 @@ function Hero() {
             ))}
           </AvatarGroup>
           <div style={{ textAlign: 'left' }}>
-            <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.78rem', color: '#fff', lineHeight: 1.15 }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.78rem', color: '#fff', lineHeight: 1.15 }}>
               Éleveurs & PME partenaires
             </div>
-            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.63rem', color: '#5a8738' }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.63rem', color: '#f89203' }}>
               {PROJECTS.length}+ réalisations & intrants de pointe
             </div>
           </div>
@@ -370,19 +360,19 @@ function Hero() {
           style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '-1.6rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
           <motion.a href="https://wa.me/242060000000" target="_blank" rel="noreferrer"
             initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(110, 159, 69,.45)' }}
+            whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(251, 146, 60,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: 'linear-gradient(135deg, #6e9f45, #5a8738)', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#f89203', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
             <HoverSlideText text="Commander sur WhatsApp" /> <ArrowRight size={16} />
           </motion.a>
           <motion.div
             initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(110, 159, 69,.45)' }}
+            whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(251, 146, 60,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#6e9f45', background: 'transparent', border: '3px solid #6e9f45', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#fb923c', background: 'transparent', border: '3px solid #fb923c', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
               <HoverSlideText text="Prendre RDV Clinique" />
             </Link>
           </motion.div>
@@ -403,7 +393,7 @@ function Hero() {
           { left: '92%', top: '52%', s: 3, op: .14, dur: 4.9, dy: 2.1 },
         ].map((p, i) => (
           <motion.div key={i}
-            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#5a8738', left: p.left, top: p.top, opacity: p.op }}
+            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#f89203', left: p.left, top: p.top, opacity: p.op }}
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: p.dur, repeat: Infinity, ease: 'easeInOut', delay: p.dy }}
           />
@@ -411,9 +401,9 @@ function Hero() {
       </div>
 
       <div style={{ position: 'absolute', bottom: '1.5rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: .28, zIndex: 15, pointerEvents: 'none' }}>
-        <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: '.4rem', color: '#fff' }}>Scroll</span>
+        <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: '.4rem', color: '#fff' }}>Scroll</span>
         <motion.div animate={{ scaleY: [1, 1.4, 1], opacity: [.5, 1, .5] }} transition={{ duration: 1.6, repeat: Infinity }}
-          style={{ width: 1, height: 36, background: 'linear-gradient(to bottom, rgba(255,255,255,.8), transparent)' }} />
+          style={{ width: 1, height: 36, background: 'rgba(255, 255, 255, 0.3)' }} />
       </div>
 
     </section>
@@ -511,7 +501,7 @@ function StatsSection() {
     <section ref={ref} style={{ padding: '5rem 5% 6rem', background: T.bg, position: 'relative', overflow: 'hidden' }}>
 
       {/* Halo */}
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 320, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(90, 135, 56,.04),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 320, borderRadius: '50%', background: 'none', pointerEvents: 'none' }} />
 
       {/* Séparateur haut */}
       <div style={{ position: 'absolute', top: 0, left: '5%', right: '5%', height: 1, background: T.border }} />
@@ -538,7 +528,7 @@ function StatsSection() {
 
               {/* Chiffre géant */}
               <div style={{
-                fontFamily: "'JetBrains Mono',monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 900,
                 fontSize: 'clamp(3rem,12vw,5rem)',
                 lineHeight: 1,
@@ -551,10 +541,10 @@ function StatsSection() {
 
               {/* Label principal */}
               <div style={{
-                fontFamily: "'JetBrains Mono',monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 'clamp(.65rem,2.5vw,.78rem)',
                 fontWeight: 700,
-                color: T.light ? '#3d6023' : '#5a8738',
+                color: T.light ? '#c2410c' : '#f89203',
                 letterSpacing: '.02em',
                 marginBottom: '.15rem',
               }}>
@@ -563,7 +553,7 @@ function StatsSection() {
 
               {/* Sous-label */}
               <div style={{
-                fontFamily: "'JetBrains Mono',monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 'clamp(.58rem,2.2vw,.68rem)',
                 color: T.textMuted,
                 letterSpacing: '.02em',
@@ -617,7 +607,7 @@ function Accordion({ items, defaultOpen = 0, renderHeader, renderBody }) {
               <motion.span
                 animate={{ rotate: isOpen ? 180 : 0 }}
                 transition={{ duration: .3, ease: [.22,1,.36,1] }}
-                style={{ flexShrink: 0, display: 'flex', color: isOpen ? '#5a8738' : T.textMuted }}
+                style={{ flexShrink: 0, display: 'flex', color: isOpen ? '#f89203' : T.textMuted }}
               >
                 <ChevronDown size={17} />
               </motion.span>
@@ -657,7 +647,7 @@ function ServicesPreview() {
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .25 }} />
       <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em', lineHeight: 1.15 }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', lineHeight: 1.15 }}>
             <GhostTitle text="NOS prestations, " />
             NOS,<br />
             <GreenUnderline><span className="text-gradient">prestations</span></GreenUnderline>
@@ -674,20 +664,20 @@ function ServicesPreview() {
                   <span style={{
                     width: ICON_BOX, height: ICON_BOX, flexShrink: 0, borderRadius: 10,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: isOpen ? 'rgba(90, 135, 56,.16)' : 'rgba(90, 135, 56,.08)',
-                    border: `1px solid ${isOpen ? 'rgba(90, 135, 56,.45)' : 'rgba(90, 135, 56,.2)'}`,
-                    color: '#5a8738', transition: 'background .25s, border-color .25s',
+                    background: isOpen ? 'rgba(248, 146, 3,.16)' : 'rgba(248, 146, 3,.08)',
+                    border: `1px solid ${isOpen ? 'rgba(248, 146, 3,.45)' : 'rgba(248, 146, 3,.2)'}`,
+                    color: '#f89203', transition: 'background .25s, border-color .25s',
                   }}>
                     <SIcon size={18} />
                   </span>
                   <div style={{ minWidth: 0 }}>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '.5rem' }}>
-                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.56rem', fontWeight: 700, color: 'rgba(90, 135, 56,.55)', letterSpacing: '.2em' }}>{s.n}</span>
+                      <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.56rem', fontWeight: 700, color: 'rgba(248, 146, 3,.55)', letterSpacing: '.2em' }}>{s.n}</span>
                     </div>
-                    <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(.82rem,3.4vw,.92rem)', color: T.textMain, letterSpacing: '-.01em', lineHeight: 1.25 }}>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(.82rem,3.4vw,.92rem)', color: T.textMain, letterSpacing: '-.01em', lineHeight: 1.25 }}>
                       {s.title}
                     </div>
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 700, color: '#5a8738', marginTop: '.15rem' }}>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 700, color: '#f89203', marginTop: '.15rem' }}>
                       {s.price}
                     </div>
                   </div>
@@ -696,16 +686,16 @@ function ServicesPreview() {
             }}
             renderBody={s => (
               <div style={{ paddingLeft: ICON_BOX + 14, paddingRight: '.5rem' }}>
-                <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.76rem', fontStyle: 'italic', color: T.textMuted, lineHeight: 1.6, marginBottom: '.9rem' }}>
+                <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.76rem', fontStyle: 'italic', color: T.textMuted, lineHeight: 1.6, marginBottom: '.9rem' }}>
                   {s.tagline}
                 </p>
                 <div style={{ marginBottom: '1.1rem' }}>
                   {s.bullets.map((b, bi) => (
                     <div key={bi} style={{ display: 'flex', gap: '.6rem', padding: '.55rem 0', borderTop: bi ? `1px solid ${T.border}` : 'none' }}>
-                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#5a8738', marginTop: '.45rem', flexShrink: 0 }} />
+                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#f89203', marginTop: '.45rem', flexShrink: 0 }} />
                       <div>
-                        <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.78rem', color: T.textMain, lineHeight: 1.4 }}>{b.h}</div>
-                        <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', color: T.textMuted, lineHeight: 1.5, marginTop: '.1rem' }}>{b.d}</div>
+                        <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.78rem', color: T.textMain, lineHeight: 1.4 }}>{b.h}</div>
+                        <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', color: T.textMuted, lineHeight: 1.5, marginTop: '.1rem' }}>{b.d}</div>
                       </div>
                     </div>
                   ))}
@@ -739,7 +729,7 @@ function Process() {
     <section ref={ref} style={{ padding: '7rem 5%', background: T.bg }}>
       <div style={{ maxWidth: 600, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="DE L'IDÉE À LA MISE en ligne" />
             De l'idée à la <GreenUnderline><span className="text-gradient">mise en ligne</span></GreenUnderline>
           </h2>
@@ -751,25 +741,25 @@ function Process() {
             renderHeader={(s, isOpen) => (
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '.4rem', minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '.7rem' }}>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.66rem', fontWeight: 700, color: isOpen ? '#5a8738' : 'rgba(90, 135, 56,.5)', letterSpacing: '.1em', flexShrink: 0 }}>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.66rem', fontWeight: 700, color: isOpen ? '#f89203' : 'rgba(248, 146, 3,.5)', letterSpacing: '.1em', flexShrink: 0 }}>
                     {s.n}
                   </span>
-                  <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(.84rem,3.4vw,.94rem)', color: T.textMain, letterSpacing: '-.01em', lineHeight: 1.3 }}>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(.84rem,3.4vw,.94rem)', color: T.textMain, letterSpacing: '-.01em', lineHeight: 1.3 }}>
                     {s.title}
                   </span>
                 </div>
                 <span style={{
                   alignSelf: 'flex-start', padding: '.2rem .6rem', borderRadius: 100,
-                  background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.24)',
-                  fontFamily: "'JetBrains Mono',monospace", fontSize: '.56rem', fontWeight: 700,
-                  color: '#5a8738', letterSpacing: '.03em', whiteSpace: 'nowrap',
+                  background: 'rgba(248, 146, 3,.1)', border: '1px solid rgba(248, 146, 3,.24)',
+                  fontFamily: "'Poppins', sans-serif", fontSize: '.56rem', fontWeight: 700,
+                  color: '#f89203', letterSpacing: '.03em', whiteSpace: 'nowrap',
                 }}>
                   {s.badge}
                 </span>
               </div>
             )}
             renderBody={s => (
-              <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.78rem', lineHeight: 1.75, color: T.textMuted, paddingLeft: '2.15rem', paddingRight: '.5rem' }}>
+              <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', lineHeight: 1.75, color: T.textMuted, paddingLeft: '2.15rem', paddingRight: '.5rem' }}>
                 {s.desc}
               </p>
             )}
@@ -799,11 +789,11 @@ function ProjectsSection() {
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .18 }} />
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-        <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.6rem' }}>
+        <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.6rem' }}>
           <GhostTitle text="NOS DERNIÈRES RÉALISATIONS" />
           Nos dernières <GreenUnderline><span className="text-gradient">réalisations</span></GreenUnderline>
         </h2>
-        <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.75rem', color: T.textMuted, letterSpacing: '.04em' }}>
+        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.75rem', color: T.textMuted, letterSpacing: '.04em' }}>
           — glissez pour naviguer
         </p>
       </motion.div>
@@ -839,10 +829,10 @@ function Testimonials() {
 
   return (
     <section ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(90, 135, 56,.05),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'none', pointerEvents: 'none' }} />
       <div style={{ maxWidth: 900, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="CE QUE DISENT NOS CLIENTS" />
             Ce que disent nos <GreenUnderline><span className="text-gradient">clients</span></GreenUnderline>
           </h2>
@@ -852,21 +842,21 @@ function Testimonials() {
           <motion.div key={idx} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: .4 }}
             className="sku-card" style={{ padding: '2.5rem', textAlign: 'center' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.2rem' }}>
-              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#5a8738" style={{ color: '#5a8738' }} />)}
+              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#f89203" style={{ color: '#f89203' }} />)}
             </div>
             <blockquote style={{ fontSize: '1.05rem', color: T.textMain, lineHeight: 1.75, fontStyle: 'italic', marginBottom: '2rem', maxWidth: 640, margin: '0 auto 2rem' }}>
               "{t.text}"
             </blockquote>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(90, 135, 56,.35)' }}>
+              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(248, 146, 3,.35)' }}>
                 <LazyImg src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(90, 135, 56,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5a8738', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700 }}>{t.name[0]}</div>} />
+                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(248, 146, 3,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontWeight: 700 }}>{t.name[0]}</div>} />
               </div>
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem' }}>{t.name}</div>
-                <div style={{ fontSize: '.72rem', color: T.textMuted, fontFamily: "'JetBrains Mono',monospace" }}>{t.role}</div>
+                <div style={{ fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '.9rem' }}>{t.name}</div>
+                <div style={{ fontSize: '.72rem', color: T.textMuted, fontFamily: "'Poppins', sans-serif" }}>{t.role}</div>
               </div>
-              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(90, 135, 56,.12)', border: '1px solid rgba(90, 135, 56,.25)', color: '#5a8738', fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
+              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(248, 146, 3,.12)', border: '1px solid rgba(248, 146, 3,.25)', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -874,7 +864,7 @@ function Testimonials() {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '.5rem', marginTop: '1.5rem' }}>
           {TESTIMONIALS.map((_, i) => (
             <button key={i} onClick={() => setIdx(i)}
-              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#5a8738' : 'rgba(90, 135, 56,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
+              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#f89203' : 'rgba(248, 146, 3,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
           ))}
         </div>
       </div>
@@ -888,7 +878,7 @@ function RevealParagraph({ text, greenWords = [], extraStyle = {}, inView }) {
   return (
     <motion.p initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .1 }}
       style={{
-        fontFamily: "'JetBrains Mono',monospace",
+        fontFamily: "'Poppins', sans-serif",
         fontSize: 'clamp(1.05rem,4vw,1.3rem)',
         fontWeight: 700,
         lineHeight: 1.42,
@@ -896,7 +886,7 @@ function RevealParagraph({ text, greenWords = [], extraStyle = {}, inView }) {
         ...extraStyle,
       }}>
       {text.split(' ').map((word, i) => (
-        <span key={i} style={{ color: green.has(word) ? '#5a8738' : 'inherit' }}>
+        <span key={i} style={{ color: green.has(word) ? '#f89203' : 'inherit' }}>
           {word}{' '}
         </span>
       ))}
@@ -924,18 +914,18 @@ function DomaineCard({ n, Icon, title, desc, tag, index, inView }) {
       style={{ background: T.card, padding: '1.5rem 1.4rem', position: 'relative' }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-        <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '2rem', fontWeight: 900, color: T.light ? 'rgba(90, 135, 56,.18)' : 'rgba(90, 135, 56,.15)', lineHeight: 1, letterSpacing: '-.05em' }}>
+        <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '2rem', fontWeight: 900, color: T.light ? 'rgba(248, 146, 3,.18)' : 'rgba(248, 146, 3,.15)', lineHeight: 1, letterSpacing: '-.05em' }}>
           {n}
         </span>
-        <span style={{ padding: '.2rem .65rem', borderRadius: 100, background: 'rgba(90, 135, 56,.08)', border: '1px solid rgba(90, 135, 56,.2)', fontFamily: "'JetBrains Mono',monospace", fontSize: '.56rem', fontWeight: 700, color: '#5a8738', letterSpacing: '.06em', textTransform: 'uppercase' }}>
+        <span style={{ padding: '.2rem .65rem', borderRadius: 100, background: 'rgba(248, 146, 3,.08)', border: '1px solid rgba(248, 146, 3,.2)', fontFamily: "'Poppins', sans-serif", fontSize: '.56rem', fontWeight: 700, color: '#f89203', letterSpacing: '.06em', textTransform: 'uppercase' }}>
           {tag}
         </span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '.7rem', marginBottom: '.8rem' }}>
-        <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <Icon size={18} style={{ color: '#5a8738' }} />
+        <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(248, 146, 3,.1)', border: '1px solid rgba(248, 146, 3,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <Icon size={18} style={{ color: '#f89203' }} />
         </div>
-        <h3 style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(.86rem,3.6vw,.95rem)', fontWeight: 800, color: T.textMain, lineHeight: 1.25, letterSpacing: '-.02em' }}>
+        <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(.86rem,3.6vw,.95rem)', fontWeight: 800, color: T.textMain, lineHeight: 1.25, letterSpacing: '-.02em' }}>
           {title}
         </h3>
       </div>
@@ -959,7 +949,7 @@ function DomainesSection() {
       <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="DANS QUEL PÔLE S'INSCRIT VOTRE PROJET D'ÉLEVAGE ?" />
             Dans quel pôle agropastoral{' '}
             <GreenUnderline><span className="text-gradient">s'inscrit votre besoin ?</span></GreenUnderline>
@@ -974,7 +964,7 @@ function DomainesSection() {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .3 }} style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', color: T.textMuted, marginBottom: '1rem' }}>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', color: T.textMuted, marginBottom: '1rem' }}>
             Votre projet ne rentre dans aucune case ? On s'adapte.
           </p>
           <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.85rem', padding: '.8rem 1.6rem' }}>
@@ -1000,7 +990,7 @@ function PricingCallout() {
       <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="CHOISISSEZ VOTRE FORMULE IDÉALE" />
             Choisissez votre <GreenUnderline><span className="text-gradient">formule idéale</span></GreenUnderline>
           </h2>
@@ -1012,7 +1002,7 @@ function PricingCallout() {
           {Object.entries(PRICING).map(([k, v]) => (
             <motion.button key={k} onClick={() => setTab(k)}
               whileTap={{ scale: 0.96 }}
-              style={{ padding: '.5rem 1.2rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontSize: '.78rem', fontWeight: 900, cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
+              style={{ padding: '.5rem 1.2rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? '#f89203' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.78rem', fontWeight: 900, cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
               {v.label}
             </motion.button>
           ))}
@@ -1026,25 +1016,25 @@ function PricingCallout() {
               const wa = encodeURIComponent(`Bonjour Agro Véto Services, je suis intéressé par l'offre ${plan.badge} à ${plan.price}`)
               return (
                 <motion.div key={plan.badge}
-                  style={{ position: 'relative', borderRadius: 18, overflow: 'hidden', background: plan.popular ? 'linear-gradient(145deg,rgba(90, 135, 56,.18),rgba(90, 135, 56,.06))' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(90, 135, 56,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(90, 135, 56,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 1.8rem' : '1.8rem' }}>
+                  style={{ position: 'relative', borderRadius: 18, overflow: 'hidden', background: plan.popular ? 'rgba(248, 146, 3, 0.12)' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(248, 146, 3,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(248, 146, 3,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 1.8rem' : '1.8rem' }}>
                   {plan.popular && (
-                    <div style={{ padding: '.45rem', background: 'linear-gradient(90deg,#3d6023,#5a8738)', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontSize: '.58rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem' }}>
+                    <div style={{ padding: '.45rem', background: '#f89203', textAlign: 'center', fontFamily: "'Poppins', sans-serif", fontSize: '.58rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem' }}>
                       <Zap size={10} />LE PLUS POPULAIRE
                     </div>
                   )}
                   <div style={{ padding: plan.popular ? '1.6rem 1.8rem 0' : 0, position: 'relative' }}>
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(180deg,rgba(255,255,255,.07) 0%,transparent 100%)', pointerEvents: 'none' }} />
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', fontWeight: 600, color: plan.popular ? '#5a8738' : T.textMuted, textTransform: 'uppercase', marginBottom: '.5rem' }}>{plan.badge}</div>
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1.3rem,6vw,1.6rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', color: T.textMuted, marginBottom: '1.4rem', display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'transparent', pointerEvents: 'none' }} />
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', fontWeight: 600, color: plan.popular ? '#f89203' : T.textMuted, textTransform: 'uppercase', marginBottom: '.5rem' }}>{plan.badge}</div>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.3rem,6vw,1.6rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: T.textMuted, marginBottom: '1.4rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                       <Timer size={11} style={{ color: T.green }} />{plan.del}
                     </div>
-                    <div style={{ height: 1, background: plan.popular ? 'rgba(90, 135, 56,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.2rem' }} />
+                    <div style={{ height: 1, background: plan.popular ? 'rgba(248, 146, 3,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.2rem' }} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '.6rem', marginBottom: '1.6rem' }}>
                       {plan.features.map(f => (
                         <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '.55rem', fontSize: '.8rem', color: T.textSub, lineHeight: 1.5 }}>
-                          <div style={{ width: 16, height: 16, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(90, 135, 56,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Check size={10} style={{ color: '#5a8738' }} />
+                          <div style={{ width: 16, height: 16, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(248, 146, 3,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Check size={10} style={{ color: '#f89203' }} />
                           </div>
                           {f}
                         </div>
@@ -1062,11 +1052,11 @@ function PricingCallout() {
         </AnimatePresence>
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .25 }}
-          style={{ marginTop: '2rem', padding: '1rem 1.2rem', borderRadius: 14, background: 'rgba(90, 135, 56,.04)', border: '1px solid rgba(90, 135, 56,.15)', display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '.8rem' }}>
+          style={{ marginTop: '2rem', padding: '1rem 1.2rem', borderRadius: 14, background: 'rgba(248, 146, 3,.04)', border: '1px solid rgba(248, 146, 3,.15)', display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '.8rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
-            <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#5a8738', boxShadow: '0 0 8px rgba(90, 135, 56,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
-            <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', color: T.textSub, letterSpacing: '.03em', margin: 0 }}>
-              <span style={{ color: '#7ea959', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
+            <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#f89203', boxShadow: '0 0 8px rgba(248, 146, 3,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', color: T.textSub, letterSpacing: '.03em', margin: 0 }}>
+              <span style={{ color: '#fdba74', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
                 <Timer size={11} /> Arrivages réguliers de poussins
               </span>
               {' '}— réservations recommandées pour les lots hebdomadaires de poussins Cobb 500 et Lohmann.
@@ -1101,9 +1091,9 @@ function FlagBadge({ code, primary }) {
     AO: ['#c8102e','#000000','#fcd116'],
     FR: ['#002395','#fff','#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#5a8738','#fff','#5a8738']
+  const [c1, c2, c3] = colors[code] || ['#f89203','#fff','#f89203']
   return (
-    <div style={{ width: 34, height: 34, borderRadius: 9, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(90, 135, 56,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(90, 135, 56,.2)' : 'none' }}>
+    <div style={{ width: 34, height: 34, borderRadius: 9, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(248, 146, 3,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(248, 146, 3,.2)' : 'none' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />
@@ -1121,7 +1111,7 @@ function GeoSectionHome() {
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .18 }} />
       <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="OÙ INTERVENONS-NOUS ?" />
             Où intervenons-<GreenUnderline><span className="text-gradient">nous ?</span></GreenUnderline>
           </h2>
@@ -1136,11 +1126,11 @@ function GeoSectionHome() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', gap: '.7rem' }}>
           {GEO_PAYS.map(({ code, name, note, primary }, i) => (
             <motion.div key={name} initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * .06 }}
-              style={{ padding: '.85rem 1rem', borderRadius: 13, background: primary ? 'linear-gradient(135deg,rgba(90, 135, 56,.12),rgba(90, 135, 56,.04))' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(90, 135, 56,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.65rem' }}>
+              style={{ padding: '.85rem 1rem', borderRadius: 13, background: primary ? 'rgba(248, 146, 3, 0.08)' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(248, 146, 3,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.65rem' }}>
               <FlagBadge code={code} primary={primary} />
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.78rem', color: primary ? '#5a8738' : T.textMain }}>{name}</div>
-                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', color: T.textMuted }}>{note}</div>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.78rem', color: primary ? '#f89203' : T.textMain }}>{name}</div>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: T.textMuted }}>{note}</div>
               </div>
             </motion.div>
           ))}
@@ -1161,8 +1151,8 @@ function ProjectFormHome() {
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
-  const inputStyle = { width: '100%', padding: '.6rem 0', background: 'transparent', border: 'none', borderBottom: `1px solid ${T.border}`, borderRadius: 0, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '1rem', outline: 'none', transition: 'border-color .25s', boxSizing: 'border-box', colorScheme: T.light ? 'light' : 'dark' }
-  const focusOn = e => { e.target.style.borderBottomColor = '#5a8738' }
+  const inputStyle = { width: '100%', padding: '.6rem 0', background: 'transparent', border: 'none', borderBottom: `1px solid ${T.border}`, borderRadius: 0, color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '1rem', outline: 'none', transition: 'border-color .25s', boxSizing: 'border-box', colorScheme: T.light ? 'light' : 'dark' }
+  const focusOn = e => { e.target.style.borderBottomColor = '#f89203' }
   const focusOff = e => { e.target.style.borderBottomColor = T.border }
 
   const handleSubmit = async () => {
@@ -1183,7 +1173,7 @@ function ProjectFormHome() {
     <section ref={ref} style={{ padding: 'clamp(2.5rem,7vw,3.5rem) 5% 5rem', background: T.bgAlt, overflowX: 'hidden' }}>
       <div style={{ maxWidth: 600, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '1.6rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="DÉCRIVEZ VOTRE PROJET" />
             Décrivez votre <GreenUnderline><span className="text-gradient">projet</span></GreenUnderline>
           </h2>
@@ -1200,31 +1190,31 @@ function ProjectFormHome() {
           <AnimatePresence mode="wait">
             {sent ? (
               <motion.div key="success" initial={{ opacity: 0, scale: .9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '1.5rem .5rem' }}>
-                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 58, height: 58, borderRadius: '50%', border: '1.5px solid rgba(90, 135, 56,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.4rem' }}>
-                  <Check size={26} style={{ color: '#5a8738' }} />
+                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 58, height: 58, borderRadius: '50%', border: '1.5px solid rgba(248, 146, 3,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.4rem' }}>
+                  <Check size={26} style={{ color: '#f89203' }} />
                 </motion.div>
-                <h3 style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '1.1rem', color: T.textMain, marginBottom: '.7rem' }}>Message envoyé !</h3>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.1rem', color: T.textMain, marginBottom: '.7rem' }}>Message envoyé !</h3>
                 <p style={{ color: T.textSub, fontSize: '.85rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. On répond en moins de 24h directement par email — à très vite !</p>
-                <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', email: '', phone: '', service: '', message: '' }) }} style={{ marginTop: '1.4rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.5rem 1.2rem', color: T.textSub, fontFamily: "'JetBrains Mono',monospace", fontSize: '.76rem', cursor: 'pointer' }}>Envoyer un autre message</button>
+                <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', email: '', phone: '', service: '', message: '' }) }} style={{ marginTop: '1.4rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.5rem 1.2rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.76rem', cursor: 'pointer' }}>Envoyer un autre message</button>
               </motion.div>
             ) : (
               <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <h3 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '1.25rem', color: T.textMain, marginBottom: '1.2rem' }}>Nous écrire</h3>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '1.25rem', color: T.textMain, marginBottom: '1.2rem' }}>Nous écrire</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.2rem', marginBottom: '1.2rem' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre nom</label>
+                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre nom</label>
                     <input style={inputStyle} placeholder="Dr POUTYA" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Email</label>
+                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Email</label>
                     <input type="email" style={inputStyle} placeholder="vous@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>WhatsApp / Tél</label>
+                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>WhatsApp / Tél</label>
                     <input style={inputStyle} placeholder="+242 06 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Type de projet</label>
+                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Type de projet</label>
                     <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))} onFocus={focusOn} onBlur={focusOff}>
                       <option value="">Choisir...</option>
                       <option value="site-vitrine">Conception de Site Web</option>
@@ -1239,7 +1229,7 @@ function ProjectFormHome() {
                   </div>
                 </div>
                 <div style={{ marginBottom: '1.4rem' }}>
-                  <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre besoin en une phrase</label>
+                  <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre besoin en une phrase</label>
                   <input style={inputStyle} placeholder="Ex: Boutique en ligne avec paiement Mobile Money"
                     value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                 </div>
@@ -1280,7 +1270,7 @@ function FAQSectionHome() {
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .2 }} />
       <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="QUESTIONS FRÉQUENTES" />
             Questions <GreenUnderline><span className="text-gradient">fréquentes</span></GreenUnderline>
           </h2>
@@ -1294,19 +1284,19 @@ function FAQSectionHome() {
                 <span style={{
                   width: 32, height: 32, flexShrink: 0, borderRadius: 9,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: isOpen ? 'rgba(90, 135, 56,.16)' : 'rgba(90, 135, 56,.08)',
-                  border: `1px solid ${isOpen ? 'rgba(90, 135, 56,.45)' : 'rgba(90, 135, 56,.2)'}`,
-                  color: '#5a8738', transition: 'background .25s, border-color .25s',
+                  background: isOpen ? 'rgba(248, 146, 3,.16)' : 'rgba(248, 146, 3,.08)',
+                  border: `1px solid ${isOpen ? 'rgba(248, 146, 3,.45)' : 'rgba(248, 146, 3,.2)'}`,
+                  color: '#f89203', transition: 'background .25s, border-color .25s',
                 }}>
                   <HelpCircle size={15} />
                 </span>
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 'clamp(.8rem,3.4vw,.9rem)', color: T.textMain, lineHeight: 1.35 }}>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: 'clamp(.8rem,3.4vw,.9rem)', color: T.textMain, lineHeight: 1.35 }}>
                   {f.q}
                 </span>
               </div>
             )}
             renderBody={f => (
-              <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.78rem', lineHeight: 1.7, color: T.textMuted, paddingLeft: 46, paddingRight: '.5rem' }}>
+              <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', lineHeight: 1.7, color: T.textMuted, paddingLeft: 46, paddingRight: '.5rem' }}>
                 {f.a}
               </p>
             )}

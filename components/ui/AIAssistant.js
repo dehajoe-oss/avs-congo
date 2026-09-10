@@ -140,7 +140,7 @@ function WhatsAppButton({ url }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: 'linear-gradient(135deg, #25d366, #128c7e)',
+        background: '#25d366',
         color: '#fff', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
         boxShadow: '0 2px 8px rgba(37,211,102,.3)',
@@ -166,14 +166,14 @@ function PortfolioButton({ url }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: 'linear-gradient(135deg, #6e9f45, #5a8738)',
+        background: '#f89203',
         color: '#fff', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
-        boxShadow: '0 2px 8px rgba(90, 135, 56,.3)',
+        boxShadow: '0 2px 8px rgba(248, 146, 3,.3)',
         transition: 'transform .15s, box-shadow .15s',
       }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(90, 135, 56,.4)' }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(90, 135, 56,.3)' }}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(248, 146, 3,.4)' }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(248, 146, 3,.3)' }}
     >
       <Globe size={15} />
       Prendre RDV en Clinique
@@ -192,7 +192,7 @@ function SiteButton({ url }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: 'linear-gradient(135deg, #667eea, #764ba2)',
+        background: '#4f46e5',
         color: '#fff', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
         boxShadow: '0 2px 8px rgba(102,126,234,.3)',
@@ -218,7 +218,7 @@ function LinkedInButton({ url }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: 'linear-gradient(135deg, #0077b5, #005885)',
+        background: '#0077b5',
         color: '#fff', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
         boxShadow: '0 2px 8px rgba(0,119,181,.3)',
@@ -244,7 +244,7 @@ function GitHubButton({ url }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: 'linear-gradient(135deg, #333, #1a1a1a)',
+        background: '#222222',
         color: '#fff', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
         boxShadow: '0 2px 8px rgba(0,0,0,.3)',
@@ -270,13 +270,13 @@ function LinkButton({ url, label }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: 'rgba(90, 135, 56,.15)', border: '1px solid rgba(90, 135, 56,.3)',
-        color: '#5a8738', fontSize: '.8rem', fontWeight: 600,
+        background: 'rgba(248, 146, 3,.15)', border: '1px solid rgba(248, 146, 3,.3)',
+        color: '#f89203', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
         transition: 'transform .15s, background .15s',
       }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.background = 'rgba(90, 135, 56,.25)' }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = 'rgba(90, 135, 56,.15)' }}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.background = 'rgba(248, 146, 3,.25)' }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = 'rgba(248, 146, 3,.15)' }}
     >
       <ExternalLink size={15} />
       {label}
@@ -506,7 +506,7 @@ export default function AIAssistant() {
           <div style={{
             padding: '1rem 4.2rem 1rem 1.2rem', display: 'flex', alignItems: 'center', gap: '.7rem',
             borderBottom: `2px solid ${T.green}`,
-            background: T.light ? 'rgba(90, 135, 56,.07)' : 'rgba(90, 135, 56,.06)',
+            background: T.light ? 'rgba(248, 146, 3,.07)' : 'rgba(248, 146, 3,.06)',
             flexShrink: 0,
           }}>
             <div style={{
@@ -519,10 +519,10 @@ export default function AIAssistant() {
               <Bot size={20} />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1.1rem', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', color: T.textMain, letterSpacing: '.02em' }}>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', color: T.textMain, letterSpacing: '.02em' }}>
                 ASSISTANT AGRO VÉTO
               </div>
-              <div style={{ fontSize: '.7rem', color: T.green, fontFamily: "'JetBrains Mono',monospace", fontWeight: 600 }}>
+              <div style={{ fontSize: '.7rem', color: T.green, fontFamily: "'Poppins', sans-serif", fontWeight: 600 }}>
                 ⚡ Répond en direct
               </div>
             </div>
@@ -586,7 +586,7 @@ export default function AIAssistant() {
               aria-label="Envoyer"
               style={{
                 width: 44, height: 44, minWidth: 44, borderRadius: 6, flexShrink: 0,
-                background: streaming || !input.trim() ? (T.light ? 'rgba(90, 135, 56,.2)' : '#1a3320') : T.green,
+                background: streaming || !input.trim() ? (T.light ? 'rgba(248, 146, 3,.2)' : '#1a3320') : T.green,
                 border: '2px solid #050505',
                 boxShadow: '3px 3px 0px #050505',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -609,7 +609,7 @@ export default function AIAssistant() {
         style={{
           position: 'absolute', bottom: 0, left: 0, zIndex: 2,
           width: AI_BTN_SIZE, height: AI_BTN_SIZE, minWidth: 44, minHeight: 44, borderRadius: 12,
-          background: `linear-gradient(135deg, #6e9f45, ${T.green})`,
+          background: `${T.green}`,
           border: '3px solid #050505',
           boxShadow: '4px 4px 0px #050505',
           display: 'flex', alignItems: 'center', justifyContent: 'center',

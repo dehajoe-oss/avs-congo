@@ -78,12 +78,12 @@ export default function ClinicClient() {
             animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(95,145,55,.1)' : 'rgba(90, 135, 56,.1)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
               <Stethoscope size={13} />
               PÔLE SANTÉ ANIMALE & CLINIQUE
             </div>
 
-            <h1 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', lineHeight: 1.05, letterSpacing: '-.03em', marginBottom: '1.2rem', color: T.textMain }}>
+            <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', lineHeight: 1.05, letterSpacing: '-.03em', marginBottom: '1.2rem', color: T.textMain }}>
               Clinique Vétérinaire & Urgences 24/7
             </h1>
 
@@ -112,7 +112,7 @@ export default function ClinicClient() {
               <AlertTriangle size={22} />
             </div>
             <div>
-              <div style={{ fontWeight: 800, fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem', color: T.textMain, display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <div style={{ fontWeight: 800, fontFamily: "'Poppins', sans-serif", fontSize: '.9rem', color: T.textMain, display: 'flex', alignItems: 'center', gap: '.5rem' }}>
                 SERVICE D'URGENCES VÉTÉRINAIRES 24H/24 & 7J/7
                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444', display: 'inline-block', animation: 'pulse 1.5s infinite' }} />
               </div>
@@ -134,10 +134,10 @@ export default function ClinicClient() {
           {/* Colonne Gauche : Liste des actes & Horaires */}
           <div>
             <div style={{ marginBottom: '2rem' }}>
-              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 700, color: T.green, letterSpacing: '.08em', textTransform: 'uppercase' }}>
+              <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 700, color: T.green, letterSpacing: '.08em', textTransform: 'uppercase' }}>
                 ACTES CLINIQUES & SOINS
               </span>
-              <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '2.2rem', fontWeight: 900, fontStyle: 'italic', color: T.textMain, margin: '.4rem 0 1rem' }}>
+              <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '2.2rem', fontWeight: 900, fontStyle: 'italic', color: T.textMain, margin: '.4rem 0 1rem' }}>
                 Soins Médicaux & Chirurgie
               </h2>
               <p style={{ fontSize: '.88rem', color: T.textSub, lineHeight: 1.6 }}>
@@ -154,10 +154,10 @@ export default function ClinicClient() {
                   onClick={() => setBookingData(prev => ({ ...prev, serviceId: srv.id }))}
                 >
                   <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '.8rem', marginBottom: '.4rem' }}>
-                    <h4 style={{ margin: 0, fontSize: '.95rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textMain }}>
+                    <h4 style={{ margin: 0, fontSize: '.95rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
                       {srv.name}
                     </h4>
-                    <span style={{ fontSize: '.7rem', fontFamily: "'JetBrains Mono',monospace", color: T.green, background: T.light ? 'rgba(95,145,55,.1)' : 'rgba(90, 135, 56,.1)', padding: '.2rem .6rem', borderRadius: 6, whiteSpace: 'nowrap' }}>
+                    <span style={{ fontSize: '.7rem', fontFamily: "'Poppins', sans-serif", color: T.green, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', padding: '.2rem .6rem', borderRadius: 6, whiteSpace: 'nowrap' }}>
                       {srv.duration}
                     </span>
                   </div>
@@ -176,7 +176,7 @@ export default function ClinicClient() {
             <div style={{ padding: '1.5rem', borderRadius: 16, background: T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)', border: `1px solid ${T.border}` }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem', marginBottom: '1rem', color: T.green }}>
                 <MapPin size={18} />
-                <h4 style={{ margin: 0, fontSize: '.95rem', fontWeight: 800, fontFamily: "'JetBrains Mono',monospace", color: T.textMain }}>
+                <h4 style={{ margin: 0, fontSize: '.95rem', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
                   Localisation & Permanence
                 </h4>
               </div>
@@ -202,7 +202,7 @@ export default function ClinicClient() {
                 style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${T.green}` }}
               />
               <div>
-                <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, fontFamily: "'JetBrains Mono',monospace", color: T.textMain }}>
+                <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
                   Demande de Consultation
                 </h3>
                 <p style={{ margin: 0, fontSize: '.75rem', color: T.textMuted }}>
@@ -213,10 +213,10 @@ export default function ClinicClient() {
 
             {submitted ? (
               <div style={{ textAlign: 'center', padding: '2.5rem 1rem' }}>
-                <div style={{ width: 54, height: 54, borderRadius: '50%', background: 'rgba(90, 135, 56,.2)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <div style={{ width: 54, height: 54, borderRadius: '50%', background: 'rgba(248, 146, 3,.2)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
                   <CheckCircle2 size={32} />
                 </div>
-                <h4 style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '1.2rem', fontWeight: 800, color: T.textMain, marginBottom: '.5rem' }}>
+                <h4 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.2rem', fontWeight: 800, color: T.textMain, marginBottom: '.5rem' }}>
                   Demande transmise avec succès !
                 </h4>
                 <p style={{ fontSize: '.85rem', color: T.textMuted, maxWidth: 400, margin: '0 auto 1.5rem', lineHeight: 1.6 }}>
@@ -235,7 +235,7 @@ export default function ClinicClient() {
                 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                       Votre Nom & Prénom *
                     </label>
                     <input
@@ -250,7 +250,7 @@ export default function ClinicClient() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                       Numéro Téléphone / WhatsApp *
                     </label>
                     <input
@@ -267,7 +267,7 @@ export default function ClinicClient() {
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                       Espèce de l'animal / cheptel
                     </label>
                     <select
@@ -286,7 +286,7 @@ export default function ClinicClient() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                       Nom ou Réf. du lot (optionnel)
                     </label>
                     <input
@@ -301,7 +301,7 @@ export default function ClinicClient() {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                     Prestation souhaitée *
                   </label>
                   <select
@@ -318,7 +318,7 @@ export default function ClinicClient() {
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                       Lieu de l'intervention
                     </label>
                     <select
@@ -333,7 +333,7 @@ export default function ClinicClient() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                       Créneau horaire
                     </label>
                     <select
@@ -350,7 +350,7 @@ export default function ClinicClient() {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'JetBrains Mono',monospace", color: T.textSub, marginBottom: '.4rem' }}>
+                  <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textSub, marginBottom: '.4rem' }}>
                     Symptômes ou précisions utiles
                   </label>
                   <textarea

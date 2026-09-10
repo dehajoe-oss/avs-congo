@@ -61,10 +61,10 @@ function HeroServices() {
   }, [])
 
   return (
-    <section style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden', background: '#060e09' }}>
+    <section style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden', background: '#0c0a09' }}>
       <div ref={layerBgRef} style={{ position: 'absolute', inset: '-8%', zIndex: 1, willChange: 'transform, filter', transition: 'transform .1s ease-out' }}>
         <AuroraHero labels={[]} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 20%, rgba(6,14,9,.95) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.85)' }} />
       </div>
 
       {/* Titre géant bas-gauche + bloc texte centré verticalement à droite — gabarit hero "page title" (réf. Helious) */}
@@ -89,7 +89,7 @@ function HeroServices() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#5a8738', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#f89203', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -98,21 +98,21 @@ function HeroServices() {
         .hr-row { position: relative; z-index: 10; height: 100%; }
         .hr-title {
           position: absolute; left: 8vw; bottom: 4.5rem; margin: 0;
-          font-family: 'JetBrains Mono', monospace; font-weight: 800;
+          font-family: 'Poppins', sans-serif; font-weight: 800;
           font-size: clamp(4.5rem, 13vw, 15rem); line-height: .92; letter-spacing: -.04em;
           color: rgba(255,255,255,.95);
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #5a8738;
+          margin-left: .15em; font-size: .3em; color: #f89203;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
           margin: auto 0; max-width: 360px; height: fit-content;
         }
         .hr-kicker {
-          font-family: 'JetBrains Mono', monospace; font-size: .62rem; font-weight: 700;
-          color: #5a8738; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
+          color: #f89203; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -132,7 +132,7 @@ function ServicesList() {
     <section id="services-list" ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.08 }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.08 }}>
             <GhostTitle text="CHOISISSEZ VOTRE SOLUTION" />
             Choisissez votre <GreenUnderline><span className="text-gradient">solution</span></GreenUnderline>
           </h2>
@@ -144,7 +144,7 @@ function ServicesList() {
             const Ic = ICON_MAP[s.icon] || Globe
             return (
               <button key={s.title} onClick={() => setActive(i)}
-                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
+                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? '#f89203' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
                 <Ic size={14} />{s.title}
               </button>
             )
@@ -168,18 +168,18 @@ function ServicesList() {
             {/* Image */}
             <div className="svc-detail-img" style={{ borderRadius: 20, overflow: 'hidden', border: `1px solid ${T.border}`, boxShadow: '8px 8px 40px rgba(0,0,0,.3)', aspectRatio: '1 / 1', height: 'auto' }}>
               <LazyImg src={svc.img} alt={svc.title} style={{ width: '100%', height: '100%', objectFit: 'cover', aspectRatio: '1 / 1' }}
-                placeholder={<div style={{ aspectRatio: '1 / 1', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(90, 135, 56,.3)' }} /></div>} />
+                placeholder={<div style={{ aspectRatio: '1 / 1', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(248, 146, 3,.3)' }} /></div>} />
             </div>
 
             {/* Content */}
             <div className="svc-detail-body">
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' }}>
-                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(90, 135, 56,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(248, 146, 3,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Icon size={24} style={{ color: T.green }} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.greenSub, letterSpacing: '.1em' }}>{svc.n}</div>
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: T.textMain, fontFamily: "'JetBrains Mono',monospace" }}>{svc.title}</h3>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.greenSub, letterSpacing: '.1em' }}>{svc.n}</div>
+                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: T.textMain, fontFamily: "'Poppins', sans-serif" }}>{svc.title}</h3>
                 </div>
               </div>
 
@@ -193,10 +193,10 @@ function ServicesList() {
                 ))}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(95,145,55,.05)' : 'rgba(90, 135, 56,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(234, 88, 12,.05)' : 'rgba(248, 146, 3,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
                 <div>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem', fontWeight: 800, color: T.green }}>{svc.price}</div>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', color: T.textMuted, display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.9rem', fontWeight: 800, color: T.green }}>{svc.price}</div>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: T.textMuted, display: 'flex', alignItems: 'center', gap: 4 }}>
                     <Timer size={10} style={{ color: T.green }} />Délai : {svc.del}
                   </div>
                 </div>
@@ -222,7 +222,7 @@ function TechSection() {
     <section ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.08 }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.08 }}>
             <GhostTitle text="DES TECHNOLOGIES ÉPROUVÉES" />
             Des technologies <GreenUnderline><span className="text-gradient">éprouvées</span></GreenUnderline>
           </h2>
@@ -232,7 +232,7 @@ function TechSection() {
             <motion.div key={cat} className="sku-card"
               initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * .08 }}
               style={{ padding: '1.4rem' }}>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: '1rem', borderBottom: `1px solid ${T.border}`, paddingBottom: '.6rem' }}>{cat}</div>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: '1rem', borderBottom: `1px solid ${T.border}`, paddingBottom: '.6rem' }}>{cat}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '.4rem' }}>
                 {items.map(item => (
                   <span key={item} style={{ fontSize: '.82rem', color: T.textSub, display: 'flex', alignItems: 'center', gap: '.4rem' }}>

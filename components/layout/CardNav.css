@@ -1,4 +1,4 @@
-﻿/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    CardNav.css — styles du nav desktop AKATech.
    Extrait du <style>{`...`}</style> inline vers un
    fichier statique pour éliminer tout risque de
@@ -34,44 +34,245 @@ nav.aka-card-nav {
   padding: 0 18px;
 }
 
-.aka-hamburger {
+/* ── Bouton Menu à gauche ── */
+.aka-nav-menu-btn {
   justify-self: start;
-  width: 24px; height: 15px; cursor: pointer;
-  display: flex; flex-direction: column; justify-content: space-between;
-  z-index: 10; background: none; border: none; padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.aka-nav-menu-btn:hover {
+  background: #f89203;
+  border-color: #fb923c;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(248, 146, 3, 0.45);
+  transform: translateY(-1px);
+}
+.light-mode .aka-nav-menu-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #0d2110;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+.light-mode .aka-nav-menu-btn:hover {
+  background: #f89203;
+  border-color: #f89203;
+  color: #ffffff;
+}
+
+.aka-nav-menu-btn .aka-hamburger {
+  width: 17px;
+  height: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 .aka-hline {
-  width: 100%; height: 1.5px;
-  background: var(--nav-hline);
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
   transition: transform 0.35s cubic-bezier(0.77,0,0.175,1), opacity 0.3s, background 0.4s;
-  border-radius: 2px; transform-origin: center;
+  border-radius: 2px;
+  transform-origin: center;
 }
-.aka-hamburger.open .aka-hline:nth-child(1) { transform: translateY(6.75px) rotate(45deg); background: #6e9f45; }
-.aka-hamburger.open .aka-hline:nth-child(2) { transform: translateY(-8.25px) rotate(-45deg); background: #6e9f45; }
+.light-mode .aka-hline {
+  background: #0d2110;
+}
+.aka-nav-menu-btn:hover .aka-hline {
+  background: #ffffff;
+}
+.aka-nav-menu-btn.open .aka-hline:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+  background: #fb923c;
+}
+.aka-nav-menu-btn.open .aka-hline:nth-child(2) {
+  transform: translateY(-5px) rotate(-45deg);
+  background: #fb923c;
+}
+.aka-menu-label {
+  line-height: 1;
+}
 
 .aka-nav-logo {
   justify-self: center;
-  display: flex; align-items: center;
-  text-decoration: none; line-height: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 0;
+  transition: transform 0.25s ease;
+}
+.aka-nav-logo:hover {
+  transform: scale(1.05);
 }
 
-.aka-nav-right { justify-self: end; display: flex; align-items: center; gap: 8px; }
+.aka-nav-right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Boutons Pills (Chariot, Compte, Explorer) ── */
+.aka-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.aka-nav-pill-icon {
+  color: #fba036;
+  transition: color 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.aka-nav-pill:hover {
+  background: #f89203;
+  border-color: #fb923c;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(248, 146, 3, 0.45);
+  transform: translateY(-1px);
+}
+
+.aka-nav-pill:hover .aka-nav-pill-icon {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.aka-nav-pill--active {
+  background: #f89203;
+  border-color: #fb923c;
+  color: #ffffff;
+}
+.aka-nav-pill--active .aka-nav-pill-icon {
+  color: #ffffff;
+}
+
+/* ── Boutons Pills avec Icône Seule (Chariot & Compte) ── */
+.aka-nav-pill--icon-only {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  position: relative;
+  flex-shrink: 0;
+}
+.aka-nav-pill--icon-only .aka-cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  margin-left: 0;
+}
+
+.aka-cart-badge {
+  background: #ff5722;
+  color: #ffffff;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 1px 6px;
+  min-width: 17px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(255, 87, 34, 0.45);
+  margin-left: 2px;
+}
+
+.aka-user-active {
+  color: #fb923c;
+}
+
+.light-mode .aka-nav-pill {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #0d2110;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.light-mode .aka-nav-pill-icon {
+  color: #c2410c;
+}
+
+.light-mode .aka-nav-pill:hover {
+  background: #f89203;
+  border-color: #f89203;
+  color: #ffffff;
+}
+.light-mode .aka-nav-pill:hover .aka-nav-pill-icon {
+  color: #ffffff;
+}
 
 .aka-theme-btn {
-  width: 28px; height: 28px; border-radius: 999px;
-  border: 2px solid #050505;
-  background: linear-gradient(135deg, #6e9f45, #5a8738);
-  color: #04140a;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s cubic-bezier(.34,1.56,.64,1), color .2s;
-  box-shadow: 2px 2px 0px #050505;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #f2ede8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s cubic-bezier(.34,1.56,.64,1), color .2s, background .2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
-.aka-theme-btn:hover { box-shadow: 3px 4px 0px #050505, 0 0 14px rgba(110, 159, 69,.4); transform: rotate(-8deg) scale(1.08); }
-.aka-theme-btn:active { transform: translate(1px,1px) rotate(0deg) scale(.95); box-shadow: 1px 1px 0px #050505; }
+.aka-theme-btn:hover {
+  background: #f89203;
+  color: #ffffff;
+  border-color: #fb923c;
+  box-shadow: 0 4px 16px rgba(251, 146, 60,.4);
+  transform: rotate(-8deg) scale(1.08);
+}
+.aka-theme-btn:active {
+  transform: translate(1px,1px) rotate(0deg) scale(.95);
+}
 
-.light-mode .aka-theme-btn { border-color: #050505; box-shadow: 2px 2px 0px #050505; }
-.light-mode .aka-theme-btn:hover { box-shadow: 3px 4px 0px #050505, 0 0 14px rgba(110, 159, 69,.4); }
-.light-mode .aka-theme-btn:active { box-shadow: 1px 1px 0px #050505; }
+.light-mode .aka-theme-btn {
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.05);
+  color: #0d2110;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+.light-mode .aka-theme-btn:hover {
+  background: #f89203;
+  color: #ffffff;
+}
 
 .aka-nav-content {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -85,8 +286,8 @@ nav.aka-card-nav {
   box-shadow: var(--card-shadow);
   transition: box-shadow 0.3s, background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
 }
-.aka-nav-card:hover { box-shadow: 7px 7px 0px #050505, 0 0 26px rgba(110, 159, 69,.28); }
-.light-mode .aka-nav-card:hover { box-shadow: 7px 7px 0px #050505, 0 0 26px rgba(110, 159, 69,.22); }
+.aka-nav-card:hover { box-shadow: 7px 7px 0px #050505, 0 0 26px rgba(251, 146, 60,.28); }
+.light-mode .aka-nav-card:hover { box-shadow: 7px 7px 0px #050505, 0 0 26px rgba(251, 146, 60,.22); }
 
 .aka-card-1 {
   background: var(--card1-bg);
@@ -105,7 +306,7 @@ nav.aka-card-nav {
 }
 
 .aka-card-label {
-  font-family: 'Barlow Condensed', sans-serif; font-style: italic;
+  font-family: 'Poppins', sans-serif; font-style: italic;
   font-size: 0.78rem; font-weight: 400; letter-spacing: 0.05em; opacity: 0.55;
 }
 .aka-card-1 .aka-card-label { color: var(--card-text); }
@@ -120,7 +321,7 @@ nav.aka-card-nav {
 }
 .aka-card-1 .aka-card-link:hover { color: var(--card1-link-hover); transform: translateX(5px); }
 .aka-card-2 .aka-card-link:hover,
-.aka-card-3 .aka-card-link:hover { color: #6e9f45; transform: translateX(5px); }
+.aka-card-3 .aka-card-link:hover { color: #fb923c; transform: translateX(5px); }
 
 .aka-card-brand { display: flex; flex-direction: column; gap: 14px; }
 .aka-card-logo-link {
@@ -129,7 +330,7 @@ nav.aka-card-nav {
 }
 .aka-card-logo-link:hover { transform: scale(1.05); }
 .aka-card-slogan {
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-family: 'Poppins', sans-serif; font-weight: 700;
   font-size: 1.05rem; line-height: 1.25; letter-spacing: -0.01em;
   color: var(--card-text); margin: 0;
 }
@@ -140,12 +341,12 @@ nav.aka-card-nav {
 /* ── Texte du lien + ghost-cycle (même mécanique que sm-panel-item) ── */
 .aka-card-link-textWrap { position: relative; display: flex; flex-direction: column; }
 .aka-card-link-label {
-  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+  font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700;
   letter-spacing: -0.01em; position: relative; text-transform: uppercase;
 }
 .aka-card-link-ghost {
   position: absolute; inset: 0; overflow: hidden;
-  pointer-events: none; color: #5a8738;
+  pointer-events: none; color: #f89203;
   opacity: 0; transition: opacity .18s;
 }
 .aka-card-link:hover .aka-card-link-ghost { opacity: 1; }
@@ -153,12 +354,12 @@ nav.aka-card-nav {
 .aka-card-ghost-inner { display: block; }
 .aka-card-ghost-line {
   display: block;
-  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+  font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700;
   letter-spacing: -0.01em; white-space: nowrap; text-transform: uppercase;
 }
 
 .aka-link-sub {
-  font-family: 'Barlow Condensed', sans-serif; font-style: italic;
+  font-family: 'Poppins', sans-serif; font-style: italic;
   font-size: 0.68rem; opacity: 0.5; display: block;
   margin-top: -2px; font-weight: 400;
 }

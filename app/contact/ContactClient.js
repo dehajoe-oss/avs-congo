@@ -66,7 +66,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
   useWordReveal(sectionRef, textRef, wordsRef)
   return (
     <p ref={textRef} style={{
-      fontFamily: "'JetBrains Mono',monospace",
+      fontFamily: "'Poppins', sans-serif",
       fontSize: 'clamp(1.6rem,3.2vw,2.6rem)',
       fontWeight: 700,
       lineHeight: 1.32,
@@ -81,7 +81,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
         <span key={i} ref={el => { wordsRef.current[i] = el }}
           style={{ display: 'inline-block', marginRight: '0.28em', opacity: 0.08,
             filter: 'blur(9px)', willChange: 'opacity, filter',
-            color: green.has(word) ? '#5a8738' : 'inherit' }}>
+            color: green.has(word) ? '#f89203' : 'inherit' }}>
           {word}
         </span>
       ))}
@@ -105,7 +105,7 @@ function TiltCard({ children, style = {}, className = '', intensity = 12, perspe
       el.style.transform = `perspective(${perspective}px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.03,1.03,1.03)`
       el.style.transition = 'transform .07s linear'
       if (glowRef.current) {
-        glowRef.current.style.background = `radial-gradient(260px circle at ${px}% ${py}%, rgba(90, 135, 56,.13) 0%, transparent 65%)`
+        glowRef.current.style.background = `none`
         glowRef.current.style.opacity = '1'
       }
     })
@@ -180,7 +180,7 @@ function AnimatedBeamGrid({ containerRef, nodeIds, connections, animKey = 'beam'
       </defs>
       {paths.map((p, i) => (
         <g key={i}>
-          <path d={p.d} fill="none" stroke="rgba(90, 135, 56,0.08)" strokeWidth="1.5" />
+          <path d={p.d} fill="none" stroke="rgba(248, 146, 3,0.08)" strokeWidth="1.5" />
           <path d={p.d} fill="none" stroke={`url(#${animKey}-g-${i})`} strokeWidth="2.5"
             strokeLinecap="round" strokeDasharray="50 300"
             style={{ animation: `${kf} 2.8s linear infinite`, animationDelay: p.delay }} />
@@ -243,10 +243,10 @@ function HeroContact() {
   }, [])
 
   return (
-    <section style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden', background: '#060e09' }}>
+    <section style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden', background: '#0c0a09' }}>
       <div ref={layerBgRef} style={{ position: 'absolute', inset: '-8%', zIndex: 1, willChange: 'transform, filter', transition: 'transform .1s ease-out' }}>
         <AuroraHero labels={[]} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 20%, rgba(6,14,9,.95) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.85)' }} />
       </div>
 
       {/* Titre géant bas-gauche + bloc texte centré verticalement à droite — gabarit hero "page title" (réf. Helious) */}
@@ -267,7 +267,7 @@ function HeroContact() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#5a8738', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#f89203', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -276,21 +276,21 @@ function HeroContact() {
         .hr-row { position: relative; z-index: 10; height: 100%; }
         .hr-title {
           position: absolute; left: 8vw; bottom: 4.5rem; margin: 0;
-          font-family: 'JetBrains Mono', monospace; font-weight: 800;
+          font-family: 'Poppins', sans-serif; font-weight: 800;
           font-size: clamp(4.5rem, 13vw, 15rem); line-height: .92; letter-spacing: -.04em;
           color: rgba(255,255,255,.95);
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #5a8738;
+          margin-left: .15em; font-size: .3em; color: #f89203;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
           margin: auto 0; max-width: 360px; height: fit-content;
         }
         .hr-kicker {
-          font-family: 'JetBrains Mono', monospace; font-size: .62rem; font-weight: 700;
-          color: #5a8738; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
+          color: #f89203; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -303,14 +303,14 @@ function HeroContact() {
 // ═══════════════════════════════════════════════════════════════
 const CHANNELS = [
   { id: 'cnt-n-0', icon: MessageCircle, label: 'WhatsApp', val: '+242 06 000 00 00', href: 'https://wa.me/242060000000', color: '#25d366', desc: 'Réponse en moins de 2h' },
-  { id: 'cnt-n-1', icon: Mail,          label: 'Email',    val: 'contact@agrovetoservices.cg', href: 'mailto:contact@agrovetoservices.cg', color: '#5a8738', desc: 'Réponse sous 24h' },
-  { id: 'cnt-n-2', icon: Phone,         label: 'Téléphone',val: '+242 06 000 00 00', href: 'tel:+242060000000', color: '#5a8738', desc: 'Lun–Ven, 8h–18h' },
-  { id: 'cnt-n-3', icon: MapPin,        label: 'Localisation', val: "Quartier Socoprise, Pointe-Noire (Congo)", href: null, color: '#5a8738', desc: 'Déplacements possibles' },
+  { id: 'cnt-n-1', icon: Mail,          label: 'Email',    val: 'contact@agrovetoservices.cg', href: 'mailto:contact@agrovetoservices.cg', color: '#f89203', desc: 'Réponse sous 24h' },
+  { id: 'cnt-n-2', icon: Phone,         label: 'Téléphone',val: '+242 06 000 00 00', href: 'tel:+242060000000', color: '#f89203', desc: 'Lun–Ven, 8h–18h' },
+  { id: 'cnt-n-3', icon: MapPin,        label: 'Localisation', val: "Quartier Socoprise, Pointe-Noire (Congo)", href: null, color: '#f89203', desc: 'Déplacements possibles' },
 ]
 
 function ChannelIcon({ Icon, color, T }) {
   return (
-    <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(90, 135, 56,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+    <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
       <Icon size={19} style={{ color }} />
     </div>
   )
@@ -318,8 +318,8 @@ function ChannelIcon({ Icon, color, T }) {
 function ChannelInfo({ label, val, desc, T }) {
   return (
     <div style={{ minWidth: 0 }}>
-      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: '.2rem' }}>{label}</div>
-      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', fontWeight: 600, color: T.textMain, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{val}</div>
+      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: '.2rem' }}>{label}</div>
+      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', fontWeight: 600, color: T.textMain, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{val}</div>
       <div style={{ fontSize: '.7rem', color: T.textMuted }}>{desc}</div>
     </div>
   )
@@ -332,8 +332,8 @@ function ContactChannels() {
 
   const beamConnections = [
     { id: 'cnt-n-0', color: '#25d366', cx: 30,  cy: 20  },
-    { id: 'cnt-n-1', color: '#5a8738', cx: 30,  cy: -20 },
-    { id: 'cnt-n-2', color: '#5a8738', cx: -30, cy: 20  },
+    { id: 'cnt-n-1', color: '#f89203', cx: 30,  cy: -20 },
+    { id: 'cnt-n-2', color: '#f89203', cx: -30, cy: 20  },
     { id: 'cnt-n-3', color: '#86efac', cx: -30, cy: -20 },
   ]
 
@@ -344,7 +344,7 @@ function ContactChannels() {
         {/* ── Header ── */}
         <div style={{ marginBottom: '2.5rem' }}>
           <BlurReveal delay={0.12}>
-            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.5rem' }}>
+            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.5rem' }}>
               <GhostTitle text="COMMENT NOUS CONTACTER" />
               Comment nous <GreenUnderline><span className="text-gradient">contacter</span></GreenUnderline>
             </h2>
@@ -359,7 +359,7 @@ function ContactChannels() {
 
         {/* ── Beam constellation ── */}
         <BlurReveal delay={0.22} style={{ marginBottom: '2.5rem' }}>
-          <div ref={beamContainerRef} style={{ position: 'relative', padding: '2rem 1rem', borderRadius: 20, background: T.light ? 'rgba(90, 135, 56,.03)' : 'rgba(90, 135, 56,.025)', border: `1px solid ${T.border}`, overflow: 'visible' }}>
+          <div ref={beamContainerRef} style={{ position: 'relative', padding: '2rem 1rem', borderRadius: 20, background: T.light ? 'rgba(248, 146, 3,.03)' : 'rgba(248, 146, 3,.025)', border: `1px solid ${T.border}`, overflow: 'visible' }}>
             <AnimatedBeamGrid
               containerRef={beamContainerRef}
               nodeIds={{ center: 'cnt-center' }}
@@ -371,25 +371,25 @@ function ContactChannels() {
               {CHANNELS.slice(0, 2).map(({ id, icon: Icon, label, color }) => (
                 <div key={id} id={id}
                   style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.45rem', padding: '.85rem', borderRadius: 14, background: T.light ? 'rgba(255,255,255,.9)' : 'rgba(11,26,16,.8)', border: `1px solid ${T.border}`, backdropFilter: 'blur(8px)', justifySelf: 'center' }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(90, 135, 56,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Icon size={18} style={{ color }} />
                   </div>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', fontWeight: 600, color: T.textMuted, whiteSpace: 'nowrap' }}>{label}</span>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 600, color: T.textMuted, whiteSpace: 'nowrap' }}>{label}</span>
                 </div>
               ))}
               {/* Center */}
               <div id="cnt-center"
-                style={{ width: 76, height: 76, borderRadius: '50%', background: 'linear-gradient(135deg, rgba(90, 135, 56,.25), rgba(90, 135, 56,.08))', border: '2px solid rgba(90, 135, 56,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', justifySelf: 'center', boxShadow: '0 0 40px rgba(90, 135, 56,.2)', flexShrink: 0 }}>
-                <Image src="/images/logo.webp" alt="Agro Véto Services" width={52} height={52} style={{ objectFit: 'contain', filter: 'drop-shadow(0 0 6px rgba(90, 135, 56,.5))' }} />
+                style={{ width: 76, height: 76, borderRadius: '50%', background: 'rgba(248, 146, 3, 0.12)', border: '2px solid rgba(248, 146, 3,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', justifySelf: 'center', boxShadow: '0 0 40px rgba(248, 146, 3,.2)', flexShrink: 0 }}>
+                <Image src="/images/logo.webp" alt="Agro Véto Services" width={52} height={52} style={{ objectFit: 'contain', filter: 'drop-shadow(0 0 6px rgba(248, 146, 3,.5))' }} />
               </div>
               {/* Right 2 */}
               {CHANNELS.slice(2).map(({ id, icon: Icon, label, color }) => (
                 <div key={id} id={id}
                   style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.45rem', padding: '.85rem', borderRadius: 14, background: T.light ? 'rgba(255,255,255,.9)' : 'rgba(11,26,16,.8)', border: `1px solid ${T.border}`, backdropFilter: 'blur(8px)', justifySelf: 'center' }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(90, 135, 56,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Icon size={18} style={{ color }} />
                   </div>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', fontWeight: 600, color: T.textMuted, whiteSpace: 'nowrap' }}>{label}</span>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 600, color: T.textMuted, whiteSpace: 'nowrap' }}>{label}</span>
                 </div>
               ))}
             </div>
@@ -430,18 +430,18 @@ function ContactChannels() {
 
         {/* Social row */}
         <BlurReveal delay={0.5}>
-          <div style={{ marginTop: '1.5rem', padding: '1rem 1.3rem', borderRadius: 14, background: 'rgba(90, 135, 56,.04)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.78rem', fontWeight: 600, color: T.textMuted }}>Réseaux sociaux</span>
+          <div style={{ marginTop: '1.5rem', padding: '1rem 1.3rem', borderRadius: 14, background: 'rgba(248, 146, 3,.04)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', fontWeight: 600, color: T.textMuted }}>Réseaux sociaux</span>
             <div style={{ display: 'flex', gap: '.6rem' }}>
               {[
                 { Icon: FacebookIcon, href: 'https://web.facebook.com/profile.php?id=61577494705852', label: 'Facebook', color: '#1877f2' },
                 { Icon: WhatsAppIcon, href: 'https://wa.me/242060000000', label: 'WhatsApp', color: '#25d366' },
-                { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#5a8738' },
+                { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#f89203' },
               ].map(({ Icon, href, label, color }) => (
                 <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
-                  style={{ width: 36, height: 36, borderRadius: 10, background: T.light ? 'rgba(0,0,0,.05)' : 'rgba(90, 135, 56,.06)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.textSub, transition: 'all .2s' }}
+                  style={{ width: 36, height: 36, borderRadius: 10, background: T.light ? 'rgba(0,0,0,.05)' : 'rgba(248, 146, 3,.06)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.textSub, transition: 'all .2s' }}
                   onMouseEnter={e => { e.currentTarget.style.background = color; e.currentTarget.style.borderColor = color; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = T.light ? 'rgba(0,0,0,.05)' : 'rgba(90, 135, 56,.06)'; e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.textSub; e.currentTarget.style.transform = 'none' }}>
+                  onMouseLeave={e => { e.currentTarget.style.background = T.light ? 'rgba(0,0,0,.05)' : 'rgba(248, 146, 3,.06)'; e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.textSub; e.currentTarget.style.transform = 'none' }}>
                   <Icon size={15} />
                 </a>
               ))}
@@ -477,9 +477,9 @@ function FlagBadge({ code, primary }) {
     AO: ['#c8102e','#000000','#fcd116'],
     FR: ['#002395','#fff','#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#5a8738','#fff','#5a8738']
+  const [c1, c2, c3] = colors[code] || ['#f89203','#fff','#f89203']
   return (
-    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(90, 135, 56,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(90, 135, 56,.2)' : 'none' }}>
+    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(248, 146, 3,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(248, 146, 3,.2)' : 'none' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />

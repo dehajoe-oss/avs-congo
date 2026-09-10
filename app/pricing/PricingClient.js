@@ -65,10 +65,10 @@ function HeroPricing() {
   }, [])
 
   return (
-    <section style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden', background: '#060e09' }}>
+    <section style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden', background: '#0c0a09' }}>
       <div ref={layerBgRef} style={{ position: 'absolute', inset: '-8%', zIndex: 1, willChange: 'transform, filter', transition: 'transform .1s ease-out' }}>
         <AuroraHero labels={[]} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 20%, rgba(6,14,9,.95) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.85)' }} />
       </div>
 
       {/* Titre géant bas-gauche + bloc texte centré verticalement à droite — gabarit hero "page title" (réf. Helious) */}
@@ -89,7 +89,7 @@ function HeroPricing() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#5a8738', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#f89203', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -98,21 +98,21 @@ function HeroPricing() {
         .hr-row { position: relative; z-index: 10; height: 100%; }
         .hr-title {
           position: absolute; left: 8vw; bottom: 4.5rem; margin: 0;
-          font-family: 'JetBrains Mono', monospace; font-weight: 800;
+          font-family: 'Poppins', sans-serif; font-weight: 800;
           font-size: clamp(4.5rem, 13vw, 15rem); line-height: .92; letter-spacing: -.04em;
           color: rgba(255,255,255,.95);
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #5a8738;
+          margin-left: .15em; font-size: .3em; color: #f89203;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
           margin: auto 0; max-width: 360px; height: fit-content;
         }
         .hr-kicker {
-          font-family: 'JetBrains Mono', monospace; font-size: .62rem; font-weight: 700;
-          color: #5a8738; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
+          color: #f89203; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -131,7 +131,7 @@ function PricingTabs() {
 
   return (
     <section ref={ref} style={{ padding: '2rem 5% 7rem', background: T.bg, position: 'relative', overflow: 'hidden' }}>
-      <div aria-hidden style={{ position: 'absolute', top: '0', left: '50%', transform: 'translateX(-50%)', fontFamily: "'JetBrains Mono',monospace", fontWeight: 900, fontSize: 'clamp(80px,15vw,180px)', color: 'transparent', WebkitTextStroke: T.light ? '1px rgba(0,0,0,.06)' : '1px rgba(255,255,255,.04)', letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', userSelect: 'none', whiteSpace: 'nowrap', zIndex: 0 }}>
+      <div aria-hidden style={{ position: 'absolute', top: '0', left: '50%', transform: 'translateX(-50%)', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontSize: 'clamp(80px,15vw,180px)', color: 'transparent', WebkitTextStroke: T.light ? '1px rgba(0,0,0,.06)' : '1px rgba(255,255,255,.04)', letterSpacing: '-0.05em', lineHeight: 1, pointerEvents: 'none', userSelect: 'none', whiteSpace: 'nowrap', zIndex: 0 }}>
         Pricing
       </div>
 
@@ -140,7 +140,7 @@ function PricingTabs() {
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
           <BlurReveal delay={0.1}>
-            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '0.5rem' }}>
+            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '0.5rem' }}>
               <GhostTitle text="CHOISISSEZ VOTRE FORMULE IDÉALE" />
               Choisissez votre{' '}
               <GreenUnderline><span className="text-gradient">formule idéale</span></GreenUnderline>
@@ -153,7 +153,7 @@ function PricingTabs() {
           {Object.entries(PRICING).map(([k, v]) => (
             <motion.button key={k} onClick={() => setTab(k)}
               whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
+              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? '#f89203' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
               {v.label}
             </motion.button>
           ))}
@@ -170,25 +170,25 @@ function PricingTabs() {
                 <BlurReveal key={plan.badge} delay={i * 0.1} direction={['left', 'up', 'right'][i] || 'up'}>
                   <motion.div
                     whileHover={{ y: -8, transition: { duration: .25 } }}
-                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'linear-gradient(145deg,rgba(90, 135, 56,.18),rgba(90, 135, 56,.06))' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(90, 135, 56,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(90, 135, 56,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'rgba(248, 146, 3, 0.12)' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(248, 146, 3,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(248, 146, 3,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
                     {plan.popular && (
-                      <div style={{ padding: '.5rem', background: 'linear-gradient(90deg,#3d6023,#5a8738)', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
+                      <div style={{ padding: '.5rem', background: '#f89203', textAlign: 'center', fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
                         <Zap size={10} />LE PLUS POPULAIRE
                       </div>
                     )}
                     <div style={{ padding: plan.popular ? '1.8rem 2rem 0' : 0, display: 'flex', flexDirection: 'column', flex: 1 }}>
-                      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(180deg,rgba(255,255,255,.07) 0%,transparent 100%)', borderRadius: '20px 20px 0 0', pointerEvents: 'none' }} />
-                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#5a8738' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
-                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1.4rem,2.5vw,1.7rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
-                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: T.textMuted, marginBottom: '1.6rem', display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'transparent', borderRadius: '20px 20px 0 0', pointerEvents: 'none' }} />
+                      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#f89203' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
+                      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.4rem,2.5vw,1.7rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
+                      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: T.textMuted, marginBottom: '1.6rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                         <Timer size={11} style={{ color: T.green }} />{plan.del}
                       </div>
-                      <div style={{ height: 1, background: plan.popular ? 'rgba(90, 135, 56,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
+                      <div style={{ height: 1, background: plan.popular ? 'rgba(248, 146, 3,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '.65rem', marginBottom: '1.8rem', flex: 1 }}>
                         {plan.features.map(f => (
                           <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '.6rem', fontSize: '.83rem', color: T.textSub, lineHeight: 1.5 }}>
-                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(90, 135, 56,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <Check size={11} style={{ color: '#5a8738' }} />
+                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(248, 146, 3,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <Check size={11} style={{ color: '#f89203' }} />
                             </div>
                             {f}
                           </div>
@@ -224,11 +224,11 @@ function PricingTabs() {
 
         {/* Urgency bar */}
         <BlurReveal delay={0.5}>
-          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(90, 135, 56,.04)', border: '1px solid rgba(90, 135, 56,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(248, 146, 3,.04)', border: '1px solid rgba(248, 146, 3,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-              <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'linear-gradient(135deg, #6e9f45, #5a8738)', boxShadow: '0 0 8px rgba(90, 135, 56,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
-              <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.72rem', color: T.textSub, letterSpacing: '.04em', margin: 0 }}>
-                <span style={{ color: '#7ea959', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#f89203', boxShadow: '0 0 8px rgba(248, 146, 3,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
+              <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: T.textSub, letterSpacing: '.04em', margin: 0 }}>
+                <span style={{ color: '#fdba74', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
                   <AlertTriangle size={12} /> Arrivages réguliers de poussins
                 </span>
                 {' '}— réservations recommandées pour les lots hebdomadaires de poussins Cobb 500 et Lohmann.
@@ -266,7 +266,7 @@ function GuaranteeStrip() {
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <BlurReveal delay={0.1}>
-            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
               <GhostTitle text="ZÉRO SURPRISE, ZÉRO JARGON." />
               Zéro surprise, <GreenUnderline><span className="text-gradient">zéro jargon.</span></GreenUnderline>
             </h2>
@@ -277,15 +277,15 @@ function GuaranteeStrip() {
           {GARANTIES.map(({ icon: Icon, title, desc }, i) => (
             <BlurReveal key={title} delay={i * .07}>
               <motion.div
-                whileHover={{ y: -5, borderColor: 'rgba(90, 135, 56,.35)' }}
+                whileHover={{ y: -5, borderColor: 'rgba(248, 146, 3,.35)' }}
                 style={{ padding: '1.5rem', borderRadius: 16, background: T.light ? 'rgba(255,255,255,.8)' : 'rgba(255,255,255,.03)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'flex-start', gap: '1rem', transition: 'border-color .2s' }}
               >
-                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Icon size={20} style={{ color: '#5a8738' }} />
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(248, 146, 3,.1)', border: '1px solid rgba(248, 146, 3,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Icon size={20} style={{ color: '#f89203' }} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.88rem', color: T.textMain, marginBottom: '.25rem' }}>{title}</div>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.72rem', color: T.textMuted, lineHeight: 1.5 }}>{desc}</div>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.88rem', color: T.textMain, marginBottom: '.25rem' }}>{title}</div>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: T.textMuted, lineHeight: 1.5 }}>{desc}</div>
                 </div>
               </motion.div>
             </BlurReveal>
@@ -352,8 +352,8 @@ function TrustedBy() {
         .carousel-track:hover { animation-play-state: paused; }
         .carousel-wrap {
           overflow: hidden;
-          -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-          mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          -webkit-mask: #000000;
+          mask: #000000;
         }
         .tcard {
           flex-shrink: 0;
@@ -367,12 +367,12 @@ function TrustedBy() {
         }
       `}</style>
 
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 400, borderRadius: '50%', background: 'radial-gradient(circle,rgba(90, 135, 56,.05),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 400, borderRadius: '50%', background: 'none', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: 1200, margin: '0 auto', paddingBottom: '3.5rem', paddingLeft: '5%', paddingRight: '5%' }}>
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <BlurReveal delay={0.1}>
-            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+            <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
               <GhostTitle text="CE QU'ILS DISENT DE L'INVESTISSEMENT" />
               Ce qu'ils disent de{' '}
               <GreenUnderline><span className="text-gradient">l'investissement</span></GreenUnderline>
@@ -382,7 +382,7 @@ function TrustedBy() {
             <p
               ref={trustTextRef}
               style={{
-                fontFamily: "'JetBrains Mono',monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 'clamp(1.6rem,3.2vw,2.6rem)',
                 fontWeight: 700,
                 color: T.textSub,
@@ -404,7 +404,7 @@ function TrustedBy() {
                     opacity: 0.08,
                     filter: 'blur(9px)',
                     willChange: 'opacity, filter',
-                    color: TRUST_GREEN.has(word) ? '#5a8738' : 'inherit',
+                    color: TRUST_GREEN.has(word) ? '#f89203' : 'inherit',
                   }}
                 >
                   {word}
@@ -426,11 +426,11 @@ function TrustedBy() {
                 boxShadow: T.light ? '0 4px 24px rgba(0,0,0,.07)' : '0 8px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.06)',
               }}>
               {/* Glass shine */}
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'rgba(255, 255, 255, 0.2)', pointerEvents: 'none' }} />
 
               {/* Stars */}
               <div style={{ display: 'flex', gap: 3, marginBottom: '1rem' }}>
-                {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="#5a8738" style={{ color: '#5a8738' }} />)}
+                {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="#f89203" style={{ color: '#f89203' }} />)}
               </div>
 
               {/* Quote */}
@@ -439,25 +439,25 @@ function TrustedBy() {
               </p>
 
               {/* Result badge */}
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.28rem .85rem', borderRadius: 99, background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.25)', marginBottom: '1.4rem' }}>
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: '#5a8738', fontWeight: 700 }}>{t.result}</span>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.28rem .85rem', borderRadius: 99, background: 'rgba(248, 146, 3,.1)', border: '1px solid rgba(248, 146, 3,.25)', marginBottom: '1.4rem' }}>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#f89203', fontWeight: 700 }}>{t.result}</span>
               </div>
 
               {/* Author */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '.85rem' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(90, 135, 56,.3)', flexShrink: 0, position: 'relative' }}>
+                <div style={{ width: 48, height: 48, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(248, 146, 3,.3)', flexShrink: 0, position: 'relative' }}>
                   <img src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     onError={e => {
                       e.target.style.display = 'none'
-                      e.target.parentNode.style.background = 'linear-gradient(135deg,rgba(90, 135, 56,.2),rgba(90, 135, 56,.05))'
+                      e.target.parentNode.style.background = 'rgba(248, 146, 3, 0.10)'
                     }} />
                 </div>
                 <div>
-                  <div style={{ fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem' }}>{t.name}</div>
-                  <div style={{ fontSize: '.7rem', color: T.textMuted, fontFamily: "'JetBrains Mono',monospace", marginTop: '.1rem' }}>{t.role}</div>
+                  <div style={{ fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '.9rem' }}>{t.name}</div>
+                  <div style={{ fontSize: '.7rem', color: T.textMuted, fontFamily: "'Poppins', sans-serif", marginTop: '.1rem' }}>{t.role}</div>
                 </div>
                 <div style={{ marginLeft: 'auto', padding: '.28rem .7rem', borderRadius: 8, background: T.light ? 'rgba(0,0,0,.05)' : 'rgba(255,255,255,.05)', border: `1px solid ${T.border}` }}>
-                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', color: T.textMuted }}>{t.project}</div>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: T.textMuted }}>{t.project}</div>
                 </div>
               </div>
             </div>
@@ -478,7 +478,7 @@ function FAQSection() {
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .15 }} />
       <div style={{ maxWidth: 1200, margin: '0 auto 3.5rem', position: 'relative', zIndex: 1 }}>
         <BlurReveal delay={0.1}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
             <GhostTitle text="QUESTIONS FRÉQUENTES" />
             Questions{' '}
             <GreenUnderline><span className="text-gradient">fréquentes</span></GreenUnderline>
@@ -491,10 +491,10 @@ function FAQSection() {
           {FAQ_ITEMS.map(({ q, a }, i) => (
             <BlurReveal key={q} delay={i * 0.06} direction={i % 2 === 0 ? 'left' : 'right'}>
               <motion.div className="sku-card"
-                whileHover={{ borderColor: 'rgba(90, 135, 56,.25)' }}
+                whileHover={{ borderColor: 'rgba(248, 146, 3,.25)' }}
                 style={{ overflow: 'hidden' }}>
                 <button onClick={() => setOpen(open === i ? null : i)}
-                  style={{ width: '100%', padding: '1.2rem 1.5rem', background: 'none', border: 'none', color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', textAlign: 'left' }}>
+                  style={{ width: '100%', padding: '1.2rem 1.5rem', background: 'none', border: 'none', color: T.textMain, fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', textAlign: 'left' }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
                     <HelpCircle size={14} style={{ color: T.green, flexShrink: 0 }} />{q}
                   </span>
