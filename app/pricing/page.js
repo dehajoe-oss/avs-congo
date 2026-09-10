@@ -3,10 +3,10 @@ import { FAQ_ITEMS } from '@/lib/data'
 import { BreadcrumbJsonLd } from '../seo/StructuredData'
 
 export const metadata = {
-  title: 'Tarifs — AKATech | Prix Sites Web & Applications Abidjan',
-  description: "Tarifs transparents : portfolio dès 100 000 FCFA, site vitrine dès 220 000 FCFA, e-commerce dès 450 000 FCFA. Mobile Money accepté, paiement en 2 fois.",
+  title: 'Tarifs & Formules — Agro Véto Services | Poussins, Provenderie, Formations Congo',
+  description: "Tarifs clairs et transparents : poussins Cobb 500 dès 650 FCFA, provenderie démarrage dès 21 500 FCFA, formations ferme-école dès 60 000 FCFA, consultations vétérinaires.",
   alternates: { canonical: '/pricing' },
-  openGraph: { title: 'Tarifs — AKATech', description: "Tarifs transparents pour sites vitrines, e-commerce, applications web et fiches Google. Mobile Money accepté.", locale: 'fr_CI', type: 'website', siteName: 'AKATech', url: 'https://akatech.vercel.app/pricing' },
+  openGraph: { title: 'Tarifs & Formules — Agro Véto Services', description: "Tarifs transparents : poussins Cobb 500 & Lohmann, provenderie, soins cliniques, formations à Pointe-Noire.", locale: 'fr_CG', type: 'website', siteName: 'Agro Véto Services', url: 'https://agrovetoservices.cg/pricing' },
 }
 
 const FAQ_JSON_LD = {
@@ -24,8 +24,8 @@ export default function Page() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }} />
       <BreadcrumbJsonLd items={[
-        { name: 'Accueil', url: 'https://akatech.vercel.app/' },
-        { name: 'Tarifs', url: 'https://akatech.vercel.app/pricing' },
+        { name: 'Accueil', url: 'https://agrovetoservices.cg/' },
+        { name: 'Tarifs', url: 'https://agrovetoservices.cg/pricing' },
       ]} />
       <PricingResponsive />
     </>

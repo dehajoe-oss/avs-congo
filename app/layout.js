@@ -1,4 +1,4 @@
-﻿import './globals.css'
+import './globals.css'
 import { ThemeProvider } from '@/lib/theme'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -15,25 +15,25 @@ import { BlobTransitionProvider } from '@/components/layout/BlobTransition'
 import { SitewideStructuredData } from './seo/StructuredData'
 import BreadcrumbTrail from './seo/BreadcrumbTrail'
 
-const SITE_URL = 'https://akatech.vercel.app'
+const SITE_URL = 'https://agrovetoservices.cg'
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'AKATech — Agence Web Abidjan | Sites, E-Commerce, SaaS',
-    template: '%s | AKATech',
+    default: "AGRO VÉTO SERVICES CONGO — De la santé animale à l'excellence QHSE",
+    template: "%s | Agro Véto Services",
   },
-  description: "AKATech accompagne les entrepreneurs et PME en Côte d'Ivoire avec des solutions digitales sur-mesure : sites vitrines, e-commerce, applications SaaS, API et fiches Google My Business. Devis gratuit en 24h.",
+  description: "Clinique vétérinaire 24h/24 & 7j/7, provenderie certifiée, poussins d'un jour Cobb 500 et accompagnement en management QHSE / normes ISO à Pointe-Noire (Congo).",
   keywords: [
-    "agence web abidjan", "développeur web côte d'ivoire", "création site internet abidjan",
-    "site vitrine abidjan", "e-commerce afrique", "application SaaS afrique",
-    "développeur freelance abidjan", "agence digitale côte d'ivoire",
-    "fiche google my business abidjan", "API backend django abidjan",
+    "clinique vétérinaire pointe-noire", "vétérinaire congo", "poussins d'un jour cobb 500 congo",
+    "provenderie pointe-noire", "aliment volaille congo", "audit QHSE congo",
+    "norme iso 22000 afrique", "méthode haccp congo", "dr poutya saizonou",
+    "agro véto services congo", "ferme école congo",
   ],
-  authors: [{ name: "M'Bollo Aka Elvis", url: SITE_URL }],
-  creator: 'AKATech',
-  publisher: 'AKATech',
-  category: 'technology',
+  authors: [{ name: "Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU", url: SITE_URL }],
+  creator: 'Agro Véto Services',
+  publisher: 'Agro Véto Services',
+  category: 'agriculture & veterinary',
   alternates: { canonical: '/' },
   robots: {
     index: true, follow: true,
@@ -41,23 +41,23 @@ export const metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'fr_CI',
-    siteName: 'AKATech',
-    title: 'AKATech — Agence Web Abidjan | Sites, E-Commerce, SaaS',
-    description: "Solutions digitales sur-mesure pour entrepreneurs et PME en Côte d'Ivoire : sites vitrines, e-commerce, SaaS, API et fiches Google My Business.",
+    locale: 'fr_CG',
+    siteName: 'Agro Véto Services',
+    title: "AGRO VÉTO SERVICES CONGO — De la santé animale à l'excellence QHSE",
+    description: "Santé animale, provenderie certifiée, élevage de poussins et excellence QHSE à Pointe-Noire, République du Congo.",
     url: SITE_URL,
-    images: [{ url: cld('/images/og-cover.webp'), width: 1200, height: 630, alt: 'AKATech — Agence Web Abidjan' }],
+    images: [{ url: cld('/images/og-cover.webp'), width: 1200, height: 630, alt: 'Agro Véto Services Congo' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AKATech — Agence Web Abidjan',
-    description: "Sites vitrines, e-commerce, SaaS et API sur-mesure pour entrepreneurs ivoiriens.",
+    title: "AGRO VÉTO SERVICES CONGO — Pointe-Noire",
+    description: "Santé animale, provenderie de pointe et excellence QHSE au Congo.",
     images: [cld('/images/og-cover.webp')],
   },
 }
 
 export const viewport = {
-  themeColor: '#88ca53',
+  themeColor: '#5a8738',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
@@ -68,51 +68,51 @@ export const viewport = {
    Sert de socle d'identité pour :
    • SEO  : rich snippets Google (note, adresse, horaires)
    • AEO  : permet aux moteurs de réponse (Google AI Overviews,
-            assistants vocaux) de citer AKATech directement
-            comme réponse à "qui fait des sites web à Abidjan"
+            assistants vocaux) de citer Agro Véto Services directement
+            comme réponse à "qui fait des sites web à Pointe-Noire"
    • GEO  : structure factuelle exploitable par les LLM
-            (ChatGPT, Perplexity...) pour recommander AKATech
+            (ChatGPT, Perplexity...) pour recommander Agro Véto Services
    ════════════════════════════════════════════════════════════ */
 const ORG_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': `${SITE_URL}/#organization`,
-  name: 'AKATech',
-  alternateName: "AKATech Abidjan",
+  name: 'Agro Véto Services',
+  alternateName: "Agro Véto Services Pointe-Noire",
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.webp`,
   image: cld('/images/og-cover.webp'),
-  description: "Agence web freelance basée à Abidjan, Côte d'Ivoire. Conception de sites vitrines, e-commerce, applications SaaS, API & backend, et gestion de fiches Google My Business.",
-  founder: { '@type': 'Person', name: "M'Bollo Aka Elvis" },
+  description: "Complexe agropastoral et clinique vétérinaire 24/7 à Pointe-Noire (Congo). Poussins Cobb 500, provenderie certifiée, formations ferme-école et audits QHSE.",
+  founder: { '@type': 'Person', name: "Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU" },
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Abidjan',
-    addressCountry: 'CI',
+    addressLocality: 'Pointe-Noire',
+    addressCountry: 'CG',
   },
   areaServed: [
-    { '@type': 'Country', name: "Côte d'Ivoire" },
-    { '@type': 'Place', name: 'Afrique de l\'Ouest' },
+    { '@type': 'Country', name: "République du Congo" },
+    { '@type': 'Place', name: 'Afrique Centrale' },
   ],
   priceRange: '10 000 FCFA - 1 200 000 FCFA',
-  telephone: '+225-01-42-50-77-50',
-  email: 'wthomasss06@gmail.com',
+  telephone: '+242-06-000-00-00',
+  email: 'contact@agrovetoservices.cg',
   sameAs: [
-    'https://web.facebook.com/profile.php?id=61577494705852',
-    'https://wa.me/2250142507750',
+    'https://facebook.com/agrovetoservicescongo',
+    'https://wa.me/242060000000',
   ],
   knowsAbout: [
-    'Développement web', 'Next.js', 'React', 'Django', 'API REST',
-    'E-commerce', 'SEO local', 'Mobile Money', 'Google My Business',
+    'Médecine vétérinaire', 'Santé animale', 'Provenderie industrielle', 'Poussins Cobb 500',
+    'Management QHSE', 'Méthode HACCP', 'Normes ISO 22000', 'Fermes-écoles', 'Biosécurité',
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Services AKATech',
+    name: 'Prestations Agro Véto Services Congo',
     itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Conception de Site Web' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Cartes Interactives & Dashboards' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'API & Backend Robustes' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Maintenance & Support' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Fiche Google My Business' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Clinique Vétérinaire & Urgences 24/7' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Provenderie & Nutrition Animale' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Poussins d’un Jour (Cobb 500 & Lohmann)' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Formations Certifiantes & Ferme-École' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Audits QHSE & Normes ISO' } },
     ],
   },
 }

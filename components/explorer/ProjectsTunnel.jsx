@@ -5,7 +5,7 @@
  * Port du tunnel WebGL "Mes projets" (App.jsx / elvis-portfolio) :
  * débris texturés avec les images des projets AKATech (PROJECTS), poussière
  * d'étoiles + étoiles filantes, raycasting pour le survol/clic.
- * Reskinné en vert AKATech (#88ca53), données 100% lib/data.js.
+ * Reskinné en vert AKATech (#5a8738), données 100% lib/data.js.
  *
  * ── Différences volontaires vs la version portfolio ──
  * 1. Pas de ScrollTrigger `pin:true`. Le pin GSAP reparente la
@@ -36,7 +36,7 @@ import './ProjectsTunnel.css'
 
 if (typeof window !== 'undefined') gsap.registerPlugin(ScrollTrigger)
 
-const ACCENT_A = 0x88ca53 // vert AKATech
+const ACCENT_A = 0x5a8738 // vert AKATech
 const ACCENT_B = 0x4fe0a8 // vert-cyan complémentaire, reste dans la famille de la marque
 const SECTION_VH = 2500   // hauteur du wrapper scrollable (25 écrans — volontairement très large : combiné au footer/nav masqués sur cette page, on ne "sort" plus jamais du tunnel en usage normal)
 const LOOP_CYCLES = 20    // même cadence que 500vh/4 cycles (125vh/cycle), juste répété plus de fois

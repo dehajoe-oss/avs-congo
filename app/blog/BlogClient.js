@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
@@ -85,7 +85,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
         <span key={i} ref={el => { wordsRef.current[i] = el }}
           style={{ display: 'inline-block', marginRight: '0.28em', opacity: 0.08,
             filter: 'blur(9px)', willChange: 'opacity, filter',
-            color: green.has(word) ? '#88ca53' : 'inherit' }}>
+            color: green.has(word) ? '#5a8738' : 'inherit' }}>
           {word}
         </span>
       ))}
@@ -109,7 +109,7 @@ function TiltCard({ children, style = {}, className = '', intensity = 12, perspe
       el.style.transform = `perspective(${perspective}px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.03,1.03,1.03)`
       el.style.transition = 'transform .07s linear'
       if (glowRef.current) {
-        glowRef.current.style.background = `radial-gradient(260px circle at ${px}% ${py}%, rgba(136,202,83,.13) 0%, transparent 65%)`
+        glowRef.current.style.background = `radial-gradient(260px circle at ${px}% ${py}%, rgba(90, 135, 56,.13) 0%, transparent 65%)`
         glowRef.current.style.opacity = '1'
       }
     })
@@ -184,7 +184,7 @@ function AnimatedBeamGrid({ containerRef, nodeIds, connections, animKey = 'beam'
       </defs>
       {paths.map((p, i) => (
         <g key={i}>
-          <path d={p.d} fill="none" stroke="rgba(136,202,83,0.08)" strokeWidth="1.5" />
+          <path d={p.d} fill="none" stroke="rgba(90, 135, 56,0.08)" strokeWidth="1.5" />
           <path d={p.d} fill="none" stroke={`url(#${animKey}-g-${i})`} strokeWidth="2.5"
             strokeLinecap="round" strokeDasharray="50 300"
             style={{ animation: `${kf} 2.8s linear infinite`, animationDelay: p.delay }} />
@@ -245,7 +245,7 @@ function HeroBlog() {
         <div className="hr-side">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .2 }}>
             <p className="hr-kicker">Stratégie digitale, développement web, SEO et e-commerce</p>
-            <p className="hr-desc">—des contenus concrets pour les entrepreneurs ivoiriens.</p>
+            <p className="hr-desc">—des contenus concrets pour les éleveurs et producteurs congolais.</p>
             <a
               href="https://www.linkedin.com/in/m-bollo-aka"
               target="_blank"
@@ -260,7 +260,7 @@ function HeroBlog() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#88ca53', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#5a8738', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -275,7 +275,7 @@ function HeroBlog() {
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #88ca53;
+          margin-left: .15em; font-size: .3em; color: #5a8738;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
@@ -283,7 +283,7 @@ function HeroBlog() {
         }
         .hr-kicker {
           font-family: 'JetBrains Mono', monospace; font-size: .62rem; font-weight: 700;
-          color: #88ca53; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          color: #5a8738; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -349,11 +349,11 @@ function FeaturedPost() {
             <div style={{
               position: 'absolute', top: '1.2rem', left: '1.2rem',
               padding: '.3rem .9rem', borderRadius: 100,
-              background: 'rgba(136,202,83,.18)',
+              background: 'rgba(90, 135, 56,.18)',
               backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(136,202,83,.4)',
+              border: '1px solid rgba(90, 135, 56,.4)',
               fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', fontWeight: 700,
-              color: '#88ca53', letterSpacing: '.06em', textTransform: 'uppercase',
+              color: '#5a8738', letterSpacing: '.06em', textTransform: 'uppercase',
             }}>
               ⭐ Article vedette
             </div>
@@ -382,7 +382,7 @@ function FeaturedPost() {
               style={{
                 position: 'absolute', left: 0, top: '2.5rem', bottom: '2.5rem',
                 width: 3, borderRadius: 2,
-                background: 'linear-gradient(180deg,#88ca53,rgba(136,202,83,.2))',
+                background: 'linear-gradient(180deg,#5a8738,rgba(90, 135, 56,.2))',
                 transformOrigin: 'top',
               }}
             />
@@ -396,9 +396,9 @@ function FeaturedPost() {
             >
               <span style={{
                 padding: '.28rem .85rem', borderRadius: 100,
-                background: 'rgba(136,202,83,.1)', border: '1px solid rgba(136,202,83,.25)',
+                background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.25)',
                 fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 700,
-                color: '#88ca53', letterSpacing: '.06em',
+                color: '#5a8738', letterSpacing: '.06em',
               }}>
                 {post.category}
               </span>
@@ -448,7 +448,7 @@ function FeaturedPost() {
                 style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem', marginBottom: '1.6rem' }}
               >
                 {post.tags.slice(0, 3).map(tag => (
-                  <span key={tag} style={{ padding: '.18rem .65rem', borderRadius: 100, background: 'rgba(136,202,83,.06)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', fontWeight: 600, color: T.textMuted }}>
+                  <span key={tag} style={{ padding: '.18rem .65rem', borderRadius: 100, background: 'rgba(90, 135, 56,.06)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', fontWeight: 600, color: T.textMuted }}>
                     #{tag}
                   </span>
                 ))}
@@ -500,21 +500,21 @@ function FeaturedPost() {
 // ── BLOG GRID — AnimatedBeamGrid + TiltCard + BlurReveal ─────
 // ═══════════════════════════════════════════════════════════════
 const BLOG_NODES = [
-  { id: 'blog-n-0', Icon: TrendingUp,  label: 'Stratégie',  color: '#88ca53' },
-  { id: 'blog-n-1', Icon: ShoppingCart,label: 'E-Commerce', color: '#7db94c' },
-  { id: 'blog-n-2', Icon: Code,        label: 'Dev Web',    color: '#88ca53' },
+  { id: 'blog-n-0', Icon: TrendingUp,  label: 'Stratégie',  color: '#5a8738' },
+  { id: 'blog-n-1', Icon: ShoppingCart,label: 'E-Commerce', color: '#4d752f' },
+  { id: 'blog-n-2', Icon: Code,        label: 'Dev Web',    color: '#5a8738' },
   { id: 'blog-n-3', Icon: Globe,       label: 'SEO',        color: '#86efac' },
-  { id: 'blog-n-4', Icon: Zap,         label: 'Growth',     color: '#7db94c' },
-  { id: 'blog-n-5', Icon: BookOpen,    label: 'Ressources', color: '#88ca53' },
+  { id: 'blog-n-4', Icon: Zap,         label: 'Growth',     color: '#4d752f' },
+  { id: 'blog-n-5', Icon: BookOpen,    label: 'Ressources', color: '#5a8738' },
 ]
 
 // ═══════════════════════════════════════════════════════════════
 // ── HASHTAG CLOUD — V-labs blog hashtag style ────────────────
 // ═══════════════════════════════════════════════════════════════
 const HASHTAGS = [
-  '#stratégiedigitale','#seo','#ecommerce','#mobilemoney','#reactjs','#nextjs',
-  '#django','#uxdesign','#pme','#abidjan','#webdev','#saas','#startup',
-  '#cotedivoire','#digitalisation','#portfolio','#freelance','#africantech',
+  '#aviculture','#veterinaire','#elevage','#pointenoire','#cobb500','#haccp','#qhse',
+  '#congo','#biosecurite','#provenderie','#santeanimale','#afriquecentrale','#fermeecole',
+  '#nutritionanimale','#lohmannbrown','#zootechnie','#iso22000','#iso9001',
 ]
 
 function HashtagCloud() {
@@ -533,8 +533,8 @@ function HashtagCloud() {
                 initial={{ opacity: 0, scale: .85 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: i * .035, duration: .35 }}
-                whileHover={{ y: -2, background: 'rgba(136,202,83,.14)', borderColor: 'rgba(136,202,83,.4)', color: '#88ca53' }}
-                style={{ padding: '.28rem .75rem', borderRadius: 100, background: 'rgba(136,202,83,.06)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 600, color: T.textSub, cursor: 'pointer', transition: 'all .2s' }}
+                whileHover={{ y: -2, background: 'rgba(90, 135, 56,.14)', borderColor: 'rgba(90, 135, 56,.4)', color: '#5a8738' }}
+                style={{ padding: '.28rem .75rem', borderRadius: 100, background: 'rgba(90, 135, 56,.06)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 600, color: T.textSub, cursor: 'pointer', transition: 'all .2s' }}
               >
                 {tag}
               </motion.span>
@@ -585,7 +585,7 @@ function BlogGrid() {
 
         {/* ── Beam constellation ── */}
         <BlurReveal delay={0.18} style={{ marginBottom: '3rem' }}>
-          <div ref={beamContainerRef} style={{ position: 'relative', padding: '2rem 1rem', borderRadius: 20, background: T.light ? 'rgba(136,202,83,.03)' : 'rgba(136,202,83,.025)', border: `1px solid ${T.border}`, overflow: 'visible' }}>
+          <div ref={beamContainerRef} style={{ position: 'relative', padding: '2rem 1rem', borderRadius: 20, background: T.light ? 'rgba(90, 135, 56,.03)' : 'rgba(90, 135, 56,.025)', border: `1px solid ${T.border}`, overflow: 'visible' }}>
             <AnimatedBeamGrid
               containerRef={beamContainerRef}
               nodeIds={{ center: 'blog-center' }}
@@ -597,7 +597,7 @@ function BlogGrid() {
               {BLOG_NODES.slice(0, 3).map(({ id, Icon, label }) => (
                 <div key={id} id={id}
                   style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.45rem', padding: '.75rem', borderRadius: 14, background: T.light ? 'rgba(255,255,255,.9)' : 'rgba(11,26,16,.8)', border: `1px solid ${T.border}`, backdropFilter: 'blur(8px)', justifySelf: 'center' }}>
-                  <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(136,202,83,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(90, 135, 56,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Icon size={18} style={{ color: T.green }} />
                   </div>
                   <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.58rem', fontWeight: 600, color: T.textMuted, whiteSpace: 'nowrap' }}>{label}</span>
@@ -605,14 +605,14 @@ function BlogGrid() {
               ))}
               {/* Center */}
               <div id="blog-center"
-                style={{ width: 76, height: 76, borderRadius: '50%', background: 'linear-gradient(135deg, rgba(136,202,83,.25), rgba(136,202,83,.08))', border: '2px solid rgba(136,202,83,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', justifySelf: 'center', boxShadow: '0 0 40px rgba(136,202,83,.2)', flexShrink: 0 }}>
-                <Image src="/images/logo.webp" alt="AKATech" width={52} height={52} style={{ objectFit: 'contain', filter: 'drop-shadow(0 0 6px rgba(136,202,83,.5))' }} />
+                style={{ width: 76, height: 76, borderRadius: '50%', background: 'linear-gradient(135deg, rgba(90, 135, 56,.25), rgba(90, 135, 56,.08))', border: '2px solid rgba(90, 135, 56,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', justifySelf: 'center', boxShadow: '0 0 40px rgba(90, 135, 56,.2)', flexShrink: 0 }}>
+                <Image src="/images/logo.webp" alt="Agro Véto Services" width={52} height={52} style={{ objectFit: 'contain', filter: 'drop-shadow(0 0 6px rgba(90, 135, 56,.5))' }} />
               </div>
               {/* Right 3 */}
               {BLOG_NODES.slice(3).map(({ id, Icon, label }) => (
                 <div key={id} id={id}
                   style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.45rem', padding: '.75rem', borderRadius: 14, background: T.light ? 'rgba(255,255,255,.9)' : 'rgba(11,26,16,.8)', border: `1px solid ${T.border}`, backdropFilter: 'blur(8px)', justifySelf: 'center' }}>
-                  <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(136,202,83,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(90, 135, 56,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Icon size={18} style={{ color: T.green }} />
                   </div>
                   <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.58rem', fontWeight: 600, color: T.textMuted, whiteSpace: 'nowrap' }}>{label}</span>
@@ -628,7 +628,7 @@ function BlogGrid() {
             <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
               {CATEGORIES.map(cat => (
                 <button key={cat} onClick={() => setActiveCategory(cat)}
-                  style={{ padding: '.45rem 1.1rem', borderRadius: 100, border: '1px solid', cursor: 'pointer', fontFamily: "'JetBrains Mono',monospace", fontSize: '.8rem', fontWeight: 600, transition: 'all .2s', borderColor: activeCategory === cat ? T.green : T.border, background: activeCategory === cat ? 'linear-gradient(145deg,#8dd456,#5f9137)' : 'transparent', color: activeCategory === cat ? '#fff' : T.textSub }}>
+                  style={{ padding: '.45rem 1.1rem', borderRadius: 100, border: '1px solid', cursor: 'pointer', fontFamily: "'JetBrains Mono',monospace", fontSize: '.8rem', fontWeight: 600, transition: 'all .2s', borderColor: activeCategory === cat ? T.green : T.border, background: activeCategory === cat ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: activeCategory === cat ? '#fff' : T.textSub }}>
                   {cat}
                 </button>
               ))}
@@ -636,10 +636,10 @@ function BlogGrid() {
             <div style={{ position: 'relative' }}>
               <Search size={14} style={{ position: 'absolute', left: '.9rem', top: '50%', transform: 'translateY(-50%)', color: T.textMuted, pointerEvents: 'none' }} />
               <input
-                style={{ padding: '.6rem 1rem .6rem 2.4rem', borderRadius: 100, border: `1px solid ${T.border}`, background: T.light ? '#f5f5f5' : 'rgba(136,202,83,.04)', color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', outline: 'none', width: 220 }}
+                style={{ padding: '.6rem 1rem .6rem 2.4rem', borderRadius: 100, border: `1px solid ${T.border}`, background: T.light ? '#f5f5f5' : 'rgba(90, 135, 56,.04)', color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', outline: 'none', width: 220 }}
                 placeholder="Rechercher..."
                 value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                onFocus={e => e.target.style.borderColor = '#88ca53'}
+                onFocus={e => e.target.style.borderColor = '#5a8738'}
                 onBlur={e => e.target.style.borderColor = T.border}
               />
             </div>
@@ -669,7 +669,7 @@ function BlogGrid() {
                     {/* Content */}
                     <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '.7rem', marginBottom: '.9rem' }}>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem .75rem', borderRadius: 100, background: T.light ? 'rgba(95,145,55,.07)' : 'rgba(136,202,83,.07)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em' }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem .75rem', borderRadius: 100, background: T.light ? 'rgba(95,145,55,.07)' : 'rgba(90, 135, 56,.07)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em' }}>
                           <CatIcon size={10} />{post.category}
                         </span>
                         <span style={{ display: 'flex', alignItems: 'center', gap: '.3rem', fontSize: '.7rem', color: T.textMuted }}>
@@ -724,7 +724,7 @@ function Newsletter() {
     <section ref={sectionRef} style={{ padding: '5rem 5%', background: T.bgAlt }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <BlurReveal>
-          <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(136,202,83,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+          <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(90, 135, 56,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <Zap size={24} style={{ color: T.green }} />
           </div>
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.7rem', textAlign: 'left' }}>
@@ -734,20 +734,20 @@ function Newsletter() {
         </BlurReveal>
         <WordRevealP
           sectionRef={sectionRef}
-          text="Conseils digitaux, nouvelles technologies et ressources pour entrepreneurs ivoiriens — directement dans votre boîte mail."
-          greenWords={['digitaux,', 'technologies', 'ivoiriens', 'mail.']}
+          text="Conseils zootechniques, protocoles vétérinaires et ressources agropastorales — directement dans votre boîte mail."
+          greenWords={['zootechniques,', 'protocoles', 'vétérinaires', 'agropastorales']}
           extraStyle={{ color: T.textSub, marginBottom: '2rem' }}
         />
           {done ? (
             <motion.div initial={{ scale: .8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-              style={{ padding: '1.2rem 2rem', borderRadius: 14, background: 'rgba(136,202,83,.08)', border: `1px solid ${T.border}`, color: T.green, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700 }}>
+              style={{ padding: '1.2rem 2rem', borderRadius: 14, background: 'rgba(90, 135, 56,.08)', border: `1px solid ${T.border}`, color: T.green, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700 }}>
               ✅ Merci ! Vous êtes abonné.
             </motion.div>
           ) : (
             <div style={{ display: 'flex', gap: '.8rem', maxWidth: 520, margin: '0 auto' }}>
               <input type="email" placeholder="votre@email.com" value={email} onChange={e => setEmail(e.target.value)}
-                style={{ flex: 1, padding: '.85rem 1rem', borderRadius: 10, border: `1px solid ${T.border}`, background: T.light ? '#f5f5f5' : 'rgba(136,202,83,.04)', color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '.88rem', outline: 'none' }}
-                onFocus={e => e.target.style.borderColor = '#88ca53'}
+                style={{ flex: 1, padding: '.85rem 1rem', borderRadius: 10, border: `1px solid ${T.border}`, background: T.light ? '#f5f5f5' : 'rgba(90, 135, 56,.04)', color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '.88rem', outline: 'none' }}
+                onFocus={e => e.target.style.borderColor = '#5a8738'}
                 onBlur={e => e.target.style.borderColor = T.border}
               />
               <button className="btn-raised" onClick={() => email && setDone(true)} style={{ flexShrink: 0, padding: '.85rem 1.4rem', fontSize: '.84rem' }}>
@@ -770,7 +770,7 @@ function ProcessBlog() {
     {
       n: '01', icon: BookOpen,
       title: 'Vous lisez',
-      desc: "Explorez nos articles concrets sur la stratégie digitale, le SEO et l'e-commerce — pensés pour le marché ivoirien.",
+      desc: "Explorez nos articles pratiques sur l'élevage, la provenderie, la prophylaxie et les normes sanitaires au Congo.",
       bg: T.light ? '#f4faf5' : '#030c06',
       shadow: false,
     },
@@ -830,10 +830,10 @@ function ProcessBlog() {
           <BlurReveal delay={0.05}>
             <div style={{ maxWidth: 720, width: '100%', display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '3rem', alignItems: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ width: 80, height: 80, borderRadius: 24, background: 'rgba(136,202,83,.12)', border: '1px solid rgba(136,202,83,.28)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Icon size={32} style={{ color: '#88ca53' }} />
+                <div style={{ width: 80, height: 80, borderRadius: 24, background: 'rgba(90, 135, 56,.12)', border: '1px solid rgba(90, 135, 56,.28)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon size={32} style={{ color: '#5a8738' }} />
                 </div>
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '3.5rem', fontWeight: 900, color: 'rgba(136,202,83,.12)', lineHeight: 1, letterSpacing: '-.04em' }}>{n}</span>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '3.5rem', fontWeight: 900, color: 'rgba(90, 135, 56,.12)', lineHeight: 1, letterSpacing: '-.04em' }}>{n}</span>
               </div>
               <div>
                 <h3 style={{ fontSize: 'clamp(1.5rem,3vw,2.2rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '1rem' }}>
@@ -842,7 +842,7 @@ function ProcessBlog() {
                 <p style={{ fontSize: '1.05rem', color: T.textSub, lineHeight: 1.8, maxWidth: 480 }}>{desc}</p>
                 <div style={{ marginTop: '1.5rem', display: 'flex', gap: '.4rem' }}>
                   {steps.map((_, si) => (
-                    <div key={si} style={{ height: 3, borderRadius: 2, flex: si <= i ? 2 : 1, background: si <= i ? '#88ca53' : T.border, transition: 'all .4s' }} />
+                    <div key={si} style={{ height: 3, borderRadius: 2, flex: si <= i ? 2 : 1, background: si <= i ? '#5a8738' : T.border, transition: 'all .4s' }} />
                   ))}
                 </div>
               </div>

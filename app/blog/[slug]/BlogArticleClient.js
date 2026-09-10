@@ -9,131 +9,65 @@ import { PageCTA } from '@/components/ui/index'
 import { BLOG_POSTS } from '@/lib/data'
 
 const FULL_ARTICLES = {
-  'pourquoi-votre-business-a-besoin-dun-site-web': [
-    { type: 'lead', text: "En Côte d'Ivoire, plus de 60% des consommateurs recherchent une entreprise en ligne avant d'acheter. Si votre business n'est pas visible sur internet, vous perdez des clients chaque jour — sans même le savoir." },
-    { type: 'h2', text: '1. Les clients vous cherchent déjà en ligne' },
-    { type: 'p', text: "Que vous vendiez des vêtements, de la nourriture ou des services, vos clients potentiels tapent sur Google avant de se déplacer. Un site web vous permet d'être présent à ce moment crucial de décision." },
-    { type: 'p', text: "Sans site, vous dépendez uniquement du bouche-à-oreille et des réseaux sociaux — dont vous ne contrôlez pas les algorithmes. Facebook peut changer ses règles du jour au lendemain. Votre site, lui, vous appartient." },
-    { type: 'h2', text: '2. Un site web renforce votre crédibilité' },
-    { type: 'p', text: "Imaginez deux prestataires identiques. L'un a un site professionnel avec ses services, prix et témoignages clients. L'autre n'a qu'un numéro WhatsApp. Lequel choisiriez-vous pour un projet important ?" },
-    { type: 'p', text: "Un site web soigné signal à vos prospects que vous êtes sérieux, établi, et que vous investissez dans votre image. C'est de la crédibilité instantanée." },
-    { type: 'h2', text: '3. Il travaille pour vous 24h/24' },
-    { type: 'p', text: "Votre site présente vos services, répond aux questions fréquentes et collecte des contacts de prospects — même quand vous dormez. C'est votre meilleur commercial, disponible à toute heure." },
-    { type: 'cta', text: "Prêt à créer votre site ? On vous accompagne.", href: '/contact' },
+  'reussir-le-demarrage-de-ses-poussins-cobb-500': [
+    { type: 'lead', text: "Les 14 premiers jours conditionnent 80% de la performance finale d'une bande de poulets de chair Cobb 500. Une gestion rigoureuse de la température, de la litière et de l'abreuvement est le secret des élevages rentables au Congo." },
+    { type: 'h2', text: '1. La préparation du bâtiment et le vide sanitaire' },
+    { type: 'p', text: "Avant toute arrivée, le local d'élevage doit avoir subi un nettoyage complet, un décapage, une désinfection certifiée et un vide sanitaire d'au moins 14 jours. Saupoudrez une litière de copeaux de bois secs et non poussiéreux d'au moins 5 à 7 cm d'épaisseur pour isoler les poussins du sol froid." },
+    { type: 'h2', text: '2. Le préchauffage de la poussinière : 32°C à 35°C impératifs' },
+    { type: 'p', text: "Allumez vos radiants ou éleveuses au moins 24 heures avant l'arrivée des cartons. La température au niveau du sol doit être stabilisée entre 32°C et 35°C. Les poussins ne régulent pas leur température corporelle durant leurs premiers jours : un coup de froid se traduit immédiatement par des retards de croissance et des mortalités." },
+    { type: 'h2', text: '3. La mise à disposition immédiate de l\'eau et de l\'aliment de démarrage' },
+    { type: 'p', text: "Dès l'installation, proposez de l'eau tiède additionnée d'anti-stress et de vitamines de démarrage (ou sérum glucosé léger). L'aliment démarrage AVS, calibré en miettes avec 21% à 22% de protéines brutes, doit être étalé sur des alvéoles ou papiers de démarrage pour stimuler l'appétit instantanément." },
+    { type: 'h2', text: '4. Le test du jabot à 24 heures' },
+    { type: 'p', text: "À H+24 après réception, palpez le jabot d'un échantillon de 100 poussins. Au moins 95% d'entre eux doivent avoir le jabot plein, souple et hydraté. Si les jabots sont durs ou vides, réajustez sans attendre l'éclairage, la hauteur des abreuvoirs ou la température." },
+    { type: 'cta', text: "Besoin de poussins d'un jour Cobb 500 certifiés ou d'un suivi vétérinaire ?", href: '/contact' },
   ],
-  'mobile-money-integration-site-ecommerce': [
-    { type: 'lead', text: "Le paiement mobile représente plus de 70% des transactions e-commerce en Côte d'Ivoire. Intégrer MTN MoMo, Orange Money et Wave n'est plus optionnel — c'est indispensable." },
-    { type: 'h2', text: "Pourquoi Mobile Money s'impose" },
-    { type: 'p', text: "La majorité des Ivoiriens n'ont pas de carte bancaire, mais presque tous ont un mobile money. C'est la réalité du marché local. Votre boutique en ligne doit s'adapter à cette réalité, pas l'inverse." },
-    { type: 'h2', text: 'Les 3 plateformes à intégrer' },
-    { type: 'p', text: "MTN MoMo est le leader avec plus de 10 millions d'utilisateurs. Orange Money est très utilisé dans les zones rurales. Wave a révolutionné le marché avec ses frais quasi nuls — c'est le favori des jeunes." },
-    { type: 'h2', text: 'Comment AKATech intègre ces paiements' },
-    { type: 'p', text: "On utilise des APIs officielles et des passerelles de paiement locales (CinetPay, Kkiapay) pour intégrer ces systèmes de manière sécurisée et conforme. Les transactions sont tracées, remboursables et auditables." },
-    { type: 'cta', text: 'Créer votre boutique avec Mobile Money', href: '/contact' },
+  'plan-de-prophylaxie-pourquoi-il-est-indispensable': [
+    { type: 'lead', text: "Dans les pays tropicaux comme le Congo, l'absence de plan de prophylaxie vaccinale et médicale expose l'éleveur à la perte totale de son capital en moins de 48 heures." },
+    { type: 'h2', text: '1. Comprendre la prophylaxie médicale et sanitaire' },
+    { type: 'p', text: "La prophylaxie regroupe l'ensemble des mesures destinées à prévenir l'apparition, la propagation ou l'aggravation des maladies chez les animaux. Elle est double : sanitaire (hygiène, désinfection, sas de biosécurité) et médicale (vaccinations, vermifugations, vitamines)." },
+    { type: 'h2', text: '2. Les vaccins fondamentaux en aviculture congolaise' },
+    { type: 'p', text: "La maladie de Newcastle (pseudo-peste aviaire) et la bursite infectieuse (Gumboro) sont omniprésentes sous nos latitudes. Un calendrier rigoureux impose une vaccination précoce : premier vaccin Newcastle + Bronchite infectieuse dès J1 à J7, rappel Gumboro à J10-J14, et renforcement selon la pression épidémiologique locale." },
+    { type: 'h2', text: '3. La gestion de la chaîne du froid' },
+    { type: 'p', text: "Un vaccin vivant exposé à la chaleur ou dilué dans une eau chlorée perd 100% de son efficacité. Chez Agro Véto Services, nos vaccins sont conservés sous monitoring thermique continu et nous formons les éleveurs aux protocoles de reconstitution (eau sans chlore, lait écrémé protecteur, administration le matin tôt)." },
+    { type: 'h2', text: '4. Un accompagnement vétérinaire sur-mesure' },
+    { type: 'p', text: "Chaque zone agro-écologique possède son propre écosystème pathologique. Un calendrier standard téléchargé sur internet ne remplace jamais le plan de prophylaxie adapté par un docteur vétérinaire en fonction de l'historique sanitaire de votre exploitation." },
+    { type: 'cta', text: "Faites valider votre calendrier de prophylaxie par notre équipe médicale", href: '/contact' },
   ],
-  'vibe-coding-nouvelle-abstraction-developpement': [
-    { type: 'lead', text: 'Le vibe coding dérange certaines personnes parce qu\'il touche à leur ego.' },
-    { type: 'h2', text: "L'histoire se répète à chaque nouvelle abstraction" },
-    { type: 'p', text: "À une époque, utiliser un compilateur au lieu d'écrire directement en assembleur était mal vu par certains puristes. Plus tard, adopter un framework plutôt que du JavaScript pur a suscité les mêmes réticences. Pourtant, ces outils sont devenus des standards incontournables du développement." },
-    { type: 'h2', text: "Ce n'est pas l'outil qui compte, c'est ce qu'on en fait" },
-    { type: 'p', text: "Chaque nouvelle abstraction — du compilateur au framework, et aujourd'hui à l'IA générative — suscite de la méfiance avant d'être adoptée. C'est un cycle qui se répète depuis les débuts de l'informatique. L'important n'a jamais été l'outil utilisé, mais la valeur que l'on est capable de créer avec." },
-    { type: 'p', text: "Chez AKATech, on utilise l'IA comme un accélérateur, pas comme un raccourci pour éviter de comprendre le code. La différence se voit dans le résultat livré, pas dans la méthode." },
-    { type: 'cta', text: 'Envie d\'un site pensé avec les bons outils, pas juste les plus récents ?', href: '/contact' },
+  'pourquoi-les-pme-agroalimentaires-doivent-adopter-haccp': [
+    { type: 'lead', text: "L'approche HACCP (Hazard Analysis Critical Control Point) n'est pas réservée aux multinationales : elle est le passeport indispensable des PME congolaises vers les supermarchés, les marchés publics et l'exportation." },
+    { type: 'h2', text: "1. Qu'est-ce que la démarche HACCP ?" },
+    { type: 'p', text: "L'HACCP est une méthode systématique et préventive d'assurance de la sécurité sanitaire des denrées alimentaires. Elle identifie, évalue et maîtrise les dangers significatifs au regard de la sécurité des aliments : dangers biologiques (bactéries, salmonelles), chimiques (résidus de détergents, mycotoxines) et physiques (corps étrangers)." },
+    { type: 'h2', text: '2. Les 7 principes fondateurs simplifiés' },
+    { type: 'p', text: "La démarche s'articule autour de 7 piliers : analyser les dangers, déterminer les points critiques de contrôle (CCP), établir les limites critiques, surveiller chaque CCP, définir les actions correctives, vérifier le bon fonctionnement du système et documenter l'ensemble des procédures." },
+    { type: 'h2', text: '3. Les avantages compétitifs pour une PME au Congo' },
+    { type: 'p', text: "Mettre en œuvre l'HACCP permet de réduire drastiquement les pertes et réclamations clients, de fidéliser les consommateurs et de négocier son référencement en grandes surfaces (Casino, Score, etc.) ou auprès des bases de vie industrielles pétrolières et minières." },
+    { type: 'h2', text: '4. L\'accompagnement Agro Véto Services en QHSE' },
+    { type: 'p', text: "Notre pôle QHSE et Conseil accompagne les entreprises agroalimentaires locales de bout en bout : diagnostic initial, rédaction du Plan de Maîtrise Sanitaire (PMS), formation du personnel aux Bonnes Pratiques d'Hygiène (BPH) et préparation aux audits de certification." },
+    { type: 'cta', text: "Programmez un audit sanitaire et QHSE de votre unité de production", href: '/contact' },
   ],
-  'erreurs-de-code-dun-junior-et-comment-progresser': [
-    { type: 'lead', text: "Le premier Pull Request d'un développeur junior, c'est souvent un mélange de variables inutilisées, de console.log() oubliés, de secrets ou clés API laissés en dur dans le code, et de setInterval() qui tournent à vie." },
-    { type: 'h2', text: "C'est normal, et ça ne dit rien de votre potentiel" },
-    { type: 'p', text: "On est tous passés par là. Un code qui marche mais que personne ne veut maintenir, ce n'est pas un manque de talent — c'est simplement l'étape avant d'apprendre les bonnes pratiques. Personne ne naît en écrivant du code propre et sécurisé du premier coup." },
-    { type: 'h2', text: "Le rôle d'un senior n'est pas de juger" },
-    { type: 'p', text: "Le rôle d'un développeur senior n'est pas de se moquer des erreurs d'un junior, mais d'expliquer pourquoi certaines pratiques sont dangereuses — un secret API laissé en dur dans le code peut coûter cher — et comment écrire un code plus propre, plus maintenable et plus sécurisé." },
-    { type: 'p', text: "Les meilleurs développeurs ne sont pas ceux qui n'ont jamais fait d'erreur. Ce sont ceux qui ont eu des code reviews qui les ont fait progresser. C'est aussi comme ça qu'on travaille chez AKATech : chaque ligne de code livrée passe par une relecture avant de partir en production." },
-    { type: 'cta', text: 'Besoin d\'un code propre et sécurisé pour votre projet ?', href: '/contact' },
-  ],
-  'ia-ne-remplace-pas-la-competence-technique': [
-    { type: 'lead', text: "Un outil ne dépassera jamais une compétence technique. L'IA est puissante, oui — mais entre les mains de quelqu'un qui ne comprend pas le code, ça reste du copier-coller." },
-    { type: 'h2', text: 'Le vibe coding a ses limites' },
-    { type: 'p', text: "Le \"vibe coding\" donne l'illusion d'être développeur… jusqu'au moment où il faut corriger un bug, optimiser une requête ou sécuriser une faille. Un développeur expérimenté utilise l'IA pour aller plus vite. Un débutant l'utilise pour éviter de réfléchir. Les résultats n'ont rien à voir." },
-    { type: 'h2', text: 'Mon propre site en est la preuve' },
-    { type: 'p', text: "J'ai refait mon portfolio personnel en passant de Vite + React à Next.js, avec l'IA comme assistant. La différence est claire : meilleure performance, meilleur SEO, meilleure structure. Mais ce n'est pas juste un outil qui a fait ça — ce sont les choix techniques faits à chaque étape." },
-    { type: 'p', text: "C'est exactement la même approche qu'on applique chez AKATech pour chaque projet client : l'IA accélère l'exécution, mais l'architecture, les choix de stack et la sécurité restent une question de compétence, pas d'automatisation." },
-    { type: 'cta', text: 'Discutons des choix techniques de votre projet', href: '/contact' },
-  ],
-  'les-vibes-vont-detruire-securite-frontend-backend': [
-    { type: 'lead', text: '"Frontend = sécurité"… j\'ai vu ça sur internet et j\'ai souri. Le fait d\'avoir dans un menu déroulant ADMIN, ANNONCEUR, DIFFUSEUR n\'est PAS un problème en soi. Le vrai problème est ailleurs.' },
-    { type: 'h2', text: 'Les vraies questions à se poser' },
-    { type: 'p', text: "Est-ce qu'un utilisateur peut s'auto-attribuer le rôle ADMIN ? Est-ce que le backend vérifie réellement les permissions à chaque requête ? Est-ce que les routes sensibles sont protégées côté serveur, et pas seulement cachées côté client ?" },
-    { type: 'h2', text: 'Le frontend affiche, le backend autorise' },
-    { type: 'p', text: 'On peut cacher "ADMIN" dans l\'interface autant qu\'on veut — si le backend ne vérifie rien, n\'importe qui peut se créer un royaume avec un outil comme Postman en appelant directement l\'API. Cette différence entre affichage et autorisation, c\'est littéralement la sécurité d\'une application.' },
-    { type: 'p', text: "C'est un principe qu'on applique sur chaque projet chez AKATech : les permissions sont toujours vérifiées côté serveur, jamais seulement masquées côté interface. La sécurité ne vit jamais dans l'UI." },
-    { type: 'cta', text: 'Un doute sur la sécurité de votre application ?', href: '/contact' },
-  ],
-  'plus-gros-mensonge-ia-responsabilite-developpeur': [
-    { type: 'lead', text: '"Tu n\'as plus besoin d\'apprendre à coder grâce à l\'IA." Le plus gros mensonge qu\'on a vendu aux développeurs récemment. Oui, tu peux générer une UI, une API, même une application entière. Mais le problème commence quand ça ne marche plus.' },
-    { type: 'h2', text: "Copier du code n'est pas comprendre un système" },
-    { type: 'p', text: "Ça devient lent, ça casse en production, l'IA invente parfois du code absurde. Et là, on réalise un truc brutal : copier du code n'est pas la même chose que comprendre le système qu'on construit. L'IA peut générer du code, mais elle ne porte jamais la responsabilité du résultat." },
-    { type: 'h2', text: 'Quand le backend tombe à 3h du matin' },
-    { type: 'p', text: "Ce n'est pas l'IA qui vient corriger les logs en production. C'est le développeur. Le vrai développeur aujourd'hui n'est pas celui qui utilise le plus d'IA — c'est celui qui sait quoi générer, quoi garder, quoi refactorer, et surtout quoi ne pas accepter." },
-    { type: 'p', text: "Le vibe coding donne de la vitesse. La compréhension donne le contrôle. Chez AKATech, l'IA fait partie de nos outils, mais chaque ligne livrée est comprise et validée avant de partir en production — pas juste générée et copiée." },
-    { type: 'cta', text: 'Besoin d\'un développeur qui comprend ce qu\'il livre ?', href: '/contact' },
-  ],
-  'lancer-projet-imparfait-plutot-que-jamais': [
-    { type: 'lead', text: "Cette ancienne page Facebook ne paierait probablement même pas un designer aujourd'hui. Pourtant, elle a donné naissance à l'une des plus grandes plateformes du monde." },
-    { type: 'h2', text: 'La perfection est l\'ennemie du lancement' },
-    { type: 'p', text: 'Beaucoup de développeurs et d\'entrepreneurs abandonnent leurs projets parce qu\'ils ne sont pas encore "parfaits". Ils peaufinent, repoussent, recommencent — et ne sortent jamais rien. La vérité, c\'est que mieux vaut lancer une version imparfaite que garder une idée parfaite enfermée dans sa tête.' },
-    { type: 'h2', text: 'Le vrai cimetière de projets' },
-    { type: 'p', text: "Le plus grand cimetière de projets ne se trouve pas dans des dossiers abandonnés sur un disque dur. Il se trouve dans l'esprit des développeurs qui attendent le moment parfait pour lancer. Une première version, même imparfaite, peut évoluer. Une idée jamais lancée ne devient jamais rien." },
-    { type: 'p', text: "C'est exactement l'approche qu'on recommande à nos clients chez AKATech : lancer une V1 solide et fonctionnelle, puis itérer avec de vrais retours utilisateurs — plutôt que d'attendre 6 mois pour une version \"parfaite\" que personne n'aura testée." },
-    { type: 'cta', text: 'Prêt à lancer votre V1 ?', href: '/contact' },
-  ],
-  'seo-local-abidjan-guide-complet': [
-    { type: 'lead', text: "Deux agences web à Abidjan, la même qualité de service — mais une seule apparaît en première page quand on tape « agence web Abidjan » sur Google. La différence ne se joue presque jamais sur le site lui-même : elle se joue sur 7 réglages que la plupart des entreprises ivoiriennes ignorent." },
-    { type: 'h2', text: '1. La fiche Google Business Profile, avant tout le reste' },
-    { type: 'p', text: "Sans fiche Google Business, votre entreprise n'apparaît ni dans les résultats locaux ni sur Google Maps — même si votre site est excellent. C'est gratuit, ça prend 20 minutes à créer, et c'est souvent la toute première chose qu'un prospect voit avant même de cliquer sur votre site." },
-    { type: 'p', text: "Renseignez une vraie catégorie d'activité, une description qui reprend les mots que vos clients tapent réellement, et ajoutez des photos — logo, équipe, captures d'écran de projets livrés. Une fiche incomplète inspire moins confiance qu'une fiche bien remplie chez un concurrent." },
-    { type: 'h2', text: '2. Les avis Google, le signal de confiance n°1' },
-    { type: 'p', text: "Google et les prospects lisent les avis de la même façon : peu d'avis, ou aucun, ça veut dire soit que vous démarrez, soit que personne n'a pris la peine d'en laisser. Dans les deux cas, ça freine la décision au moment crucial." },
-    { type: 'p', text: "La méthode la plus efficace reste la plus simple : envoyer le lien direct d'avis par WhatsApp à un client juste après une livraison réussie, pendant qu'il est satisfait. Dix avis avec de vraies réponses de votre part valent plus que cinquante avis génériques sans suivi." },
-    { type: 'h2', text: '3. Les mots-clés que vos clients tapent, pas ceux que vous préférez' },
-    { type: 'p', text: "« Agence de transformation digitale » sonne bien sur une plaquette commerciale. Personne ne tape ça sur Google. Les vraies requêtes ressemblent à « créer un site à Abidjan », « prix site web Côte d'Ivoire » ou « développeur e-commerce Cocody »." },
-    { type: 'p', text: "Le bon réflexe : reprendre le vocabulaire exact de vos prospects, pas le vôtre, dans vos titres de page, vos intitulés de services et votre FAQ. C'est simple, gratuit, et ça change réellement ce que Google associe à votre site." },
-    { type: 'h2', text: '4. Les données structurées : parler la langue de Google (et des IA)' },
-    { type: 'p', text: "Le schema markup (JSON-LD) est un langage invisible pour vos visiteurs, mais que Google et les assistants IA comme ChatGPT ou Perplexity lisent directement pour comprendre qui vous êtes, où vous êtes situé et ce que vous proposez — sans avoir à deviner." },
-    { type: 'p', text: "Chez AKATech, chaque site inclut ces données structurées dès la livraison : type d'activité, zone desservie, gamme de prix, questions fréquentes. C'est ce qui permet à une IA de vous citer correctement quand quelqu'un lui demande une recommandation de prestataire." },
-    { type: 'h2', text: '5. Un site rapide, pensé mobile d\'abord' },
-    { type: 'p', text: "En Côte d'Ivoire, l'écrasante majorité du trafic web est mobile, souvent en 4G plutôt qu'en fibre. Un site lent à charger perd des visiteurs avant même d'afficher son contenu — et Google le sait : il pénalise directement les sites lents dans son classement." },
-    { type: 'p', text: "Images compressées, hébergement performant, code optimisé : la vitesse n'est pas un détail technique, c'est un critère de référencement à part entière." },
-    { type: 'h2', text: '6. Une FAQ qui répond aux vraies questions, pas aux questions polies' },
-    { type: 'p', text: "Combien ça coûte. Combien de temps. Est-ce que vous prenez Mobile Money. Ce sont les questions que vos prospects se posent réellement avant de vous contacter — et ce sont exactement celles qu'une IA reprend pour répondre à quelqu'un qui cherche un prestataire." },
-    { type: 'p', text: "Une FAQ honnête, avec de vrais chiffres plutôt que des réponses vagues, fait doublement le travail : elle rassure le visiteur humain, et elle devient une source que Google et les IA peuvent citer directement." },
-    { type: 'h2', text: '7. Un seul nom, une seule adresse, partout' },
-    { type: 'p', text: "Nom de l'entreprise, adresse, numéro de téléphone : ces informations doivent être identiques au mot près sur votre site, votre fiche Google, vos réseaux sociaux et tous vos profils en ligne. La moindre incohérence sème le doute chez Google sur qui vous êtes réellement." },
-    { type: 'p', text: "C'est encore plus vrai si votre nom ressemble à celui d'une autre entreprise, ou si plusieurs sites à vous coexistent sous des variantes de marque différentes : mieux vaut choisir une version officielle et s'y tenir partout, plutôt que de laisser Google trancher à votre place." },
-    { type: 'cta', text: "Envie d'un audit gratuit de votre présence Google ?", href: '/contact' },
-  ],
-  'react-vs-wordpress-pour-pme-africaines': [
-    { type: 'lead', text: "« WordPress, c'est gratuit » est la phrase qui finit par coûter le plus cher aux PME africaines qui se lancent en ligne. Le vrai coût ne se lit jamais sur la page de téléchargement." },
-    { type: 'h2', text: 'Le coût réel, pas juste le prix de départ' },
-    { type: 'p', text: "WordPress lui-même est gratuit, mais un site professionnel ajoute un thème premium, plusieurs extensions payantes, un hébergement adapté et une maintenance de sécurité régulière — sans quoi le site devient une cible facile pour les failles connues des plugins. Sur deux ou trois ans, la facture rejoint souvent celle d'un développement sur-mesure." },
-    { type: 'p', text: "Un développement React ou Next.js coûte plus cher au départ, mais n'a ni licence de thème à renouveler ni plugin tiers à mettre à jour dans l'urgence après une alerte de sécurité." },
-    { type: 'h2', text: 'La performance, un critère qui pèse double en Côte d\'Ivoire' },
-    { type: 'p', text: "WordPress charge une bonne partie du CMS même pour afficher une simple page vitrine, ce qui pèse sur le temps de chargement — un vrai problème en 4G. Un site React/Next.js bien construit ne charge que ce dont la page a besoin, ce qui se traduit directement par un meilleur classement Google et moins de visiteurs perdus avant même l'affichage du contenu." },
-    { type: 'h2', text: 'La maintenance sur la durée' },
-    { type: 'p', text: "Un site WordPress a besoin de mises à jour régulières — cœur, thème, extensions. Les négliger expose à des piratages, dont la remise en état coûte souvent plus cher que la maintenance elle-même. Un site sur-mesure a une surface d'attaque bien plus réduite, avec beaucoup moins de dépendances tierces à surveiller." },
-    { type: 'h2', text: 'Quand WordPress reste le bon choix' },
-    { type: 'p', text: "Pour un blog personnel, une association ou une petite structure qui doit publier du contenu très régulièrement sans aucune aide technique, WordPress garde un vrai avantage : son écosystème de plugins et sa prise en main sans code." },
-    { type: 'h2', text: 'Quand le sur-mesure devient nécessaire' },
-    { type: 'p', text: "Dès qu'un projet a besoin de paiement Mobile Money intégré, d'un espace client, d'un tableau de bord ou de fonctionnalités propres à votre activité, un développement React/Next.js avec backend sur-mesure devient plus rapide à faire évoluer qu'un empilement de plugins WordPress qui finissent par se marcher dessus." },
-    { type: 'cta', text: 'Un doute sur la meilleure techno pour votre projet ?', href: '/contact' },
+  'regles-biosecurite-indispensables-ferme-tropicale': [
+    { type: 'lead', text: "La biosécurité est la barrière invisible mais la plus efficace qui sépare un cheptel sain d'une épidémie dévastatrice. Voici les 5 réflexes incontournables sur toute ferme moderne." },
+    { type: 'h2', text: '1. La clôture et le contrôle strict des accès' },
+    { type: 'p', text: "Votre exploitation doit être clôturée pour empêcher l'intrusion d'animaux errants (chiens, rongeurs, oiseaux sauvages) vecteurs de pathogènes. Tout visiteur ou véhicule doit passer par un point d'enregistrement et respecter les consignes sanitaires." },
+    { type: 'h2', text: '2. Le rotoluve et le pédiluve actif' },
+    { type: 'p', text: "À l'entrée du site et devant chaque bâtiment d'élevage, installez un pédiluve contenant une solution désinfectante homologuée (virucide et bactéricide), renouvelée au minimum deux fois par semaine. Les bottes doivent être systématiquement brossées et trempées." },
+    { type: 'h2', text: '3. Le sas sanitaire avec tenue dédiée' },
+    { type: 'p', text: "On n'entre jamais dans un poulailler ou une porcherie avec ses vêtements de ville. Prévoyez un sas où le personnel et les intervenants enfilent des combinaisons ou blouses lavables et des bottes réservées exclusivement à la zone d'élevage." },
+    { type: 'h2', text: '4. Le principe de la marche en avant' },
+    { type: 'p', text: "Lors des soins quotidiens, visitez toujours les lots les plus jeunes et les plus sains en premier, pour terminer par les animaux les plus âgés ou convalescents. Cela évite le transfert de charges bactériennes vers les sujets les plus fragiles." },
+    { type: 'h2', text: '5. L\'élimination hygiénique des cadavres et des déchets' },
+    { type: 'p', text: "Tout animal mort doit être retiré immédiatement et enfoui dans une fosse à cadavres sécurisée avec de la chaux vive ou incinéré. Ne jetez jamais un cadavre à ciel ouvert ou aux abords des cours d'eau." },
+    { type: 'cta', text: "Besoin d'un audit de biosécurité et d'équipements de désinfection ?", href: '/contact' },
   ],
 }
 
 const defaultContent = (post) => [
   { type: 'lead', text: post.excerpt },
-  { type: 'h2', text: "L'importance pour votre business" },
-  { type: 'p', text: "Dans un marché africain en pleine transformation digitale, comprendre les enjeux du web est crucial pour la croissance de votre entreprise." },
-  { type: 'p', text: "Chez AKATech, nous ne vendons pas juste des sites web. Nous construisons des solutions digitales qui répondent aux réalités du marché ivoirien — Mobile Money, faible débit, usage mobile-first." },
-  { type: 'p', text: "Chaque projet est pensé pour générer des résultats concrets : plus de clients, plus de revenus, moins de tâches répétitives. C'est notre engagement." },
-  { type: 'cta', text: 'Discutons de votre projet', href: '/contact' },
+  { type: 'h2', text: "L'expertise technique au service de votre rentabilité" },
+  { type: 'p', text: "Dans un secteur agropastoral et agroalimentaire en plein essor au Congo, maîtriser les protocoles zootechniques, la nutrition et les normes sanitaires est le levier clé de succès." },
+  { type: 'p', text: "Chez Agro Véto Services Congo, nous ne fournissons pas seulement des intrants et des soins. Nous concevons des solutions techniques globales adaptées aux réalités climatiques et économiques locales — aliments équilibrés, poussins certifiés, urgences vétérinaires 24/7 et audits QHSE." },
+  { type: 'p', text: "Chaque démarche est pensée pour sécuriser vos investissements, maximiser votre taux de ponte ou de croissance, et garantir une sécurité alimentaire exemplaire." },
+  { type: 'cta', text: "Discutons de vos besoins d'élevage ou d'audit", href: '/contact' },
 ]
 
 export default function BlogArticleClient({ slug }) {
@@ -160,7 +94,7 @@ export default function BlogArticleClient({ slug }) {
             </Link>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '.8rem', marginBottom: '1.2rem', flexWrap: 'wrap' }}>
-              <span style={{ padding: '.25rem .85rem', borderRadius: 100, background: T.light ? 'rgba(95,145,55,.08)' : 'rgba(136,202,83,.08)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, display: 'flex', alignItems: 'center', gap: '.35rem' }}>
+              <span style={{ padding: '.25rem .85rem', borderRadius: 100, background: T.light ? 'rgba(95,145,55,.08)' : 'rgba(90, 135, 56,.08)', border: `1px solid ${T.border}`, fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, display: 'flex', alignItems: 'center', gap: '.35rem' }}>
                 <Tag size={10} />{post.category}
               </span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '.3rem', fontSize: '.72rem', color: T.textMuted }}>
@@ -177,24 +111,17 @@ export default function BlogArticleClient({ slug }) {
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '2rem' }}>
               <img
-                src={cld('/images/founder.webp')}
-                alt="M'Bollo Aka Elvis"
-                style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', border: `1px solid ${T.border}`, flexShrink: 0 }}
+                src="/images/dr_poutya.jpeg"
+                alt="Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU"
+                style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover', border: `1px solid ${T.border}`, flexShrink: 0 }}
               />
               <div>
                 <div style={{ fontSize: '.85rem', fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace" }}>
-                  M'Bollo Aka Elvis
+                  Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU
                 </div>
-                <a
-                  href="https://www.linkedin.com/in/m-bollo-aka"
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ fontSize: '.72rem', color: T.textMuted, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '.3rem', transition: 'color .2s' }}
-                  onMouseEnter={e => e.currentTarget.style.color = T.green}
-                  onMouseLeave={e => e.currentTarget.style.color = T.textMuted}
-                >
-                  Founder, AKATech · Suivre sur LinkedIn ↗
-                </a>
+                <div style={{ fontSize: '.72rem', color: T.textMuted }}>
+                  Médecin Vétérinaire & Directrice Générale, AVS Congo
+                </div>
               </div>
             </div>
 
@@ -231,7 +158,7 @@ export default function BlogArticleClient({ slug }) {
                 </p>
               )}
               {block.type === 'cta' && (
-                <div style={{ margin: '2.5rem 0', padding: '2rem', borderRadius: 16, background: T.light ? 'rgba(95,145,55,.05)' : 'rgba(136,202,83,.05)', border: `1px solid ${T.border}`, textAlign: 'center' }}>
+                <div style={{ margin: '2.5rem 0', padding: '2rem', borderRadius: 16, background: T.light ? 'rgba(95,145,55,.05)' : 'rgba(90, 135, 56,.05)', border: `1px solid ${T.border}`, textAlign: 'center' }}>
                   <p style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, color: T.textMain, marginBottom: '1.2rem', fontSize: '1.05rem' }}>{block.text}</p>
                   <Link href={block.href} className="btn-raised" style={{ display: 'inline-flex', padding: '.8rem 2rem' }}>
                     Nous contacter <ArrowRight size={14} />
@@ -280,7 +207,7 @@ export default function BlogArticleClient({ slug }) {
         </section>
       )}
 
-      <PageCTA message="Vous avez un projet web ? Discutons-en gratuitement." cta="Démarrer un projet" />
+      <PageCTA message="Besoin d'un diagnostic de votre cheptel ou d'un conseil vétérinaire ?" cta="Consulter nos experts" />
     </div>
   )
 }

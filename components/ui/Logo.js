@@ -20,7 +20,7 @@ export default function Logo({ size = 48, animate = true, onClick, showTag = tru
     style.id = 'logo-kf'
     style.textContent = `
       @keyframes akaParticle { 0%{opacity:0;transform:translate(0,0) scale(.4)} 20%{opacity:.8} 80%{opacity:.35} 100%{opacity:0;transform:translate(var(--ptx),var(--pty)) scale(0)} }
-      @keyframes akaGlowPulse { 0%,100%{filter:drop-shadow(0 0 10px rgba(136,202,83,.5)) brightness(1)} 50%{filter:drop-shadow(0 0 28px rgba(136,202,83,.95)) brightness(1.05)} }
+      @keyframes akaGlowPulse { 0%,100%{filter:drop-shadow(0 0 10px rgba(90, 135, 56,.5)) brightness(1)} 50%{filter:drop-shadow(0 0 28px rgba(90, 135, 56,.95)) brightness(1.05)} }
     `
     document.head.appendChild(style)
   }, [])
@@ -28,8 +28,8 @@ export default function Logo({ size = 48, animate = true, onClick, showTag = tru
   // logo.webp fait 938×990px (légèrement plus haut que large) — on respecte
   // ce ratio pour que le logo remplisse vraiment sa boîte (sinon : boîte
   // carrée + object-fit:contain => grand vide transparent, logo trop petit).
-  const LOGO_RATIO = 938 / 990
-  const displayHeight = Math.round(size * 2.5)
+  const LOGO_RATIO = 612 / 408
+  const displayHeight = Math.round(size * 2)
   const displayWidth = Math.round(displayHeight * LOGO_RATIO)
 
   return (
@@ -58,7 +58,7 @@ export default function Logo({ size = 48, animate = true, onClick, showTag = tru
       }}>
         <Image
           src="/images/logo.webp"
-          alt="AKATech Logo"
+          alt="Agro Véto Services Congo Logo"
           width={displayWidth}
           height={displayHeight}
           style={{

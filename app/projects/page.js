@@ -3,18 +3,18 @@ import { PROJECTS } from '@/lib/data'
 import { BreadcrumbJsonLd } from '../seo/StructuredData'
 
 export const metadata = {
-  title: "Réalisations — AKATech | Projets Web Côte d'Ivoire",
-  description: `+${PROJECTS.length} réalisations livrées : sites vitrines, e-commerce, marketplaces, portfolios et applications métier pour des entrepreneurs en Côte d'Ivoire.`,
+  title: "Réalisations & Cheptels — Agro Véto Services | Pointe-Noire, Congo",
+  description: `+${PROJECTS.length} projets et élevages accompagnés au Congo : poussins Cobb 500 & Lohmann, provenderie certifiée, audits HACCP et clinique vétérinaire.`,
   alternates: { canonical: '/projects' },
-  openGraph: { title: "Réalisations — AKATech", description: `${PROJECTS.length}+ projets web livrés en Côte d'Ivoire : sites, e-commerce, marketplaces, portfolios.`, locale: 'fr_CI', type: 'website', siteName: 'AKATech', url: 'https://akatech.vercel.app/projects' },
+  openGraph: { title: "Réalisations & Cheptels — Agro Véto Services", description: `${PROJECTS.length}+ projets agropastoraux et fermes accompagnées en République du Congo.`, locale: 'fr_CG', type: 'website', siteName: 'Agro Véto Services', url: 'https://agrovetoservices.cg/projects' },
 }
 
 export default function Page() {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: 'Accueil', url: 'https://akatech.vercel.app/' },
-        { name: 'Réalisations', url: 'https://akatech.vercel.app/projects' },
+        { name: 'Accueil', url: 'https://agrovetoservices.cg/' },
+        { name: 'Réalisations', url: 'https://agrovetoservices.cg/projects' },
       ]} />
       <ProjectsResponsive />
     </>

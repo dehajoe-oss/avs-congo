@@ -9,27 +9,20 @@ import { useTheme } from '@/lib/theme'
 const HOUR = new Date().getHours()
 
 const GREETINGS_DAY = [
-  "Yo ! 👋 Bienvenue chez AKATech. Aka est en train de coder quelque chose de fou en ce moment, mais je suis là pour toi. Tu cherches un site, une app, ou tu explores juste ?",
-  "Hey ! 👋 Tu es tombé au bon endroit. Ici on construit des sites et des apps qui convertissent — pas des templates tout pourris. Tu as un projet en tête ou tu fais juste un tour ?",
-  "Bienvenue ! 🚀 Aka a déjà livré 19+ projets pour des entrepreneurs et PME en Côte d'Ivoire. Si tu as une idée à concrétiser, je suis ton premier contact. Sinon, je peux te montrer ce qu'on fait.",
-  "Salut ! 👋 Je suis le bras droit numérique d'Aka chez AKATech. Il est occupé à développer un projet client, mais je peux déjà te renseigner sur les tarifs, les délais, ou capturer ton besoin. Qu'est-ce qui t'amène ?",
-  "Hello ! 👋 Tu sais ce qui est cool ici ? On ne te vend pas du rêve. On te dit combien ça coûte, combien de temps ça prend, et ce que tu reçois exactement. Tu veux un site vitrine, un e-commerce, ou autre chose ?",
+  "Bonjour ! 👋 Bienvenue chez Agro Véto Services Congo. Vous recherchez des poussins Cobb 500, des aliments équilibrés, une consultation vétérinaire ou un audit QHSE ?",
+  "Bienvenue ! 🐔🐾 Agro Véto Services vous accompagne de la santé animale à l'excellence QHSE. Comment pouvons-nous vous aider aujourd'hui ?",
+  "Bonjour ! 🌿 Je suis le conseiller agropastoral virtuel d'Agro Véto Services Congo. Besoin d'un devis d'aliments, de commander des poussins ou d'une intervention ?",
+  "Salut ! 👋 Besoin de conseils zootechniques, de réserver un lot de poussins d'un jour ou d'une formation à la ferme-école ? Je suis à votre écoute.",
 ]
 
 const GREETINGS_NIGHT = [
-  "Mec… il est 3h du mat' et tu cherches un site web ? 😅 Respect. Aka ronfle probablement à côté de son clavier, mais moi je suis branché 24/7. Tu veux qu'on discute de ton projet ou c'est juste une visite nocturne ?",
-  "Haha, t'es un vrai ! 👀 Il fait nuit noire, tout le monde dort, et toi tu traines sur AKATech. Tu cherches un site, une app, ou t'es juste en mode 'je vais tout réussir avant le lever du soleil' ? Je suis là de toute façon.",
-  "Wesh, insomniaque ! 🌙 Aka est en mode DND jusqu'à 8h, mais moi je ne dors jamais. Si tu as une idée de site ou d'app qui te trotte dans la tête à cette heure-ci, c'est sûrement une bonne idée. Raconte-moi tout.",
-  "3h du mat', le cerveau tourne à 200%, et tu atterris ici… je connais ça. 😏 Aka est en pleine sieste de codeur, mais moi je capte tout. Tu veux un site vitrine, un e-commerce, ou juste quelqu'un qui écoute ton idée de génie ?",
-  "Tu dors pas, toi ? 😂 Moi non plus, c'est mon job. Aka par contre, il a crashé depuis belle lurette. Si tu es là à cette heure pour un site ou une app, c'est que c'est sérieux. Je t'écoute, chef.",
+  "Bonsoir ! 🌙 Notre clinique vétérinaire de Pointe-Noire assure une permanence 24h/24 & 7j/7 pour les urgences médicales et chirurgicales. Que puis-je faire pour vous ?",
+  "Bonsoir ! 👀 Vous planifiez votre élevage ou vos besoins en provenderie ? Posez-moi vos questions, je vous réponds immédiatement.",
 ]
 
 const GREETINGS_LUNCH = [
-  "Il est midi, tu cherches une solution web au lieu de manger ? 😂 Respect, l'entrepreneur ne s'arrête jamais. Aka est probablement en train d'engloutir un attiéké, mais moi je suis là. Quel est ton besoin ?",
-  "Wesh, tu n'as pas faim ? 🍛 Tout le monde est à table et toi tu traines sur AKATech. Si tu es prêt à sacrifier ton déjeuner pour ton projet, c'est que ça vaut le coup. Raconte-moi ce que tu veux construire.",
-  "Midi pile ! ⏰ Aka est en mode pause-déj', mais moi je ne mange pas — je discute. Tu cherches un site vitrine, une app mobile, ou tu veux juste savoir combien ça coûte avant de reprendre ton plat ?",
-  "Haha, l'heure du déjeuner et toi tu es sur un site tech… 😅 Je connais ça, l'idée qui te trotte dans la tête et qui te coupe l'appétit. Aka est en train de manger, mais moi je suis tout ouïe. Qu'est-ce qui te ramène ici ?",
-  "Bon appétit… ou pas ? 🍽️ Parce que visiblement, ton projet te passionne plus que ton plat du jour. Aka est à table, mais moi je suis branché. Tu veux un site, une app, ou juste discuter de ton idée ?",
+  "Bonjour ! ☀️ Besoin d'informations rapides sur nos poussins Cobb 500, nos formules alimentaires ou nos audits QHSE ? Je vous réponds !",
+  "Bienvenue chez Agro Véto Services Congo ! 🌾 Une question sur la santé de votre cheptel ou sur nos produits ? Dites-moi tout.",
 ]
 
 const GREETING = (HOUR >= 23 || HOUR < 6)
@@ -41,8 +34,8 @@ const GREETING = (HOUR >= 23 || HOUR < 6)
 /* Regex pour détecter les liens dans les messages */
 const URL_REGEX = /(https?:\/\/[^\s]+)/g
 const WA_REGEX = /https:\/\/wa\.me\/\S+/g
-const PORTFOLIO_REGEX = /https:\/\/mbolloaka-dev\.vercel\.app\/?/g
-const SITE_REGEX = /https:\/\/akatech\.vercel\.app\/?/g
+const PORTFOLIO_REGEX = /https:\/\/agrovetoservices\.cg\/clinique\/?/g
+const SITE_REGEX = /https:\/\/agrovetoservices\.cg\/?/g
 const LINKEDIN_REGEX = /https:\/\/www\.linkedin\.com\/in\/[^\s]+/g
 const GITHUB_REGEX = /https:\/\/github\.com\/[^\s]+/g
 
@@ -80,9 +73,8 @@ function renderMessageContent(text) {
 
   // Autres liens génériques
   processed = processed.replace(URL_REGEX, (match) => {
-    if (match.includes('wa.me') || match.includes('mbolloaka-dev') || 
-        match.includes('akatech.vercel') || match.includes('linkedin.com') ||
-        match.includes('github.com')) {
+    if (match.includes('wa.me') || match.includes('agrovetoservices') || 
+        match.includes('linkedin.com') || match.includes('github.com')) {
       return match // Déjà traité
     }
     return `\n[BUTTON_LINK:${match}]\n`
@@ -174,17 +166,17 @@ function PortfolioButton({ url }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: 'linear-gradient(135deg, #c6ff3d, #88ca53)',
+        background: 'linear-gradient(135deg, #6e9f45, #5a8738)',
         color: '#fff', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
-        boxShadow: '0 2px 8px rgba(136,202,83,.3)',
+        boxShadow: '0 2px 8px rgba(90, 135, 56,.3)',
         transition: 'transform .15s, box-shadow .15s',
       }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(136,202,83,.4)' }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(136,202,83,.3)' }}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(90, 135, 56,.4)' }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(90, 135, 56,.3)' }}
     >
       <Globe size={15} />
-      Voir le portfolio d'Aka
+      Prendre RDV en Clinique
       <ExternalLink size={12} style={{ opacity: .7 }} />
     </a>
   )
@@ -210,7 +202,7 @@ function SiteButton({ url }) {
       onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(102,126,234,.3)' }}
     >
       <Globe size={15} />
-      Visiter le site AKATech
+      Visiter Agro Véto Services
       <ExternalLink size={12} style={{ opacity: .7 }} />
     </a>
   )
@@ -278,13 +270,13 @@ function LinkButton({ url, label }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: 'rgba(136,202,83,.15)', border: '1px solid rgba(136,202,83,.3)',
-        color: '#88ca53', fontSize: '.8rem', fontWeight: 600,
+        background: 'rgba(90, 135, 56,.15)', border: '1px solid rgba(90, 135, 56,.3)',
+        color: '#5a8738', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
         transition: 'transform .15s, background .15s',
       }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.background = 'rgba(136,202,83,.25)' }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = 'rgba(136,202,83,.15)' }}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.background = 'rgba(90, 135, 56,.25)' }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = 'rgba(90, 135, 56,.15)' }}
     >
       <ExternalLink size={15} />
       {label}
@@ -499,7 +491,7 @@ export default function AIAssistant() {
       <div
         ref={panelRef}
         role="dialog"
-        aria-label="Assistant AKATech"
+        aria-label="Assistant Agro Véto Services"
         aria-hidden={!open}
         style={{
           position: 'absolute', bottom: 0, left: 0, zIndex: 1, overflow: 'hidden',
@@ -514,7 +506,7 @@ export default function AIAssistant() {
           <div style={{
             padding: '1rem 4.2rem 1rem 1.2rem', display: 'flex', alignItems: 'center', gap: '.7rem',
             borderBottom: `2px solid ${T.green}`,
-            background: T.light ? 'rgba(136,202,83,.07)' : 'rgba(136,202,83,.06)',
+            background: T.light ? 'rgba(90, 135, 56,.07)' : 'rgba(90, 135, 56,.06)',
             flexShrink: 0,
           }}>
             <div style={{
@@ -528,7 +520,7 @@ export default function AIAssistant() {
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: '1.1rem', fontWeight: 900, fontStyle: 'italic', textTransform: 'uppercase', color: T.textMain, letterSpacing: '.02em' }}>
-                ASSISTANT AKATECH
+                ASSISTANT AGRO VÉTO
               </div>
               <div style={{ fontSize: '.7rem', color: T.green, fontFamily: "'JetBrains Mono',monospace", fontWeight: 600 }}>
                 ⚡ Répond en direct
@@ -594,7 +586,7 @@ export default function AIAssistant() {
               aria-label="Envoyer"
               style={{
                 width: 44, height: 44, minWidth: 44, borderRadius: 6, flexShrink: 0,
-                background: streaming || !input.trim() ? (T.light ? 'rgba(136,202,83,.2)' : '#1a3320') : T.green,
+                background: streaming || !input.trim() ? (T.light ? 'rgba(90, 135, 56,.2)' : '#1a3320') : T.green,
                 border: '2px solid #050505',
                 boxShadow: '3px 3px 0px #050505',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -613,11 +605,11 @@ export default function AIAssistant() {
         ref={btnRef}
         type="button"
         onClick={toggleOpen}
-        aria-label={open ? "Fermer l'assistant AKATech" : "Ouvrir l'assistant AKATech"}
+        aria-label={open ? "Fermer l'assistant" : "Ouvrir l'assistant Agro Véto Services"}
         style={{
           position: 'absolute', bottom: 0, left: 0, zIndex: 2,
           width: AI_BTN_SIZE, height: AI_BTN_SIZE, minWidth: 44, minHeight: 44, borderRadius: 12,
-          background: `linear-gradient(135deg, #c6ff3d, ${T.green})`,
+          background: `linear-gradient(135deg, #6e9f45, ${T.green})`,
           border: '3px solid #050505',
           boxShadow: '4px 4px 0px #050505',
           display: 'flex', alignItems: 'center', justifyContent: 'center',

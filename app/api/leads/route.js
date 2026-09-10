@@ -49,8 +49,8 @@ export async function GET(request) {
       pagination: { page, limit, total, pages: Math.ceil(total / limit) },
     })
   } catch (error) {
-    console.error('[API Leads] Erreur:', error)
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
+    console.warn('[API Leads] DB non accessible ou erreur:', error?.message)
+    return NextResponse.json({ leads: [], pagination: { page: 1, limit: 20, total: 0, pages: 0 }, dbConnected: false })
   }
 }
 

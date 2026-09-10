@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useCallback, useLayoutEffect, useRef, useState, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { Moon, Sun } from 'lucide-react'
@@ -13,7 +13,7 @@ import './StaggeredMenu.css'
    Port fidèle du composant du portfolio personnel :
    panel plein écran depuis la droite, balayage de
    couleur à l'ouverture, ghost-cycle text au survol,
-   items numérotés. Accent #88ca53 (vs #FF5500 origine).
+   items numérotés. Accent #5a8738 (vs #FF5500 origine).
    items = NAV_LINKS { label, href } — navigation par
    route Next.js (site multi-pages, pas d'ancres).
    ═══════════════════════════════════════════════ */
@@ -259,7 +259,7 @@ export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  const SWIPE_COLORS = ['#88ca53', null]
+  const SWIPE_COLORS = ['#5a8738', null]
 
   return (
     <>
@@ -302,7 +302,7 @@ export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
         </div>
       </header>
 
-    <div className={'sm-root' + (open ? ' sm-root--open' : '')} style={{ '--sm-accent': '#88ca53' }}>
+    <div className={'sm-root' + (open ? ' sm-root--open' : '')} style={{ '--sm-accent': '#5a8738' }}>
       <div ref={preLayersRef} className="sm-prelayers" aria-hidden="true">
         {SWIPE_COLORS.map((c, i) => (
           <div
@@ -343,17 +343,17 @@ export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
 
           <div className="sm-panel-footer">
             <a
-              href="https://wa.me/2250142507750"
+              href="https://wa.me/242060000000"
               target="_blank"
               rel="noreferrer"
               className="btn-raised"
               style={{ width: '100%', justifyContent: 'center' }}
               onClick={closeMenu}
             >
-              <HoverSlideText text="Démarrer un projet" />
+              <HoverSlideText text="Contacter nos experts" />
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="19" x2="19" y2="5" /><polyline points="9 5 19 5 19 15" /></svg>
             </a>
-            <p className="sm-panel-footer-sub">Devis gratuit · Réponse en moins de 24h</p>
+            <p className="sm-panel-footer-sub">Urgences 24/7 · Siège Socoprise Pointe-Noire</p>
           </div>
         </div>
       </aside>

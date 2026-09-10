@@ -23,7 +23,7 @@ import InvoicePreview from './InvoicePreview'
 import { computeInvoiceTotals, formatMoney, emptyInvoiceForm } from '@/lib/invoice-calc'
 
 const STATUS_LABELS = { ENVOYEE: 'Envoyée', PAYEE: 'Payée', ANNULEE: 'Annulée' }
-const STATUS_COLORS = { ENVOYEE: '#5b8def', PAYEE: '#88ca53', ANNULEE: '#e05e5e' }
+const STATUS_COLORS = { ENVOYEE: '#5b8def', PAYEE: '#5a8738', ANNULEE: '#e05e5e' }
 
 function StatusPill({ status }) {
   const color = STATUS_COLORS[status] || '#9aa0a6'
@@ -249,7 +249,7 @@ export default function InvoicesTab({ T, CARD }) {
       const { default: html2canvas } = await import('html2canvas')
       const canvas = await html2canvas(invoiceRef.current, { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false })
       const link = document.createElement('a')
-      link.download = `Facture_${form.number || 'AKATECH'}.png`
+      link.download = `Facture_${form.number || 'AVS'}.png`
       link.href = canvas.toDataURL('image/png')
       link.click()
     } catch (err) {
@@ -281,7 +281,7 @@ export default function InvoicesTab({ T, CARD }) {
         pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
         heightLeft -= pageHeight
       }
-      pdf.save(`Facture_${form.number || 'AKATECH'}.pdf`)
+      pdf.save(`Facture_${form.number || 'AVS'}.pdf`)
     } catch (err) {
       alert('Erreur lors de la génération du PDF : ' + err.message)
     } finally {
@@ -351,7 +351,7 @@ export default function InvoicesTab({ T, CARD }) {
                 </div>
               </div>
             ))}
-            <button onClick={addLine} style={{ padding: 10, background: 'rgba(136,202,83,.08)', color: T.green, border: `1px dashed ${T.green}`, borderRadius: 8, fontSize: '.78rem', fontWeight: 700, cursor: 'pointer' }}>
+            <button onClick={addLine} style={{ padding: 10, background: 'rgba(90, 135, 56,.08)', color: T.green, border: `1px dashed ${T.green}`, borderRadius: 8, fontSize: '.78rem', fontWeight: 700, cursor: 'pointer' }}>
               + Ajouter une ligne
             </button>
 

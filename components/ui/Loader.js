@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -213,7 +213,7 @@ export default function Loader() {
             {/* Grid bg */}
             <div style={{
               position: 'absolute', inset: 0,
-              backgroundImage: 'linear-gradient(rgba(136,202,83,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(136,202,83,.04) 1px,transparent 1px)',
+              backgroundImage: 'linear-gradient(rgba(90, 135, 56,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(90, 135, 56,.04) 1px,transparent 1px)',
               backgroundSize: '48px 48px',
             }} />
 
@@ -223,7 +223,7 @@ export default function Loader() {
               transform: 'translate(-50%,-60%)',
               width: 'min(500px, 80vw)', height: 'min(500px, 80vw)',
               borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(136,202,83,.12) 0%, transparent 65%)',
+              background: 'radial-gradient(circle, rgba(90, 135, 56,.12) 0%, transparent 65%)',
               animation: 'glow-pulse 2s ease-in-out infinite',
               pointerEvents: 'none',
             }} />
@@ -231,7 +231,7 @@ export default function Loader() {
             {/* Bottom scan line */}
             <div style={{
               position: 'absolute', left: 0, right: 0, height: 1,
-              background: 'linear-gradient(90deg,transparent,rgba(136,202,83,.4),transparent)',
+              background: 'linear-gradient(90deg,transparent,rgba(90, 135, 56,.4),transparent)',
               animation: 'scan-line 2s ease-in-out infinite',
               pointerEvents: 'none',
             }} />
@@ -249,14 +249,14 @@ export default function Loader() {
               <div style={{ position: 'relative', width: 220, height: 220, margin: '0 auto 1rem' }}>
                 <motion.img
                   src="/images/logo.webp"
-                  alt="AKATech"
+                  alt="Agro Véto Services"
                   initial={{ opacity: 0, scale: 0.7 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: .6, delay: .1, ease: [.22,1,.36,1] }}
                   style={{
                     width: '100%', height: '100%',
                     objectFit: 'contain',
-                    filter: 'drop-shadow(0 0 24px rgba(136,202,83,.6))',
+                    filter: 'drop-shadow(0 0 24px rgba(90, 135, 56,.6))',
                     animation: 'akaGlowPulseImg 2s ease-in-out infinite',
                   }}
                 />
@@ -264,12 +264,12 @@ export default function Loader() {
                 {/* Ping ring on complete */}
                 {(phase === 1 || homePhase === 'done') && (
                   <motion.div
-                    initial={{ scale: 1, opacity: .6 }}
-                    animate={{ scale: 2.2, opacity: 0 }}
-                    transition={{ duration: .5 }}
+                    initial={{ scale: 1, opacity: .8 }}
+                    animate={{ scale: 1.35, opacity: 0 }}
+                    transition={{ duration: .6, ease: 'easeOut' }}
                     style={{
                       position: 'absolute', inset: 0, borderRadius: '50%',
-                      border: '2px solid rgba(136,202,83,.6)',
+                      border: '2px solid rgba(90, 135, 56,.6)',
                     }}
                   />
                 )}
@@ -278,9 +278,9 @@ export default function Loader() {
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ delay: .5 }}
-                style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.85rem', color: 'rgba(136,202,83,.7)', letterSpacing: '.15em', textTransform: 'uppercase', marginTop: 4 }}
+                style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.85rem', color: 'rgba(90, 135, 56,.7)', letterSpacing: '.15em', textTransform: 'uppercase', marginTop: 4 }}
               >
-                AKATech Studio. 
+                Agro Véto Services
               </motion.div>
             </motion.div>
 
@@ -292,8 +292,8 @@ export default function Loader() {
             >
               <span style={{
                 fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic',
-                fontSize: '2.6rem', lineHeight: 1, color: '#88ca53',
-                letterSpacing: '.02em', textShadow: '0 0 24px rgba(136,202,83,.5)',
+                fontSize: '2.6rem', lineHeight: 1, color: '#5a8738',
+                letterSpacing: '.02em', textShadow: '0 0 24px rgba(90, 135, 56,.5)',
               }}>
                 {progress}<span style={{ fontSize: '1.2rem', opacity: .6, marginLeft: 2 }}>%</span>
               </span>
@@ -327,8 +327,8 @@ export default function Loader() {
                 transform: 'translate(-50%, -50%) scale(0)',
                 borderRadius: '67% 33% 47% 53% / 37% 20% 80% 63%',
                 background: 'transparent',
-                border: '2px solid rgba(136,202,83,.55)',
-                boxShadow: '0 0 60px 10px rgba(136,202,83,.45), inset 0 0 40px rgba(136,202,83,.25)',
+                border: '2px solid rgba(90, 135, 56,.55)',
+                boxShadow: '0 0 60px 10px rgba(90, 135, 56,.45), inset 0 0 40px rgba(90, 135, 56,.25)',
                 zIndex: 2,
                 pointerEvents: 'none',
                 willChange: 'width, height, border-radius, opacity, transform',
@@ -339,8 +339,8 @@ export default function Loader() {
           {/* CSS animations */}
           <style>{`
             @keyframes akaGlowPulseImg {
-              0%,100% { filter: drop-shadow(0 0 12px rgba(136,202,83,.4)); }
-              50%      { filter: drop-shadow(0 0 28px rgba(136,202,83,.85)); }
+              0%,100% { filter: drop-shadow(0 0 12px rgba(90, 135, 56,.4)); }
+              50%      { filter: drop-shadow(0 0 28px rgba(90, 135, 56,.85)); }
             }
             @keyframes glow-pulse {
               0%,100% { opacity: .6; }

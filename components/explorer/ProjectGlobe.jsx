@@ -132,11 +132,11 @@ export default function ProjectGlobe() {
 
       <div className="pg-chrome-top">
         <span className="pg-eyebrow">Mode Explorer</span>
-        <h1 className="pg-title">L'univers <em>AKATech</em></h1>
+        <h1 className="pg-title">L'univers <em>Agro Véto Services</em></h1>
       </div>
 
       <div className="pg-count">
-        <strong>{PROJECTS.length}</strong>projets
+        <strong>{PROJECTS.length}</strong>réalisations
       </div>
 
       <div

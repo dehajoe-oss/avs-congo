@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
      labels   – tableau de { text, x, y } pour les labels flottants
      orbColor – couleur principale (défaut vert AKATech)
    ───────────────────────────────────────────────────────────── */
-export default function OrbHeroBg({ labels, orbColor = '#88ca53' }) {
+export default function OrbHeroBg({ labels, orbColor = '#5a8738' }) {
   // Dérive une version plus sombre/saturée pour les glows
   const orbDim = orbColor + '55'
   const orbFaint = orbColor + '18'

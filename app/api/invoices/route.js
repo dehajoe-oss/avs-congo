@@ -26,8 +26,8 @@ export async function GET(request) {
     const result = await listInvoices({ page, limit, search, status })
     return NextResponse.json(result)
   } catch (error) {
-    console.error('[API Invoices] Erreur:', error)
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
+    console.warn('[API Invoices] DB non accessible ou erreur:', error?.message)
+    return NextResponse.json({ invoices: [], pagination: { page: 1, limit: 15, total: 0, pages: 0 }, dbConnected: false })
   }
 }
 

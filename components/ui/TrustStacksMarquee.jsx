@@ -18,35 +18,35 @@ import { Truck, Palette, Search, Smartphone, Headset, ShieldCheck } from 'lucide
 import './TrustStacksMarquee.css'
 
 const STACK = [
-  { name: 'React',           icon: '/icons/react.svg' },
-  { name: 'Next.js',         icon: '/icons/nextjs.svg' },
-  { name: 'Django',          icon: '/icons/django.svg' },
-  { name: 'Python',          icon: '/icons/python.svg' },
-  { name: 'PostgreSQL',      icon: '/icons/postgresql.svg' },
-  { name: 'Tailwind CSS',    icon: '/icons/tailwindcss.svg' },
-  { name: 'Framer Motion',   icon: '/icons/framermotion.svg' },
-  { name: 'GSAP',            icon: '/icons/gsap.svg' },
-  { name: 'Node.js',         icon: '/icons/nodejs.svg' },
-  { name: 'Prisma',          icon: '/icons/prisma.svg' },
-  { name: 'Three.js / WebGL',icon: '/icons/webgl.svg' },
-  { name: 'Vercel',          icon: '/icons/vercel.svg' },
+  { name: 'Cobb 500 (Chair)',         icon: '/images/logo.webp' },
+  { name: 'Lohmann Brown (Ponte)',    icon: '/images/logo.webp' },
+  { name: 'Méthode HACCP',            icon: '/images/logo.webp' },
+  { name: 'Norme ISO 22000',          icon: '/images/logo.webp' },
+  { name: 'Norme ISO 9001',           icon: '/images/logo.webp' },
+  { name: 'Norme ISO 14001',          icon: '/images/logo.webp' },
+  { name: 'Contrôle Bromatologique',  icon: '/images/logo.webp' },
+  { name: 'Provenderie Haute Énergie',icon: '/images/logo.webp' },
+  { name: 'Prophylaxie Vétérinaire',  icon: '/images/logo.webp' },
+  { name: 'Ferme-École Immersive',    icon: '/images/logo.webp' },
+  { name: 'Biosécurité & Virucides',  icon: '/images/logo.webp' },
+  { name: 'Statuts OHADA Congo',      icon: '/images/logo.webp' },
 ]
 
 const BADGES = [
-  { label: 'Livraison 5-7 jours',  Icon: Truck },
-  { label: 'Design sur mesure',    Icon: Palette },
-  { label: 'SEO intégré',          Icon: Search },
-  { label: 'Mobile Money',         Icon: Smartphone },
-  { label: 'Support 48h',          Icon: Headset },
-  { label: 'Hébergement offert',   Icon: ShieldCheck },
+  { label: 'Urgences Vétérinaires 24/7',  Icon: Truck },
+  { label: 'Poussins Cobb 500 Vaccinés',    Icon: Palette },
+  { label: 'Aliments Contrôlés en Labo',          Icon: Search },
+  { label: 'MTN & Airtel Money',         Icon: Smartphone },
+  { label: 'Normes HACCP & ISO 22000',          Icon: Headset },
+  { label: 'Ferme-École Pratique',   Icon: ShieldCheck },
 ]
 
 const METRICS = [
-  { value: '95+',  label: 'Score Lighthouse' },
-  { value: '<2s',  label: 'Chargement moyen' },
-  { value: '100%', label: 'Responsive' },
-  { value: 'SEO',  label: 'Optimisé dès le code' },
-  { value: 'SSL',  label: 'Gratuit inclus' },
+  { value: '6',  label: "Pôles d'expertise" },
+  { value: '+500',  label: 'Éleveurs & PME' },
+  { value: '99%', label: 'Conformité Sanitaire' },
+  { value: '24/7',  label: 'Permanence Clinique' },
+  { value: 'SARLU',  label: 'OHADA Congo' },
 ]
 
 function StackBand() {
@@ -121,10 +121,10 @@ function MetricsBand() {
 
 export default function TrustStacksMarquee() {
   return (
-    <section className="ts-section" aria-label="Stack technique et avantages AKATech">
+    <section className="ts-section" aria-label="Expertise et engagements Agro Véto Services">
       <div className="ts-glow" />
 
-      <span className="ts-eyebrow">Notre stack · Nos avantages · Nos performances</span>
+      <span className="ts-eyebrow">Notre expertise · Nos engagements · Nos standards de qualité</span>
 
       <StackBand />
       <BadgesBand />

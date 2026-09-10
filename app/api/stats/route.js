@@ -64,7 +64,24 @@ export async function GET() {
       aiUsage,
     })
   } catch (error) {
-    console.error('[API Stats] Erreur:', error)
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
+    console.warn('[API Stats] DB non accessible ou erreur:', error?.message)
+    return NextResponse.json({
+      conversations: { total: 0, active: 0, converted: 0, today: 0, thisWeek: 0, thisMonth: 0, avgMessages: 0 },
+      leads: { total: 0, qualified: 0, contacted: 0, converted: 0, avgScore: 0 },
+      conversion: { rate: 0 },
+      byProjectType: [],
+      activity: [],
+      visitors: {
+        totalVisitors: 0, newVisitors: 0, totalSessions: 0, totalPageViews: 0,
+        bounceRate: 0, avgSessionDurationSeconds: 0,
+        devices: [], sources: [], topPages: [], activeHours: [],
+        consent: { accepted: 0, rejected: 0, pending: 0 },
+      },
+      aiUsage: {
+        gemini: { count: 0, approxLimit: 250 },
+        groq: { count: 0, approxLimit: 14400 },
+      },
+      dbConnected: false,
+    })
   }
 }

@@ -50,15 +50,15 @@ export default function ProjectGlobeModal({ project, onClose }) {
             </div>
             <div className="pgm-meta-item">
               <span>Marché</span>
-              <span>Côte d'Ivoire</span>
+              <span>République du Congo</span>
             </div>
             <div className="pgm-meta-item">
               <span>Statut</span>
               <span>
                 <em style={{
                   width: 6, height: 6, borderRadius: '50%', fontStyle: 'normal',
-                  background: status.offline ? 'rgba(255,255,255,.35)' : '#88ca53',
-                  boxShadow: status.offline ? 'none' : '0 0 6px 1px rgba(136,202,83,.7)',
+                  background: status.offline ? 'rgba(255,255,255,.35)' : '#5a8738',
+                  boxShadow: status.offline ? 'none' : '0 0 6px 1px rgba(90, 135, 56,.7)',
                   display: 'inline-block',
                 }} />
                 {status.label}

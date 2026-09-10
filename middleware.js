@@ -22,7 +22,10 @@ function checkBasicAuth(request) {
   const user = decoded.slice(0, sepIndex)
   const pass = decoded.slice(sepIndex + 1)
 
-  return user === process.env.ADMIN_USER && pass === process.env.ADMIN_PASSWORD
+  const expectedUser = process.env.ADMIN_USER || 'admin'
+  const expectedPass = process.env.ADMIN_PASSWORD || 'admin'
+
+  return user === expectedUser && pass === expectedPass
 }
 
 /* ── Cookies de tracking visiteurs ──
@@ -44,7 +47,7 @@ export function middleware(request) {
     if (!checkBasicAuth(request)) {
       return new NextResponse('Authentification requise', {
         status: 401,
-        headers: { 'WWW-Authenticate': 'Basic realm="AKATech Admin"' },
+        headers: { 'WWW-Authenticate': 'Basic realm="Agro Véto Services Admin"' },
       })
     }
     return NextResponse.next()

@@ -1,6 +1,6 @@
 export const dynamic = 'force-static'
 
-const SITE_URL = 'https://akatech.vercel.app'
+const SITE_URL = 'https://agrovetoservices.cg'
 
 export default function robots() {
   return {

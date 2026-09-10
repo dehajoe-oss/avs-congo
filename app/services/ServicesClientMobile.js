@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
@@ -40,7 +40,7 @@ function HeroServices() {
             <GreenUnderline><span className="text-gradient">PRESTATIONS</span></GreenUnderline>
           </h1>
           <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,.55)', lineHeight: 1.75, maxWidth: 620, margin: '0 auto 2.5rem' }}>
-            De la consultation au déploiement, chaque service est conçu pour répondre aux réalités du marché ivoirien — rapide, efficace, rentable.
+            De la consultation vétérinaire à l'audit d'usine, chaque pôle est conçu pour répondre aux réalités agropastorales et sanitaires du Congo.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
             <a href="https://wa.me/2250142507750" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '1rem' }}>
@@ -80,7 +80,7 @@ function ServicesList() {
             const Ic = ICON_MAP[s.icon] || Globe
             return (
               <button key={s.title} onClick={() => setActive(i)}
-                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? 'linear-gradient(145deg,#8dd456,#5f9137)' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
+                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
                 <Ic size={14} />{s.title}
               </button>
             )
@@ -104,13 +104,13 @@ function ServicesList() {
             {/* Image */}
             <div className="svc-detail-img" style={{ borderRadius: 20, overflow: 'hidden', border: `1px solid ${T.border}`, boxShadow: '8px 8px 40px rgba(0,0,0,.3)', aspectRatio: '1 / 1', width: '100%', maxWidth: 380, margin: '0 auto' }}>
               <LazyImg src={svc.img} alt={svc.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                placeholder={<div style={{ height: '100%', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(136,202,83,.3)' }} /></div>} />
+                placeholder={<div style={{ height: '100%', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(90, 135, 56,.3)' }} /></div>} />
             </div>
 
             {/* Content */}
             <div className="svc-detail-body">
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' }}>
-                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(136,202,83,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(90, 135, 56,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Icon size={24} style={{ color: T.green }} />
                 </div>
                 <div>
@@ -129,15 +129,15 @@ function ServicesList() {
                 ))}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(95,145,55,.05)' : 'rgba(136,202,83,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(95,145,55,.05)' : 'rgba(90, 135, 56,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
                 <div>
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem', fontWeight: 800, color: T.green }}>{svc.price}</div>
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', color: T.textMuted, display: 'flex', alignItems: 'center', gap: 4 }}>
                     <Timer size={10} style={{ color: T.green }} />Délai : {svc.del}
                   </div>
                 </div>
-                <a href={`https://wa.me/2250142507750?text=Bonjour AKATech, je suis intéressé par ${svc.title}`} target="_blank" rel="noreferrer" className="btn-raised">
-                  <HoverSlideText text="Demander un devis" /> <ArrowRight size={14} />
+                <a href={`https://wa.me/242060000000?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite des informations sur : ${svc.title}`)}`} target="_blank" rel="noreferrer" className="btn-raised">
+                  <HoverSlideText text="Commander / Devis" /> <ArrowRight size={14} />
                 </a>
               </div>
             </div>

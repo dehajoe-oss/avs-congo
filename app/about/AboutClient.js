@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
@@ -72,7 +72,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
         <span key={i} ref={el => { wordsRef.current[i] = el }}
           style={{ display: 'inline-block', marginRight: '0.28em', opacity: 0.08,
             filter: 'blur(9px)', willChange: 'opacity, filter',
-            color: green.has(word) ? '#88ca53' : 'inherit' }}>
+            color: green.has(word) ? '#5a8738' : 'inherit' }}>
           {word}
         </span>
       ))}
@@ -96,7 +96,7 @@ function TiltCard({ children, style = {}, intensity = 12, perspective = 900 }) {
     rafRef.current = requestAnimationFrame(() => {
       el.style.transform = `perspective(${perspective}px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.03,1.03,1.03)`
       el.style.transition = 'transform .07s linear'
-      if (glowRef.current) { glowRef.current.style.background = `radial-gradient(240px circle at ${px}% ${py}%,rgba(136,202,83,.12),transparent 65%)`; glowRef.current.style.opacity = '1' }
+      if (glowRef.current) { glowRef.current.style.background = `radial-gradient(240px circle at ${px}% ${py}%,rgba(90, 135, 56,.12),transparent 65%)`; glowRef.current.style.opacity = '1' }
     })
   }
   const reset = () => {
@@ -121,20 +121,20 @@ import AuroraHero from '@/components/ui/AuroraHero'
 import { STATS, PROJECTS } from '@/lib/data'
 import { cld } from '@/lib/cloudinary'
 
-const SKILLS = ['React','Next.js','Django','Python','Node.js','PostgreSQL','MySQL','Tailwind CSS','Framer Motion','Vercel','AWS','Docker','REST API','GraphQL','Mobile Money API']
+const SKILLS = ['Médecine Vétérinaire','Management QHSE','Norme ISO 22000','Méthode HACCP','Provenderie Industrielle','Analyses Bromatologiques','Élevage Avicole','Biosécurité','Ferme-École']
 
 const VALUES = [
-  { icon: Target, title: 'Résultats concrets', desc: "Chaque solution est conçue pour générer des résultats mesurables : plus de clients, plus de revenus, moins de tâches manuelles." },
-  { icon: Heart, title: 'Adapté au marché africain', desc: "Je comprends les réalités locales — Mobile Money, coupures internet, faible débit. Vos solutions fonctionnent dans votre contexte." },
-  { icon: Zap, title: 'Livraison rapide', desc: "Pas d'attente de 3 mois. Les projets sont livrés en 5 à 21 jours selon la complexité, avec des jalons clairs à chaque étape." },
-  { icon: Star, title: 'Qualité premium', desc: "Code propre, design sur-mesure, animations soignées. Chaque détail compte pour que votre solution se démarque." },
+  { icon: Target, title: 'Excellence Scientifique', desc: "Une démarche médicale et technique encadrée par des données vérifiées et les standards internationaux (ISO, HACCP)." },
+  { icon: Heart, title: 'Bien-être Animal & Éthique', desc: "Une pratique vétérinaire et un élevage respectueux de la vie animale, de la bientraitance et des écosystèmes." },
+  { icon: Zap, title: 'Proximité & Terrain', desc: "Un accompagnement sur mesure, au plus près des besoins des éleveurs et des PME à Pointe-Noire et au Congo." },
+  { icon: Star, title: 'Innovation & Durabilité', desc: "Des intrants certifiés, une provenderie rigoureuse et des solutions écologiques pour l'autonomie alimentaire." },
 ]
 
 const TIMELINE = [
-  { year: '2022', title: 'Les débuts', desc: "Premier projet freelance livré : un site vitrine pour un commerçant abidjanais. Le début d'une aventure." },
-  { year: '2023', title: 'Premières applications métier', desc: "Développement de LivreurTrack Pro et MonCashJour, des outils de gestion pensés pour les commerçants et livreurs locaux." },
-  { year: '2024', title: 'AKATech Agence', desc: "Transformation en agence officielle. Lancement de services structurés et premiers clients récurrents." },
-  { year: '2025', title: "Aujourd'hui", desc: `+${PROJECTS.length} projets livrés, 100% de clients satisfaits. Le Studio. continue de grandir et d'innover.` },
+  { year: '2021', title: 'Création & Statuts SARLU', desc: "Immatriculation officielle selon l'Acte uniforme OHADA sous l'impulsion du Dr POUTYA SAIZONOU à Pointe-Noire." },
+  { year: '2023', title: 'Provenderie & Laboratoire', desc: "Mise en service de notre unité de provenderie industrielle et du laboratoire de contrôle bromatologique des aliments." },
+  { year: '2024', title: 'Lancement du « QHSE Partagé »', desc: "Déploiement d'une formule novatrice d'externalisation QHSE pour accompagner les PME congolaises vers les normes ISO et HACCP." },
+  { year: '2026', title: 'Ferme-École & Urgences 24/7', desc: "Ouverture des sessions de formations pratiques immersives et consolidation du service d'urgences vétérinaires 24h/24." },
 ]
 
 
@@ -180,22 +180,22 @@ function HeroAbout() {
       {/* Titre géant bas-gauche + bloc texte centré verticalement à droite — gabarit hero "page title" (réf. Helious) */}
       <div ref={layerMidRef} className="hr-row" style={{ willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out' }}>
         <motion.h1 className="hr-title" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, ease: 'easeOut' }}>
-          <GhostTitle text="AKATECH" />
-          AKATECH
+          <GhostTitle text="A.V.S." />
+          A.V.S.
           
         </motion.h1>
 
         <div className="hr-side">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .2 }}>
-            <p className="hr-kicker">Votre croissance digitale</p>
-            <p className="hr-desc"> c'est notre mission.</p>
+            <p className="hr-kicker">De la santé animale</p>
+            <p className="hr-desc"> à l'excellence QHSE.</p>
           </motion.div>
         </div>
       </div>
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#88ca53', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#5a8738', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -210,7 +210,7 @@ function HeroAbout() {
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #88ca53;
+          margin-left: .15em; font-size: .3em; color: #5a8738;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
@@ -218,7 +218,7 @@ function HeroAbout() {
         }
         .hr-kicker {
           font-family: 'JetBrains Mono', monospace; font-size: .62rem; font-weight: 700;
-          color: #88ca53; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          color: #5a8738; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -229,12 +229,12 @@ function HeroAbout() {
 
 // ── ABOUT STATS SLIDE AUTO (miroir exact de App.jsx) ─────────
 const ABOUT_STATS = [
-  { target: PROJECTS.length,  suffix: '',  label: 'Projets',   sub: 'Livrés sur mesure, du concept au déploiement' },
-  { target: 10,  suffix: '+', label: 'Clients',    sub: 'Particuliers, startups et PME accompagnés' },
-  { target: 100, suffix: '%', label: 'Satisfaits', sub: 'Clients livrés dans les délais convenus' },
-  { target: 12,  suffix: '',  label: 'En prod.',   sub: 'Applications actuellement en ligne' },
-  { target: 3,   suffix: '+', label: 'Années',     sub: "D'expérience en développement web" },
-  { target: 15,  suffix: '',  label: 'Outils',     sub: 'Technologies maîtrisées au quotidien' },
+  { target: 6,    suffix: '',  label: 'Pôles',      sub: "D'expertise agropastorale et vétérinaire intégrée" },
+  { target: 500,  suffix: '+', label: 'Éleveurs',   sub: 'Producteurs et PME accompagnés au Congo' },
+  { target: 99,   suffix: '%', label: 'Conformité', sub: 'Respect strict des normes HACCP & ISO' },
+  { target: 24,   suffix: '/7',label: 'Urgences',   sub: 'Permanence clinique et assistance cheptel' },
+  { target: 10,   suffix: '+', label: 'Années',     sub: "D'expertise vétérinaire et de direction QHSE" },
+  { target: 98,   suffix: '%', label: 'Viabilité',  sub: 'Taux de survie garanti sur nos poussins Cobb 500' },
 ]
 const SLIDE_MS = 4000
 
@@ -270,7 +270,7 @@ function AboutStatsSlide() {
       position: 'sticky', top: '14vh',
       display: 'flex', flexDirection: 'column', gap: '1.4rem',
       paddingTop: '.4rem',
-      borderTop: '1px solid rgba(136,202,83,.18)',
+      borderTop: '1px solid rgba(90, 135, 56,.18)',
     }}>
       {/* compteur */}
       <div>
@@ -287,10 +287,10 @@ function AboutStatsSlide() {
         <p style={{ fontSize: '.74rem', lineHeight: 1.5, color: T.textMuted, opacity: .75, margin: 0, maxWidth: 190 }}>{cur.sub}</p>
       </div>
       {/* barre de progression */}
-      <div style={{ width: '100%', height: 2, borderRadius: 2, background: 'rgba(136,202,83,.16)', overflow: 'hidden', marginTop: '.4rem' }}>
+      <div style={{ width: '100%', height: 2, borderRadius: 2, background: 'rgba(90, 135, 56,.16)', overflow: 'hidden', marginTop: '.4rem' }}>
         <span key={i} style={{
           display: 'block', height: '100%', width: '100%',
-          background: 'linear-gradient(135deg, #c6ff3d, #88ca53)',
+          background: 'linear-gradient(135deg, #6e9f45, #5a8738)',
           transformOrigin: 'left center',
           transform: 'scaleX(0)',
           animation: `aboutStatsProgress ${SLIDE_MS}ms linear forwards`,
@@ -311,7 +311,7 @@ function StatsFounderSection() {
 
   return (
     <section ref={sectionRef} style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 700, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(136,202,83,.05),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 700, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(90, 135, 56,.05),transparent 65%)', pointerEvents: 'none' }} />
       <style>{`
         .stats-founder-grid {
           display: grid;
@@ -348,37 +348,37 @@ function StatsFounderSection() {
         <BlurReveal direction="right" delay={0.15}>
           <WordRevealP
             sectionRef={sectionRef}
-            text="AKATech construit des solutions digitales pour les entrepreneurs et PME en Côte d'Ivoire qui veulent professionnaliser leur image, générer plus d'opportunités et automatiser leurs processus."
-            greenWords={['AKATech', 'PME', "d'Ivoire", 'professionnaliser', 'automatiser']}
+            text="AGRO VÉTO SERVICES CONGO réunit la santé animale, la provenderie certifiée, les poussins Cobb 500 et le management QHSE sous une même bannière d'excellence à Pointe-Noire."
+            greenWords={['AGRO', 'VÉTO', 'SERVICES', 'CONGO', 'Pointe-Noire.']}
             extraStyle={{ color: T.textMain, marginBottom: '1rem', paddingLeft: 0, paddingRight: 0 }}
           />
           <WordRevealP
             sectionRef={sectionRef}
-            text="Nous aidons les entreprises à transformer leur présence en ligne en véritable levier de croissance, avec des produits web clairs, performants et adaptés aux usages locaux."
-            greenWords={['transformer', 'croissance', 'performants', 'locaux.']}
+            text="Nous accompagnons les éleveurs, transformateurs et PME pour sécuriser leur cheptel, optimiser leurs rendements et garantir une alimentation saine de la ferme à l'assiette."
+            greenWords={['éleveurs,', 'cheptel,', 'rendements', 'ferme', "l'assiette."]}
             extraStyle={{ color: T.textSub, marginBottom: '1rem', marginTop: '1rem', paddingLeft: 0, paddingRight: 0 }}
           />
           <WordRevealP
             sectionRef={sectionRef}
-            text="Notre approche repose sur la fiabilité, la simplicité et l'impact concret."
+            text="Notre direction combine l'art médical vétérinaire et la maîtrise rigoureuse des normes internationales (ISO 9001, 14001, 45001, 22000, HACCP)."
             greenWords={['fiabilité,', 'simplicité', "l'impact", 'concret.']}
             extraStyle={{ color: T.textSub, marginBottom: '2rem', marginTop: '1rem', paddingLeft: 0, paddingRight: 0 }}
           />
 
           {/* Photo + identité + portfolio */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', padding: '1.2rem 1.4rem', borderRadius: 16, background: 'rgba(136,202,83,.06)', border: '1px solid rgba(136,202,83,.2)', marginBottom: '1.8rem' }}>
-            <div style={{ width: 60, height: 60, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '2px solid rgba(136,202,83,.5)', boxShadow: '0 0 16px rgba(136,202,83,.2)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', padding: '1.2rem 1.4rem', borderRadius: 16, background: 'rgba(90, 135, 56,.06)', border: '1px solid rgba(90, 135, 56,.2)', marginBottom: '1.8rem' }}>
+            <div style={{ width: 60, height: 60, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '2px solid rgba(90, 135, 56,.5)', boxShadow: '0 0 16px rgba(90, 135, 56,.2)' }}>
               <LazyImg
-                src={cld('/images/founder.webp')}
-                alt="M'Bollo Aka Elvis"
+                src={cld('/images/dr_poutya.jpeg')}
+                alt="Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 10%' }}
-                placeholder={<div style={{ width: 60, height: 60, background: 'rgba(136,202,83,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#88ca53', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '1.2rem' }}>E</div>}
+                placeholder={<div style={{ width: 60, height: 60, background: 'rgba(90, 135, 56,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5a8738', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '1.2rem' }}>E</div>}
               />
             </div>
             <div>
-              <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.95rem', color: T.textMain, marginBottom: '.2rem' }}>M'Bollo Aka Elvis</div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '.55rem' }}>Développeur Full-Stack · Fondateur, AKATech</div>
-              <a href="https://mbolloaka-dev.vercel.app/" target="_blank" rel="noreferrer" className="btn-ghost btn-sm">
+              <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.95rem', color: T.textMain, marginBottom: '.2rem' }}>Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU</div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '.55rem' }}>Médecin Vétérinaire & Spécialiste QHSE · Directrice Générale, AVS Congo</div>
+              <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-ghost btn-sm">
                 <ExternalLink size={11} /> <HoverSlideText text="Me contacter" />
               </a>
             </div>
@@ -402,8 +402,8 @@ function TimelineSection() {
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <BlurReveal delay={0.12}>
             <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain }}>
-              <GhostTitle text="L'ÉVOLUTION D'AKATECH" />
-              L'évolution d'<GreenUnderline><span className="text-gradient">AKATech</span></GreenUnderline>
+              <GhostTitle text="L'HISTOIRE D'AVS CONGO" />
+              L'histoire d'<GreenUnderline><span className="text-gradient">AVS CONGO</span></GreenUnderline>
             </h2>
           </BlurReveal>
         </div>
@@ -412,9 +412,9 @@ function TimelineSection() {
           {TIMELINE.map(({ year, title, desc }, i) => (
             <BlurReveal key={year} delay={i * 0.15} direction={i % 2 === 0 ? 'left' : 'right'}>
               <div style={{ display: 'flex', justifyContent: i % 2 === 0 ? 'flex-start' : 'flex-end', marginBottom: '3rem', position: 'relative' }}>
-                <div style={{ position: 'absolute', left: '50%', top: '1.2rem', transform: 'translateX(-50%)', width: 14, height: 14, borderRadius: '50%', background: 'linear-gradient(135deg, #c6ff3d, #88ca53)', border: '3px solid rgba(136,202,83,.3)', boxShadow: '0 0 16px rgba(136,202,83,.4)', zIndex: 1 }} />
+                <div style={{ position: 'absolute', left: '50%', top: '1.2rem', transform: 'translateX(-50%)', width: 14, height: 14, borderRadius: '50%', background: 'linear-gradient(135deg, #6e9f45, #5a8738)', border: '3px solid rgba(90, 135, 56,.3)', boxShadow: '0 0 16px rgba(90, 135, 56,.4)', zIndex: 1 }} />
                 <motion.div className="sku-card" whileHover={{ y: -4, scale: 1.01 }} style={{ width: '44%', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, background: 'radial-gradient(circle at 100% 0%,rgba(136,202,83,.1),transparent 70%)', pointerEvents: 'none' }} />
+                  <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, background: 'radial-gradient(circle at 100% 0%,rgba(90, 135, 56,.1),transparent 70%)', pointerEvents: 'none' }} />
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem', fontWeight: 800, color: T.green, letterSpacing: '.08em', marginBottom: '.5rem' }}>{year}</div>
                   <h3 style={{ fontSize: '.95rem', fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", marginBottom: '.4rem' }}>{title}</h3>
                   <p style={{ fontSize: '.8rem', color: T.textSub, lineHeight: 1.6 }}>{desc}</p>
@@ -434,7 +434,7 @@ function ValuesSection() {
   const dirs = ['right', 'up', 'left', 'up']
   return (
     <section style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(10rem,18vw,18rem)', fontWeight: 900, color: T.light ? 'rgba(136,202,83,.04)' : 'rgba(136,202,83,.03)', lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>VALUES</div>
+      <div style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(10rem,18vw,18rem)', fontWeight: 900, color: T.light ? 'rgba(90, 135, 56,.04)' : 'rgba(90, 135, 56,.03)', lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>VALUES</div>
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         {/* h2 — trait rouge, aligné à gauche */}
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -449,8 +449,8 @@ function ValuesSection() {
           {VALUES.map(({ icon: Icon, title, desc }, i) => (
             <BlurReveal key={title} delay={i * 0.1} direction={dirs[i % dirs.length]}>
               <motion.div className="sku-card" whileHover={{ y: -5 }} style={{ padding: '2rem', height: '100%', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: 0, right: 0, width: 80, height: 80, background: 'radial-gradient(circle at 100% 0%,rgba(136,202,83,.1),transparent 70%)', pointerEvents: 'none' }} />
-                <div style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(136,202,83,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem' }}>
+                <div style={{ position: 'absolute', top: 0, right: 0, width: 80, height: 80, background: 'radial-gradient(circle at 100% 0%,rgba(90, 135, 56,.1),transparent 70%)', pointerEvents: 'none' }} />
+                <div style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(90, 135, 56,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem' }}>
                   <Icon size={24} style={{ color: T.green }} />
                 </div>
                 <h3 style={{ fontSize: '1rem', fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", marginBottom: '.5rem' }}>{title}</h3>
@@ -477,9 +477,9 @@ function SkillsSection() {
       <div style={{ maxWidth: 1200, margin: '0 auto 3rem', textAlign: 'left', position: 'relative', zIndex: 1 }}>
         <BlurReveal delay={0.12}>
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain }}>
-            <GhostTitle text="LES TECHNOLOGIES QUI FONT LA DIFFÉRENCE" />
-            Les technologies qui font{' '}
-            <GreenUnderline><span className="text-gradient">la différence</span></GreenUnderline>
+            <GhostTitle text="EXCELLENCE VÉTÉRINAIRE & QHSE" />
+            Excellence vétérinaire &{' '}
+            <GreenUnderline><span className="text-gradient">normes QHSE</span></GreenUnderline>
           </h2>
         </BlurReveal>
       </div>
@@ -488,15 +488,15 @@ function SkillsSection() {
         <BlurReveal direction="left">
           <WordRevealP
             sectionRef={sectionRef}
-            text="J'utilise les meilleures technologies modernes — sélectionnées pour leur performance, leur fiabilité et leur adéquation avec vos besoins réels."
-            greenWords={['meilleures', 'performance,', 'fiabilité', "besoins", 'réels.']}
+            text="Nous combinons l'art médical vétérinaire, la nutrition animale contrôlée en laboratoire et les normes internationales pour propulser votre réussite."
+            greenWords={['médical', 'vétérinaire,', 'laboratoire', "normes", 'réussite.']}
             extraStyle={{ color: T.textSub, marginBottom: '2rem', paddingLeft: 0, paddingRight: 0 }}
           />
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem' }}>
             {SKILLS.map((s, i) => (
               <motion.span key={s} initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .3 + i * .04 }}
-                whileHover={{ y: -2, background: 'rgba(136,202,83,.15)' }}
-                style={{ padding: '.35rem .85rem', background: 'rgba(136,202,83,.07)', border: `1px solid ${T.border}`, borderRadius: 100, fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em', cursor: 'default', transition: 'all .2s' }}>
+                whileHover={{ y: -2, background: 'rgba(90, 135, 56,.15)' }}
+                style={{ padding: '.35rem .85rem', background: 'rgba(90, 135, 56,.07)', border: `1px solid ${T.border}`, borderRadius: 100, fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em', cursor: 'default', transition: 'all .2s' }}>
                 {s}
               </motion.span>
             ))}
@@ -505,8 +505,8 @@ function SkillsSection() {
         <BlurReveal direction="right" delay={0.2}>
           <TiltCard intensity={10} style={{ borderRadius: 16 }}>
             <div style={{ borderRadius: 16, overflow: 'hidden', border: `1px solid ${T.border}`, boxShadow: '8px 8px 32px rgba(0,0,0,.3)', height: 400 }}>
-              <LazyImg src={cld('/images/about-4.webp')} alt="Développeur" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                placeholder={<div style={{ height: '100%', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Code size={48} style={{ color: 'rgba(136,202,83,.3)' }} /></div>} />
+              <LazyImg src={'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80'} alt="Clinique Vétérinaire AVS" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                placeholder={<div style={{ height: '100%', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Award size={48} style={{ color: 'rgba(90, 135, 56,.3)' }} /></div>} />
             </div>
           </TiltCard>
         </BlurReveal>
@@ -517,26 +517,26 @@ function SkillsSection() {
 
 // ── 6. RAYON D'ACTION ────────────────────────────────────────
 const PAYS = [
-  { code: 'CI', name: "Côte d'Ivoire", note: 'Siège — Abidjan', primary: true  },
-  { code: 'SN', name: 'Sénégal',       note: 'Clients actifs'                   },
-  { code: 'CM', name: 'Cameroun',      note: 'Clients actifs'                   },
-  { code: 'BJ', name: 'Bénin',         note: 'Projets livrés'                   },
-  { code: 'BF', name: 'Burkina Faso',  note: 'Projets livrés'                   },
-  { code: 'FR', name: 'France',        note: 'Diaspora africaine'               },
+  { code: 'CG', name: "République du Congo", note: 'Siège — Pointe-Noire (Socoprise)', primary: true },
+  { code: 'CD', name: 'RD Congo (Kinshasa)', note: 'Partenariats Élevage & Intrants' },
+  { code: 'GA', name: 'Gabon', note: 'Distribution & Audits QHSE' },
+  { code: 'CM', name: 'Cameroun', note: 'Réseau Agropastoral CEMAC' },
+  { code: 'AO', name: 'Angola (Cabinda)', note: 'Coopération frontalière' },
+  { code: 'FR', name: 'International', note: 'Partenariats & Diaspora' },
 ]
 
 function FlagBadge({ code, primary }) {
   const colors = {
-    CI: ['#f77f00', '#fff',     '#009a44'],
-    SN: ['#00853f', '#fdef42',  '#e31b23'],
-    CM: ['#007a5e', '#ce1126',  '#fcd116'],
-    BJ: ['#008751', '#fcd116',  '#e8112d'],
-    BF: ['#ef2b2d', '#009a44',  '#fcd116'],
+    CG: ['#009543', '#fbde4a', '#dc241f'],
+    CD: ['#007fff', '#f7d618', '#ce1021'],
+    GA: ['#009e60', '#fcd116', '#3a75c4'],
+    CM: ['#007a5e', '#ce1126', '#fcd116'],
+    AO: ['#c8102e', '#000000', '#fcd116'],
     FR: ['#002395', '#fff',     '#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#88ca53', '#fff', '#88ca53']
+  const [c1, c2, c3] = colors[code] || ['#5a8738', '#fff', '#5a8738']
   return (
-    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(136,202,83,.5)' : '1px solid rgba(255,255,255,.12)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(136,202,83,.2)' : '0 2px 8px rgba(0,0,0,.2)' }}>
+    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(90, 135, 56,.5)' : '1px solid rgba(255,255,255,.12)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(90, 135, 56,.2)' : '0 2px 8px rgba(0,0,0,.2)' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />
@@ -559,13 +559,13 @@ function RayonSection() {
             </h2>
             <WordRevealP
               sectionRef={sectionRef}
-              text="Basés à Abidjan, nous travaillons à distance avec des entrepreneurs à travers l'Afrique de l'Ouest et la diaspora. WhatsApp, Zoom, Notion — notre setup est fait pour ça."
-              greenWords={['Abidjan,', "l'Afrique", "l'Ouest", 'diaspora.', 'WhatsApp,', 'Zoom,', 'Notion']}
+              text="Basés à Pointe-Noire (Quartier Socoprise), nous intervenons sur l'ensemble de la République du Congo et accompagnons les acteurs agropastoraux d'Afrique Centrale. Soins en clinique, visites de cheptel en exploitation et expédition sécurisée d'intrants."
+              greenWords={['Pointe-Noire', 'Socoprise),', 'Congo', 'Afrique', 'Centrale.', 'clinique,', 'exploitation']}
               extraStyle={{ color: T.textSub, marginBottom: '2rem', paddingLeft: 0, paddingRight: 0 }}
             />
             <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
-              {['100% remote', 'WhatsApp & Zoom', 'Suivi en temps réel', 'FCFA & EUR'].map(b => (
-                <span key={b} style={{ padding: '.3rem .85rem', borderRadius: 100, background: 'rgba(136,202,83,.08)', border: '1px solid rgba(136,202,83,.2)', fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 600, color: '#88ca53' }}>{b}</span>
+              {['Pointe-Noire & Kouilou', 'Interventions en Ferme', 'Urgences 24/7', 'FCFA (XAF)'].map(b => (
+                <span key={b} style={{ padding: '.3rem .85rem', borderRadius: 100, background: 'rgba(90, 135, 56,.08)', border: '1px solid rgba(90, 135, 56,.2)', fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 600, color: '#5a8738' }}>{b}</span>
               ))}
             </div>
           </BlurReveal>
@@ -576,11 +576,11 @@ function RayonSection() {
                   initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   transition={{ delay: i * .06, duration: .45, ease: [.22,1,.36,1] }}
                   whileHover={{ y: -4 }}
-                  style={{ padding: '1.1rem 1.2rem', borderRadius: 14, background: primary ? 'linear-gradient(135deg, rgba(136,202,83,.14), rgba(136,202,83,.05))' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(136,202,83,.35)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.8rem', position: 'relative', overflow: 'hidden' }}>
-                  {primary && <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, background: 'radial-gradient(circle at 100% 0%,rgba(136,202,83,.12),transparent 70%)', pointerEvents: 'none' }} />}
+                  style={{ padding: '1.1rem 1.2rem', borderRadius: 14, background: primary ? 'linear-gradient(135deg, rgba(90, 135, 56,.14), rgba(90, 135, 56,.05))' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(90, 135, 56,.35)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.8rem', position: 'relative', overflow: 'hidden' }}>
+                  {primary && <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, background: 'radial-gradient(circle at 100% 0%,rgba(90, 135, 56,.12),transparent 70%)', pointerEvents: 'none' }} />}
                   <FlagBadge code={code} primary={primary} />
                   <div>
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.82rem', color: primary ? '#88ca53' : T.textMain }}>{name}</div>
+                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.82rem', color: primary ? '#5a8738' : T.textMain }}>{name}</div>
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: T.textMuted }}>{note}</div>
                   </div>
                 </motion.div>
@@ -607,8 +607,8 @@ export default function AboutPage() {
       {/* 6 */}<RayonSection />
 
       <PageCTA
-        message="Prêt à collaborer avec AKATech ? Discutons de votre projet dès maintenant."
-        cta="Démarrer un projet"
+        message="Prêt à collaborer avec Agro Véto Services ? Discutons de vos besoins agropastoraux dès maintenant."
+        cta="Nous contacter"
       />
     </div>
   )

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
@@ -15,17 +15,17 @@ import { SERVICES } from '@/lib/data'
 const ICON_MAP = { Globe, ShoppingCart, Cpu, Server, Palette, Wrench, Map, MapPin }
 
 const PROCESS_STEPS = [
-  { n: '01', title: 'Consultation gratuite', desc: 'Échange de 30 min pour comprendre votre projet, vos objectifs et votre budget. Aucun engagement.' },
-  { n: '02', title: 'Devis personnalisé', desc: 'Proposition détaillée avec planning, technologies et tarif. Validé ensemble avant de commencer.' },
-  { n: '03', title: 'Développement agile', desc: 'Jalons hebdomadaires, preview en ligne, retours pris en compte en temps réel.' },
-  { n: '04', title: 'Livraison + Formation', desc: 'Mise en ligne, tests, documentation et formation 2h pour gérer votre solution en autonomie.' },
+  { n: '01', title: 'Prise de contact & Écoute', desc: 'Échange gratuit pour cerner vos besoins d’élevage, provenderie ou diagnostic normatif.' },
+  { n: '02', title: 'Devis & Protocole clair', desc: 'Proposition chiffrée avec calendrier de livraison, protocole vétérinaire ou programme d’audit.' },
+  { n: '03', title: 'Livraison & Accompagnement', desc: 'Arrivage des intrants certifiés, intervention clinique vétérinaire ou audit sur votre site.' },
+  { n: '04', title: 'Suivi continu & Conseils', desc: 'Permanence d’urgence 24h/24 & 7j/7, suivi zootechnique et pérennisation des résultats.' },
 ]
 
 const TECH_STACK = [
-  { cat: 'Frontend', items: ['React', 'Next.js', 'Framer Motion', 'Tailwind CSS'] },
-  { cat: 'Backend', items: ['Django', 'Python', 'Node.js', 'Express'] },
-  { cat: 'Base de données', items: ['MySQL', 'Redis'] },
-  { cat: 'Outils', items: ['Git', 'VS Code','Vercel'] },
+  { cat: 'Santé Animale', items: ['Clinique Vétérinaire', 'Chirurgie', 'Urgences 24/7', 'Vaccination Couvoir'] },
+  { cat: 'Provenderie & Labo', items: ['Analyses Bromatologiques', 'Aliment Démarrage 21%', 'Aliment Finition', 'Sécurité SPS'] },
+  { cat: 'Normes & Audits', items: ['ISO 9001', 'ISO 22000', 'Méthode HACCP', 'QHSE Partagé PME'] },
+  { cat: 'Formation & Savoir', items: ['Ferme-École', 'Pratique 100%', 'Biosécurité Élevage', 'Fabrication Savons'] },
 ]
 
 /* ────────────────────────────────────────────────
@@ -77,8 +77,8 @@ function HeroServices() {
 
         <div className="hr-side">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .2 }}>
-            <p className="hr-kicker">De la consultation au déploiement</p>
-            <p className="hr-desc">,chaque service est conçu pour répondre aux réalités du marché ivoirien — rapide, efficace, rentable.</p>
+            <p className="hr-kicker">De la ferme à l'assiette</p>
+            <p className="hr-desc">Chaque prestation est conçue pour répondre aux réalités agropastorales et sanitaires du Congo — rigueur médicale, provenderie certifiée et excellence QHSE.</p>
           </motion.div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
             
@@ -89,7 +89,7 @@ function HeroServices() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#88ca53', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#5a8738', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -104,7 +104,7 @@ function HeroServices() {
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #88ca53;
+          margin-left: .15em; font-size: .3em; color: #5a8738;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
@@ -112,7 +112,7 @@ function HeroServices() {
         }
         .hr-kicker {
           font-family: 'JetBrains Mono', monospace; font-size: .62rem; font-weight: 700;
-          color: #88ca53; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          color: #5a8738; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -144,7 +144,7 @@ function ServicesList() {
             const Ic = ICON_MAP[s.icon] || Globe
             return (
               <button key={s.title} onClick={() => setActive(i)}
-                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? 'linear-gradient(145deg,#8dd456,#5f9137)' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
+                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
                 <Ic size={14} />{s.title}
               </button>
             )
@@ -168,13 +168,13 @@ function ServicesList() {
             {/* Image */}
             <div className="svc-detail-img" style={{ borderRadius: 20, overflow: 'hidden', border: `1px solid ${T.border}`, boxShadow: '8px 8px 40px rgba(0,0,0,.3)', aspectRatio: '1 / 1', height: 'auto' }}>
               <LazyImg src={svc.img} alt={svc.title} style={{ width: '100%', height: '100%', objectFit: 'cover', aspectRatio: '1 / 1' }}
-                placeholder={<div style={{ aspectRatio: '1 / 1', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(136,202,83,.3)' }} /></div>} />
+                placeholder={<div style={{ aspectRatio: '1 / 1', background: 'linear-gradient(135deg,#0a1a0e,#060e09)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(90, 135, 56,.3)' }} /></div>} />
             </div>
 
             {/* Content */}
             <div className="svc-detail-body">
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' }}>
-                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(136,202,83,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(90, 135, 56,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Icon size={24} style={{ color: T.green }} />
                 </div>
                 <div>
@@ -193,14 +193,14 @@ function ServicesList() {
                 ))}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(95,145,55,.05)' : 'rgba(136,202,83,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(95,145,55,.05)' : 'rgba(90, 135, 56,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
                 <div>
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem', fontWeight: 800, color: T.green }}>{svc.price}</div>
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', color: T.textMuted, display: 'flex', alignItems: 'center', gap: 4 }}>
                     <Timer size={10} style={{ color: T.green }} />Délai : {svc.del}
                   </div>
                 </div>
-                <a href={`https://wa.me/2250142507750?text=Bonjour AKATech, je suis intéressé par ${svc.title}`} target="_blank" rel="noreferrer" className="btn-raised">
+                <a href={`https://wa.me/242060000000?text=Bonjour Agro Véto Services, je suis intéressé par ${svc.title}`} target="_blank" rel="noreferrer" className="btn-raised">
                   <HoverSlideText text="Demander un devis" /> <ArrowRight size={14} />
                 </a>
               </div>

@@ -1,11 +1,11 @@
 {
-  "name": "AKATech",
-  "short_name": "AKATech",
-  "description": "Solutions digitales sur-mesure pour entrepreneurs en Côte d'Ivoire",
+  "name": "Agro Véto Services Congo",
+  "short_name": "AVS Congo",
+  "description": "Clinique vétérinaire 24/7, provenderie certifiée, poussins Cobb 500 et formations pratiques à Pointe-Noire (Congo)",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#060e09",
-  "theme_color": "#22c864",
+  "theme_color": "#5a8738",
   "orientation": "portrait-primary",
   "icons": [
     {

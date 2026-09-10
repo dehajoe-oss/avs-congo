@@ -1,13 +1,13 @@
 import ExplorerClient from './ExplorerClient'
 
 export const metadata = {
-  title: "Explorer — Le tunnel des projets AKATech",
-  description: "Explorez nos réalisations en 3D : un tunnel WebGL immersif qui rassemble tous les projets livrés par AKATech en Côte d'Ivoire.",
+  title: "Explorer 3D — Les Réalisations Agro Véto Services",
+  description: "Explorez nos activités et réalisations en 3D : un tunnel WebGL immersif au cœur des expertises d'Agro Véto Services au Congo.",
   alternates: { canonical: '/explorer' },
   openGraph: {
-    title: "Explorer — AKATech",
-    description: "Le tunnel interactif de nos réalisations.",
-    locale: 'fr_CI', type: 'website', siteName: 'AKATech', url: 'https://akatech.vercel.app/explorer',
+    title: "Explorer — Agro Véto Services",
+    description: "Le tunnel interactif de nos réalisations agropastorales.",
+    locale: 'fr_CG', type: 'website', siteName: 'Agro Véto Services', url: 'https://agrovetoservices.cg/explorer',
   },
   robots: { index: true, follow: true },
 }

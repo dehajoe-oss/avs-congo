@@ -1,4 +1,4 @@
-const SITE_URL = 'https://akatech.vercel.app'
+const SITE_URL = 'https://agrovetoservices.cg'
 
 const MAIN_NAVIGATION = [
   { name: 'Accueil', url: `${SITE_URL}/` },
@@ -25,9 +25,9 @@ export function SitewideStructuredData({ organization }) {
     '@type': 'WebSite',
     '@id': `${SITE_URL}/#website`,
     url: SITE_URL,
-    name: 'AKATech Studio',
-    alternateName: 'AKATech',
-    inLanguage: 'fr-CI',
+    name: 'AGRO VÉTO SERVICES CONGO S.A.R.L.U.',
+    alternateName: 'Agro Véto Services',
+    inLanguage: 'fr-CG',
     publisher: { '@id': `${SITE_URL}/#organization` },
     significantLink: MAIN_NAVIGATION.map((item) => item.url),
   }
@@ -35,7 +35,7 @@ export function SitewideStructuredData({ organization }) {
   const navigation = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Navigation principale AKATech Studio',
+    name: 'Navigation principale Agro Véto Services',
     itemListElement: MAIN_NAVIGATION.map((item, index) => ({
       '@type': 'SiteNavigationElement',
       position: index + 1,

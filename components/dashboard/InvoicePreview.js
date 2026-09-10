@@ -53,8 +53,8 @@ const InvoicePreview = forwardRef(function InvoicePreview({
 
       <div className="ak-header">
         <div className="ak-brand">
-          <h2 className="ak-brand-name">AKATECH STUDIO</h2>
-          <div className="ak-brand-tag">Agence Web — Abidjan, Côte d&apos;Ivoire</div>
+          <h2 className="ak-brand-name">AGRO VÉTO SERVICES</h2>
+          <div className="ak-brand-tag">Complexe Agropastoral & Clinique Vétérinaire — Pointe-Noire, Congo</div>
         </div>
         <div className="ak-meta">
           <div className="ak-label">// Facture</div>
@@ -75,10 +75,10 @@ const InvoicePreview = forwardRef(function InvoicePreview({
       <div className="ak-parties">
         <div className="ak-party">
           <div className="ak-label">// Émetteur</div>
-          <div className="ak-party-name">AKATech Studio</div>
-          <div className="ak-party-line">M&apos;Bollo Aka Elvis — Travailleur indépendant</div>
-          <div className="ak-party-line">Abidjan, Côte d&apos;Ivoire</div>
-          <div className="ak-party-line">wthomasss06@gmail.com · +225 01 42 50 77 50</div>
+          <div className="ak-party-name">AGRO VÉTO SERVICES CONGO S.A.R.L.U.</div>
+          <div className="ak-party-line">Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU — Directrice Générale</div>
+          <div className="ak-party-line">Quartier Socoprise, Avenue Nelson Mandela, Pointe-Noire, Congo</div>
+          <div className="ak-party-line">contact@agrovetoservices.cg · +242 06 000 00 00</div>
         </div>
         <div className="ak-party">
           <div className="ak-label">// Facturé à</div>
@@ -174,7 +174,7 @@ const InvoicePreview = forwardRef(function InvoicePreview({
       <div className="ak-footer">
         <div className="ak-footer-rule" />
         <div className="ak-thanks">Merci pour votre confiance.</div>
-        <div className="ak-legal">Facture émise conformément aux mentions légales en vigueur en République de Côte d&apos;Ivoire.</div>
+        <div className="ak-legal">Facture émise conformément aux mentions légales et fiscales en vigueur en République du Congo.</div>
       </div>
 
       <style jsx>{`
@@ -183,7 +183,7 @@ const InvoicePreview = forwardRef(function InvoicePreview({
           padding: 20mm 16.8mm 16mm; font-family: Helvetica, Arial, sans-serif;
           position: relative; box-sizing: border-box;
         }
-        .ak-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: #88CA53; }
+        .ak-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: #5A8738; }
 
         .ak-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
         .ak-brand-name { font-family: 'Bitcount Prop Single', Helvetica, Arial, sans-serif; font-size: 30px; font-weight: 700; color: #1A1A1A; margin: 0; line-height: 1; }
@@ -196,7 +196,7 @@ const InvoicePreview = forwardRef(function InvoicePreview({
         .ak-badge { display: inline-block; margin-top: 10px; padding: 6px 14px; border-radius: 12.5px; background: #EAF3E3; color: #5B8C3A; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
         .ak-meta-dates { font-size: 12.5px; color: #767676; margin-top: 12px; line-height: 1.6; }
 
-        .ak-divider { height: 2px; background: #88CA53; margin: 18px 0 24px; }
+        .ak-divider { height: 2px; background: #5A8738; margin: 18px 0 24px; }
 
         .ak-parties { display: flex; gap: 24px; margin-bottom: 42px; }
         .ak-party { flex: 1; min-width: 0; }
@@ -214,7 +214,7 @@ const InvoicePreview = forwardRef(function InvoicePreview({
         .ak-item-detail { font-size: 11.5px; color: #767676; margin-top: 5px; }
         .ak-col-total { font-weight: 600; }
 
-        .ak-close-rule { height: 2px; background: #88CA53; margin-top: 4px; margin-bottom: 34px; }
+        .ak-close-rule { height: 2px; background: #5A8738; margin-top: 4px; margin-bottom: 34px; }
 
         .ak-totals { width: 62%; margin-left: auto; }
         .ak-total-row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; }
@@ -231,7 +231,7 @@ const InvoicePreview = forwardRef(function InvoicePreview({
         .ak-modal-sub { color: #767676; }
 
         .ak-footer { margin-top: 56px; }
-        .ak-footer-rule { height: 1.5px; background: #88CA53; margin-bottom: 22px; }
+        .ak-footer-rule { height: 1.5px; background: #5A8738; margin-bottom: 22px; }
         .ak-thanks { text-align: center; font-size: 14.5px; font-style: italic; color: #5B8C3A; }
         .ak-legal { text-align: center; font-size: 10.5px; color: #9A9A9A; margin-top: 14px; }
       `}</style>

@@ -30,7 +30,7 @@ export async function POST(request) {
     // Sans cookies (bloqués par le navigateur, ou requête hors navigation
     // normale), on ignore silencieusement plutôt que de renvoyer une erreur :
     // le tracking est un bonus, pas une fonctionnalité critique du site.
-    if (!visitorId || !sessionId) {
+    if (!visitorId || !sessionId || !process.env.DATABASE_URL) {
       return Response.json({ ok: true, tracked: false })
     }
 

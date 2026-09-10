@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 /* ═══════════════════════════════════════════════════════════════
    GrainientHero — Grainient Engine (port WebGL2 → WebGL1 natif)
-   Palette AKATech : noir #030806 · vert forêt #0d2415 · émeraude #88ca53
+   Palette AKATech : noir #030806 · vert forêt #0d2415 · émeraude #5a8738
    Warp + noise + grain (style Nexura) — influence souris conservée
    Props :
      labels  – [{ text, x, y, delay? }]
@@ -239,8 +239,8 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
     gl.uniform1f(u.uZoom,          0.9)
     gl.uniform2f(u.uCenterOffset,  0.0, 0.0)
     /* Palette AKATech — émeraude, sans noir pur */
-    gl.uniform3fv(u.uColor1, hex('#b3ee85'))  /* mint lumineux         */
-    gl.uniform3fv(u.uColor2, hex('#88ca53'))  /* émeraude AKATech      */
+    gl.uniform3fv(u.uColor1, hex('#7ea959'))  /* mint lumineux         */
+    gl.uniform3fv(u.uColor2, hex('#5a8738'))  /* émeraude AKATech      */
     gl.uniform3fv(u.uColor3, hex('#0d2415'))  /* vert très sombre (≠ noir pur) */
 
     /* ── Souris → uCenterOffset ── */
@@ -301,7 +301,7 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
       {/* ── Ligne de scan — émeraude ── */}
       <div style={{
         position: 'absolute', left: 0, right: 0, height: 1,
-        background: 'linear-gradient(90deg,transparent,rgba(136,202,83,.45),rgba(102,255,170,.6),rgba(136,202,83,.45),transparent)',
+        background: 'linear-gradient(90deg,transparent,rgba(90, 135, 56,.45),rgba(102,255,170,.6),rgba(90, 135, 56,.45),transparent)',
         animation: 'grainient-scan 9s linear infinite',
         pointerEvents: 'none', zIndex: 2,
       }} />
@@ -334,17 +334,17 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
             display: 'flex', alignItems: 'center', gap: 6,
             padding: '5px 12px', borderRadius: 100,
             background: 'rgba(3,8,6,0.72)',
-            border: '1px solid rgba(136,202,83,.28)',
+            border: '1px solid rgba(90, 135, 56,.28)',
             backdropFilter: 'blur(10px)',
-            boxShadow: '0 0 16px rgba(136,202,83,.15)',
+            boxShadow: '0 0 16px rgba(90, 135, 56,.15)',
             pointerEvents: 'none',
           }}
           className="aurora-pill"
         >
           <span style={{
             width: 6, height: 6, borderRadius: '50%',
-            background: '#88ca53',
-            boxShadow: '0 0 8px rgba(136,202,83,.9)',
+            background: '#5a8738',
+            boxShadow: '0 0 8px rgba(90, 135, 56,.9)',
             display: 'inline-block',
             animation: 'dot-blink 2s ease-in-out infinite',
             animationDelay: `${i * 0.3}s`,

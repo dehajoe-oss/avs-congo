@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { Check, Zap, Timer, AlertTriangle, MessageCircle, HelpCircle, ChevronDown, Star, FileText, Lock, Clock, GraduationCap, Wrench, Globe } from 'lucide-react'
@@ -88,7 +88,7 @@ function HeroPricing() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#88ca53', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#5a8738', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -103,7 +103,7 @@ function HeroPricing() {
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #88ca53;
+          margin-left: .15em; font-size: .3em; color: #5a8738;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
@@ -111,7 +111,7 @@ function HeroPricing() {
         }
         .hr-kicker {
           font-family: 'JetBrains Mono', monospace; font-size: .62rem; font-weight: 700;
-          color: #88ca53; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          color: #5a8738; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -125,8 +125,8 @@ function PricingTabs() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
-  const [tab, setTab] = useState('vitrine')
-  const d = PRICING[tab]
+  const [tab, setTab] = useState('poussins')
+  const d = PRICING[tab] || Object.values(PRICING)[0] || { plans: [] }
 
   return (
     <section ref={ref} style={{ padding: '2rem 5% 7rem', background: T.bg, position: 'relative', overflow: 'hidden' }}>
@@ -152,7 +152,7 @@ function PricingTabs() {
           {Object.entries(PRICING).map(([k, v]) => (
             <motion.button key={k} onClick={() => setTab(k)}
               whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? 'linear-gradient(145deg,#8dd456,#5f9137)' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
+              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
               {v.label}
             </motion.button>
           ))}
@@ -163,39 +163,39 @@ function PricingTabs() {
           <motion.div key={tab}
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: .3 }}
             className="pricing-grid">
-            {d.plans.map((plan, i) => {
-              const wa = encodeURIComponent(`Bonjour AKATech, je suis intéressé par l'offre ${plan.badge} à ${plan.price}`)
+            {(d?.plans || []).map((plan, i) => {
+              const wa = encodeURIComponent(`Bonjour Agro Véto Services, je suis intéressé par l'offre ${plan.badge} à ${plan.price}`)
               return (
                 <BlurReveal key={plan.badge} delay={i * 0.1} direction={['left', 'up', 'right'][i] || 'up'}>
                   <motion.div
                     whileHover={{ y: -8, transition: { duration: .25 } }}
-                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'linear-gradient(145deg,rgba(136,202,83,.18),rgba(136,202,83,.06))' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(136,202,83,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(136,202,83,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'linear-gradient(145deg,rgba(90, 135, 56,.18),rgba(90, 135, 56,.06))' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(90, 135, 56,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(90, 135, 56,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
                     {plan.popular && (
-                      <div style={{ padding: '.5rem', background: 'linear-gradient(90deg,#5f9137,#88ca53)', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
+                      <div style={{ padding: '.5rem', background: 'linear-gradient(90deg,#3d6023,#5a8738)', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
                         <Zap size={10} />LE PLUS POPULAIRE
                       </div>
                     )}
                     <div style={{ padding: plan.popular ? '1.8rem 2rem 0' : 0, display: 'flex', flexDirection: 'column', flex: 1 }}>
                       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(180deg,rgba(255,255,255,.07) 0%,transparent 100%)', borderRadius: '20px 20px 0 0', pointerEvents: 'none' }} />
-                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#88ca53' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
+                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#5a8738' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
                       <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1.4rem,2.5vw,1.7rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
                       <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: T.textMuted, marginBottom: '1.6rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                         <Timer size={11} style={{ color: T.green }} />{plan.del}
                       </div>
-                      <div style={{ height: 1, background: plan.popular ? 'rgba(136,202,83,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
+                      <div style={{ height: 1, background: plan.popular ? 'rgba(90, 135, 56,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '.65rem', marginBottom: '1.8rem', flex: 1 }}>
                         {plan.features.map(f => (
                           <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '.6rem', fontSize: '.83rem', color: T.textSub, lineHeight: 1.5 }}>
-                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(136,202,83,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <Check size={11} style={{ color: '#88ca53' }} />
+                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(90, 135, 56,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <Check size={11} style={{ color: '#5a8738' }} />
                             </div>
                             {f}
                           </div>
                         ))}
                       </div>
                       {plan.popular
-                        ? <a href={`https://wa.me/2250142507750?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
-                        : <a href={`https://wa.me/2250142507750?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
+                        ? <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
+                        : <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
                       }
                     </div>
                   </motion.div>
@@ -207,19 +207,19 @@ function PricingTabs() {
 
         {/* Urgency bar */}
         <BlurReveal delay={0.5}>
-          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(136,202,83,.04)', border: '1px solid rgba(136,202,83,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(90, 135, 56,.04)', border: '1px solid rgba(90, 135, 56,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-              <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'linear-gradient(135deg, #c6ff3d, #88ca53)', boxShadow: '0 0 8px rgba(136,202,83,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'linear-gradient(135deg, #6e9f45, #5a8738)', boxShadow: '0 0 8px rgba(90, 135, 56,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
               <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.72rem', color: T.textSub, letterSpacing: '.04em', margin: 0 }}>
-                <span style={{ color: '#b3ee85', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
-                  <AlertTriangle size={12} /> 2 créneaux disponibles
+                <span style={{ color: '#7ea959', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
+                  <AlertTriangle size={12} /> Arrivages réguliers de poussins
                 </span>
-                {' '}ce mois-ci — les projets sont traités dans l'ordre d'arrivée.
+                {' '}— réservations recommandées pour les lots hebdomadaires de poussins Cobb 500 et Lohmann.
               </p>
             </div>
-            <a href="https://wa.me/2250142507750?text=Bonjour+AKATech,+je+veux+réserver+mon+projet+!" target="_blank" rel="noreferrer"
+            <a href="https://wa.me/242060000000?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
               className="btn-raised" style={{ padding: '.55rem 1.2rem', fontSize: '.78rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
-              <HoverSlideText text="Réserver ma place →" />
+              <HoverSlideText text="Commander mon lot →" />
             </a>
           </div>
         </BlurReveal>
@@ -233,12 +233,12 @@ function PricingTabs() {
 // ── GARANTIES INCLUSES — strip de réassurance ────────────────
 // ═══════════════════════════════════════════════════════════════
 const GARANTIES = [
-  { icon: FileText,      title: 'Devis 100% gratuit',      desc: 'Sans engagement, sous 24h'            },
-  { icon: Lock,          title: 'Paiement sécurisé',        desc: 'MTN, Orange Money, Wave, virement'    },
-  { icon: Zap,           title: 'Délais respectés',          desc: 'Date convenue, ou remboursement'      },
-  { icon: GraduationCap, title: 'Formation incluse',         desc: 'Vous restez autonome après livraison' },
-  { icon: Wrench,        title: 'Support 48h',               desc: 'Corrections & évolutions post-livraison' },
-  { icon: Globe,         title: 'Adapté marché africain',    desc: 'Mobile Money, faible débit, FCFA'     },
+  { icon: FileText,      title: 'Devis & Conseils personnalisés',  desc: 'Étude de votre élevage ou PME sous 24h' },
+  { icon: Lock,          title: 'Paiement sécurisé',                desc: 'MTN Mobile Money, Airtel Money, virement, espèces' },
+  { icon: Zap,           title: 'Suivi vétérinaire rigoureux',     desc: 'Vétérinaires diplômés et expérimentés' },
+  { icon: GraduationCap, title: 'Formations pratiques certifiantes', desc: 'Ferme-école et modules 100% terrain' },
+  { icon: Wrench,        title: 'Urgences 24h/24 & 7j/7',           desc: 'Permanence clinique et interventions à Pointe-Noire' },
+  { icon: Globe,         title: 'Expertise locale certifiée',       desc: 'Conformité HACCP, ISO 22000 et normes CEMAC' },
 ]
 
 function GuaranteeStrip() {
@@ -260,11 +260,11 @@ function GuaranteeStrip() {
           {GARANTIES.map(({ icon: Icon, title, desc }, i) => (
             <BlurReveal key={title} delay={i * .07}>
               <motion.div
-                whileHover={{ y: -5, borderColor: 'rgba(136,202,83,.35)' }}
+                whileHover={{ y: -5, borderColor: 'rgba(90, 135, 56,.35)' }}
                 style={{ padding: '1.5rem', borderRadius: 16, background: T.light ? 'rgba(255,255,255,.8)' : 'rgba(255,255,255,.03)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'flex-start', gap: '1rem', transition: 'border-color .2s' }}
               >
-                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(136,202,83,.1)', border: '1px solid rgba(136,202,83,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Icon size={20} style={{ color: '#88ca53' }} />
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Icon size={20} style={{ color: '#5a8738' }} />
                 </div>
                 <div>
                   <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.88rem', color: T.textMain, marginBottom: '.25rem' }}>{title}</div>
@@ -287,8 +287,8 @@ function TrustedBy() {
   const sectionRef  = useRef(null)
   const trustTextRef  = useRef(null)
   const trustWordsRef = useRef([])
-  const TRUST_TEXT  = "Des entrepreneurs ivoiriens qui ont transformé leur présence digitale avec AKATech."
-  const TRUST_GREEN = new Set(['ivoiriens', 'transformé', 'présence', 'digitale', 'AKATech.'])
+  const TRUST_TEXT  = "Des éleveurs et entreprises du Congo qui ont développé leur activité agropastorale avec Agro Véto Services."
+  const TRUST_GREEN = new Set(['éleveurs', 'entreprises', 'Congo', 'activité', 'agropastorale', 'Agro', 'Véto', 'Services.'])
 
   useEffect(() => {
     const container = sectionRef.current
@@ -350,7 +350,7 @@ function TrustedBy() {
         }
       `}</style>
 
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 400, borderRadius: '50%', background: 'radial-gradient(circle,rgba(136,202,83,.05),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 400, borderRadius: '50%', background: 'radial-gradient(circle,rgba(90, 135, 56,.05),transparent 65%)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: 1200, margin: '0 auto', paddingBottom: '3.5rem', paddingLeft: '5%', paddingRight: '5%' }}>
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
@@ -387,7 +387,7 @@ function TrustedBy() {
                     opacity: 0.08,
                     filter: 'blur(9px)',
                     willChange: 'opacity, filter',
-                    color: TRUST_GREEN.has(word) ? '#88ca53' : 'inherit',
+                    color: TRUST_GREEN.has(word) ? '#5a8738' : 'inherit',
                   }}
                 >
                   {word}
@@ -413,7 +413,7 @@ function TrustedBy() {
 
               {/* Stars */}
               <div style={{ display: 'flex', gap: 3, marginBottom: '1rem' }}>
-                {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="#88ca53" style={{ color: '#88ca53' }} />)}
+                {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="#5a8738" style={{ color: '#5a8738' }} />)}
               </div>
 
               {/* Quote */}
@@ -422,17 +422,17 @@ function TrustedBy() {
               </p>
 
               {/* Result badge */}
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.28rem .85rem', borderRadius: 99, background: 'rgba(136,202,83,.1)', border: '1px solid rgba(136,202,83,.25)', marginBottom: '1.4rem' }}>
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: '#88ca53', fontWeight: 700 }}>{t.result}</span>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.28rem .85rem', borderRadius: 99, background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.25)', marginBottom: '1.4rem' }}>
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: '#5a8738', fontWeight: 700 }}>{t.result}</span>
               </div>
 
               {/* Author */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '.85rem' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(136,202,83,.3)', flexShrink: 0, position: 'relative' }}>
+                <div style={{ width: 48, height: 48, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(90, 135, 56,.3)', flexShrink: 0, position: 'relative' }}>
                   <img src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     onError={e => {
                       e.target.style.display = 'none'
-                      e.target.parentNode.style.background = 'linear-gradient(135deg,rgba(136,202,83,.2),rgba(136,202,83,.05))'
+                      e.target.parentNode.style.background = 'linear-gradient(135deg,rgba(90, 135, 56,.2),rgba(90, 135, 56,.05))'
                     }} />
                 </div>
                 <div>
@@ -474,7 +474,7 @@ function FAQSection() {
           {FAQ_ITEMS.map(({ q, a }, i) => (
             <BlurReveal key={q} delay={i * 0.06} direction={i % 2 === 0 ? 'left' : 'right'}>
               <motion.div className="sku-card"
-                whileHover={{ borderColor: 'rgba(136,202,83,.25)' }}
+                whileHover={{ borderColor: 'rgba(90, 135, 56,.25)' }}
                 style={{ overflow: 'hidden' }}>
                 <button onClick={() => setOpen(open === i ? null : i)}
                   style={{ width: '100%', padding: '1.2rem 1.5rem', background: 'none', border: 'none', color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', textAlign: 'left' }}>
@@ -514,7 +514,7 @@ export default function PricingPage() {
       <FAQSection />
 
       <PageCTA
-        message="Un projet en tête ? Obtenez votre devis gratuit en moins de 24h."
+        message="Un cheptel à soigner, une commande de poussins ou un audit QHSE ? Échangeons directement sur WhatsApp."
         cta="Discuter sur WhatsApp"
       />
     </div>

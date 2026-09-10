@@ -10,12 +10,12 @@ import { HoverSlideText } from '@/components/ui/index'
 import './ConversionMarquee.css'
 
 const ITEMS = [
-  { Icon: Bolt, pre: '', strong: '3 créneaux', post: ' dispo ce mois' },
-  { Icon: Clock3, pre: 'Délai moyen ', strong: '7 jours', post: '' },
-  { Icon: PhoneCall, pre: 'Réponse en ', strong: 'moins de 2h', post: '' },
+  { Icon: Bolt, pre: 'Poussins Cobb 500 ', strong: 'Arrivages hebdomadaires', post: '' },
+  { Icon: Clock3, pre: 'Clinique Vétérinaire ', strong: 'Urgences 24h/24 & 7j/7', post: '' },
+  { Icon: PhoneCall, pre: 'Devis QHSE & Audits sous ', strong: '24h à 48h', post: '' },
 ]
 
-const WA_HREF = "https://wa.me/2250142507750?text=Bonjour+AKATech,+je+veux+démarrer+mon+projet+!"
+const WA_HREF = "https://wa.me/242060000000?text=Bonjour+Agro+V%C3%A9to+Services,+je+souhaite+des+renseignements+!"
 
 function TickerSet({ hidden }) {
   return (
@@ -45,7 +45,7 @@ export default function ConversionMarquee() {
 
       <div className="ccta-fixed">
         <a href={WA_HREF} target="_blank" rel="noreferrer" className="btn-raised btn-sm">
-          <HoverSlideText text="Démarrer mon projet" />
+          <HoverSlideText text="Commander sur WhatsApp" />
           <ArrowRight size={15} strokeWidth={2.4} />
         </a>
       </div>

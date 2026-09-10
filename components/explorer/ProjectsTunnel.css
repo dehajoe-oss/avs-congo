@@ -16,7 +16,7 @@
   height: 100vh;
   overflow: hidden;
   background: #030806;
-  border-top: 1px solid rgba(136, 202, 83, 0.12);
+  border-top: 1px solid rgba(90, 135, 56, 0.12);
 }
 
 .pt-webgl-container {
@@ -34,7 +34,7 @@
 .pt-eyebrow {
   font-family: 'JetBrains Mono', monospace;
   font-size: .64rem; letter-spacing: .38em; text-transform: uppercase;
-  color: rgba(136, 202, 83, 0.75);
+  color: rgba(90, 135, 56, 0.75);
 }
 .pt-count {
   font-family: 'JetBrains Mono', monospace;
@@ -61,7 +61,7 @@
   letter-spacing: -.02em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.88);
-  text-shadow: 0 0 40px rgba(136, 202, 83, 0.4);
+  text-shadow: 0 0 40px rgba(90, 135, 56, 0.4);
   mix-blend-mode: difference;
   transition: opacity .15s linear;
   white-space: nowrap;
@@ -77,7 +77,7 @@
   letter-spacing: -.02em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 0 30px rgba(136, 202, 83, 0.55);
+  text-shadow: 0 0 30px rgba(90, 135, 56, 0.55);
   mix-blend-mode: difference;
   opacity: 0;
   transition: opacity .2s ease, transform .2s ease;
@@ -93,7 +93,7 @@
   font-size: .68rem; letter-spacing: .04em;
   color: rgba(255, 255, 255, 0.4);
 }
-.pt-hint strong { color: rgba(136, 202, 83, 0.85); }
+.pt-hint strong { color: rgba(90, 135, 56, 0.85); }
 
 /* ── Fallback mobile (réutilisé par ExplorerClient) ─────────── */
 .pt-mobile-fallback {
@@ -106,12 +106,12 @@
 .pt-mobile-fallback .pt-glow { position: absolute; inset: 0; }
 .pt-grid-overlay {
   background-image:
-    linear-gradient(rgba(136, 202, 83, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(136, 202, 83, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(90, 135, 56, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 135, 56, 0.045) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 .pt-glow {
-  background: radial-gradient(circle at 50% 50%, rgba(136, 202, 83, 0.1) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(90, 135, 56, 0.1) 0%, transparent 60%);
 }
 .pt-mobile-card { position: relative; z-index: 1; max-width: 360px; }
 .pt-mobile-card h2 {
@@ -124,7 +124,7 @@
 }
 .pt-mobile-card a {
   display: inline-flex; align-items: center; gap: .5rem;
-  background: linear-gradient(135deg, #c6ff3d, #88ca53);
+  background: linear-gradient(135deg, #6e9f45, #5a8738);
   color: #04140a; font-family: 'JetBrains Mono', monospace;
   font-weight: 700; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase;
   padding: .85rem 1.6rem; border-radius: 999px; text-decoration: none;

@@ -8,6 +8,7 @@ import {
   Globe, ShoppingCart, Cpu, Server, Palette, Wrench, Map, MapPin,
   Monitor, ShoppingBag, LayoutDashboard, Cog, Image,
   Zap, Timer, Check, HelpCircle, Send, Lock,
+  ShieldCheck, GraduationCap, Sparkles, Package, Award, Target
 } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { GhostTitle, AnimatedCounter, LazyImg, PageCTA, GreenUnderline, HoverSlideText } from '@/components/ui/index'
@@ -36,7 +37,7 @@ function TiltCard({ children, style = {}, className = '', intensity = 14, perspe
       el.style.transform = `perspective(${perspective}px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.04,1.04,1.04)`
       el.style.transition = 'transform .07s linear'
       if (glowRef.current) {
-        glowRef.current.style.background = `radial-gradient(260px circle at ${px}% ${py}%, rgba(136,202,83,.13) 0%, transparent 65%)`
+        glowRef.current.style.background = `radial-gradient(260px circle at ${px}% ${py}%, rgba(90, 135, 56,.13) 0%, transparent 65%)`
         glowRef.current.style.opacity = '1'
       }
     })
@@ -163,8 +164,8 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
               overflow: 'hidden',
               zIndex: 10 - abs,
               cursor: 'pointer',
-              border: isActive ? '1.5px solid rgba(136,202,83,.6)' : '1px solid rgba(255,255,255,.1)',
-              boxShadow: isActive ? '0 0 0 3px rgba(136,202,83,.15), 0 8px 24px rgba(0,0,0,.6)' : '0 4px 14px rgba(0,0,0,.4)',
+              border: isActive ? '1.5px solid rgba(90, 135, 56,.6)' : '1px solid rgba(255,255,255,.1)',
+              boxShadow: isActive ? '0 0 0 3px rgba(90, 135, 56,.15), 0 8px 24px rgba(0,0,0,.6)' : '0 4px 14px rgba(0,0,0,.4)',
               transformStyle: 'preserve-3d',
             }}>
             <LazyImg
@@ -180,7 +181,7 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
             }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '.45rem .7rem' }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 700, color: '#fff', letterSpacing: '-.01em', lineHeight: 1.2 }}>{p.title}</div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.55rem', color: 'rgba(136,202,83,.9)', marginTop: '.05rem' }}>{p.type}</div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.55rem', color: 'rgba(90, 135, 56,.9)', marginTop: '.05rem' }}>{p.type}</div>
             </div>
             {draggable && isActive && p.url && (
               <a href={p.url} target="_blank" rel="noreferrer" onClick={e => e.stopPropagation()}
@@ -188,7 +189,7 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
                   position: 'absolute', top: '.5rem', right: '.5rem', zIndex: 21,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   width: 26, height: 26, borderRadius: '50%',
-                  background: 'rgba(136,202,83,.92)', color: '#04140a',
+                  background: 'rgba(90, 135, 56,.92)', color: '#04140a',
                 }}>
                 <ExternalLink size={12} />
               </a>
@@ -201,9 +202,10 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
 }
 
 const HERO_SLOGANS = [
-  { before: 'Un site qui travaille pour vous ', highlight: '24h/24' },
-  { before: 'Attirez des clients, gagnez en ', highlight: 'crédibilité' },
-  { before: 'Développez votre activité ', highlight: 'sereinement' },
+  { before: 'De la santé animale à l’excellence ', highlight: 'QHSE' },
+  { before: 'Poussins d’un jour & provenderie ', highlight: 'certifiée' },
+  { before: 'Urgences cliniques vétérinaires ', highlight: '24h/24 & 7j/7' },
+  { before: 'Bâtissez un élevage moderne & ', highlight: 'rentable' },
 ]
 
 // ── Slogan Hero — cycle auto entre 3 accroches, même traitement
@@ -322,9 +324,9 @@ function Hero() {
         <motion.div
           style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
           animate={{ background: [
-            'radial-gradient(700px circle at 25% 38%, rgba(136,202,83,.055) 0%, transparent 62%)',
-            'radial-gradient(700px circle at 72% 58%, rgba(136,202,83,.075) 0%, transparent 62%)',
-            'radial-gradient(700px circle at 25% 38%, rgba(136,202,83,.055) 0%, transparent 62%)',
+            'radial-gradient(700px circle at 25% 38%, rgba(90, 135, 56,.055) 0%, transparent 62%)',
+            'radial-gradient(700px circle at 72% 58%, rgba(90, 135, 56,.075) 0%, transparent 62%)',
+            'radial-gradient(700px circle at 25% 38%, rgba(90, 135, 56,.055) 0%, transparent 62%)',
           ]}}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -338,7 +340,7 @@ function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
           style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.92rem', color: 'rgba(255,255,255,.68)', maxWidth: 420, margin: '0 auto 1.4rem', lineHeight: 1.55 }}>
-          Lancez un site professionnel qui inspire confiance et déclenche des demandes.
+          Clinique vétérinaire, provenderie certifiée, poussins Cobb 500 et audits qualité au Congo.
         </motion.p>
 
         <motion.div
@@ -355,10 +357,10 @@ function Hero() {
           </AvatarGroup>
           <div style={{ textAlign: 'left' }}>
             <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.78rem', color: '#fff', lineHeight: 1.15 }}>
-              Ils nous ont fait confiance
+              Éleveurs & PME partenaires
             </div>
-            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.63rem', color: '#88ca53' }}>
-              {PROJECTS.length}+ projets livrés
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.63rem', color: '#5a8738' }}>
+              {PROJECTS.length}+ réalisations & intrants de pointe
             </div>
           </div>
         </motion.div>
@@ -366,22 +368,22 @@ function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .45 }}
           style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '-1.6rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
-          <motion.a href="https://wa.me/2250142507750" target="_blank" rel="noreferrer"
+          <motion.a href="https://wa.me/242060000000" target="_blank" rel="noreferrer"
             initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(198,255,61,.45)' }}
+            whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(110, 159, 69,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: 'linear-gradient(135deg, #c6ff3d, #88ca53)', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
-            <HoverSlideText text="Démarrer mon projet" /> <ArrowRight size={16} />
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: 'linear-gradient(135deg, #6e9f45, #5a8738)', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
+            <HoverSlideText text="Commander sur WhatsApp" /> <ArrowRight size={16} />
           </motion.a>
           <motion.div
             initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(198,255,61,.45)' }}
+            whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(110, 159, 69,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#c6ff3d', background: 'transparent', border: '3px solid #c6ff3d', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
-              <HoverSlideText text="Prenez RDV" />
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#6e9f45', background: 'transparent', border: '3px solid #6e9f45', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
+              <HoverSlideText text="Prendre RDV Clinique" />
             </Link>
           </motion.div>
         </motion.div>
@@ -401,7 +403,7 @@ function Hero() {
           { left: '92%', top: '52%', s: 3, op: .14, dur: 4.9, dy: 2.1 },
         ].map((p, i) => (
           <motion.div key={i}
-            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#88ca53', left: p.left, top: p.top, opacity: p.op }}
+            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#5a8738', left: p.left, top: p.top, opacity: p.op }}
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: p.dur, repeat: Infinity, ease: 'easeInOut', delay: p.dy }}
           />
@@ -422,85 +424,82 @@ function Hero() {
 // ── DATA prestations — texte complet (remplace les visuels image) ──
 const SERVICES_ITEMS = [
   {
-    n: '01', Icon: Globe, title: 'Création de Sites Web',
-    tagline: 'Votre présence en ligne professionnelle.',
+    n: '01', Icon: Award, title: 'Clinique Vétérinaire 24/7',
+    tagline: "Santé animale et urgences continues à Pointe-Noire.",
     bullets: [
-      { h: 'Site vitrine moderne', d: 'Design attractif et performant.' },
-      { h: 'Boutique e-commerce', d: 'Vendez vos produits en ligne.' },
-      { h: 'Portfolio créatif', d: 'Mettez en valeur vos réalisations.' },
-      { h: 'Application SaaS sur mesure', d: 'Solutions adaptées à vos besoins.' },
-      { h: 'Design responsive', d: 'Parfait sur tous les écrans.' },
-      { h: 'Optimisation SEO', d: 'Soyez visible, soyez choisi.' },
+      { h: 'Consultations complètes', d: 'Diagnostic clinique précis et auscultation.' },
+      { h: 'Chirurgies & Urgences', d: 'Interventions 24h/24 et 7j/7 sur appel.' },
+      { h: 'Vaccinations & Carnet', d: 'Protocoles chiots, chiens, chats et volailles.' },
+      { h: 'Visites en élevage', d: 'Déplacement vétérinaire sur votre exploitation.' },
+      { h: 'Analyses de laboratoire', d: 'Autopsies aviaires et coprologie.' },
     ],
-    price: 'À partir de 100 000 FCFA',
+    price: 'À partir de 15 000 FCFA',
   },
   {
-    n: '02', Icon: Map, title: 'Cartes Interactives & Dashboards',
-    tagline: 'Visualisez vos données avec puissance.',
+    n: '02', Icon: Package, title: 'Provenderie & Nutrition',
+    tagline: 'Aliments équilibrés et haute digestibilité.',
     bullets: [
-      { h: 'Cartes Mapbox interactives', d: 'Explorez vos données en temps réel.' },
-      { h: 'Géolocalisation avancée', d: 'Suivi précis et analyse spatiale.' },
-      { h: 'Dashboards analytiques', d: 'Indicateurs clés et visualisations claires.' },
-      { h: 'Données temps réel', d: 'Toujours à jour pour de meilleures décisions.' },
-      { h: 'Rapports personnalisés', d: 'Sur mesure selon vos besoins.' },
+      { h: 'Démarrage haute énergie', d: '21% protéines pour poussins J1 à J14.' },
+      { h: 'Finition croissance', d: 'Gain de poids rapide et chair ferme.' },
+      { h: 'Aliments ponte & porcs', d: 'Formules riches en énergie métabolisable.' },
+      { h: 'Contrôle bromatologique', d: 'Taux protéiques et minéraux certifiés.' },
+      { h: 'Rations sur-mesure', d: 'Adaptées à la taille de votre cheptel.' },
+    ],
+    price: 'À partir de 19 800 FCFA/sac',
+  },
+  {
+    n: '03', Icon: Target, title: "Poussins Cobb 500 & Lohmann",
+    tagline: 'Souches performantes vaccinées dès le couvoir.',
+    bullets: [
+      { h: 'Cobb 500 (Chair)', d: 'Croissance accélérée et faible indice de conso.' },
+      { h: 'Lohmann Brown (Ponte)', d: 'Femelles sexées à 99%, jusqu’à 320 œufs/an.' },
+      { h: 'Vaccinés Marek + Newcastle', d: 'Protection immunitaire dès le premier jour.' },
+      { h: 'Viabilité > 98%', d: 'Poussins vigoureux triés rigoureusement.' },
+      { h: 'Guide de démarrage offert', d: 'Protocole de température et abreuvement.' },
+    ],
+    price: 'À partir de 650 FCFA/unité',
+  },
+  {
+    n: '04', Icon: ShieldCheck, title: 'Audits QHSE & « QHSE Partagé »',
+    tagline: 'Conformité internationale et sécurité alimentaire.',
+    bullets: [
+      { h: 'Offre QHSE Partagé', d: 'Expert qualité dédié à temps partagé pour PME.' },
+      { h: 'Méthode HACCP & SPS', d: 'Plan de maîtrise sanitaire et points critiques.' },
+      { h: 'Normes ISO 9001 / 22000', d: 'Audits à blanc et préparation certification.' },
+      { h: 'Document Unique & RSE', d: 'Évaluation des risques et gestion déchets.' },
     ],
     price: 'Sur devis',
   },
   {
-    n: '03', Icon: Server, title: 'API & Backend Robustes',
-    tagline: 'Connectez et automatisez vos systèmes.',
+    n: '05', Icon: GraduationCap, title: 'Centre de Formation Ferme-École',
+    tagline: '100% pratique sur exploitation réelle.',
     bullets: [
-      { h: 'API REST & GraphQL', d: 'Des interfaces modernes et performantes.' },
-      { h: 'Architecture sécurisée', d: 'Protection des données et des accès.' },
-      { h: 'Intégration de services tiers', d: 'Connectez vos outils et plateformes.' },
-      { h: 'Automatisation des processus', d: 'Gagnez du temps, réduisez les tâches manuelles.' },
-      { h: 'Performance et scalabilité', d: 'Des systèmes conçus pour grandir avec vous.' },
+      { h: 'Élevage avicole moderne', d: 'Conduite de bande, litière et rentabilité.' },
+      { h: 'Hygiène HACCP pratique', d: 'Pour restaurants, traiteurs et usines agro.' },
+      { h: 'Fabrication de savons', d: 'Saponification à froid et détergents locaux.' },
+      { h: 'Certificat officiel AVS', d: 'Attestation certifiante remise en fin de cursus.' },
     ],
-    price: 'Sur devis',
-  },
-  {
-    n: '04', Icon: Wrench, title: 'Maintenance & Support',
-    tagline: 'Votre projet sécurisé et toujours performant.',
-    bullets: [
-      { h: 'Sauvegardes automatiques', d: 'Vos données sont protégées en continu.' },
-      { h: 'Mises à jour régulières', d: 'Plus de sécurité et de stabilité.' },
-      { h: 'Surveillance 24h/24', d: 'Monitoring temps réel, incidents anticipés.' },
-      { h: 'Support WhatsApp', d: 'Une assistance rapide et à portée de main.' },
-      { h: 'Assistance rapide', d: 'Notre équipe réactive pour vos problèmes.' },
-    ],
-    price: 'À partir de 20 000 FCFA',
-  },
-  {
-    n: '05', Icon: MapPin, title: 'Fiche Google My Business',
-    tagline: 'Soyez visible sur Google Maps et la recherche locale.',
-    bullets: [
-      { h: 'Optimisation complète', d: 'NAP, catégories, description, photos et services.' },
-      { h: 'Gestion des avis', d: 'Réponses rapides pour votre e-réputation.' },
-      { h: 'Publications régulières', d: 'Actualités, offres et événements.' },
-      { h: 'Suivi des performances', d: 'Statistiques claires pour mesurer vos résultats.' },
-      { h: 'Plus de visibilité', d: 'Attirez plus de clients locaux chaque mois.' },
-    ],
-    price: 'À partir de 20 000 FCFA',
+    price: 'À partir de 60 000 FCFA',
   },
 ]
 
 // ── DATA processus — texte complet (remplace les visuels image) ──
 const PROCESS_ITEMS = [
-  { n: '01', title: 'Prise de contact & brief', badge: '1 à 2 jours', desc: "Vous me présentez votre projet et vos besoins. Nous échangeons sur vos références afin de définir le pack le plus adapté." },
-  { n: '02', title: 'Devis & conditions', badge: '1 jour', desc: "Vous recevez un devis détaillé indiquant le montant total, l'acompte de 50%, le solde à la livraison, le délai et les prestations incluses." },
-  { n: '03', title: 'Acompte reçu', badge: 'Feu vert', desc: "Dès réception de l'acompte, je récupère vos contenus — logo, textes, photos — et le développement démarre immédiatement." },
-  { n: '04', title: 'Création du site', badge: 'Délai annoncé', desc: "Je développe votre site : pages, design responsive, animations, formulaire de contact, SEO de base — et je configure l'hébergement et le nom de domaine." },
-  { n: '05', title: 'Livraison & validation', badge: '1 à 2 jours', desc: "Vous recevez un lien de prévisualisation pour tester le site et demander vos retours avant la mise en ligne définitive." },
-  { n: '06', title: 'Solde payé', badge: 'Fichiers transmis', desc: "Une fois le solde réglé, je vous transmets les fichiers sources, les accès à l'hébergement et au nom de domaine, ainsi que le mot de passe d'administration." },
-  { n: '07', title: 'Mise en ligne & support', badge: 'Projet livré', desc: "Votre site est en ligne. Selon le pack, vous bénéficiez d'un mois de support, et je vous accompagne pour le renouvellement après la première année." },
+  { n: '01', title: 'Diagnostic & Visite terrain', badge: '1 à 2 jours', desc: "Échange sur votre exploitation, identification des besoins sanitaires, nutritionnels ou normatifs." },
+  { n: '02', title: 'Protocole & Devis clair', badge: '24h à 48h', desc: "Proposition sur-mesure avec calendrier de livraison des intrants ou plan d'action vétérinaire." },
+  { n: '03', title: 'Intrants & Aliments certifiés', badge: 'Arrivage sûr', desc: "Livraison de poussins Cobb 500 vaccinés et provenderie contrôlée au laboratoire bromatologique." },
+  { n: '04', title: 'Biosécurité & Prophylaxie', badge: 'Protection', desc: "Mise en place des protocoles d'hygiène, désinfection et respect du calendrier vaccinal." },
+  { n: '05', title: 'Suivi vétérinaire continu', badge: '24h/24 & 7j/7', desc: "Visites zootechniques régulières, ajustement des rations et assistance médicale d'urgence permanente." },
+  { n: '06', title: 'Formations pratiques', badge: 'Ferme-école', desc: "Immersion terrain pour rendre vos techniciens et éleveurs autonomes et performants." },
+  { n: '07', title: 'Excellence & Rentabilité', badge: 'Résultats', desc: "Taux de mortalité réduit sous 2%, conformité HACCP/ISO et rentabilité maximale de votre cheptel." },
 ]
 
 // ── STATS — chiffres géants éditoriaux (miroir desktop), responsive 2-col mobile ──
 const HOME_STATS = [
-  { target: PROJECTS.length,  suffix: '',  label: 'Projets livrés',      sub: 'Du concept au déploiement' },
-  { target: 99,  suffix: '%', label: 'Clients satisfaits',  sub: 'Livrés dans les délais'    },
-  { target: 10,  suffix: '+', label: 'Clients accompagnés', sub: 'Startups, PME, créatifs'   },
-  { target: 3,   suffix: '+', label: "Années d'expérience", sub: 'En développement web'       },
+  { target: 6,   suffix: '',  label: "Pôles d'expertise",      sub: 'De la ferme à l\'assiette' },
+  { target: 500, suffix: '+', label: 'Éleveurs & PME',         sub: 'Accompagnés à Pointe-Noire' },
+  { target: 99,  suffix: '%', label: 'Conformité sanitaire',   sub: 'Normes HACCP & ISO' },
+  { target: 24,  suffix: '/7',label: 'Urgences cliniques',     sub: 'Permanence vétérinaire' },
 ]
 
 function StatsSection() {
@@ -512,7 +511,7 @@ function StatsSection() {
     <section ref={ref} style={{ padding: '5rem 5% 6rem', background: T.bg, position: 'relative', overflow: 'hidden' }}>
 
       {/* Halo */}
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 320, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(136,202,83,.04),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 320, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(90, 135, 56,.04),transparent 65%)', pointerEvents: 'none' }} />
 
       {/* Séparateur haut */}
       <div style={{ position: 'absolute', top: 0, left: '5%', right: '5%', height: 1, background: T.border }} />
@@ -555,7 +554,7 @@ function StatsSection() {
                 fontFamily: "'JetBrains Mono',monospace",
                 fontSize: 'clamp(.65rem,2.5vw,.78rem)',
                 fontWeight: 700,
-                color: T.light ? '#5f9137' : '#88ca53',
+                color: T.light ? '#3d6023' : '#5a8738',
                 letterSpacing: '.02em',
                 marginBottom: '.15rem',
               }}>
@@ -618,7 +617,7 @@ function Accordion({ items, defaultOpen = 0, renderHeader, renderBody }) {
               <motion.span
                 animate={{ rotate: isOpen ? 180 : 0 }}
                 transition={{ duration: .3, ease: [.22,1,.36,1] }}
-                style={{ flexShrink: 0, display: 'flex', color: isOpen ? '#88ca53' : T.textMuted }}
+                style={{ flexShrink: 0, display: 'flex', color: isOpen ? '#5a8738' : T.textMuted }}
               >
                 <ChevronDown size={17} />
               </motion.span>
@@ -675,20 +674,20 @@ function ServicesPreview() {
                   <span style={{
                     width: ICON_BOX, height: ICON_BOX, flexShrink: 0, borderRadius: 10,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: isOpen ? 'rgba(136,202,83,.16)' : 'rgba(136,202,83,.08)',
-                    border: `1px solid ${isOpen ? 'rgba(136,202,83,.45)' : 'rgba(136,202,83,.2)'}`,
-                    color: '#88ca53', transition: 'background .25s, border-color .25s',
+                    background: isOpen ? 'rgba(90, 135, 56,.16)' : 'rgba(90, 135, 56,.08)',
+                    border: `1px solid ${isOpen ? 'rgba(90, 135, 56,.45)' : 'rgba(90, 135, 56,.2)'}`,
+                    color: '#5a8738', transition: 'background .25s, border-color .25s',
                   }}>
                     <SIcon size={18} />
                   </span>
                   <div style={{ minWidth: 0 }}>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '.5rem' }}>
-                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.56rem', fontWeight: 700, color: 'rgba(136,202,83,.55)', letterSpacing: '.2em' }}>{s.n}</span>
+                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.56rem', fontWeight: 700, color: 'rgba(90, 135, 56,.55)', letterSpacing: '.2em' }}>{s.n}</span>
                     </div>
                     <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(.82rem,3.4vw,.92rem)', color: T.textMain, letterSpacing: '-.01em', lineHeight: 1.25 }}>
                       {s.title}
                     </div>
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 700, color: '#88ca53', marginTop: '.15rem' }}>
+                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', fontWeight: 700, color: '#5a8738', marginTop: '.15rem' }}>
                       {s.price}
                     </div>
                   </div>
@@ -703,7 +702,7 @@ function ServicesPreview() {
                 <div style={{ marginBottom: '1.1rem' }}>
                   {s.bullets.map((b, bi) => (
                     <div key={bi} style={{ display: 'flex', gap: '.6rem', padding: '.55rem 0', borderTop: bi ? `1px solid ${T.border}` : 'none' }}>
-                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#88ca53', marginTop: '.45rem', flexShrink: 0 }} />
+                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#5a8738', marginTop: '.45rem', flexShrink: 0 }} />
                       <div>
                         <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.78rem', color: T.textMain, lineHeight: 1.4 }}>{b.h}</div>
                         <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', color: T.textMuted, lineHeight: 1.5, marginTop: '.1rem' }}>{b.d}</div>
@@ -711,7 +710,7 @@ function ServicesPreview() {
                     </div>
                   ))}
                 </div>
-                <a href="https://wa.me/2250142507750" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.78rem', padding: '.7rem 1.3rem', width: '100%', justifyContent: 'center' }}>
+                <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.78rem', padding: '.7rem 1.3rem', width: '100%', justifyContent: 'center' }}>
                   <HoverSlideText text="Demander un devis" /> <ArrowRight size={13} />
                 </a>
               </div>
@@ -752,7 +751,7 @@ function Process() {
             renderHeader={(s, isOpen) => (
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '.4rem', minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '.7rem' }}>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.66rem', fontWeight: 700, color: isOpen ? '#88ca53' : 'rgba(136,202,83,.5)', letterSpacing: '.1em', flexShrink: 0 }}>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.66rem', fontWeight: 700, color: isOpen ? '#5a8738' : 'rgba(90, 135, 56,.5)', letterSpacing: '.1em', flexShrink: 0 }}>
                     {s.n}
                   </span>
                   <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(.84rem,3.4vw,.94rem)', color: T.textMain, letterSpacing: '-.01em', lineHeight: 1.3 }}>
@@ -761,9 +760,9 @@ function Process() {
                 </div>
                 <span style={{
                   alignSelf: 'flex-start', padding: '.2rem .6rem', borderRadius: 100,
-                  background: 'rgba(136,202,83,.1)', border: '1px solid rgba(136,202,83,.24)',
+                  background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.24)',
                   fontFamily: "'JetBrains Mono',monospace", fontSize: '.56rem', fontWeight: 700,
-                  color: '#88ca53', letterSpacing: '.03em', whiteSpace: 'nowrap',
+                  color: '#5a8738', letterSpacing: '.03em', whiteSpace: 'nowrap',
                 }}>
                   {s.badge}
                 </span>
@@ -840,7 +839,7 @@ function Testimonials() {
 
   return (
     <section ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(136,202,83,.05),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(90, 135, 56,.05),transparent 65%)', pointerEvents: 'none' }} />
       <div style={{ maxWidth: 900, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
@@ -853,21 +852,21 @@ function Testimonials() {
           <motion.div key={idx} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: .4 }}
             className="sku-card" style={{ padding: '2.5rem', textAlign: 'center' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.2rem' }}>
-              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#88ca53" style={{ color: '#88ca53' }} />)}
+              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#5a8738" style={{ color: '#5a8738' }} />)}
             </div>
             <blockquote style={{ fontSize: '1.05rem', color: T.textMain, lineHeight: 1.75, fontStyle: 'italic', marginBottom: '2rem', maxWidth: 640, margin: '0 auto 2rem' }}>
               "{t.text}"
             </blockquote>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(136,202,83,.35)' }}>
+              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(90, 135, 56,.35)' }}>
                 <LazyImg src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(136,202,83,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#88ca53', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700 }}>{t.name[0]}</div>} />
+                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(90, 135, 56,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5a8738', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700 }}>{t.name[0]}</div>} />
               </div>
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem' }}>{t.name}</div>
                 <div style={{ fontSize: '.72rem', color: T.textMuted, fontFamily: "'JetBrains Mono',monospace" }}>{t.role}</div>
               </div>
-              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(136,202,83,.12)', border: '1px solid rgba(136,202,83,.25)', color: '#88ca53', fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
+              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(90, 135, 56,.12)', border: '1px solid rgba(90, 135, 56,.25)', color: '#5a8738', fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -875,7 +874,7 @@ function Testimonials() {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '.5rem', marginTop: '1.5rem' }}>
           {TESTIMONIALS.map((_, i) => (
             <button key={i} onClick={() => setIdx(i)}
-              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#88ca53' : 'rgba(136,202,83,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
+              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#5a8738' : 'rgba(90, 135, 56,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
           ))}
         </div>
       </div>
@@ -897,7 +896,7 @@ function RevealParagraph({ text, greenWords = [], extraStyle = {}, inView }) {
         ...extraStyle,
       }}>
       {text.split(' ').map((word, i) => (
-        <span key={i} style={{ color: green.has(word) ? '#88ca53' : 'inherit' }}>
+        <span key={i} style={{ color: green.has(word) ? '#5a8738' : 'inherit' }}>
           {word}{' '}
         </span>
       ))}
@@ -925,16 +924,16 @@ function DomaineCard({ n, Icon, title, desc, tag, index, inView }) {
       style={{ background: T.card, padding: '1.5rem 1.4rem', position: 'relative' }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-        <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '2rem', fontWeight: 900, color: T.light ? 'rgba(136,202,83,.18)' : 'rgba(136,202,83,.15)', lineHeight: 1, letterSpacing: '-.05em' }}>
+        <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '2rem', fontWeight: 900, color: T.light ? 'rgba(90, 135, 56,.18)' : 'rgba(90, 135, 56,.15)', lineHeight: 1, letterSpacing: '-.05em' }}>
           {n}
         </span>
-        <span style={{ padding: '.2rem .65rem', borderRadius: 100, background: 'rgba(136,202,83,.08)', border: '1px solid rgba(136,202,83,.2)', fontFamily: "'JetBrains Mono',monospace", fontSize: '.56rem', fontWeight: 700, color: '#88ca53', letterSpacing: '.06em', textTransform: 'uppercase' }}>
+        <span style={{ padding: '.2rem .65rem', borderRadius: 100, background: 'rgba(90, 135, 56,.08)', border: '1px solid rgba(90, 135, 56,.2)', fontFamily: "'JetBrains Mono',monospace", fontSize: '.56rem', fontWeight: 700, color: '#5a8738', letterSpacing: '.06em', textTransform: 'uppercase' }}>
           {tag}
         </span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '.7rem', marginBottom: '.8rem' }}>
-        <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(136,202,83,.1)', border: '1px solid rgba(136,202,83,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <Icon size={18} style={{ color: '#88ca53' }} />
+        <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <Icon size={18} style={{ color: '#5a8738' }} />
         </div>
         <h3 style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(.86rem,3.6vw,.95rem)', fontWeight: 800, color: T.textMain, lineHeight: 1.25, letterSpacing: '-.02em' }}>
           {title}
@@ -952,8 +951,8 @@ function DomainesSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
-  const DOM_TEXT = "De la vitrine au SaaS, de la boutique au portfolio — nous intervenons sur l'ensemble de la chaîne digitale pour concrétiser votre vision."
-  const DOM_GREEN = ['SaaS,', 'portfolio', 'chaîne', 'digitale', 'concrétiser', 'vision.']
+  const DOM_TEXT = "De la santé animale à la provenderie certifiée, des poussins Cobb 500 aux audits QHSE — nous intervenons sur l'ensemble de la filière agropastorale pour garantir votre rentabilité."
+  const DOM_GREEN = ['santé', 'animale', 'provenderie', 'Cobb', '500', 'QHSE', 'filière', 'agropastorale', 'rentabilité.']
 
   return (
     <section ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
@@ -961,9 +960,9 @@ function DomainesSection() {
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem' }}>
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
-            <GhostTitle text="DANS QUEL AXE DE CRÉATION S'INSCRIT VOTRE PROJET ?" />
-            Dans quel axe de création{' '}
-            <GreenUnderline><span className="text-gradient">s'inscrit votre projet ?</span></GreenUnderline>
+            <GhostTitle text="DANS QUEL PÔLE S'INSCRIT VOTRE PROJET D'ÉLEVAGE ?" />
+            Dans quel pôle agropastoral{' '}
+            <GreenUnderline><span className="text-gradient">s'inscrit votre besoin ?</span></GreenUnderline>
           </h2>
           <RevealParagraph text={DOM_TEXT} greenWords={DOM_GREEN} extraStyle={{ color: T.textSub }} inView={inView} />
         </motion.div>
@@ -978,7 +977,7 @@ function DomainesSection() {
           <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.82rem', color: T.textMuted, marginBottom: '1rem' }}>
             Votre projet ne rentre dans aucune case ? On s'adapte.
           </p>
-          <a href="https://wa.me/2250142507750" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.85rem', padding: '.8rem 1.6rem' }}>
+          <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.85rem', padding: '.8rem 1.6rem' }}>
             <HoverSlideText text="Discuter de mon projet" /> <ArrowRight size={13} />
           </a>
         </motion.div>
@@ -993,8 +992,8 @@ function PricingCallout() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
-  const [tab, setTab] = useState('vitrine')
-  const d = PRICING[tab]
+  const [tab, setTab] = useState('poussins')
+  const d = PRICING[tab] || Object.values(PRICING)[0] || { plans: [] }
 
   return (
     <section ref={ref} style={{ padding: '7rem 5%', background: T.bg, position: 'relative', overflow: 'hidden' }}>
@@ -1005,7 +1004,7 @@ function PricingCallout() {
             <GhostTitle text="CHOISISSEZ VOTRE FORMULE IDÉALE" />
             Choisissez votre <GreenUnderline><span className="text-gradient">formule idéale</span></GreenUnderline>
           </h2>
-          <RevealParagraph text="Des formules claires, adaptées aux besoins des petites structures et freelances — comparez et choisissez." greenWords={['claires,', 'structures', 'freelances', 'choisissez.']} extraStyle={{ color: T.textSub }} inView={inView} />
+          <RevealParagraph text="Des formules claires, adaptées aux besoins des élevages et PME agropastorales — comparez et commandez." greenWords={['claires,', 'besoins', 'élevages', 'commandez.']} extraStyle={{ color: T.textSub }} inView={inView} />
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .1 }}
@@ -1013,7 +1012,7 @@ function PricingCallout() {
           {Object.entries(PRICING).map(([k, v]) => (
             <motion.button key={k} onClick={() => setTab(k)}
               whileTap={{ scale: 0.96 }}
-              style={{ padding: '.5rem 1.2rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? 'linear-gradient(145deg,#8dd456,#5f9137)' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontSize: '.78rem', fontWeight: 900, cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
+              style={{ padding: '.5rem 1.2rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontSize: '.78rem', fontWeight: 900, cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
               {v.label}
             </motion.button>
           ))}
@@ -1023,37 +1022,37 @@ function PricingCallout() {
           <motion.div key={tab}
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: .3 }}
             className="pricing-grid">
-            {d.plans.map((plan) => {
-              const wa = encodeURIComponent(`Bonjour AKATech, je suis intéressé par l'offre ${plan.badge} à ${plan.price}`)
+            {(d?.plans || []).map((plan) => {
+              const wa = encodeURIComponent(`Bonjour Agro Véto Services, je suis intéressé par l'offre ${plan.badge} à ${plan.price}`)
               return (
                 <motion.div key={plan.badge}
-                  style={{ position: 'relative', borderRadius: 18, overflow: 'hidden', background: plan.popular ? 'linear-gradient(145deg,rgba(136,202,83,.18),rgba(136,202,83,.06))' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(136,202,83,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(136,202,83,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 1.8rem' : '1.8rem' }}>
+                  style={{ position: 'relative', borderRadius: 18, overflow: 'hidden', background: plan.popular ? 'linear-gradient(145deg,rgba(90, 135, 56,.18),rgba(90, 135, 56,.06))' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(90, 135, 56,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(90, 135, 56,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 1.8rem' : '1.8rem' }}>
                   {plan.popular && (
-                    <div style={{ padding: '.45rem', background: 'linear-gradient(90deg,#5f9137,#88ca53)', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontSize: '.58rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem' }}>
+                    <div style={{ padding: '.45rem', background: 'linear-gradient(90deg,#3d6023,#5a8738)', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontSize: '.58rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem' }}>
                       <Zap size={10} />LE PLUS POPULAIRE
                     </div>
                   )}
                   <div style={{ padding: plan.popular ? '1.6rem 1.8rem 0' : 0, position: 'relative' }}>
                     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(180deg,rgba(255,255,255,.07) 0%,transparent 100%)', pointerEvents: 'none' }} />
-                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', fontWeight: 600, color: plan.popular ? '#88ca53' : T.textMuted, textTransform: 'uppercase', marginBottom: '.5rem' }}>{plan.badge}</div>
+                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', fontWeight: 600, color: plan.popular ? '#5a8738' : T.textMuted, textTransform: 'uppercase', marginBottom: '.5rem' }}>{plan.badge}</div>
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1.3rem,6vw,1.6rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', color: T.textMuted, marginBottom: '1.4rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                       <Timer size={11} style={{ color: T.green }} />{plan.del}
                     </div>
-                    <div style={{ height: 1, background: plan.popular ? 'rgba(136,202,83,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.2rem' }} />
+                    <div style={{ height: 1, background: plan.popular ? 'rgba(90, 135, 56,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.2rem' }} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '.6rem', marginBottom: '1.6rem' }}>
                       {plan.features.map(f => (
                         <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '.55rem', fontSize: '.8rem', color: T.textSub, lineHeight: 1.5 }}>
-                          <div style={{ width: 16, height: 16, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(136,202,83,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Check size={10} style={{ color: '#88ca53' }} />
+                          <div style={{ width: 16, height: 16, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(90, 135, 56,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Check size={10} style={{ color: '#5a8738' }} />
                           </div>
                           {f}
                         </div>
                       ))}
                     </div>
                     {plan.popular
-                      ? <a href={`https://wa.me/2250142507750?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
-                      : <a href={`https://wa.me/2250142507750?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
+                      ? <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
+                      : <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
                     }
                   </div>
                 </motion.div>
@@ -1063,19 +1062,19 @@ function PricingCallout() {
         </AnimatePresence>
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .25 }}
-          style={{ marginTop: '2rem', padding: '1rem 1.2rem', borderRadius: 14, background: 'rgba(136,202,83,.04)', border: '1px solid rgba(136,202,83,.15)', display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '.8rem' }}>
+          style={{ marginTop: '2rem', padding: '1rem 1.2rem', borderRadius: 14, background: 'rgba(90, 135, 56,.04)', border: '1px solid rgba(90, 135, 56,.15)', display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '.8rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
-            <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#88ca53', boxShadow: '0 0 8px rgba(136,202,83,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
+            <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#5a8738', boxShadow: '0 0 8px rgba(90, 135, 56,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
             <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.7rem', color: T.textSub, letterSpacing: '.03em', margin: 0 }}>
-              <span style={{ color: '#b3ee85', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
-                <Timer size={11} /> Projets pris dans l'ordre d'arrivée
+              <span style={{ color: '#7ea959', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
+                <Timer size={11} /> Arrivages réguliers de poussins
               </span>
-              {' '}— le délai dépend de la charge du moment. Plus tôt vous écrivez, plus tôt on commence.
+              {' '}— réservations recommandées pour les lots hebdomadaires de poussins Cobb 500 et Lohmann.
             </p>
           </div>
-          <a href="https://wa.me/2250142507750?text=Bonjour+AKATech,+je+veux+réserver+mon+projet+!" target="_blank" rel="noreferrer"
+          <a href="https://wa.me/242060000000?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
             className="btn-raised" style={{ padding: '.7rem 1.2rem', fontSize: '.8rem', justifyContent: 'center', display: 'flex' }}>
-            <HoverSlideText text="Réserver ma place →" />
+            <HoverSlideText text="Commander mon lot →" />
           </a>
         </motion.div>
       </div>
@@ -1085,26 +1084,26 @@ function PricingCallout() {
 
 // ── OÙ INTERVENONS-NOUS — badges pays (miroir desktop) ──
 const GEO_PAYS = [
-  { code: 'CI', name: "Côte d'Ivoire", note: 'Siège — Abidjan', primary: true },
-  { code: 'SN', name: 'Sénégal', note: 'WhatsApp & Zoom' },
-  { code: 'CM', name: 'Cameroun', note: 'WhatsApp & Zoom' },
-  { code: 'BJ', name: 'Bénin', note: 'WhatsApp & Zoom' },
-  { code: 'BF', name: 'Burkina Faso', note: 'WhatsApp & Zoom' },
-  { code: 'FR', name: 'France', note: 'Diaspora africaine' },
+  { code: 'CG', name: "Congo", note: 'Siège — Socoprise Pointe-Noire', primary: true },
+  { code: 'CD', name: 'RD Congo', note: 'Kinshasa & Régions' },
+  { code: 'GA', name: 'Gabon', note: 'Partenariats Intrants' },
+  { code: 'CM', name: 'Cameroun', note: 'Échanges Élevage' },
+  { code: 'AO', name: 'Angola', note: 'Cabinda & Frontière' },
+  { code: 'FR', name: 'International', note: 'Partenariats & Diaspora' },
 ]
 
 function FlagBadge({ code, primary }) {
   const colors = {
-    CI: ['#f77f00','#fff','#009a44'],
-    SN: ['#00853f','#fdef42','#e31b23'],
+    CG: ['#009543','#fbde4a','#dc241f'],
+    CD: ['#007fff','#f7d618','#ce1021'],
+    GA: ['#009e60','#fcd116','#3a75c4'],
     CM: ['#007a5e','#ce1126','#fcd116'],
-    BJ: ['#008751','#fcd116','#e8112d'],
-    BF: ['#ef2b2d','#009a44','#fcd116'],
+    AO: ['#c8102e','#000000','#fcd116'],
     FR: ['#002395','#fff','#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#88ca53','#fff','#88ca53']
+  const [c1, c2, c3] = colors[code] || ['#5a8738','#fff','#5a8738']
   return (
-    <div style={{ width: 34, height: 34, borderRadius: 9, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(136,202,83,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(136,202,83,.2)' : 'none' }}>
+    <div style={{ width: 34, height: 34, borderRadius: 9, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(90, 135, 56,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(90, 135, 56,.2)' : 'none' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />
@@ -1127,8 +1126,8 @@ function GeoSectionHome() {
             Où intervenons-<GreenUnderline><span className="text-gradient">nous ?</span></GreenUnderline>
           </h2>
           <RevealParagraph
-            text="Basés à Abidjan, on travaille 100% remote avec des clients partout en Afrique de l'Ouest et la diaspora."
-            greenWords={['Abidjan,', 'remote', "l'Afrique", "l'Ouest", 'diaspora.']}
+            text="Basés à Pointe-Noire (Socoprise), nous intervenons sur site et expédions nos intrants partout au Congo et en Afrique Centrale."
+            greenWords={['Pointe-Noire', 'Socoprise,', 'Congo', 'Afrique', 'Centrale.']}
             extraStyle={{ color: T.textSub }}
             inView={inView}
           />
@@ -1137,10 +1136,10 @@ function GeoSectionHome() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', gap: '.7rem' }}>
           {GEO_PAYS.map(({ code, name, note, primary }, i) => (
             <motion.div key={name} initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * .06 }}
-              style={{ padding: '.85rem 1rem', borderRadius: 13, background: primary ? 'linear-gradient(135deg,rgba(136,202,83,.12),rgba(136,202,83,.04))' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(136,202,83,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.65rem' }}>
+              style={{ padding: '.85rem 1rem', borderRadius: 13, background: primary ? 'linear-gradient(135deg,rgba(90, 135, 56,.12),rgba(90, 135, 56,.04))' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(90, 135, 56,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.65rem' }}>
               <FlagBadge code={code} primary={primary} />
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.78rem', color: primary ? '#88ca53' : T.textMain }}>{name}</div>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.78rem', color: primary ? '#5a8738' : T.textMain }}>{name}</div>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', color: T.textMuted }}>{note}</div>
               </div>
             </motion.div>
@@ -1163,7 +1162,7 @@ function ProjectFormHome() {
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
   const inputStyle = { width: '100%', padding: '.6rem 0', background: 'transparent', border: 'none', borderBottom: `1px solid ${T.border}`, borderRadius: 0, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '1rem', outline: 'none', transition: 'border-color .25s', boxSizing: 'border-box', colorScheme: T.light ? 'light' : 'dark' }
-  const focusOn = e => { e.target.style.borderBottomColor = '#88ca53' }
+  const focusOn = e => { e.target.style.borderBottomColor = '#5a8738' }
   const focusOff = e => { e.target.style.borderBottomColor = T.border }
 
   const handleSubmit = async () => {
@@ -1201,8 +1200,8 @@ function ProjectFormHome() {
           <AnimatePresence mode="wait">
             {sent ? (
               <motion.div key="success" initial={{ opacity: 0, scale: .9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '1.5rem .5rem' }}>
-                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 58, height: 58, borderRadius: '50%', border: '1.5px solid rgba(136,202,83,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.4rem' }}>
-                  <Check size={26} style={{ color: '#88ca53' }} />
+                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 58, height: 58, borderRadius: '50%', border: '1.5px solid rgba(90, 135, 56,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.4rem' }}>
+                  <Check size={26} style={{ color: '#5a8738' }} />
                 </motion.div>
                 <h3 style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '1.1rem', color: T.textMain, marginBottom: '.7rem' }}>Message envoyé !</h3>
                 <p style={{ color: T.textSub, fontSize: '.85rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. On répond en moins de 24h directement par email — à très vite !</p>
@@ -1214,7 +1213,7 @@ function ProjectFormHome() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.2rem', marginBottom: '1.2rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre nom</label>
-                    <input style={inputStyle} placeholder="Elvis Aka" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
+                    <input style={inputStyle} placeholder="Dr POUTYA" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                   </div>
                   <div>
                     <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Email</label>
@@ -1222,7 +1221,7 @@ function ProjectFormHome() {
                   </div>
                   <div>
                     <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>WhatsApp / Tél</label>
-                    <input style={inputStyle} placeholder="+225 07 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
+                    <input style={inputStyle} placeholder="+242 06 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                   </div>
                   <div>
                     <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Type de projet</label>
@@ -1259,7 +1258,7 @@ function ProjectFormHome() {
                   }}
                 >
                   {sending ? <span style={{ width: 15, height: 15, border: '2px solid rgba(5,5,5,.3)', borderTopColor: '#050505', borderRadius: '50%', animation: 'spin .6s linear infinite', display: 'inline-block' }} /> : <Send size={17} />}
-                  <HoverSlideText text="Recevoir mon devis en 24h" />
+                  <HoverSlideText text="Envoyer ma demande" />
                 </button>
               </motion.div>
             )}
@@ -1295,9 +1294,9 @@ function FAQSectionHome() {
                 <span style={{
                   width: 32, height: 32, flexShrink: 0, borderRadius: 9,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: isOpen ? 'rgba(136,202,83,.16)' : 'rgba(136,202,83,.08)',
-                  border: `1px solid ${isOpen ? 'rgba(136,202,83,.45)' : 'rgba(136,202,83,.2)'}`,
-                  color: '#88ca53', transition: 'background .25s, border-color .25s',
+                  background: isOpen ? 'rgba(90, 135, 56,.16)' : 'rgba(90, 135, 56,.08)',
+                  border: `1px solid ${isOpen ? 'rgba(90, 135, 56,.45)' : 'rgba(90, 135, 56,.2)'}`,
+                  color: '#5a8738', transition: 'background .25s, border-color .25s',
                 }}>
                   <HelpCircle size={15} />
                 </span>
@@ -1335,7 +1334,7 @@ export default function HomePageMobile() {
       <Testimonials />
       <GeoSectionHome />
       <ProjectFormHome />
-      <PageCTA message="Comme eux, donnez à votre activité la présence digitale qu'elle mérite." cta="Rejoindre nos clients" />
+      <PageCTA message="Comme eux, faites confiance à l'expertise d'Agro Véto Services Congo pour votre élevage et vos normes qualité." cta="Contacter notre équipe" />
     </div>
   )
 }

@@ -1,17 +1,17 @@
 import HomeResponsive from './HomeResponsive'
 import { FAQ_ITEMS } from '@/lib/data'
 
-const SITE_URL = 'https://akatech.vercel.app'
+const SITE_URL = 'https://agrovetoservices.cg'
 
 export const metadata = {
-  title: 'AKATech — Agence Web Abidjan | Sites, E-Commerce, SaaS',
-  description: "AKATech accompagne les entrepreneurs et PME en Côte d'Ivoire avec des solutions digitales sur-mesure : sites vitrines, e-commerce, API et fiches Google My Business. Devis gratuit en 24h.",
+  title: "AGRO VÉTO SERVICES CONGO — De la santé animale à l'excellence QHSE",
+  description: "Clinique vétérinaire 24h/24 & 7j/7, provenderie industrielle certifiée, poussins Cobb 500 et management QHSE à Pointe-Noire.",
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'AKATech — Agence Web Abidjan',
-    description: "Sites vitrines, e-commerce, SaaS, API et fiches Google My Business pour entrepreneurs ivoiriens.",
+    title: 'AGRO VÉTO SERVICES CONGO — Pointe-Noire',
+    description: "Clinique vétérinaire, provenderie certifiée et management QHSE en République du Congo.",
     url: SITE_URL,
-    locale: 'fr_CI', type: 'website', siteName: 'AKATech',
+    locale: 'fr_CG', type: 'website', siteName: 'Agro Véto Services',
   },
 }
 

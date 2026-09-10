@@ -1,6 +1,6 @@
 ﻿/* ═══════════════════════════════════════════════
    StaggeredMenu — AKATech (mobile)
-   Port du composant portfolio, accent #88ca53,
+   Port du composant portfolio, accent #5a8738,
    fond fixe dark (cohérent avec le thème mobile AKATech)
    ═══════════════════════════════════════════════ */
 
@@ -63,17 +63,17 @@
 .sm-toggle:hover {
   background: rgba(255,255,255,.20);
   transform: translate(-2px,-4px) rotate(-2deg) scale(1.03);
-  box-shadow: 5px 7px 0px #050505, 0 0 20px rgba(198,255,61,.4);
+  box-shadow: 5px 7px 0px #050505, 0 0 20px rgba(110, 159, 69,.4);
 }
 .sm-toggle:active { transform: translate(1px,1px) rotate(0deg) scale(.97); box-shadow: 1px 1px 0px #050505; }
 
 /* Une fois scrollé (header non transparent) → repasse au style vert (bordure/ombre restent neo-brutalist) */
 .sm-header--scrolled .sm-toggle {
-  background: rgba(136,202,83,.08);
+  background: rgba(90, 135, 56,.08);
   color: #f2ede8;
 }
 .sm-header--scrolled .sm-toggle:hover {
-  background: rgba(136,202,83,.16);
+  background: rgba(90, 135, 56,.16);
 }
 
 /* Light mode : le bouton passe vert foncé, lisible sur fond clair */
@@ -156,8 +156,8 @@
   box-shadow: -6px 0 0 #050505;
 }
 .sm-panel::-webkit-scrollbar { width: 3px; }
-.sm-panel::-webkit-scrollbar-thumb { background: #c6ff3d; border-radius: 999px; }
-.light-mode .sm-panel::-webkit-scrollbar-thumb { background: #5f9137; }
+.sm-panel::-webkit-scrollbar-thumb { background: #6e9f45; border-radius: 999px; }
+.light-mode .sm-panel::-webkit-scrollbar-thumb { background: #3d6023; }
 
 .sm-panel-inner {
   flex: 1;
@@ -181,10 +181,10 @@
 .sm-panel-logo-link {
   display: inline-flex;
   align-items: center;
-  color: #88ca53;
+  color: #5a8738;
   text-decoration: none;
 }
-.light-mode .sm-panel-logo-link { color: #5f9137; }
+.light-mode .sm-panel-logo-link { color: #3d6023; }
 
 .sm-panel-close {
   display: inline-flex;
@@ -194,8 +194,8 @@
   height: 44px;
   border-radius: 999px;
   border: 2px solid #050505;
-  background: rgba(136,202,83,.08);
-  color: #88ca53;
+  background: rgba(90, 135, 56,.08);
+  color: #5a8738;
   font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
@@ -203,15 +203,15 @@
   transition: background .2s, color .2s, transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s cubic-bezier(.34,1.56,.64,1);
 }
 .sm-panel-close:hover {
-  background: rgba(136,202,83,.18);
+  background: rgba(90, 135, 56,.18);
   transform: translate(-2px,-4px) rotate(90deg) scale(1.06);
-  box-shadow: 4px 5px 0px #050505, 0 0 18px rgba(198,255,61,.4);
+  box-shadow: 4px 5px 0px #050505, 0 0 18px rgba(110, 159, 69,.4);
 }
 .sm-panel-close:active { transform: translate(1px,1px) rotate(90deg) scale(.95); box-shadow: 1px 1px 0px #050505; }
 .light-mode .sm-panel-close {
   border-color: #050505;
   background: rgba(95,145,55,.08);
-  color: #5f9137;
+  color: #3d6023;
   box-shadow: 2px 2px 0px #050505;
 }
 .light-mode .sm-panel-close:hover {
@@ -236,7 +236,7 @@
   position: relative;
   overflow: hidden;
   line-height: 1;
-  border-bottom: 1px solid rgba(136,202,83,.1);
+  border-bottom: 1px solid rgba(90, 135, 56,.1);
 }
 .light-mode .sm-panel-itemWrap {
   border-bottom-color: rgba(95,145,55,.15);
@@ -263,9 +263,9 @@
 /* Light mode : texte vert foncé au lieu de blanc */
 .light-mode .sm-panel-item { color: #1a3a0a; }
 .sm-panel-item:hover,
-.sm-panel-item--active { color: #88ca53; }
+.sm-panel-item--active { color: #5a8738; }
 .light-mode .sm-panel-item:hover,
-.light-mode .sm-panel-item--active { color: #5f9137; }
+.light-mode .sm-panel-item--active { color: #3d6023; }
 
 .sm-panel-itemLabel {
   display: inline-block;
@@ -304,7 +304,7 @@
 .sm-panel-item--active .sm-panel-item-arrow {
   border-color: #050505;
   color: #050505;
-  background: linear-gradient(135deg, #c6ff3d, #88ca53);
+  background: linear-gradient(135deg, #6e9f45, #5a8738);
   opacity: 1;
   transform: rotate(50deg);
   box-shadow: 3px 3px 0px #050505;
@@ -312,7 +312,7 @@
 .light-mode .sm-panel-item:hover .sm-panel-item-arrow,
 .light-mode .sm-panel-item--active .sm-panel-item-arrow {
   border-color: #050505;
-  background: linear-gradient(135deg, #c6ff3d, #5f9137);
+  background: linear-gradient(135deg, #6e9f45, #3d6023);
   color: #f0f5ec;
   transform: rotate(50deg);
   box-shadow: 3px 3px 0px #050505;
@@ -329,7 +329,7 @@
   font-size: .22em;
   font-weight: 400;
   letter-spacing: .06em;
-  color: rgba(136,202,83,.55);
+  color: rgba(90, 135, 56,.55);
   opacity: var(--sm-num-opacity, 0);
   pointer-events: none;
   user-select: none;
@@ -340,7 +340,7 @@
 .sm-panel-footer {
   padding-top: 1.8rem;
   margin-top: 1.5rem;
-  border-top: 1px solid rgba(136,202,83,.14);
+  border-top: 1px solid rgba(90, 135, 56,.14);
 }
 .sm-panel-footer-sub {
   text-align: center;
@@ -409,7 +409,7 @@
   border-radius: 10px;
   border: 2px solid #050505;
   background: rgba(255,255,255,.12);
-  color: #88ca53;
+  color: #5a8738;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -419,30 +419,30 @@
   flex-shrink: 0;
 }
 .sm-header-theme:hover {
-  color: #88ca53;
+  color: #5a8738;
   background: rgba(255,255,255,.22);
   transform: translate(-2px,-4px) rotate(-8deg) scale(1.08);
-  box-shadow: 4px 5px 0px #050505, 0 0 16px rgba(198,255,61,.4);
+  box-shadow: 4px 5px 0px #050505, 0 0 16px rgba(110, 159, 69,.4);
 }
 .sm-header-theme:active { transform: translate(1px,1px) rotate(0deg) scale(.94); box-shadow: 1px 1px 0px #050505; }
 
 /* Scrolled → style vert (bordure/ombre restent neo-brutalist) */
 .sm-header--scrolled .sm-header-theme {
-  background: rgba(136, 202, 83, 0.07);
-  color: #88ca53;
+  background: rgba(90, 135, 56, 0.07);
+  color: #5a8738;
 }
 .sm-header--scrolled .sm-header-theme:hover {
-  color: #88ca53;
-  background: rgba(136, 202, 83, 0.12);
+  color: #5a8738;
+  background: rgba(90, 135, 56, 0.12);
 }
 
 .light-mode .sm-header-theme {
-  color: #88ca53;
+  color: #5a8738;
   border-color: #050505;
   box-shadow: 2px 2px 0px #050505;
   background: rgba(95, 145, 55, 0.07);
 }
-.light-mode .sm-header-theme:hover { color: #88ca53; box-shadow: 4px 4px 0px #050505; }
+.light-mode .sm-header-theme:hover { color: #5a8738; box-shadow: 4px 4px 0px #050505; }
 .light-mode .sm-header-theme:active { box-shadow: 1px 1px 0px #050505; }
 
 @media (max-width: 480px) {

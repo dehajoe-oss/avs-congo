@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
@@ -13,10 +13,10 @@ import './CardNav.css'
 
 /* ── Slogans cycle — navJAX ─────────────────────────── */
 const NAV_SLOGANS = [
-  "Des sites web qui\nfont grandir votre activité.",
-  "Votre croissance\ncommence en ligne.",
-  "Transformez votre\nprésence en opportunités.",
-  "Digital, local,\nrentable.",
+  "De la santé animale à\nl'excellence QHSE.",
+  "Clinique vétérinaire 24/7\n& Provenderie certifiée.",
+  "Poussins Cobb 500 &\nFormations certifiantes.",
+  "Partenaire agropastoral\nde pointe à Pointe-Noire.",
 ]
 
 function NavSlogan() {
@@ -46,12 +46,12 @@ function NavSlogan() {
 }
 
 /* ═══════════════════════════════════════════════
-   CardNav — AKATech (desktop uniquement)
+   CardNav — Agro Véto Services (desktop uniquement)
    Port fidèle du mockup akatech_UI.html :
    barre pill compacte → hamburger ouvre une grille
    de 3 cartes (Services / Réalisations / Agence)
    avec timeline GSAP (hauteur de la nav + stagger
-   cards). Palette émeraude AKATech.
+   cards). Palette émeraude Agro Véto Services.
    ═══════════════════════════════════════════════ */
 
 const ArrowIcon = () => (
@@ -149,10 +149,10 @@ export default function CardNav() {
         '--nav-bg': open ? (T.light ? 'rgba(248,248,248,0.88)' : 'rgba(6,14,9,0.85)') : 'transparent',
         '--nav-blur': open ? 'blur(20px) saturate(160%)' : 'none',
         
-        '--nav-hline': '#88ca53',
+        '--nav-hline': '#5a8738',
         '--nav-btn-border': !open ? 'rgba(255,255,255,0.3)' : 'rgba(242,237,232,.15)',
         '--nav-btn-bg': !open ? 'rgba(0,0,0,0.18)' : 'rgba(255,255,255,.05)',
-        '--nav-btn-color': '#88ca53',
+        '--nav-btn-color': '#5a8738',
         '--card1-bg': T.light ? '#f0eeeb' : '#0d1a11',
         '--card2-bg': T.light ? '#eaf5e2' : '#0a1f10',
         '--card3-bg': T.light ? '#ffffff' : '#060e09',
@@ -162,7 +162,7 @@ export default function CardNav() {
         '--card3-border': T.light ? '2px solid #050505' : '2px solid #050505',
         '--card-shadow': T.light ? '4px 4px 0px #050505' : '4px 4px 0px #050505',
         '--card3-label': T.light ? 'rgba(10,20,10,0.5)' : 'rgba(242,237,232,0.5)',
-        '--card1-link-hover': T.light ? '#2f6a17' : '#c6ff3d',
+        '--card1-link-hover': T.light ? '#2f6a17' : '#6e9f45',
         '--theme-green': T.green,
       }}>
         <div className="aka-nav-top">
@@ -172,7 +172,7 @@ export default function CardNav() {
           </button>
 
           <TransitionLink href="/" className="aka-nav-logo" onClick={closeNav}>
-            <Image src="/images/logo.webp" alt="AKATech" width={47} height={50} style={{ objectFit: 'contain' }} priority />
+            <Image src="/images/logo.webp" alt="Agro Véto Services" width={47} height={50} style={{ objectFit: 'contain' }} priority />
           </TransitionLink>
 
           <div className="aka-nav-right">
@@ -189,38 +189,40 @@ export default function CardNav() {
             <button onClick={T.toggle} className="aka-theme-btn" title={T.light ? 'Mode sombre' : 'Mode clair'} type="button">
               {T.light ? <Moon size={13} /> : <Sun size={13} />}
             </button>
-            <a href="https://wa.me/2250142507750" target="_blank" rel="noreferrer" className="btn-raised btn-sm">
-              <HoverSlideText text="DEMARRER MON PROJET" />
+            <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-raised btn-sm">
+              <HoverSlideText text="CONTACT WHATSAPP" />
             </a>
           </div>
         </div>
 
         <div className="aka-nav-content" ref={contentRef}>
           <div className="aka-nav-card aka-card-1" ref={el => cardsRef.current[0] = el}>
-            <div className="aka-card-label">AKATech studio.</div>
+            <div className="aka-card-label">AGRO VÉTO SERVICES</div>
             <div className="aka-card-brand">
               <TransitionLink href="/" onClick={closeNav} className="aka-card-logo-link" aria-label="Retour à l'accueil">
-                <Image src="/images/logo.webp" alt="AKATech" width={87} height={92} style={{ objectFit: 'contain' }} />
+                <Image src="/images/logo.webp" alt="Agro Véto Services" width={87} height={92} style={{ objectFit: 'contain' }} />
               </TransitionLink>
               <NavSlogan />
             </div>
           </div>
 
           <div className="aka-nav-card aka-card-2" ref={el => cardsRef.current[1] = el}>
-            <div className="aka-card-label">Nos réalisations</div>
+            <div className="aka-card-label">Prestations & Soins</div>
             <div className="aka-card-links">
-              <CardLinkWithGhost href="/projects" label="Portfolio" sub="Projets sélectionnés" onClick={closeNav} />
-              <CardLinkWithGhost href="/pricing" label="Tarifs" sub="Devis transparents" onClick={closeNav} />
-              <CardLinkWithGhost href="/blog" label="Blog" sub="Conseils & actualités" onClick={closeNav} />
+              <CardLinkWithGhost href="/clinique" label="Clinique" sub="Urgences 24/7 & Soins" onClick={closeNav} />
+              <CardLinkWithGhost href="/formations" label="Formations" sub="Fermes-Écoles & Certificats" onClick={closeNav} />
+              <CardLinkWithGhost href="/pricing" label="Boutique" sub="Poussins Cobb 500 & Provende" onClick={closeNav} />
             </div>
           </div>
 
           <div className="aka-nav-card aka-card-3" ref={el => cardsRef.current[2] = el}>
-            <div className="aka-card-label">Le Studio.</div>
+            <div className="aka-card-label">L'Entreprise</div>
             <div className="aka-card-links">
-              <CardLinkWithGhost href="/services" label="Service" sub="Ce que nous proposons" onClick={closeNav} />
-              <CardLinkWithGhost href="/about" label="À propos" sub="Notre équipe, Abidjan" onClick={closeNav} />
-              <CardLinkWithGhost href="/contact" label="Contact" sub="Parlons de ton projet" onClick={closeNav} />
+              <CardLinkWithGhost href="/services" label="Nos 6 Pôles" sub="Santé, Provende, QHSE" onClick={closeNav} />
+              <CardLinkWithGhost href="/about" label="À Propos" sub="Dr POUTYA & Direction" onClick={closeNav} />
+              <CardLinkWithGhost href="/projects" label="Réalisations" sub="Cas clients & Résultats" onClick={closeNav} />
+              <CardLinkWithGhost href="/blog" label="Blog" sub="Conseils & Guides d'élevage" onClick={closeNav} />
+              <CardLinkWithGhost href="/contact" label="Contact" sub="Clinique & Siège Socoprise" onClick={closeNav} />
             </div>
           </div>
         </div>

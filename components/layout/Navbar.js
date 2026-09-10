@@ -1,16 +1,18 @@
-﻿'use client'
+'use client'
 import { usePathname } from 'next/navigation'
 import CardNav from './CardNav'
 import StaggeredMenu from './StaggeredMenu'
 
 const NAV_LINKS = [
-  { label: 'Accueil',      href: '/'         },
-  { label: 'À propos',     href: '/about'    },
-  { label: 'Services',     href: '/services' },
-  { label: 'Réalisations', href: '/projects' },
-  { label: 'Tarifs',       href: '/pricing'  },
-  { label: 'Blog',         href: '/blog'     },
-  { label: 'Contact',      href: '/contact'  },
+  { label: 'Accueil',      href: '/'           },
+  { label: 'À Propos',     href: '/about'      },
+  { label: 'Nos 6 Pôles',  href: '/services'   },
+  { label: 'Boutique',     href: '/pricing'    },
+  { label: 'Clinique',     href: '/clinique'   },
+  { label: 'Formations',   href: '/formations' },
+  { label: 'Réalisations', href: '/projects'   },
+  { label: 'Blog',         href: '/blog'       },
+  { label: 'Contact',      href: '/contact'    },
 ]
 
 export default function Navbar() {

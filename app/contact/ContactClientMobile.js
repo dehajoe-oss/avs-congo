@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import {
@@ -82,7 +82,7 @@ function HeroContact() {
       {/* Layer FORE — particules */}
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#88ca53', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#5a8738', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -97,10 +97,10 @@ function ContactChannels() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   const CHANNELS = [
-    { icon: MessageCircle, label: 'WhatsApp', val: '+225 01 42 50 77 50', href: 'https://wa.me/2250142507750', color: '#25d366', desc: 'Réponse en moins de 2h' },
-    { icon: Mail, label: 'Email', val: 'wthomasss06@gmail.com', href: 'mailto:wthomasss06@gmail.com', color: '#88ca53', desc: 'Réponse sous 24h' },
-    { icon: Phone, label: 'Téléphone', val: '+225 01 42 50 77 50', href: 'tel:+2250142507750', color: '#88ca53', desc: 'Lun–Ven, 8h–18h' },
-    { icon: MapPin, label: 'Localisation', val: "Abidjan, Côte d'Ivoire", href: null, color: '#88ca53', desc: 'Déplacements possibles' },
+    { icon: MessageCircle, label: 'WhatsApp', val: '+242 06 000 00 00', href: 'https://wa.me/242060000000', color: '#25d366', desc: 'Réponse en moins de 2h' },
+    { icon: Mail, label: 'Email', val: 'contact@agrovetoservices.cg', href: 'mailto:contact@agrovetoservices.cg', color: '#5a8738', desc: 'Réponse sous 24h' },
+    { icon: Phone, label: 'Téléphone', val: '+242 06 000 00 00', href: 'tel:+242060000000', color: '#5a8738', desc: 'Lun–Ven, 8h–18h' },
+    { icon: MapPin, label: 'Localisation', val: "Quartier Socoprise, Pointe-Noire (Congo)", href: null, color: '#5a8738', desc: 'Déplacements possibles' },
   ]
 
   return (
@@ -150,18 +150,18 @@ function ContactChannels() {
 
         {/* Social row */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .5 }}
-          style={{ marginTop: '1.5rem', padding: '1rem 1.3rem', borderRadius: 14, background: 'rgba(136,202,83,.04)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          style={{ marginTop: '1.5rem', padding: '1rem 1.3rem', borderRadius: 14, background: 'rgba(90, 135, 56,.04)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.78rem', fontWeight: 600, color: T.textMuted }}>Réseaux sociaux</span>
           <div style={{ display: 'flex', gap: '.6rem' }}>
             {[
               { Icon: FacebookIcon, href: 'https://web.facebook.com/profile.php?id=61577494705852', label: 'Facebook', color: '#1877f2' },
-              { Icon: WhatsAppIcon, href: 'https://wa.me/2250142507750', label: 'WhatsApp', color: '#25d366' },
-              { Icon: Globe, href: 'https://mbolloaka-dev.vercel.app/', label: 'Portfolio', color: '#88ca53' },
+              { Icon: WhatsAppIcon, href: 'https://wa.me/242060000000', label: 'WhatsApp', color: '#25d366' },
+              { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#5a8738' },
             ].map(({ Icon, href, label, color }) => (
               <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
-                style={{ width: 36, height: 36, borderRadius: 10, background: T.light ? 'rgba(0,0,0,.05)' : 'rgba(136,202,83,.06)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.textSub, transition: 'all .2s' }}
+                style={{ width: 36, height: 36, borderRadius: 10, background: T.light ? 'rgba(0,0,0,.05)' : 'rgba(90, 135, 56,.06)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.textSub, transition: 'all .2s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = color; e.currentTarget.style.borderColor = color; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                onMouseLeave={e => { e.currentTarget.style.background = T.light ? 'rgba(0,0,0,.05)' : 'rgba(136,202,83,.06)'; e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.textSub; e.currentTarget.style.transform = 'none' }}>
+                onMouseLeave={e => { e.currentTarget.style.background = T.light ? 'rgba(0,0,0,.05)' : 'rgba(90, 135, 56,.06)'; e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.textSub; e.currentTarget.style.transform = 'none' }}>
                 <Icon size={15} />
               </a>
             ))}
@@ -174,7 +174,7 @@ function ContactChannels() {
 
 function ChannelIcon({ Icon, color, T }) {
   return (
-    <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(136,202,83,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+    <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(90, 135, 56,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
       <Icon size={19} style={{ color }} />
     </div>
   )
@@ -201,7 +201,7 @@ function ProjectForm() {
 
   const inputStyle = {
     width: '100%', padding: '.8rem .95rem', borderRadius: 10,
-    background: T.light ? '#ffffff' : 'rgba(136,202,83,.04)',
+    background: T.light ? '#ffffff' : 'rgba(90, 135, 56,.04)',
     border: `1px solid ${T.light ? 'rgba(0,0,0,.15)' : T.border}`,
     color: T.light ? '#111111' : 'rgba(255,255,255,.85)',
     fontFamily: "'JetBrains Mono',monospace", fontSize: '.88rem',
@@ -261,8 +261,8 @@ function ProjectForm() {
               {sent ? (
                 <motion.div key="success" initial={{ opacity: 0, scale: .9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: 'clamp(2rem,6vw,3rem) 1rem' }}>
                   <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }}
-                    style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(136,202,83,.15)', border: '2px solid rgba(136,202,83,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                    <CheckCircle size={36} style={{ color: '#88ca53' }} />
+                    style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(90, 135, 56,.15)', border: '2px solid rgba(90, 135, 56,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                    <CheckCircle size={36} style={{ color: '#5a8738' }} />
                   </motion.div>
                   <h3 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.1rem,3vw,1.4rem)', color: T.textMain, marginBottom: '.8rem' }}>Message envoyé !</h3>
                   <p style={{ color: T.textSub, fontSize: '.88rem', lineHeight: 1.7 }}>
@@ -275,14 +275,14 @@ function ProjectForm() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: '1rem', marginBottom: '1rem' }}>
                     <div>
                       <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.06em', textTransform: 'uppercase' }}>Votre nom *</label>
-                      <input style={inputStyle} placeholder="Elvis Aka" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#88ca53'; e.target.style.boxShadow = '0 0 0 3px rgba(136,202,83,.12)' }}
+                      <input style={inputStyle} placeholder="Dr POUTYA" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                        onFocus={e => { e.target.style.borderColor = '#5a8738'; e.target.style.boxShadow = '0 0 0 3px rgba(90, 135, 56,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                     <div>
                       <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.06em', textTransform: 'uppercase' }}>Email *</label>
                       <input type="email" style={inputStyle} placeholder="vous@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#88ca53'; e.target.style.boxShadow = '0 0 0 3px rgba(136,202,83,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#5a8738'; e.target.style.boxShadow = '0 0 0 3px rgba(90, 135, 56,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                   </div>
@@ -290,14 +290,14 @@ function ProjectForm() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: '1rem', marginBottom: '1rem' }}>
                     <div>
                       <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.06em', textTransform: 'uppercase' }}>WhatsApp / Tél</label>
-                      <input style={inputStyle} placeholder="+225 07 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#88ca53'; e.target.style.boxShadow = '0 0 0 3px rgba(136,202,83,.12)' }}
+                      <input style={inputStyle} placeholder="+242 06 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+                        onFocus={e => { e.target.style.borderColor = '#5a8738'; e.target.style.boxShadow = '0 0 0 3px rgba(90, 135, 56,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                     <div>
                       <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.06em', textTransform: 'uppercase' }}>Type de projet</label>
                       <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#88ca53'; e.target.style.boxShadow = '0 0 0 3px rgba(136,202,83,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#5a8738'; e.target.style.boxShadow = '0 0 0 3px rgba(90, 135, 56,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }}>
                         <option value="">Choisir...</option>
                         <option value="site-vitrine">Conception de Site Web</option>
@@ -315,7 +315,7 @@ function ProjectForm() {
                   <div style={{ marginBottom: '1rem' }}>
                     <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.06em', textTransform: 'uppercase' }}>Budget estimé</label>
                     <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.budget} onChange={e => setForm(f => ({ ...f, budget: e.target.value }))}
-                      onFocus={e => { e.target.style.borderColor = '#88ca53'; e.target.style.boxShadow = '0 0 0 3px rgba(136,202,83,.12)' }}
+                      onFocus={e => { e.target.style.borderColor = '#5a8738'; e.target.style.boxShadow = '0 0 0 3px rgba(90, 135, 56,.12)' }}
                       onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }}>
                       <option value="">Sélectionner...</option>
                       <option>Moins de 100 000 FCFA</option>
@@ -330,9 +330,9 @@ function ProjectForm() {
                   <div style={{ marginBottom: '1.8rem' }}>
                     <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.06em', textTransform: 'uppercase' }}>Décrivez votre projet *</label>
                     <textarea rows={5} style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }}
-                      placeholder="Ex: J'ai une boutique de vêtements à Abidjan et je veux vendre en ligne avec paiement Mobile Money..."
+                      placeholder="Ex: J'ai un élevage à Pointe-Noire et je souhaite commander 500 poussins Cobb 500 et programmer un audit sanitaire..."
                       value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                      onFocus={e => { e.target.style.borderColor = '#88ca53'; e.target.style.boxShadow = '0 0 0 3px rgba(136,202,83,.12)' }}
+                      onFocus={e => { e.target.style.borderColor = '#5a8738'; e.target.style.boxShadow = '0 0 0 3px rgba(90, 135, 56,.12)' }}
                       onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                   </div>
 
@@ -371,7 +371,7 @@ export default function ContactPage() {
       <ProjectForm />
       <ContactChannels />
       <ConversionMarquee />
-      <PageCTA message="Prêt à transformer votre idée en réalité digitale ? Parlons-en maintenant." cta="Démarrer sur WhatsApp" />
+      <PageCTA message="Prêt à faire décoller votre élevage ou certifier votre unité agroalimentaire ? Échangeons dès aujourd'hui." cta="Démarrer sur WhatsApp" />
     </div>
   )
 }

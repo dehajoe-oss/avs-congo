@@ -15,8 +15,8 @@
 .pg-grid-overlay {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(136, 202, 83, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(136, 202, 83, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(90, 135, 56, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 135, 56, 0.045) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -25,7 +25,7 @@
   width: min(900px, 90vw); height: min(900px, 90vw);
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(136, 202, 83, 0.1) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(90, 135, 56, 0.1) 0%, transparent 68%);
   pointer-events: none;
 }
 
@@ -37,7 +37,7 @@
 .pg-eyebrow {
   font-family: 'JetBrains Mono', monospace;
   font-size: .64rem; letter-spacing: .4em; text-transform: uppercase;
-  color: rgba(136, 202, 83, 0.7);
+  color: rgba(90, 135, 56, 0.7);
 }
 .pg-title {
   font-family: 'Anton', sans-serif; font-weight: 400;
@@ -46,7 +46,7 @@
   color: #f5f5f3;
   margin-top: .55rem;
 }
-.pg-title em { font-style: normal; color: #88ca53; }
+.pg-title em { font-style: normal; color: #5a8738; }
 
 .pg-hint {
   position: fixed; bottom: 2.2rem; left: 0; right: 0;
@@ -55,14 +55,14 @@
   font-size: .68rem; letter-spacing: .04em;
   color: rgba(255, 255, 255, 0.38);
 }
-.pg-hint strong { color: rgba(136, 202, 83, 0.8); }
+.pg-hint strong { color: rgba(90, 135, 56, 0.8); }
 
 .pg-count {
   position: fixed; top: 108px; right: 5%; z-index: 5;
   font-family: 'JetBrains Mono', monospace; font-size: .72rem;
   color: rgba(255, 255, 255, 0.35); text-align: right; pointer-events: none;
 }
-.pg-count strong { color: #88ca53; font-size: 1.3rem; display: block; }
+.pg-count strong { color: #5a8738; font-size: 1.3rem; display: block; }
 
 .pg-back-btn {
   position: fixed; top: 108px; left: 5%; z-index: 6;
@@ -71,13 +71,13 @@
   font-size: .68rem; font-weight: 900; font-style: italic; letter-spacing: .06em; text-transform: uppercase;
   color: rgba(255, 255, 255, 0.65);
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(136, 202, 83, 0.25);
+  border: 1px solid rgba(90, 135, 56, 0.25);
   border-radius: 999px;
   padding: .55rem 1.1rem;
   cursor: pointer;
   transition: all .25s ease;
 }
-.pg-back-btn:hover { color: #88ca53; border-color: rgba(136, 202, 83, 0.6); background: rgba(136, 202, 83, 0.08); }
+.pg-back-btn:hover { color: #5a8738; border-color: rgba(90, 135, 56, 0.6); background: rgba(90, 135, 56, 0.08); }
 
 /* ── Scène 3D ─────────────────────────────────────── */
 .pg-scene {
@@ -101,7 +101,7 @@
   margin-left: calc(var(--node-w) / -2);
   margin-top: calc(var(--node-h) / -2);
   border-radius: 10px; overflow: hidden;
-  border: 1px solid rgba(136, 202, 83, 0.32);
+  border: 1px solid rgba(90, 135, 56, 0.32);
   background: #0a1710;
   cursor: pointer;
   transform-style: preserve-3d;
@@ -110,8 +110,8 @@
   will-change: transform;
 }
 .pg-node:hover {
-  border-color: rgba(136, 202, 83, 0.95);
-  box-shadow: 0 0 34px rgba(136, 202, 83, 0.4);
+  border-color: rgba(90, 135, 56, 0.95);
+  box-shadow: 0 0 34px rgba(90, 135, 56, 0.4);
   z-index: 60 !important;
 }
 .pg-node img {
@@ -136,7 +136,7 @@
   transition: opacity .3s ease, transform .3s ease;
 }
 .pg-node-label span {
-  display: block; font-weight: 500; font-size: .56rem; color: #88ca53;
+  display: block; font-weight: 500; font-size: .56rem; color: #5a8738;
   text-transform: uppercase; letter-spacing: .04em; margin-top: 2px;
 }
 .pg-node:hover .pg-node-label { opacity: 1; transform: translateY(0); }
@@ -144,7 +144,7 @@
 .pg-live-dot {
   position: absolute; top: .5rem; right: .5rem;
   width: 6px; height: 6px; border-radius: 50%;
-  background: #88ca53; box-shadow: 0 0 8px 1px rgba(136,202,83,.8);
+  background: #5a8738; box-shadow: 0 0 8px 1px rgba(90, 135, 56,.8);
 }
 .pg-live-dot.is-offline { background: rgba(255,255,255,.35); box-shadow: none; }
 
@@ -168,7 +168,7 @@
 }
 .pg-mobile-card a {
   display: inline-flex; align-items: center; gap: .5rem;
-  background: linear-gradient(135deg, #88ca53, #5a9e34);
+  background: linear-gradient(135deg, #5a8738, #5a9e34);
   color: #04140a; font-family: 'JetBrains Mono', monospace;
   font-weight: 700; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase;
   padding: .85rem 1.6rem; border-radius: 999px; text-decoration: none;

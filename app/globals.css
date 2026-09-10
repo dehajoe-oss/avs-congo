@@ -2,17 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,900&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Bitcount+Prop+Single:wght@700&display=swap');
 
 :root {
-  --g1: #88ca53;
-  --g2: #7db94c;
-  --g3: #5f9137;
-  --g5: #b3ee85;
+  --g1: #5a8738;
+  --g2: #4d752f;
+  --g3: #3d6023;
+  --g5: #7ea959;
 
   /* ── Maximalisme pop vitaminé — palette élargie, toujours vert/noir/blanc ── */
-  --pop-lime: #c6ff3d;
-  --pop-lime2: #8fe814;
+  --pop-lime: #6e9f45;
+  --pop-lime2: #5a8738;
   --pop-black: #050505;
   --pop-forest: #0a2410;
-  --pop-lime-glow: rgba(198,255,61,.42);
+  --pop-lime-glow: rgba(110, 159, 69,.42);
 
   /* ── Backgrounds — 1 variable de base + 1 variante carte, par mode ── */
   --bg-dark: #060e09;
@@ -20,10 +20,10 @@
   --bg-light: #f8f8f8;
   --bg-light-card: #ffffff;
 
-  --border: rgba(136,202,83,.14);
-  --border2: rgba(136,202,83,.28);
-  --glow: 0 0 24px rgba(136,202,83,.18);
-  --glow-lg: 0 0 48px rgba(136,202,83,.22), 0 0 96px rgba(136,202,83,.08);
+  --border: rgba(90, 135, 56,.14);
+  --border2: rgba(90, 135, 56,.28);
+  --glow: 0 0 24px rgba(90, 135, 56,.18);
+  --glow-lg: 0 0 48px rgba(90, 135, 56,.22), 0 0 96px rgba(90, 135, 56,.08);
   --text-main: rgba(255,255,255,.85);
   --text-sub: rgba(255,255,255,.5);
   --text-muted: rgba(255,255,255,.3);
@@ -67,9 +67,9 @@ img { max-width: 100%; display: block; object-fit: cover; }
 /* Scrollbar */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg-dark); }
-::-webkit-scrollbar-thumb { background: #c6ff3d; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #6e9f45; border-radius: 2px; }
 body.light-mode ::-webkit-scrollbar-track { background: #f0f0f0; }
-body.light-mode ::-webkit-scrollbar-thumb { background: #5f9137; }
+body.light-mode ::-webkit-scrollbar-thumb { background: #3d6023; }
 
 /* Card — minimaliste */
 .sku-card {
@@ -196,7 +196,7 @@ body.light-mode .btn-raised.btn-xl:active, body.light-mode .btn-ghost.btn-xl:act
 }
 
 .btn-ghost:hover {
-  background: rgba(198,255,61,.1);
+  background: rgba(110, 159, 69,.1);
   transform: translate(-2px,-5px) rotate(-1.5deg) scale(1.04);
   box-shadow: 6px 9px 0px var(--pop-black), 0 0 28px var(--pop-lime-glow);
 }
@@ -206,7 +206,7 @@ body.light-mode .btn-raised.btn-xl:active, body.light-mode .btn-ghost.btn-xl:act
 }
 
 body.light-mode .btn-raised {
-  background: linear-gradient(135deg, var(--pop-lime) 0%, #5f9137 100%);
+  background: linear-gradient(135deg, var(--pop-lime) 0%, #3d6023 100%);
   color: var(--pop-black);
   border-color: var(--pop-black);
   box-shadow: 4px 4px 0px var(--pop-black);
@@ -260,14 +260,14 @@ body.light-mode .btn-ghost:active {
     transition: border-color .22s, color .22s, background .22s, transform .22s, box-shadow .22s;
   }
   .btn-ghost:hover {
-    background: rgba(198,255,61,.08);
+    background: rgba(110, 159, 69,.08);
     transform: translateY(-2px);
     box-shadow: 4px 5px 0px var(--pop-black), 0 0 22px var(--pop-lime-glow);
   }
   .btn-ghost:active { transform: translateY(0); box-shadow: 2px 2px 0px var(--pop-black); }
 
   body.light-mode .btn-raised {
-    background: linear-gradient(135deg, var(--pop-lime) 0%, #5f9137 100%);
+    background: linear-gradient(135deg, var(--pop-lime) 0%, #3d6023 100%);
     color: var(--pop-black);
     border: 3px solid var(--pop-black);
     box-shadow: 3px 3px 0px var(--pop-black);
@@ -344,7 +344,7 @@ body.light-mode .btn-ghost:active {
   font: inherit;
   line-height: inherit;
   letter-spacing: inherit;
-  -webkit-text-stroke: 1.5px rgba(198,255,61,.4);
+  -webkit-text-stroke: 1.5px rgba(110, 159, 69,.4);
   transform: translate(.22em, .12em) scale(1.025);
 }
 body.light-mode .ghost-title-wrap {
@@ -389,7 +389,7 @@ body.light-mode .ghost-title-wrap {
   bottom: 1rem;
   border: 2px solid #fff;
   border-radius: 18px;
-  box-shadow: 4px 4px 0px #050505, 0 0 34px rgba(198,255,61,.16);
+  box-shadow: 4px 4px 0px #050505, 0 0 34px rgba(110, 159, 69,.16);
 }
 @media (min-width: 640px) {
   .cookie-consent-card {
@@ -425,7 +425,7 @@ body.light-mode .ghost-title-wrap {
 
 .cookie-btn-raised { background: linear-gradient(135deg, var(--pop-lime) 0%, var(--g1) 100%); color: var(--pop-black); }
 .cookie-btn-ghost { background: transparent; color: var(--pop-lime); border-color: var(--pop-lime); }
-.cookie-btn-ghost:hover { background: rgba(198,255,61,.1); }
+.cookie-btn-ghost:hover { background: rgba(110, 159, 69,.1); }
 
 /* ── LAYOUT COLUMNS
    --body-indent = décalage du "trait jaune" par rapport au container.
@@ -463,7 +463,7 @@ body.light-mode .ghost-title-wrap {
 
 /* Mode light */
 body.light-mode .text-gradient {
-  background: linear-gradient(100deg, var(--g1) 0%, #5f9137 60%, #3f6b26 100%);
+  background: linear-gradient(100deg, var(--g1) 0%, #3d6023 60%, #3f6b26 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -471,7 +471,7 @@ body.light-mode .text-gradient {
 
 /* Grid background */
 .grid-bg {
-  background-image: linear-gradient(rgba(136,202,83,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(136,202,83,.04) 1px,transparent 1px);
+  background-image: linear-gradient(rgba(90, 135, 56,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(90, 135, 56,.04) 1px,transparent 1px);
   background-size: 50px 50px;
 }
 
@@ -776,25 +776,25 @@ body.light-mode .cta-circle-label { color: #111111; }
 }
 body.light-mode .cta-circle-arrow {
   border-color: rgba(95,145,55,.3);
-  color: #5f9137;
+  color: #3d6023;
 }
 .cta-circle-arrow {
   transform: rotate(25deg);
 }
 .cta-circle-btn:hover .cta-circle-arrow {
   border-color: var(--g1);
-  background: linear-gradient(135deg, #c6ff3d, var(--g1));
+  background: linear-gradient(135deg, #6e9f45, var(--g1));
   color: #020a05;
   transform: rotate(50deg);
 }
 body.light-mode .cta-circle-btn:hover .cta-circle-arrow {
-  border-color: #5f9137;
-  background: linear-gradient(135deg, #c6ff3d, #5f9137);
+  border-color: #3d6023;
+  background: linear-gradient(135deg, #6e9f45, #3d6023);
   color: #f0f5ec;
   transform: rotate(50deg);
 }
 .cta-circle-btn:hover .cta-circle-label { color: var(--g1); }
-body.light-mode .cta-circle-btn:hover .cta-circle-label { color: #5f9137; }
+body.light-mode .cta-circle-btn:hover .cta-circle-label { color: #3d6023; }
 
 /* ══════════════════════════════════════
    TRAIN UNDERLINE — animation SVG vert
@@ -821,7 +821,7 @@ svg[style*="bottom: -10px"] g {
 
 /* Smooth card focus glow */
 [data-project-card]:focus-within .card-inner {
-  box-shadow: 0 0 40px rgba(136,202,83,.2);
+  box-shadow: 0 0 40px rgba(90, 135, 56,.2);
 }
 
 /* Modal scroll */

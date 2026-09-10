@@ -2,18 +2,18 @@ import BlogResponsive from './BlogResponsive'
 import { BreadcrumbJsonLd } from '../seo/StructuredData'
 
 export const metadata = {
-  title: 'Blog — AKATech | Conseils Digitaux pour Entrepreneurs Africains',
-  description: "Stratégie digitale, SEO, e-commerce et développement web — articles concrets pour entrepreneurs ivoiriens.",
+  title: 'Conseils & Actualités — Agro Véto Services | Santé Animale & Élevage Congo',
+  description: "Conseils pratiques en aviculture, prophylaxie vétérinaire, nutrition animale et normes HACCP pour éleveurs et PME au Congo.",
   alternates: { canonical: '/blog' },
-  openGraph: { title: 'Blog — AKATech', description: "Conseils concrets en stratégie digitale, SEO et e-commerce pour entrepreneurs ivoiriens.", locale: 'fr_CI', type: 'website', siteName: 'AKATech', url: 'https://akatech.vercel.app/blog' },
+  openGraph: { title: 'Conseils & Actualités — Agro Véto Services', description: "Conseils pratiques en aviculture, prophylaxie vétérinaire, nutrition animale et normes HACCP au Congo.", locale: 'fr_CG', type: 'website', siteName: 'Agro Véto Services', url: 'https://agrovetoservices.cg/blog' },
 }
 
 export default function Page() {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: 'Accueil', url: 'https://akatech.vercel.app/' },
-        { name: 'Blog', url: 'https://akatech.vercel.app/blog' },
+        { name: 'Accueil', url: 'https://agrovetoservices.cg/' },
+        { name: 'Blog', url: 'https://agrovetoservices.cg/blog' },
       ]} />
       <BlogResponsive />
     </>

@@ -2,20 +2,26 @@ import ContactResponsive from './ContactResponsive'
 import { BreadcrumbJsonLd } from '../seo/StructuredData'
 
 export const metadata = {
-  title: 'Contact — AKATech | Devis Gratuit en 24h',
-  description: "Contactez AKATech pour un devis gratuit. WhatsApp, email ou formulaire — réponse en moins de 24h.",
+  title: 'Contact & Urgences 24/7 — Agro Véto Services | Pointe-Noire, Congo',
+  description: "Contactez Agro Véto Services Congo. Clinique vétérinaire 24h/24, commandes de poussins, provenderie et formations. WhatsApp ou au siège Socoprise.",
   alternates: { canonical: '/contact' },
-  openGraph: { title: 'Contact — AKATech', description: "Devis gratuit en 24h pour votre projet web à Abidjan.", locale: 'fr_CI', type: 'website', siteName: 'AKATech', url: 'https://akatech.vercel.app/contact' },
+  openGraph: { title: 'Contact — Agro Véto Services', description: "Clinique vétérinaire 24/7 et complexe agropastoral à Pointe-Noire, République du Congo.", locale: 'fr_CG', type: 'website', siteName: 'Agro Véto Services', url: 'https://agrovetoservices.cg/contact' },
 }
 
 const CONTACT_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
   about: {
-    '@type': 'ProfessionalService',
-    name: 'AKATech',
-    telephone: '+225-01-42-50-77-50',
-    email: 'wthomasss06@gmail.com',
+    '@type': 'VeterinaryCare',
+    name: 'AGRO VÉTO SERVICES CONGO S.A.R.L.U.',
+    telephone: '+242 06 000 00 00',
+    email: 'contact@agrovetoservices.cg',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Quartier Socoprise, Avenue Nelson Mandela, Rue Bissoute',
+      addressLocality: 'Pointe-Noire',
+      addressCountry: 'CG',
+    },
   },
 }
 
@@ -24,8 +30,8 @@ export default function Page() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(CONTACT_JSON_LD) }} />
       <BreadcrumbJsonLd items={[
-        { name: 'Accueil', url: 'https://akatech.vercel.app/' },
-        { name: 'Contact', url: 'https://akatech.vercel.app/contact' },
+        { name: 'Accueil', url: 'https://agrovetoservices.cg/' },
+        { name: 'Contact', url: 'https://agrovetoservices.cg/contact' },
       ]} />
       <ContactResponsive />
     </>

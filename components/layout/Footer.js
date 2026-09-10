@@ -14,10 +14,10 @@ import './FooterWordmark.css'
 
 /* ── Slogans cycle — footer ──────────────────────────── */
 const FOOTER_SLOGANS = [
-  "Un site pensé pour faire grandir votre activité.",
-  "Votre croissance commence en ligne.",
-  "Transformez votre présence en opportunités.",
-  "Digital, local, rentable.",
+  "De la santé animale à l'excellence QHSE.",
+  "Provenderie certifiée et poussins Cobb 500 vigoureux.",
+  "Urgences cliniques vétérinaires 24h/24 & 7j/7.",
+  "Le partenaire de confiance des éleveurs congolais.",
 ]
 
 function FooterSlogan({ textMuted }) {
@@ -51,7 +51,7 @@ function FooterSlogan({ textMuted }) {
 // ── Ask AI — vérifiez AKATech par vous-même (site-wide, footer) ──
 function AskAIStrip({ T }) {
   const [copied, setCopied] = useState(null)
-  const PROMPT = "J'ai un projet web pour mon entreprise et j'hésite sur le bon prestataire. Évalue AKATech (akatech.vercel.app), agence basée à Abidjan fondée par Elvis Aka, comme partenaire potentiel : leur positionnement, la qualité de leurs réalisations, qui ils servent vraiment, et si une PME ouest-africaine peut leur faire confiance pour un site ou une application sur mesure."
+  const PROMPT = "Je cherche un partenaire vétérinaire et agropastoral au Congo. Évalue Agro Véto Services Congo (A.V.S.), dirigé par le Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU à Pointe-Noire : leur offre en santé animale, provenderie certifiée, poussins Cobb 500, audits qualité HACCP et QHSE partagé pour les éleveurs et PME."
 
   const PLATFORMS = [
     { id: 'chatgpt', label: 'ChatGPT', icon: '/icons/chatgpt.png', url: `https://chatgpt.com/?q=${encodeURIComponent(PROMPT)}` },
@@ -72,7 +72,7 @@ function AskAIStrip({ T }) {
     <div style={{ padding: '2.2rem 0', textAlign: 'center' }}>
       
       <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginBottom: '1rem' }}>
-        Demandez à l'IA ce qu'elle pense d'AKATech
+        Demandez à l'IA ce qu'elle sait d'Agro Véto Services Congo
       </p>
       <div style={{ display: 'flex', gap: '.6rem', justifyContent: 'center', flexWrap: 'wrap' }}>
         {PLATFORMS.map(p => (
@@ -142,10 +142,10 @@ function StudioWordmark() {
           pointerEvents: 'auto',
         }}
       >
-        {renderChars('AKATECH')}
+        {renderChars('AGRO VÉTO')}
         <br />
         <span style={{ display: 'inline-block' }}>
-          {renderChars('STUDIO.')}
+          {renderChars('SERVICES.')}
         </span>
       </div>
     </div>
@@ -171,24 +171,29 @@ export default function Footer() {
   }
 
   const SOCIALS = [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/m-bollo-aka' },
-    { label: 'Facebook', href: 'https://web.facebook.com/profile.php?id=61577494705852' },
-    { label: 'WhatsApp', href: 'https://wa.me/2250142507750' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/company/agrovetoservicescongo' },
+    { label: 'Facebook', href: 'https://facebook.com/agrovetoservicescongo' },
+    { label: 'WhatsApp', href: 'https://wa.me/242060000000' },
   ]
 
   const NAV = [
     ['Accueil', '/'],
-    ['Services', '/services'],
+    ['À Propos', '/about'],
+    ['Nos 6 Pôles', '/services'],
+    ['Boutique & Tarifs', '/pricing'],
+    ['Clinique Vétérinaire', '/clinique'],
+    ['Formations Certifiantes', '/formations'],
     ['Réalisations', '/projects'],
-    ['À propos', '/about'],
+    ['Blog', '/blog'],
     ['Contact', '/contact'],
   ]
 
   const SERVICES = [
-    ['Site Vitrine', '/services'],
-    ['E-Commerce', '/services'],
-    ['Application SaaS', '/services'],
-    ['Maintenance', '/services'],
+    ['Clinique Vétérinaire 24/7', '/clinique'],
+    ['Provenderie & Nutrition', '/services'],
+    ["Poussins Cobb 500 & Lohmann", '/pricing'],
+    ['Formations Certifiantes', '/formations'],
+    ['Audits QHSE & HACCP', '/services'],
   ]
 
   return (
@@ -277,7 +282,7 @@ export default function Footer() {
                   <HoverSlideText text={label} />
                 </a>
               ))}
-              <a href="mailto:wthomasss06@gmail.com" style={lk}
+              <a href="mailto:contact@agrovetoservices.cg" style={lk}
                 onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.paddingLeft = '4px' }}
                 onMouseLeave={e => { e.currentTarget.style.color = muted; e.currentTarget.style.paddingLeft = '0' }}>
                 <HoverSlideText text="Email" />
@@ -292,17 +297,17 @@ export default function Footer() {
                 Contact
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
-                <a href="tel:+2250142507750" style={lk}
+                <a href="tel:+242060000000" style={lk}
                   onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.paddingLeft = '4px' }}
                   onMouseLeave={e => { e.currentTarget.style.color = muted; e.currentTarget.style.paddingLeft = '0' }}>
-                  <Phone size={12} style={{ flexShrink: 0 }} /><HoverSlideText text="+225 01 42 50 77 50" />
+                  <Phone size={12} style={{ flexShrink: 0 }} /><HoverSlideText text="+242 06 000 00 00" />
                 </a>
                 <span style={{ ...lk, cursor: 'default' }}>
-                  <MapPin size={12} style={{ flexShrink: 0 }} />Abidjan, Côte d'Ivoire
+                  <MapPin size={12} style={{ flexShrink: 0 }} />Quartier Socoprise, Pointe-Noire, Congo
                 </span>
               </div>
             </div>
-            <a href="https://wa.me/2250142507750" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '.8rem', padding: '.7rem 1.6rem' }}>
+            <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '.8rem', padding: '.7rem 1.6rem' }}>
               <Send size={14} /> <HoverSlideText text="Envoyer un message" />
             </a>
           </div>
@@ -317,8 +322,8 @@ export default function Footer() {
       {/* ── Copyright bar ──────────────────────────────────────── */}
       <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '1.2rem 5% 1.6rem', fontSize: '.7rem', color: muted }}>
         © {year}{' '}
-        <TransitionLink href="/" style={{ color: 'rgba(136,202,83,.8)' }}><HoverSlideText text="AKATech Studio." /></TransitionLink>
-        {' '} · Abidjan
+        <TransitionLink href="/" style={{ color: 'rgba(90, 135, 56,.8)' }}><HoverSlideText text="AGRO VÉTO SERVICES CONGO S.A.R.L.U." /></TransitionLink>
+        {' '} · Pointe-Noire, République du Congo
       </div>
     </footer>
   )

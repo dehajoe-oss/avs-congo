@@ -12,7 +12,8 @@ import {
   TrendingUp, Users, Clock, Award,
   MessageCircle, Target, Code, Timer, ChevronLeft, ChevronRight,
   Monitor, ShoppingBag, LayoutDashboard, Cog, Image,
-  Send, Zap, Lock, Mail, Phone, Check, HelpCircle, ChevronDown
+  Send, Zap, Lock, Mail, Phone, Check, HelpCircle, ChevronDown,
+  ShieldCheck, GraduationCap, Sparkles, Package
 } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { GhostTitle, AnimatedCounter, LazyImg, PageCTA, GreenUnderline, HoverSlideText } from '@/components/ui/index'
@@ -85,10 +86,10 @@ function CircularProjectsGallery() {
               zIndex: 10 - abs,
               cursor: 'pointer',
               border: isActive
-                ? '1.5px solid rgba(136,202,83,.6)'
+                ? '1.5px solid rgba(90, 135, 56,.6)'
                 : '1px solid rgba(255,255,255,.1)',
               boxShadow: isActive
-                ? '0 0 0 3px rgba(136,202,83,.15), 0 12px 36px rgba(0,0,0,.6)'
+                ? '0 0 0 3px rgba(90, 135, 56,.15), 0 12px 36px rgba(0,0,0,.6)'
                 : '0 6px 20px rgba(0,0,0,.4)',
               transformStyle: 'preserve-3d',
             }}>
@@ -105,7 +106,7 @@ function CircularProjectsGallery() {
             }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '.7rem 1rem' }}>
               <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.8rem', fontWeight: 700, color: '#fff', letterSpacing: '-.01em', lineHeight: 1.2 }}><HoverSlideText text={p.title} /></div>
-              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', color: 'rgba(136,202,83,.9)', marginTop: '.1rem' }}>{p.type}</div>
+              <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', color: 'rgba(90, 135, 56,.9)', marginTop: '.1rem' }}>{p.type}</div>
             </div>
           </motion.div>
         )
@@ -137,9 +138,10 @@ function HeroSlogan() {
 }
 
 const HERO_SLOGANS = [
-  { before: 'Un site qui travaille pour vous ', highlight: '24h/24' },
-  { before: 'Attirez des clients, gagnez en ', highlight: 'crédibilité' },
-  { before: 'Développez votre activité ', highlight: 'sereinement' },
+  { before: 'De la santé animale à l’excellence ', highlight: 'QHSE' },
+  { before: 'Poussins d’un jour & provenderie ', highlight: 'certifiée' },
+  { before: 'Urgences cliniques vétérinaires ', highlight: '24h/24 & 7j/7' },
+  { before: 'Bâtissez un élevage moderne & ', highlight: 'rentable' },
 ]
 
 function HeroSloganCycle() {
@@ -257,9 +259,9 @@ function Hero() {
         <motion.div
           style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
           animate={{ background: [
-            'radial-gradient(700px circle at 25% 38%, rgba(136,202,83,.055) 0%, transparent 62%)',
-            'radial-gradient(700px circle at 72% 58%, rgba(136,202,83,.075) 0%, transparent 62%)',
-            'radial-gradient(700px circle at 25% 38%, rgba(136,202,83,.055) 0%, transparent 62%)',
+            'radial-gradient(700px circle at 25% 38%, rgba(90, 135, 56,.055) 0%, transparent 62%)',
+            'radial-gradient(700px circle at 72% 58%, rgba(90, 135, 56,.075) 0%, transparent 62%)',
+            'radial-gradient(700px circle at 25% 38%, rgba(90, 135, 56,.055) 0%, transparent 62%)',
           ]}}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -283,7 +285,7 @@ function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
           style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '1.02rem', color: 'rgba(255,255,255,.68)', maxWidth: 560, margin: '0 auto 1.7rem', lineHeight: 1.55 }}>
-          Lancez un site professionnel qui inspire confiance et déclenche des demandes.
+          Clinique vétérinaire de pointe, provenderie certifiée, poussins Cobb 500 et audits qualité pour éleveurs et PME à Pointe-Noire.
         </motion.p>
 
         <motion.div
@@ -300,10 +302,10 @@ function Hero() {
           </AvatarGroup>
           <div style={{ textAlign: 'left' }}>
             <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.85rem', color: '#fff', lineHeight: 1.15 }}>
-              Ils nous ont fait confiance
+              Éleveurs & PME partenaires
             </div>
-            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.68rem', color: '#88ca53' }}>
-              {PROJECTS.length}+ projets livrés
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.68rem', color: '#5a8738' }}>
+              {PROJECTS.length}+ réalisations & intrants de pointe
             </div>
           </div>
         </motion.div>
@@ -311,22 +313,22 @@ function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .45 }}
           style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
-          <motion.a href="https://wa.me/2250142507750" target="_blank" rel="noreferrer"
+          <motion.a href="https://wa.me/242060000000" target="_blank" rel="noreferrer"
             initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(198,255,61,.45)' }}
+            whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(110, 159, 69,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: 'linear-gradient(135deg, #c6ff3d, #88ca53)', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
-            <HoverSlideText text="Démarrer mon projet" /> <ArrowRight size={16} />
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: 'linear-gradient(135deg, #6e9f45, #5a8738)', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
+            <HoverSlideText text="Commander sur WhatsApp" /> <ArrowRight size={16} />
           </motion.a>
           <motion.div
             initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(198,255,61,.45)' }}
+            whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(110, 159, 69,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#c6ff3d', background: 'transparent', border: '3px solid #c6ff3d', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
-              <HoverSlideText text="Prenez RDV" />
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#6e9f45', background: 'transparent', border: '3px solid #6e9f45', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
+              <HoverSlideText text="Prendre RDV Clinique" />
             </Link>
           </motion.div>
         </motion.div>
@@ -357,7 +359,7 @@ function Hero() {
           { left: '92%', top: '52%', s: 3, op: .14, dur: 4.9, dy: 2.1 },
         ].map((p, i) => (
           <motion.div key={i}
-            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#88ca53', left: p.left, top: p.top, opacity: p.op }}
+            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#5a8738', left: p.left, top: p.top, opacity: p.op }}
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: p.dur, repeat: Infinity, ease: 'easeInOut', delay: p.dy }}
           />
@@ -452,7 +454,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
         <span key={i} ref={el => { wordsRef.current[i] = el }}
           style={{ display: 'inline-block', marginRight: '0.28em', opacity: 0.08,
             filter: 'blur(9px)', willChange: 'opacity, filter',
-            color: green.has(word) ? '#88ca53' : 'inherit' }}>
+            color: green.has(word) ? '#5a8738' : 'inherit' }}>
           {word}
         </span>
       ))}
@@ -511,7 +513,7 @@ function AnimatedBeamGrid({ containerRef, nodeIds, connections }) {
       {paths.map((p, i) => (
         <g key={i}>
           {/* Base line */}
-          <path d={p.d} fill="none" stroke="rgba(136,202,83,0.08)" strokeWidth="1.5" />
+          <path d={p.d} fill="none" stroke="rgba(90, 135, 56,0.08)" strokeWidth="1.5" />
           {/* Animated glow dash */}
           <path
             d={p.d}
@@ -541,11 +543,11 @@ function AnimatedBeamGrid({ containerRef, nodeIds, connections }) {
 // ── SERVICES — Two-Column Skewed Images (HTML skew-section) ──
 // ═══════════════════════════════════════════════════════════════
 const SERVICES_SKEW = [
-  { n: '01', Icon: Globe,    title: 'Conception de Site Web',          desc: "Création de sites web modernes, responsive et optimisés pour convertir vos visiteurs en clients. Du portfolio à la plateforme e-commerce.", price: 'À partir de 100 000 FCFA', del: '5-7 jours', img: '/images/service/creation%20de%20site%20web.webp', slug: 'site-vitrine' },
-  { n: '02', Icon: Map,      title: 'Cartes Interactives & Dashboards', desc: "Intégration de cartes Mapbox / Leaflet et de dashboards de visualisation de données. Vos données brutes deviennent des interfaces actionnables.", price: 'Sur devis', del: '7-14 jours', img: '/images/service/dasbord.webp', slug: 'cartes-dashboards' },
-  { n: '03', Icon: Server,   title: 'API & Backend Robustes',           desc: "Conception d'API RESTful sécurisées avec Django ou Flask. Authentification JWT, gestion des rôles, intégration Mobile Money.", price: 'À partir de 200 000 FCFA', del: '7-14 jours', img: '/images/service/api.webp', slug: 'api-backend' },
-  { n: '04', Icon: Wrench,   title: 'Maintenance & Support',            desc: "Suivi technique, corrections de bugs, mises à jour de sécurité et améliorations continues. Vous vous concentrez sur votre métier.", price: 'À partir de 20 000 FCFA/mois', del: 'Contrat mensuel', img: '/images/service/maintenence.webp', slug: 'maintenance' },
-  { n: '05', Icon: MapPin,   title: 'Fiche Google My Business',         desc: "Création ou optimisation de votre fiche Google (NAP, photos, SEO local) et suivi mensuel : avis, publications et statistiques.", price: 'À partir de 10 000 FCFA/mois', del: '1-2 jours', img: '/images/service/fiche-google.webp', slug: 'google-my-business' },
+  { n: '01', Icon: Award,         title: 'Clinique Vétérinaire 24/7',        desc: "Consultations, chirurgies, vaccinations, urgences 24h/24 & 7j/7 et suivi sanitaire d'élevage à Pointe-Noire.", price: 'À partir de 15 000 FCFA', del: 'Permanent 24/7', img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80', slug: 'clinique' },
+  { n: '02', Icon: Package,       title: 'Provenderie & Nutrition',          desc: "Aliments équilibrés haute performance pour volailles (démarrage 21%, finition), porcs et poissons. Contrôle bromatologique certifié.", price: 'À partir de 19 800 FCFA', del: 'Stock continu', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80', slug: 'provenderie' },
+  { n: '03', Icon: Target,        title: "Poussins Cobb 500 & Lohmann",     desc: "Poussins d'un jour vigoureux vaccinés au couvoir (Marek + Newcastle). Taux de viabilité > 98% pour rentabiliser votre cheptel.", price: 'À partir de 650 FCFA', del: 'Hebdomadaire', img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80', slug: 'poussins' },
+  { n: '04', Icon: ShieldCheck,   title: 'Audits QHSE & « QHSE Partagé »',  desc: "Mise en conformité ISO 9001/14001/22000, démarche HACCP et externalisation qualité flexible pour PME et industries.", price: 'Sur devis', del: 'Sous 48h', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', slug: 'qhse' },
+  { n: '05', Icon: GraduationCap, title: 'Formations & Ferme-École',     desc: "Sessions 100% pratiques certifiantes en élevage avicole, hygiène sanitaire HACCP et fabrication de détergents locaux.", price: 'À partir de 60 000 FCFA', del: 'Sessions mensuelles', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80', slug: 'formations' },
 ]
 
 // ── GHOST SCROLL SHOWCASE — parallax + texte fantôme horizontal ──
@@ -665,7 +667,7 @@ function GhostScrollShowcase({ items }) {
                 fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontStyle: 'italic',
                 textTransform: 'uppercase', whiteSpace: 'nowrap', lineHeight: 1,
                 fontSize: 'clamp(4.5rem, 13vw, 11.5rem)',
-                color: 'transparent', WebkitTextStroke: '1.5px rgba(198,255,61,.4)',
+                color: 'transparent', WebkitTextStroke: '1.5px rgba(110, 159, 69,.4)',
                 willChange: 'transform', userSelect: 'none', pointerEvents: 'none',
               }}
             >
@@ -675,7 +677,7 @@ function GhostScrollShowcase({ items }) {
             <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '3.2rem 5%', zIndex: 2, pointerEvents: 'none' }}>
               <div style={{ maxWidth: 680 }}>
                 <div style={{ marginBottom: '.9rem' }}>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.78rem', fontWeight: 700, color: '#88ca53', letterSpacing: '.25em' }}>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.78rem', fontWeight: 700, color: '#5a8738', letterSpacing: '.25em' }}>
                     {item.n} / {String(items.length).padStart(2, '0')}
                   </span>
                 </div>
@@ -697,11 +699,11 @@ function GhostScrollShowcase({ items }) {
                 {item.href && (
                   <span style={{
                     display: 'inline-flex', alignItems: 'center', gap: '.5rem', marginTop: '1.3rem',
-                    fontFamily: "'JetBrains Mono',monospace", fontSize: '.78rem', fontWeight: 700, color: '#88ca53',
+                    fontFamily: "'JetBrains Mono',monospace", fontSize: '.78rem', fontWeight: 700, color: '#5a8738',
                   }}>
                     Voir le service
                     <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-                      <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#88ca53" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#5a8738" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
                 )}
@@ -762,13 +764,13 @@ function ServicesPreview() {
 // ── BUILT ON TRUST — 3D Showcase (HTML showcase-section) ─────
 // ═══════════════════════════════════════════════════════════════
 const WHY_PANELS = [
-  { n: '01', title: 'Prise de\ncontact',          sub: 'On vous écoute',              desc: "Vous décrivez votre projet, vos objectifs et votre budget. Premier échange gratuit et sans engagement.", img: '/images/process/prise%20de%20contact.webp' },
-  { n: '02', title: 'Devis &\nconditions',         sub: 'Proposition détaillée',        desc: "Planning, technologies, tarif : tout est posé noir sur blanc avant de démarrer le moindre développement.", img: '/images/process/devis%20et%20condition.webp' },
-  { n: '03', title: 'Acompte\nde démarrage',       sub: '50% pour lancer le projet',    desc: "L'acompte confirme votre commande et permet de démarrer le développement immédiatement.", img: '/images/process/acompte.webp' },
-  { n: '04', title: 'Création\ndu site',           sub: 'Design 100% sur mesure',       desc: "Zéro template, zéro copier-coller — une identité visuelle unique, pensée pour votre activité.", img: '/images/process/creation%20du%20site.webp' },
-  { n: '05', title: 'Livraison\npour validation',  sub: 'Vous testez avant de payer',   desc: "Un lien de prévisualisation vous est partagé pour valider le design et le contenu avant tout paiement final.", img: '/images/process/livraison.webp' },
-  { n: '06', title: 'Solde &\nfacturation',        sub: 'Paiement final',               desc: "Une fois le site validé, le solde est réglé et tous les accès vous sont transmis avec une formation.", img: '/images/process/solde.webp' },
-  { n: '07', title: 'Mise en\nligne',              sub: 'Votre site est officiel',      desc: "Le site est publié en ligne, entre vos mains — avec un support disponible pour les premières semaines.", img: '/images/process/mise%20en%20ligne.webp' },
+  { n: '01', title: 'Diagnostic &\nVisite Sanitaire', sub: 'Écoute & Analyse terrain', desc: "Échange approfondi sur votre cheptel ou unité agroalimentaire. Diagnostic zootechnique et sanitaire sur site par le Dr POUTYA.", img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80' },
+  { n: '02', title: 'Protocole &\nDevis Sur-Mesure', sub: 'Plan clair et chiffré', desc: "Formulation des rations, calendrier de prophylaxie vaccinale ou programme d'audit QHSE adapté à votre budget et vos objectifs.", img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80' },
+  { n: '03', title: 'Intrants &\nAliments Certifiés', sub: 'Arrivages sécurisés', desc: "Fourniture de poussins Cobb 500 vaccinés au couvoir et aliments provenderie haute énergie testés en laboratoire bromatologique.", img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80' },
+  { n: '04', title: 'Biosécurité &\nProphylaxie', sub: 'Protection sanitaire', desc: "Installation des pédiluves, désinfection des bâtiments d'élevage et administration rigoureuse du calendrier vaccinal.", img: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80' },
+  { n: '05', title: 'Suivi Vétérinaire\nContinu', sub: 'Sur le terrain & 24/7', desc: "Visites périodiques, contrôle des indices de consommation et permanence d'urgence 24h/24 et 7j/7 sur appel direct.", img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80' },
+  { n: '06', title: 'Formation &\nAutonomie', sub: 'Pratique 100% ferme-école', desc: "Montée en compétences de vos équipes sur cheptel vivant pour pérenniser vos résultats et éviter les erreurs courantes.", img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80' },
+  { n: '07', title: 'Excellence &\nRentabilité', sub: 'De la ferme à l\'assiette', desc: "Conformité aux normes ISO / HACCP, réduction de la mortalité sous les 2% et valorisation optimale de votre production.", img: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80' },
 ]
 
 function WhyUs() {
@@ -788,15 +790,15 @@ function WhyUs() {
         {/* Header — titre sur trait rouge */}
         <BlurReveal delay={0.1} direction="left">
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Barlow Condensed',sans-serif", color: T.textMain, marginBottom: '3rem' }}>
-            <GhostTitle text="DE L'IDÉE À LA MISE en ligne." />
-            DE L'IDÉE À LA MISE{' '}
-            <GreenUnderline><span className="text-gradient">en ligne.</span></GreenUnderline>
+            <GhostTitle text="DU CHEPTEL À L'EXCELLENCE SANITAIRE." />
+            DU CHEPTEL À L'EXCELLENCE{' '}
+            <GreenUnderline><span className="text-gradient">sanitaire.</span></GreenUnderline>
           </h2>
         </BlurReveal>
 
         <BlurReveal delay={0.05}>
-          <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', letterSpacing: '.42em', textTransform: 'uppercase', color: '#88ca53', display: 'block', marginBottom: '1.5rem', textAlign: 'center' }}>
-            Notre processus
+          <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', letterSpacing: '.42em', textTransform: 'uppercase', color: '#5a8738', display: 'block', marginBottom: '1.5rem', textAlign: 'center' }}>
+            Notre accompagnement agropastoral
           </span>
         </BlurReveal>
 
@@ -826,7 +828,7 @@ function Testimonials() {
 
   return (
     <section ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(136,202,83,.05),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(90, 135, 56,.05),transparent 65%)', pointerEvents: 'none' }} />
 
       {/* Titre — colonne gauche alignée avec tous les autres titres (maxWidth 1200) */}
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
@@ -847,21 +849,21 @@ function Testimonials() {
           <motion.div key={idx} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: .4 }}
             className="sku-card" style={{ padding: '2.5rem', textAlign: 'center' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.2rem' }}>
-              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#88ca53" style={{ color: '#88ca53' }} />)}
+              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#5a8738" style={{ color: '#5a8738' }} />)}
             </div>
             <blockquote style={{ fontSize: '1.05rem', color: T.textMain, lineHeight: 1.75, fontStyle: 'italic', marginBottom: '2rem', maxWidth: 640, margin: '0 auto 2rem' }}>
               "{t.text}"
             </blockquote>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(136,202,83,.35)' }}>
+              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(90, 135, 56,.35)' }}>
                 <LazyImg src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(136,202,83,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#88ca53', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700 }}>{t.name[0]}</div>} />
+                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(90, 135, 56,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5a8738', fontFamily: "'JetBrains Mono',monospace", fontWeight: 700 }}>{t.name[0]}</div>} />
               </div>
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontWeight: 700, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '.9rem' }}>{t.name}</div>
                 <div style={{ fontSize: '.72rem', color: T.textMuted, fontFamily: "'JetBrains Mono',monospace" }}>{t.role}</div>
               </div>
-              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(136,202,83,.12)', border: '1px solid rgba(136,202,83,.25)', color: '#88ca53', fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
+              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(90, 135, 56,.12)', border: '1px solid rgba(90, 135, 56,.25)', color: '#5a8738', fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -869,7 +871,7 @@ function Testimonials() {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '.5rem', marginTop: '1.5rem' }}>
           {TESTIMONIALS.map((_, i) => (
             <button key={i} onClick={() => setIdx(i)}
-              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#88ca53' : 'rgba(136,202,83,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
+              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#5a8738' : 'rgba(90, 135, 56,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
           ))}
         </div>
         </BlurReveal>
@@ -883,46 +885,46 @@ function Testimonials() {
 // ═══════════════════════════════════════════════════════════════
 const DOMAINES = [
   {
-    n: '01', Icon: Monitor,
-    title: 'Sites Vitrine & Landing Pages',
-    desc:  "Votre présence digitale professionnelle, optimisée pour convertir vos visiteurs en clients. Design sur mesure, SEO intégré, livré en 7 à 14 jours.",
-    tag:   'Site Vitrine',
-    img:   '/images/projects/techflow-preview.webp',        // TechFlow — site vitrine
+    n: '01', Icon: Award,
+    title: 'Santé Animale & Clinique Vétérinaire',
+    desc:  "Soins médicaux, chirurgies, vaccinations, urgences 24/7 et visites sanitaires d'élevage à Pointe-Noire et dans tout le Kouilou.",
+    tag:   'Clinique 24/7',
+    img:   'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80',
   },
   {
-    n: '02', Icon: ShoppingBag,
-    title: 'E-Commerce & Boutiques en ligne',
-    desc:  "Boutiques complètes avec paiement Mobile Money (Orange Money, Wave), gestion des stocks, tableau de bord admin et notifications commandes.",
-    tag:   'E-Commerce',
-    img:   '/images/projects/shopci-preview.webp',          // ShopCI — marketplace e-commerce
+    n: '02', Icon: Package,
+    title: 'Provenderie & Nutrition Animale',
+    desc:  "Aliments complets et équilibrés pour volailles (démarrage 21%, finition, ponte), porcs et poissons, contrôlés en laboratoire bromatologique.",
+    tag:   'Provenderie',
+    img:   'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
   },
   {
-    n: '03', Icon: LayoutDashboard,
-    title: 'Applications SaaS & Métier',
-    desc:  "Des outils web sur mesure pour automatiser vos processus, gérer vos équipes et économiser des heures de travail chaque semaine.",
-    tag:   'SaaS',
-    img:   '/images/projects/nexura-preview.webp',          // Nexura — app métier full-stack
+    n: '03', Icon: Target,
+    title: "Poussins d'un Jour & Intrants",
+    desc:  "Souches à haute performance Cobb 500 (chair) et Lohmann Brown (ponte), vaccinées dès l'écloserie avec suivi de démarrage offert.",
+    tag:   'Poussins Cobb 500',
+    img:   'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80',
   },
   {
-    n: '04', Icon: Cog,
-    title: 'Digitalisation de processus',
-    desc:  "Remplacez vos fichiers Excel et WhatsApp par des applications robustes. Suivi en temps réel, rôles utilisateurs, reporting intégré.",
-    tag:   'Digitalisation',
-    img:   '/images/projects/moncashjour-preview.webp',     // MonCashJour — dashboard gestion ventes
+    n: '04', Icon: ShieldCheck,
+    title: 'Management QHSE, RSE & Normes ISO',
+    desc:  "Audits ISO 9001/14001/45001/22000, mise en place de la méthode HACCP et formule novatrice « QHSE Partagé » pour les PME congolaises.",
+    tag:   'QHSE & ISO',
+    img:   'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
   },
   {
-    n: '05', Icon: Image,
-    title: 'Portfolios & Identités créatives',
-    desc:  "Des vitrines animées et percutantes pour créatifs, photographes, graphistes et freelances qui veulent décrocher plus de clients.",
-    tag:   'Portfolio',
-    img:   '/images/projects/jean-edy-preview.webp',        // Jean Edy — portfolio React avancé
+    n: '05', Icon: GraduationCap,
+    title: 'Centre de Formation & Ferme-École',
+    desc:  "Formations certifiantes 100% pratiques : conduite d'élevage avicole, hygiène alimentaire HACCP, fabrication de savon et auditeur interne.",
+    tag:   'Formations',
+    img:   'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
   },
   {
-    n: '06', Icon: Wrench,
-    title: 'Maintenance & Évolutions',
-    desc:  "Votre investissement sur la durée. Mises à jour, nouvelles fonctionnalités, corrections et support technique réactif sous 48h.",
-    tag:   'Support',
-    img:   '/images/service/maintenence.webp',              // Service maintenance AKATech
+    n: '06', Icon: Sparkles,
+    title: 'Cosmétique, Hygiène & Biosécurité',
+    desc:  "Formulation locale de désinfectants virucides pour bâtiments d'élevage, détergents multi-surfaces et savons noirs saponifiés à froid.",
+    tag:   'Biosécurité',
+    img:   'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80',
   },
 ]
 
@@ -973,7 +975,7 @@ function DomaineCard({ n, Icon, title, desc, tag, img, index, inView }) {
       {/* Glow hover */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'radial-gradient(400px circle at 30% 30%, rgba(136,202,83,.07), transparent 65%)',
+        background: 'radial-gradient(400px circle at 30% 30%, rgba(90, 135, 56,.07), transparent 65%)',
         opacity: isHovered ? 1 : 0, transition: 'opacity .25s',
       }} />
 
@@ -981,16 +983,16 @@ function DomaineCard({ n, Icon, title, desc, tag, img, index, inView }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.4rem', position: 'relative', zIndex: 1 }}>
         <span style={{
           fontFamily: "'JetBrains Mono',monospace", fontSize: '2.8rem', fontWeight: 900,
-          color: T.light ? 'rgba(136,202,83,.18)' : 'rgba(136,202,83,.15)',
+          color: T.light ? 'rgba(90, 135, 56,.18)' : 'rgba(90, 135, 56,.15)',
           lineHeight: 1, letterSpacing: '-.05em',
         }}>
           {n}
         </span>
         <span style={{
           padding: '.22rem .72rem', borderRadius: 100,
-          background: 'rgba(136,202,83,.08)', border: '1px solid rgba(136,202,83,.2)',
+          background: 'rgba(90, 135, 56,.08)', border: '1px solid rgba(90, 135, 56,.2)',
           fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', fontWeight: 700,
-          color: '#88ca53', letterSpacing: '.06em', textTransform: 'uppercase',
+          color: '#5a8738', letterSpacing: '.06em', textTransform: 'uppercase',
         }}>
           {tag}
         </span>
@@ -1000,10 +1002,10 @@ function DomaineCard({ n, Icon, title, desc, tag, img, index, inView }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '.9rem', position: 'relative', zIndex: 1 }}>
         <div style={{
           width: 42, height: 42, borderRadius: 11,
-          background: 'rgba(136,202,83,.1)', border: '1px solid rgba(136,202,83,.18)',
+          background: 'rgba(90, 135, 56,.1)', border: '1px solid rgba(90, 135, 56,.18)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
         }}>
-          <Icon size={20} style={{ color: '#88ca53' }} />
+          <Icon size={20} style={{ color: '#5a8738' }} />
         </div>
         <h3 style={{
           fontFamily: "'JetBrains Mono',monospace", fontSize: '.97rem', fontWeight: 800,
@@ -1021,7 +1023,7 @@ function DomaineCard({ n, Icon, title, desc, tag, img, index, inView }) {
       {/* Barre verte bas au hover */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
-        background: 'linear-gradient(90deg, transparent, #88ca53, transparent)',
+        background: 'linear-gradient(90deg, transparent, #5a8738, transparent)',
         transformOrigin: 'left',
         transform: isHovered ? 'scaleX(1)' : 'scaleX(0)',
         transition: 'transform .3s ease',
@@ -1038,7 +1040,7 @@ function DomaineCard({ n, Icon, title, desc, tag, img, index, inView }) {
           opacity: isHovered ? 1 : 0,
           transition: 'opacity .22s ease, transform .18s cubic-bezier(.22,1,.36,1)',
           boxShadow: '0 24px 70px rgba(0,0,0,.55)',
-          border: '1.5px solid rgba(136,202,83,.35)',
+          border: '1.5px solid rgba(90, 135, 56,.35)',
           willChange: 'transform, opacity',
         }}>
           <img
@@ -1061,8 +1063,8 @@ function DomainesSection() {
   const sectionRef  = useRef(null)
   const domTextRef  = useRef(null)
   const domWordsRef = useRef([])
-  const DOM_TEXT = "De la vitrine au SaaS, de la boutique au portfolio — nous intervenons sur l'ensemble de la chaîne digitale pour concrétiser votre vision."
-  const DOM_GREEN = new Set(['SaaS,', 'portfolio', 'chaîne', 'digitale', 'concrétiser', 'vision.'])
+  const DOM_TEXT = "De la santé animale à la provenderie certifiée, des poussins Cobb 500 aux audits QHSE — nous intervenons sur l'ensemble de la filière agropastorale pour garantir votre rentabilité."
+  const DOM_GREEN = new Set(['santé', 'animale', 'provenderie', 'Cobb', '500', 'QHSE', 'filière', 'agropastorale', 'rentabilité.'])
 
   useEffect(() => {
     const container = sectionRef.current
@@ -1102,7 +1104,7 @@ function DomainesSection() {
       <div style={{
         position: 'absolute', left: '-1%', top: '50%', transform: 'translateY(-50%)',
         fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(10rem,18vw,18rem)', fontWeight: 900,
-        color: T.light ? 'rgba(136,202,83,.04)' : 'rgba(136,202,83,.03)',
+        color: T.light ? 'rgba(90, 135, 56,.04)' : 'rgba(90, 135, 56,.03)',
         lineHeight: 1, pointerEvents: 'none', userSelect: 'none', letterSpacing: '-.05em',
       }}>
         DOM
@@ -1119,9 +1121,9 @@ function DomainesSection() {
               color: T.textMain,
               lineHeight: 1,
             }}>
-              <GhostTitle text="DANS QUEL AXE DE CRÉATION S'INSCRIT VOTRE PROJET ?" />
-              Dans quel axe de création{' '}
-              <GreenUnderline><span className="text-gradient">s'inscrit votre projet ?</span></GreenUnderline>
+              <GhostTitle text="DANS QUEL PÔLE S'INSCRIT VOTRE PROJET D'ÉLEVAGE ?" />
+              Dans quel pôle agropastoral{' '}
+              <GreenUnderline><span className="text-gradient">s'inscrit votre besoin ?</span></GreenUnderline>
             </h2>
           </BlurReveal>
           <p
@@ -1149,7 +1151,7 @@ function DomainesSection() {
                   opacity: 0.08,
                   filter: 'blur(9px)',
                   willChange: 'opacity, filter',
-                  color: DOM_GREEN.has(word) ? '#88ca53' : 'inherit',
+                  color: DOM_GREEN.has(word) ? '#5a8738' : 'inherit',
                 }}
               >
                 {word}
@@ -1175,7 +1177,7 @@ function DomainesSection() {
             Votre projet ne rentre dans aucune case ? On s'adapte.
           </p>
           <a
-            href="https://wa.me/2250142507750"
+            href="https://wa.me/242060000000"
             target="_blank" rel="noreferrer"
             className="btn-raised"
             style={{ fontSize: '.9rem', padding: '.85rem 2rem' }}
@@ -1233,7 +1235,7 @@ function ArchiveTunnelSection() {
                 minHeight: 560,
                 borderRadius: 24,
                 overflow: 'hidden',
-                border: '1px solid rgba(136,202,83,.25)',
+                border: '1px solid rgba(90, 135, 56,.25)',
                 boxShadow: '0 28px 70px rgba(0,0,0,.22)',
                 background: T.surface,
                 position: 'relative',
@@ -1260,7 +1262,7 @@ function ArchiveTunnelSection() {
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.78rem', fontWeight: 700, color: T.textMain, letterSpacing: '-.01em' }}>
                   {p.title}
                 </div>
-                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: '#88ca53', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: '#5a8738', textTransform: 'uppercase', letterSpacing: '.08em' }}>
                   {p.type}
                 </div>
               </div>
@@ -1298,7 +1300,7 @@ function StatsSection() {
     <section ref={ref} style={{ padding: '7rem 5% 8rem', background: T.bg, position: 'relative', overflow: 'hidden' }}>
 
       {/* Halo subtil */}
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 500, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(136,202,83,.04),transparent 65%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 500, borderRadius: '50%', background: 'radial-gradient(ellipse,rgba(90, 135, 56,.04),transparent 65%)', pointerEvents: 'none' }} />
 
       {/* Séparateur haut */}
       <div style={{ position: 'absolute', top: 0, left: '5%', right: '5%', height: 1, background: T.border }} />
@@ -1357,7 +1359,7 @@ function StatsSection() {
                 fontFamily: "'JetBrains Mono',monospace",
                 fontSize: '.82rem',
                 fontWeight: 700,
-                color: T.light ? '#5f9137' : '#88ca53',
+                color: T.light ? '#3d6023' : '#5a8738',
                 letterSpacing: '.02em',
                 marginBottom: '.2rem',
               }}>
@@ -1388,26 +1390,26 @@ function StatsSection() {
 
 // --- Sections moved from Contact + FAQ / Pricing callout ---
 const GEO_PAYS = [
-  { code: 'CI', name: "Côte d'Ivoire", note: 'Siège — Abidjan', primary: true },
-  { code: 'SN', name: 'Sénégal', note: 'WhatsApp & Zoom' },
-  { code: 'CM', name: 'Cameroun', note: 'WhatsApp & Zoom' },
-  { code: 'BJ', name: 'Bénin', note: 'WhatsApp & Zoom' },
-  { code: 'BF', name: 'Burkina Faso', note: 'WhatsApp & Zoom' },
-  { code: 'FR', name: 'France', note: 'Diaspora africaine' },
+  { code: 'CG', name: "Congo", note: 'Siège — Socoprise Pointe-Noire', primary: true },
+  { code: 'CD', name: 'RD Congo', note: 'Kinshasa & Régions' },
+  { code: 'GA', name: 'Gabon', note: 'Partenariats Intrants' },
+  { code: 'CM', name: 'Cameroun', note: 'Échanges Élevage' },
+  { code: 'AO', name: 'Angola', note: 'Cabinda & Frontière' },
+  { code: 'FR', name: 'International', note: 'Partenariats & Diaspora' },
 ]
 
 function FlagBadge({ code, primary }) {
   const colors = {
-    CI: ['#f77f00','#fff','#009a44'],
-    SN: ['#00853f','#fdef42','#e31b23'],
+    CG: ['#009543','#fbde4a','#dc241f'],
+    CD: ['#007fff','#f7d618','#ce1021'],
+    GA: ['#009e60','#fcd116','#3a75c4'],
     CM: ['#007a5e','#ce1126','#fcd116'],
-    BJ: ['#008751','#fcd116','#e8112d'],
-    BF: ['#ef2b2d','#009a44','#fcd116'],
+    AO: ['#c8102e','#000000','#fcd116'],
     FR: ['#002395','#fff','#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#88ca53','#fff','#88ca53']
+  const [c1, c2, c3] = colors[code] || ['#5a8738','#fff','#5a8738']
   return (
-    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(136,202,83,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(136,202,83,.2)' : 'none' }}>
+    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(90, 135, 56,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(90, 135, 56,.2)' : 'none' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />
@@ -1419,9 +1421,9 @@ function PricingCallout() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
-  const [tab, setTab] = useState('vitrine')
-  const d = PRICING[tab]
-  const PRICING_LEAD_GREEN = new Set(['claires,', 'structures', 'freelances', 'choisissez.'])
+  const [tab, setTab] = useState('poussins')
+  const d = PRICING[tab] || Object.values(PRICING)[0] || { plans: [] }
+  const PRICING_LEAD_GREEN = new Set(['claires,', 'besoins', 'élevages', 'commandez.', 'transparentes'])
 
   return (
     <section ref={ref} style={{ padding: '6rem 5% 7rem', background: T.bg, position: 'relative', overflow: 'hidden' }}>
@@ -1437,8 +1439,8 @@ function PricingCallout() {
           </BlurReveal>
           <BlurReveal delay={0.12}>
             <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1.6rem,3.2vw,2.6rem)', fontWeight: 700, lineHeight: 1.32, color: T.textSub, paddingLeft: 'var(--body-indent)', paddingRight: 'var(--body-indent)' }}>
-              {"Des formules claires, adaptées aux besoins des petites structures et freelances — comparez et choisissez.".split(' ').map((word, i) => (
-                <span key={i} style={{ color: PRICING_LEAD_GREEN.has(word) ? '#88ca53' : 'inherit' }}>
+              {"Des formules claires, adaptées aux besoins des élevages et PME agropastorales — comparez et commandez.".split(' ').map((word, i) => (
+                <span key={i} style={{ color: PRICING_LEAD_GREEN.has(word) ? '#5a8738' : 'inherit' }}>
                   {word}{' '}
                 </span>
               ))}
@@ -1451,7 +1453,7 @@ function PricingCallout() {
           {Object.entries(PRICING).map(([k, v]) => (
             <motion.button key={k} onClick={() => setTab(k)}
               whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? 'linear-gradient(145deg,#8dd456,#5f9137)' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
+              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? 'linear-gradient(145deg,#8dd456,#3d6023)' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
               {v.label}
             </motion.button>
           ))}
@@ -1462,39 +1464,39 @@ function PricingCallout() {
           <motion.div key={tab}
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: .3 }}
             className="pricing-grid">
-            {d.plans.map((plan, i) => {
-              const wa = encodeURIComponent(`Bonjour AKATech, je suis intéressé par l'offre ${plan.badge} à ${plan.price}`)
+            {(d?.plans || []).map((plan, i) => {
+              const wa = encodeURIComponent(`Bonjour Agro Véto Services, je suis intéressé par l'offre ${plan.badge} à ${plan.price}`)
               return (
                 <BlurReveal key={plan.badge} delay={i * 0.1} direction={['left', 'up', 'right'][i] || 'up'}>
                   <motion.div
                     whileHover={{ y: -8, transition: { duration: .25 } }}
-                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'linear-gradient(145deg,rgba(136,202,83,.18),rgba(136,202,83,.06))' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(136,202,83,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(136,202,83,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'linear-gradient(145deg,rgba(90, 135, 56,.18),rgba(90, 135, 56,.06))' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(90, 135, 56,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(90, 135, 56,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
                     {plan.popular && (
-                      <div style={{ padding: '.5rem', background: 'linear-gradient(90deg,#5f9137,#88ca53)', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
+                      <div style={{ padding: '.5rem', background: 'linear-gradient(90deg,#3d6023,#5a8738)', textAlign: 'center', fontFamily: "'JetBrains Mono',monospace", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
                         <Zap size={10} />LE PLUS POPULAIRE
                       </div>
                     )}
                     <div style={{ padding: plan.popular ? '1.8rem 2rem 0' : 0, display: 'flex', flexDirection: 'column', flex: 1 }}>
                       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(180deg,rgba(255,255,255,.07) 0%,transparent 100%)', borderRadius: '20px 20px 0 0', pointerEvents: 'none' }} />
-                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#88ca53' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
+                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#5a8738' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
                       <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(1.4rem,2.5vw,1.7rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
                       <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: T.textMuted, marginBottom: '1.6rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                         <Timer size={11} style={{ color: T.green }} />{plan.del}
                       </div>
-                      <div style={{ height: 1, background: plan.popular ? 'rgba(136,202,83,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
+                      <div style={{ height: 1, background: plan.popular ? 'rgba(90, 135, 56,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '.65rem', marginBottom: '1.8rem', flex: 1 }}>
                         {plan.features.map(f => (
                           <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '.6rem', fontSize: '.83rem', color: T.textSub, lineHeight: 1.5 }}>
-                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(136,202,83,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <Check size={11} style={{ color: '#88ca53' }} />
+                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(90, 135, 56,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <Check size={11} style={{ color: '#5a8738' }} />
                             </div>
                             {f}
                           </div>
                         ))}
                       </div>
                       {plan.popular
-                        ? <a href={`https://wa.me/2250142507750?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
-                        : <a href={`https://wa.me/2250142507750?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
+                        ? <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
+                        : <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
                       }
                     </div>
                   </motion.div>
@@ -1506,19 +1508,19 @@ function PricingCallout() {
 
         {/* Urgency bar */}
         <BlurReveal delay={0.5}>
-          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(136,202,83,.04)', border: '1px solid rgba(136,202,83,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(90, 135, 56,.04)', border: '1px solid rgba(90, 135, 56,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-              <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#88ca53', boxShadow: '0 0 8px rgba(136,202,83,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#5a8738', boxShadow: '0 0 8px rgba(90, 135, 56,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
               <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.72rem', color: T.textSub, letterSpacing: '.04em', margin: 0 }}>
-                <span style={{ color: '#b3ee85', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
-                  <Clock size={12} /> Projets pris dans l'ordre d'arrivée
+                <span style={{ color: '#7ea959', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
+                  <Clock size={12} /> Arrivages réguliers de poussins
                 </span>
-                {' '}— le délai de démarrage dépend de la charge du moment. Plus tôt vous écrivez, plus tôt on commence.
+                {' '}— réservations recommandées pour les lots hebdomadaires de poussins Cobb 500 et Lohmann.
               </p>
             </div>
-            <a href="https://wa.me/2250142507750?text=Bonjour+AKATech,+je+veux+réserver+mon+projet+!" target="_blank" rel="noreferrer"
+            <a href="https://wa.me/242060000000?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
               className="btn-raised" style={{ padding: '.55rem 1.2rem', fontSize: '.78rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
-              <HoverSlideText text="Réserver ma place →" />
+              <HoverSlideText text="Commander mon lot →" />
             </a>
           </div>
         </BlurReveal>
@@ -1545,7 +1547,7 @@ function FAQSectionHome() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
           {FAQ_ITEMS.slice(0, 6).map(({ q, a }, i) => (
             <BlurReveal key={q} delay={i * 0.06} direction={i % 2 === 0 ? 'left' : 'right'}>
-              <motion.div className="sku-card" whileHover={{ borderColor: 'rgba(136,202,83,.25)' }} style={{ overflow: 'hidden' }}>
+              <motion.div className="sku-card" whileHover={{ borderColor: 'rgba(90, 135, 56,.25)' }} style={{ overflow: 'hidden' }}>
                 <button onClick={() => setOpen(open === i ? null : i)}
                   style={{ width: '100%', padding: '1.2rem 1.5rem', background: 'none', border: 'none', color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', textAlign: 'left' }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
@@ -1589,18 +1591,18 @@ function GeoSectionHome() {
           </BlurReveal>
           <WordRevealP
             sectionRef={sectionRef}
-            text="Basés à Abidjan, on travaille 100% remote avec des clients partout en Afrique de l'Ouest et la diaspora."
-            greenWords={['Abidjan,', 'remote', "l'Afrique", "l'Ouest", 'diaspora.']}
+            text="Basés à Pointe-Noire (quartier Socoprise), nous intervenons dans tout le Congo et accompagnons nos partenaires régionaux."
+            greenWords={['Pointe-Noire', 'Socoprise),', 'Congo', 'partenaires', 'régionaux.']}
             extraStyle={{ color: T.textSub, marginTop: '.75rem' }}
           />
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: '.85rem', marginBottom: '2rem' }}>
           {GEO_PAYS.map(({ code, name, note, primary }, i) => (
-            <motion.div key={name} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .06 }} whileHover={{ y: -4 }} style={{ padding: '1rem 1.2rem', borderRadius: 14, background: primary ? 'linear-gradient(135deg,rgba(136,202,83,.12),rgba(136,202,83,.04))' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(136,202,83,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.75rem' }}>
+            <motion.div key={name} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .06 }} whileHover={{ y: -4 }} style={{ padding: '1rem 1.2rem', borderRadius: 14, background: primary ? 'linear-gradient(135deg,rgba(90, 135, 56,.12),rgba(90, 135, 56,.04))' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(90, 135, 56,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.75rem' }}>
               <FlagBadge code={code} primary={primary} />
               <div>
-                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.82rem', color: primary ? '#88ca53' : T.textMain }}>{name}</div>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '.82rem', color: primary ? '#5a8738' : T.textMain }}>{name}</div>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '.62rem', color: T.textMuted }}>{note}</div>
               </div>
             </motion.div>
@@ -1624,7 +1626,7 @@ function ProjectFormHome() {
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
   const inputStyle = { width: '100%', padding: '.6rem 0', background: 'transparent', border: 'none', borderBottom: `1px solid ${T.border}`, borderRadius: 0, color: T.textMain, fontFamily: "'JetBrains Mono',monospace", fontSize: '1rem', outline: 'none', transition: 'border-color .25s', boxSizing: 'border-box', colorScheme: T.light ? 'light' : 'dark' }
-  const focusOn = e => { e.target.style.borderBottomColor = '#88ca53' }
+  const focusOn = e => { e.target.style.borderBottomColor = '#5a8738' }
   const focusOff = e => { e.target.style.borderBottomColor = T.border }
 
   const handleSubmit = async () => {
@@ -1657,8 +1659,8 @@ function ProjectFormHome() {
             <AnimatePresence mode="wait">
               {sent ? (
                 <motion.div key="success" initial={{ opacity: 0, scale: .9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '2rem 1rem' }}>
-                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 64, height: 64, borderRadius: '50%', border: '1.5px solid rgba(136,202,83,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                    <Check size={30} style={{ color: '#88ca53' }} />
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 64, height: 64, borderRadius: '50%', border: '1.5px solid rgba(90, 135, 56,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                    <Check size={30} style={{ color: '#5a8738' }} />
                   </motion.div>
                   <h3 style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: '1.3rem', color: T.textMain, marginBottom: '.8rem' }}>Message envoyé !</h3>
                   <p style={{ color: T.textSub, fontSize: '.88rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. On répond en moins de 24h directement par email — à très vite !</p>
@@ -1670,7 +1672,7 @@ function ProjectFormHome() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: '1.4rem', marginBottom: '1.4rem' }}>
                     <div>
                       <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre nom</label>
-                      <input style={inputStyle} placeholder="Elvis Aka" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
+                      <input style={inputStyle} placeholder="Dr POUTYA" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                     </div>
                     <div>
                       <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Email</label>
@@ -1680,26 +1682,25 @@ function ProjectFormHome() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: '1.4rem', marginBottom: '1.4rem' }}>
                     <div>
                       <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>WhatsApp / Tél</label>
-                      <input style={inputStyle} placeholder="+225 07 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
+                      <input style={inputStyle} placeholder="+242 06 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                     </div>
                     <div>
                       <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Type de projet</label>
                       <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))} onFocus={focusOn} onBlur={focusOff}>
                         <option value="">Choisir...</option>
-                        <option value="site-vitrine">Conception de Site Web</option>
-                        <option value="e-commerce">E-commerce</option>
-                        <option value="application-web">Application Web / SaaS</option>
-                        <option value="cartes-dashboards">Cartes Interactives & Dashboards</option>
-                        <option value="api-backend">API & Backend</option>
-                        <option value="google-my-business">Fiche Google My Business</option>
-                        <option value="maintenance">Maintenance & Support</option>
-                        <option value="autre">Autre</option>
+                        <option value="clinique">Clinique & Soins Vétérinaires (24/7)</option>
+                        <option value="provenderie">Provenderie & Nutrition Animale</option>
+                        <option value="poussins">Poussins d'un Jour Cobb 500 / Lohmann</option>
+                        <option value="formations">Formations en Ferme-École</option>
+                        <option value="qhse">Audits QHSE & Normes ISO</option>
+                        <option value="cosmetique">Cosmétique & Biosécurité</option>
+                        <option value="autre">Autre demande agropastorale</option>
                       </select>
                     </div>
                   </div>
                   <div style={{ marginBottom: '1.6rem' }}>
                     <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'JetBrains Mono',monospace", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre besoin en une phrase</label>
-                    <input style={inputStyle} placeholder="Ex: Boutique en ligne avec paiement Mobile Money"
+                    <input style={inputStyle} placeholder="Ex: Commande 200 poussins Cobb 500 et 10 sacs démarrage"
                       value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                   </div>
                   {error && <p style={{ textAlign: 'left', fontSize: '.78rem', color: '#ff6b6b', marginBottom: '.8rem' }}>{error}</p>}
@@ -1718,7 +1719,7 @@ function ProjectFormHome() {
                       }}
                     >
                       {sending ? <span style={{ width: 16, height: 16, border: '2px solid rgba(5,5,5,.3)', borderTopColor: '#050505', borderRadius: '50%', animation: 'spin .6s linear infinite', display: 'inline-block' }} /> : <Send size={16} />}
-                      <HoverSlideText text="Recevoir mon devis en 24h" />
+                      <HoverSlideText text="Envoyer ma demande" />
                     </button>
                   </div>
                 </motion.div>
@@ -1751,8 +1752,8 @@ export default function HomePageDesktop() {
       <ProjectFormHome />
 
       <PageCTA
-        message="Comme eux, donnez à votre activité la présence digitale qu'elle mérite."
-        cta="Rejoindre nos clients"
+        message="Comme eux, faites confiance à l'expertise d'Agro Véto Services Congo pour votre élevage et vos normes qualité."
+        cta="Contacter notre équipe"
       />
     </div>
   )

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useEffect, useCallback } from 'react'
 import {
   LayoutDashboard, BarChart3, MessagesSquare, Users, Search,
@@ -63,7 +63,7 @@ const DASH_THEME_DARK = {
   textMain: '#e8eaed',
   textSub: '#9aa0a6',
   textMuted: '#80868b',
-  green: '#88ca53',
+  green: '#5a8738',
   greenSub: '#6fb03f',
   border: '#3c4043',
   border2: '#5f6368',
@@ -88,8 +88,8 @@ const STATUS_LABELS = {
   CONVERTED: 'Converti', LOST: 'Perdu', ACTIVE: 'Actif', ENDED: 'Terminé',
 }
 const STATUS_COLORS = {
-  NEW: '#5b8def', QUALIFIED: '#88ca53', CONTACTED: '#e0a83e',
-  CONVERTED: '#3ee08a', LOST: '#e05e5e', ACTIVE: '#88ca53', ENDED: 'rgba(255,255,255,.4)',
+  NEW: '#5b8def', QUALIFIED: '#5a8738', CONTACTED: '#e0a83e',
+  CONVERTED: '#3ee08a', LOST: '#e05e5e', ACTIVE: '#5a8738', ENDED: 'rgba(255,255,255,.4)',
 }
 
 function StatusPill({ status, T }) {
@@ -137,9 +137,10 @@ function ChartTooltip({ active, payload, label, T, unit = '' }) {
   )
 }
 
-function UsageBar({ label, usage, T }) {
-  const { count, approxLimit } = usage
-  const pct = Math.min((count / approxLimit) * 100, 100)
+function UsageBar({ label, usage = {}, T }) {
+  const count = usage?.count ?? 0
+  const approxLimit = usage?.approxLimit ?? 1
+  const pct = Math.min((count / (approxLimit || 1)) * 100, 100)
   const color = pct > 90 ? '#e05e5e' : pct > 70 ? '#e0a83e' : T.green
   return (
     <div style={{ marginBottom: 12 }}>
@@ -193,7 +194,7 @@ function DetailModal({ conversation, onClose, T }) {
         </div>
         <div style={{ padding: '1.2rem 1.4rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 10 }}>
           {conversation.lead && (
-            <div style={{ background: 'rgba(136,202,83,.06)', border: `1px solid ${T.border2}`, borderRadius: 10, padding: '.8rem 1rem', marginBottom: 4 }}>
+            <div style={{ background: 'rgba(90, 135, 56,.06)', border: `1px solid ${T.border2}`, borderRadius: 10, padding: '.8rem 1rem', marginBottom: 4 }}>
               <div style={{ fontSize: '.7rem', fontWeight: 700, color: T.green, marginBottom: 4 }}>LEAD · SCORE {conversation.lead.score}/100</div>
               <div style={{ fontSize: '.8rem', color: T.textMain }}>{conversation.lead.name} — {conversation.lead.contact}</div>
             </div>
@@ -285,6 +286,11 @@ const EMPTY_VISITORS = {
   consent: { accepted: 0, rejected: 0, pending: 0 },
 }
 
+const EMPTY_AI_USAGE = {
+  gemini: { count: 0, approxLimit: 250 },
+  groq: { count: 0, approxLimit: 14400 },
+}
+
 function normalizeStats(d) {
   return {
     ...d,
@@ -293,6 +299,10 @@ function normalizeStats(d) {
     leads: { total: 0, qualified: 0, avgScore: 0, ...d?.leads },
     conversion: { rate: 0, ...d?.conversion },
     activity: d?.activity ?? [],
+    aiUsage: {
+      gemini: { count: 0, approxLimit: 250, ...(d?.aiUsage?.gemini || {}) },
+      groq: { count: 0, approxLimit: 14400, ...(d?.aiUsage?.groq || {}) },
+    },
   }
 }
 
