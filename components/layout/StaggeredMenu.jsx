@@ -1,9 +1,10 @@
 'use client'
 import { useCallback, useLayoutEffect, useRef, useState, useEffect } from 'react'
 import { gsap } from 'gsap'
-import { Moon, Sun } from 'lucide-react'
+import { Moon, Sun, ShoppingBag } from 'lucide-react'
 import Logo from '@/components/ui/Logo'
 import { useTheme } from '@/lib/theme'
+import { useShop } from '@/lib/shopContext'
 import { HoverSlideText } from '@/components/ui/index'
 import TransitionLink from './TransitionLink'
 import './StaggeredMenu.css'
@@ -45,6 +46,7 @@ function NavItemWithGhost({ it, idx, isActive, closeMenu }) {
 
 export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
   const T = useTheme()
+  const { cartCount, openCart } = useShop()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const openRef = useRef(false)
@@ -269,6 +271,37 @@ export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
           <Logo size={18} showTag={false} animate={false} />
         </TransitionLink>
         <div className="sm-header-right">
+          <button
+            onClick={openCart}
+            className="sm-header-theme"
+            title="Mon Panier AVS"
+            type="button"
+            aria-label="Ouvrir le panier"
+            style={{ position: 'relative' }}
+          >
+            <ShoppingBag size={14} />
+            {cartCount > 0 && (
+              <span
+                style={{
+                  position: 'absolute',
+                  top: '-4px',
+                  right: '-4px',
+                  background: '#5a8738',
+                  color: '#ffffff',
+                  borderRadius: '100px',
+                  fontSize: '0.6rem',
+                  fontWeight: 800,
+                  width: '15px',
+                  height: '15px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {cartCount}
+              </span>
+            )}
+          </button>
           <button
             onClick={T.toggle}
             className="sm-header-theme"

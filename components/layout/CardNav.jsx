@@ -4,8 +4,9 @@ import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
-import { Moon, Sun, Orbit } from 'lucide-react'
+import { Moon, Sun, Orbit, ShoppingBag, User } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
+import { useShop } from '@/lib/shopContext'
 import { HoverSlideText } from '@/components/ui/index'
 import TransitionLink from './TransitionLink'
 import { useBlobTransition } from './BlobTransition'
@@ -75,6 +76,7 @@ function CardLinkWithGhost({ href, label, sub, onClick }) {
 
 export default function CardNav() {
   const T = useTheme()
+  const { cartCount, openCart, currentUser } = useShop()
   const pathname = usePathname()
   const blobNavigate = useBlobTransition()
   const inExplorer = pathname?.startsWith('/explorer')
@@ -177,6 +179,40 @@ export default function CardNav() {
 
           <div className="aka-nav-right">
             <button
+              onClick={openCart}
+              className="btn-ghost btn-sm"
+              title="Mon Panier AVS"
+              type="button"
+              style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '6px' }}
+            >
+              <ShoppingBag size={14} />
+              <span>Panier</span>
+              {cartCount > 0 && (
+                <span style={{
+                  background: '#5a8738',
+                  color: '#ffffff',
+                  borderRadius: '100px',
+                  fontSize: '0.65rem',
+                  fontWeight: 800,
+                  padding: '1px 6px',
+                  marginLeft: '2px',
+                }}>
+                  {cartCount}
+                </span>
+              )}
+            </button>
+
+            <TransitionLink
+              href="/mon-compte"
+              className="btn-ghost btn-sm"
+              title={currentUser ? currentUser.fullName : "Mon Compte Éleveur"}
+              style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+            >
+              <User size={14} />
+              <span>{currentUser ? currentUser.fullName.split(' ')[0] : 'Compte'}</span>
+            </TransitionLink>
+
+            <button
               onClick={handleExplorerToggle}
               className={(inExplorer ? 'btn-raised btn-sm' : 'btn-ghost btn-sm')}
               title={inExplorer ? "Retour au site" : "Mode Explorer — globe des projets"}
@@ -190,7 +226,7 @@ export default function CardNav() {
               {T.light ? <Moon size={13} /> : <Sun size={13} />}
             </button>
             <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-raised btn-sm">
-              <HoverSlideText text="CONTACT WHATSAPP" />
+              <HoverSlideText text="WHATSAPP" />
             </a>
           </div>
         </div>
@@ -207,11 +243,12 @@ export default function CardNav() {
           </div>
 
           <div className="aka-nav-card aka-card-2" ref={el => cardsRef.current[1] = el}>
-            <div className="aka-card-label">Prestations & Soins</div>
+            <div className="aka-card-label">Prestations & Intrants</div>
             <div className="aka-card-links">
+              <CardLinkWithGhost href="/boutique" label="Boutique" sub="Poussins Cobb 500 & Provende" onClick={closeNav} />
+              <CardLinkWithGhost href="/mon-compte" label="Mon Compte" sub="Suivi des commandes & Profil" onClick={closeNav} />
               <CardLinkWithGhost href="/clinique" label="Clinique" sub="Urgences 24/7 & Soins" onClick={closeNav} />
               <CardLinkWithGhost href="/formations" label="Formations" sub="Fermes-Écoles & Certificats" onClick={closeNav} />
-              <CardLinkWithGhost href="/pricing" label="Boutique" sub="Poussins Cobb 500 & Provende" onClick={closeNav} />
             </div>
           </div>
 

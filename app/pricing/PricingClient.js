@@ -1,7 +1,8 @@
 'use client'
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { Check, Zap, Timer, AlertTriangle, MessageCircle, HelpCircle, ChevronDown, Star, FileText, Lock, Clock, GraduationCap, Wrench, Globe } from 'lucide-react'
+import Link from 'next/link'
+import { Check, Zap, Timer, AlertTriangle, MessageCircle, HelpCircle, ChevronDown, Star, FileText, Lock, Clock, GraduationCap, Wrench, Globe, ShoppingBag } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { GhostTitle, GreenUnderline, PageCTA, HoverSlideText } from '@/components/ui/index'
 import AuroraHero from '@/components/ui/AuroraHero'
@@ -193,10 +194,26 @@ function PricingTabs() {
                           </div>
                         ))}
                       </div>
-                      {plan.popular
-                        ? <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
-                        : <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
-                      }
+                      <div style={{ display: 'flex', gap: '.5rem', marginTop: 'auto' }}>
+                        <Link
+                          href="/boutique"
+                          className={plan.popular ? "btn-raised" : "btn-ghost"}
+                          style={{ flex: 1, justifyContent: 'center', display: 'flex', fontSize: '.78rem', padding: '.6rem .75rem', alignItems: 'center', gap: '.4rem' }}
+                        >
+                          <ShoppingBag size={14} />
+                          <HoverSlideText text="Commander en ligne →" />
+                        </Link>
+                        <a
+                          href={`https://wa.me/242060000000?text=${wa}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="btn-ghost"
+                          style={{ padding: '.6rem .8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                          title="Commander ou demander un devis via WhatsApp"
+                        >
+                          <MessageCircle size={15} />
+                        </a>
+                      </div>
                     </div>
                   </motion.div>
                 </BlurReveal>

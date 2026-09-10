@@ -9,9 +9,13 @@ import AIAssistant from '@/components/ui/AIAssistant'
 import VisitorTracker from '@/components/ui/VisitorTracker'
 import CookieConsent from '@/components/ui/CookieConsent'
 import { cld } from '@/lib/cloudinary'
-import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import { PageTransitionProvider } from '@/components/layout/PageTransition'
 import { BlobTransitionProvider } from '@/components/layout/BlobTransition'
+import { ShopProvider } from '@/lib/shopContext'
+import CartDrawer from '@/components/shop/CartDrawer'
+import AuthModal from '@/components/auth/AuthModal'
+import Toast from '@/components/ui/Toast'
 import { SitewideStructuredData } from './seo/StructuredData'
 import BreadcrumbTrail from './seo/BreadcrumbTrail'
 
@@ -135,21 +139,26 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <PageTransitionProvider>
             <BlobTransitionProvider>
-              <ScrollToTop />
-              <Loader />
-              <Navbar />
-              <BreadcrumbTrail />
-              <main>{children}</main>
-              <Footer />
-              <FloatingWA />
-              <BackToTop />
-              <AIAssistant />
-              <VisitorTracker />
-              <CookieConsent />
-              <Analytics />
+              <ShopProvider>
+                <ScrollToTop />
+                <Loader />
+                <Navbar />
+                <BreadcrumbTrail />
+                <main>{children}</main>
+                <Footer />
+                <CartDrawer />
+                <AuthModal />
+                <Toast />
+                <FloatingWA />
+                <BackToTop />
+                <AIAssistant />
+                <VisitorTracker />
+                <CookieConsent />
+              </ShopProvider>
             </BlobTransitionProvider>
           </PageTransitionProvider>
         </ThemeProvider>
+        <Script src="https://cdn.kkiapay.me/k.js" strategy="lazyOnload" />
       </body>
     </html>
   )

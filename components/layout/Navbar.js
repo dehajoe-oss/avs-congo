@@ -7,10 +7,11 @@ const NAV_LINKS = [
   { label: 'Accueil',      href: '/'           },
   { label: 'À Propos',     href: '/about'      },
   { label: 'Nos 6 Pôles',  href: '/services'   },
-  { label: 'Boutique',     href: '/pricing'    },
+  { label: 'Boutique',     href: '/boutique'   },
   { label: 'Clinique',     href: '/clinique'   },
   { label: 'Formations',   href: '/formations' },
   { label: 'Réalisations', href: '/projects'   },
+  { label: 'Mon Compte',   href: '/mon-compte' },
   { label: 'Blog',         href: '/blog'       },
   { label: 'Contact',      href: '/contact'    },
 ]
