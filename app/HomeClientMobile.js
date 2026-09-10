@@ -219,14 +219,14 @@ function HeroSloganCycle() {
   const { before, highlight } = HERO_SLOGANS[index]
 
   return (
-    <div style={{ marginBottom: '2.2rem', maxWidth: 800, marginLeft: 'auto', marginRight: 'auto', minHeight: 'clamp(4.5rem,11vw,7.6rem)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ marginBottom: '1rem', maxWidth: 460, marginLeft: 'auto', marginRight: 'auto', minHeight: 'clamp(3.6rem, 10vw, 4.4rem)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <AnimatePresence mode="wait">
         <motion.p key={index}
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: .45, ease: 'easeOut' }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.9rem,4.4vw,3.2rem)', lineHeight: 1.18, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '4px 4px 0px rgba(0,0,0,.55)', textAlign: 'center', margin: 0 }}>
+          initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
+          transition={{ duration: .4, ease: 'easeOut' }}
+          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.22rem, 5vw, 1.55rem)', lineHeight: 1.22, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '3px 3px 0px rgba(0,0,0,.55)', textAlign: 'center', margin: 0 }}>
           {before}
-          <span style={{ display: 'inline-block', background: '#f89203', color: '#050505', padding: '.1em .35em', border: '3px solid #050505', borderRadius: '.18em', boxShadow: '5px 5px 0px #fff, 0 0 32px var(--pop-lime-glow)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
+          <span style={{ display: 'inline-block', background: '#f89203', color: '#050505', padding: '.08em .32em', border: '2px solid #050505', borderRadius: '.18em', boxShadow: '4px 4px 0px #fff, 0 0 20px rgba(248, 146, 3, 0.4)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
             {highlight}
           </span>
         </motion.p>
@@ -242,6 +242,7 @@ function Hero() {
   const layerBgRef  = useRef(null)
   const layerMidRef = useRef(null)
   const layerForeRef = useRef(null)
+  const galleryRef  = useRef(null)
 
   useEffect(() => {
     const onMouse = (e) => {
@@ -306,6 +307,9 @@ function Hero() {
         if (layerForeRef.current) {
           layerForeRef.current.style.opacity = String(Math.max(0, 1 - progress * 2.2))
         }
+        if (galleryRef.current) {
+          galleryRef.current.style.opacity = String(Math.max(0, 1 - progress * 1.25))
+        }
       })
     }
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -315,7 +319,7 @@ function Hero() {
 
   return (
     <div ref={wrapRef} style={{ position: 'relative', height: '200dvh' }}>
-    <section id="home-hero" style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#030806' }}>
+    <section id="home-hero" style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingTop: '68px', paddingBottom: '60px', boxSizing: 'border-box' }}>
 
       <div ref={layerBgRef} style={{ position: 'absolute', zIndex: 1, width: '115%', height: '115%', willChange: 'transform, filter', transition: 'transform .1s ease-out', pointerEvents: 'none' }}>
         <img src={cld('/images/hero-bg.webp')} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'blur(3px)', transform: 'scale(1.04)' }} />
@@ -323,19 +327,19 @@ function Hero() {
         <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .13, pointerEvents: 'none' }} />
       </div>
 
-      <div ref={layerMidRef} style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '5.2rem 5% 0', willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out', textAlign: 'center' }}>
+      <div ref={layerMidRef} style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '0 5%', willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out', textAlign: 'center' }}>
 
         <HeroSloganCycle />
 
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.92rem', color: 'rgba(255,255,255,.68)', maxWidth: 420, margin: '0 auto 1.4rem', lineHeight: 1.55 }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.84rem', color: 'rgba(255,255,255,.68)', maxWidth: 360, margin: '0 auto 1rem', lineHeight: 1.48 }}>
           Clinique vétérinaire, provenderie certifiée, poussins Cobb 500 et audits qualité au Congo.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .4 }}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.7rem', marginBottom: '1.6rem' }}>
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.6rem', marginBottom: '1.2rem' }}>
           <AvatarGroup spacing={-11}>
             {TESTIMONIALS.map(c => (
               <Avatar key={c.name}>
@@ -346,10 +350,10 @@ function Hero() {
             ))}
           </AvatarGroup>
           <div style={{ textAlign: 'left' }}>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.78rem', color: '#fff', lineHeight: 1.15 }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.75rem', color: '#fff', lineHeight: 1.15 }}>
               Éleveurs & PME partenaires
             </div>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.63rem', color: '#f89203' }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: '#f89203' }}>
               {PROJECTS.length}+ réalisations & intrants de pointe
             </div>
           </div>
@@ -357,28 +361,32 @@ function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .45 }}
-          style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '-1.6rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
+          style={{ display: 'flex', flexWrap: 'wrap', gap: '.7rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
           <motion.a href="https://wa.me/242060000000" target="_blank" rel="noreferrer"
-            initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(251, 146, 60,.45)' }}
-            whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
+            initial={{ boxShadow: '4px 4px 0px #050505' }}
+            whileHover={{ scale: 1.03, boxShadow: '6px 8px 0px #050505, 0 0 20px rgba(251, 146, 60,.45)' }}
+            whileTap={{ scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#f89203', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
-            <HoverSlideText text="Commander sur WhatsApp" /> <ArrowRight size={16} />
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#f89203', padding: '.72rem 1.35rem', borderRadius: 999, border: '2.5px solid #fff' }}>
+            <HoverSlideText text="Commander sur WhatsApp" /> <ArrowRight size={14} />
           </motion.a>
           <motion.div
-            initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(251, 146, 60,.45)' }}
-            whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
+            initial={{ boxShadow: '4px 4px 0px #050505' }}
+            whileHover={{ scale: 1.03, boxShadow: '6px 8px 0px #050505, 0 0 20px rgba(251, 146, 60,.45)' }}
+            whileTap={{ scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#fb923c', background: 'transparent', border: '3px solid #fb923c', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#fb923c', background: 'transparent', border: '2.5px solid #fb923c', borderRadius: 999, padding: 'calc(.72rem - 2.5px) calc(1.35rem - 2.5px)' }}>
               <HoverSlideText text="Prendre RDV Clinique" />
             </Link>
           </motion.div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .55 }} style={{ paddingTop: '2.8rem' }}>
+      </div>
+
+      {/* Aperçu de la CIRCULAR PROJECTS GALLERY ancrée en bas */}
+      <div ref={galleryRef} style={{ position: 'absolute', left: 0, right: 0, bottom: '-75px', zIndex: 11, willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .55 }}>
           <CircularProjectsGallery />
         </motion.div>
       </div>
