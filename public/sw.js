@@ -1,4 +1,4 @@
-const CACHE_NAME = 'akatech-pwa-v3'
+const CACHE_NAME = 'avs-pwa-v4'
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
@@ -27,6 +27,9 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return
   const url = new URL(event.request.url)
   if (url.origin !== location.origin) return
+
+  // Ne pas intercepter les requêtes internes Next.js (_next) pour garantir le rechargement immédiat
+  if (url.pathname.startsWith('/_next/')) return
 
   if (event.request.mode === 'navigate') {
     event.respondWith(
