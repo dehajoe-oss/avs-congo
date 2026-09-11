@@ -14,17 +14,17 @@ import { SERVICES } from '@/lib/data'
 const ICON_MAP = { Globe, ShoppingCart, Cpu, Server, Palette, Wrench, Map, MapPin }
 
 const PROCESS_STEPS = [
-  { n: '01', title: 'Consultation gratuite', desc: 'Échange de 30 min pour comprendre votre projet, vos objectifs et votre budget. Aucun engagement.' },
-  { n: '02', title: 'Devis personnalisé', desc: 'Proposition détaillée avec planning, technologies et tarif. Validé ensemble avant de commencer.' },
-  { n: '03', title: 'Développement agile', desc: 'Jalons hebdomadaires, preview en ligne, retours pris en compte en temps réel.' },
-  { n: '04', title: 'Livraison + Formation', desc: 'Mise en ligne, tests, documentation et formation 2h pour gérer votre solution en autonomie.' },
+  { n: '01', title: 'Prise de contact & Écoute', desc: 'Échange gratuit pour cerner vos besoins d’élevage, provenderie ou diagnostic normatif.' },
+  { n: '02', title: 'Devis & Protocole clair', desc: 'Proposition chiffrée avec calendrier de livraison, protocole vétérinaire ou programme d’audit.' },
+  { n: '03', title: 'Livraison & Accompagnement', desc: 'Arrivage des intrants certifiés, intervention clinique vétérinaire ou audit sur votre site.' },
+  { n: '04', title: 'Suivi continu & Conseils', desc: 'Permanence d’urgence 24h/24 & 7j/7, suivi zootechnique et pérennisation des résultats.' },
 ]
 
 const TECH_STACK = [
-  { cat: 'Frontend', items: ['React', 'Next.js', 'Framer Motion', 'Tailwind CSS'] },
-  { cat: 'Backend', items: ['Django', 'Python', 'Node.js', 'Express'] },
-  { cat: 'Base de données', items: ['MySQL', 'Redis'] },
-  { cat: 'Outils', items: ['Git', 'VS Code','Vercel'] },
+  { cat: 'Santé Animale', items: ['Clinique Vétérinaire', 'Chirurgie', 'Urgences 24/7', 'Vaccination Couvoir'] },
+  { cat: 'Provenderie & Labo', items: ['Analyses Bromatologiques', 'Aliment Démarrage 21%', 'Aliment Finition', 'Sécurité SPS'] },
+  { cat: 'Normes & Audits', items: ['ISO 9001', 'ISO 22000', 'Méthode HACCP', 'QHSE Partagé PME'] },
+  { cat: 'Formation & Savoir', items: ['Ferme-École', 'Pratique 100%', 'Biosécurité Élevage', 'Fabrication Savons'] },
 ]
 
 function HeroServices() {
@@ -43,7 +43,7 @@ function HeroServices() {
             De la consultation vétérinaire à l'audit d'usine, chaque pôle est conçu pour répondre aux réalités agropastorales et sanitaires du Congo.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
-            <a href="https://wa.me/2250142507750" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '1rem' }}>
+            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '1rem' }}>
               <HoverSlideText text="Devis gratuit" /> <MessageCircle size={16} />
             </a>
             <a href="#services-list" className="btn-ghost" style={{ fontSize: '1rem' }}>
@@ -136,7 +136,7 @@ function ServicesList() {
                     <Timer size={10} style={{ color: T.green }} />Délai : {svc.del}
                   </div>
                 </div>
-                <a href={`https://wa.me/242060000000?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite des informations sur : ${svc.title}`)}`} target="_blank" rel="noreferrer" className="btn-raised">
+                <a href={`https://wa.me/242069677567?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite des informations sur : ${svc.title}`)}`} target="_blank" rel="noreferrer" className="btn-raised">
                   <HoverSlideText text="Commander / Devis" /> <ArrowRight size={14} />
                 </a>
               </div>

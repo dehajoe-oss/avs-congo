@@ -302,10 +302,10 @@ function HeroContact() {
 // ── CONTACT CHANNELS — AnimatedBeamGrid + TiltCard ───────────
 // ═══════════════════════════════════════════════════════════════
 const CHANNELS = [
-  { id: 'cnt-n-0', icon: MessageCircle, label: 'WhatsApp', val: '+242 06 000 00 00', href: 'https://wa.me/242060000000', color: '#25d366', desc: 'Réponse en moins de 2h' },
-  { id: 'cnt-n-1', icon: Mail,          label: 'Email',    val: 'contact@agrovetoservices.cg', href: 'mailto:contact@agrovetoservices.cg', color: '#f89203', desc: 'Réponse sous 24h' },
-  { id: 'cnt-n-2', icon: Phone,         label: 'Téléphone',val: '+242 06 000 00 00', href: 'tel:+242060000000', color: '#f89203', desc: 'Lun–Ven, 8h–18h' },
-  { id: 'cnt-n-3', icon: MapPin,        label: 'Localisation', val: "Quartier Socoprise, Pointe-Noire (Congo)", href: null, color: '#f89203', desc: 'Déplacements possibles' },
+  { id: 'cnt-n-0', icon: MessageCircle, label: 'WhatsApp', val: '+242 06 967 75 67', href: 'https://wa.me/242069677567', color: '#25d366', desc: 'Réponse en moins de 2h' },
+  { id: 'cnt-n-1', icon: Mail,          label: 'Email',    val: 'agrovetoservicescongo@gmail.com', href: 'mailto:agrovetoservicescongo@gmail.com', color: '#f89203', desc: 'Réponse sous 24h' },
+  { id: 'cnt-n-2', icon: Phone,         label: 'Téléphone',val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242069677567', color: '#f89203', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
+  { id: 'cnt-n-3', icon: MapPin,        label: 'Localisation', val: "Quartier Socoprise, Av. Nelson Mandela, Rue Bissoute, Pointe-Noire", href: null, color: '#f89203', desc: 'Déplacements possibles en exploitation' },
 ]
 
 function ChannelIcon({ Icon, color, T }) {
@@ -435,7 +435,7 @@ function ContactChannels() {
             <div style={{ display: 'flex', gap: '.6rem' }}>
               {[
                 { Icon: FacebookIcon, href: 'https://web.facebook.com/profile.php?id=61577494705852', label: 'Facebook', color: '#1877f2' },
-                { Icon: WhatsAppIcon, href: 'https://wa.me/242060000000', label: 'WhatsApp', color: '#25d366' },
+                { Icon: WhatsAppIcon, href: 'https://wa.me/242069677567', label: 'WhatsApp', color: '#25d366' },
                 { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#f89203' },
               ].map(({ Icon, href, label, color }) => (
                 <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
@@ -487,9 +487,200 @@ function FlagBadge({ code, primary }) {
   )
 }
 
-// GeoSection moved to HomeClientDesktop.js
+// ═══════════════════════════════════════════════════════════════
+// ── FORMULAIRE DE CONTACT (DESKTOP) ───────────────────────────
+// ═══════════════════════════════════════════════════════════════
+function ProjectFormContact() {
+  const T = useTheme()
+  const ref = useRef(null)
+  const sectionRef = useRef(null)
+  const [form, setForm] = useState({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' })
+  const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
-// ProcessContact and ProjectForm moved to HomeClientDesktop.js
+  const inputStyle = {
+    width: '100%',
+    padding: '.75rem .95rem',
+    borderRadius: 10,
+    background: T.light ? '#ffffff' : 'rgba(248, 146, 3,.04)',
+    border: `1px solid ${T.light ? 'rgba(0,0,0,.15)' : T.border}`,
+    color: T.light ? '#111111' : 'rgba(255,255,255,.88)',
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: '.9rem',
+    outline: 'none',
+    transition: 'border-color .2s, box-shadow .2s',
+    boxSizing: 'border-box',
+    colorScheme: T.light ? 'light' : 'dark',
+  }
+
+  const handleSubmit = async (e) => {
+    if (e) e.preventDefault()
+    if (!form.name || !form.email || !form.message) {
+      setError('Merci de renseigner votre nom complet, votre email et votre message.')
+      return
+    }
+    setSending(true)
+    setError('')
+    try {
+      const res = await fetch('/api/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, projectType: form.service }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.error || "Erreur lors de l'envoi")
+      setSent(true)
+    } catch (err) {
+      setError(err.message || "Une erreur est survenue. Réessayez ou contactez-nous sur WhatsApp.")
+    } finally {
+      setSending(false)
+    }
+  }
+
+  return (
+    <section ref={el => { ref.current = el; sectionRef.current = el }} style={{ padding: 'clamp(3rem,6vw,5rem) 5%', background: T.bg }}>
+      <div style={{ maxWidth: 900, margin: '0 auto' }}>
+        <BlurReveal style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.2rem,6vw,5.2rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.8rem' }}>
+            <GhostTitle text="FORMULAIRE DE CONTACT" />
+            Envoyez-nous un <GreenUnderline><span className="text-gradient">message</span></GreenUnderline>
+          </h2>
+          <WordRevealP
+            sectionRef={sectionRef}
+            text="Exposez vos besoins : notre équipe et le Dr POUTYA vous répondent sous 24h ouvrées."
+            greenWords={['besoins', 'Dr', 'POUTYA', '24h']}
+            extraStyle={{ color: T.textSub, textAlign: 'center' }}
+          />
+        </BlurReveal>
+
+        <BlurReveal delay={0.15}>
+          <div style={{
+            background: T.light ? 'rgba(255,255,255,.95)' : 'rgba(255,255,255,.03)',
+            backdropFilter: 'blur(20px)',
+            border: `1px solid ${T.light ? 'rgba(0,0,0,.1)' : T.border}`,
+            borderRadius: 22,
+            padding: 'clamp(1.8rem, 4vw, 3rem)',
+            boxShadow: T.light ? '0 10px 40px rgba(0,0,0,.06)' : '0 12px 48px rgba(0,0,0,.4)',
+          }}>
+            <AnimatePresence mode="wait">
+              {sent ? (
+                <motion.div key="success" initial={{ opacity: 0, scale: .92 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '3rem 1.5rem' }}>
+                  <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(248, 146, 3,.15)', border: '2px solid rgba(248, 146, 3,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                    <CheckCircle size={36} style={{ color: '#f89203' }} />
+                  </div>
+                  <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 800, fontSize: '1.5rem', color: T.textMain, marginBottom: '.8rem' }}>
+                    Demande transmise avec succès !
+                  </h3>
+                  <p style={{ color: T.textSub, fontSize: '.95rem', lineHeight: 1.7, maxWidth: 500, margin: '0 auto 2rem' }}>
+                    Votre message a bien été transmis à la direction d'AGRO VÉTO SERVICES CONGO S.A.R.L.U. Nous prendrons contact avec vous très prochainement.
+                  </p>
+                  <button type="button" onClick={() => { setSent(false); setForm({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' }) }}
+                    className="btn-ghost" style={{ padding: '.7rem 1.6rem' }}>
+                    Envoyer une autre demande
+                  </button>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit}>
+                  {/* Honeypot anti-bot */}
+                  <input type="text" name="website_trap" value={form.website_trap} onChange={e => setForm(f => ({ ...f, website_trap: e.target.value }))} style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.4rem', marginBottom: '1.4rem' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 600, color: T.textSub, marginBottom: '.45rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>
+                        Nom complet *
+                      </label>
+                      <input style={inputStyle} placeholder="Ex: Jean Malonga" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 600, color: T.textSub, marginBottom: '.45rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>
+                        Entreprise / Organisation (facultatif)
+                      </label>
+                      <input style={inputStyle} placeholder="Ex: Ferme Agropastorale du Kouilou" value={form.organization} onChange={e => setForm(f => ({ ...f, organization: e.target.value }))}
+                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.4rem', marginBottom: '1.4rem' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 600, color: T.textSub, marginBottom: '.45rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>
+                        Téléphone *
+                      </label>
+                      <input style={inputStyle} placeholder="+242 06 967 75 67" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 600, color: T.textSub, marginBottom: '.45rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>
+                        E-mail *
+                      </label>
+                      <input type="email" style={inputStyle} placeholder="vous@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
+                    </div>
+                  </div>
+
+                  <div style={{ marginBottom: '1.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 600, color: T.textSub, marginBottom: '.45rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>
+                      Objet de la demande *
+                    </label>
+                    <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
+                      onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                      onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }}>
+                      <option value="">Sélectionnez l'objet de votre demande...</option>
+                      <option value="consultation-vet">Consultation vétérinaire</option>
+                      <option value="produits-agropastoraux">Commande / produits agropastoraux</option>
+                      <option value="devis-qhse">Demande de devis QHSE</option>
+                      <option value="audit-accompagnement">Audit / accompagnement</option>
+                      <option value="formation">Formation</option>
+                      <option value="agroalimentaire">Agroalimentaire</option>
+                      <option value="autre">Autre</option>
+                    </select>
+                  </div>
+
+                  <div style={{ marginBottom: '1.8rem' }}>
+                    <label style={{ display: 'block', fontSize: '.75rem', fontWeight: 600, color: T.textSub, marginBottom: '.45rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>
+                      Message *
+                    </label>
+                    <textarea rows={5} style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }}
+                      placeholder="Précisez votre besoin, vos effectifs d'élevage ou votre projet..."
+                      value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                      onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                      onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
+                  </div>
+
+                  {error && (
+                    <p style={{ textAlign: 'left', fontSize: '.82rem', color: '#ff6b6b', marginBottom: '1.2rem' }}>
+                      {error}
+                    </p>
+                  )}
+
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+                    <p style={{ fontSize: '.75rem', color: T.textMuted, margin: 0, display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+                      <Lock size={12} /> Confidentialité garantie · Vos coordonnées ne seront jamais transmises.
+                    </p>
+                    <button type="submit" disabled={sending} className="btn-raised" style={{ opacity: sending ? .7 : 1, padding: '.9rem 2.2rem' }}>
+                      {sending ? (
+                        <><span style={{ width: 16, height: 16, border: '2px solid rgba(255,255,255,.3)', borderTopColor: '#fff', borderRadius: '50%', animation: 'spin .6s linear infinite', display: 'inline-block' }} /> Envoi en cours...</>
+                      ) : (
+                        <><Send size={15} /> Envoyer ma demande</>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </AnimatePresence>
+          </div>
+        </BlurReveal>
+      </div>
+    </section>
+  )
+}
 
 // ═══════════════════════════════════════════════════════════════
 // ── PAGE ─────────────────────────────────────────────────────
@@ -499,6 +690,7 @@ export default function ContactPage() {
     <div>
       <HeroContact />
       <ContactChannels />
+      <ProjectFormContact />
       <ConversionMarquee />
 
       <PageCTA

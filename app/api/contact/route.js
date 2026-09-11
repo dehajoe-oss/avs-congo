@@ -81,11 +81,11 @@ export async function POST(request) {
   }
 
   /* ── Anti-spam : honeypot ──
-     Champ caché côté frontend (name="company" par ex.), invisible
+     Champ caché côté frontend (website_trap), invisible
      pour un humain mais souvent rempli par les bots de soumission
      automatique. S'il est rempli → on répond 200 "faux succès"
      pour ne pas indiquer au bot que la requête a été repérée. */
-  if (body?.company) {
+  if (body?.website_trap) {
     return Response.json({ success: true }, { status: 200, headers: corsHeaders })
   }
 
@@ -101,6 +101,7 @@ export async function POST(request) {
 
   /* ── Validation ── */
   const name = typeof body.name === 'string' ? body.name.trim() : ''
+  const organization = typeof body.organization === 'string' ? body.organization.trim() : (typeof body.company === 'string' ? body.company.trim() : '')
   const email = typeof body.email === 'string' ? body.email.trim() : ''
   const phone = typeof body.phone === 'string' ? body.phone.trim() : ''
   const projectType = typeof body.projectType === 'string' ? body.projectType.trim() : ''
@@ -138,6 +139,7 @@ export async function POST(request) {
      Empêche un visiteur malveillant d'injecter du HTML/JS dans
      l'email reçu via les champs name/email/message/projectType. */
   const safeName = escapeHtml(name)
+  const safeOrganization = escapeHtml(organization)
   const safeEmail = escapeHtml(email)
   const safePhone = escapeHtml(phone)
   const safeBudget = escapeHtml(budget)
@@ -150,9 +152,9 @@ export async function POST(request) {
          Si ton domaine n'est pas vérifié, garde onboarding@resend.dev
          pour les tests, puis passe à noreply@tondomaine.com en prod. */
       from: process.env.FROM_EMAIL ?? 'onboarding@resend.dev',
-      to: process.env.ADMIN_EMAIL ?? 'wthomasss06@gmail.com',
+      to: process.env.ADMIN_EMAIL ?? 'agrovetoservicescongo@gmail.com',
       reply_to: email,
-      subject: `🚀 Nouveau projet — ${safeName} (${projectLabel})`,
+      subject: `🐾 Nouveau message AVS — ${safeName} (${projectLabel})`,
       html: `
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;background:#0a120c;">
 
@@ -172,6 +174,7 @@ export async function POST(request) {
             <h2 style="margin:0 0 6px;color:#f2ede8;font-size:20px;font-weight:800;">
               ${safeName}
             </h2>
+            ${safeOrganization ? `<div style="font-size:13px;color:#f89203;font-weight:600;margin-bottom:8px;">🏢 ${safeOrganization}</div>` : ''}
             <div style="display:inline-block;padding:5px 12px;border-radius:100px;background:rgba(248, 146, 3,.12);border:1px solid rgba(248, 146, 3,.3);font-size:12px;font-weight:700;color:#8ab866;margin-bottom:24px;">
               ${projectLabel}
             </div>

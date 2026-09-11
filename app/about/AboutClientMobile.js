@@ -2,7 +2,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, Users, Monitor, Code, Heart, Zap, Star, Target, MessageCircle, ExternalLink } from 'lucide-react'
+import { ArrowRight, Users, Heart, Zap, Star, Target, MessageCircle, ExternalLink, ShieldCheck, GraduationCap, Award, Rocket, Check } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { GhostTitle, AnimatedCounter, LazyImg, PageCTA, GreenUnderline, HoverSlideText } from '@/components/ui/index'
 import TrustStacksMarquee from '@/components/ui/TrustStacksMarquee'
@@ -10,20 +10,39 @@ import AuroraHero from '@/components/ui/AuroraHero'
 import { STATS, PROJECTS } from '@/lib/data'
 import { cld } from '@/lib/cloudinary'
 
-const SKILLS = ['Médecine Vétérinaire','Management QHSE','Norme ISO 22000','Méthode HACCP','Provenderie Industrielle','Analyses Bromatologiques','Élevage Avicole','Biosécurité','Ferme-École']
-
-const VALUES = [
-  { icon: Target, title: 'Excellence Scientifique', desc: "Une démarche médicale et technique encadrée par des données vérifiées et les standards internationaux (ISO, HACCP)." },
-  { icon: Heart, title: 'Bien-être & Éthique Animale', desc: "Une pratique vétérinaire et un élevage respectueux de la vie animale et des écosystèmes." },
-  { icon: Zap, title: 'Proximité & Terrain', desc: "Un accompagnement sur mesure, au plus près des réalités des éleveurs et des PME à Pointe-Noire et au Congo." },
-  { icon: Star, title: 'Qualité & Durabilité', desc: "Des solutions agropastorales et écologiques viables pour répondre aux défis alimentaires de demain." },
+const SKILLS = [
+  'Médecine Vétérinaire & Chirurgie',
+  'Management QHSE & Normes ISO',
+  'Sécurité Sanitaire des Aliments & HACCP',
+  'Provenderie & Nutrition Animale',
+  'Analyses Bromatologiques',
+  'Conduite d’Élevage Avicole & Porcin',
+  'Biosécurité & Décontamination',
+  'Formations Pratiques en Ferme-École',
+  'Transformation Agroalimentaire'
 ]
 
-const TIMELINE = [
-  { year: '2021', title: 'Création & Statuts SARLU', desc: "Immatriculation officielle selon l'Acte uniforme OHADA sous l'impulsion du Dr POUTYA SAIZONOU à Pointe-Noire." },
-  { year: '2023', title: 'Provenderie & Laboratoire', desc: "Mise en service de notre unité de provenderie industrielle et du laboratoire de contrôle bromatologique des aliments." },
-  { year: '2024', title: 'Lancement du « QHSE Partagé »', desc: "Déploiement d'une formule novatrice d'externalisation QHSE pour accompagner les PME congolaises vers les normes ISO et HACCP." },
-  { year: '2026', title: 'Ferme-École & Urgences 24/7', desc: "Ouverture des sessions de formations pratiques immersives et consolidation du service d'urgences vétérinaires 24h/24." },
+const VALUES = [
+  {
+    icon: Award,
+    title: 'Excellence scientifique & rigueur',
+    desc: "Des protocoles vétérinaires éprouvés, des analyses fiables et des méthodes QHSE alignées sur les meilleures pratiques internationales.",
+  },
+  {
+    icon: Heart,
+    title: 'Éthique & bien-être animal',
+    desc: "Le respect de l'animal, de l'environnement et de la santé publique au cœur de chaque intervention.",
+  },
+  {
+    icon: Zap,
+    title: 'Proximité & engagement terrain',
+    desc: "Une écoute attentive, des interventions rapides et un accompagnement sur mesure auprès des éleveurs et des entreprises.",
+  },
+  {
+    icon: Star,
+    title: 'Innovation & durabilité',
+    desc: "La valorisation des ressources locales, l'adoption de pratiques écoresponsables et la recherche constante de solutions durables.",
+  },
 ]
 
 const PAYS = [
@@ -69,24 +88,14 @@ function HeroAbout() {
             <GreenUnderline><span className="text-gradient">à l'excellence QHSE.</span></GreenUnderline>
           </h1>
           <p style={{ fontSize: '.95rem', color: T.textSub, lineHeight: 1.75, marginBottom: '2rem', maxWidth: 480 }}>
-            Agro Véto Services Congo accompagne les éleveurs et PME agropastorales vers la performance et la conformité sanitaire.
+            L'expertise au service de la santé animale, de la qualité agroalimentaire et de la performance QHSE en République du Congo.
           </p>
         </motion.div>
-        {/* Photo grid */}
+        {/* Photo fondatrice */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .2 }}
-          style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '180px 130px', gap: '.75rem' }}>
-          <div style={{ gridRow: '1 / 3', borderRadius: 14, overflow: 'hidden', border: '1px solid rgba(248, 146, 3,.2)', boxShadow: '6px 6px 24px rgba(0,0,0,.3)' }}>
-            <LazyImg src={cld('/images/dr_poutya.jpeg')} alt="Agro Véto Services Congo" style={{ width:'100%',height:'100%',objectFit:'cover' }}
-              placeholder={<div style={{ height:'100%',background:'#1c1917',display:'flex',alignItems:'center',justifyContent:'center' }}><Users size={28} style={{color:'rgba(248, 146, 3,.3)'}}/></div>} />
-          </div>
-          <div style={{ borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(248, 146, 3,.15)' }}>
-            <LazyImg src={cld('/images/about-2.webp')} alt="Bureau" style={{ width:'100%',height:'100%',objectFit:'cover' }}
-              placeholder={<div style={{ height:'100%',background:'#1c1917',display:'flex',alignItems:'center',justifyContent:'center' }}><Monitor size={22} style={{color:'rgba(248, 146, 3,.3)'}}/></div>} />
-          </div>
-          <div style={{ borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(248, 146, 3,.15)' }}>
-            <LazyImg src={cld('/images/about-3.webp')} alt="Dev" style={{ width:'100%',height:'100%',objectFit:'cover' }}
-              placeholder={<div style={{ height:'100%',background:'#1c1917',display:'flex',alignItems:'center',justifyContent:'center' }}><Code size={22} style={{color:'rgba(248, 146, 3,.3)'}}/></div>} />
-          </div>
+          style={{ borderRadius: 18, overflow: 'hidden', border: '1px solid rgba(248, 146, 3,.25)', boxShadow: '0 8px 24px rgba(0,0,0,.3)', height: 280 }}>
+          <LazyImg src={cld('/images/dr_poutya.jpeg')} alt="Dr POUTYA - Directrice Générale AVS Congo" style={{ width:'100%',height:'100%',objectFit:'cover',objectPosition:'center 15%' }}
+            placeholder={<div style={{ height:'100%',background:'#1c1917',display:'flex',alignItems:'center',justifyContent:'center' }}><Users size={36} style={{color:'rgba(248, 146, 3,.3)'}}/></div>} />
         </motion.div>
       </div>
     </section>
@@ -181,107 +190,172 @@ function StatsSection() {
   )
 }
 
-// ── 3. FONDATEUR ─────────────────────────────────────────────
-function FounderSection() {
+// ── 3. VISION & MISSION (Section 11 officielle) ───────────────
+function VisionMissionSection() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
-    <section ref={ref} style={{ padding: '5rem 5%', background: T.bg, position: 'relative' }}>
+    <section ref={ref} style={{ padding: '4.5rem 5%', background: T.bg, position: 'relative' }}>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}>
-        <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '1.2rem' }}>
-          <GhostTitle text="MISSION & VISION" />
-          Mission &  <GreenUnderline><span className="text-gradient">vision</span></GreenUnderline>
-        </h2>
-        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.2rem' }}>
-          <strong>AGRO VÉTO SERVICES CONGO</strong> accompagne les éleveurs, fermes et PME agropastorales au Congo pour propulser leur productivité et garantir la sécurité sanitaire.
-        </p>
-        <motion.p initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .08 }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1rem' }}>
-          {'Nous apportons aux exploitations un suivi vétérinaire de pointe, des intrants certifiés et des aliments '}
-          <span style={{ color: '#f89203' }}>haute performance</span>
-          {', adaptés au climat et '}
-          <span style={{ color: '#f89203' }}>aux réalités locales</span>
-          {"."}
-        </motion.p>
-        <motion.p initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .14 }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '2rem' }}>
-          {'Notre engagement repose sur la '}
-          <span style={{ color: '#f89203' }}>rigueur scientifique</span>
-          {', la '}
-          <span style={{ color: '#f89203' }}>biosécurité</span>
-          {" et l'"}
-          <span style={{ color: '#f89203' }}>impact durable</span>
-          {'.'}
-        </motion.p>
-
-        {/* Photo + identité + portfolio */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.1rem', borderRadius: 14, background: 'rgba(248, 146, 3,.06)', border: '1px solid rgba(248, 146, 3,.2)', marginBottom: '1.5rem' }}>
-          <div style={{ width: 56, height: 56, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '2px solid rgba(248, 146, 3,.5)', boxShadow: '0 0 14px rgba(248, 146, 3,.2)' }}>
-            <LazyImg
-              src={cld('/images/dr_poutya.jpeg')}
-              alt="Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 10%' }}
-              placeholder={<div style={{ width: 56, height: 56, background: 'rgba(248, 146, 3,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.1rem' }}>E</div>}
-            />
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.25rem .75rem', borderRadius: 100, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.64rem', fontWeight: 600, color: '#f89203', marginBottom: '.8rem', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+            Orientation Stratégique
           </div>
-          <div>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.9rem', color: T.textMain, marginBottom: '.15rem' }}>Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU</div>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.58rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.45rem' }}>Fondatrice & Directrice Générale · Vétérinaire & QHSE</div>
-            <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-ghost btn-sm">
-              <ExternalLink size={10} /> <HoverSlideText text="Me contacter" />
-            </a>
-          </div>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.1rem,8vw,3.2rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+            <GhostTitle text="VISION & MISSION" />
+            Vision & <GreenUnderline><span className="text-gradient">Mission</span></GreenUnderline>
+          </h2>
         </div>
 
-        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+          <div className="sku-card" style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.2rem .65rem', borderRadius: 100, background: 'rgba(248, 146, 3,.12)', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.8rem' }}>
+              <Target size={13} /> Notre Vision
+            </div>
+            <blockquote style={{ margin: 0, fontFamily: "'Poppins', sans-serif", fontSize: '.95rem', fontWeight: 700, fontStyle: 'italic', color: T.textMain, lineHeight: 1.6 }}>
+              « Être la référence agropastorale, vétérinaire et QHSE en République du Congo et un acteur reconnu du développement durable en Afrique Centrale. »
+            </blockquote>
+          </div>
+
+          <div className="sku-card" style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.2rem .65rem', borderRadius: 100, background: 'rgba(248, 146, 3,.12)', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.8rem' }}>
+              <Rocket size={13} /> Notre Mission
+            </div>
+            <blockquote style={{ margin: 0, fontFamily: "'Poppins', sans-serif", fontSize: '.95rem', fontWeight: 700, fontStyle: 'italic', color: T.textMain, lineHeight: 1.6 }}>
+              « Accompagner durablement les éleveurs, les acteurs des filières agropastorales et les entreprises dans l'amélioration de leur productivité, la garantie de la sécurité sanitaire et l'atteinte des standards de qualité internationaux. »
+            </blockquote>
+          </div>
+        </div>
       </motion.div>
     </section>
   )
 }
 
-// ── 4. HISTOIRE ──────────────────────────────────────────────
-function TimelineSection() {
+// ── 4. LA FONDATRICE (Section 13 officielle) ──────────────────
+function FounderSection() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
-    <section ref={ref} style={{ padding: '5rem 5%', background: T.bgAlt, position: 'relative' }}>
-      <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .18 }} />
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
-            <GhostTitle text="L'HISTOIRE D'AVS CONGO" />
-            L'évolution d'<GreenUnderline><span className="text-gradient">AVS Congo</span></GreenUnderline>
+    <section ref={ref} style={{ padding: '4.5rem 5%', background: T.bgAlt, position: 'relative', borderTop: `1px solid ${T.border}` }}>
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.25rem .75rem', borderRadius: 100, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.64rem', fontWeight: 600, color: '#f89203', marginBottom: '.8rem', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+            Direction Générale
+          </div>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.1rem,8vw,3.2rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
+            <GhostTitle text="LA FONDATRICE" />
+            La <GreenUnderline><span className="text-gradient">Fondatrice</span></GreenUnderline>
           </h2>
-        </motion.div>
-        <div style={{ position: 'relative', paddingLeft: '1.5rem' }}>
-          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 1, background: `${T.green}` }} />
-          {TIMELINE.map(({ year, title, desc }, i) => (
-            <motion.div key={year}
-              initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: i * .12 }}
-              style={{ position: 'relative', marginBottom: '2rem' }}>
-              <div style={{ position: 'absolute', left: '-1.8rem', top: '1.1rem', width: 12, height: 12, borderRadius: '50%', background: '#f89203', border: '2.5px solid rgba(248, 146, 3,.3)', boxShadow: '0 0 10px rgba(248, 146, 3,.4)' }} />
-              <div className="sku-card" style={{ padding: '1.2rem 1.4rem' }}>
-                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.85rem', fontWeight: 800, color: T.green, letterSpacing: '.08em', marginBottom: '.35rem' }}>{year}</div>
-                <h3 style={{ fontSize: '.92rem', fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", marginBottom: '.3rem' }}>{title}</h3>
-                <p style={{ fontSize: '.78rem', color: T.textSub, lineHeight: 1.6 }}>{desc}</p>
-              </div>
-            </motion.div>
-          ))}
         </div>
-      </div>
+
+        {/* Carte Identité */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1.2rem', borderRadius: 16, background: 'rgba(248, 146, 3,.06)', border: '1px solid rgba(248, 146, 3,.25)', marginBottom: '1.5rem' }}>
+          <div style={{ width: 62, height: 62, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, border: '2px solid rgba(248, 146, 3,.5)', boxShadow: '0 0 14px rgba(248, 146, 3,.2)' }}>
+            <LazyImg
+              src={cld('/images/dr_poutya.jpeg')}
+              alt="Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }}
+              placeholder={<div style={{ width: 62, height: 62, background: 'rgba(248, 146, 3,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.1rem' }}>E</div>}
+            />
+          </div>
+          <div>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontSize: '.95rem', color: T.textMain, lineHeight: 1.25, marginBottom: '.2rem' }}>
+              Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié
+            </div>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: '#f89203', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.45rem' }}>
+              Fondatrice & Directrice Générale
+            </div>
+            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-ghost btn-sm" style={{ padding: '.3rem .7rem', fontSize: '.68rem' }}>
+              <ExternalLink size={11} /> <HoverSlideText text="Échanger en direct" />
+            </a>
+          </div>
+        </div>
+
+        {/* 3 paragraphes officiels */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div className="sku-card" style={{ padding: '1.3rem', borderRadius: 14 }}>
+            <p style={{ fontSize: '.84rem', color: T.textSub, lineHeight: 1.7, margin: 0 }}>
+              Médecin vétérinaire passionnée par le développement agropastoral et experte en management de la qualité, de l'hygiène, de la sécurité et de l'environnement, le <strong>Dr POUTYA SAIZONOU</strong> cumule une solide expérience alliant pratique clinique, gestion d'élevages, conseil stratégique et audit de conformité.
+            </p>
+          </div>
+
+          <div className="sku-card" style={{ padding: '1.3rem', borderRadius: 14 }}>
+            <p style={{ fontSize: '.84rem', color: T.textSub, lineHeight: 1.7, margin: 0 }}>
+              Diplômée d'un <strong>Doctorat d'État en Médecine Vétérinaire</strong> et titulaire de certifications spécialisées en QHSE (normes <strong>ISO 9001, ISO 14001, ISO 45001, ISO 22000</strong> et démarche <strong>HACCP</strong>), elle a fondé <strong>AGRO VÉTO SERVICES CONGO</strong> avec une ambition claire : structurer, moderniser et sécuriser les filières agropastorales et agroalimentaires en République du Congo.
+            </p>
+          </div>
+
+          <div className="sku-card" style={{ padding: '1.3rem', borderRadius: 14 }}>
+            <p style={{ fontSize: '.84rem', color: T.textSub, lineHeight: 1.7, margin: 0 }}>
+              Formatrice chevronnée et consultante auprès d'organisations nationales et internationales, elle met son expertise au service des éleveurs, des PME agroalimentaires et des grandes entreprises industrielles pour bâtir un écosystème agropastoral performant, résilient et conforme aux exigences du XXIe siècle.
+            </p>
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }
 
-// ── 5. VALEURS ───────────────────────────────────────────────
+// ── 5. MOT DE LA DIRECTION (Section 14 officielle) ─────────────
+function DirectorWordSection() {
+  const T = useTheme()
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+  return (
+    <section ref={ref} style={{ padding: '4.5rem 5%', background: T.bg, position: 'relative', borderTop: `1px solid ${T.border}` }}>
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}>
+        <div style={{ textAlign: 'center', marginBottom: '1.8rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.25rem .75rem', borderRadius: 100, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.64rem', fontWeight: 600, color: '#f89203', marginBottom: '.8rem', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+            Message institutionnel
+          </div>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.1rem,8vw,3.2rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', margin: '0 0 .8rem' }}>
+            <GhostTitle text="MOT DE LA DIRECTION" />
+            Mot de la <GreenUnderline><span className="text-gradient">Direction</span></GreenUnderline>
+          </h2>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.92rem', fontStyle: 'italic', fontWeight: 700, color: '#f89203' }}>
+            « Bâtir un avenir agropastoral fort, durable et conforme aux standards mondiaux. »
+          </p>
+        </div>
+
+        <div style={{ padding: '1.5rem', borderRadius: 18, border: `1px solid rgba(248, 146, 3,.25)`, background: T.card, position: 'relative' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', fontSize: '.86rem', lineHeight: 1.75, color: T.textMain }}>
+            <p style={{ margin: 0 }}>
+              L'agriculture, l'élevage et l'agroalimentaire sont les piliers indispensables de l'indépendance économique et de la souveraineté alimentaire de notre pays. Pourtant, les acteurs de ces filières font face à des défis majeurs : précarité sanitaire du cheptel, faible accès aux intrants de qualité, absence de formation pratique adaptée et méconnaissance des exigences réglementaires et de sécurité sanitaire.
+            </p>
+            <p style={{ margin: 0 }}>
+              <strong>AGRO VÉTO SERVICES CONGO</strong> est née pour apporter des réponses concrètes, professionnelles et durables à ces défis. Nous ne sommes pas seulement des prestataires de services ; nous sommes des partenaires de terrain. Que vous soyez un petit éleveur désireux d'améliorer la rentabilité de sa bande, un transformateur agroalimentaire cherchant à structurer sa démarche qualité, ou une entreprise industrielle ayant besoin d'externaliser son management QHSE, notre équipe s'engage à vos côtés avec rigueur, intégrité et passion.
+            </p>
+            <p style={{ margin: 0, fontFamily: "'Poppins', sans-serif", fontSize: '.95rem', fontWeight: 800, fontStyle: 'italic', color: '#f89203' }}>
+              Ensemble, élevons les standards. Ensemble, construisons l'excellence.
+            </p>
+          </div>
+
+          <div style={{ marginTop: '1.6rem', paddingTop: '1.2rem', borderTop: `1px solid ${T.border}` }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontSize: '.92rem', color: T.textMain }}>
+              Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié
+            </div>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', color: T.textMuted }}>
+              Docteure en Médecine Vétérinaire & Spécialiste QHSE
+            </div>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.64rem', color: '#f89203', fontWeight: 600 }}>
+              Fondatrice & Directrice Générale — AGRO VÉTO SERVICES CONGO S.A.R.L.U.
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+
+// ── 6. VALEURS ───────────────────────────────────────────────
 function ValuesSection() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
-    <section ref={ref} style={{ padding: '5rem 5%', background: T.bg }}>
+    <section ref={ref} style={{ padding: '5rem 5%', background: T.bgAlt }}>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
         <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em' }}>
           <GhostTitle text="CE QUI NOUS DISTINGUE" />
@@ -305,20 +379,21 @@ function ValuesSection() {
   )
 }
 
-// ── 6. STACK TECHNIQUE ───────────────────────────────────────
+// ── 7. EXCELLENCE VÉTÉRINAIRE & QHSE ─────────────────────────
 function SkillsSection() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
-    <section ref={ref} style={{ padding: '5rem 5%', background: T.bgAlt }}>
+    <section ref={ref} style={{ padding: '5rem 5%', background: T.bg }}>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem' }}>
         <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.8rem' }}>
-          <GhostTitle text="LES TECHNOLOGIES QUI FONT LA DIFFÉRENCE" />
-          Les technologies qui font <GreenUnderline><span className="text-gradient">la différence</span></GreenUnderline>
+          <GhostTitle text="EXCELLENCE VÉTÉRINAIRE & QHSE" />
+          Excellence vétérinaire &{' '}
+          <GreenUnderline><span className="text-gradient">normes QHSE</span></GreenUnderline>
         </h2>
-        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.5rem' }}>
-          J'utilise les meilleures technologies modernes — sélectionnées pour leur performance, leur fiabilité et leur adéquation avec vos besoins réels.
+        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(.9rem,3.4vw,1.05rem)', fontWeight: 600, lineHeight: 1.6, color: T.textSub, marginBottom: '1.5rem' }}>
+          Notre équipe pluridisciplinaire combine l'art médical vétérinaire, la nutrition animale contrôlée en laboratoire et les normes internationales pour propulser votre réussite.
         </p>
       </motion.div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.45rem' }}>
@@ -329,23 +404,23 @@ function SkillsSection() {
           </motion.span>
         ))}
       </div>
-      {/* Image */}
+      {/* Image Clinique */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .35 }}
         style={{ marginTop: '2rem', borderRadius: 14, overflow: 'hidden', border: `1px solid ${T.border}`, height: 220 }}>
-        <LazyImg src={cld('/images/about-4.webp')} alt="Développeur" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Code size={36} style={{ color: 'rgba(248, 146, 3,.3)' }} /></div>} />
+        <LazyImg src={'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80'} alt="Clinique Vétérinaire AVS" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Award size={36} style={{ color: 'rgba(248, 146, 3,.3)' }} /></div>} />
       </motion.div>
     </section>
   )
 }
 
-// ── 7. RAYON D'ACTION ────────────────────────────────────────
+// ── 8. RAYON D'ACTION ────────────────────────────────────────
 function RayonSection() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
-    <section ref={ref} style={{ padding: '5rem 5%', background: T.bg, position: 'relative' }}>
+    <section ref={ref} style={{ padding: '5rem 5%', background: T.bgAlt, position: 'relative' }}>
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .18 }} />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem' }}>
@@ -386,12 +461,13 @@ export default function AboutPageMobile() {
     <div>
       {/* 1 */}<HeroAbout />
       {/* 2 */}<StatsSection />
-      {/* 3 */}<FounderSection />
+      {/* 3 */}<VisionMissionSection />
+      {/* 4 */}<FounderSection />
+      {/* 5 */}<DirectorWordSection />
       <TrustStacksMarquee />
-      {/* 4 */}<TimelineSection />
-      {/* 5 */}<ValuesSection />
-      {/* 6 */}<SkillsSection />
-      {/* 7 */}<RayonSection />
+      {/* 6 */}<ValuesSection />
+      {/* 7 */}<SkillsSection />
+      {/* 8 */}<RayonSection />
       <PageCTA message="Prêt à collaborer avec Agro Véto Services ? Discutons de vos besoins agropastoraux." cta="Nous contacter" />
     </div>
   )

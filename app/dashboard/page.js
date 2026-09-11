@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 import {
   LayoutDashboard, BarChart3, MessagesSquare, Users, Search,
   X, ChevronLeft, ChevronRight, RefreshCw, Smartphone, Monitor, Tablet, Sun, Moon,
-  Trash2, AlertTriangle, Cookie, Receipt,
+  Trash2, AlertTriangle, Cookie, Receipt, Package, ShoppingCart, Shield,
 } from 'lucide-react'
 import {
   ResponsiveContainer, AreaChart, Area, BarChart, Bar as RBar,
@@ -12,6 +12,9 @@ import {
 import { HoverSlideText } from '@/components/ui/index'
 import Logo from '@/components/ui/Logo'
 import InvoicesTab from '@/components/dashboard/InvoicesTab'
+import ProductsTab from '@/components/dashboard/ProductsTab'
+import OrdersTab from '@/components/dashboard/OrdersTab'
+import UsersTab from '@/components/dashboard/UsersTab'
 
 /* ────────────────────────────────────────────────────────────
    Ce dashboard n'utilise ni Tailwind ni shadcn/ui : ce projet ne les
@@ -77,10 +80,13 @@ const DASH_THEME_KEY = 'akatech-dashboard-theme'
 
 const TABS = [
   { id: 'overview', label: 'Vue d\'ensemble', icon: LayoutDashboard },
-  { id: 'analytics', label: 'Analytics', icon: BarChart3 },
-  { id: 'conversations', label: 'Conversations', icon: MessagesSquare },
-  { id: 'leads', label: 'Leads', icon: Users },
+  { id: 'products', label: 'Produits & Boutique', icon: Package },
+  { id: 'orders', label: 'Commandes', icon: ShoppingCart },
+  { id: 'users', label: 'Droits & Utilisateurs', icon: Shield },
+  { id: 'leads', label: 'Leads & Devis', icon: Users },
   { id: 'invoices', label: 'Factures', icon: Receipt },
+  { id: 'conversations', label: 'Assistant IA', icon: MessagesSquare },
+  { id: 'analytics', label: 'Analytics', icon: BarChart3 },
 ]
 
 const STATUS_LABELS = {
@@ -767,6 +773,9 @@ export default function DashboardPage() {
             )}
 
             {tab === 'invoices' && <InvoicesTab T={T} CARD={CARD} />}
+            {tab === 'products' && <ProductsTab T={T} CARD={CARD} />}
+            {tab === 'orders' && <OrdersTab T={T} CARD={CARD} />}
+            {tab === 'users' && <UsersTab T={T} CARD={CARD} />}
           </>
         )}
       </div>

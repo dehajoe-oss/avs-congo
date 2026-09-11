@@ -1,414 +1,359 @@
 'use client'
-import { useCallback, useLayoutEffect, useRef, useState, useEffect } from 'react'
-import { gsap } from 'gsap'
-import { Moon, Sun, ShoppingCart, User, UserCheck } from 'lucide-react'
+import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from 'next/navigation'
+import {
+  Moon, Sun, ShoppingCart, User, UserCheck, X, Menu,
+  ShoppingBag, Stethoscope, Layers, GraduationCap,
+  Home, Info, Award, BookOpen, PhoneCall, ArrowRight,
+  MessageCircle, ChevronRight, ShieldCheck
+} from 'lucide-react'
 import Logo from '@/components/ui/Logo'
 import { useTheme } from '@/lib/theme'
 import { useShop } from '@/lib/shopContext'
-import { HoverSlideText } from '@/components/ui/index'
 import TransitionLink from './TransitionLink'
 import './StaggeredMenu.css'
 
-/* ═══════════════════════════════════════════════
-   StaggeredMenu — AKATech (mobile uniquement)
-   Port fidèle du composant du portfolio personnel :
-   panel plein écran depuis la droite, balayage de
-   couleur à l'ouverture, ghost-cycle text au survol,
-   items numérotés. Accent #f89203 (vs #FF5500 origine).
-   items = NAV_LINKS { label, href } — navigation par
-   route Next.js (site multi-pages, pas d'ancres).
-   ═══════════════════════════════════════════════ */
+const PRIMARY_SERVICES = [
+  {
+    label: 'Boutique & Intrants',
+    sub: 'Poussins Cobb 500, provenderie & matériel',
+    href: '/boutique',
+    icon: ShoppingBag,
+    badge: 'Boutique',
+  },
+  {
+    label: 'Clinique Vétérinaire',
+    sub: 'Soins, chirurgie & urgences 24h/24 & 7j/7',
+    href: '/clinique',
+    icon: Stethoscope,
+    badge: '24h/24',
+  },
+  {
+    label: 'Nos 6 Pôles d’Activité',
+    sub: 'Santé, nutrition, biosécurité, audits QHSE',
+    href: '/services',
+    icon: Layers,
+    badge: null,
+  },
+  {
+    label: 'Formations Ferme-École',
+    sub: 'Apprentissage avicole pratique & certifications',
+    href: '/formations',
+    icon: GraduationCap,
+    badge: 'Certifiante',
+  },
+]
 
-function NavItemWithGhost({ it, idx, isActive, closeMenu }) {
-  return (
-    <li className="sm-panel-itemWrap" key={it.href + idx}>
-      <TransitionLink
-        className={'sm-panel-item' + (isActive ? ' sm-panel-item--active' : '')}
-        href={it.href}
-        aria-label={it.label}
-        data-index={idx + 1}
-        onClick={closeMenu}
-      >
-        <span className="sm-panel-itemLabel"><HoverSlideText text={it.label} /></span>
+const SECONDARY_LINKS = [
+  { label: 'Accueil', href: '/', icon: Home },
+  { label: 'À Propos d’AVS Congo', href: '/about', icon: Info },
+  { label: 'Réalisations & Partenariats', href: '/projects', icon: Award },
+  { label: 'Blog & Fiches Conseils', href: '/blog', icon: BookOpen },
+  { label: 'Contact & Siège Social', href: '/contact', icon: PhoneCall },
+]
 
-        <span className="sm-panel-item-arrow" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2.2"
-            strokeLinecap="round" strokeLinejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7" />
-            <polyline points="7 7 17 7 17 17" />
-          </svg>
-        </span>
-      </TransitionLink>
-    </li>
-  )
-}
-
-export default function StaggeredMenu({ items = [], isActive, onOpenChange }) {
+export default function StaggeredMenu({ items = [], isActive: externalIsActive, onOpenChange }) {
   const T = useTheme()
+  const pathname = usePathname()
   const { cartCount, openCart, currentUser } = useShop()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const openRef = useRef(false)
-  const panelRef = useRef(null)
-  const preLayersRef = useRef(null)
-  const preLayerElsRef = useRef([])
-  const plusHRef = useRef(null)
-  const plusVRef = useRef(null)
-  const iconRef = useRef(null)
-  const textInnerRef = useRef(null)
-  const [textLines, setTextLines] = useState(['Menu', 'Close'])
 
-  const openTlRef = useRef(null)
-  const closeTweenRef = useRef(null)
-  const spinTweenRef = useRef(null)
-  const textCycleAnimRef = useRef(null)
-  const toggleBtnRef = useRef(null)
-  const busyRef = useRef(false)
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const panel = panelRef.current
-      const preContainer = preLayersRef.current
-      const plusH = plusHRef.current
-      const plusV = plusVRef.current
-      const icon = iconRef.current
-      const textInner = textInnerRef.current
-      if (!panel || !plusH || !plusV || !icon || !textInner) return
-
-      const preLayers = preContainer
-        ? Array.from(preContainer.querySelectorAll('.sm-prelayer'))
-        : []
-      preLayerElsRef.current = preLayers
-
-      gsap.set([panel, ...preLayers], { xPercent: 100, opacity: 1 })
-      if (preContainer) gsap.set(preContainer, { xPercent: 0, opacity: 1 })
-      gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0 })
-      gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 90 })
-      gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' })
-      gsap.set(textInner, { yPercent: 0 })
-    })
-    return () => ctx.revert()
-  }, [])
-
-  const buildOpenTimeline = useCallback(() => {
-    const panel = panelRef.current
-    const layers = preLayerElsRef.current
-    if (!panel) return null
-
-    openTlRef.current?.kill()
-    closeTweenRef.current?.kill()
-    closeTweenRef.current = null
-
-    const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel'))
-    const numberEls = Array.from(panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item'))
-
-    if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 })
-    if (numberEls.length) gsap.set(numberEls, { '--sm-num-opacity': 0 })
-
-    const tl = gsap.timeline({ paused: true })
-
-    layers.forEach((el, i) => {
-      tl.fromTo(el, { xPercent: 100 }, { xPercent: 0, duration: 0.5, ease: 'power4.out' }, i * 0.07)
-    })
-
-    const lastTime = layers.length ? (layers.length - 1) * 0.07 : 0
-    const panelInsertTime = lastTime + (layers.length ? 0.08 : 0)
-    const panelDuration = 0.65
-
-    tl.fromTo(panel,
-      { xPercent: 100 },
-      { xPercent: 0, duration: panelDuration, ease: 'power4.out' },
-      panelInsertTime
-    )
-
-    if (itemEls.length) {
-      const itemsStart = panelInsertTime + panelDuration * 0.15
-      tl.to(itemEls, {
-        yPercent: 0, rotate: 0, duration: 1,
-        ease: 'power4.out',
-        stagger: { each: 0.1, from: 'start' },
-      }, itemsStart)
-
-      if (numberEls.length) {
-        tl.to(numberEls, {
-          duration: 0.6, ease: 'power2.out',
-          '--sm-num-opacity': 1,
-          stagger: { each: 0.08, from: 'start' },
-        }, itemsStart + 0.1)
-      }
-    }
-
-    openTlRef.current = tl
-    return tl
-  }, [])
-
-  const playOpen = useCallback(() => {
-    if (busyRef.current) return
-    busyRef.current = true
-    const tl = buildOpenTimeline()
-    if (tl) {
-      tl.eventCallback('onComplete', () => { busyRef.current = false })
-      tl.play(0)
-    } else {
-      busyRef.current = false
-    }
-  }, [buildOpenTimeline])
-
-  const playClose = useCallback(() => {
-    openTlRef.current?.kill()
-    openTlRef.current = null
-
-    const panel = panelRef.current
-    const layers = preLayerElsRef.current
-    if (!panel) return
-
-    closeTweenRef.current?.kill()
-    closeTweenRef.current = gsap.to([...layers, panel], {
-      xPercent: 100, duration: 0.32, ease: 'power3.in', overwrite: 'auto',
-      onComplete: () => {
-        const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel'))
-        const numberEls = Array.from(panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item'))
-        if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 })
-        if (numberEls.length) gsap.set(numberEls, { '--sm-num-opacity': 0 })
-        busyRef.current = false
-      },
-    })
-  }, [])
-
-  const animateIcon = useCallback(opening => {
-    spinTweenRef.current?.kill()
-    if (!iconRef.current) return
-    spinTweenRef.current = gsap.to(iconRef.current, {
-      rotate: opening ? 225 : 0,
-      duration: opening ? 0.8 : 0.35,
-      ease: opening ? 'power4.out' : 'power3.inOut',
-      overwrite: 'auto',
-    })
-  }, [])
-
-  const animateText = useCallback(opening => {
-    const inner = textInnerRef.current
-    if (!inner) return
-    textCycleAnimRef.current?.kill()
-
-    const from = opening ? 'Menu' : 'Close'
-    const to = opening ? 'Close' : 'Menu'
-    const cycles = 3
-    const seq = [from]
-    let last = from
-    for (let i = 0; i < cycles; i++) { last = last === 'Menu' ? 'Close' : 'Menu'; seq.push(last) }
-    if (last !== to) seq.push(to)
-    seq.push(to)
-    setTextLines(seq)
-
-    gsap.set(inner, { yPercent: 0 })
-    const finalShift = ((seq.length - 1) / seq.length) * 100
-    textCycleAnimRef.current = gsap.to(inner, {
-      yPercent: -finalShift,
-      duration: 0.5 + seq.length * 0.07,
-      ease: 'power4.out',
-    })
-  }, [])
-
-  const toggleMenu = useCallback(() => {
-    const target = !openRef.current
-    openRef.current = target
-    setOpen(target)
-    onOpenChange?.(target)
-    if (target) playOpen()
-    else playClose()
-    animateIcon(target)
-    animateText(target)
-  }, [playOpen, playClose, animateIcon, animateText, onOpenChange])
+  const isActive = useCallback((href) => {
+    if (externalIsActive) return externalIsActive(href)
+    return href === '/' ? pathname === '/' : pathname.startsWith(href)
+  }, [externalIsActive, pathname])
 
   const closeMenu = useCallback(() => {
-    if (!openRef.current) return
-    openRef.current = false
     setOpen(false)
     onOpenChange?.(false)
-    playClose()
-    animateIcon(false)
-    animateText(false)
-  }, [playClose, animateIcon, animateText, onOpenChange])
+  }, [onOpenChange])
 
-  /* Ferme le menu à chaque changement de route */
-  useEffect(() => { closeMenu() }, []) // eslint-disable-line
+  const toggleMenu = useCallback(() => {
+    setOpen(prev => {
+      const next = !prev
+      onOpenChange?.(next)
+      return next
+    })
+  }, [onOpenChange])
 
-  /* ── Header transparent dans hero, glass en dehors ── */
+  // Fermeture automatique lors du changement de route
   useEffect(() => {
-    const threshold = window.innerHeight * 0.85
-    const onScroll = () => setScrolled(window.scrollY > threshold)
+    closeMenu()
+  }, [pathname, closeMenu])
+
+  // Verrouillage du scroll quand le menu est ouvert
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [open])
+
+  // Fermeture avec la touche Échap
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') closeMenu()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [closeMenu])
+
+  // Détection du scroll pour le style glassmorphism du header
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30)
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    if (!open) return
-    const handler = e => {
-      if (
-        panelRef.current && !panelRef.current.contains(e.target) &&
-        toggleBtnRef.current && !toggleBtnRef.current.contains(e.target)
-      ) closeMenu()
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [open, closeMenu])
-
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [open])
-
-  const SWIPE_COLORS = ['#f89203', null]
+  const handleOpenCart = () => {
+    closeMenu()
+    openCart()
+  }
 
   return (
     <>
-      {/* ── Header mobile fixe : logo gauche + theme toggle + bouton menu ── */}
-      <header className={`sm-header${scrolled || open ? ' sm-header--scrolled' : ''}`}>
-        <TransitionLink href="/" className="sm-header-logo" onClick={closeMenu}>
-          <Logo size={18} showTag={false} animate={false} />
+      {/* ── Header mobile fixe ── */}
+      <header className={'sm-header' + (scrolled ? ' sm-header--scrolled' : '')}>
+        <TransitionLink href="/" className="sm-header-logo" onClick={closeMenu} aria-label="Accueil Agro Véto Services">
+          <Logo size={19} showTag={false} animate={false} />
         </TransitionLink>
+
         <div className="sm-header-right">
           {/* Bouton Chariot */}
           <button
             onClick={openCart}
-            className="sm-header-theme"
+            className="sm-header-icon-btn"
             title="Mon Chariot AVS"
             type="button"
             aria-label="Ouvrir le chariot d'achat"
-            style={{ position: 'relative' }}
           >
-            <ShoppingCart size={15} />
+            <ShoppingCart size={16} />
             {cartCount > 0 && (
-              <span
-                style={{
-                  position: 'absolute',
-                  top: '-4px',
-                  right: '-4px',
-                  background: '#ff5722',
-                  color: '#ffffff',
-                  borderRadius: '100px',
-                  fontSize: '0.62rem',
-                  fontWeight: 900,
-                  width: '16px',
-                  height: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 2px 6px rgba(255,87,34,0.4)',
-                }}
-              >
-                {cartCount}
-              </span>
+              <span className="sm-cart-badge">{cartCount}</span>
             )}
           </button>
 
           {/* Bouton Compte Client */}
           <TransitionLink
             href="/mon-compte"
-            className="sm-header-theme"
-            title={currentUser ? `Connecté : ${currentUser.fullName}` : "Mon Compte Éleveur"}
+            className="sm-header-icon-btn"
+            title={currentUser ? ('Connecté : ' + currentUser.fullName) : 'Mon Compte Éleveur'}
             aria-label="Mon compte"
+            onClick={closeMenu}
           >
             {currentUser ? (
-              <UserCheck size={15} style={{ color: '#fb923c' }} />
+              <UserCheck size={16} style={{ color: '#f89203' }} />
             ) : (
-              <User size={15} />
+              <User size={16} />
             )}
           </TransitionLink>
 
-          {/* Switch thème */}
+          {/* Bouton Thème */}
           <button
             onClick={T.toggle}
-            className="sm-header-theme"
+            className="sm-header-icon-btn"
             title={T.light ? 'Mode sombre' : 'Mode clair'}
             type="button"
             aria-label="Basculer le thème"
           >
-            {T.light ? <Moon size={14} /> : <Sun size={14} />}
+            {T.light ? <Moon size={15} /> : <Sun size={15} />}
           </button>
+
+          {/* Bouton Menu Toggle */}
           <button
-            ref={toggleBtnRef}
-            className="sm-toggle"
+            className={'sm-toggle-btn' + (open ? ' sm-toggle-btn--open' : '')}
             aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={open}
-            aria-controls="sm-panel"
             onClick={toggleMenu}
             type="button"
           >
-            <span className="sm-toggle-textWrap" aria-hidden="true">
-              <span ref={textInnerRef} className="sm-toggle-textInner">
-                {textLines.map((l, i) => (
-                  <span className="sm-toggle-line" key={i}>{l}</span>
-                ))}
-              </span>
-            </span>
-            <span ref={iconRef} className="sm-icon" aria-hidden="true">
-              <span ref={plusHRef} className="sm-icon-line" />
-              <span ref={plusVRef} className="sm-icon-line sm-icon-line--v" />
-            </span>
+            {open ? <X size={15} /> : <Menu size={15} />}
+            <span>{open ? 'Fermer' : 'Menu'}</span>
           </button>
         </div>
       </header>
 
-    <div className={'sm-root' + (open ? ' sm-root--open' : '')} style={{ '--sm-accent': '#f89203' }}>
-      <div ref={preLayersRef} className="sm-prelayers" aria-hidden="true">
-        {SWIPE_COLORS.map((c, i) => (
-          <div
-            key={i}
-            className={'sm-prelayer' + (c === null ? ' sm-prelayer--bg' : '')}
-            style={c ? { background: c } : {}}
-          />
-        ))}
-      </div>
-
-      <aside id="sm-panel" ref={panelRef} className="sm-panel" aria-hidden={!open} aria-label="Navigation">
-        <div className="sm-panel-inner">
-          <div className="sm-panel-head">
-            <TransitionLink href="/" className="sm-panel-logo-link" onClick={closeMenu} aria-label="Retour à l'accueil">
-              <Logo size={26} showTag={false} animate={false} />
-            </TransitionLink>
-            <button
-              type="button"
-              className="sm-panel-close"
+      {/* ── Drawer & Overlay animé ── */}
+      <AnimatePresence>
+        {open && (
+          <div className="sm-portal-root">
+            <motion.div
+              key="sm-backdrop"
+              className="sm-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
               onClick={closeMenu}
-              aria-label="Fermer le menu"
-            >
-              ×
-            </button>
-          </div>
+              aria-hidden="true"
+            />
 
-          <ul className="sm-panel-list" role="list" data-numbering="true">
-            {items.map((it, idx) => (
-              <NavItemWithGhost
-                key={it.href + idx}
-                it={it}
-                idx={idx}
-                isActive={isActive ? isActive(it.href) : false}
-                closeMenu={closeMenu}
-              />
-            ))}
-          </ul>
-
-          <div className="sm-panel-footer">
-            <a
-              href="https://wa.me/242060000000"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-raised"
-              style={{ width: '100%', justifyContent: 'center' }}
-              onClick={closeMenu}
+            <motion.aside
+              key="sm-drawer"
+              id="sm-drawer"
+              className="sm-drawer"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 28, stiffness: 280 }}
+              aria-label="Menu de navigation"
             >
-              <HoverSlideText text="Contacter nos experts" />
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="19" x2="19" y2="5" /><polyline points="9 5 19 5 19 15" /></svg>
-            </a>
-            <p className="sm-panel-footer-sub">Urgences 24/7 · Siège Socoprise Pointe-Noire</p>
+              {/* Drawer Top Header */}
+              <div className="sm-drawer-header">
+                <TransitionLink href="/" className="sm-drawer-brand" onClick={closeMenu}>
+                  <Logo size={22} showTag={false} animate={false} />
+                  <span className="sm-drawer-badge">AVS CONGO</span>
+                </TransitionLink>
+
+                <div className="sm-drawer-actions">
+                  <button
+                    onClick={T.toggle}
+                    className="sm-drawer-icon-btn"
+                    title={T.light ? 'Mode sombre' : 'Mode clair'}
+                    type="button"
+                    aria-label="Basculer le thème"
+                  >
+                    {T.light ? <Moon size={15} /> : <Sun size={15} />}
+                  </button>
+                  <button
+                    type="button"
+                    className="sm-drawer-close"
+                    onClick={closeMenu}
+                    aria-label="Fermer le menu"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Drawer Scrollable Content */}
+              <div className="sm-drawer-body">
+                {/* ── Accès Rapide : Compte & Panier ── */}
+                <div className="sm-quick-grid">
+                  <TransitionLink
+                    href="/mon-compte"
+                    className={'sm-quick-card' + (isActive('/mon-compte') ? ' sm-quick-card--active' : '')}
+                    onClick={closeMenu}
+                  >
+                    <div className="sm-quick-icon">
+                      {currentUser ? <UserCheck size={16} /> : <User size={16} />}
+                    </div>
+                    <div className="sm-quick-text">
+                      <span className="sm-quick-title">{currentUser ? 'Mon Espace' : 'Mon Compte'}</span>
+                      <span className="sm-quick-sub">{currentUser ? currentUser.fullName.split(' ')[0] : 'Connexion'}</span>
+                    </div>
+                  </TransitionLink>
+
+                  <button
+                    type="button"
+                    className="sm-quick-card"
+                    onClick={handleOpenCart}
+                  >
+                    <div className="sm-quick-icon sm-quick-icon--cart">
+                      <ShoppingCart size={16} />
+                      {cartCount > 0 && <span className="sm-quick-badge">{cartCount}</span>}
+                    </div>
+                    <div className="sm-quick-text">
+                      <span className="sm-quick-title">Panier</span>
+                      <span className="sm-quick-sub">{cartCount > 0 ? (cartCount + ' article(s)') : '0 article'}</span>
+                    </div>
+                  </button>
+                </div>
+
+                {/* ── Section Pôles Clés & Commandes ── */}
+                <div className="sm-section">
+                  <div className="sm-section-label">PÔLES CLÉS & COMMANDE</div>
+                  <div className="sm-services-list">
+                    {PRIMARY_SERVICES.map((srv) => {
+                      const Icon = srv.icon
+                      const active = isActive(srv.href)
+                      return (
+                        <TransitionLink
+                          key={srv.href}
+                          href={srv.href}
+                          className={'sm-service-item' + (active ? ' sm-service-item--active' : '')}
+                          onClick={closeMenu}
+                        >
+                          <div className="sm-service-icon-box">
+                            <Icon size={18} />
+                          </div>
+                          <div className="sm-service-content">
+                            <div className="sm-service-top">
+                              <span className="sm-service-title">{srv.label}</span>
+                              {srv.badge && (
+                                <span className="sm-service-badge">{srv.badge}</span>
+                              )}
+                            </div>
+                            <span className="sm-service-sub">{srv.sub}</span>
+                          </div>
+                          <ChevronRight size={16} className="sm-service-arrow" />
+                        </TransitionLink>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* ── Section Découvrir le Complexe ── */}
+                <div className="sm-section">
+                  <div className="sm-section-label">DÉCOUVRIR LE COMPLEXE</div>
+                  <div className="sm-links-list">
+                    {SECONDARY_LINKS.map((link) => {
+                      const Icon = link.icon
+                      const active = isActive(link.href)
+                      return (
+                        <TransitionLink
+                          key={link.href}
+                          href={link.href}
+                          className={'sm-link-item' + (active ? ' sm-link-item--active' : '')}
+                          onClick={closeMenu}
+                        >
+                          <div className="sm-link-left">
+                            <Icon size={16} className="sm-link-icon" />
+                            <span className="sm-link-label">{link.label}</span>
+                          </div>
+                          <ChevronRight size={14} className="sm-link-arrow" />
+                        </TransitionLink>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* ── Bloc Urgences & Sécurité ── */}
+                <div className="sm-security-card">
+                  <ShieldCheck size={18} className="sm-security-icon" />
+                  <div>
+                    <div className="sm-security-title">Clinique Vétérinaire 24h/24 & 7j/7</div>
+                    <div className="sm-security-sub">Prise en charge immédiate à Pointe-Noire</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Drawer Footer Fixé */}
+              <div className="sm-drawer-footer">
+                <a
+                  href="https://wa.me/242069677567"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="sm-whatsapp-cta"
+                  onClick={closeMenu}
+                >
+                  <MessageCircle size={18} />
+                  <span>URGENCE & COMMANDE WHATSAPP</span>
+                  <ArrowRight size={16} />
+                </a>
+                <p className="sm-footer-info">
+                  Quartier Socoprise, Pointe-Noire · +242 06 967 75 67 / +242 05 633 70 50
+                </p>
+              </div>
+            </motion.aside>
           </div>
-        </div>
-      </aside>
-    </div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

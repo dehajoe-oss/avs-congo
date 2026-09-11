@@ -202,10 +202,10 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
 }
 
 const HERO_SLOGANS = [
+  { before: 'L’Excellence Vétérinaire, Agropastorale & ', highlight: 'QHSE au Congo' },
   { before: 'De la santé animale à l’excellence ', highlight: 'QHSE' },
   { before: 'Poussins d’un jour & provenderie ', highlight: 'certifiée' },
   { before: 'Urgences cliniques vétérinaires ', highlight: '24h/24 & 7j/7' },
-  { before: 'Bâtissez un élevage moderne & ', highlight: 'rentable' },
 ]
 
 // ── Slogan Hero — cycle auto entre 3 accroches, même traitement
@@ -333,8 +333,8 @@ function Hero() {
 
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.84rem', color: 'rgba(255,255,255,.68)', maxWidth: 360, margin: '0 auto 1rem', lineHeight: 1.48 }}>
-          Clinique vétérinaire, provenderie certifiée, poussins Cobb 500 et audits qualité au Congo.
+          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.84rem', color: 'rgba(255,255,255,.78)', maxWidth: 420, margin: '0 auto 1.2rem', lineHeight: 1.5 }}>
+          Soins vétérinaires, solutions agropastorales, contrôle qualité, conseil en management QHSE et formations pratiques : nous accompagnons les éleveurs, producteurs, PME, entreprises et institutions vers la performance, la conformité et la durabilité.
         </motion.p>
 
         <motion.div
@@ -362,14 +362,17 @@ function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .45 }}
           style={{ display: 'flex', flexWrap: 'wrap', gap: '.7rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
-          <motion.a href="https://wa.me/242060000000" target="_blank" rel="noreferrer"
+          <motion.div
             initial={{ boxShadow: '4px 4px 0px #050505' }}
             whileHover={{ scale: 1.03, boxShadow: '6px 8px 0px #050505, 0 0 20px rgba(251, 146, 60,.45)' }}
             whileTap={{ scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#f89203', padding: '.72rem 1.35rem', borderRadius: 999, border: '2.5px solid #fff' }}>
-            <HoverSlideText text="Commander sur WhatsApp" /> <ArrowRight size={14} />
-          </motion.a>
+            style={{ display: 'inline-block', borderRadius: 999 }}>
+            <Link href="/services"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#f89203', padding: '.72rem 1.35rem', borderRadius: 999, border: '2.5px solid #fff' }}>
+              <HoverSlideText text="Découvrir nos services" /> <ArrowRight size={14} />
+            </Link>
+          </motion.div>
           <motion.div
             initial={{ boxShadow: '4px 4px 0px #050505' }}
             whileHover={{ scale: 1.03, boxShadow: '6px 8px 0px #050505, 0 0 20px rgba(251, 146, 60,.45)' }}
@@ -377,7 +380,7 @@ function Hero() {
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
             <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#fb923c', background: 'transparent', border: '2.5px solid #fb923c', borderRadius: 999, padding: 'calc(.72rem - 2.5px) calc(1.35rem - 2.5px)' }}>
-              <HoverSlideText text="Prendre RDV Clinique" />
+              <HoverSlideText text="Nous contacter" />
             </Link>
           </motion.div>
         </motion.div>
@@ -478,6 +481,18 @@ const SERVICES_ITEMS = [
       { h: 'Certificat officiel AVS', d: 'Attestation certifiante remise en fin de cursus.' },
     ],
     price: 'À partir de 60 000 FCFA',
+  },
+  {
+    n: '06', Icon: Sparkles, title: 'Cosmétique, Hygiène & Biosécurité',
+    tagline: 'Formulation locale et biosécurité pour exploitations.',
+    bullets: [
+      { h: 'Désinfectants virucides', d: "Protection des bâtiments d'élevage et pédiluves." },
+      { h: 'Détergents professionnels', d: 'Nettoyants puissants pour surfaces et abattoirs.' },
+      { h: 'Savons noirs artisanaux', d: 'Saponifiés à froid aux huiles végétales locales.' },
+      { h: 'Protocoles de biosécurité', d: 'Barrières sanitaires et plans de décontamination.' },
+      { h: 'Conditionnements adaptés', d: 'Flacons 250ml aux bidons de 20L pour fermes.' },
+    ],
+    price: 'À partir de 1 500 FCFA',
   },
 ]
 
@@ -708,7 +723,7 @@ function ServicesPreview() {
                     </div>
                   ))}
                 </div>
-                <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.78rem', padding: '.7rem 1.3rem', width: '100%', justifyContent: 'center' }}>
+                <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.78rem', padding: '.7rem 1.3rem', width: '100%', justifyContent: 'center' }}>
                   <HoverSlideText text="Demander un devis" /> <ArrowRight size={13} />
                 </a>
               </div>
@@ -902,17 +917,59 @@ function RevealParagraph({ text, greenWords = [], extraStyle = {}, inView }) {
   )
 }
 
-// ── DOMAINES D'INTERVENTION — grille éditoriale statique (miroir desktop, sans hover-image souris) ──
+// ── DOMAINES D'INTERVENTION — 6 Pôles d'Activités Officiels ──
 const DOMAINES = [
-  { n: '01', Icon: Monitor,         title: 'Sites Vitrine & Landing Pages',    tag: 'Site Vitrine',   desc: "Votre présence digitale professionnelle, optimisée pour convertir vos visiteurs en clients. Design sur mesure, SEO intégré, livré en 7 à 14 jours." },
-  { n: '02', Icon: ShoppingBag,     title: 'E-Commerce & Boutiques en ligne',  tag: 'E-Commerce',     desc: "Boutiques complètes avec paiement Mobile Money (Orange Money, Wave), gestion des stocks, tableau de bord admin et notifications commandes." },
-  { n: '03', Icon: LayoutDashboard, title: 'Applications SaaS & Métier',       tag: 'SaaS',           desc: "Des outils web sur mesure pour automatiser vos processus, gérer vos équipes et économiser des heures de travail chaque semaine." },
-  { n: '04', Icon: Cog,             title: 'Digitalisation de processus',      tag: 'Digitalisation', desc: "Remplacez vos fichiers Excel et WhatsApp par des applications robustes. Suivi en temps réel, rôles utilisateurs, reporting intégré." },
-  { n: '05', Icon: Image,           title: 'Portfolios & Identités créatives', tag: 'Portfolio',      desc: "Des vitrines animées et percutantes pour créatifs, photographes, graphistes et freelances qui veulent décrocher plus de clients." },
-  { n: '06', Icon: Wrench,          title: 'Maintenance & Évolutions',         tag: 'Support',        desc: "Votre investissement sur la durée. Mises à jour, nouvelles fonctionnalités, corrections et support technique réactif sous 48h." },
+  {
+    n: '01', Icon: Award,
+    title: 'Santé animale & intrants agropastoraux',
+    desc:  "Consultations cliniques, chirurgies, urgences 24/7, pharmacie vétérinaire, provenderie et distribution d'intrants d'élevage certifiés.",
+    tag:   'Pôle 1',
+    href:  '/services/sante-animale-agropastoral',
+    img:   'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    n: '02', Icon: ShieldCheck,
+    title: 'Management QHSE & Externalisation',
+    desc:  "Accompagnement aux certifications ISO, hygiène et sécurité au travail, évaluation des risques et formule novatrice « QHSE Partagé ».",
+    tag:   'Pôle 2',
+    href:  '/services/management-qhse-externalisation',
+    img:   'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    n: '03', Icon: Package,
+    title: 'Transformation agroalimentaire & sécurité sanitaire',
+    desc:  "Transformation locale de produits agricoles, formulation de farines infantiles, séchage, valorisation et contrôle qualité strict.",
+    tag:   'Pôle 3',
+    href:  '/services/transformation-agroalimentaire',
+    img:   'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    n: '04', Icon: Sparkles,
+    title: 'Cosmétique, hygiène & artisanat',
+    desc:  "Fabrication locale de détergents professionnels, savons liquides, savons solides saponifiés à froid et valorisation végétale.",
+    tag:   'Pôle 4',
+    href:  '/services/cosmetique-hygiene-artisanat',
+    img:   'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    n: '05', Icon: GraduationCap,
+    title: 'Centre de formation & renforcement des capacités',
+    desc:  "Formations professionnelles pratiques en élevage, agriculture, démarche QHSE, hygiène et transformation pour éleveurs et entreprises.",
+    tag:   'Pôle 5',
+    href:  '/services/centre-de-formation',
+    img:   'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    n: '06', Icon: Globe,
+    title: 'Événementiel & commerce général',
+    desc:  "Organisation de foires agropastorales, salons professionnels, traiteur responsable, négoce et import-export d'intrants spécialisés.",
+    tag:   'Pôle 6',
+    href:  '/services/evenementiel-commerce-general',
+    img:   'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+  },
 ]
 
-function DomaineCard({ n, Icon, title, desc, tag, index, inView }) {
+function DomaineCard({ n, Icon, title, desc, tag, href, index, inView }) {
   const T = useTheme()
   return (
     <motion.div
@@ -933,13 +990,18 @@ function DomaineCard({ n, Icon, title, desc, tag, index, inView }) {
         <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(248, 146, 3,.1)', border: '1px solid rgba(248, 146, 3,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <Icon size={18} style={{ color: '#f89203' }} />
         </div>
-        <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(.86rem,3.6vw,.95rem)', fontWeight: 800, color: T.textMain, lineHeight: 1.25, letterSpacing: '-.02em' }}>
+        <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(.86rem,3.6vw,.95rem)', fontWeight: 800, color: T.textMain, lineHeight: 1.25, letterSpacing: '-.02em', margin: 0 }}>
           {title}
         </h3>
       </div>
-      <p style={{ fontSize: '.8rem', color: T.textSub, lineHeight: 1.65 }}>
+      <p style={{ fontSize: '.8rem', color: T.textSub, lineHeight: 1.65, marginBottom: '.9rem' }}>
         {desc}
       </p>
+      {href && (
+        <Link href={href} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 700, color: '#f89203', textDecoration: 'none' }}>
+          En savoir plus <ArrowRight size={12} />
+        </Link>
+      )}
     </motion.div>
   )
 }
@@ -975,7 +1037,7 @@ function DomainesSection() {
           <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', color: T.textMuted, marginBottom: '1rem' }}>
             Votre projet ne rentre dans aucune case ? On s'adapte.
           </p>
-          <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.85rem', padding: '.8rem 1.6rem' }}>
+          <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.85rem', padding: '.8rem 1.6rem' }}>
             <HoverSlideText text="Discuter de mon projet" /> <ArrowRight size={13} />
           </a>
         </motion.div>
@@ -1049,8 +1111,8 @@ function PricingCallout() {
                       ))}
                     </div>
                     {plan.popular
-                      ? <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
-                      : <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
+                      ? <a href={`https://wa.me/242069677567?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
+                      : <a href={`https://wa.me/242069677567?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
                     }
                   </div>
                 </motion.div>
@@ -1070,7 +1132,7 @@ function PricingCallout() {
               {' '}— réservations recommandées pour les lots hebdomadaires de poussins Cobb 500 et Lohmann.
             </p>
           </div>
-          <a href="https://wa.me/242060000000?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
+          <a href="https://wa.me/242069677567?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
             className="btn-raised" style={{ padding: '.7rem 1.2rem', fontSize: '.8rem', justifyContent: 'center', display: 'flex' }}>
             <HoverSlideText text="Commander mon lot →" />
           </a>
@@ -1148,6 +1210,70 @@ function GeoSectionHome() {
   )
 }
 
+// ── PRÉSENTATION DE L'ENTREPRISE (Section 4 officielle) ──────
+function CompanyPresentationSection() {
+  const T = useTheme()
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+
+  return (
+    <section ref={ref} style={{ padding: 'clamp(3rem,8vw,5rem) 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden', borderBottom: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem', textAlign: 'center' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', fontWeight: 600, color: '#f89203', marginBottom: '.8rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+            Partenaire stratégique agropastoral & QHSE
+          </div>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', margin: '0 0 1rem' }}>
+            <GhostTitle text="PRÉSENTATION DE L'ENTREPRISE" />
+            L'Excellence au service du <GreenUnderline><span className="text-gradient">Congo</span></GreenUnderline>
+          </h2>
+        </motion.div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.1 }}
+            style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#f89203' }}>
+              <Globe size={20} />
+            </div>
+            <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.05rem', fontWeight: 800, color: T.textMain, marginBottom: '.6rem' }}>
+              Ancrage National & Sous-Régional
+            </h3>
+            <p style={{ fontSize: '.84rem', color: T.textSub, lineHeight: 1.7, margin: 0 }}>
+              <strong>AGRO VÉTO SERVICES CONGO S.A.R.L.U. (A.V.S.)</strong> est une entreprise congolaise pluridisciplinaire implantée à Pointe-Noire, dédiée au développement et à la professionnalisation des secteurs agropastoral, vétérinaire, agroalimentaire et QHSE en République du Congo et dans la sous-région d'Afrique Centrale.
+            </p>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2 }}
+            style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#f89203' }}>
+              <Award size={20} />
+            </div>
+            <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.05rem', fontWeight: 800, color: T.textMain, marginBottom: '.6rem' }}>
+              Direction Scientifique & QHSE
+            </h3>
+            <p style={{ fontSize: '.84rem', color: T.textSub, lineHeight: 1.7, margin: 0 }}>
+              Fondée et dirigée par le <strong>Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié</strong>, Docteure en Médecine Vétérinaire et Spécialiste en Management QHSE & Sécurité Sanitaire des Aliments, l'entreprise combine rigueur scientifique, expertise de terrain et maîtrise des standards internationaux pour offrir des solutions intégrées aux défis du monde rural, industriel et institutionnel.
+            </p>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.3 }}
+            style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#f89203' }}>
+              <ShieldCheck size={20} />
+            </div>
+            <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.05rem', fontWeight: 800, color: T.textMain, marginBottom: '.6rem' }}>
+              Partenaire Stratégique Intégré
+            </h3>
+            <p style={{ fontSize: '.84rem', color: T.textSub, lineHeight: 1.7, margin: 0 }}>
+              De la consultation clinique vétérinaire à l'audit de certification ISO, de la fourniture d'aliments de bétail à la formation professionnelle des acteurs économiques, AGRO VÉTO SERVICES CONGO est le partenaire stratégique des éleveurs, transformateurs, distributeurs et entreprises soucieux de concilier rentabilité, sécurité et responsabilité.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ── DÉCRIVEZ VOTRE PROJET — formulaire de contact (miroir desktop) ──
 const FORM_PANEL_W = 420
 
@@ -1155,7 +1281,7 @@ function ProjectFormHome() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' })
+  const [form, setForm] = useState({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' })
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
@@ -1168,7 +1294,19 @@ function ProjectFormHome() {
     setSending(true)
     setError('')
     try {
-      const res = await fetch('/api/contact/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, projectType: form.service }) })
+      const res = await fetch('/api/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          organization: form.organization,
+          email: form.email,
+          phone: form.phone,
+          projectType: form.service,
+          message: form.message,
+          website_trap: form.website_trap,
+        })
+      })
       const data = await res.json()
       if (!res.ok) throw new Error(data?.error || "Erreur lors de l'envoi")
       setSent(true)
@@ -1203,15 +1341,19 @@ function ProjectFormHome() {
                 </motion.div>
                 <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.1rem', color: T.textMain, marginBottom: '.7rem' }}>Message envoyé !</h3>
                 <p style={{ color: T.textSub, fontSize: '.85rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. On répond en moins de 24h directement par email — à très vite !</p>
-                <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', email: '', phone: '', service: '', message: '' }) }} style={{ marginTop: '1.4rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.5rem 1.2rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.76rem', cursor: 'pointer' }}>Envoyer un autre message</button>
+                <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' }) }} style={{ marginTop: '1.4rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.5rem 1.2rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.76rem', cursor: 'pointer' }}>Envoyer un autre message</button>
               </motion.div>
             ) : (
               <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <h3 style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '1.25rem', color: T.textMain, marginBottom: '1.2rem' }}>Nous écrire</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.2rem', marginBottom: '1.2rem' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre nom</label>
+                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre nom & prénom</label>
                     <input style={inputStyle} placeholder="Dr POUTYA" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Entreprise / Organisation (optionnel)</label>
+                    <input style={inputStyle} placeholder="Nom de votre élevage ou structure" value={form.organization} onChange={e => setForm(f => ({ ...f, organization: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                   </div>
                   <div>
                     <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Email</label>
@@ -1219,26 +1361,35 @@ function ProjectFormHome() {
                   </div>
                   <div>
                     <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>WhatsApp / Tél</label>
-                    <input style={inputStyle} placeholder="+242 06 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
+                    <input style={inputStyle} placeholder="+242 06 967 75 67" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Type de projet</label>
+                    <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Type de prestation ou produit</label>
                     <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))} onFocus={focusOn} onBlur={focusOff}>
-                      <option value="">Choisir...</option>
-                      <option value="site-vitrine">Conception de Site Web</option>
-                      <option value="e-commerce">E-commerce</option>
-                      <option value="application-web">Application Web / SaaS</option>
-                      <option value="cartes-dashboards">Cartes Interactives & Dashboards</option>
-                      <option value="api-backend">API & Backend</option>
-                      <option value="google-my-business">Fiche Google My Business</option>
-                      <option value="maintenance">Maintenance & Support</option>
-                      <option value="autre">Autre</option>
+                      <option value="">Sélectionnez un service...</option>
+                      <option value="consultation-vet">Soins vétérinaires & Santé animale</option>
+                      <option value="produits-agropastoraux">Aliments, poussins & intrants agropastoraux</option>
+                      <option value="devis-qhse">Conseil & accompagnement QHSE</option>
+                      <option value="audit-accompagnement">Audit qualité & sécurité sanitaire</option>
+                      <option value="formation">Formation professionnelle</option>
+                      <option value="agroalimentaire">Transformation agroalimentaire</option>
+                      <option value="autre">Autre demande / Commerce général</option>
                     </select>
                   </div>
                 </div>
+                {/* Honeypot anti-spam caché */}
+                <input
+                  type="text"
+                  name="website_trap"
+                  value={form.website_trap}
+                  onChange={e => setForm(f => ({ ...f, website_trap: e.target.value }))}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  style={{ display: 'none', position: 'absolute', left: '-9999px' }}
+                />
                 <div style={{ marginBottom: '1.4rem' }}>
-                  <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre besoin en une phrase</label>
-                  <input style={inputStyle} placeholder="Ex: Boutique en ligne avec paiement Mobile Money"
+                  <label style={{ display: 'block', fontSize: '.66rem', color: T.textMuted, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre besoin en détail</label>
+                  <input style={inputStyle} placeholder="Ex: Commande de provende, audit HACCP ou consultation vétérinaire"
                     value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                 </div>
                 {error && <p style={{ textAlign: 'left', fontSize: '.76rem', color: '#ff6b6b', marginBottom: '.8rem' }}>{error}</p>}
@@ -1331,6 +1482,7 @@ export default function HomePageMobile() {
       <ConversionMarquee />
       <Testimonials />
       <GeoSectionHome />
+      <CompanyPresentationSection />
       <ProjectFormHome />
       <PageCTA message="Comme eux, faites confiance à l'expertise d'Agro Véto Services Congo pour votre élevage et vos normes qualité." cta="Contacter notre équipe" />
     </div>

@@ -32,7 +32,7 @@ export async function GET() {
       prisma.lead.aggregate({ _avg: { score: true } }).then(r => r._avg.score || 0),
       prisma.message.count(),
       prisma.conversation.aggregate({ _avg: { messageCount: true } }).then(r => r._avg.messageCount || 0),
-      prisma.lead.groupBy({ by: ['projectType'], _count: { id: true }, orderBy: { _count: { id: 'desc' } } }),
+      prisma.lead.groupBy({ by: ['service'], _count: { id: true }, orderBy: { _count: { id: 'desc' } } }),
       getConversationActivity(30),
       getVisitorStats(30),
       getTodayAiUsage(),
@@ -58,7 +58,7 @@ export async function GET() {
       conversion: {
         rate: totalConversations > 0 ? Math.round((convertedConversations / totalConversations) * 1000) / 10 : 0,
       },
-      byProjectType: leadsByProjectType.map(p => ({ type: p.projectType || 'Non précisé', count: p._count.id })),
+      byProjectType: leadsByProjectType.map(p => ({ type: p.service || 'Non précisé', count: p._count.id })),
       activity,
       visitors: visitorStats,
       aiUsage,

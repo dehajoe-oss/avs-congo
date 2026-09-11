@@ -200,7 +200,7 @@ function ServicesList() {
                     <Timer size={10} style={{ color: T.green }} />Délai : {svc.del}
                   </div>
                 </div>
-                <a href={`https://wa.me/242060000000?text=Bonjour Agro Véto Services, je suis intéressé par ${svc.title}`} target="_blank" rel="noreferrer" className="btn-raised">
+                <a href={`https://wa.me/242069677567?text=Bonjour Agro Véto Services, je suis intéressé par ${svc.title}`} target="_blank" rel="noreferrer" className="btn-raised">
                   <HoverSlideText text="Demander un devis" /> <ArrowRight size={14} />
                 </a>
               </div>

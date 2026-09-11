@@ -343,7 +343,7 @@ export function FloatingWA() {
   return (
     <div ref={wrapRef} style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 9000 }}>
       <motion.a
-        href="https://wa.me/242060000000?text=Bonjour+Agro+V%C3%A9to+Services+!"
+        href="https://wa.me/242069677567?text=Bonjour+Agro+V%C3%A9to+Services+!"
         target="_blank" rel="noreferrer"
         title="Démarrer sur WhatsApp"
         initial={{ scale: 0, opacity: 0 }}
@@ -390,7 +390,7 @@ export function MarqueeStrip() {
 }
 
 // ── SECTION CTA ───────────────────────────────────────────────
-export function SectionCTA({ message, cta, href = 'https://wa.me/242060000000', variant = 'subtle' }) {
+export function SectionCTA({ message, cta, href = 'https://wa.me/242069677567', variant = 'subtle' }) {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
@@ -429,7 +429,7 @@ export function SectionCTA({ message, cta, href = 'https://wa.me/242060000000', 
 // Un seul CTA par page. Cercle + flèche qui pivote à 75° au hover
 // (mécanisme repris du StaggeredMenu). Usage :
 // <PageCTA message="Un projet en tête ?" cta="Discuter sur WhatsApp" />
-export function PageCTA({ message, cta, href = 'https://wa.me/242060000000' }) {
+export function PageCTA({ message, cta, href = 'https://wa.me/242069677567' }) {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })

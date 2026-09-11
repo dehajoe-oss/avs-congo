@@ -56,7 +56,7 @@ export default function FormationsClient() {
       message += `📝 *Notes / Attentes :* ${formData.notes}\n`
     }
 
-    const whatsappUrl = `https://wa.me/242060000000?text=${encodeURIComponent(message)}`
+    const whatsappUrl = `https://wa.me/242069677567?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
     setSubmitted(true)
   }
@@ -89,9 +89,9 @@ export default function FormationsClient() {
 
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
               <a href="#catalogue" className="btn-raised" style={{ padding: '.85rem 1.8rem' }}>
-                Voir les 4 modules <ArrowRight size={14} />
+                Découvrir nos formations <ArrowRight size={14} />
               </a>
-              <a href="https://wa.me/242060000000?text=Bonjour,%20je%20souhaite%20des%20renseignements%20sur%20les%20formations%20AVS" target="_blank" rel="noreferrer" className="btn-ghost" style={{ padding: '.85rem 1.6rem', display: 'inline-flex', alignItems: 'center', gap: '.5rem' }}>
+              <a href="https://wa.me/242069677567?text=Bonjour,%20je%20souhaite%20des%20renseignements%20sur%20les%20formations%20AVS" target="_blank" rel="noreferrer" className="btn-ghost" style={{ padding: '.85rem 1.6rem', display: 'inline-flex', alignItems: 'center', gap: '.5rem' }}>
                 <MessageCircle size={15} />
                 Conseiller Pédagogique WhatsApp
               </a>
@@ -225,6 +225,50 @@ export default function FormationsClient() {
         </div>
       </section>
 
+      {/* ── INGÉNIERIE DE FORMATION & PROGRAMMES SUR-MESURE (SECTION 9) ── */}
+      <section style={{ padding: '4.5rem 5%', background: T.light ? 'rgba(0,0,0,.02)' : 'rgba(255,255,255,.02)', borderTop: `1px solid ${T.border}` }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', alignItems: 'center' }}>
+            <div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
+                <Briefcase size={13} />
+                INGÉNIERIE DE FORMATION & RENFORCEMENT DES CAPACITÉS
+              </div>
+              <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: 900, fontStyle: 'italic', color: T.textMain, lineHeight: 1.2, marginBottom: '1.2rem' }}>
+                Des cursus sur-mesure pour entreprises, ONG et institutions
+              </h2>
+              <p style={{ fontSize: '.95rem', color: T.textSub, lineHeight: 1.7, marginBottom: '1.5rem' }}>
+                Conception de programmes de renforcement des compétences destinés aux entreprises, ONG, institutions et professionnels. Nos experts vétérinaires, agroalimentaires et auditeurs QHSE interviennent directement sur vos sites d'exploitation ou dans nos fermes-écoles partenaires.
+              </p>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <Link href="/contact" className="btn-raised" style={{ padding: '.8rem 1.6rem' }}>
+                  Demander une ingénierie de formation <ArrowRight size={14} />
+                </Link>
+                <a href="https://wa.me/242069677567?text=Bonjour,%20je%20souhaite%20une%20formation%20sur-mesure%20pour%20mon%20entreprise/ONG" target="_blank" rel="noreferrer" className="btn-ghost" style={{ padding: '.8rem 1.4rem', display: 'inline-flex', alignItems: 'center', gap: '.5rem' }}>
+                  <MessageCircle size={15} />
+                  Échanger sur WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.2rem' }}>
+              {[
+                { title: 'Diagnostic des Besoins', desc: 'Audit des équipes et identification précise des écarts de compétences et exigences normatives.', icon: '🎯' },
+                { title: 'Ingénierie Pédagogique', desc: 'Conception de référentiels, supports didactiques et cas pratiques contextualisés au Congo.', icon: '📐' },
+                { title: 'Immersion & Pratique', desc: 'Sessions en fermes-écoles, ateliers ou directement sur vos lignes de production et cheptels.', icon: '🚜' },
+                { title: 'Certification & Suivi', desc: 'Attestations certifiées AVS Congo et accompagnement post-formation sur la performance réelle.', icon: '📜' },
+              ].map((step, i) => (
+                <div key={i} style={{ padding: '1.5rem', borderRadius: 16, background: T.light ? '#ffffff' : '#122415', border: `1px solid ${T.border}` }}>
+                  <div style={{ fontSize: '1.8rem', marginBottom: '.6rem' }}>{step.icon}</div>
+                  <h4 style={{ margin: '0 0 .4rem', fontSize: '.95rem', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>{step.title}</h4>
+                  <p style={{ margin: 0, fontSize: '.78rem', color: T.textMuted, lineHeight: 1.5 }}>{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── MODAL PRÉ-INSCRIPTION ── */}
       {showModal && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,.75)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
@@ -289,7 +333,7 @@ export default function FormationsClient() {
                     <input
                       type="tel"
                       required
-                      placeholder="Ex: +242 06 000 00 00"
+                      placeholder="Ex: +242 06 967 75 67"
                       value={formData.phone}
                       onChange={e => setFormData({ ...formData, phone: e.target.value })}
                       style={{ width: '100%', padding: '.75rem 1rem', borderRadius: 10, background: T.light ? '#f5f5f5' : '#122415', border: `1px solid ${T.border}`, color: T.textMain, fontSize: '.85rem', outline: 'none' }}

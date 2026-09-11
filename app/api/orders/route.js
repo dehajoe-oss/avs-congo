@@ -69,3 +69,43 @@ export async function GET(request) {
     )
   }
 }
+
+export async function PATCH(request) {
+  try {
+    const body = await request.json()
+    const { id, status, paymentStatus } = body
+
+    if (!id) {
+      return NextResponse.json({ error: 'ID de commande manquant' }, { status: 400 })
+    }
+
+    const { prisma } = await import('@/lib/db')
+    const updated = await prisma.order.update({
+      where: { id },
+      data: {
+        ...(status && { status }),
+        ...(paymentStatus && { paymentStatus }),
+      },
+    })
+
+    return NextResponse.json({ success: true, order: updated })
+  } catch (err) {
+    console.error('[Orders PATCH Error]', err)
+    return NextResponse.json({ error: err.message || 'Erreur mise à jour commande' }, { status: 500 })
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
+    if (!id) return NextResponse.json({ error: 'ID manquant' }, { status: 400 })
+
+    const { prisma } = await import('@/lib/db')
+    await prisma.order.delete({ where: { id } })
+    return NextResponse.json({ success: true })
+  } catch (err) {
+    console.error('[Orders DELETE Error]', err)
+    return NextResponse.json({ error: err.message }, { status: 500 })
+  }
+}

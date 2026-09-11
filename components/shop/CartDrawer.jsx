@@ -123,7 +123,7 @@ export default function CartDrawer() {
         msg += `\n💰 *TOTAL À PAYER : ${cartTotal.toLocaleString('fr-FR')} FCFA*\n`
         msg += `_Commande effectuée sur le site officiel agrovetoservices.cg_`
 
-        const waUrl = `https://wa.me/242060000000?text=${encodeURIComponent(msg)}`
+        const waUrl = `https://wa.me/242069677567?text=${encodeURIComponent(msg)}`
         window.open(waUrl, '_blank')
 
         setOrderCompleted(order)

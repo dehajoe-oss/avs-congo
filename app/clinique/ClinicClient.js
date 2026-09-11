@@ -60,7 +60,7 @@ export default function ClinicClient() {
       message += `📝 *Symptômes / Précisions :* ${bookingData.notes}\n`
     }
 
-    const whatsappUrl = `https://wa.me/242060000000?text=${encodeURIComponent(message)}`
+    const whatsappUrl = `https://wa.me/242069677567?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
     setSubmitted(true)
   }
@@ -95,7 +95,7 @@ export default function ClinicClient() {
               <a href="#rdv-form" className="btn-raised" style={{ padding: '.85rem 1.8rem' }}>
                 Prendre rendez-vous <ArrowRight size={14} />
               </a>
-              <a href="tel:+242060000000" className="btn-ghost" style={{ padding: '.85rem 1.6rem', display: 'inline-flex', alignItems: 'center', gap: '.5rem', color: '#ff5555', borderColor: 'rgba(255,85,85,.3)' }}>
+              <a href="tel:+242069677567" className="btn-ghost" style={{ padding: '.85rem 1.6rem', display: 'inline-flex', alignItems: 'center', gap: '.5rem', color: '#ff5555', borderColor: 'rgba(255,85,85,.3)' }}>
                 <PhoneCall size={15} />
                 Ligne Urgences 24/7
               </a>
@@ -121,8 +121,8 @@ export default function ClinicClient() {
               </p>
             </div>
           </div>
-          <a href="tel:+242060000000" className="btn-raised" style={{ background: '#ef4444', borderColor: '#ef4444', padding: '.65rem 1.4rem', fontSize: '.8rem' }}>
-            Appel direct 24/7 : +242 06 000 00 00
+          <a href="tel:+242069677567" className="btn-raised" style={{ background: '#ef4444', borderColor: '#ef4444', padding: '.65rem 1.4rem', fontSize: '.8rem' }}>
+            Appel direct 24/7 : +242 06 967 75 67
           </a>
         </div>
       </section>

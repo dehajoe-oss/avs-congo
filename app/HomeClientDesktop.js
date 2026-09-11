@@ -138,10 +138,10 @@ function HeroSlogan() {
 }
 
 const HERO_SLOGANS = [
+  { before: 'L’Excellence Vétérinaire, Agropastorale & ', highlight: 'QHSE au Congo' },
   { before: 'De la santé animale à l’excellence ', highlight: 'QHSE' },
   { before: 'Poussins d’un jour & provenderie ', highlight: 'certifiée' },
   { before: 'Urgences cliniques vétérinaires ', highlight: '24h/24 & 7j/7' },
-  { before: 'Bâtissez un élevage moderne & ', highlight: 'rentable' },
 ]
 
 function HeroSloganCycle() {
@@ -273,8 +273,8 @@ function Hero() {
 
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.02rem', color: 'rgba(255,255,255,.68)', maxWidth: 560, margin: '0 auto 1.7rem', lineHeight: 1.55 }}>
-          Clinique vétérinaire de pointe, provenderie certifiée, poussins Cobb 500 et audits qualité pour éleveurs et PME à Pointe-Noire.
+          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.02rem', color: 'rgba(255,255,255,.78)', maxWidth: 680, margin: '0 auto 1.7rem', lineHeight: 1.6 }}>
+          Soins vétérinaires, solutions agropastorales, contrôle qualité, conseil en management QHSE et formations pratiques : nous accompagnons les éleveurs, producteurs, PME, entreprises et institutions vers la performance, la conformité et la durabilité.
         </motion.p>
 
         <motion.div
@@ -302,14 +302,17 @@ function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .45 }}
           style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
-          <motion.a href="https://wa.me/242060000000" target="_blank" rel="noreferrer"
+          <motion.div
             initial={{ boxShadow: '5px 5px 0px #050505' }}
             whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(251, 146, 60,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#f89203', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
-            <HoverSlideText text="Commander sur WhatsApp" /> <ArrowRight size={16} />
-          </motion.a>
+            style={{ display: 'inline-block', borderRadius: 999 }}>
+            <Link href="/services"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#f89203', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
+              <HoverSlideText text="Découvrir nos services" /> <ArrowRight size={16} />
+            </Link>
+          </motion.div>
           <motion.div
             initial={{ boxShadow: '5px 5px 0px #050505' }}
             whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(251, 146, 60,.45)' }}
@@ -317,7 +320,7 @@ function Hero() {
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
             <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#fb923c', background: 'transparent', border: '3px solid #fb923c', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
-              <HoverSlideText text="Prendre RDV Clinique" />
+              <HoverSlideText text="Nous contacter" />
             </Link>
           </motion.div>
         </motion.div>
@@ -532,11 +535,12 @@ function AnimatedBeamGrid({ containerRef, nodeIds, connections }) {
 // ── SERVICES — Two-Column Skewed Images (HTML skew-section) ──
 // ═══════════════════════════════════════════════════════════════
 const SERVICES_SKEW = [
-  { n: '01', Icon: Award,         title: 'Clinique Vétérinaire 24/7',        desc: "Consultations, chirurgies, vaccinations, urgences 24h/24 & 7j/7 et suivi sanitaire d'élevage à Pointe-Noire.", price: 'À partir de 15 000 FCFA', del: 'Permanent 24/7', img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80', slug: 'clinique' },
-  { n: '02', Icon: Package,       title: 'Provenderie & Nutrition',          desc: "Aliments équilibrés haute performance pour volailles (démarrage 21%, finition), porcs et poissons. Contrôle bromatologique certifié.", price: 'À partir de 19 800 FCFA', del: 'Stock continu', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80', slug: 'provenderie' },
-  { n: '03', Icon: Target,        title: "Poussins Cobb 500 & Lohmann",     desc: "Poussins d'un jour vigoureux vaccinés au couvoir (Marek + Newcastle). Taux de viabilité > 98% pour rentabiliser votre cheptel.", price: 'À partir de 650 FCFA', del: 'Hebdomadaire', img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80', slug: 'poussins' },
-  { n: '04', Icon: ShieldCheck,   title: 'Audits QHSE & « QHSE Partagé »',  desc: "Mise en conformité ISO 9001/14001/22000, démarche HACCP et externalisation qualité flexible pour PME et industries.", price: 'Sur devis', del: 'Sous 48h', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', slug: 'qhse' },
-  { n: '05', Icon: GraduationCap, title: 'Formations & Ferme-École',     desc: "Sessions 100% pratiques certifiantes en élevage avicole, hygiène sanitaire HACCP et fabrication de détergents locaux.", price: 'À partir de 60 000 FCFA', del: 'Sessions mensuelles', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80', slug: 'formations' },
+  { n: '01', Icon: Award,         title: 'Santé Animale & Intrants Agropastoraux',        desc: "Clinique vétérinaire 24/7, pharmacie vétérinaire, provenderie certifiée, poussins d'un jour Cobb 500 et géniteurs sélectionnés.", price: 'Clinique 24/7 & Intrants', del: 'Permanent', img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80', slug: 'sante-animale-agropastoral' },
+  { n: '02', Icon: ShieldCheck,   title: 'Management QHSE & Externalisation',             desc: "Conseil en management QHSE, audits de conformité, formule innovante de QHSE partagé pour PME et plans de maîtrise sanitaire.", price: 'Sur devis', del: 'Accompagnement continu', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', slug: 'management-qhse-externalisation' },
+  { n: '03', Icon: Package,       title: 'Transformation Agroalimentaire & Sécurité',     desc: "Technologies de transformation locale, conception d'ateliers et abattoirs, PMS, HACCP et analyses physico-chimiques / microbiologiques.", price: 'Audit & Conseil', del: 'Intervention sur site', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80', slug: 'transformation-agroalimentaire' },
+  { n: '04', Icon: Sparkles,      title: 'Cosmétique, Hygiène & Artisanat',               desc: "Formulation et fabrication locale de détergents professionnels, désinfectants d'élevage et savons artisanaux saponifiés à froid.", price: 'Gamme professionnelle', del: 'Disponible au siège', img: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80', slug: 'cosmetique-hygiene-artisanat' },
+  { n: '05', Icon: GraduationCap, title: 'Centre de Formation & Capacités',               desc: "Formations pratiques certifiantes en ferme-école et ateliers, accompagnement d'éleveurs et ingénierie de formation pour entreprises et ONG.", price: 'Sessions certifiantes', del: 'Inscriptions ouvertes', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80', slug: 'centre-de-formation' },
+  { n: '06', Icon: Target,        title: 'Événementiel & Commerce Général',               desc: "Organisation de foires agropastorales, salons techniques, fourniture d'équipements spécialisés et négoce d'intrants certifiés.", price: 'Sur consultation', del: 'Sur calendrier', img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80', slug: 'evenementiel-commerce-general' },
 ]
 
 // ── GHOST SCROLL SHOWCASE — parallax + texte fantôme horizontal ──
@@ -1166,7 +1170,7 @@ function DomainesSection() {
             Votre projet ne rentre dans aucune case ? On s'adapte.
           </p>
           <a
-            href="https://wa.me/242060000000"
+            href="https://wa.me/242069677567"
             target="_blank" rel="noreferrer"
             className="btn-raised"
             style={{ fontSize: '.9rem', padding: '.85rem 2rem' }}
@@ -1484,8 +1488,8 @@ function PricingCallout() {
                         ))}
                       </div>
                       {plan.popular
-                        ? <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
-                        : <a href={`https://wa.me/242060000000?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
+                        ? <a href={`https://wa.me/242069677567?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
+                        : <a href={`https://wa.me/242069677567?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex', marginTop: 'auto' }}><HoverSlideText text="Commander →" /></a>
                       }
                     </div>
                   </motion.div>
@@ -1507,7 +1511,7 @@ function PricingCallout() {
                 {' '}— réservations recommandées pour les lots hebdomadaires de poussins Cobb 500 et Lohmann.
               </p>
             </div>
-            <a href="https://wa.me/242060000000?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
+            <a href="https://wa.me/242069677567?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
               className="btn-raised" style={{ padding: '.55rem 1.2rem', fontSize: '.78rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
               <HoverSlideText text="Commander mon lot →" />
             </a>
@@ -1605,12 +1609,77 @@ function GeoSectionHome() {
 
 const FORM_PANEL_W = 680
 
+function CompanyPresentationSection() {
+  const T = useTheme()
+  const ref = useRef(null)
+
+  return (
+    <section ref={ref} style={{ padding: '6rem 5% 5rem', background: T.bgAlt, position: 'relative', overflow: 'hidden', borderBottom: `1px solid ${T.border}` }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <BlurReveal style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: '#f89203', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+            Partenaire stratégique agropastoral & QHSE
+          </div>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.8rem,5.5vw,4.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', margin: '0 0 1rem' }}>
+            <GhostTitle text="PRÉSENTATION DE L'ENTREPRISE" />
+            L'Excellence au service du <GreenUnderline><span className="text-gradient">Congo</span></GreenUnderline>
+          </h2>
+        </BlurReveal>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginTop: '2.5rem' }}>
+          <BlurReveal delay={0.1} direction="up">
+            <div className="sku-card" style={{ padding: '2.2rem', height: '100%', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#f89203' }}>
+                <Globe size={22} />
+              </div>
+              <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: T.textMain, marginBottom: '.8rem' }}>
+                Ancrage National & Sous-Régional
+              </h3>
+              <p style={{ fontSize: '.9rem', color: T.textSub, lineHeight: 1.75, margin: 0 }}>
+                <strong>AGRO VÉTO SERVICES CONGO S.A.R.L.U. (A.V.S.)</strong> est une entreprise congolaise pluridisciplinaire implantée à Pointe-Noire, dédiée au développement et à la professionnalisation des secteurs agropastoral, vétérinaire, agroalimentaire et QHSE en République du Congo et dans la sous-région d'Afrique Centrale.
+              </p>
+            </div>
+          </BlurReveal>
+
+          <BlurReveal delay={0.2} direction="up">
+            <div className="sku-card" style={{ padding: '2.2rem', height: '100%', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#f89203' }}>
+                <Award size={22} />
+              </div>
+              <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: T.textMain, marginBottom: '.8rem' }}>
+                Direction Scientifique & QHSE
+              </h3>
+              <p style={{ fontSize: '.9rem', color: T.textSub, lineHeight: 1.75, margin: 0 }}>
+                Fondée et dirigée par le <strong>Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié</strong>, Docteure en Médecine Vétérinaire et Spécialiste en Management QHSE & Sécurité Sanitaire des Aliments, l'entreprise combine rigueur scientifique, expertise de terrain et maîtrise des standards internationaux pour offrir des solutions intégrées aux défis du monde rural, industriel et institutionnel.
+              </p>
+            </div>
+          </BlurReveal>
+
+          <BlurReveal delay={0.3} direction="up">
+            <div className="sku-card" style={{ padding: '2.2rem', height: '100%', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#f89203' }}>
+                <ShieldCheck size={22} />
+              </div>
+              <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: T.textMain, marginBottom: '.8rem' }}>
+                Partenaire Stratégique Intégré
+              </h3>
+              <p style={{ fontSize: '.9rem', color: T.textSub, lineHeight: 1.75, margin: 0 }}>
+                De la consultation clinique vétérinaire à l'audit de certification ISO, de la fourniture d'aliments de bétail à la formation professionnelle des acteurs économiques, AGRO VÉTO SERVICES CONGO est le partenaire stratégique des éleveurs, transformateurs, distributeurs et entreprises soucieux de concilier rentabilité, sécurité et responsabilité.
+              </p>
+            </div>
+          </BlurReveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function ProjectFormHome() {
   const T = useTheme()
   const ref = useRef(null)
   const sectionRef = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' })
+  const [form, setForm] = useState({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' })
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
@@ -1641,7 +1710,7 @@ function ProjectFormHome() {
             Décrivez votre <GreenUnderline><span className="text-gradient">projet</span></GreenUnderline>
           </h2>
         </BlurReveal>
-        <WordRevealP sectionRef={sectionRef} text="Remplissez le formulaire — on vous recontacte par email sous 24h avec un devis gratuit." greenWords={['formulaire', 'email', '24h', 'gratuit.']} extraStyle={{ color: T.textSub, marginBottom: '2.5rem' }} />
+        <WordRevealP sectionRef={sectionRef} text="Remplissez le formulaire — on vous recontacte par email sous 24h avec une proposition claire." greenWords={['formulaire', 'email', '24h', 'claire.']} extraStyle={{ color: T.textSub, marginBottom: '2.5rem' }} />
 
         <BlurReveal delay={0.15}>
           <div style={{ maxWidth: FORM_PANEL_W, margin: '0 auto', background: T.card, border: `1px solid ${T.border}`, borderRadius: 22, padding: '2rem', boxSizing: 'border-box' }}>
@@ -1652,44 +1721,51 @@ function ProjectFormHome() {
                     <Check size={30} style={{ color: '#f89203' }} />
                   </motion.div>
                   <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.3rem', color: T.textMain, marginBottom: '.8rem' }}>Message envoyé !</h3>
-                  <p style={{ color: T.textSub, fontSize: '.88rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. On répond en moins de 24h directement par email — à très vite !</p>
-                  <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', email: '', phone: '', service: '', message: '' }) }} style={{ marginTop: '1.6rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.55rem 1.3rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', cursor: 'pointer' }}>Envoyer un autre message</button>
+                  <p style={{ color: T.textSub, fontSize: '.88rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. Notre équipe vous répond sous 24h ouvrées — à très vite !</p>
+                  <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' }) }} style={{ marginTop: '1.6rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.55rem 1.3rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', cursor: 'pointer' }}>Envoyer un autre message</button>
                 </motion.div>
               ) : (
                 <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  {/* Honeypot anti-bot */}
+                  <input type="text" name="website_trap" value={form.website_trap} onChange={e => setForm(f => ({ ...f, website_trap: e.target.value }))} style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+
                   <h3 style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '1.4rem', color: T.textMain, marginBottom: '1.4rem' }}>Nous écrire</h3>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: '1.4rem', marginBottom: '1.4rem' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre nom</label>
-                      <input style={inputStyle} placeholder="Dr POUTYA" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
+                      <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre nom complet *</label>
+                      <input style={inputStyle} placeholder="Ex: Paul Malonga" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Email</label>
-                      <input type="email" style={inputStyle} placeholder="vous@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
+                      <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Entreprise / Organisation (facultatif)</label>
+                      <input style={inputStyle} placeholder="Ex: Élevage du Kouilou" value={form.organization} onChange={e => setForm(f => ({ ...f, organization: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                     </div>
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: '1.4rem', marginBottom: '1.4rem' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>WhatsApp / Tél</label>
-                      <input style={inputStyle} placeholder="+242 06 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
+                      <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Email *</label>
+                      <input type="email" style={inputStyle} placeholder="vous@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Type de projet</label>
-                      <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))} onFocus={focusOn} onBlur={focusOff}>
-                        <option value="">Choisir...</option>
-                        <option value="clinique">Clinique & Soins Vétérinaires (24/7)</option>
-                        <option value="provenderie">Provenderie & Nutrition Animale</option>
-                        <option value="poussins">Poussins d'un Jour Cobb 500 / Lohmann</option>
-                        <option value="formations">Formations en Ferme-École</option>
-                        <option value="qhse">Audits QHSE & Normes ISO</option>
-                        <option value="cosmetique">Cosmétique & Biosécurité</option>
-                        <option value="autre">Autre demande agropastorale</option>
-                      </select>
+                      <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>WhatsApp / Téléphone *</label>
+                      <input style={inputStyle} placeholder="+242 06 967 75 67" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                     </div>
                   </div>
+                  <div style={{ marginBottom: '1.4rem' }}>
+                    <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Objet de la demande *</label>
+                    <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))} onFocus={focusOn} onBlur={focusOff}>
+                      <option value="">Sélectionnez l'objet de votre demande...</option>
+                      <option value="consultation-vet">Consultation vétérinaire</option>
+                      <option value="produits-agropastoraux">Commande / produits agropastoraux</option>
+                      <option value="devis-qhse">Demande de devis QHSE</option>
+                      <option value="audit-accompagnement">Audit / accompagnement</option>
+                      <option value="formation">Formation</option>
+                      <option value="agroalimentaire">Agroalimentaire</option>
+                      <option value="autre">Autre</option>
+                    </select>
+                  </div>
                   <div style={{ marginBottom: '1.6rem' }}>
-                    <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre besoin en une phrase</label>
-                    <input style={inputStyle} placeholder="Ex: Commande 200 poussins Cobb 500 et 10 sacs démarrage"
+                    <label style={{ display: 'block', fontSize: '.68rem', color: T.textMuted, marginBottom: '.5rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.1em', textTransform: 'uppercase' }}>Votre besoin / Message *</label>
+                    <input style={inputStyle} placeholder="Ex: Commande de poussins, suivi de troupeau ou demande d'audit QHSE..."
                       value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} onFocus={focusOn} onBlur={focusOff} />
                   </div>
                   {error && <p style={{ textAlign: 'left', fontSize: '.78rem', color: '#ff6b6b', marginBottom: '.8rem' }}>{error}</p>}
@@ -1727,6 +1803,7 @@ export default function HomePageDesktop() {
       <Hero />
       <ArchiveTunnelSection />
       <StatsSection />
+      <CompanyPresentationSection />
       <DomainesSection />
       <TrustStacksMarquee />
       <ServicesPreview />

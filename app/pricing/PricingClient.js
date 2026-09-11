@@ -204,7 +204,7 @@ function PricingTabs() {
                           <HoverSlideText text="Commander en ligne →" />
                         </Link>
                         <a
-                          href={`https://wa.me/242060000000?text=${wa}`}
+                          href={`https://wa.me/242069677567?text=${wa}`}
                           target="_blank"
                           rel="noreferrer"
                           className="btn-ghost"
@@ -234,7 +234,7 @@ function PricingTabs() {
                 {' '}— réservations recommandées pour les lots hebdomadaires de poussins Cobb 500 et Lohmann.
               </p>
             </div>
-            <a href="https://wa.me/242060000000?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
+            <a href="https://wa.me/242069677567?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
               className="btn-raised" style={{ padding: '.55rem 1.2rem', fontSize: '.78rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
               <HoverSlideText text="Commander mon lot →" />
             </a>

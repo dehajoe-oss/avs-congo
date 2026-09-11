@@ -77,8 +77,8 @@ const InvoicePreview = forwardRef(function InvoicePreview({
           <div className="ak-label">// Émetteur</div>
           <div className="ak-party-name">AGRO VÉTO SERVICES CONGO S.A.R.L.U.</div>
           <div className="ak-party-line">Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU — Directrice Générale</div>
-          <div className="ak-party-line">Quartier Socoprise, Avenue Nelson Mandela, Pointe-Noire, Congo</div>
-          <div className="ak-party-line">contact@agrovetoservices.cg · +242 06 000 00 00</div>
+          <div className="ak-party-line">Quartier Socoprise, Avenue Nelson Mandela, Rue Bissoute, Pointe-Noire, République du Congo</div>
+          <div className="ak-party-line">agrovetoservicescongo@gmail.com · +242 05 633 70 50 / +242 06 967 75 67</div>
         </div>
         <div className="ak-party">
           <div className="ak-label">// Facturé à</div>

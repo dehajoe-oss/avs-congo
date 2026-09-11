@@ -15,9 +15,9 @@ import './FooterWordmark.css'
 /* ── Slogans cycle — footer ──────────────────────────── */
 const FOOTER_SLOGANS = [
   "De la santé animale à l'excellence QHSE.",
-  "Provenderie certifiée et poussins Cobb 500 vigoureux.",
-  "Urgences cliniques vétérinaires 24h/24 & 7j/7.",
-  "Le partenaire de confiance des éleveurs congolais.",
+  "L'expertise au service de la santé animale, de la qualité agroalimentaire et de la performance QHSE.",
+  "Clinique vétérinaire 24h/24 & 7j/7 et provenderie certifiée.",
+  "Accompagnement normatif ISO & HACCP à Pointe-Noire.",
 ]
 
 function FooterSlogan({ textMuted }) {
@@ -48,10 +48,10 @@ function FooterSlogan({ textMuted }) {
   )
 }
 
-// ── Ask AI — vérifiez AKATech par vous-même (site-wide, footer) ──
+// ── Ask AI — vérifiez AGRO VÉTO SERVICES par vous-même (site-wide, footer) ──
 function AskAIStrip({ T }) {
   const [copied, setCopied] = useState(null)
-  const PROMPT = "Je cherche un partenaire vétérinaire et agropastoral au Congo. Évalue Agro Véto Services Congo (A.V.S.), dirigé par le Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU à Pointe-Noire : leur offre en santé animale, provenderie certifiée, poussins Cobb 500, audits qualité HACCP et QHSE partagé pour les éleveurs et PME."
+  const PROMPT = "Je cherche un partenaire vétérinaire, agropastoral et QHSE au Congo. Évalue AGRO VÉTO SERVICES CONGO S.A.R.L.U., dirigé par le Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié à Pointe-Noire : leur offre intégrée dans les 6 pôles (santé animale & intrants agropastoraux, management QHSE, transformation agroalimentaire, cosmétique & hygiène, centre de formation et événementiel)."
 
   const PLATFORMS = [
     { id: 'chatgpt', label: 'ChatGPT', icon: '/icons/chatgpt.png', url: `https://chatgpt.com/?q=${encodeURIComponent(PROMPT)}` },
@@ -173,7 +173,7 @@ export default function Footer() {
   const SOCIALS = [
     { label: 'LinkedIn', href: 'https://linkedin.com/company/agrovetoservicescongo' },
     { label: 'Facebook', href: 'https://facebook.com/agrovetoservicescongo' },
-    { label: 'WhatsApp', href: 'https://wa.me/242060000000' },
+    { label: 'WhatsApp', href: 'https://wa.me/242069677567' },
   ]
 
   const NAV = [
@@ -184,16 +184,17 @@ export default function Footer() {
     ['Clinique Vétérinaire', '/clinique'],
     ['Formations Certifiantes', '/formations'],
     ['Réalisations', '/projects'],
-    ['Blog', '/blog'],
+    ['Blog & Conseils', '/blog'],
     ['Contact', '/contact'],
   ]
 
   const SERVICES = [
-    ['Clinique Vétérinaire 24/7', '/clinique'],
-    ['Provenderie & Nutrition', '/services'],
-    ["Poussins Cobb 500 & Lohmann", '/pricing'],
-    ['Formations Certifiantes', '/formations'],
-    ['Audits QHSE & HACCP', '/services'],
+    ['Santé Animale & Intrants', '/services'],
+    ['Management QHSE & RSE', '/services'],
+    ['Transformation Agroalimentaire', '/services'],
+    ['Cosmétique & Hygiène', '/services'],
+    ['Centre de Formation', '/formations'],
+    ['Événementiel & Commerce', '/services'],
   ]
 
   return (
@@ -221,7 +222,7 @@ export default function Footer() {
       {/* ── Header : logo + slogan rotatif ─────────────────────── */}
       <div style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1.5rem', padding: 'clamp(1.5rem,3vw,2.2rem) 5% 0', flexWrap: 'wrap' }}>
         <Logo size={30} animate={false} showTag={false} />
-        <div style={{ maxWidth: 280 }}>
+        <div style={{ maxWidth: 360 }}>
           <FooterSlogan textMuted={muted} />
         </div>
       </div>
@@ -256,7 +257,7 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'Poppins', sans-serif" }}>
-              Services
+              Nos 6 Pôles
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {SERVICES.map(([label, href]) => (
@@ -282,7 +283,7 @@ export default function Footer() {
                   <HoverSlideText text={label} />
                 </a>
               ))}
-              <a href="mailto:contact@agrovetoservices.cg" style={lk}
+              <a href="mailto:agrovetoservicescongo@gmail.com" style={lk}
                 onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.paddingLeft = '4px' }}
                 onMouseLeave={e => { e.currentTarget.style.color = muted; e.currentTarget.style.paddingLeft = '0' }}>
                 <HoverSlideText text="Email" />
@@ -294,21 +295,26 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem' }}>
             <div style={{ width: '100%' }}>
               <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'Poppins', sans-serif" }}>
-                Contact
+                Contact & Siège
               </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '.3rem' }}>
-                <a href="tel:+242060000000" style={lk}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '.4rem' }}>
+                <a href="tel:+242069677567" style={lk}
                   onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.paddingLeft = '4px' }}
                   onMouseLeave={e => { e.currentTarget.style.color = muted; e.currentTarget.style.paddingLeft = '0' }}>
-                  <Phone size={12} style={{ flexShrink: 0 }} /><HoverSlideText text="+242 06 000 00 00" />
+                  <Phone size={12} style={{ flexShrink: 0 }} /><HoverSlideText text="+242 06 967 75 67" />
                 </a>
-                <span style={{ ...lk, cursor: 'default' }}>
-                  <MapPin size={12} style={{ flexShrink: 0 }} />Quartier Socoprise, Pointe-Noire, Congo
+                <a href="tel:+242056337050" style={lk}
+                  onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.paddingLeft = '4px' }}
+                  onMouseLeave={e => { e.currentTarget.style.color = muted; e.currentTarget.style.paddingLeft = '0' }}>
+                  <Phone size={12} style={{ flexShrink: 0 }} /><HoverSlideText text="+242 05 633 70 50" />
+                </a>
+                <span style={{ ...lk, cursor: 'default', lineHeight: 1.4 }}>
+                  <MapPin size={12} style={{ flexShrink: 0 }} />Quartier Socoprise, Avenue Nelson Mandela, Rue Bissoute, Pointe-Noire
                 </span>
               </div>
             </div>
-            <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '.8rem', padding: '.7rem 1.6rem' }}>
-              <Send size={14} /> <HoverSlideText text="Envoyer un message" />
+            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '.8rem', padding: '.7rem 1.6rem' }}>
+              <Send size={14} /> <HoverSlideText text="Contacter sur WhatsApp" />
             </a>
           </div>
         </div>

@@ -14,8 +14,8 @@ const CONTACT_JSON_LD = {
   about: {
     '@type': 'VeterinaryCare',
     name: 'AGRO VÉTO SERVICES CONGO S.A.R.L.U.',
-    telephone: '+242 06 000 00 00',
-    email: 'contact@agrovetoservices.cg',
+    telephone: ['+242 05 633 70 50', '+242 06 967 75 67'],
+    email: 'agrovetoservicescongo@gmail.com',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Quartier Socoprise, Avenue Nelson Mandela, Rue Bissoute',

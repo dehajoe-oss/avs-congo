@@ -15,9 +15,9 @@ import './CardNav.css'
 /* ── Slogans cycle — navJAX ─────────────────────────── */
 const NAV_SLOGANS = [
   "De la santé animale à\nl'excellence QHSE.",
+  "L'expertise au service de la santé\nanimale et du QHSE.",
   "Clinique vétérinaire 24/7\n& Provenderie certifiée.",
-  "Poussins Cobb 500 &\nFormations certifiantes.",
-  "Partenaire agropastoral\nde pointe à Pointe-Noire.",
+  "6 Pôles d'expertise intégrés\nà Pointe-Noire (Congo).",
 ]
 
 function NavSlogan() {
@@ -226,7 +226,7 @@ export default function CardNav() {
             <button onClick={T.toggle} className="aka-theme-btn" title={T.light ? 'Mode sombre' : 'Mode clair'} type="button">
               {T.light ? <Moon size={13} /> : <Sun size={13} />}
             </button>
-            <a href="https://wa.me/242060000000" target="_blank" rel="noreferrer" className="btn-raised btn-sm">
+            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised btn-sm">
               <HoverSlideText text="WHATSAPP" />
             </a>
           </div>

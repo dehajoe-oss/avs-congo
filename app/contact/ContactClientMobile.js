@@ -97,10 +97,10 @@ function ContactChannels() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   const CHANNELS = [
-    { icon: MessageCircle, label: 'WhatsApp', val: '+242 06 000 00 00', href: 'https://wa.me/242060000000', color: '#25d366', desc: 'Réponse en moins de 2h' },
-    { icon: Mail, label: 'Email', val: 'contact@agrovetoservices.cg', href: 'mailto:contact@agrovetoservices.cg', color: '#f89203', desc: 'Réponse sous 24h' },
-    { icon: Phone, label: 'Téléphone', val: '+242 06 000 00 00', href: 'tel:+242060000000', color: '#f89203', desc: 'Lun–Ven, 8h–18h' },
-    { icon: MapPin, label: 'Localisation', val: "Quartier Socoprise, Pointe-Noire (Congo)", href: null, color: '#f89203', desc: 'Déplacements possibles' },
+    { icon: MessageCircle, label: 'WhatsApp', val: '+242 06 967 75 67', href: 'https://wa.me/242069677567', color: '#25d366', desc: 'Réponse en moins de 2h' },
+    { icon: Mail, label: 'Email', val: 'agrovetoservicescongo@gmail.com', href: 'mailto:agrovetoservicescongo@gmail.com', color: '#f89203', desc: 'Réponse sous 24h' },
+    { icon: Phone, label: 'Téléphone', val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242069677567', color: '#f89203', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
+    { icon: MapPin, label: 'Localisation', val: "Quartier Socoprise, Av. Nelson Mandela, Rue Bissoute, Pointe-Noire", href: null, color: '#f89203', desc: 'Déplacements possibles en exploitation' },
   ]
 
   return (
@@ -112,7 +112,7 @@ function ContactChannels() {
             Comment nous contacter
           </h2>
           <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.5rem' }}>
-            Choisissez le canal qui vous convient. WhatsApp est le plus rapide — on répond en moins de 2h.
+            Choisissez le canal qui vous convient. WhatsApp est le plus rapide — permanence clinique vétérinaire disponible 24h/24 & 7j/7.
           </p>
         </motion.div>
 
@@ -155,7 +155,7 @@ function ContactChannels() {
           <div style={{ display: 'flex', gap: '.6rem' }}>
             {[
               { Icon: FacebookIcon, href: 'https://web.facebook.com/profile.php?id=61577494705852', label: 'Facebook', color: '#1877f2' },
-              { Icon: WhatsAppIcon, href: 'https://wa.me/242060000000', label: 'WhatsApp', color: '#25d366' },
+              { Icon: WhatsAppIcon, href: 'https://wa.me/242069677567', label: 'WhatsApp', color: '#25d366' },
               { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#f89203' },
             ].map(({ Icon, href, label, color }) => (
               <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
@@ -195,7 +195,7 @@ function ProjectForm() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', budget: '', message: '' })
+  const [form, setForm] = useState({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' })
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
 
@@ -213,7 +213,10 @@ function ProjectForm() {
   const [error, setError] = useState('')
 
   const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.message) return
+    if (!form.name || !form.email || !form.message) {
+      setError('Merci de renseigner votre nom, votre email et votre message.')
+      return
+    }
     setSending(true)
     setError('')
     try {
@@ -237,11 +240,11 @@ function ProjectForm() {
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem' }}>
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '1rem' }}>
-            <GhostTitle text="DÉCRIVEZ VOTRE PROJET" />
-            Décrivez votre projet
+            <GhostTitle text="FORMULAIRE DE CONTACT" />
+            Envoyez-nous un <GreenUnderline><span className="text-gradient">message</span></GreenUnderline>
           </h2>
           <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginBottom: '1.5rem' }}>
-            Remplissez le formulaire — on vous recontacte par email sous 24h avec un devis gratuit.
+            Remplissez le formulaire — notre équipe ou le Dr POUTYA vous répond sous 24h avec une solution adaptée.
           </p>
         </motion.div>
 
@@ -264,73 +267,71 @@ function ProjectForm() {
                     style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(248, 146, 3,.15)', border: '2px solid rgba(248, 146, 3,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
                     <CheckCircle size={36} style={{ color: '#f89203' }} />
                   </motion.div>
-                  <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.1rem,3vw,1.4rem)', color: T.textMain, marginBottom: '.8rem' }}>Message envoyé !</h3>
+                  <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.1rem,3vw,1.4rem)', color: T.textMain, marginBottom: '.8rem' }}>Demande envoyée !</h3>
                   <p style={{ color: T.textSub, fontSize: '.88rem', lineHeight: 1.7 }}>
-                    Votre demande a bien été reçue. On répond en moins de 24h directement par email — à très vite !
+                    Votre message a bien été transmis à l'équipe AVS Congo. Nous vous répondrons dans les plus brefs délais.
                   </p>
+                  <button type="button" onClick={() => { setSent(false); setForm({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' }) }}
+                    style={{ marginTop: '1.5rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.6rem 1.4rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.8rem', cursor: 'pointer' }}>
+                    Envoyer une autre demande
+                  </button>
                 </motion.div>
               ) : (
                 <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  {/* Responsive 2-col grid — stacks on mobile */}
+                  {/* Honeypot anti-bot */}
+                  <input type="text" name="website_trap" value={form.website_trap} onChange={e => setForm(f => ({ ...f, website_trap: e.target.value }))} style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+
+                  {/* Responsive 2-col grid */}
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: '1rem', marginBottom: '1rem' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Votre nom *</label>
-                      <input style={inputStyle} placeholder="Dr POUTYA" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                      <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Nom complet *</label>
+                      <input style={inputStyle} placeholder="Ex: Jean Malonga" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                         onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Email *</label>
+                      <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Entreprise / Organisation (facultatif)</label>
+                      <input style={inputStyle} placeholder="Ex: Ferme Agropastorale du Kouilou" value={form.organization} onChange={e => setForm(f => ({ ...f, organization: e.target.value }))}
+                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: '1rem', marginBottom: '1rem' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Téléphone *</label>
+                      <input style={inputStyle} placeholder="+242 06 967 75 67" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>E-mail *</label>
                       <input type="email" style={inputStyle} placeholder="vous@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                         onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: '1rem', marginBottom: '1rem' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>WhatsApp / Tél</label>
-                      <input style={inputStyle} placeholder="+242 06 XX XX XX" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
-                        onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
-                    </div>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Type de projet</label>
-                      <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
-                        onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }}>
-                        <option value="">Choisir...</option>
-                        <option value="site-vitrine">Conception de Site Web</option>
-                        <option value="e-commerce">E-commerce</option>
-                        <option value="application-web">Application Web / SaaS</option>
-                        <option value="cartes-dashboards">Cartes Interactives & Dashboards</option>
-                        <option value="api-backend">API & Backend</option>
-                        <option value="google-my-business">Fiche Google My Business</option>
-                        <option value="maintenance">Maintenance & Support</option>
-                        <option value="autre">Autre</option>
-                      </select>
-                    </div>
-                  </div>
-
                   <div style={{ marginBottom: '1rem' }}>
-                    <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Budget estimé</label>
-                    <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.budget} onChange={e => setForm(f => ({ ...f, budget: e.target.value }))}
+                    <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Objet de la demande *</label>
+                    <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
                       onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
                       onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }}>
-                      <option value="">Sélectionner...</option>
-                      <option>Moins de 100 000 FCFA</option>
-                      <option>100 000 – 300 000 FCFA</option>
-                      <option>300 000 – 600 000 FCFA</option>
-                      <option>600 000 – 1 200 000 FCFA</option>
-                      <option>Plus de 1 200 000 FCFA</option>
-                      <option>À discuter</option>
+                      <option value="">Sélectionnez l'objet de votre demande...</option>
+                      <option value="consultation-vet">Consultation vétérinaire</option>
+                      <option value="produits-agropastoraux">Commande / produits agropastoraux</option>
+                      <option value="devis-qhse">Demande de devis QHSE</option>
+                      <option value="audit-accompagnement">Audit / accompagnement</option>
+                      <option value="formation">Formation</option>
+                      <option value="agroalimentaire">Agroalimentaire</option>
+                      <option value="autre">Autre</option>
                     </select>
                   </div>
 
                   <div style={{ marginBottom: '1.8rem' }}>
-                    <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Décrivez votre projet *</label>
+                    <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Message *</label>
                     <textarea rows={5} style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }}
-                      placeholder="Ex: J'ai un élevage à Pointe-Noire et je souhaite commander 500 poussins Cobb 500 et programmer un audit sanitaire..."
+                      placeholder="Précisez votre demande, vos effectifs d'élevage ou votre projet..."
                       value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                       onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
                       onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
