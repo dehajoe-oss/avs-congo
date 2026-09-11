@@ -13,6 +13,7 @@ import {
   Truck,
   CreditCard,
   User,
+  MessageCircle,
 } from 'lucide-react'
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
@@ -63,125 +64,435 @@ export default function ShopClient() {
     >
       <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 1.5rem' }}>
         
-        {/* En-tête Hero Boutique */}
-        <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 3.5rem' }}>
+        {/* ── NOUVEAU HERO BOUTIQUE PRESTIGE (SANS BADGE) ── */}
+        <section style={{ marginBottom: '3.5rem', position: 'relative' }}>
+          {/* Lueur d'ambiance d'arrière-plan */}
           <div
             style={{
-              display: 'inline-flex',
+              position: 'absolute',
+              top: '-40px',
+              left: '10%',
+              width: '450px',
+              height: '350px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(234, 128, 37, 0.12) 0%, transparent 70%)',
+              filter: 'blur(50px)',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+          />
+
+          <div
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '2.5rem',
               alignItems: 'center',
-              gap: '6px',
-              padding: '6px 14px',
-              borderRadius: '100px',
-              background: 'rgba(234, 128, 37, 0.15)',
-              border: '1px solid rgba(234, 128, 37, 0.35)',
-              color: '#ea8025',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              marginBottom: '1rem',
             }}
           >
-            <Sparkles size={14} />
-            Catalogue Intrants & Élevage Certifié
+            {/* Colonne Gauche : Titre, Explications & CTA */}
+            <div>
+              <h1
+                style={{
+                  fontSize: 'clamp(2.3rem, 4.8vw, 3.6rem)',
+                  fontWeight: 900,
+                  letterSpacing: '-0.03em',
+                  margin: '0 0 1.2rem',
+                  lineHeight: 1.15,
+                  fontFamily: "'Poppins', sans-serif",
+                  color: T.textMain,
+                }}
+              >
+                Boutique Agropastorale & <span className="text-gradient">Provenderie Certifiée</span>
+              </h1>
+
+              <p
+                style={{
+                  fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
+                  color: T.light ? '#4b5563' : 'rgba(255,255,255,.75)',
+                  lineHeight: 1.7,
+                  margin: '0 0 2rem',
+                  maxWidth: '640px',
+                }}
+              >
+                Approvisionnez votre cheptel avec des intrants haute performance testés et garantis au Congo : <strong>poussins d’un jour Cobb 500</strong> vigoureux, <strong>pondeuses Lohmann Brown</strong>, provendes industrielles enrichies et kits de prophylaxie. Réglez en toute sécurité par <strong>Mobile Money KKiaPay</strong> (MTN / Airtel) ou sur <strong>WhatsApp Pro</strong> avec livraison rapide sur vos fermes et sites d'élevage.
+              </p>
+
+              {/* Boutons d'Action */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', marginBottom: '2.2rem' }}>
+                <a
+                  href="#catalogue"
+                  className="btn-raised"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '0.9rem 1.8rem',
+                    fontSize: '0.95rem',
+                    textDecoration: 'none',
+                    borderRadius: '100px',
+                  }}
+                >
+                  <ShoppingBag size={18} />
+                  Voir le catalogue
+                  <ArrowRight size={16} />
+                </a>
+
+                <a
+                  href="https://wa.me/242069677567?text=Bonjour%20AGRO%20V%C3%89TO%20SERVICES%2C%20je%20souhaite%20commander%20des%20poussins%20ou%20intrants%20agropastoraux."
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-ghost"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '0.9rem 1.8rem',
+                    fontSize: '0.95rem',
+                    textDecoration: 'none',
+                    borderRadius: '100px',
+                  }}
+                >
+                  <MessageCircle size={18} />
+                  Commander sur WhatsApp
+                </a>
+              </div>
+
+              {/* Preuves d'engagement & réassurance */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '1.8rem',
+                  paddingTop: '1.2rem',
+                  borderTop: `1px solid ${T.border}`,
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: '50%',
+                      background: 'rgba(234, 128, 37, 0.15)',
+                      color: '#ea8025',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <Check size={16} />
+                  </div>
+                  <span style={{ fontSize: '0.84rem', fontWeight: 700, color: T.textMain }}>
+                    Viabilité &gt; 98% au démarrage
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: '50%',
+                      background: 'rgba(234, 128, 37, 0.15)',
+                      color: '#ea8025',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <Truck size={16} />
+                  </div>
+                  <span style={{ fontSize: '0.84rem', fontWeight: 700, color: T.textMain }}>
+                    Livraison Pointe-Noire & Kouilou
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Colonne Droite : Carte Interactive Produit Vedette */}
+            <div>
+              <div
+                style={{
+                  borderRadius: 24,
+                  overflow: 'hidden',
+                  background: T.light ? '#ffffff' : '#0e1710',
+                  border: `1px solid ${T.border}`,
+                  boxShadow: T.light
+                    ? '0 16px 40px rgba(0,0,0,.06)'
+                    : '0 16px 48px rgba(0,0,0,.5), 0 0 32px rgba(234, 128, 37,.1)',
+                  position: 'relative',
+                }}
+              >
+                {/* Photo Produit Vedette */}
+                <div style={{ height: 230, position: 'relative', overflow: 'hidden' }}>
+                  <img
+                    src="/images/cobb500.webp"
+                    alt="Poussins d'un jour Cobb 500 certifiés"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  {/* Tag En stock */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '14px',
+                      left: '14px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: '5px 12px',
+                      borderRadius: '100px',
+                      background: 'rgba(5, 10, 6, 0.82)',
+                      backdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(234, 128, 37, 0.4)',
+                      color: '#ea8025',
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: '50%',
+                        background: '#22c55e',
+                        display: 'inline-block',
+                        boxShadow: '0 0 8px #22c55e',
+                      }}
+                    />
+                    Arrivages réguliers au couvoir
+                  </div>
+                </div>
+
+                {/* Détails du produit vedette */}
+                <div style={{ padding: '1.5rem' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      gap: '1rem',
+                      marginBottom: '0.8rem',
+                    }}
+                  >
+                    <div>
+                      <div
+                        style={{
+                          fontSize: '0.72rem',
+                          fontWeight: 700,
+                          color: '#ea8025',
+                          textTransform: 'uppercase',
+                          letterSpacing: '.06em',
+                          marginBottom: '0.2rem',
+                        }}
+                      >
+                        Souche Recommandée • Chair
+                      </div>
+                      <h3
+                        style={{
+                          fontSize: '1.2rem',
+                          fontWeight: 900,
+                          color: T.textMain,
+                          margin: 0,
+                          lineHeight: 1.25,
+                        }}
+                      >
+                        Poussins d'un Jour Cobb 500
+                      </h3>
+                    </div>
+                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                      <div
+                        style={{
+                          fontSize: '1.35rem',
+                          fontWeight: 900,
+                          color: '#ea8025',
+                          lineHeight: 1,
+                        }}
+                      >
+                        650 FCFA
+                      </div>
+                      <div style={{ fontSize: '0.68rem', color: T.textMuted }}>/ sujet (carton de 50)</div>
+                    </div>
+                  </div>
+
+                  <p style={{ fontSize: '0.82rem', color: T.textSub, lineHeight: 1.6, margin: '0 0 1.2rem' }}>
+                    Vaccinés Marek et Newcastle. Croissance accélérée avec un indice de consommation remarquable pour rentabiliser votre cycle de production.
+                  </p>
+
+                  {/* Garantie Dr POUTYA */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      padding: '10px 14px',
+                      borderRadius: '12px',
+                      background: T.light ? '#f8f9fa' : 'rgba(234, 128, 37, 0.08)',
+                      border: `1px solid ${T.border}`,
+                    }}
+                  >
+                    <img
+                      src="/images/dr_poutya.jpeg"
+                      alt="Dr POUTYA"
+                      style={{
+                        width: 42,
+                        height: 42,
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        objectPosition: 'center 20%',
+                        border: '2px solid #ea8025',
+                        flexShrink: 0,
+                      }}
+                    />
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ fontSize: '0.78rem', fontWeight: 800, color: T.textMain, lineHeight: 1.2 }}>
+                        Garantie Vétérinaire AVS Congo
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: T.textMuted, lineHeight: 1.3 }}>
+                        Supervisé par le Dr POUTYA • Protocole de démarrage offert
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <h1
-            style={{
-              fontSize: 'clamp(2.2rem, 5vw, 3.4rem)',
-              fontWeight: 900,
-              letterSpacing: '-0.03em',
-              margin: '0 0 1rem',
-              lineHeight: 1.1,
-            }}
-          >
-            Boutique Agropastorale & Provenderie
-          </h1>
-
-          <p
-            style={{
-              fontSize: '1rem',
-              color: T.light ? '#4b5563' : '#9ca3af',
-              lineHeight: 1.6,
-              margin: '0 0 2rem',
-            }}
-          >
-            Commandez vos poussins d’un jour Cobb 500 certifiés, provendes industrielles haute énergie et kits de prophylaxie.
-            Réglez instantanément par <strong>Mobile Money KKiaPay</strong> (MTN / Airtel) ou sur <strong>WhatsApp Pro</strong> avec livraison rapide à Pointe-Noire.
-          </p>
-
-          {/* 3 Avantages clés */}
+          {/* 3 Piliers de Service */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '12px',
-              textAlign: 'left',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '14px',
+              marginTop: '2.5rem',
             }}
           >
             <div
               style={{
-                padding: '12px 16px',
-                borderRadius: '14px',
+                padding: '16px 18px',
+                borderRadius: '16px',
                 background: T.light ? '#ffffff' : '#0e1710',
-                border: '1px solid rgba(255,255,255,0.08)',
+                border: `1px solid ${T.border}`,
                 display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
+                alignItems: 'flex-start',
+                gap: '14px',
+                boxShadow: T.light ? '0 4px 14px rgba(0,0,0,.03)' : '0 4px 20px rgba(0,0,0,.25)',
               }}
             >
-              <CreditCard size={20} color="#ea8025" />
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 12,
+                  background: 'rgba(234, 128, 37,.12)',
+                  color: '#ea8025',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <CreditCard size={20} />
+              </div>
               <div>
-                <div style={{ fontSize: '0.82rem', fontWeight: 800 }}>Paiement KKiaPay</div>
-                <div style={{ fontSize: '0.72rem', color: T.light ? '#6b7280' : '#9ca3af' }}>Mobile Money & CB sécurisé</div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 800, color: T.textMain, marginBottom: '3px' }}>
+                  Paiement Mobile Money KKiaPay
+                </div>
+                <div style={{ fontSize: '0.75rem', color: T.textSub, lineHeight: 1.45 }}>
+                  MTN MoMo, Airtel Money, CB sécurisé ou règlement cash à la livraison.
+                </div>
               </div>
             </div>
 
             <div
               style={{
-                padding: '12px 16px',
-                borderRadius: '14px',
+                padding: '16px 18px',
+                borderRadius: '16px',
                 background: T.light ? '#ffffff' : '#0e1710',
-                border: '1px solid rgba(255,255,255,0.08)',
+                border: `1px solid ${T.border}`,
                 display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
+                alignItems: 'flex-start',
+                gap: '14px',
+                boxShadow: T.light ? '0 4px 14px rgba(0,0,0,.03)' : '0 4px 20px rgba(0,0,0,.25)',
               }}
             >
-              <Truck size={20} color="#ea8025" />
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 12,
+                  background: 'rgba(234, 128, 37,.12)',
+                  color: '#ea8025',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <Truck size={20} />
+              </div>
               <div>
-                <div style={{ fontSize: '0.82rem', fontWeight: 800 }}>Livraison Pointe-Noire</div>
-                <div style={{ fontSize: '0.72rem', color: T.light ? '#6b7280' : '#9ca3af' }}>Socoprise, Tié-Tié, Loandjili</div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 800, color: T.textMain, marginBottom: '3px' }}>
+                  Livraison Pointe-Noire & Kouilou
+                </div>
+                <div style={{ fontSize: '0.75rem', color: T.textSub, lineHeight: 1.45 }}>
+                  Socoprise, Tié-Tié, Loandjili, Vindoulou et expéditions régionales.
+                </div>
               </div>
             </div>
 
             <div
               style={{
-                padding: '12px 16px',
-                borderRadius: '14px',
+                padding: '16px 18px',
+                borderRadius: '16px',
                 background: T.light ? '#ffffff' : '#0e1710',
-                border: '1px solid rgba(255,255,255,0.08)',
+                border: `1px solid ${T.border}`,
                 display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
+                alignItems: 'flex-start',
+                gap: '14px',
+                boxShadow: T.light ? '0 4px 14px rgba(0,0,0,.03)' : '0 4px 20px rgba(0,0,0,.25)',
               }}
             >
-              <ShieldCheck size={20} color="#ea8025" />
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 12,
+                  background: 'rgba(234, 128, 37,.12)',
+                  color: '#ea8025',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <ShieldCheck size={20} />
+              </div>
               <div>
-                <div style={{ fontSize: '0.82rem', fontWeight: 800 }}>Contrôle Vétérinaire</div>
-                <div style={{ fontSize: '0.72rem', color: T.light ? '#6b7280' : '#9ca3af' }}>Garantie Dr POUTYA</div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 800, color: T.textMain, marginBottom: '3px' }}>
+                  Suivi Zootechnique & Conseil Vétérinaire
+                </div>
+                <div style={{ fontSize: '0.75rem', color: T.textSub, lineHeight: 1.45 }}>
+                  Fiche technique de démarrage et guide prophylactique offerts.
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Barre de filtre & Recherche */}
         <div
+          id="catalogue"
           style={{
             display: 'flex',
             flexDirection: 'column',
             gap: '1rem',
             marginBottom: '2.5rem',
+            scrollMarginTop: '120px',
           }}
         >
           {/* Recherche */}

@@ -34,7 +34,6 @@ const nextConfig = {
   async rewrites() {
     return [
       { source: '/poles', destination: '/services' },
-      { source: '/boutique', destination: '/pricing' },
       { source: '/a-propos', destination: '/about' },
     ]
   },
