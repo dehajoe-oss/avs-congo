@@ -11,7 +11,7 @@ const STATUS_LABELS = {
   PENDING: { label: 'En attente', color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.12)' },
   CONFIRMED: { label: 'Confirmée', color: '#3b82f6', bg: 'rgba(59, 130, 246, 0.12)' },
   PROCESSING: { label: 'En préparation', color: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.12)' },
-  SHIPPED: { label: 'Expédiée / En route', color: '#ea8025', bg: 'rgba(234, 128, 37, 0.15)' },
+  SHIPPED: { label: 'Expédiée / En route', color: '#c47b2d', bg: 'rgba(196, 123, 45, 0.15)' },
   DELIVERED: { label: 'Livrée', color: '#10b981', bg: 'rgba(16, 185, 129, 0.12)' },
   CANCELLED: { label: 'Annulée', color: '#ef4444', bg: 'rgba(239, 68, 68, 0.12)' },
 }
@@ -171,7 +171,7 @@ export default function OrdersTab({ T, CARD }) {
                 {/* Montant */}
                 <div style={{ minWidth: 120 }}>
                   <div style={{ fontSize: '.68rem', color: T.textMuted, textTransform: 'uppercase' }}>Total</div>
-                  <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#ea8025', fontFamily: "'Poppins', sans-serif" }}>
+                  <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#c47b2d', fontFamily: "'Poppins', sans-serif" }}>
                     {order.totalAmount?.toLocaleString('fr-FR')} FCFA
                   </div>
                 </div>
@@ -262,7 +262,7 @@ export default function OrdersTab({ T, CARD }) {
 
             {/* Infos client */}
             <div style={{ background: T.bg, padding: '1rem', borderRadius: 12, marginBottom: 16 }}>
-              <div style={{ fontSize: '.72rem', fontWeight: 700, color: '#ea8025', textTransform: 'uppercase', marginBottom: 6 }}>Coordonnées du client</div>
+              <div style={{ fontSize: '.72rem', fontWeight: 700, color: '#c47b2d', textTransform: 'uppercase', marginBottom: 6 }}>Coordonnées du client</div>
               <div style={{ fontSize: '.88rem', fontWeight: 800, color: T.textMain, marginBottom: 2 }}>{selectedOrder.customerName}</div>
               <div style={{ fontSize: '.8rem', color: T.textSub, display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
                 <Phone size={12} /> {selectedOrder.customerPhone}
@@ -295,7 +295,7 @@ export default function OrdersTab({ T, CARD }) {
             {/* Total */}
             <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
               <span style={{ fontSize: '.9rem', fontWeight: 800, color: T.textMain }}>Montant Total</span>
-              <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#ea8025' }}>
+              <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#c47b2d' }}>
                 {selectedOrder.totalAmount?.toLocaleString('fr-FR')} FCFA
               </span>
             </div>
@@ -303,7 +303,7 @@ export default function OrdersTab({ T, CARD }) {
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <button
                 onClick={() => setSelectedOrder(null)}
-                style={{ background: '#ea8025', color: '#fff', border: 'none', borderRadius: 10, padding: '.6rem 1.4rem', fontWeight: 700, cursor: 'pointer' }}
+                style={{ background: '#c47b2d', color: '#fff', border: 'none', borderRadius: 10, padding: '.6rem 1.4rem', fontWeight: 700, cursor: 'pointer' }}
               >
                 Fermer
               </button>

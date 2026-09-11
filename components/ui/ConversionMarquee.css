@@ -91,7 +91,7 @@ body.light-mode .ccta-fixed {
 }
 
 @media (max-width: 760px) {
-  body.light-mode .ccta-fixed { background: rgba(234, 88, 12, 0.05); }
+  body.light-mode .ccta-fixed { background: rgba(169, 106, 38, 0.05); }
 }
 
 /* ── Responsive ──────────────────────────────────── */

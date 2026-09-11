@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
-  ShoppingBag,
+  ShoppingCart,
   Search,
   Check,
   Plus,
@@ -100,7 +100,7 @@ function HeroShopDesktop() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#ea8025', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#c47b2d', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -109,7 +109,7 @@ function HeroShopDesktop() {
         .hr-row { position: relative; z-index: 10; height: 100%; }
         .hr-title {
           position: absolute; left: 8vw; bottom: 4.5rem; margin: 0;
-          font-family: 'Poppins', sans-serif; font-weight: 800;
+          font-family: "Poppins", sans-serif; font-weight: 800;
           font-size: clamp(4.5rem, 13vw, 15rem); line-height: .92; letter-spacing: -.04em;
           color: rgba(255,255,255,.95);
         }
@@ -118,8 +118,8 @@ function HeroShopDesktop() {
           margin: auto 0; max-width: 380px; height: fit-content;
         }
         .hr-kicker {
-          font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
-          color: #ea8025; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          font-family: "Poppins", sans-serif; font-size: .62rem; font-weight: 700;
+          color: #c47b2d; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -258,8 +258,8 @@ export default function ShopClient() {
                   width: 40,
                   height: 40,
                   borderRadius: 12,
-                  background: 'rgba(234, 128, 37,.12)',
-                  color: '#ea8025',
+                  background: 'rgba(196, 123, 45,.12)',
+                  color: '#c47b2d',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -295,8 +295,8 @@ export default function ShopClient() {
                   width: 40,
                   height: 40,
                   borderRadius: 12,
-                  background: 'rgba(234, 128, 37,.12)',
-                  color: '#ea8025',
+                  background: 'rgba(196, 123, 45,.12)',
+                  color: '#c47b2d',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -332,8 +332,8 @@ export default function ShopClient() {
                   width: 40,
                   height: 40,
                   borderRadius: 12,
-                  background: 'rgba(234, 128, 37,.12)',
-                  color: '#ea8025',
+                  background: 'rgba(196, 123, 45,.12)',
+                  color: '#c47b2d',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -406,8 +406,8 @@ export default function ShopClient() {
                   style={{
                     padding: '8px 16px',
                     borderRadius: '100px',
-                    border: `1px solid ${active ? '#ea8025' : 'rgba(255,255,255,0.1)'}`,
-                    background: active ? '#ea8025' : (T.light ? '#ffffff' : 'rgba(255,255,255,0.04)'),
+                    border: `1px solid ${active ? '#c47b2d' : 'rgba(255,255,255,0.1)'}`,
+                    background: active ? '#c47b2d' : (T.light ? '#ffffff' : 'rgba(255,255,255,0.04)'),
                     color: active ? '#ffffff' : 'inherit',
                     fontSize: '0.8rem',
                     fontWeight: 700,
@@ -475,7 +475,7 @@ export default function ShopClient() {
                           left: '12px',
                           padding: '4px 10px',
                           borderRadius: '100px',
-                          background: 'rgba(234, 128, 37, 0.95)',
+                          background: 'rgba(196, 123, 45, 0.95)',
                           color: '#ffffff',
                           fontSize: '0.7rem',
                           fontWeight: 800,
@@ -490,7 +490,7 @@ export default function ShopClient() {
 
                   {/* Détails du produit */}
                   <div style={{ padding: '1.4rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#ea8025', fontWeight: 700, textTransform: 'uppercase', marginBottom: '4px' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#c47b2d', fontWeight: 700, textTransform: 'uppercase', marginBottom: '4px' }}>
                       {product.categoryLabel}
                     </div>
 
@@ -507,7 +507,7 @@ export default function ShopClient() {
                       <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.2rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
                         {product.specs.slice(0, 3).map((spec, i) => (
                           <li key={i} style={{ fontSize: '0.75rem', color: T.light ? '#6b7280' : '#d1d5db', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <Check size={13} color="#ea8025" />
+                            <Check size={13} color="#c47b2d" />
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -516,7 +516,7 @@ export default function ShopClient() {
 
                     {/* Prix */}
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginBottom: '1.2rem' }}>
-                      <span style={{ fontSize: '1.4rem', fontWeight: 900, color: '#ea8025' }}>
+                      <span style={{ fontSize: '1.4rem', fontWeight: 900, color: '#c47b2d' }}>
                         {product.price.toLocaleString('fr-FR')} FCFA
                       </span>
                       <span style={{ fontSize: '0.75rem', color: T.light ? '#6b7280' : '#9ca3af' }}>
@@ -567,13 +567,15 @@ export default function ShopClient() {
 
                         <button
                           onClick={() => addToCart(product, qty)}
+                          aria-label="Ajouter au panier"
+                          title="Ajouter au panier"
                           style={{
                             flex: 1,
                             padding: '10px 14px',
                             borderRadius: '10px',
-                            border: '1px solid #ea8025',
-                            background: 'rgba(234, 128, 37, 0.15)',
-                            color: '#ea8025',
+                            border: '1px solid #c47b2d',
+                            background: 'rgba(196, 123, 45, 0.15)',
+                            color: '#c47b2d',
                             fontSize: '0.82rem',
                             fontWeight: 700,
                             cursor: 'pointer',
@@ -583,8 +585,7 @@ export default function ShopClient() {
                             gap: '6px',
                           }}
                         >
-                          <ShoppingBag size={15} />
-                          <span>Au Panier</span>
+                          <ShoppingCart size={17} />
                         </button>
                       </div>
 
@@ -595,7 +596,7 @@ export default function ShopClient() {
                           padding: '11px 16px',
                           borderRadius: '10px',
                           border: 'none',
-                          background: '#ea8025',
+                          background: '#c47b2d',
                           color: '#ffffff',
                           fontSize: '0.85rem',
                           fontWeight: 800,
@@ -606,7 +607,7 @@ export default function ShopClient() {
                           gap: '6px',
                         }}
                       >
-                        <span>Commander & Payer via KKiaPay</span>
+                        <span>Commander</span>
                         <ArrowRight size={15} />
                       </button>
                     </div>
@@ -627,13 +628,13 @@ export default function ShopClient() {
               transform: 'translateX(-50%)',
               zIndex: 90,
               background: '#0e1710',
-              border: '2px solid #ea8025',
+              border: '2px solid #c47b2d',
               borderRadius: '100px',
               padding: '10px 24px',
               display: 'flex',
               alignItems: 'center',
               gap: '20px',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(234, 128, 37, 0.4)',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(196, 123, 45, 0.4)',
               color: '#ffffff',
             }}
           >
@@ -643,7 +644,7 @@ export default function ShopClient() {
                   width: '32px',
                   height: '32px',
                   borderRadius: '50%',
-                  background: '#ea8025',
+                  background: '#c47b2d',
                   color: '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
@@ -665,7 +666,7 @@ export default function ShopClient() {
                 padding: '9px 18px',
                 borderRadius: '100px',
                 border: 'none',
-                background: '#ea8025',
+                background: '#c47b2d',
                 color: '#ffffff',
                 fontSize: '0.82rem',
                 fontWeight: 800,

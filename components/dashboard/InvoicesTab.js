@@ -23,7 +23,7 @@ import InvoicePreview from './InvoicePreview'
 import { computeInvoiceTotals, formatMoney, emptyInvoiceForm } from '@/lib/invoice-calc'
 
 const STATUS_LABELS = { ENVOYEE: 'Envoyée', PAYEE: 'Payée', ANNULEE: 'Annulée' }
-const STATUS_COLORS = { ENVOYEE: '#5b8def', PAYEE: '#ea8025', ANNULEE: '#e05e5e' }
+const STATUS_COLORS = { ENVOYEE: '#5b8def', PAYEE: '#c47b2d', ANNULEE: '#e05e5e' }
 
 function StatusPill({ status }) {
   const color = STATUS_COLORS[status] || '#9aa0a6'
@@ -351,7 +351,7 @@ export default function InvoicesTab({ T, CARD }) {
                 </div>
               </div>
             ))}
-            <button onClick={addLine} style={{ padding: 10, background: 'rgba(234, 128, 37,.08)', color: T.green, border: `1px dashed ${T.green}`, borderRadius: 8, fontSize: '.78rem', fontWeight: 700, cursor: 'pointer' }}>
+            <button onClick={addLine} style={{ padding: 10, background: 'rgba(196, 123, 45,.08)', color: T.green, border: `1px dashed ${T.green}`, borderRadius: 8, fontSize: '.78rem', fontWeight: 700, cursor: 'pointer' }}>
               + Ajouter une ligne
             </button>
 

@@ -86,10 +86,10 @@ function CircularProjectsGallery() {
               zIndex: 10 - abs,
               cursor: 'pointer',
               border: isActive
-                ? '1.5px solid rgba(234, 128, 37,.6)'
+                ? '1.5px solid rgba(196, 123, 45,.6)'
                 : '1px solid rgba(255,255,255,.1)',
               boxShadow: isActive
-                ? '0 0 0 3px rgba(234, 128, 37,.15), 0 12px 36px rgba(0,0,0,.6)'
+                ? '0 0 0 3px rgba(196, 123, 45,.15), 0 12px 36px rgba(0,0,0,.6)'
                 : '0 6px 20px rgba(0,0,0,.4)',
               transformStyle: 'preserve-3d',
             }}>
@@ -106,7 +106,7 @@ function CircularProjectsGallery() {
             }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '.7rem 1rem' }}>
               <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.8rem', fontWeight: 700, color: '#fff', letterSpacing: '-.01em', lineHeight: 1.2 }}><HoverSlideText text={p.title} /></div>
-              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', color: 'rgba(234, 128, 37,.9)', marginTop: '.1rem' }}>{p.type}</div>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', color: 'rgba(196, 123, 45,.9)', marginTop: '.1rem' }}>{p.type}</div>
             </div>
           </motion.div>
         )
@@ -129,7 +129,7 @@ function HeroSlogan() {
         transition={{ duration: .45, ease: 'easeOut' }}
         style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.9rem,4.4vw,3.2rem)', lineHeight: 1.18, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '4px 4px 0px rgba(0,0,0,.55)', textAlign: 'center', margin: 0 }}>
         De la santé animale à l'excellence{' '}
-        <span style={{ display: 'inline-block', background: '#ea8025', color: '#050505', padding: '.1em .35em', border: '3px solid #050505', borderRadius: '.18em', boxShadow: '5px 5px 0px #fff, 0 0 32px var(--pop-lime-glow)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
+        <span style={{ display: 'inline-block', background: '#c47b2d', color: '#050505', padding: '.1em .35em', border: '3px solid #050505', borderRadius: '.18em', boxShadow: '5px 5px 0px #fff, 0 0 32px var(--pop-lime-glow)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
           QHSE.
         </span>
       </motion.p>
@@ -160,7 +160,7 @@ function HeroSloganCycle() {
           transition={{ duration: .45, ease: 'easeOut' }}
           style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.9rem,4.4vw,3.2rem)', lineHeight: 1.18, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '4px 4px 0px rgba(0,0,0,.55)', textAlign: 'center', margin: 0 }}>
           {before}
-          <span style={{ display: 'inline-block', background: '#ea8025', color: '#050505', padding: '.1em .35em', border: '3px solid #050505', borderRadius: '.18em', boxShadow: '5px 5px 0px #fff, 0 0 32px var(--pop-lime-glow)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
+          <span style={{ display: 'inline-block', background: '#c47b2d', color: '#050505', padding: '.1em .35em', border: '3px solid #050505', borderRadius: '.18em', boxShadow: '5px 5px 0px #fff, 0 0 32px var(--pop-lime-glow)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
             {highlight}
           </span>
         </motion.p>
@@ -293,7 +293,7 @@ function Hero() {
             <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.85rem', color: '#fff', lineHeight: 1.15 }}>
               Éleveurs & PME partenaires
             </div>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', color: '#ea8025' }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', color: '#c47b2d' }}>
               {PROJECTS.length}+ réalisations & intrants de pointe
             </div>
           </div>
@@ -304,22 +304,22 @@ function Hero() {
           style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
           <motion.div
             initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(251, 146, 60,.45)' }}
+            whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(196, 123, 45,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
             <Link href="/services"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#ea8025', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#c47b2d', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
               <HoverSlideText text="Découvrir nos services" /> <ArrowRight size={16} />
             </Link>
           </motion.div>
           <motion.div
             initial={{ boxShadow: '5px 5px 0px #050505' }}
-            whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(234, 128, 37,.45)' }}
+            whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(196, 123, 45,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#ea8025', background: 'transparent', border: '3px solid #ea8025', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#c47b2d', background: 'transparent', border: '3px solid #c47b2d', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
               <HoverSlideText text="Nous contacter" />
             </Link>
           </motion.div>
@@ -351,7 +351,7 @@ function Hero() {
           { left: '92%', top: '52%', s: 3, op: .14, dur: 4.9, dy: 2.1 },
         ].map((p, i) => (
           <motion.div key={i}
-            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#ea8025', left: p.left, top: p.top, opacity: p.op }}
+            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#c47b2d', left: p.left, top: p.top, opacity: p.op }}
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: p.dur, repeat: Infinity, ease: 'easeInOut', delay: p.dy }}
           />
@@ -506,7 +506,7 @@ function AnimatedBeamGrid({ containerRef, nodeIds, connections }) {
       {paths.map((p, i) => (
         <g key={i}>
           {/* Base line */}
-          <path d={p.d} fill="none" stroke="rgba(234, 128, 37,0.08)" strokeWidth="1.5" />
+          <path d={p.d} fill="none" stroke="rgba(196, 123, 45,0.08)" strokeWidth="1.5" />
           {/* Animated glow dash */}
           <path
             d={p.d}
@@ -536,12 +536,12 @@ function AnimatedBeamGrid({ containerRef, nodeIds, connections }) {
 // ── SERVICES — Two-Column Skewed Images (HTML skew-section) ──
 // ═══════════════════════════════════════════════════════════════
 const SERVICES_SKEW = [
-  { n: '01', Icon: Award,         title: 'Santé Animale & Intrants Agropastoraux',        desc: "Clinique vétérinaire 24/7, pharmacie vétérinaire, provenderie certifiée, poussins d'un jour Cobb 500 et géniteurs sélectionnés.", price: 'Clinique 24/7 & Intrants', del: 'Permanent', img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80', slug: 'sante-animale-agropastoral' },
+  { n: '01', Icon: Award,         title: 'Santé Animale & Intrants Agropastoraux',        desc: "Clinique vétérinaire 24/7, pharmacie vétérinaire, provenderie certifiée, poussins d'un jour Cobb 500 et géniteurs sélectionnés.", price: 'Clinique 24/7 & Intrants', del: 'Permanent', img: 'https://images.unsplash.com/photo-1441122456239-401e92b73c65?auto=format&fit=crop&w=800&q=80', slug: 'sante-animale-agropastoral' },
   { n: '02', Icon: ShieldCheck,   title: 'Management QHSE & Externalisation',             desc: "Conseil en management QHSE, audits de conformité, formule innovante de QHSE partagé pour PME et plans de maîtrise sanitaire.", price: 'Sur devis', del: 'Accompagnement continu', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', slug: 'management-qhse-externalisation' },
   { n: '03', Icon: Package,       title: 'Transformation Agroalimentaire & Sécurité',     desc: "Technologies de transformation locale, conception d'ateliers et abattoirs, PMS, HACCP et analyses physico-chimiques / microbiologiques.", price: 'Audit & Conseil', del: 'Intervention sur site', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80', slug: 'transformation-agroalimentaire' },
   { n: '04', Icon: Sparkles,      title: 'Cosmétique, Hygiène & Artisanat',               desc: "Formulation et fabrication locale de détergents professionnels, désinfectants d'élevage et savons artisanaux saponifiés à froid.", price: 'Gamme professionnelle', del: 'Disponible au siège', img: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80', slug: 'cosmetique-hygiene-artisanat' },
-  { n: '05', Icon: GraduationCap, title: 'Centre de Formation & Capacités',               desc: "Formations pratiques certifiantes en ferme-école et ateliers, accompagnement d'éleveurs et ingénierie de formation pour entreprises et ONG.", price: 'Sessions certifiantes', del: 'Inscriptions ouvertes', img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80', slug: 'centre-de-formation' },
-  { n: '06', Icon: Target,        title: 'Événementiel & Commerce Général',               desc: "Organisation de foires agropastorales, salons techniques, fourniture d'équipements spécialisés et négoce d'intrants certifiés.", price: 'Sur consultation', del: 'Sur calendrier', img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80', slug: 'evenementiel-commerce-general' },
+  { n: '05', Icon: GraduationCap, title: 'Centre de Formation & Capacités',               desc: "Formations pratiques certifiantes en ferme-école et ateliers, accompagnement d'éleveurs et ingénierie de formation pour entreprises et ONG.", price: 'Sessions certifiantes', del: 'Inscriptions ouvertes', img: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80', slug: 'centre-de-formation' },
+  { n: '06', Icon: Target,        title: 'Événementiel & Commerce Général',               desc: "Organisation de foires agropastorales, salons techniques, fourniture d'équipements spécialisés et négoce d'intrants certifiés.", price: 'Sur consultation', del: 'Sur calendrier', img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80', slug: 'evenementiel-commerce-general' },
 ]
 
 // ── GHOST SCROLL SHOWCASE — parallax + texte fantôme horizontal ──
@@ -661,7 +661,7 @@ function GhostScrollShowcase({ items }) {
                 fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic',
                 textTransform: 'uppercase', whiteSpace: 'nowrap', lineHeight: 1,
                 fontSize: 'clamp(4.5rem, 13vw, 11.5rem)',
-                color: 'transparent', WebkitTextStroke: '1.5px rgba(251, 146, 60,.4)',
+                color: 'transparent', WebkitTextStroke: '1.5px rgba(196, 123, 45,.4)',
                 willChange: 'transform', userSelect: 'none', pointerEvents: 'none',
               }}
             >
@@ -671,7 +671,7 @@ function GhostScrollShowcase({ items }) {
             <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '3.2rem 5%', zIndex: 2, pointerEvents: 'none' }}>
               <div style={{ maxWidth: 680 }}>
                 <div style={{ marginBottom: '.9rem' }}>
-                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', fontWeight: 700, color: '#ea8025', letterSpacing: '.25em' }}>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', fontWeight: 700, color: '#c47b2d', letterSpacing: '.25em' }}>
                     {item.n} / {String(items.length).padStart(2, '0')}
                   </span>
                 </div>
@@ -693,11 +693,11 @@ function GhostScrollShowcase({ items }) {
                 {item.href && (
                   <span style={{
                     display: 'inline-flex', alignItems: 'center', gap: '.5rem', marginTop: '1.3rem',
-                    fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', fontWeight: 700, color: '#ea8025',
+                    fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', fontWeight: 700, color: '#c47b2d',
                   }}>
                     Voir le service
                     <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-                      <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#ea8025" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#c47b2d" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
                 )}
@@ -758,12 +758,12 @@ function ServicesPreview() {
 // ── BUILT ON TRUST — 3D Showcase (HTML showcase-section) ─────
 // ═══════════════════════════════════════════════════════════════
 const WHY_PANELS = [
-  { n: '01', title: 'Diagnostic &\nVisite Sanitaire', sub: 'Écoute & Analyse terrain', desc: "Échange approfondi sur votre cheptel ou unité agroalimentaire. Diagnostic zootechnique et sanitaire sur site par le Dr POUTYA.", img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80' },
+  { n: '01', title: 'Diagnostic &\nVisite Sanitaire', sub: 'Écoute & Analyse terrain', desc: "Échange approfondi sur votre cheptel ou unité agroalimentaire. Diagnostic zootechnique et sanitaire sur site par le Dr POUTYA.", img: 'https://images.unsplash.com/photo-1441122456239-401e92b73c65?auto=format&fit=crop&w=800&q=80' },
   { n: '02', title: 'Protocole &\nDevis Sur-Mesure', sub: 'Plan clair et chiffré', desc: "Formulation des rations, calendrier de prophylaxie vaccinale ou programme d'audit QHSE adapté à votre budget et vos objectifs.", img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80' },
-  { n: '03', title: 'Intrants &\nAliments Certifiés', sub: 'Arrivages sécurisés', desc: "Fourniture de poussins Cobb 500 vaccinés au couvoir et aliments provenderie haute énergie testés en laboratoire bromatologique.", img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80' },
+  { n: '03', title: 'Intrants &\nAliments Certifiés', sub: 'Arrivages sécurisés', desc: "Fourniture de poussins Cobb 500 vaccinés au couvoir et aliments provenderie haute énergie testés en laboratoire bromatologique.", img: 'https://images.unsplash.com/photo-1546272989-40c92939c6c2?auto=format&fit=crop&w=800&q=80' },
   { n: '04', title: 'Biosécurité &\nProphylaxie', sub: 'Protection sanitaire', desc: "Installation des pédiluves, désinfection des bâtiments d'élevage et administration rigoureuse du calendrier vaccinal.", img: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80' },
   { n: '05', title: 'Suivi Vétérinaire\nContinu', sub: 'Sur le terrain & 24/7', desc: "Visites périodiques, contrôle des indices de consommation et permanence d'urgence 24h/24 et 7j/7 sur appel direct.", img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80' },
-  { n: '06', title: 'Formation &\nAutonomie', sub: 'Pratique 100% ferme-école', desc: "Montée en compétences de vos équipes sur cheptel vivant pour pérenniser vos résultats et éviter les erreurs courantes.", img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80' },
+  { n: '06', title: 'Formation &\nAutonomie', sub: 'Pratique 100% ferme-école', desc: "Montée en compétences de vos équipes sur cheptel vivant pour pérenniser vos résultats et éviter les erreurs courantes.", img: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80' },
   { n: '07', title: 'Excellence &\nRentabilité', sub: 'De la ferme à l\'assiette', desc: "Conformité aux normes ISO / HACCP, réduction de la mortalité sous les 2% et valorisation optimale de votre production.", img: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80' },
 ]
 
@@ -791,7 +791,7 @@ function WhyUs() {
         </BlurReveal>
 
         <BlurReveal delay={0.05}>
-          <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', letterSpacing: '.42em', textTransform: 'uppercase', color: '#ea8025', display: 'block', marginBottom: '1.5rem', textAlign: 'center' }}>
+          <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', letterSpacing: '.42em', textTransform: 'uppercase', color: '#c47b2d', display: 'block', marginBottom: '1.5rem', textAlign: 'center' }}>
             Notre accompagnement agropastoral
           </span>
         </BlurReveal>
@@ -843,21 +843,21 @@ function Testimonials() {
           <motion.div key={idx} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: .4 }}
             className="sku-card" style={{ padding: '2.5rem', textAlign: 'center' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.2rem' }}>
-              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#ea8025" style={{ color: '#ea8025' }} />)}
+              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#c47b2d" style={{ color: '#c47b2d' }} />)}
             </div>
             <blockquote style={{ fontSize: '1.05rem', color: T.textMain, lineHeight: 1.75, fontStyle: 'italic', marginBottom: '2rem', maxWidth: 640, margin: '0 auto 2rem' }}>
               "{t.text}"
             </blockquote>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(234, 128, 37,.35)' }}>
+              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(196, 123, 45,.35)' }}>
                 <LazyImg src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(234, 128, 37,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ea8025', fontFamily: "'Poppins', sans-serif", fontWeight: 700 }}>{t.name[0]}</div>} />
+                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(196, 123, 45,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#c47b2d', fontFamily: "'Poppins', sans-serif", fontWeight: 700 }}>{t.name[0]}</div>} />
               </div>
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '.9rem' }}>{t.name}</div>
                 <div style={{ fontSize: '.72rem', color: T.textMuted, fontFamily: "'Poppins', sans-serif" }}>{t.role}</div>
               </div>
-              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(234, 128, 37,.12)', border: '1px solid rgba(234, 128, 37,.25)', color: '#ea8025', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
+              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(196, 123, 45,.12)', border: '1px solid rgba(196, 123, 45,.25)', color: '#c47b2d', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -865,7 +865,7 @@ function Testimonials() {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '.5rem', marginTop: '1.5rem' }}>
           {TESTIMONIALS.map((_, i) => (
             <button key={i} onClick={() => setIdx(i)}
-              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#ea8025' : 'rgba(234, 128, 37,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
+              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#c47b2d' : 'rgba(196, 123, 45,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
           ))}
         </div>
         </BlurReveal>
@@ -883,7 +883,7 @@ const DOMAINES = [
     title: 'Santé Animale & Clinique Vétérinaire',
     desc:  "Soins médicaux, chirurgies, vaccinations, urgences 24/7 et visites sanitaires d'élevage à Pointe-Noire et dans tout le Kouilou.",
     tag:   'Clinique 24/7',
-    img:   'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80',
+    img:   'https://images.unsplash.com/photo-1441122456239-401e92b73c65?auto=format&fit=crop&w=800&q=80',
   },
   {
     n: '02', Icon: Package,
@@ -897,7 +897,7 @@ const DOMAINES = [
     title: "Poussins d'un Jour & Intrants",
     desc:  "Souches à haute performance Cobb 500 (chair) et Lohmann Brown (ponte), vaccinées dès l'écloserie avec suivi de démarrage offert.",
     tag:   'Poussins Cobb 500',
-    img:   'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80',
+    img:   'https://images.unsplash.com/photo-1546272989-40c92939c6c2?auto=format&fit=crop&w=800&q=80',
   },
   {
     n: '04', Icon: ShieldCheck,
@@ -911,7 +911,7 @@ const DOMAINES = [
     title: 'Centre de Formation & Ferme-École',
     desc:  "Formations certifiantes 100% pratiques : conduite d'élevage avicole, hygiène alimentaire HACCP, fabrication de savon et auditeur interne.",
     tag:   'Formations',
-    img:   'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    img:   'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80',
   },
   {
     n: '06', Icon: Sparkles,
@@ -977,30 +977,23 @@ function DomaineCard({ n, Icon, title, desc, tag, img, index, inView }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.4rem', position: 'relative', zIndex: 1 }}>
         <span style={{
           fontFamily: "'Poppins', sans-serif", fontSize: '2.8rem', fontWeight: 900,
-          color: T.light ? 'rgba(234, 128, 37,.18)' : 'rgba(234, 128, 37,.15)',
+          color: T.light ? 'rgba(196, 123, 45,.18)' : 'rgba(196, 123, 45,.15)',
           lineHeight: 1, letterSpacing: '-.05em',
         }}>
           {n}
         </span>
         <span style={{
           padding: '.22rem .72rem', borderRadius: 100,
-          background: 'rgba(234, 128, 37,.08)', border: '1px solid rgba(234, 128, 37,.2)',
+          background: 'rgba(196, 123, 45,.08)', border: '1px solid rgba(196, 123, 45,.2)',
           fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 700,
-          color: '#ea8025', letterSpacing: '.06em', textTransform: 'uppercase',
+          color: '#c47b2d', letterSpacing: '.06em', textTransform: 'uppercase',
         }}>
           {tag}
         </span>
       </div>
 
-      {/* Icône + Titre */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '.9rem', position: 'relative', zIndex: 1 }}>
-        <div style={{
-          width: 42, height: 42, borderRadius: 11,
-          background: 'rgba(234, 128, 37,.1)', border: '1px solid rgba(234, 128, 37,.18)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-        }}>
-          <Icon size={20} style={{ color: '#ea8025' }} />
-        </div>
+      {/* Titre */}
+      <div style={{ marginBottom: '.9rem', position: 'relative', zIndex: 1 }}>
         <h3 style={{
           fontFamily: "'Poppins', sans-serif", fontSize: '.97rem', fontWeight: 800,
           color: T.textMain, lineHeight: 1.25, letterSpacing: '-.02em',
@@ -1017,7 +1010,7 @@ function DomaineCard({ n, Icon, title, desc, tag, img, index, inView }) {
       {/* Barre verte bas au hover */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
-        background: '#ea8025',
+        background: '#c47b2d',
         transformOrigin: 'left',
         transform: isHovered ? 'scaleX(1)' : 'scaleX(0)',
         transition: 'transform .3s ease',
@@ -1034,7 +1027,7 @@ function DomaineCard({ n, Icon, title, desc, tag, img, index, inView }) {
           opacity: isHovered ? 1 : 0,
           transition: 'opacity .22s ease, transform .18s cubic-bezier(.22,1,.36,1)',
           boxShadow: '0 24px 70px rgba(0,0,0,.55)',
-          border: '1.5px solid rgba(234, 128, 37,.35)',
+          border: '1.5px solid rgba(196, 123, 45,.35)',
           willChange: 'transform, opacity',
         }}>
           <img
@@ -1098,7 +1091,7 @@ function DomainesSection() {
       <div style={{
         position: 'absolute', left: '-1%', top: '50%', transform: 'translateY(-50%)',
         fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(10rem,18vw,18rem)', fontWeight: 900,
-        color: T.light ? 'rgba(234, 128, 37,.04)' : 'rgba(234, 128, 37,.03)',
+        color: T.light ? 'rgba(196, 123, 45,.04)' : 'rgba(196, 123, 45,.03)',
         lineHeight: 1, pointerEvents: 'none', userSelect: 'none', letterSpacing: '-.05em',
       }}>
         DOM
@@ -1145,7 +1138,7 @@ function DomainesSection() {
                   opacity: 0.08,
                   filter: 'blur(9px)',
                   willChange: 'opacity, filter',
-                  color: DOM_GREEN.has(word) ? '#ea8025' : 'inherit',
+                  color: DOM_GREEN.has(word) ? '#c47b2d' : 'inherit',
                 }}
               >
                 {word}
@@ -1215,7 +1208,7 @@ function ArchiveTunnelSection() {
             to { transform: translateX(calc(-50% - 0.75rem)); }
           }
           .projects-marquee-track {
-            animation: projectsMarquee 22s linear infinite;
+            animation: projectsMarquee 85s linear infinite;
             will-change: transform;
           }
         `}</style>
@@ -1229,7 +1222,7 @@ function ArchiveTunnelSection() {
                 minHeight: 560,
                 borderRadius: 24,
                 overflow: 'hidden',
-                border: '1px solid rgba(234, 128, 37,.25)',
+                border: '1px solid rgba(196, 123, 45,.25)',
                 boxShadow: '0 28px 70px rgba(0,0,0,.22)',
                 background: T.surface,
                 position: 'relative',
@@ -1256,7 +1249,7 @@ function ArchiveTunnelSection() {
                 <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', fontWeight: 700, color: T.textMain, letterSpacing: '-.01em' }}>
                   {p.title}
                 </div>
-                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: '#ea8025', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: '#c47b2d', textTransform: 'uppercase', letterSpacing: '.08em' }}>
                   {p.type}
                 </div>
               </div>
@@ -1353,7 +1346,7 @@ function StatsSection() {
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: '.82rem',
                 fontWeight: 700,
-                color: T.light ? '#c9680a' : '#ea8025',
+                color: T.light ? '#9a5f22' : '#c47b2d',
                 letterSpacing: '.02em',
                 marginBottom: '.2rem',
               }}>
@@ -1401,9 +1394,9 @@ function FlagBadge({ code, primary }) {
     AO: ['#c8102e','#000000','#fcd116'],
     FR: ['#002395','#fff','#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#ea8025','#fff','#ea8025']
+  const [c1, c2, c3] = colors[code] || ['#c47b2d','#fff','#c47b2d']
   return (
-    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(234, 128, 37,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(234, 128, 37,.2)' : 'none' }}>
+    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(196, 123, 45,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(196, 123, 45,.2)' : 'none' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />
@@ -1434,7 +1427,7 @@ function PricingCallout() {
           <BlurReveal delay={0.12}>
             <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.6rem,3.2vw,2.6rem)', fontWeight: 700, lineHeight: 1.32, color: T.textSub, paddingLeft: 'var(--body-indent)', paddingRight: 'var(--body-indent)' }}>
               {"Des formules claires, adaptées aux besoins des élevages et PME agropastorales — comparez et commandez.".split(' ').map((word, i) => (
-                <span key={i} style={{ color: PRICING_LEAD_GREEN.has(word) ? '#ea8025' : 'inherit' }}>
+                <span key={i} style={{ color: PRICING_LEAD_GREEN.has(word) ? '#c47b2d' : 'inherit' }}>
                   {word}{' '}
                 </span>
               ))}
@@ -1447,7 +1440,7 @@ function PricingCallout() {
           {Object.entries(PRICING).map(([k, v]) => (
             <motion.button key={k} onClick={() => setTab(k)}
               whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? '#ea8025' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
+              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? '#c47b2d' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
               {v.label}
             </motion.button>
           ))}
@@ -1464,25 +1457,25 @@ function PricingCallout() {
                 <BlurReveal key={plan.badge} delay={i * 0.1} direction={['left', 'up', 'right'][i] || 'up'}>
                   <motion.div
                     whileHover={{ y: -8, transition: { duration: .25 } }}
-                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'rgba(234, 128, 37, 0.12)' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(234, 128, 37,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(234, 128, 37,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'rgba(196, 123, 45, 0.12)' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(196, 123, 45,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(196, 123, 45,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
                     {plan.popular && (
-                      <div style={{ padding: '.5rem', background: '#ea8025', textAlign: 'center', fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
+                      <div style={{ padding: '.5rem', background: '#c47b2d', textAlign: 'center', fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
                         <Zap size={10} />LE PLUS POPULAIRE
                       </div>
                     )}
                     <div style={{ padding: plan.popular ? '1.8rem 2rem 0' : 0, display: 'flex', flexDirection: 'column', flex: 1 }}>
                       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'transparent', borderRadius: '20px 20px 0 0', pointerEvents: 'none' }} />
-                      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#ea8025' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
+                      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#c47b2d' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
                       <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.4rem,2.5vw,1.7rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
                       <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: T.textMuted, marginBottom: '1.6rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                         <Timer size={11} style={{ color: T.green }} />{plan.del}
                       </div>
-                      <div style={{ height: 1, background: plan.popular ? 'rgba(234, 128, 37,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
+                      <div style={{ height: 1, background: plan.popular ? 'rgba(196, 123, 45,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '.65rem', marginBottom: '1.8rem', flex: 1 }}>
                         {plan.features.map(f => (
                           <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '.6rem', fontSize: '.83rem', color: T.textSub, lineHeight: 1.5 }}>
-                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(234, 128, 37,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <Check size={11} style={{ color: '#ea8025' }} />
+                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(196, 123, 45,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <Check size={11} style={{ color: '#c47b2d' }} />
                             </div>
                             {f}
                           </div>
@@ -1502,9 +1495,9 @@ function PricingCallout() {
 
         {/* Urgency bar */}
         <BlurReveal delay={0.5}>
-          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(234, 128, 37,.04)', border: '1px solid rgba(234, 128, 37,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(196, 123, 45,.04)', border: '1px solid rgba(196, 123, 45,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-              <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ea8025', boxShadow: '0 0 8px rgba(234, 128, 37,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#c47b2d', boxShadow: '0 0 8px rgba(196, 123, 45,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
               <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: T.textSub, letterSpacing: '.04em', margin: 0 }}>
                 <span style={{ color: '#fdba74', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
                   <Clock size={12} /> Arrivages réguliers de poussins
@@ -1541,7 +1534,7 @@ function FAQSectionHome() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
           {FAQ_ITEMS.slice(0, 6).map(({ q, a }, i) => (
             <BlurReveal key={q} delay={i * 0.06} direction={i % 2 === 0 ? 'left' : 'right'}>
-              <motion.div className="sku-card" whileHover={{ borderColor: 'rgba(234, 128, 37,.25)' }} style={{ overflow: 'hidden' }}>
+              <motion.div className="sku-card" whileHover={{ borderColor: 'rgba(196, 123, 45,.25)' }} style={{ overflow: 'hidden' }}>
                 <button onClick={() => setOpen(open === i ? null : i)}
                   style={{ width: '100%', padding: '1.2rem 1.5rem', background: 'none', border: 'none', color: T.textMain, fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', textAlign: 'left' }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
@@ -1593,10 +1586,10 @@ function GeoSectionHome() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: '.85rem', marginBottom: '2rem' }}>
           {GEO_PAYS.map(({ code, name, note, primary }, i) => (
-            <motion.div key={name} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .06 }} whileHover={{ y: -4 }} style={{ padding: '1rem 1.2rem', borderRadius: 14, background: primary ? 'rgba(234, 128, 37, 0.08)' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(234, 128, 37,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.75rem' }}>
+            <motion.div key={name} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .06 }} whileHover={{ y: -4 }} style={{ padding: '1rem 1.2rem', borderRadius: 14, background: primary ? 'rgba(196, 123, 45, 0.08)' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(196, 123, 45,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.75rem' }}>
               <FlagBadge code={code} primary={primary} />
               <div>
-                <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.82rem', color: primary ? '#ea8025' : T.textMain }}>{name}</div>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.82rem', color: primary ? '#c47b2d' : T.textMain }}>{name}</div>
                 <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: T.textMuted }}>{note}</div>
               </div>
             </motion.div>
@@ -1618,7 +1611,7 @@ function CompanyPresentationSection() {
     <section ref={ref} style={{ padding: '6rem 5% 5rem', background: T.bgAlt, position: 'relative', overflow: 'hidden', borderBottom: `1px solid ${T.border}` }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <BlurReveal style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(234, 128, 37,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: '#ea8025', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(196, 123, 45,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: '#c47b2d', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
             Partenaire stratégique agropastoral & QHSE
           </div>
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.8rem,5.5vw,4.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', margin: '0 0 1rem' }}>
@@ -1630,7 +1623,7 @@ function CompanyPresentationSection() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginTop: '2.5rem' }}>
           <BlurReveal delay={0.1} direction="up">
             <div className="sku-card" style={{ padding: '2.2rem', height: '100%', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
-              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(234, 128, 37,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#ea8025' }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(196, 123, 45,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#c47b2d' }}>
                 <Globe size={22} />
               </div>
               <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: T.textMain, marginBottom: '.8rem' }}>
@@ -1645,14 +1638,14 @@ function CompanyPresentationSection() {
           <BlurReveal delay={0.2} direction="up">
             <div className="sku-card" style={{ padding: '2.2rem', height: '100%', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' }}>
-                <div style={{ width: 56, height: 56, borderRadius: '50%', overflow: 'hidden', border: '2px solid #ea8025', flexShrink: 0, boxShadow: '0 0 14px rgba(234, 128, 37,.3)' }}>
+                <div style={{ width: 56, height: 56, borderRadius: '50%', overflow: 'hidden', border: '2px solid #c47b2d', flexShrink: 0, boxShadow: '0 0 14px rgba(196, 123, 45,.3)' }}>
                   <img src="/images/dr_poutya.jpeg" alt="Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />
                 </div>
                 <div>
                   <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: T.textMain, margin: 0, lineHeight: 1.25 }}>
                     Direction Scientifique & QHSE
                   </h3>
-                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: '#ea8025', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: '#c47b2d', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em' }}>
                     Dr POUTYA — Fondatrice & DG
                   </span>
                 </div>
@@ -1665,7 +1658,7 @@ function CompanyPresentationSection() {
 
           <BlurReveal delay={0.3} direction="up">
             <div className="sku-card" style={{ padding: '2.2rem', height: '100%', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
-              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(234, 128, 37,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#ea8025' }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(196, 123, 45,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#c47b2d' }}>
                 <ShieldCheck size={22} />
               </div>
               <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: T.textMain, marginBottom: '.8rem' }}>
@@ -1692,7 +1685,7 @@ function ProjectFormHome() {
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
   const inputStyle = { width: '100%', padding: '.6rem 0', background: 'transparent', border: 'none', borderBottom: `1px solid ${T.border}`, borderRadius: 0, color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '1rem', outline: 'none', transition: 'border-color .25s', boxSizing: 'border-box', colorScheme: T.light ? 'light' : 'dark' }
-  const focusOn = e => { e.target.style.borderBottomColor = '#ea8025' }
+  const focusOn = e => { e.target.style.borderBottomColor = '#c47b2d' }
   const focusOff = e => { e.target.style.borderBottomColor = T.border }
 
   const handleSubmit = async () => {
@@ -1725,8 +1718,8 @@ function ProjectFormHome() {
             <AnimatePresence mode="wait">
               {sent ? (
                 <motion.div key="success" initial={{ opacity: 0, scale: .9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '2rem 1rem' }}>
-                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 64, height: 64, borderRadius: '50%', border: '1.5px solid rgba(234, 128, 37,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                    <Check size={30} style={{ color: '#ea8025' }} />
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 64, height: 64, borderRadius: '50%', border: '1.5px solid rgba(196, 123, 45,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                    <Check size={30} style={{ color: '#c47b2d' }} />
                   </motion.div>
                   <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.3rem', color: T.textMain, marginBottom: '.8rem' }}>Message envoyé !</h3>
                   <p style={{ color: T.textSub, fontSize: '.88rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. Notre équipe vous répond sous 24h ouvrées — à très vite !</p>

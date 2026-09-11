@@ -20,7 +20,7 @@ export default function Logo({ size = 48, animate = true, onClick, showTag = tru
     style.id = 'logo-kf'
     style.textContent = `
       @keyframes akaParticle { 0%{opacity:0;transform:translate(0,0) scale(.4)} 20%{opacity:.8} 80%{opacity:.35} 100%{opacity:0;transform:translate(var(--ptx),var(--pty)) scale(0)} }
-      @keyframes akaGlowPulse { 0%,100%{filter:drop-shadow(0 0 10px rgba(234, 128, 37,.5)) brightness(1)} 50%{filter:drop-shadow(0 0 28px rgba(234, 128, 37,.95)) brightness(1.05)} }
+      @keyframes akaGlowPulse { 0%,100%{filter:drop-shadow(0 0 10px rgba(196, 123, 45,.5)) brightness(1)} 50%{filter:drop-shadow(0 0 28px rgba(196, 123, 45,.95)) brightness(1.05)} }
     `
     document.head.appendChild(style)
   }, [])

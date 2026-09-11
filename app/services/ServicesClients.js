@@ -89,7 +89,7 @@ function HeroServices() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#ea8025', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#c47b2d', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -104,7 +104,7 @@ function HeroServices() {
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #ea8025;
+          margin-left: .15em; font-size: .3em; color: #c47b2d;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
@@ -112,7 +112,7 @@ function HeroServices() {
         }
         .hr-kicker {
           font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
-          color: #ea8025; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          color: #c47b2d; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -144,7 +144,7 @@ function ServicesList() {
             const Ic = ICON_MAP[s.icon] || Globe
             return (
               <button key={s.title} onClick={() => setActive(i)}
-                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? '#ea8025' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
+                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? '#c47b2d' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
                 <Ic size={14} />{s.title}
               </button>
             )
@@ -168,13 +168,13 @@ function ServicesList() {
             {/* Image */}
             <div className="svc-detail-img" style={{ borderRadius: 20, overflow: 'hidden', border: `1px solid ${T.border}`, boxShadow: '8px 8px 40px rgba(0,0,0,.3)', aspectRatio: '1 / 1', height: 'auto' }}>
               <LazyImg src={svc.img} alt={svc.title} style={{ width: '100%', height: '100%', objectFit: 'cover', aspectRatio: '1 / 1' }}
-                placeholder={<div style={{ aspectRatio: '1 / 1', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(234, 128, 37,.3)' }} /></div>} />
+                placeholder={<div style={{ aspectRatio: '1 / 1', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(196, 123, 45,.3)' }} /></div>} />
             </div>
 
             {/* Content */}
             <div className="svc-detail-body">
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' }}>
-                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(234, 128, 37,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(196, 123, 45,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Icon size={24} style={{ color: T.green }} />
                 </div>
                 <div>
@@ -193,7 +193,7 @@ function ServicesList() {
                 ))}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(234, 88, 12,.05)' : 'rgba(234, 128, 37,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 1.2rem', borderRadius: 12, background: T.light ? 'rgba(169, 106, 38,.05)' : 'rgba(196, 123, 45,.06)', border: `1px solid ${T.border}`, marginBottom: '1.5rem' }}>
                 <div>
                   <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.9rem', fontWeight: 800, color: T.green }}>{svc.price}</div>
                   <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: T.textMuted, display: 'flex', alignItems: 'center', gap: 4 }}>

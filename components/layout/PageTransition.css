@@ -5,7 +5,7 @@
    route interne (CardNav, StaggeredMenu, Footer).
    Port du projet barba-js "vertical-strip-transition-10"
    (inspiré Inkfish/SOTD) vers Next.js App Router.
-   Couleur : vert AKATech uni (#ea8025), aucune
+   Couleur : vert AKATech uni (#c47b2d), aucune
    alternance de teinte entre cellules — un seul aplat.
    Le nombre de colonnes/lignes change en JS selon la
    largeur d'écran (cf. GRID_*_MOBILE dans PageTransition.jsx).
@@ -22,7 +22,7 @@
 }
 
 .aka-pt-block {
-  background: #ea8025;
+  background: #c47b2d;
   margin: -0.5px; /* évite les liserés de 1px entre cellules au rendu */
   will-change: clip-path, transform;
   transform: translateZ(0);

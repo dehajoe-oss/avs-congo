@@ -159,8 +159,8 @@ export async function POST(request) {
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;background:#0a120c;">
 
           <!-- Header marque -->
-          <div style="padding:28px 32px;background:#1c1917;border-bottom:1px solid rgba(234, 128, 37,.25);">
-            <div style="font-family:'Poppins', sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:#ea8025;text-transform:uppercase;">
+          <div style="padding:28px 32px;background:#1c1917;border-bottom:1px solid rgba(196, 123, 45,.25);">
+            <div style="font-family:'Poppins', sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:#c47b2d;text-transform:uppercase;">
               Agro Véto Services Congo
             </div>
             <div style="margin-top:4px;font-size:11px;color:rgba(255,255,255,.4);">
@@ -174,8 +174,8 @@ export async function POST(request) {
             <h2 style="margin:0 0 6px;color:#f2ede8;font-size:20px;font-weight:800;">
               ${safeName}
             </h2>
-            ${safeOrganization ? `<div style="font-size:13px;color:#ea8025;font-weight:600;margin-bottom:8px;">🏢 ${safeOrganization}</div>` : ''}
-            <div style="display:inline-block;padding:5px 12px;border-radius:100px;background:rgba(234, 128, 37,.12);border:1px solid rgba(234, 128, 37,.3);font-size:12px;font-weight:700;color:#8ab866;margin-bottom:24px;">
+            ${safeOrganization ? `<div style="font-size:13px;color:#c47b2d;font-weight:600;margin-bottom:8px;">🏢 ${safeOrganization}</div>` : ''}
+            <div style="display:inline-block;padding:5px 12px;border-radius:100px;background:rgba(196, 123, 45,.12);border:1px solid rgba(196, 123, 45,.3);font-size:12px;font-weight:700;color:#8ab866;margin-bottom:24px;">
               ${projectLabel}
             </div>
 
@@ -184,7 +184,7 @@ export async function POST(request) {
               <tr>
                 <td style="padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px 0 0 10px;border-right:none;">
                   <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:5px;">Email</div>
-                  <a href="mailto:${safeEmail}" style="font-size:13px;color:#ea8025;text-decoration:none;font-weight:600;">${safeEmail}</a>
+                  <a href="mailto:${safeEmail}" style="font-size:13px;color:#c47b2d;text-decoration:none;font-weight:600;">${safeEmail}</a>
                 </td>
                 <td style="padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:0 10px 10px 0;">
                   <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:5px;">WhatsApp / Tél</div>
@@ -206,12 +206,12 @@ export async function POST(request) {
             <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px;">
               Description du projet
             </div>
-            <p style="color:#e8e4df;line-height:1.7;font-size:14px;background:rgba(234, 128, 37,.05);padding:18px;border-radius:10px;border-left:3px solid #ea8025;margin:0 0 28px;">
+            <p style="color:#e8e4df;line-height:1.7;font-size:14px;background:rgba(196, 123, 45,.05);padding:18px;border-radius:10px;border-left:3px solid #c47b2d;margin:0 0 28px;">
               ${safeMessage}
             </p>
 
             <!-- CTA -->
-            <a href="mailto:${safeEmail}" style="display:inline-block;padding:13px 26px;border-radius:100px;background:#ea8025;color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;">
+            <a href="mailto:${safeEmail}" style="display:inline-block;padding:13px 26px;border-radius:100px;background:#c47b2d;color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;">
               Répondre à ${safeName.split(' ')[0]} →
             </a>
 

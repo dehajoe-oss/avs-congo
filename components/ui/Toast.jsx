@@ -9,14 +9,14 @@ export default function Toast() {
   if (!toast) return null
 
   const icons = {
-    success: <CheckCircle2 size={18} color="#ea8025" />,
+    success: <CheckCircle2 size={18} color="#c47b2d" />,
     error: <AlertCircle size={18} color="#ef4444" />,
     warning: <AlertTriangle size={18} color="#f59e0b" />,
     info: <Info size={18} color="#3b82f6" />,
   }
 
   const borderColors = {
-    success: 'rgba(234, 128, 37, 0.4)',
+    success: 'rgba(196, 123, 45, 0.4)',
     error: 'rgba(239, 68, 68, 0.4)',
     warning: 'rgba(245, 158, 11, 0.4)',
     info: 'rgba(59, 130, 246, 0.4)',
@@ -33,7 +33,7 @@ export default function Toast() {
         color: '#f3f4f6',
         border: `1px solid ${borderColors[toast.type] || borderColors.success}`,
         borderRadius: '16px',
-        boxShadow: '0 20px 40px -15px rgba(0,0,0,0.7), 0 0 20px rgba(234, 128, 37, 0.15)',
+        boxShadow: '0 20px 40px -15px rgba(0,0,0,0.7), 0 0 20px rgba(196, 123, 45, 0.15)',
         padding: '12px 18px',
         display: 'flex',
         alignItems: 'center',

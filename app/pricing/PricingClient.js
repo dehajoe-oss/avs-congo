@@ -89,7 +89,7 @@ function HeroPricing() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#ea8025', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#c47b2d', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -104,7 +104,7 @@ function HeroPricing() {
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #ea8025;
+          margin-left: .15em; font-size: .3em; color: #c47b2d;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
@@ -112,7 +112,7 @@ function HeroPricing() {
         }
         .hr-kicker {
           font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
-          color: #ea8025; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          color: #c47b2d; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -153,7 +153,7 @@ function PricingTabs() {
           {Object.entries(PRICING).map(([k, v]) => (
             <motion.button key={k} onClick={() => setTab(k)}
               whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? '#ea8025' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
+              style={{ padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? '#c47b2d' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900, cursor: 'pointer', transition: 'all .22s' }}>
               {v.label}
             </motion.button>
           ))}
@@ -170,25 +170,25 @@ function PricingTabs() {
                 <BlurReveal key={plan.badge} delay={i * 0.1} direction={['left', 'up', 'right'][i] || 'up'}>
                   <motion.div
                     whileHover={{ y: -8, transition: { duration: .25 } }}
-                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'rgba(234, 128, 37, 0.12)' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(234, 128, 37,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(234, 128, 37,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', background: plan.popular ? 'rgba(196, 123, 45, 0.12)' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(196, 123, 45,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(196, 123, 45,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 2rem' : '2rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
                     {plan.popular && (
-                      <div style={{ padding: '.5rem', background: '#ea8025', textAlign: 'center', fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
+                      <div style={{ padding: '.5rem', background: '#c47b2d', textAlign: 'center', fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', borderRadius: '19px 19px 0 0' }}>
                         <Zap size={10} />LE PLUS POPULAIRE
                       </div>
                     )}
                     <div style={{ padding: plan.popular ? '1.8rem 2rem 0' : 0, display: 'flex', flexDirection: 'column', flex: 1 }}>
                       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'transparent', borderRadius: '20px 20px 0 0', pointerEvents: 'none' }} />
-                      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#ea8025' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
+                      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#c47b2d' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
                       <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.4rem,2.5vw,1.7rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
                       <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: T.textMuted, marginBottom: '1.6rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                         <Timer size={11} style={{ color: T.green }} />{plan.del}
                       </div>
-                      <div style={{ height: 1, background: plan.popular ? 'rgba(234, 128, 37,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
+                      <div style={{ height: 1, background: plan.popular ? 'rgba(196, 123, 45,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '.65rem', marginBottom: '1.8rem', flex: 1 }}>
                         {plan.features.map(f => (
                           <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '.6rem', fontSize: '.83rem', color: T.textSub, lineHeight: 1.5 }}>
-                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(234, 128, 37,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <Check size={11} style={{ color: '#ea8025' }} />
+                            <div style={{ width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(196, 123, 45,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <Check size={11} style={{ color: '#c47b2d' }} />
                             </div>
                             {f}
                           </div>
@@ -224,9 +224,9 @@ function PricingTabs() {
 
         {/* Urgency bar */}
         <BlurReveal delay={0.5}>
-          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(234, 128, 37,.04)', border: '1px solid rgba(234, 128, 37,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(196, 123, 45,.04)', border: '1px solid rgba(196, 123, 45,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-              <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ea8025', boxShadow: '0 0 8px rgba(234, 128, 37,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#c47b2d', boxShadow: '0 0 8px rgba(196, 123, 45,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
               <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: T.textSub, letterSpacing: '.04em', margin: 0 }}>
                 <span style={{ color: '#fdba74', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
                   <AlertTriangle size={12} /> Arrivages réguliers de poussins
@@ -277,11 +277,11 @@ function GuaranteeStrip() {
           {GARANTIES.map(({ icon: Icon, title, desc }, i) => (
             <BlurReveal key={title} delay={i * .07}>
               <motion.div
-                whileHover={{ y: -5, borderColor: 'rgba(234, 128, 37,.35)' }}
+                whileHover={{ y: -5, borderColor: 'rgba(196, 123, 45,.35)' }}
                 style={{ padding: '1.5rem', borderRadius: 16, background: T.light ? 'rgba(255,255,255,.8)' : 'rgba(255,255,255,.03)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'flex-start', gap: '1rem', transition: 'border-color .2s' }}
               >
-                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(234, 128, 37,.1)', border: '1px solid rgba(234, 128, 37,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Icon size={20} style={{ color: '#ea8025' }} />
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(196, 123, 45,.1)', border: '1px solid rgba(196, 123, 45,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Icon size={20} style={{ color: '#c47b2d' }} />
                 </div>
                 <div>
                   <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.88rem', color: T.textMain, marginBottom: '.25rem' }}>{title}</div>
@@ -404,7 +404,7 @@ function TrustedBy() {
                     opacity: 0.08,
                     filter: 'blur(9px)',
                     willChange: 'opacity, filter',
-                    color: TRUST_GREEN.has(word) ? '#ea8025' : 'inherit',
+                    color: TRUST_GREEN.has(word) ? '#c47b2d' : 'inherit',
                   }}
                 >
                   {word}
@@ -430,7 +430,7 @@ function TrustedBy() {
 
               {/* Stars */}
               <div style={{ display: 'flex', gap: 3, marginBottom: '1rem' }}>
-                {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="#ea8025" style={{ color: '#ea8025' }} />)}
+                {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="#c47b2d" style={{ color: '#c47b2d' }} />)}
               </div>
 
               {/* Quote */}
@@ -439,17 +439,17 @@ function TrustedBy() {
               </p>
 
               {/* Result badge */}
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.28rem .85rem', borderRadius: 99, background: 'rgba(234, 128, 37,.1)', border: '1px solid rgba(234, 128, 37,.25)', marginBottom: '1.4rem' }}>
-                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#ea8025', fontWeight: 700 }}>{t.result}</span>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.28rem .85rem', borderRadius: 99, background: 'rgba(196, 123, 45,.1)', border: '1px solid rgba(196, 123, 45,.25)', marginBottom: '1.4rem' }}>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#c47b2d', fontWeight: 700 }}>{t.result}</span>
               </div>
 
               {/* Author */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '.85rem' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(234, 128, 37,.3)', flexShrink: 0, position: 'relative' }}>
+                <div style={{ width: 48, height: 48, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(196, 123, 45,.3)', flexShrink: 0, position: 'relative' }}>
                   <img src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     onError={e => {
                       e.target.style.display = 'none'
-                      e.target.parentNode.style.background = 'rgba(234, 128, 37, 0.10)'
+                      e.target.parentNode.style.background = 'rgba(196, 123, 45, 0.10)'
                     }} />
                 </div>
                 <div>
@@ -491,7 +491,7 @@ function FAQSection() {
           {FAQ_ITEMS.map(({ q, a }, i) => (
             <BlurReveal key={q} delay={i * 0.06} direction={i % 2 === 0 ? 'left' : 'right'}>
               <motion.div className="sku-card"
-                whileHover={{ borderColor: 'rgba(234, 128, 37,.25)' }}
+                whileHover={{ borderColor: 'rgba(196, 123, 45,.25)' }}
                 style={{ overflow: 'hidden' }}>
                 <button onClick={() => setOpen(open === i ? null : i)}
                   style={{ width: '100%', padding: '1.2rem 1.5rem', background: 'none', border: 'none', color: T.textMain, fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', textAlign: 'left' }}>

@@ -78,7 +78,7 @@ export default function ClinicClient() {
             animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(234, 128, 37,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(169, 106, 38,.1)' : 'rgba(196, 123, 45,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
               <Stethoscope size={13} />
               PÔLE SANTÉ ANIMALE & CLINIQUE
             </div>
@@ -157,7 +157,7 @@ export default function ClinicClient() {
                     <h4 style={{ margin: 0, fontSize: '.95rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
                       {srv.name}
                     </h4>
-                    <span style={{ fontSize: '.7rem', fontFamily: "'Poppins', sans-serif", color: T.green, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(234, 128, 37,.1)', padding: '.2rem .6rem', borderRadius: 6, whiteSpace: 'nowrap' }}>
+                    <span style={{ fontSize: '.7rem', fontFamily: "'Poppins', sans-serif", color: T.green, background: T.light ? 'rgba(169, 106, 38,.1)' : 'rgba(196, 123, 45,.1)', padding: '.2rem .6rem', borderRadius: 6, whiteSpace: 'nowrap' }}>
                       {srv.duration}
                     </span>
                   </div>
@@ -199,7 +199,7 @@ export default function ClinicClient() {
               <img 
                 src="/images/dr_poutya.jpeg" 
                 alt="Dr POUTYA" 
-                style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', objectPosition: 'center 20%', border: `2px solid ${T.green}`, boxShadow: '0 0 12px rgba(234, 128, 37,.25)' }}
+                style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', objectPosition: 'center 20%', border: `2px solid ${T.green}`, boxShadow: '0 0 12px rgba(196, 123, 45,.25)' }}
               />
               <div>
                 <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
@@ -213,7 +213,7 @@ export default function ClinicClient() {
 
             {submitted ? (
               <div style={{ textAlign: 'center', padding: '2.5rem 1rem' }}>
-                <div style={{ width: 54, height: 54, borderRadius: '50%', background: 'rgba(234, 128, 37,.2)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <div style={{ width: 54, height: 54, borderRadius: '50%', background: 'rgba(196, 123, 45,.2)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
                   <CheckCircle2 size={32} />
                 </div>
                 <h4 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.2rem', fontWeight: 800, color: T.textMain, marginBottom: '.5rem' }}>
