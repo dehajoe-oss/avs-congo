@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import {
   ShoppingBag,
   Search,
@@ -16,7 +17,162 @@ import {
 } from 'lucide-react'
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
+import { GhostTitle, HoverSlideText } from '@/components/ui/index'
+import AuroraHero from '@/components/ui/AuroraHero'
 import { PRODUCTS_CATALOG, PRODUCT_CATEGORIES } from '@/lib/products'
+
+/* ────────────────────────────────────────────────
+   HERO BOUTIQUE — Gabarit signature Helious / Services
+──────────────────────────────────────────────── */
+function HeroShop() {
+  const layerBgRef   = useRef(null)
+  const layerMidRef  = useRef(null)
+  const layerForeRef = useRef(null)
+
+  useEffect(() => {
+    const onMouse = (e) => {
+      const x = (e.clientX - window.innerWidth  / 2) / (window.innerWidth  / 2)
+      const y = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2)
+      const rX = y * -5, rY = x * 5
+      const apply = (el, sp) => { if (el) el.style.transform = `translate3d(${x*50*sp}px,${y*50*sp}px,0) rotateX(${rX}deg) rotateY(${rY}deg)` }
+      apply(layerBgRef.current, 0.2); apply(layerMidRef.current, 0.5); apply(layerForeRef.current, 0.8)
+    }
+    window.addEventListener('mousemove', onMouse)
+    return () => window.removeEventListener('mousemove', onMouse)
+  }, [])
+
+  useEffect(() => {
+    const onScroll = () => {
+      const s = window.pageYOffset
+      if (layerBgRef.current) { layerBgRef.current.style.transform = `scale(${1 + s * 0.0005}) translateY(${s * 0.2}px)`; layerBgRef.current.style.filter = `blur(${Math.min(s / 60, 12)}px)` }
+      if (layerMidRef.current) { layerMidRef.current.style.opacity = Math.max(0, 1 - s / 700); layerMidRef.current.style.transform = `translateY(${s * 0.4}px)`; layerMidRef.current.style.filter = `blur(${s / 100}px)` }
+      if (layerForeRef.current) { layerForeRef.current.style.transform = `translateY(${-s * 0.96}px)`; layerForeRef.current.style.opacity = Math.max(0, 1 - s / 400) }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return (
+    <section style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden', background: '#0c0a09' }}>
+      <div ref={layerBgRef} style={{ position: 'absolute', inset: '-8%', zIndex: 1, willChange: 'transform, filter', transition: 'transform .1s ease-out' }}>
+        <AuroraHero labels={[]} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.85)' }} />
+      </div>
+
+      {/* Titre géant bas-gauche + bloc texte centré verticalement à droite — gabarit hero "page title" (réf. Helious / Services) */}
+      <div ref={layerMidRef} className="hr-row hr-shop-row" style={{ willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out' }}>
+        <motion.h1 className="hr-title hr-shop-title" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, ease: 'easeOut' }}>
+          <GhostTitle text="BOUTIQUE" />
+          BOUTIQUE
+        </motion.h1>
+
+        <div className="hr-side hr-shop-side">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .2 }}>
+            <p className="hr-kicker">Intrants & Provenderie Certifiée</p>
+            <p className="hr-desc">
+              Poussins d’un jour Cobb 500 & Lohmann vigoureux, provendes industrielles équilibrées et programmes de prophylaxie sous la supervision du Dr POUTYA. Commandez en ligne avec paiement Mobile Money KKiaPay et livraison à Pointe-Noire et au Kouilou.
+            </p>
+          </motion.div>
+
+          <div className="hr-shop-ctas" style={{ marginTop: '1.8rem', display: 'flex', flexWrap: 'wrap', gap: '0.9rem', alignItems: 'center' }}>
+            <a
+              href="#catalogue"
+              className="btn-raised"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '0.85rem 1.6rem',
+                fontSize: '0.92rem',
+                textDecoration: 'none',
+                borderRadius: '100px',
+                fontWeight: 700,
+              }}
+            >
+              <HoverSlideText text="Explorer le catalogue" />
+              <ArrowRight size={16} />
+            </a>
+
+            <a
+              href="https://wa.me/242069677567?text=Bonjour%20AGRO%20V%C3%89TO%20SERVICES%2C%20je%20souhaite%20commander%20des%20poussins%20ou%20intrants."
+              target="_blank"
+              rel="noreferrer"
+              className="btn-ghost"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '0.85rem 1.6rem',
+                fontSize: '0.92rem',
+                textDecoration: 'none',
+                borderRadius: '100px',
+                fontWeight: 600,
+              }}
+            >
+              <MessageCircle size={16} />
+              <HoverSlideText text="WhatsApp Pro" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
+        {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#ea8025', left:p.left, top:p.top, opacity:p.op }}
+            animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
+        ))}
+      </div>
+
+      <style>{`
+        .hr-shop-row { position: relative; z-index: 10; height: 100%; }
+        .hr-shop-title {
+          position: absolute; left: 8vw; bottom: 4.5rem; margin: 0;
+          font-family: 'Poppins', sans-serif; font-weight: 800;
+          font-size: clamp(4.5rem, 13vw, 15rem); line-height: .92; letter-spacing: -.04em;
+          color: rgba(255,255,255,.95);
+        }
+        .hr-shop-side {
+          position: absolute; right: 8vw; top: 0; bottom: 0;
+          margin: auto 0; max-width: 380px; height: fit-content;
+        }
+        .hr-kicker {
+          font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
+          color: #ea8025; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+        }
+        .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
+        
+        @media (max-width: 960px) {
+          .hr-shop-row {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 90px 6% 40px;
+          }
+          .hr-shop-title {
+            position: relative;
+            left: auto;
+            bottom: auto;
+            font-size: clamp(3rem, 12vw, 5.5rem);
+            margin-bottom: 1.2rem;
+          }
+          .hr-shop-side {
+            position: relative;
+            right: auto;
+            top: auto;
+            bottom: auto;
+            margin: 0 auto;
+            max-width: 520px;
+          }
+          .hr-shop-ctas {
+            justify-content: center;
+          }
+        }
+      `}</style>
+    </section>
+  )
+}
 
 export default function ShopClient() {
   const T = useTheme()
@@ -25,14 +181,6 @@ export default function ShopClient() {
   const [selectedCat, setSelectedCat] = useState('all')
   const [search, setSearch] = useState('')
   const [quantities, setQuantities] = useState({})
-  const [heroQty, setHeroQty] = useState(50)
-
-  const featuredProduct = PRODUCTS_CATALOG[0] || {
-    id: 'PROD-01',
-    name: "Poussins d'un Jour Cobb 500 (Chair)",
-    price: 650,
-    minOrder: 50,
-  }
 
   const filtered = PRODUCTS_CATALOG.filter(p => {
     const matchCat = selectedCat === 'all' || p.category === selectedCat
@@ -58,515 +206,50 @@ export default function ShopClient() {
     openCart()
   }
 
-  const handleHeroAdd = () => {
-    addToCart(featuredProduct, heroQty)
-    openCart()
-  }
-
   return (
-    <div
-      style={{
-        paddingTop: '110px',
-        paddingBottom: '100px',
-        background: T.light ? '#f6f8fa' : '#070d06',
-        color: T.light ? '#0f172a' : '#f3f4f6',
-        minHeight: '100vh',
-        fontFamily: "'Poppins', sans-serif",
-      }}
-    >
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 1.5rem' }}>
-        
-        {/* ── HERO BOUTIQUE PRESTIGE (SANS AUCUN BADGE) ── */}
-        <section
-          style={{
-            marginBottom: '3.5rem',
-            position: 'relative',
-            borderRadius: '28px',
-            padding: '2.5rem 2rem',
-            background: T.light
-              ? 'linear-gradient(135deg, #ffffff 0%, #fdf8f3 100%)'
-              : 'linear-gradient(135deg, rgba(14, 23, 16, 0.95) 0%, rgba(9, 14, 10, 0.98) 100%)',
-            border: `1px solid ${T.border}`,
-            boxShadow: T.light
-              ? '0 12px 36px rgba(0,0,0,0.04)'
-              : '0 16px 44px rgba(0,0,0,0.45), 0 0 40px rgba(234, 128, 37, 0.06)',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Lueur d'ambiance d'arrière-plan */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '-60px',
-              right: '15%',
-              width: '420px',
-              height: '320px',
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(234, 128, 37, 0.16) 0%, transparent 70%)',
-              filter: 'blur(60px)',
-              pointerEvents: 'none',
-              zIndex: 0,
-            }}
-          />
+    <div>
+      {/* ── HERO BOUTIQUE PRESTIGE (STYLE SERVICES / HELIOUS) ── */}
+      <HeroShop />
 
-          <div
-            style={{
-              position: 'relative',
-              zIndex: 1,
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
-              gap: '2.5rem',
-              alignItems: 'center',
-            }}
-          >
-            {/* Colonne Gauche : Titre, Explications, Chiffres & CTA */}
-            <div>
-              <h1
-                style={{
-                  fontSize: 'clamp(2.1rem, 4.4vw, 3.4rem)',
-                  fontWeight: 900,
-                  letterSpacing: '-0.03em',
-                  margin: '0 0 1.1rem',
-                  lineHeight: 1.15,
-                  fontFamily: "'Poppins', sans-serif",
-                  color: T.textMain,
-                }}
-              >
-                Boutique Agropastorale & <span className="text-gradient">Provenderie Certifiée</span>
-              </h1>
-
-              <p
-                style={{
-                  fontSize: 'clamp(0.92rem, 1.6vw, 1.02rem)',
-                  color: T.light ? '#4b5563' : 'rgba(255,255,255,.75)',
-                  lineHeight: 1.7,
-                  margin: '0 0 1.8rem',
-                  maxWidth: '620px',
-                }}
-              >
-                Commandez vos intrants de haute productivité directement auprès de la référence vétérinaire au Congo : <strong>poussins d’un jour Cobb 500</strong> vigoureux, <strong>pondeuses Lohmann Brown</strong>, provendes industrielles enrichies et programmes de prophylaxie. Paiement 100% sécurisé via <strong>KKiaPay Mobile Money</strong> (MTN & Airtel) ou espèces à la livraison.
-              </p>
-
-              {/* Boutons d'Action */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', marginBottom: '2rem' }}>
-                <a
-                  href="#catalogue"
-                  className="btn-raised"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '0.9rem 1.8rem',
-                    fontSize: '0.95rem',
-                    textDecoration: 'none',
-                    borderRadius: '100px',
-                    fontWeight: 800,
-                  }}
-                >
-                  <ShoppingBag size={18} />
-                  Parcourir le catalogue
-                  <ArrowRight size={16} />
-                </a>
-
-                <a
-                  href="https://wa.me/242069677567?text=Bonjour%20Dr%20POUTYA%2C%20je%20souhaite%20commander%20des%20poussins%20ou%20intrants%20agropastoraux."
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-ghost"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '0.9rem 1.8rem',
-                    fontSize: '0.95rem',
-                    textDecoration: 'none',
-                    borderRadius: '100px',
-                    fontWeight: 700,
-                  }}
-                >
-                  <MessageCircle size={18} />
-                  Commander sur WhatsApp
-                </a>
-              </div>
-
-              {/* 4 Piliers de réassurance & métriques */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-                  gap: '10px',
-                  paddingTop: '1.2rem',
-                  borderTop: `1px solid ${T.border}`,
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div
-                    style={{
-                      width: 26,
-                      height: 26,
-                      borderRadius: '50%',
-                      background: 'rgba(234, 128, 37, 0.15)',
-                      color: '#ea8025',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Check size={14} />
-                  </div>
-                  <span style={{ fontSize: '0.82rem', fontWeight: 700, color: T.textMain }}>
-                    Viabilité &gt; 98% au démarrage
-                  </span>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div
-                    style={{
-                      width: 26,
-                      height: 26,
-                      borderRadius: '50%',
-                      background: 'rgba(234, 128, 37, 0.15)',
-                      color: '#ea8025',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Truck size={14} />
-                  </div>
-                  <span style={{ fontSize: '0.82rem', fontWeight: 700, color: T.textMain }}>
-                    Livraison Pointe-Noire & Kouilou
-                  </span>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div
-                    style={{
-                      width: 26,
-                      height: 26,
-                      borderRadius: '50%',
-                      background: 'rgba(234, 128, 37, 0.15)',
-                      color: '#ea8025',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                    }}
-                  >
-                    <ShieldCheck size={14} />
-                  </div>
-                  <span style={{ fontSize: '0.82rem', fontWeight: 700, color: T.textMain }}>
-                    Supervisé par le Dr POUTYA
-                  </span>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div
-                    style={{
-                      width: 26,
-                      height: 26,
-                      borderRadius: '50%',
-                      background: 'rgba(234, 128, 37, 0.15)',
-                      color: '#ea8025',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                    }}
-                  >
-                    <CreditCard size={14} />
-                  </div>
-                  <span style={{ fontSize: '0.82rem', fontWeight: 700, color: T.textMain }}>
-                    MTN & Airtel Mobile Money
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Colonne Droite : Carte Interactive Produit Vedette (Cobb 500) */}
-            <div>
-              <div
-                style={{
-                  borderRadius: 22,
-                  overflow: 'hidden',
-                  background: T.light ? '#ffffff' : '#0c140d',
-                  border: `1px solid ${T.border}`,
-                  boxShadow: T.light
-                    ? '0 14px 34px rgba(0,0,0,.06)'
-                    : '0 16px 44px rgba(0,0,0,.5), 0 0 30px rgba(234, 128, 37,.1)',
-                  position: 'relative',
-                }}
-              >
-                {/* Photo Produit Vedette */}
-                <div style={{ height: 210, position: 'relative', overflow: 'hidden' }}>
-                  <img
-                    src="/images/cobb500.webp"
-                    alt="Poussins d'un jour Cobb 500 certifiés"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                  {/* Pastille Disponibilité */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '12px',
-                      left: '12px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      padding: '4px 10px',
-                      borderRadius: '100px',
-                      background: 'rgba(5, 10, 6, 0.84)',
-                      backdropFilter: 'blur(8px)',
-                      border: '1px solid rgba(234, 128, 37, 0.4)',
-                      color: '#ea8025',
-                      fontSize: '0.72rem',
-                      fontWeight: 700,
-                    }}
-                  >
-                    <span
-                      style={{
-                        width: 7,
-                        height: 7,
-                        borderRadius: '50%',
-                        background: '#22c55e',
-                        display: 'inline-block',
-                        boxShadow: '0 0 8px #22c55e',
-                      }}
-                    />
-                    Arrivages réguliers au couvoir
-                  </div>
-                </div>
-
-                {/* Détails & Contrôles d'Achat Interactifs */}
-                <div style={{ padding: '1.4rem' }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-start',
-                      gap: '1rem',
-                      marginBottom: '0.6rem',
-                    }}
-                  >
-                    <div>
-                      <div
-                        style={{
-                          fontSize: '0.7rem',
-                          fontWeight: 700,
-                          color: '#ea8025',
-                          textTransform: 'uppercase',
-                          letterSpacing: '.06em',
-                          marginBottom: '0.2rem',
-                        }}
-                      >
-                        Souche Recommandée • Chair
-                      </div>
-                      <h3
-                        style={{
-                          fontSize: '1.18rem',
-                          fontWeight: 900,
-                          color: T.textMain,
-                          margin: 0,
-                          lineHeight: 1.25,
-                        }}
-                      >
-                        Poussins d'un Jour Cobb 500
-                      </h3>
-                    </div>
-                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                      <div
-                        style={{
-                          fontSize: '1.35rem',
-                          fontWeight: 900,
-                          color: '#ea8025',
-                          lineHeight: 1,
-                        }}
-                      >
-                        650 FCFA
-                      </div>
-                      <div style={{ fontSize: '0.68rem', color: T.textMuted }}>/ sujet (carton de 50)</div>
-                    </div>
-                  </div>
-
-                  <p style={{ fontSize: '0.8rem', color: T.textSub, lineHeight: 1.55, margin: '0 0 1rem' }}>
-                    Vaccinés Marek et Newcastle. Croissance accélérée avec indice de consommation optimal pour maximiser la rentabilité de vos bandes.
-                  </p>
-
-                  {/* Sélecteur de Quantité Rapide */}
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      padding: '8px 12px',
-                      borderRadius: '12px',
-                      background: T.light ? '#f3f4f6' : '#141d16',
-                      border: `1px solid ${T.border}`,
-                      marginBottom: '1rem',
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ fontSize: '0.75rem', fontWeight: 700, color: T.textMuted }}>Quantité :</span>
-                      <div style={{ display: 'flex', gap: '4px' }}>
-                        {[50, 100, 200].map(val => (
-                          <button
-                            key={val}
-                            type="button"
-                            onClick={() => setHeroQty(val)}
-                            style={{
-                              padding: '3px 8px',
-                              borderRadius: '6px',
-                              border: `1px solid ${heroQty === val ? '#ea8025' : T.border}`,
-                              background: heroQty === val ? 'rgba(234, 128, 37, 0.2)' : 'transparent',
-                              color: heroQty === val ? '#ea8025' : T.textMain,
-                              fontSize: '0.72rem',
-                              fontWeight: heroQty === val ? 800 : 600,
-                              cursor: 'pointer',
-                            }}
-                          >
-                            {val}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <button
-                        type="button"
-                        onClick={() => setHeroQty(q => Math.max(50, q - 50))}
-                        disabled={heroQty <= 50}
-                        style={{
-                          width: 24,
-                          height: 24,
-                          borderRadius: 6,
-                          border: `1px solid ${T.border}`,
-                          background: T.light ? '#ffffff' : '#1e2920',
-                          color: T.textMain,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: heroQty <= 50 ? 'not-allowed' : 'pointer',
-                          opacity: heroQty <= 50 ? 0.4 : 1,
-                        }}
-                      >
-                        <Minus size={12} />
-                      </button>
-                      <span style={{ fontSize: '0.85rem', fontWeight: 900, minWidth: 28, textAlign: 'center', color: T.textMain }}>
-                        {heroQty}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => setHeroQty(q => q + 50)}
-                        style={{
-                          width: 24,
-                          height: 24,
-                          borderRadius: 6,
-                          border: `1px solid ${T.border}`,
-                          background: T.light ? '#ffffff' : '#1e2920',
-                          color: T.textMain,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        <Plus size={12} />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Bouton d'Ajout Direct au Panier avec Sous-total */}
-                  <button
-                    type="button"
-                    onClick={handleHeroAdd}
-                    className="btn-raised"
-                    style={{
-                      width: '100%',
-                      padding: '11px 16px',
-                      borderRadius: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      fontSize: '0.88rem',
-                      fontWeight: 800,
-                      marginBottom: '0.9rem',
-                      cursor: 'pointer',
-                      border: 'none',
-                    }}
-                  >
-                    <ShoppingBag size={17} />
-                    <span>Ajouter au panier • {(heroQty * 650).toLocaleString('fr-FR')} FCFA</span>
-                  </button>
-
-                  {/* Garantie Vétérinaire Dr POUTYA */}
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '10px',
-                      padding: '9px 12px',
-                      borderRadius: '12px',
-                      background: T.light ? '#f8f9fa' : 'rgba(234, 128, 37, 0.08)',
-                      border: `1px solid ${T.border}`,
-                    }}
-                  >
-                    <img
-                      src="/images/dr_poutya.jpeg"
-                      alt="Dr POUTYA"
-                      style={{
-                        width: 38,
-                        height: 38,
-                        borderRadius: '50%',
-                        objectFit: 'cover',
-                        objectPosition: 'center 20%',
-                        border: '2px solid #ea8025',
-                        flexShrink: 0,
-                      }}
-                    />
-                    <div style={{ minWidth: 0 }}>
-                      <div style={{ fontSize: '0.76rem', fontWeight: 800, color: T.textMain, lineHeight: 1.2 }}>
-                        Garantie Vétérinaire AVS Congo
-                      </div>
-                      <div style={{ fontSize: '0.68rem', color: T.textMuted, lineHeight: 1.3 }}>
-                        Supervisé par le Dr POUTYA • Fiche technique de démarrage incluse
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+      {/* ── Section Catalogue ── */}
+      <div
+        style={{
+          paddingTop: '4rem',
+          paddingBottom: '100px',
+          background: T.light ? '#f6f8fa' : '#070d06',
+          color: T.light ? '#0f172a' : '#f3f4f6',
+          minHeight: '100vh',
+          fontFamily: "'Poppins', sans-serif",
+        }}
+      >
+        <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 1.5rem' }}>
+          
           {/* 3 Piliers de Service */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '12px',
-              marginTop: '2.2rem',
-              paddingTop: '1.8rem',
-              borderTop: `1px solid ${T.border}`,
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '14px',
+              marginBottom: '3rem',
             }}
           >
             <div
               style={{
-                padding: '14px 16px',
-                borderRadius: '14px',
-                background: T.light ? '#ffffff' : '#101a12',
+                padding: '16px 18px',
+                borderRadius: '16px',
+                background: T.light ? '#ffffff' : '#0e1710',
                 border: `1px solid ${T.border}`,
                 display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
+                alignItems: 'flex-start',
+                gap: '14px',
+                boxShadow: T.light ? '0 4px 14px rgba(0,0,0,.03)' : '0 4px 20px rgba(0,0,0,.25)',
               }}
             >
               <div
                 style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: 10,
+                  width: 40,
+                  height: 40,
+                  borderRadius: 12,
                   background: 'rgba(234, 128, 37,.12)',
                   color: '#ea8025',
                   display: 'flex',
@@ -575,34 +258,35 @@ export default function ShopClient() {
                   flexShrink: 0,
                 }}
               >
-                <CreditCard size={19} />
+                <CreditCard size={20} />
               </div>
               <div>
-                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: T.textMain }}>
-                  Paiement Mobile Money & Cash
+                <div style={{ fontSize: '0.88rem', fontWeight: 800, color: T.textMain, marginBottom: '3px' }}>
+                  Paiement Mobile Money KKiaPay
                 </div>
-                <div style={{ fontSize: '0.72rem', color: T.textSub, lineHeight: 1.35 }}>
-                  MTN MoMo, Airtel Money, CB ou règlement à la livraison.
+                <div style={{ fontSize: '0.75rem', color: T.textSub, lineHeight: 1.45 }}>
+                  MTN MoMo, Airtel Money, CB sécurisé ou règlement cash à la livraison.
                 </div>
               </div>
             </div>
 
             <div
               style={{
-                padding: '14px 16px',
-                borderRadius: '14px',
-                background: T.light ? '#ffffff' : '#101a12',
+                padding: '16px 18px',
+                borderRadius: '16px',
+                background: T.light ? '#ffffff' : '#0e1710',
                 border: `1px solid ${T.border}`,
                 display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
+                alignItems: 'flex-start',
+                gap: '14px',
+                boxShadow: T.light ? '0 4px 14px rgba(0,0,0,.03)' : '0 4px 20px rgba(0,0,0,.25)',
               }}
             >
               <div
                 style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: 10,
+                  width: 40,
+                  height: 40,
+                  borderRadius: 12,
                   background: 'rgba(234, 128, 37,.12)',
                   color: '#ea8025',
                   display: 'flex',
@@ -611,34 +295,35 @@ export default function ShopClient() {
                   flexShrink: 0,
                 }}
               >
-                <Truck size={19} />
+                <Truck size={20} />
               </div>
               <div>
-                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: T.textMain }}>
+                <div style={{ fontSize: '0.88rem', fontWeight: 800, color: T.textMain, marginBottom: '3px' }}>
                   Livraison Pointe-Noire & Kouilou
                 </div>
-                <div style={{ fontSize: '0.72rem', color: T.textSub, lineHeight: 1.35 }}>
-                  Socoprise, Tié-Tié, Loandjili, Vindoulou & exploitations.
+                <div style={{ fontSize: '0.75rem', color: T.textSub, lineHeight: 1.45 }}>
+                  Socoprise, Tié-Tié, Loandjili, Vindoulou et expéditions régionales.
                 </div>
               </div>
             </div>
 
             <div
               style={{
-                padding: '14px 16px',
-                borderRadius: '14px',
-                background: T.light ? '#ffffff' : '#101a12',
+                padding: '16px 18px',
+                borderRadius: '16px',
+                background: T.light ? '#ffffff' : '#0e1710',
                 border: `1px solid ${T.border}`,
                 display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
+                alignItems: 'flex-start',
+                gap: '14px',
+                boxShadow: T.light ? '0 4px 14px rgba(0,0,0,.03)' : '0 4px 20px rgba(0,0,0,.25)',
               }}
             >
               <div
                 style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: 10,
+                  width: 40,
+                  height: 40,
+                  borderRadius: 12,
                   background: 'rgba(234, 128, 37,.12)',
                   color: '#ea8025',
                   display: 'flex',
@@ -647,19 +332,18 @@ export default function ShopClient() {
                   flexShrink: 0,
                 }}
               >
-                <ShieldCheck size={19} />
+                <ShieldCheck size={20} />
               </div>
               <div>
-                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: T.textMain }}>
-                  Conseil Zootechnique Gratuit
+                <div style={{ fontSize: '0.88rem', fontWeight: 800, color: T.textMain, marginBottom: '3px' }}>
+                  Suivi Zootechnique & Conseil Vétérinaire
                 </div>
-                <div style={{ fontSize: '0.72rem', color: T.textSub, lineHeight: 1.35 }}>
-                  Protocole de prophylaxie et assistance continue offerts.
+                <div style={{ fontSize: '0.75rem', color: T.textSub, lineHeight: 1.45 }}>
+                  Fiche technique de démarrage et guide prophylactique offerts par le Dr POUTYA.
                 </div>
               </div>
             </div>
           </div>
-        </section>
 
         {/* Barre de filtre & Recherche */}
         <div
@@ -988,6 +672,7 @@ export default function ShopClient() {
             </button>
           </div>
         )}
+        </div>
       </div>
     </div>
   )
