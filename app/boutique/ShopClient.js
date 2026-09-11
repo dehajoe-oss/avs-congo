@@ -104,25 +104,6 @@ function HeroShopDesktop() {
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
-
-      <style>{`
-        .hr-row { position: relative; z-index: 10; height: 100%; }
-        .hr-title {
-          position: absolute; left: 8vw; bottom: 4.5rem; margin: 0;
-          font-family: "Poppins", sans-serif; font-weight: 800;
-          font-size: clamp(4.5rem, 13vw, 15rem); line-height: .92; letter-spacing: -.04em;
-          color: rgba(255,255,255,.95);
-        }
-        .hr-side {
-          position: absolute; right: 8vw; top: 0; bottom: 0;
-          margin: auto 0; max-width: 380px; height: fit-content;
-        }
-        .hr-kicker {
-          font-family: "Poppins", sans-serif; font-size: .62rem; font-weight: 700;
-          color: #c47b2d; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
-        }
-        .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
-      `}</style>
     </section>
   )
 }
@@ -164,20 +145,12 @@ function HeroShopMobile() {
 function HeroShop() {
   return (
     <>
-      <div className="hero-shop-desktop">
+      <div className="view-desktop">
         <HeroShopDesktop />
       </div>
-      <div className="hero-shop-mobile">
+      <div className="view-mobile">
         <HeroShopMobile />
       </div>
-      <style>{`
-        .hero-shop-desktop { display: block; }
-        .hero-shop-mobile  { display: none; }
-        @media (max-width: 1023px) {
-          .hero-shop-desktop { display: none !important; }
-          .hero-shop-mobile  { display: block !important; }
-        }
-      `}</style>
     </>
   )
 }
