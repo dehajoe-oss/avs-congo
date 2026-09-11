@@ -54,22 +54,18 @@ const GRID_COLS_MOBILE  = 4
 const GRID_ROWS_MOBILE  = 7
 const MOBILE_BREAKPOINT = 720
 
-/* ── Timings (calqués sur l'original blocksIn/blocksOut) ── */
-const IN_DUR   = 1.1
-const IN_STAG  = 0.6
-const OUT_DUR  = 1.0
-const OUT_STAG = 0.6
-const EASE_IN  = 'power3.inOut'
-const EASE_OUT = 'power4.inOut'
+/* ── Timings ultra-rapides et fluides (~0.2s, aucune latence ressentie) ── */
+const IN_DUR   = 0.16
+const IN_STAG  = 0.06
+const OUT_DUR  = 0.18
+const OUT_STAG = 0.06
+const EASE_IN  = 'power2.out'
+const EASE_OUT = 'power2.out'
 
-/* Délai de sécurité après détection du changement de pathname,
-   pour laisser le nouveau contenu (images, layout) se stabiliser
-   sous la grille avant de l'OUT. */
-const SETTLE_MS = 120
-/* Garde-fou : si jamais le pathname ne change pas (lien vers la
-   page courante, erreur de navigation), on déclenche le OUT quand
-   même après ce délai max pour ne jamais bloquer l'UI. */
-const MAX_WAIT_MS = 1800
+/* Délai de sécurité minime pour laisser Next.js monter la route préchargée */
+const SETTLE_MS = 25
+/* Garde-fou rapide pour ne jamais bloquer l'interface */
+const MAX_WAIT_MS = 400
 
 const PageTransitionCtx = createContext(null)
 

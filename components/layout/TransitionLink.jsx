@@ -37,7 +37,7 @@ export default function TransitionLink({ href, onClick, children, ...rest }) {
   }
 
   return (
-    <Link href={href} onClick={handleClick} {...rest}>
+    <Link href={href} onClick={handleClick} prefetch={true} {...rest}>
       {children}
     </Link>
   )

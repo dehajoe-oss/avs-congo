@@ -5,19 +5,30 @@ import Footer from '@/components/layout/Footer'
 import { BackToTop, FloatingWA } from '@/components/ui/index'
 import Loader from '@/components/ui/Loader'
 import ScrollToTop from '@/components/ui/ScrollToTop'
-import AIAssistant from '@/components/ui/AIAssistant'
-import VisitorTracker from '@/components/ui/VisitorTracker'
-import CookieConsent from '@/components/ui/CookieConsent'
 import { cld } from '@/lib/cloudinary'
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
+import { Poppins } from 'next/font/google'
 import { PageTransitionProvider } from '@/components/layout/PageTransition'
 import { BlobTransitionProvider } from '@/components/layout/BlobTransition'
 import { ShopProvider } from '@/lib/shopContext'
-import CartDrawer from '@/components/shop/CartDrawer'
-import AuthModal from '@/components/auth/AuthModal'
 import Toast from '@/components/ui/Toast'
 import { SitewideStructuredData } from './seo/StructuredData'
 import BreadcrumbTrail from './seo/BreadcrumbTrail'
+
+const AIAssistant = dynamic(() => import('@/components/ui/AIAssistant'), { ssr: false })
+const CartDrawer = dynamic(() => import('@/components/shop/CartDrawer'), { ssr: false })
+const AuthModal = dynamic(() => import('@/components/auth/AuthModal'), { ssr: false })
+const CookieConsent = dynamic(() => import('@/components/ui/CookieConsent'), { ssr: false })
+const VisitorTracker = dynamic(() => import('@/components/ui/VisitorTracker'), { ssr: false })
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-poppins',
+})
 
 const SITE_URL = 'https://agrovetoservices.cg'
 
@@ -127,19 +138,16 @@ const ORG_JSON_LD = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={poppins.variable}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="48x48" />
         <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96" />
         <link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet" />
         <SitewideStructuredData organization={ORG_JSON_LD} />
       </head>
-      <body>
+      <body className={poppins.className}>
         <ThemeProvider>
           <PageTransitionProvider>
             <BlobTransitionProvider>

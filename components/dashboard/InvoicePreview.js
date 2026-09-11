@@ -178,6 +178,7 @@ const InvoicePreview = forwardRef(function InvoicePreview({
       </div>
 
       <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@700&display=swap');
         .ak-invoice {
           width: 210mm; min-height: 297mm; background: #FAFAF8; color: #1A1A1A;
           padding: 20mm 16.8mm 16mm; font-family: Helvetica, Arial, sans-serif;

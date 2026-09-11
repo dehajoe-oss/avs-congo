@@ -40,8 +40,8 @@ import { gsap } from 'gsap'
                  apparaît (centré) puis grossit, simultanément
 */
 const HOME_PHASE_DELAYS = {
-  done: 4900,        // compteur atteint 100 (~5s au total)
-  collapse: 5350,    // ~450ms après le 100 : "Prêt ✓" visible un instant, puis collapse
+  done: 520,        // compteur atteint 100 en ~0.5s
+  collapse: 580,    // éclosion immédiate du hero
 }
 
 export default function Loader() {
@@ -58,27 +58,34 @@ export default function Loader() {
   const bgLayerRef = useRef(null) // calque fond+grid+glow, percé par un mask au moment du collapse
   const progressRef = useRef(0)  // ref pour éviter le closure stale dans les steps
 
-  /* ── Compteur 0 → 100, ralenti (~2.5s au total) ── */
+  /* ── Vérification sessionStorage + Compteur turbo ── */
   useEffect(() => {
+    // Si l'utilisateur a déjà visité le site pendant sa session, on n'affiche plus le loader
+    try {
+      if (sessionStorage.getItem('avs_intro_seen')) {
+        setVisible(false)
+        return
+      }
+      sessionStorage.setItem('avs_intro_seen', '1')
+    } catch {
+      // Ignorer si les cookies/storage sont désactivés
+    }
+
     const steps = isHome
       ? [
-          { target: 15, delay: 0,    duration: 950  },
-          { target: 35, delay: 1000, duration: 1050 },
-          { target: 58, delay: 2100, duration: 1050 },
-          { target: 82, delay: 3200, duration: 850  },
-          { target: 100, delay: 4100, duration: 650 },
+          { target: 45, delay: 0,   duration: 180 },
+          { target: 85, delay: 180, duration: 180 },
+          { target: 100, delay: 360, duration: 140 },
         ]
       : [
-          { target: 30, delay: 0,   duration: 200 },
-          { target: 65, delay: 200, duration: 280 },
-          { target: 88, delay: 480, duration: 200 },
-          { target: 100, delay: 680, duration: 150 },
+          { target: 60, delay: 0,   duration: 100 },
+          { target: 100, delay: 100, duration: 100 },
         ]
 
     steps.forEach(({ target, delay, duration }) => {
       setTimeout(() => {
         const start = Date.now()
-        const startVal = progressRef.current   // ← lit la valeur RÉELLE au moment du départ
+        const startVal = progressRef.current
         const tick = () => {
           const elapsed = Date.now() - start
           const t = Math.min(elapsed / duration, 1)
@@ -96,9 +103,9 @@ export default function Loader() {
       setTimeout(() => setHomePhase('done'),     HOME_PHASE_DELAYS.done)
       setTimeout(() => setHomePhase('collapse'), HOME_PHASE_DELAYS.collapse)
     } else {
-      setTimeout(() => setPhase(1), 750)
-      setTimeout(() => setPhase(2), 1100)
-      setTimeout(() => setVisible(false), 1450)
+      setTimeout(() => setPhase(1), 180)
+      setTimeout(() => setPhase(2), 260)
+      setTimeout(() => setVisible(false), 340)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -142,39 +149,33 @@ export default function Loader() {
     }
     tl.eventCallback('onUpdate', syncHole)
 
-    // 1) Logo + texte + compteur s'effacent lentement...
+    // 1) Logo + texte + compteur s'effacent rapidement...
     if (content) {
-      tl.to(content, { opacity: 0, duration: 1.1, ease: 'power1.inOut' }, 0)
+      tl.to(content, { opacity: 0, duration: 0.22, ease: 'power2.out' }, 0)
     }
 
     // 2) ...EN MÊME TEMPS que l'anneau apparaît, déjà centré sur l'écran
-    //    (plus de décalage sous le logo). Comme syncHole tourne en
-    //    continu, le trou s'ouvre déjà à cet instant, en synchro.
     tl.fromTo(bloom,
       { opacity: 0, scale: 0 },
-      { opacity: 1, scale: 1, duration: 1.1, ease: 'power1.inOut' },
+      { opacity: 1, scale: 1, duration: 0.22, ease: 'power2.out' },
       0
     )
 
-    // 3) L'anneau continue de grossir en perdant ses bords organiques —
-    //    et le trou transparent grandit avec lui : le Hero apparaît à
-    //    travers en direct, sans attendre la fin.
+    // 3) L'anneau grossit vivement et le hero apparaît
     tl.to(bloom, {
       width: coverSize,
       height: coverSize,
       borderRadius: '0%',
-      duration: 1.6,
+      duration: 0.35,
       ease: 'power2.inOut',
-    }, 0.3)
+    }, 0.08)
 
-    // 4) coverSize dépasse largement la diagonale de l'écran : à ce
-    //    stade le trou couvre déjà tout, le Hero est 100% visible. On
-    //    efface juste l'anneau / le glow restant.
+    // 4) Finition propre
     tl.to(bloom, {
       opacity: 0,
-      duration: 0.6,
+      duration: 0.15,
       ease: 'power2.out',
-    }, '+=0.1')
+    }, '+=0.04')
 
     return () => tl.kill()
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -196,12 +197,15 @@ export default function Loader() {
           initial={{ opacity: 1 }}
           exit={isHome ? { opacity: 1 } : { opacity: 0, scale: 1.04 }}
           transition={{ duration: .4, ease: [.22,1,.36,1] }}
+          onClick={() => setVisible(false)}
+          title="Cliquer pour passer l'animation"
           style={{
             position: 'fixed', inset: 0, zIndex: 99999,
             background: 'transparent',
             display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center',
             overflow: 'hidden',
+            cursor: 'pointer',
           }}
         >
           {/* Calque fond — couleur + grid + glow + scan-line. C'est CE
