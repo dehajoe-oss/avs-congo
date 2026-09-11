@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Phone, Send } from 'lucide-react'
@@ -8,9 +8,6 @@ import AuroraHero from '@/components/ui/AuroraHero'
 import { HoverSlideText } from '@/components/ui/index'
 import { useTheme } from '@/lib/theme'
 import TransitionLink from './TransitionLink'
-import { wireLetterHoverSwap } from '@/lib/hoverImageChars'
-import { STUDIO_LETTER_IMAGE_POOLS } from '@/lib/studioWordmarkImages'
-import './FooterWordmark.css'
 
 /* ── Slogans cycle — footer ──────────────────────────── */
 const FOOTER_SLOGANS = [
