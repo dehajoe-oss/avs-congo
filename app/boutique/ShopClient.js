@@ -17,14 +17,14 @@ import {
 } from 'lucide-react'
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
-import { GhostTitle, HoverSlideText } from '@/components/ui/index'
+import { GhostTitle, GreenUnderline, HoverSlideText } from '@/components/ui/index'
 import AuroraHero from '@/components/ui/AuroraHero'
 import { PRODUCTS_CATALOG, PRODUCT_CATEGORIES } from '@/lib/products'
 
 /* ────────────────────────────────────────────────
    HERO BOUTIQUE — Gabarit signature Helious / Services
 ──────────────────────────────────────────────── */
-function HeroShop() {
+function HeroShopDesktop() {
   const layerBgRef   = useRef(null)
   const layerMidRef  = useRef(null)
   const layerForeRef = useRef(null)
@@ -60,34 +60,25 @@ function HeroShop() {
       </div>
 
       {/* Titre géant bas-gauche + bloc texte centré verticalement à droite — gabarit hero "page title" (réf. Helious / Services) */}
-      <div ref={layerMidRef} className="hr-row hr-shop-row" style={{ willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out' }}>
-        <motion.h1 className="hr-title hr-shop-title" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, ease: 'easeOut' }}>
+      <div ref={layerMidRef} className="hr-row" style={{ willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out' }}>
+        <motion.h1 className="hr-title" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, ease: 'easeOut' }}>
           <GhostTitle text="BOUTIQUE" />
           BOUTIQUE
         </motion.h1>
 
-        <div className="hr-side hr-shop-side">
+        <div className="hr-side">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .2 }}>
-            <p className="hr-kicker">Intrants & Provenderie Certifiée</p>
+            <p className="hr-kicker">De la ferme à l'assiette</p>
             <p className="hr-desc">
-              Poussins d’un jour Cobb 500 & Lohmann vigoureux, provendes industrielles équilibrées et programmes de prophylaxie sous la supervision du Dr POUTYA. Commandez en ligne avec paiement Mobile Money KKiaPay et livraison à Pointe-Noire et au Kouilou.
+              Poussins d’un jour Cobb 500 certifiés, provendes industrielles équilibrées et produits vétérinaires sous la supervision du Dr POUTYA. Livraison à Pointe-Noire et au Kouilou.
             </p>
           </motion.div>
 
-          <div className="hr-shop-ctas" style={{ marginTop: '1.8rem', display: 'flex', flexWrap: 'wrap', gap: '0.9rem', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '1.8rem' }}>
             <a
               href="#catalogue"
               className="btn-raised"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '0.85rem 1.6rem',
-                fontSize: '0.92rem',
-                textDecoration: 'none',
-                borderRadius: '100px',
-                fontWeight: 700,
-              }}
+              style={{ fontSize: '0.95rem' }}
             >
               <HoverSlideText text="Explorer le catalogue" />
               <ArrowRight size={16} />
@@ -98,19 +89,10 @@ function HeroShop() {
               target="_blank"
               rel="noreferrer"
               className="btn-ghost"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '0.85rem 1.6rem',
-                fontSize: '0.92rem',
-                textDecoration: 'none',
-                borderRadius: '100px',
-                fontWeight: 600,
-              }}
+              style={{ fontSize: '0.95rem' }}
             >
-              <MessageCircle size={16} />
               <HoverSlideText text="WhatsApp Pro" />
+              <MessageCircle size={16} />
             </a>
           </div>
         </div>
@@ -124,14 +106,14 @@ function HeroShop() {
       </div>
 
       <style>{`
-        .hr-shop-row { position: relative; z-index: 10; height: 100%; }
-        .hr-shop-title {
+        .hr-row { position: relative; z-index: 10; height: 100%; }
+        .hr-title {
           position: absolute; left: 8vw; bottom: 4.5rem; margin: 0;
           font-family: 'Poppins', sans-serif; font-weight: 800;
           font-size: clamp(4.5rem, 13vw, 15rem); line-height: .92; letter-spacing: -.04em;
           color: rgba(255,255,255,.95);
         }
-        .hr-shop-side {
+        .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
           margin: auto 0; max-width: 380px; height: fit-content;
         }
@@ -140,37 +122,63 @@ function HeroShop() {
           color: #ea8025; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
-        
-        @media (max-width: 960px) {
-          .hr-shop-row {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 90px 6% 40px;
-          }
-          .hr-shop-title {
-            position: relative;
-            left: auto;
-            bottom: auto;
-            font-size: clamp(3rem, 12vw, 5.5rem);
-            margin-bottom: 1.2rem;
-          }
-          .hr-shop-side {
-            position: relative;
-            right: auto;
-            top: auto;
-            bottom: auto;
-            margin: 0 auto;
-            max-width: 520px;
-          }
-          .hr-shop-ctas {
-            justify-content: center;
-          }
-        }
       `}</style>
     </section>
+  )
+}
+
+function HeroShopMobile() {
+  return (
+    <section style={{ height: '100vh', minHeight: 600, width: '100%', background: '#0c0a09', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+      <AuroraHero labels={[]} />
+      <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1, padding: '72px 5% 0' }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
+          <h1 style={{ position: 'relative', fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: 'rgba(255,255,255,.88)', letterSpacing: '-.04em', lineHeight: 1.1, marginBottom: '1.2rem' }}>
+            <GhostTitle text="NOTRE BOUTIQUE" />
+            NOTRE{' '}
+            <GreenUnderline><span className="text-gradient">BOUTIQUE</span></GreenUnderline>
+          </h1>
+          <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,.55)', lineHeight: 1.75, maxWidth: 620, margin: '0 auto 2.5rem' }}>
+            Poussins d'un jour Cobb 500 certifiés, provendes industrielles équilibrées et intrants d'élevage de pointe sous contrôle vétérinaire à Pointe-Noire.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+            <a href="#catalogue" className="btn-raised" style={{ fontSize: '1rem' }}>
+              <HoverSlideText text="Explorer le catalogue" /> <ArrowRight size={16} />
+            </a>
+            <a
+              href="https://wa.me/242069677567?text=Bonjour%20AGRO%20V%C3%89TO%20SERVICES%2C%20je%20souhaite%20commander%20des%20poussins%20ou%20intrants."
+              target="_blank"
+              rel="noreferrer"
+              className="btn-ghost"
+              style={{ fontSize: '1rem' }}
+            >
+              <HoverSlideText text="WhatsApp Pro" /> <MessageCircle size={16} />
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function HeroShop() {
+  return (
+    <>
+      <div className="hero-shop-desktop">
+        <HeroShopDesktop />
+      </div>
+      <div className="hero-shop-mobile">
+        <HeroShopMobile />
+      </div>
+      <style>{`
+        .hero-shop-desktop { display: block; }
+        .hero-shop-mobile  { display: none; }
+        @media (max-width: 1023px) {
+          .hero-shop-desktop { display: none !important; }
+          .hero-shop-mobile  { display: block !important; }
+        }
+      `}</style>
+    </>
   )
 }
 
