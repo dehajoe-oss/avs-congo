@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useRef, useEffect } from 'react'
 import {
   motion,
@@ -70,7 +70,7 @@ function HeroRealisations() {
       {/* Layer FORE — particules */}
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#f89203', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#ea8025', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -129,9 +129,9 @@ function StackedCard({ project, index, total, scrollYProgress, T }) {
           className="sku-card"
           style={{
             overflow: 'hidden',
-            border: '1px solid rgba(248, 146, 3,.25)',
+            border: '1px solid rgba(234, 128, 37,.25)',
             boxShadow: `
-              0 0 0 1px rgba(248, 146, 3,.08),
+              0 0 0 1px rgba(234, 128, 37,.08),
               0 20px 60px rgba(0,0,0,.45),
               0 4px 12px rgba(0,0,0,.3)
             `,
@@ -141,11 +141,11 @@ function StackedCard({ project, index, total, scrollYProgress, T }) {
           <div className="no-pill-mobile" style={{
             position: 'absolute', top: '1.2rem', left: '1.2rem',
             fontFamily: "'Poppins', sans-serif", fontWeight: 900,
-            fontSize: '.65rem', color: 'rgba(248, 146, 3,.55)',
+            fontSize: '.65rem', color: 'rgba(234, 128, 37,.55)',
             letterSpacing: '.12em', zIndex: 2,
             background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)',
             padding: '.2rem .7rem', borderRadius: 100,
-            border: '1px solid rgba(248, 146, 3,.2)',
+            border: '1px solid rgba(234, 128, 37,.2)',
           }}>
             {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
           </div>
@@ -160,7 +160,7 @@ function StackedCard({ project, index, total, scrollYProgress, T }) {
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform .6s' }}
                 placeholder={
                   <div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Code size={40} style={{ color: 'rgba(248, 146, 3,.2)' }} />
+                    <Code size={40} style={{ color: 'rgba(234, 128, 37,.2)' }} />
                   </div>
                 }
               />
@@ -168,11 +168,11 @@ function StackedCard({ project, index, total, scrollYProgress, T }) {
 
               {/* Badges */}
               <div className="no-pill-mobile" style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '.5rem', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-                <div style={{ padding: '.28rem .8rem', borderRadius: 100, background: 'rgba(248, 146, 3,.15)', backdropFilter: 'blur(8px)', border: '1px solid rgba(248, 146, 3,.3)', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#f89203' }}>
+                <div style={{ padding: '.28rem .8rem', borderRadius: 100, background: 'rgba(234, 128, 37,.15)', backdropFilter: 'blur(8px)', border: '1px solid rgba(234, 128, 37,.3)', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#ea8025' }}>
                   {project.type}
                 </div>
                 {project.live && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.28rem .8rem', borderRadius: 100, background: 'rgba(248, 146, 3,.88)', fontFamily: "'Poppins', sans-serif", fontSize: '.58rem', color: '#fff', fontWeight: 700, letterSpacing: '.06em' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.28rem .8rem', borderRadius: 100, background: 'rgba(234, 128, 37,.88)', fontFamily: "'Poppins', sans-serif", fontSize: '.58rem', color: '#fff', fontWeight: 700, letterSpacing: '.06em' }}>
                     <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff', animation: 'dot-blink 1.4s ease-in-out infinite' }} />
                     en ligne
                   </div>
@@ -180,7 +180,7 @@ function StackedCard({ project, index, total, scrollYProgress, T }) {
               </div>
 
               {/* Résultat */}
-              <div className="no-pill-mobile" style={{ position: 'absolute', bottom: '1rem', right: '1rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(0,0,0,.65)', backdropFilter: 'blur(8px)', border: '1px solid rgba(248, 146, 3,.3)', fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1rem', color: '#f89203' }}>
+              <div className="no-pill-mobile" style={{ position: 'absolute', bottom: '1rem', right: '1rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(0,0,0,.65)', backdropFilter: 'blur(8px)', border: '1px solid rgba(234, 128, 37,.3)', fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1rem', color: '#ea8025' }}>
                 {project.result}
               </div>
             </div>
@@ -218,12 +218,12 @@ function StackedCard({ project, index, total, scrollYProgress, T }) {
                   <span key={t} style={{
                     padding: '.3rem .85rem',
                     borderRadius: 100,
-                    background: 'rgba(248, 146, 3,.1)',
-                    border: '1px solid rgba(248, 146, 3,.35)',
+                    background: 'rgba(234, 128, 37,.1)',
+                    border: '1px solid rgba(234, 128, 37,.35)',
                     fontFamily: "'Poppins', sans-serif",
                     fontSize: '.72rem',
                     fontWeight: 700,
-                    color: '#f89203',
+                    color: '#ea8025',
                     letterSpacing: '.04em',
                     whiteSpace: 'nowrap',
                   }}>
@@ -322,7 +322,7 @@ function ProjectsIntro() {
             color: T.textMain, margin: 0,
           }}>
           {TEXT.split(' ').map((word, i) => (
-            <span key={i} style={{ color: greenWords.has(word.replace(/[().,;?!]/g, '')) || greenWords.has(word) ? '#f89203' : 'inherit' }}>
+            <span key={i} style={{ color: greenWords.has(word.replace(/[().,;?!]/g, '')) || greenWords.has(word) ? T.green : 'inherit' }}>
               {word}{' '}
             </span>
           ))}

@@ -82,7 +82,7 @@ function HeroContact() {
       {/* Layer FORE — particules */}
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#f89203', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#ea8025', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -98,9 +98,9 @@ function ContactChannels() {
 
   const CHANNELS = [
     { icon: MessageCircle, label: 'WhatsApp', val: '+242 06 967 75 67', href: 'https://wa.me/242069677567', color: '#25d366', desc: 'Réponse en moins de 2h' },
-    { icon: Mail, label: 'Email', val: 'agrovetoservicescongo@gmail.com', href: 'mailto:agrovetoservicescongo@gmail.com', color: '#f89203', desc: 'Réponse sous 24h' },
-    { icon: Phone, label: 'Téléphone', val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242069677567', color: '#f89203', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
-    { icon: MapPin, label: 'Localisation', val: "Quartier Socoprise, Av. Nelson Mandela, Rue Bissoute, Pointe-Noire", href: null, color: '#f89203', desc: 'Déplacements possibles en exploitation' },
+    { icon: Mail, label: 'Email', val: 'agrovetoservicescongo@gmail.com', href: 'mailto:agrovetoservicescongo@gmail.com', color: '#ea8025', desc: 'Réponse sous 24h' },
+    { icon: Phone, label: 'Téléphone', val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242069677567', color: '#ea8025', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
+    { icon: MapPin, label: 'Localisation', val: "Quartier Socoprise, Av. Nelson Mandela, Rue Bissoute, Pointe-Noire", href: null, color: '#ea8025', desc: 'Déplacements possibles en exploitation' },
   ]
 
   return (
@@ -150,18 +150,18 @@ function ContactChannels() {
 
         {/* Social row */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .5 }}
-          style={{ marginTop: '1.5rem', padding: '1rem 1.3rem', borderRadius: 14, background: 'rgba(248, 146, 3,.04)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          style={{ marginTop: '1.5rem', padding: '1rem 1.3rem', borderRadius: 14, background: 'rgba(234, 128, 37,.04)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', fontWeight: 600, color: T.textMuted }}>Réseaux sociaux</span>
           <div style={{ display: 'flex', gap: '.6rem' }}>
             {[
               { Icon: FacebookIcon, href: 'https://web.facebook.com/profile.php?id=61577494705852', label: 'Facebook', color: '#1877f2' },
               { Icon: WhatsAppIcon, href: 'https://wa.me/242069677567', label: 'WhatsApp', color: '#25d366' },
-              { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#f89203' },
+              { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#ea8025' },
             ].map(({ Icon, href, label, color }) => (
               <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
-                style={{ width: 36, height: 36, borderRadius: 10, background: T.light ? 'rgba(0,0,0,.05)' : 'rgba(248, 146, 3,.06)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.textSub, transition: 'all .2s' }}
+                style={{ width: 36, height: 36, borderRadius: 10, background: T.light ? 'rgba(0,0,0,.05)' : 'rgba(234, 128, 37,.06)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.textSub, transition: 'all .2s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = color; e.currentTarget.style.borderColor = color; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                onMouseLeave={e => { e.currentTarget.style.background = T.light ? 'rgba(0,0,0,.05)' : 'rgba(248, 146, 3,.06)'; e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.textSub; e.currentTarget.style.transform = 'none' }}>
+                onMouseLeave={e => { e.currentTarget.style.background = T.light ? 'rgba(0,0,0,.05)' : 'rgba(234, 128, 37,.06)'; e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.textSub; e.currentTarget.style.transform = 'none' }}>
                 <Icon size={15} />
               </a>
             ))}
@@ -174,7 +174,7 @@ function ContactChannels() {
 
 function ChannelIcon({ Icon, color, T }) {
   return (
-    <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+    <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(234, 128, 37,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
       <Icon size={19} style={{ color }} />
     </div>
   )
@@ -201,7 +201,7 @@ function ProjectForm() {
 
   const inputStyle = {
     width: '100%', padding: '.8rem .95rem', borderRadius: 10,
-    background: T.light ? '#ffffff' : 'rgba(248, 146, 3,.04)',
+    background: T.light ? '#ffffff' : 'rgba(234, 128, 37,.04)',
     border: `1px solid ${T.light ? 'rgba(0,0,0,.15)' : T.border}`,
     color: T.light ? '#111111' : 'rgba(255,255,255,.85)',
     fontFamily: "'Poppins', sans-serif", fontSize: '.88rem',
@@ -264,8 +264,8 @@ function ProjectForm() {
               {sent ? (
                 <motion.div key="success" initial={{ opacity: 0, scale: .9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: 'clamp(2rem,6vw,3rem) 1rem' }}>
                   <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }}
-                    style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(248, 146, 3,.15)', border: '2px solid rgba(248, 146, 3,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                    <CheckCircle size={36} style={{ color: '#f89203' }} />
+                    style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(234, 128, 37,.15)', border: '2px solid rgba(234, 128, 37,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                    <CheckCircle size={36} style={{ color: '#ea8025' }} />
                   </motion.div>
                   <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.1rem,3vw,1.4rem)', color: T.textMain, marginBottom: '.8rem' }}>Demande envoyée !</h3>
                   <p style={{ color: T.textSub, fontSize: '.88rem', lineHeight: 1.7 }}>
@@ -286,13 +286,13 @@ function ProjectForm() {
                     <div>
                       <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Nom complet *</label>
                       <input style={inputStyle} placeholder="Ex: Jean Malonga" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                     <div>
                       <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Entreprise / Organisation (facultatif)</label>
                       <input style={inputStyle} placeholder="Ex: Ferme Agropastorale du Kouilou" value={form.organization} onChange={e => setForm(f => ({ ...f, organization: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                   </div>
@@ -301,13 +301,13 @@ function ProjectForm() {
                     <div>
                       <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Téléphone *</label>
                       <input style={inputStyle} placeholder="+242 06 967 75 67" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                     <div>
                       <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>E-mail *</label>
                       <input type="email" style={inputStyle} placeholder="vous@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                   </div>
@@ -315,7 +315,7 @@ function ProjectForm() {
                   <div style={{ marginBottom: '1rem' }}>
                     <label style={{ display: 'block', fontSize: '.72rem', color: T.textSub, marginBottom: '.4rem', fontFamily: "'Poppins', sans-serif", letterSpacing: '.06em', textTransform: 'uppercase' }}>Objet de la demande *</label>
                     <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
-                      onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                      onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                       onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }}>
                       <option value="">Sélectionnez l'objet de votre demande...</option>
                       <option value="consultation-vet">Consultation vétérinaire</option>
@@ -333,7 +333,7 @@ function ProjectForm() {
                     <textarea rows={5} style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }}
                       placeholder="Précisez votre demande, vos effectifs d'élevage ou votre projet..."
                       value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                      onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                      onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                       onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                   </div>
 

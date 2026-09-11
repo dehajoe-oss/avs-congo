@@ -213,7 +213,7 @@ export default function Loader() {
             {/* Grid bg */}
             <div style={{
               position: 'absolute', inset: 0,
-              backgroundImage: 'linear-gradient(rgba(248, 146, 3,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(248, 146, 3,.04) 1px,transparent 1px)',
+              backgroundImage: 'linear-gradient(rgba(234, 128, 37,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(234, 128, 37,.04) 1px,transparent 1px)',
               backgroundSize: '48px 48px',
             }} />
 
@@ -231,7 +231,7 @@ export default function Loader() {
             {/* Bottom scan line */}
             <div style={{
               position: 'absolute', left: 0, right: 0, height: 1,
-              background: 'linear-gradient(90deg,transparent,rgba(248, 146, 3,.4),transparent)',
+              background: 'linear-gradient(90deg,transparent,rgba(234, 128, 37,.4),transparent)',
               animation: 'scan-line 2s ease-in-out infinite',
               pointerEvents: 'none',
             }} />
@@ -256,7 +256,7 @@ export default function Loader() {
                   style={{
                     width: '100%', height: '100%',
                     objectFit: 'contain',
-                    filter: 'drop-shadow(0 0 24px rgba(248, 146, 3,.6))',
+                    filter: 'drop-shadow(0 0 24px rgba(234, 128, 37,.6))',
                     animation: 'akaGlowPulseImg 2s ease-in-out infinite',
                   }}
                 />
@@ -269,7 +269,7 @@ export default function Loader() {
                     transition={{ duration: .6, ease: 'easeOut' }}
                     style={{
                       position: 'absolute', inset: 0, borderRadius: '50%',
-                      border: '2px solid rgba(248, 146, 3,.6)',
+                      border: '2px solid rgba(234, 128, 37,.6)',
                     }}
                   />
                 )}
@@ -278,7 +278,7 @@ export default function Loader() {
               <motion.div
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 transition={{ delay: .5 }}
-                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.85rem', color: 'rgba(248, 146, 3,.7)', letterSpacing: '.15em', textTransform: 'uppercase', marginTop: 4 }}
+                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.85rem', color: 'rgba(234, 128, 37,.7)', letterSpacing: '.15em', textTransform: 'uppercase', marginTop: 4 }}
               >
                 Agro Véto Services
               </motion.div>
@@ -292,8 +292,8 @@ export default function Loader() {
             >
               <span style={{
                 fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic',
-                fontSize: '2.6rem', lineHeight: 1, color: '#f89203',
-                letterSpacing: '.02em', textShadow: '0 0 24px rgba(248, 146, 3,.5)',
+                fontSize: '2.6rem', lineHeight: 1, color: '#ea8025',
+                letterSpacing: '.02em', textShadow: '0 0 24px rgba(234, 128, 37,.5)',
               }}>
                 {progress}<span style={{ fontSize: '1.2rem', opacity: .6, marginLeft: 2 }}>%</span>
               </span>
@@ -327,8 +327,8 @@ export default function Loader() {
                 transform: 'translate(-50%, -50%) scale(0)',
                 borderRadius: '67% 33% 47% 53% / 37% 20% 80% 63%',
                 background: 'transparent',
-                border: '2px solid rgba(248, 146, 3,.55)',
-                boxShadow: '0 0 60px 10px rgba(248, 146, 3,.45), inset 0 0 40px rgba(248, 146, 3,.25)',
+                border: '2px solid rgba(234, 128, 37,.55)',
+                boxShadow: '0 0 60px 10px rgba(234, 128, 37,.45), inset 0 0 40px rgba(234, 128, 37,.25)',
                 zIndex: 2,
                 pointerEvents: 'none',
                 willChange: 'width, height, border-radius, opacity, transform',
@@ -339,8 +339,8 @@ export default function Loader() {
           {/* CSS animations */}
           <style>{`
             @keyframes akaGlowPulseImg {
-              0%,100% { filter: drop-shadow(0 0 12px rgba(248, 146, 3,.4)); }
-              50%      { filter: drop-shadow(0 0 28px rgba(248, 146, 3,.85)); }
+              0%,100% { filter: drop-shadow(0 0 12px rgba(234, 128, 37,.4)); }
+              50%      { filter: drop-shadow(0 0 28px rgba(234, 128, 37,.85)); }
             }
             @keyframes glow-pulse {
               0%,100% { opacity: .6; }

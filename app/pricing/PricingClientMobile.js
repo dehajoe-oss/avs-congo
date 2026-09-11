@@ -55,8 +55,8 @@ function HeroPricing() {
           <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,.55)', lineHeight: 1.75, maxWidth: 540, margin: '0 auto 1.5rem' }}>
             Pas de frais cachés. Pas de jargon. Des prix honnêtes adaptés au marché africain, avec devis gratuit et sans engagement.
           </p>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', padding: '.5rem 1.2rem', borderRadius: 100, background: 'rgba(248, 146, 3,.08)', border: '1px solid rgba(248, 146, 3,.2)' }}>
-            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#f89203', animation: 'dot-blink 1.4s ease-in-out infinite' }} />
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', padding: '.5rem 1.2rem', borderRadius: 100, background: 'rgba(234, 128, 37,.08)', border: '1px solid rgba(234, 128, 37,.2)' }}>
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ea8025', animation: 'dot-blink 1.4s ease-in-out infinite' }} />
             <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em' }}>
               Paiement Mobile Money accepté
             </span>
@@ -66,7 +66,7 @@ function HeroPricing() {
       {/* Layer FORE — particules */}
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#f89203', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#ea8025', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -104,11 +104,11 @@ function PricingTabs() {
         <motion.p initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .05 }}
           style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, textAlign: 'center', marginBottom: '1.8rem' }}>
           {'Pas de '}
-          <span style={{ color: '#f89203' }}>frais cachés</span>
+          <span style={{ color: '#ea8025' }}>frais cachés</span>
           {'. Des prix '}
-          <span style={{ color: '#f89203' }}>honnêtes</span>
+          <span style={{ color: '#ea8025' }}>honnêtes</span>
           {' adaptés au marché africain — devis '}
-          <span style={{ color: '#f89203' }}>gratuit</span>
+          <span style={{ color: '#ea8025' }}>gratuit</span>
           {' et sans engagement.'}
         </motion.p>
 
@@ -119,7 +119,7 @@ function PricingTabs() {
             <button key={k} onClick={() => setTab(k)} style={{
               padding: '.55rem 1.4rem', borderRadius: 100, border: '1px solid',
               borderColor: tab === k ? T.green : T.border,
-              background: tab === k ? '#f89203' : 'transparent',
+              background: tab === k ? '#ea8025' : 'transparent',
               color: tab === k ? '#fff' : T.textSub,
               fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.82rem', fontWeight: 900,
               cursor: 'pointer', transition: 'all .22s',
@@ -143,13 +143,13 @@ function PricingTabs() {
                   style={{
                     position: 'relative', borderRadius: 20, overflow: 'hidden',
                     background: plan.popular
-                      ? 'rgba(248, 146, 3, 0.12)'
+                      ? 'rgba(234, 128, 37, 0.12)'
                       : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)',
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
-                    border: plan.popular ? '1px solid rgba(248, 146, 3,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`,
+                    border: plan.popular ? '1px solid rgba(234, 128, 37,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`,
                     boxShadow: plan.popular
-                      ? '0 8px 40px rgba(248, 146, 3,.2), inset 0 1px 0 rgba(255,255,255,.15)'
+                      ? '0 8px 40px rgba(234, 128, 37,.2), inset 0 1px 0 rgba(255,255,255,.15)'
                       : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.06)',
                     padding: plan.popular ? '0 0 2rem' : '2rem',
                     height: '100%', display: 'flex', flexDirection: 'column',
@@ -158,7 +158,7 @@ function PricingTabs() {
                   {/* Popular badge */}
                   {plan.popular && (
                     <div style={{
-                      padding: '.5rem', background: '#f89203',
+                      padding: '.5rem', background: '#ea8025',
                       textAlign: 'center', fontFamily: "'Poppins', sans-serif",
                       fontSize: '.6rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem',
@@ -176,24 +176,24 @@ function PricingTabs() {
                       borderRadius: '20px 20px 0 0', pointerEvents: 'none',
                     }} />
 
-                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#f89203' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: plan.popular ? '#ea8025' : T.textMuted, textTransform: 'uppercase', marginBottom: '.6rem' }}>{plan.badge}</div>
                     <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.4rem,2.5vw,1.7rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
                     <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: T.textMuted, marginBottom: '1.6rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                       <Timer size={11} style={{ color: T.green }} />{plan.del}
                     </div>
 
                     {/* Divider */}
-                    <div style={{ height: 1, background: plan.popular ? 'rgba(248, 146, 3,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
+                    <div style={{ height: 1, background: plan.popular ? 'rgba(234, 128, 37,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.4rem' }} />
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '.65rem', marginBottom: '1.8rem', flex: 1 }}>
                       {plan.features.map(f => (
                         <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '.6rem', fontSize: '.83rem', color: T.textSub, lineHeight: 1.5 }}>
                           <div style={{
                             width: 18, height: 18, borderRadius: '50%', flexShrink: 0, marginTop: 1,
-                            background: plan.popular ? 'rgba(248, 146, 3,.2)' : 'rgba(255,255,255,.06)',
+                            background: plan.popular ? 'rgba(234, 128, 37,.2)' : 'rgba(255,255,255,.06)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                           }}>
-                            <Check size={11} style={{ color: '#f89203' }} />
+                            <Check size={11} style={{ color: '#ea8025' }} />
                           </div>
                           {f}
                         </div>
@@ -213,9 +213,9 @@ function PricingTabs() {
 
         {/* Urgency bar */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .5 }}
-          style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(248, 146, 3,.04)', border: '1px solid rgba(248, 146, 3,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          style={{ marginTop: '2.5rem', padding: '1rem 1.6rem', borderRadius: 14, background: 'rgba(234, 128, 37,.04)', border: '1px solid rgba(234, 128, 37,.15)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#f89203', boxShadow: '0 0 8px rgba(248, 146, 3,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ea8025', boxShadow: '0 0 8px rgba(234, 128, 37,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
             <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: T.textSub, letterSpacing: '.04em', margin: 0 }}>
               <span style={{ color: '#fdba74', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
                 <AlertTriangle size={12} /> Arrivages réguliers de poussins
@@ -302,7 +302,7 @@ function TrustedBy() {
 
               {/* Stars */}
               <div style={{ display: 'flex', gap: 3, marginBottom: '1rem' }}>
-                {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="#f89203" style={{ color: '#f89203' }} />)}
+                {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="#ea8025" style={{ color: '#ea8025' }} />)}
               </div>
 
               {/* Quote */}
@@ -311,17 +311,17 @@ function TrustedBy() {
               </p>
 
               {/* Result badge */}
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.28rem .85rem', borderRadius: 99, background: 'rgba(248, 146, 3,.1)', border: '1px solid rgba(248, 146, 3,.25)', marginBottom: '1.4rem' }}>
-                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#f89203', fontWeight: 700 }}>{t.result}</span>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', padding: '.28rem .85rem', borderRadius: 99, background: 'rgba(234, 128, 37,.1)', border: '1px solid rgba(234, 128, 37,.25)', marginBottom: '1.4rem' }}>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#ea8025', fontWeight: 700 }}>{t.result}</span>
               </div>
 
               {/* Author */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '.85rem' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(248, 146, 3,.3)', flexShrink: 0, position: 'relative' }}>
+                <div style={{ width: 48, height: 48, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(234, 128, 37,.3)', flexShrink: 0, position: 'relative' }}>
                   <img src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     onError={e => {
                       e.target.style.display = 'none'
-                      e.target.parentNode.style.background = 'rgba(248, 146, 3, 0.10)'
+                      e.target.parentNode.style.background = 'rgba(234, 128, 37, 0.10)'
                     }} />
                 </div>
                 <div>
@@ -358,11 +358,11 @@ function FAQSection() {
           <motion.p initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .1 }}
             style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain, marginTop: '1rem' }}>
             {'Toutes les réponses sur nos '}
-            <span style={{ color: '#f89203' }}>tarifs</span>
+            <span style={{ color: '#ea8025' }}>tarifs</span>
             {', nos '}
-            <span style={{ color: '#f89203' }}>délais</span>
+            <span style={{ color: '#ea8025' }}>délais</span>
             {' et notre processus de '}
-            <span style={{ color: '#f89203' }}>livraison</span>
+            <span style={{ color: '#ea8025' }}>livraison</span>
             {'.'}
           </motion.p>
         </motion.div>

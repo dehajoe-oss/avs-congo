@@ -154,8 +154,8 @@ export default function CardNav() {
         '--nav-blur': 'blur(20px) saturate(180%)',
         '--nav-border': T.light ? '1.5px solid rgba(0, 0, 0, 0.12)' : '1.5px solid rgba(255, 255, 255, 0.18)',
         '--nav-shadow': T.light
-          ? '0 12px 36px -4px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(248, 146, 3, 0.2)'
-          : '0 16px 44px -4px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(248, 146, 3, 0.35)',
+          ? '0 12px 36px -4px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(234, 128, 37, 0.2)'
+          : '0 16px 44px -4px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(234, 128, 37, 0.35)',
         '--nav-hline': '#ffffff',
         '--card1-bg': T.light ? '#fbf8f5' : '#1c1917',
         '--card2-bg': T.light ? '#fff7ed' : '#261a10',
@@ -166,8 +166,8 @@ export default function CardNav() {
         '--card3-border': T.light ? '2px solid #050505' : '2px solid #050505',
         '--card-shadow': T.light ? '4px 4px 0px #050505' : '4px 4px 0px #050505',
         '--card3-label': T.light ? 'rgba(10,20,10,0.5)' : 'rgba(242,237,232,0.5)',
-        '--card1-link-hover': T.light ? '#c2410c' : '#fb923c',
-        '--theme-green': '#f89203',
+        '--card1-link-hover': T.light ? '#c9680a' : '#ea8025',
+        '--theme-green': T.light ? '#c9680a' : '#ea8025',
       }}>
         <div className="aka-nav-top">
           <button className={'aka-nav-menu-btn' + (open ? ' open' : '')} onClick={toggle} aria-label="Menu de navigation" type="button">

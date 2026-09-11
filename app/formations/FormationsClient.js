@@ -78,7 +78,7 @@ export default function FormationsClient() {
             animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(234, 128, 37,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
               <GraduationCap size={13} />
               CENTRE DE FORMATION & FERMES-ÉCOLES
             </div>
@@ -108,7 +108,7 @@ export default function FormationsClient() {
       <section style={{ padding: '2.5rem 5%', borderBottom: `1px solid ${T.border}`, background: T.light ? 'rgba(0,0,0,.02)' : 'rgba(255,255,255,.02)' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(234, 128, 37,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <Award size={20} />
             </div>
             <div>
@@ -122,7 +122,7 @@ export default function FormationsClient() {
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(234, 128, 37,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <Users size={20} />
             </div>
             <div>
@@ -136,7 +136,7 @@ export default function FormationsClient() {
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(234, 128, 37,.1)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <ShieldCheck size={20} />
             </div>
             <div>
@@ -174,7 +174,7 @@ export default function FormationsClient() {
             >
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '.8rem', marginBottom: '1rem' }}>
-                  <span style={{ fontSize: '.7rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.green, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', padding: '.25rem .7rem', borderRadius: 6 }}>
+                  <span style={{ fontSize: '.7rem', fontWeight: 700, fontFamily: "'Poppins', sans-serif", color: T.green, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(234, 128, 37,.1)', padding: '.25rem .7rem', borderRadius: 6 }}>
                     {mod.category}
                   </span>
                   <span style={{ fontSize: '.72rem', color: T.textMuted, display: 'flex', alignItems: 'center', gap: '.3rem' }}>
@@ -234,7 +234,7 @@ export default function FormationsClient() {
         <div style={{ maxWidth: 1180, margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', alignItems: 'center' }}>
             <div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(234, 128, 37,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: T.green, marginBottom: '1.2rem' }}>
                 <Briefcase size={13} />
                 INGÉNIERIE DE FORMATION & RENFORCEMENT DES CAPACITÉS
               </div>
@@ -263,7 +263,7 @@ export default function FormationsClient() {
                 { title: 'Certification & Suivi', desc: 'Attestations certifiées AVS Congo et accompagnement post-formation sur la performance réelle.', Icon: BadgeCheck },
               ].map((step, i) => (
                 <div key={i} style={{ padding: '1.5rem', borderRadius: 16, background: T.light ? '#ffffff' : '#122415', border: `1px solid ${T.border}` }}>
-                  <div style={{ width: 44, height: 44, borderRadius: 12, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.green, marginBottom: '1rem' }}>
+                  <div style={{ width: 44, height: 44, borderRadius: 12, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(234, 128, 37,.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.green, marginBottom: '1rem' }}>
                     <step.Icon size={22} />
                   </div>
                   <h4 style={{ margin: '0 0 .4rem', fontSize: '.95rem', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>{step.title}</h4>
@@ -298,7 +298,7 @@ export default function FormationsClient() {
 
             {submitted ? (
               <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
-                <div style={{ width: 50, height: 50, borderRadius: '50%', background: 'rgba(248, 146, 3,.2)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <div style={{ width: 50, height: 50, borderRadius: '50%', background: 'rgba(234, 128, 37,.2)', color: T.green, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
                   <CheckCircle2 size={28} />
                 </div>
                 <h4 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: T.textMain, marginBottom: '.5rem' }}>

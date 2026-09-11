@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
    → WebGL1 natif, sans dépendance externe (remplace l'ancien
    composant AuroraHero "Dither Pro" — même nom de fichier/export
    pour ne casser aucun import existant dans le projet).
-   Palette AKATech : émeraude #f89203 sur fond noir
+   Palette AKATech : émeraude #ea8025 sur fond noir
    Boucle cos/sin entrelacée (8 itérations) + souris + couleur teintée
    Optimisations perf :
      • rendu à 80 % de la résolution physique (CSS upscale)
@@ -138,7 +138,7 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
     /* ── Valeurs initiales ── */
     const u = uRef.current
     gl.uniform3f(u.u_res,       cv.width, cv.height, cv.width / cv.height)
-    gl.uniform3f(u.u_color,     0.353, 0.529, 0.220)  /* #f89203 émeraude AKATech */
+    gl.uniform3f(u.u_color,     0.353, 0.529, 0.220)  /* #ea8025 émeraude AKATech */
     gl.uniform2f(u.u_mouse,     0.5, 0.5)
     gl.uniform1f(u.u_amplitude, 0.12)
     gl.uniform1f(u.u_speed,     0.7)
@@ -196,7 +196,7 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
       {/* ── Ligne de scan — émeraude ── */}
       <div style={{
         position: 'absolute', left: 0, right: 0, height: 1,
-        background: 'rgba(248, 146, 3, 0.45)',
+        background: 'rgba(234, 128, 37, 0.45)',
         animation: 'dither-scan 9s linear infinite',
         pointerEvents: 'none', zIndex: 2,
       }} />
@@ -226,17 +226,17 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
             display: 'flex', alignItems: 'center', gap: 6,
             padding: '5px 12px', borderRadius: 100,
             background: 'rgba(3,8,6,0.72)',
-            border: '1px solid rgba(248, 146, 3,.28)',
+            border: '1px solid rgba(234, 128, 37,.28)',
             backdropFilter: 'blur(10px)',
-            boxShadow: '0 0 16px rgba(248, 146, 3,.15)',
+            boxShadow: '0 0 16px rgba(234, 128, 37,.15)',
             pointerEvents: 'none',
           }}
           className="aurora-pill"
         >
           <span style={{
             width: 6, height: 6, borderRadius: '50%',
-            background: '#f89203',
-            boxShadow: '0 0 8px rgba(248, 146, 3,.9)',
+            background: '#ea8025',
+            boxShadow: '0 0 8px rgba(234, 128, 37,.9)',
             display: 'inline-block',
             animation: 'dot-blink 2s ease-in-out infinite',
             animationDelay: `${i * 0.3}s`,

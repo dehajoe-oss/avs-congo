@@ -56,10 +56,10 @@ nav.aka-card-nav {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 .aka-nav-menu-btn:hover {
-  background: #f89203;
+  background: #ea8025;
   border-color: #fb923c;
   color: #ffffff;
-  box-shadow: 0 4px 16px rgba(248, 146, 3, 0.45);
+  box-shadow: 0 4px 16px rgba(234, 128, 37, 0.45);
   transform: translateY(-1px);
 }
 .light-mode .aka-nav-menu-btn {
@@ -69,8 +69,8 @@ nav.aka-card-nav {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 .light-mode .aka-nav-menu-btn:hover {
-  background: #f89203;
-  border-color: #f89203;
+  background: #ea8025;
+  border-color: #ea8025;
   color: #ffffff;
 }
 
@@ -158,10 +158,10 @@ nav.aka-card-nav {
 }
 
 .aka-nav-pill:hover {
-  background: #f89203;
+  background: #ea8025;
   border-color: #fb923c;
   color: #ffffff;
-  box-shadow: 0 4px 16px rgba(248, 146, 3, 0.45);
+  box-shadow: 0 4px 16px rgba(234, 128, 37, 0.45);
   transform: translateY(-1px);
 }
 
@@ -171,7 +171,7 @@ nav.aka-card-nav {
 }
 
 .aka-nav-pill--active {
-  background: #f89203;
+  background: #ea8025;
   border-color: #fb923c;
   color: #ffffff;
 }
@@ -215,7 +215,11 @@ nav.aka-card-nav {
 }
 
 .aka-user-active {
-  color: #fb923c;
+  color: #ea8025;
+}
+
+.light-mode .aka-user-active {
+  color: #c9680a;
 }
 
 .light-mode .aka-nav-pill {
@@ -226,12 +230,12 @@ nav.aka-card-nav {
 }
 
 .light-mode .aka-nav-pill-icon {
-  color: #c2410c;
+  color: #c9680a;
 }
 
 .light-mode .aka-nav-pill:hover {
-  background: #f89203;
-  border-color: #f89203;
+  background: #ea8025;
+  border-color: #ea8025;
   color: #ffffff;
 }
 .light-mode .aka-nav-pill:hover .aka-nav-pill-icon {
@@ -253,7 +257,7 @@ nav.aka-card-nav {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 .aka-theme-btn:hover {
-  background: #f89203;
+  background: #ea8025;
   color: #ffffff;
   border-color: #fb923c;
   box-shadow: 0 4px 16px rgba(251, 146, 60,.4);
@@ -270,7 +274,7 @@ nav.aka-card-nav {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 .light-mode .aka-theme-btn:hover {
-  background: #f89203;
+  background: #ea8025;
   color: #ffffff;
 }
 
@@ -346,7 +350,7 @@ nav.aka-card-nav {
 }
 .aka-card-link-ghost {
   position: absolute; inset: 0; overflow: hidden;
-  pointer-events: none; color: #f89203;
+  pointer-events: none; color: #ea8025;
   opacity: 0; transition: opacity .18s;
 }
 .aka-card-link:hover .aka-card-link-ghost { opacity: 1; }

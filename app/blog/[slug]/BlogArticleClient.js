@@ -94,7 +94,7 @@ export default function BlogArticleClient({ slug }) {
             </Link>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '.8rem', marginBottom: '1.2rem', flexWrap: 'wrap' }}>
-              <span style={{ padding: '.25rem .85rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.08)' : 'rgba(248, 146, 3,.08)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, display: 'flex', alignItems: 'center', gap: '.35rem' }}>
+              <span style={{ padding: '.25rem .85rem', borderRadius: 100, background: T.light ? 'rgba(234, 88, 12,.08)' : 'rgba(234, 128, 37,.08)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, display: 'flex', alignItems: 'center', gap: '.35rem' }}>
                 <Tag size={10} />{post.category}
               </span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '.3rem', fontSize: '.72rem', color: T.textMuted }}>
@@ -158,7 +158,7 @@ export default function BlogArticleClient({ slug }) {
                 </p>
               )}
               {block.type === 'cta' && (
-                <div style={{ margin: '2.5rem 0', padding: '2rem', borderRadius: 16, background: T.light ? 'rgba(234, 88, 12,.05)' : 'rgba(248, 146, 3,.05)', border: `1px solid ${T.border}`, textAlign: 'center' }}>
+                <div style={{ margin: '2.5rem 0', padding: '2rem', borderRadius: 16, background: T.light ? 'rgba(234, 88, 12,.05)' : 'rgba(234, 128, 37,.05)', border: `1px solid ${T.border}`, textAlign: 'center' }}>
                   <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, color: T.textMain, marginBottom: '1.2rem', fontSize: '1.05rem' }}>{block.text}</p>
                   <Link href={block.href} className="btn-raised" style={{ display: 'inline-flex', padding: '.8rem 2rem' }}>
                     Nous contacter <ArrowRight size={14} />

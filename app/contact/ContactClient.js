@@ -81,7 +81,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
         <span key={i} ref={el => { wordsRef.current[i] = el }}
           style={{ display: 'inline-block', marginRight: '0.28em', opacity: 0.08,
             filter: 'blur(9px)', willChange: 'opacity, filter',
-            color: green.has(word) ? '#f89203' : 'inherit' }}>
+            color: green.has(word) ? '#ea8025' : 'inherit' }}>
           {word}
         </span>
       ))}
@@ -180,7 +180,7 @@ function AnimatedBeamGrid({ containerRef, nodeIds, connections, animKey = 'beam'
       </defs>
       {paths.map((p, i) => (
         <g key={i}>
-          <path d={p.d} fill="none" stroke="rgba(248, 146, 3,0.08)" strokeWidth="1.5" />
+          <path d={p.d} fill="none" stroke="rgba(234, 128, 37,0.08)" strokeWidth="1.5" />
           <path d={p.d} fill="none" stroke={`url(#${animKey}-g-${i})`} strokeWidth="2.5"
             strokeLinecap="round" strokeDasharray="50 300"
             style={{ animation: `${kf} 2.8s linear infinite`, animationDelay: p.delay }} />
@@ -267,7 +267,7 @@ function HeroContact() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#f89203', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#ea8025', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -282,7 +282,7 @@ function HeroContact() {
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #f89203;
+          margin-left: .15em; font-size: .3em; color: #ea8025;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
@@ -290,7 +290,7 @@ function HeroContact() {
         }
         .hr-kicker {
           font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
-          color: #f89203; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          color: #ea8025; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -303,14 +303,14 @@ function HeroContact() {
 // ═══════════════════════════════════════════════════════════════
 const CHANNELS = [
   { id: 'cnt-n-0', icon: MessageCircle, label: 'WhatsApp', val: '+242 06 967 75 67', href: 'https://wa.me/242069677567', color: '#25d366', desc: 'Réponse en moins de 2h' },
-  { id: 'cnt-n-1', icon: Mail,          label: 'Email',    val: 'agrovetoservicescongo@gmail.com', href: 'mailto:agrovetoservicescongo@gmail.com', color: '#f89203', desc: 'Réponse sous 24h' },
-  { id: 'cnt-n-2', icon: Phone,         label: 'Téléphone',val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242069677567', color: '#f89203', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
-  { id: 'cnt-n-3', icon: MapPin,        label: 'Localisation', val: "Quartier Socoprise, Av. Nelson Mandela, Rue Bissoute, Pointe-Noire", href: null, color: '#f89203', desc: 'Déplacements possibles en exploitation' },
+  { id: 'cnt-n-1', icon: Mail,          label: 'Email',    val: 'agrovetoservicescongo@gmail.com', href: 'mailto:agrovetoservicescongo@gmail.com', color: '#ea8025', desc: 'Réponse sous 24h' },
+  { id: 'cnt-n-2', icon: Phone,         label: 'Téléphone',val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242069677567', color: '#ea8025', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
+  { id: 'cnt-n-3', icon: MapPin,        label: 'Localisation', val: "Quartier Socoprise, Av. Nelson Mandela, Rue Bissoute, Pointe-Noire", href: null, color: '#ea8025', desc: 'Déplacements possibles en exploitation' },
 ]
 
 function ChannelIcon({ Icon, color, T }) {
   return (
-    <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+    <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(234, 128, 37,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
       <Icon size={19} style={{ color }} />
     </div>
   )
@@ -332,8 +332,8 @@ function ContactChannels() {
 
   const beamConnections = [
     { id: 'cnt-n-0', color: '#25d366', cx: 30,  cy: 20  },
-    { id: 'cnt-n-1', color: '#f89203', cx: 30,  cy: -20 },
-    { id: 'cnt-n-2', color: '#f89203', cx: -30, cy: 20  },
+    { id: 'cnt-n-1', color: '#ea8025', cx: 30,  cy: -20 },
+    { id: 'cnt-n-2', color: '#ea8025', cx: -30, cy: 20  },
     { id: 'cnt-n-3', color: '#86efac', cx: -30, cy: -20 },
   ]
 
@@ -359,7 +359,7 @@ function ContactChannels() {
 
         {/* ── Beam constellation ── */}
         <BlurReveal delay={0.22} style={{ marginBottom: '2.5rem' }}>
-          <div ref={beamContainerRef} style={{ position: 'relative', padding: '2rem 1rem', borderRadius: 20, background: T.light ? 'rgba(248, 146, 3,.03)' : 'rgba(248, 146, 3,.025)', border: `1px solid ${T.border}`, overflow: 'visible' }}>
+          <div ref={beamContainerRef} style={{ position: 'relative', padding: '2rem 1rem', borderRadius: 20, background: T.light ? 'rgba(234, 128, 37,.03)' : 'rgba(234, 128, 37,.025)', border: `1px solid ${T.border}`, overflow: 'visible' }}>
             <AnimatedBeamGrid
               containerRef={beamContainerRef}
               nodeIds={{ center: 'cnt-center' }}
@@ -371,7 +371,7 @@ function ContactChannels() {
               {CHANNELS.slice(0, 2).map(({ id, icon: Icon, label, color }) => (
                 <div key={id} id={id}
                   style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.45rem', padding: '.85rem', borderRadius: 14, background: T.light ? 'rgba(255,255,255,.9)' : 'rgba(11,26,16,.8)', border: `1px solid ${T.border}`, backdropFilter: 'blur(8px)', justifySelf: 'center' }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(234, 128, 37,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Icon size={18} style={{ color }} />
                   </div>
                   <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 600, color: T.textMuted, whiteSpace: 'nowrap' }}>{label}</span>
@@ -379,14 +379,14 @@ function ContactChannels() {
               ))}
               {/* Center */}
               <div id="cnt-center"
-                style={{ width: 76, height: 76, borderRadius: '50%', background: 'rgba(248, 146, 3, 0.12)', border: '2px solid rgba(248, 146, 3,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', justifySelf: 'center', boxShadow: '0 0 40px rgba(248, 146, 3,.2)', flexShrink: 0 }}>
-                <Image src="/images/logo.webp" alt="Agro Véto Services" width={52} height={52} style={{ objectFit: 'contain', filter: 'drop-shadow(0 0 6px rgba(248, 146, 3,.5))' }} />
+                style={{ width: 76, height: 76, borderRadius: '50%', background: 'rgba(234, 128, 37, 0.12)', border: '2px solid rgba(234, 128, 37,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(12px)', justifySelf: 'center', boxShadow: '0 0 40px rgba(234, 128, 37,.2)', flexShrink: 0 }}>
+                <Image src="/images/logo.webp" alt="Agro Véto Services" width={52} height={52} style={{ objectFit: 'contain', filter: 'drop-shadow(0 0 6px rgba(234, 128, 37,.5))' }} />
               </div>
               {/* Right 2 */}
               {CHANNELS.slice(2).map(({ id, icon: Icon, label, color }) => (
                 <div key={id} id={id}
                   style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.45rem', padding: '.85rem', borderRadius: 14, background: T.light ? 'rgba(255,255,255,.9)' : 'rgba(11,26,16,.8)', border: `1px solid ${T.border}`, backdropFilter: 'blur(8px)', justifySelf: 'center' }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(234, 128, 37,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Icon size={18} style={{ color }} />
                   </div>
                   <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 600, color: T.textMuted, whiteSpace: 'nowrap' }}>{label}</span>
@@ -430,18 +430,18 @@ function ContactChannels() {
 
         {/* Social row */}
         <BlurReveal delay={0.5}>
-          <div style={{ marginTop: '1.5rem', padding: '1rem 1.3rem', borderRadius: 14, background: 'rgba(248, 146, 3,.04)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ marginTop: '1.5rem', padding: '1rem 1.3rem', borderRadius: 14, background: 'rgba(234, 128, 37,.04)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
             <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', fontWeight: 600, color: T.textMuted }}>Réseaux sociaux</span>
             <div style={{ display: 'flex', gap: '.6rem' }}>
               {[
                 { Icon: FacebookIcon, href: 'https://web.facebook.com/profile.php?id=61577494705852', label: 'Facebook', color: '#1877f2' },
                 { Icon: WhatsAppIcon, href: 'https://wa.me/242069677567', label: 'WhatsApp', color: '#25d366' },
-                { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#f89203' },
+                { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#ea8025' },
               ].map(({ Icon, href, label, color }) => (
                 <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
-                  style={{ width: 36, height: 36, borderRadius: 10, background: T.light ? 'rgba(0,0,0,.05)' : 'rgba(248, 146, 3,.06)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.textSub, transition: 'all .2s' }}
+                  style={{ width: 36, height: 36, borderRadius: 10, background: T.light ? 'rgba(0,0,0,.05)' : 'rgba(234, 128, 37,.06)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.textSub, transition: 'all .2s' }}
                   onMouseEnter={e => { e.currentTarget.style.background = color; e.currentTarget.style.borderColor = color; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = T.light ? 'rgba(0,0,0,.05)' : 'rgba(248, 146, 3,.06)'; e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.textSub; e.currentTarget.style.transform = 'none' }}>
+                  onMouseLeave={e => { e.currentTarget.style.background = T.light ? 'rgba(0,0,0,.05)' : 'rgba(234, 128, 37,.06)'; e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.textSub; e.currentTarget.style.transform = 'none' }}>
                   <Icon size={15} />
                 </a>
               ))}
@@ -477,9 +477,9 @@ function FlagBadge({ code, primary }) {
     AO: ['#c8102e','#000000','#fcd116'],
     FR: ['#002395','#fff','#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#f89203','#fff','#f89203']
+  const [c1, c2, c3] = colors[code] || ['#ea8025','#fff','#ea8025']
   return (
-    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(248, 146, 3,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(248, 146, 3,.2)' : 'none' }}>
+    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(234, 128, 37,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(234, 128, 37,.2)' : 'none' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />
@@ -503,7 +503,7 @@ function ProjectFormContact() {
     width: '100%',
     padding: '.75rem .95rem',
     borderRadius: 10,
-    background: T.light ? '#ffffff' : 'rgba(248, 146, 3,.04)',
+    background: T.light ? '#ffffff' : 'rgba(234, 128, 37,.04)',
     border: `1px solid ${T.light ? 'rgba(0,0,0,.15)' : T.border}`,
     color: T.light ? '#111111' : 'rgba(255,255,255,.88)',
     fontFamily: "'Poppins', sans-serif",
@@ -566,8 +566,8 @@ function ProjectFormContact() {
             <AnimatePresence mode="wait">
               {sent ? (
                 <motion.div key="success" initial={{ opacity: 0, scale: .92 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '3rem 1.5rem' }}>
-                  <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(248, 146, 3,.15)', border: '2px solid rgba(248, 146, 3,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
-                    <CheckCircle size={36} style={{ color: '#f89203' }} />
+                  <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'rgba(234, 128, 37,.15)', border: '2px solid rgba(234, 128, 37,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+                    <CheckCircle size={36} style={{ color: '#ea8025' }} />
                   </div>
                   <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 800, fontSize: '1.5rem', color: T.textMain, marginBottom: '.8rem' }}>
                     Demande transmise avec succès !
@@ -591,7 +591,7 @@ function ProjectFormContact() {
                         Nom complet *
                       </label>
                       <input style={inputStyle} placeholder="Ex: Jean Malonga" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
 
@@ -600,7 +600,7 @@ function ProjectFormContact() {
                         Entreprise / Organisation (facultatif)
                       </label>
                       <input style={inputStyle} placeholder="Ex: Ferme Agropastorale du Kouilou" value={form.organization} onChange={e => setForm(f => ({ ...f, organization: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                   </div>
@@ -611,7 +611,7 @@ function ProjectFormContact() {
                         Téléphone *
                       </label>
                       <input style={inputStyle} placeholder="+242 06 967 75 67" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
 
@@ -620,7 +620,7 @@ function ProjectFormContact() {
                         E-mail *
                       </label>
                       <input type="email" style={inputStyle} placeholder="vous@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                        onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                        onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                         onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                     </div>
                   </div>
@@ -630,7 +630,7 @@ function ProjectFormContact() {
                       Objet de la demande *
                     </label>
                     <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
-                      onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                      onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                       onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }}>
                       <option value="">Sélectionnez l'objet de votre demande...</option>
                       <option value="consultation-vet">Consultation vétérinaire</option>
@@ -650,7 +650,7 @@ function ProjectFormContact() {
                     <textarea rows={5} style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }}
                       placeholder="Précisez votre besoin, vos effectifs d'élevage ou votre projet..."
                       value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                      onFocus={e => { e.target.style.borderColor = '#f89203'; e.target.style.boxShadow = '0 0 0 3px rgba(248, 146, 3,.12)' }}
+                      onFocus={e => { e.target.style.borderColor = '#ea8025'; e.target.style.boxShadow = '0 0 0 3px rgba(234, 128, 37,.12)' }}
                       onBlur={e => { e.target.style.borderColor = T.border; e.target.style.boxShadow = 'none' }} />
                   </div>
 

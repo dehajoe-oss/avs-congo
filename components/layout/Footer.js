@@ -328,7 +328,7 @@ export default function Footer() {
       {/* ── Copyright bar ──────────────────────────────────────── */}
       <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '1.2rem 5% 1.6rem', fontSize: '.7rem', color: muted }}>
         © {year}{' '}
-        <TransitionLink href="/" style={{ color: 'rgba(248, 146, 3,.8)' }}><HoverSlideText text="AGRO VÉTO SERVICES CONGO S.A.R.L.U." /></TransitionLink>
+        <TransitionLink href="/" style={{ color: 'rgba(234, 128, 37,.8)' }}><HoverSlideText text="AGRO VÉTO SERVICES CONGO S.A.R.L.U." /></TransitionLink>
         {' '} · Pointe-Noire, République du Congo
       </div>
     </footer>

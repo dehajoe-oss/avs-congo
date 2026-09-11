@@ -20,7 +20,7 @@
   width: 100%; max-width: 980px; max-height: 88vh;
   display: grid; grid-template-columns: 1.25fr 1fr;
   background: #0c0a09;
-  border: 1px solid rgba(248, 146, 3, 0.22);
+  border: 1px solid rgba(234, 128, 37, 0.22);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
@@ -40,7 +40,7 @@
   color: #fff; cursor: pointer;
   transition: background .25s ease, transform .35s cubic-bezier(.22,1,.36,1), border-color .25s ease;
 }
-.pgm-close:hover { background: #f89203; border-color: #050505; color: #04140a; transform: rotate(90deg); }
+.pgm-close:hover { background: #ea8025; border-color: #050505; color: #04140a; transform: rotate(90deg); }
 
 .pgm-image {
   position: relative; background: #0a1710;
@@ -60,12 +60,12 @@
   color: #f2ede8;
 }
 .pgm-info::-webkit-scrollbar { width: 6px; }
-.pgm-info::-webkit-scrollbar-thumb { background: rgba(248, 146, 3,.3); border-radius: 3px; }
+.pgm-info::-webkit-scrollbar-thumb { background: rgba(234, 128, 37,.3); border-radius: 3px; }
 
 .pgm-eyebrow {
   font-family: 'Poppins', sans-serif;
   font-size: .62rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
-  color: #f89203;
+  color: #ea8025;
 }
 .pgm-name {
   font-family: 'Anton', sans-serif; text-transform: uppercase;
@@ -80,7 +80,7 @@
 .pgm-meta {
   display: flex; flex-wrap: wrap; gap: 1.1rem;
   padding-left: .9rem;
-  border-left: 2px solid rgba(248, 146, 3, 0.35);
+  border-left: 2px solid rgba(234, 128, 37, 0.35);
 }
 .pgm-meta-item { display: flex; flex-direction: column; gap: 2px; }
 .pgm-meta-item span:first-child {
@@ -96,8 +96,8 @@
   display: inline-flex; align-items: center; gap: .5rem;
   align-self: flex-start;
   font-family: 'Poppins', sans-serif; font-size: .72rem; font-weight: 700;
-  color: #f89203; background: rgba(248, 146, 3,.1);
-  border: 1px solid rgba(248, 146, 3,.3); border-radius: 999px;
+  color: #ea8025; background: rgba(234, 128, 37,.1);
+  border: 1px solid rgba(234, 128, 37,.3); border-radius: 999px;
   padding: .4rem .85rem;
 }
 
@@ -110,9 +110,9 @@
 .pgm-tag {
   font-family: 'Poppins', sans-serif; font-size: .68rem; font-weight: 600;
   color: rgba(255,255,255,.75);
-  border: 1px solid rgba(248, 146, 3,.28);
+  border: 1px solid rgba(234, 128, 37,.28);
   border-radius: 999px; padding: .35rem .8rem;
-  background: rgba(248, 146, 3,.04);
+  background: rgba(234, 128, 37,.04);
 }
 
 .pgm-actions {

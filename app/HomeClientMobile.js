@@ -164,8 +164,8 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
               overflow: 'hidden',
               zIndex: 10 - abs,
               cursor: 'pointer',
-              border: isActive ? '1.5px solid rgba(248, 146, 3,.6)' : '1px solid rgba(255,255,255,.1)',
-              boxShadow: isActive ? '0 0 0 3px rgba(248, 146, 3,.15), 0 8px 24px rgba(0,0,0,.6)' : '0 4px 14px rgba(0,0,0,.4)',
+              border: isActive ? '1.5px solid rgba(234, 128, 37,.6)' : '1px solid rgba(255,255,255,.1)',
+              boxShadow: isActive ? '0 0 0 3px rgba(234, 128, 37,.15), 0 8px 24px rgba(0,0,0,.6)' : '0 4px 14px rgba(0,0,0,.4)',
               transformStyle: 'preserve-3d',
             }}>
             <LazyImg
@@ -181,7 +181,7 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
             }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '.45rem .7rem' }}>
               <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 700, color: '#fff', letterSpacing: '-.01em', lineHeight: 1.2 }}>{p.title}</div>
-              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.55rem', color: 'rgba(248, 146, 3,.9)', marginTop: '.05rem' }}>{p.type}</div>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.55rem', color: 'rgba(234, 128, 37,.9)', marginTop: '.05rem' }}>{p.type}</div>
             </div>
             {draggable && isActive && p.url && (
               <a href={p.url} target="_blank" rel="noreferrer" onClick={e => e.stopPropagation()}
@@ -189,7 +189,7 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
                   position: 'absolute', top: '.5rem', right: '.5rem', zIndex: 21,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   width: 26, height: 26, borderRadius: '50%',
-                  background: 'rgba(248, 146, 3,.92)', color: '#04140a',
+                  background: 'rgba(234, 128, 37,.92)', color: '#04140a',
                 }}>
                 <ExternalLink size={12} />
               </a>
@@ -226,7 +226,7 @@ function HeroSloganCycle() {
           transition={{ duration: .4, ease: 'easeOut' }}
           style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.22rem, 5vw, 1.55rem)', lineHeight: 1.22, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '3px 3px 0px rgba(0,0,0,.55)', textAlign: 'center', margin: 0 }}>
           {before}
-          <span style={{ display: 'inline-block', background: '#f89203', color: '#050505', padding: '.08em .32em', border: '2px solid #050505', borderRadius: '.18em', boxShadow: '4px 4px 0px #fff, 0 0 20px rgba(248, 146, 3, 0.4)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
+          <span style={{ display: 'inline-block', background: '#ea8025', color: '#050505', padding: '.08em .32em', border: '2px solid #050505', borderRadius: '.18em', boxShadow: '4px 4px 0px #fff, 0 0 20px rgba(234, 128, 37, 0.4)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
             {highlight}
           </span>
         </motion.p>
@@ -353,7 +353,7 @@ function Hero() {
             <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.75rem', color: '#fff', lineHeight: 1.15 }}>
               Éleveurs & PME partenaires
             </div>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: '#f89203' }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: '#ea8025' }}>
               {PROJECTS.length}+ réalisations & intrants de pointe
             </div>
           </div>
@@ -364,22 +364,22 @@ function Hero() {
           style={{ display: 'flex', flexWrap: 'wrap', gap: '.7rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
           <motion.div
             initial={{ boxShadow: '4px 4px 0px #050505' }}
-            whileHover={{ scale: 1.03, boxShadow: '6px 8px 0px #050505, 0 0 20px rgba(251, 146, 60,.45)' }}
+            whileHover={{ scale: 1.03, boxShadow: '6px 8px 0px #050505, 0 0 20px rgba(234, 128, 37,.45)' }}
             whileTap={{ scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
             <Link href="/services"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#f89203', padding: '.72rem 1.35rem', borderRadius: 999, border: '2.5px solid #fff' }}>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#ea8025', padding: '.72rem 1.35rem', borderRadius: 999, border: '2.5px solid #fff' }}>
               <HoverSlideText text="Découvrir nos services" /> <ArrowRight size={14} />
             </Link>
           </motion.div>
           <motion.div
             initial={{ boxShadow: '4px 4px 0px #050505' }}
-            whileHover={{ scale: 1.03, boxShadow: '6px 8px 0px #050505, 0 0 20px rgba(251, 146, 60,.45)' }}
+            whileHover={{ scale: 1.03, boxShadow: '6px 8px 0px #050505, 0 0 20px rgba(234, 128, 37,.45)' }}
             whileTap={{ scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#fb923c', background: 'transparent', border: '2.5px solid #fb923c', borderRadius: 999, padding: 'calc(.72rem - 2.5px) calc(1.35rem - 2.5px)' }}>
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#ea8025', background: 'transparent', border: '2.5px solid #ea8025', borderRadius: 999, padding: 'calc(.72rem - 2.5px) calc(1.35rem - 2.5px)' }}>
               <HoverSlideText text="Nous contacter" />
             </Link>
           </motion.div>
@@ -404,7 +404,7 @@ function Hero() {
           { left: '92%', top: '52%', s: 3, op: .14, dur: 4.9, dy: 2.1 },
         ].map((p, i) => (
           <motion.div key={i}
-            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#f89203', left: p.left, top: p.top, opacity: p.op }}
+            style={{ position: 'absolute', width: p.s, height: p.s, borderRadius: '50%', background: '#ea8025', left: p.left, top: p.top, opacity: p.op }}
             animate={{ y: [0, -20, 0] }}
             transition={{ duration: p.dur, repeat: Infinity, ease: 'easeInOut', delay: p.dy }}
           />
@@ -567,7 +567,7 @@ function StatsSection() {
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: 'clamp(.65rem,2.5vw,.78rem)',
                 fontWeight: 700,
-                color: T.light ? '#c2410c' : '#f89203',
+                color: T.light ? '#c9680a' : '#ea8025',
                 letterSpacing: '.02em',
                 marginBottom: '.15rem',
               }}>
@@ -630,7 +630,7 @@ function Accordion({ items, defaultOpen = 0, renderHeader, renderBody }) {
               <motion.span
                 animate={{ rotate: isOpen ? 180 : 0 }}
                 transition={{ duration: .3, ease: [.22,1,.36,1] }}
-                style={{ flexShrink: 0, display: 'flex', color: isOpen ? '#f89203' : T.textMuted }}
+                style={{ flexShrink: 0, display: 'flex', color: isOpen ? '#ea8025' : T.textMuted }}
               >
                 <ChevronDown size={17} />
               </motion.span>
@@ -687,20 +687,20 @@ function ServicesPreview() {
                   <span style={{
                     width: ICON_BOX, height: ICON_BOX, flexShrink: 0, borderRadius: 10,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: isOpen ? 'rgba(248, 146, 3,.16)' : 'rgba(248, 146, 3,.08)',
-                    border: `1px solid ${isOpen ? 'rgba(248, 146, 3,.45)' : 'rgba(248, 146, 3,.2)'}`,
-                    color: '#f89203', transition: 'background .25s, border-color .25s',
+                    background: isOpen ? 'rgba(234, 128, 37,.16)' : 'rgba(234, 128, 37,.08)',
+                    border: `1px solid ${isOpen ? 'rgba(234, 128, 37,.45)' : 'rgba(234, 128, 37,.2)'}`,
+                    color: '#ea8025', transition: 'background .25s, border-color .25s',
                   }}>
                     <SIcon size={18} />
                   </span>
                   <div style={{ minWidth: 0 }}>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '.5rem' }}>
-                      <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.56rem', fontWeight: 700, color: 'rgba(248, 146, 3,.55)', letterSpacing: '.2em' }}>{s.n}</span>
+                      <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.56rem', fontWeight: 700, color: 'rgba(234, 128, 37,.55)', letterSpacing: '.2em' }}>{s.n}</span>
                     </div>
                     <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(.82rem,3.4vw,.92rem)', color: T.textMain, letterSpacing: '-.01em', lineHeight: 1.25 }}>
                       {s.title}
                     </div>
-                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 700, color: '#f89203', marginTop: '.15rem' }}>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 700, color: '#ea8025', marginTop: '.15rem' }}>
                       {s.price}
                     </div>
                   </div>
@@ -715,7 +715,7 @@ function ServicesPreview() {
                 <div style={{ marginBottom: '1.1rem' }}>
                   {s.bullets.map((b, bi) => (
                     <div key={bi} style={{ display: 'flex', gap: '.6rem', padding: '.55rem 0', borderTop: bi ? `1px solid ${T.border}` : 'none' }}>
-                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#f89203', marginTop: '.45rem', flexShrink: 0 }} />
+                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#ea8025', marginTop: '.45rem', flexShrink: 0 }} />
                       <div>
                         <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.78rem', color: T.textMain, lineHeight: 1.4 }}>{b.h}</div>
                         <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', color: T.textMuted, lineHeight: 1.5, marginTop: '.1rem' }}>{b.d}</div>
@@ -764,7 +764,7 @@ function Process() {
             renderHeader={(s, isOpen) => (
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '.4rem', minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '.7rem' }}>
-                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.66rem', fontWeight: 700, color: isOpen ? '#f89203' : 'rgba(248, 146, 3,.5)', letterSpacing: '.1em', flexShrink: 0 }}>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.66rem', fontWeight: 700, color: isOpen ? '#ea8025' : 'rgba(234, 128, 37,.5)', letterSpacing: '.1em', flexShrink: 0 }}>
                     {s.n}
                   </span>
                   <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(.84rem,3.4vw,.94rem)', color: T.textMain, letterSpacing: '-.01em', lineHeight: 1.3 }}>
@@ -773,9 +773,9 @@ function Process() {
                 </div>
                 <span style={{
                   alignSelf: 'flex-start', padding: '.2rem .6rem', borderRadius: 100,
-                  background: 'rgba(248, 146, 3,.1)', border: '1px solid rgba(248, 146, 3,.24)',
+                  background: 'rgba(234, 128, 37,.1)', border: '1px solid rgba(234, 128, 37,.24)',
                   fontFamily: "'Poppins', sans-serif", fontSize: '.56rem', fontWeight: 700,
-                  color: '#f89203', letterSpacing: '.03em', whiteSpace: 'nowrap',
+                  color: '#ea8025', letterSpacing: '.03em', whiteSpace: 'nowrap',
                 }}>
                   {s.badge}
                 </span>
@@ -865,21 +865,21 @@ function Testimonials() {
           <motion.div key={idx} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: .4 }}
             className="sku-card" style={{ padding: '2.5rem', textAlign: 'center' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.2rem' }}>
-              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#f89203" style={{ color: '#f89203' }} />)}
+              {[1,2,3,4,5].map(s => <Star key={s} size={18} fill="#ea8025" style={{ color: '#ea8025' }} />)}
             </div>
             <blockquote style={{ fontSize: '1.05rem', color: T.textMain, lineHeight: 1.75, fontStyle: 'italic', marginBottom: '2rem', maxWidth: 640, margin: '0 auto 2rem' }}>
               "{t.text}"
             </blockquote>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(248, 146, 3,.35)' }}>
+              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(234, 128, 37,.35)' }}>
                 <LazyImg src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(248, 146, 3,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontWeight: 700 }}>{t.name[0]}</div>} />
+                  placeholder={<div style={{ width: 52, height: 52, background: 'rgba(234, 128, 37,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ea8025', fontFamily: "'Poppins', sans-serif", fontWeight: 700 }}>{t.name[0]}</div>} />
               </div>
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '.9rem' }}>{t.name}</div>
                 <div style={{ fontSize: '.72rem', color: T.textMuted, fontFamily: "'Poppins', sans-serif" }}>{t.role}</div>
               </div>
-              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(248, 146, 3,.12)', border: '1px solid rgba(248, 146, 3,.25)', color: '#f89203', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
+              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(234, 128, 37,.12)', border: '1px solid rgba(234, 128, 37,.25)', color: '#ea8025', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -887,7 +887,7 @@ function Testimonials() {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '.5rem', marginTop: '1.5rem' }}>
           {TESTIMONIALS.map((_, i) => (
             <button key={i} onClick={() => setIdx(i)}
-              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#f89203' : 'rgba(248, 146, 3,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
+              style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#ea8025' : 'rgba(234, 128, 37,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
           ))}
         </div>
       </div>
@@ -897,6 +897,7 @@ function Testimonials() {
 
 // ── PARAGRAPHE mot-à-mot (statique, remplace WordRevealP desktop — pas de scroll-tilt sur mobile) ──
 function RevealParagraph({ text, greenWords = [], extraStyle = {}, inView }) {
+  const T = useTheme()
   const green = new Set(greenWords)
   return (
     <motion.p initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .1 }}
@@ -909,7 +910,7 @@ function RevealParagraph({ text, greenWords = [], extraStyle = {}, inView }) {
         ...extraStyle,
       }}>
       {text.split(' ').map((word, i) => (
-        <span key={i} style={{ color: green.has(word) ? '#f89203' : 'inherit' }}>
+        <span key={i} style={{ color: green.has(word) ? T.green : 'inherit' }}>
           {word}{' '}
         </span>
       ))}
@@ -979,16 +980,16 @@ function DomaineCard({ n, Icon, title, desc, tag, href, index, inView }) {
       style={{ background: T.card, padding: '1.5rem 1.4rem', position: 'relative' }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-        <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '2rem', fontWeight: 900, color: T.light ? 'rgba(248, 146, 3,.18)' : 'rgba(248, 146, 3,.15)', lineHeight: 1, letterSpacing: '-.05em' }}>
+        <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '2rem', fontWeight: 900, color: T.light ? 'rgba(234, 128, 37,.18)' : 'rgba(234, 128, 37,.15)', lineHeight: 1, letterSpacing: '-.05em' }}>
           {n}
         </span>
-        <span style={{ padding: '.2rem .65rem', borderRadius: 100, background: 'rgba(248, 146, 3,.08)', border: '1px solid rgba(248, 146, 3,.2)', fontFamily: "'Poppins', sans-serif", fontSize: '.56rem', fontWeight: 700, color: '#f89203', letterSpacing: '.06em', textTransform: 'uppercase' }}>
+        <span style={{ padding: '.2rem .65rem', borderRadius: 100, background: 'rgba(234, 128, 37,.08)', border: '1px solid rgba(234, 128, 37,.2)', fontFamily: "'Poppins', sans-serif", fontSize: '.56rem', fontWeight: 700, color: '#ea8025', letterSpacing: '.06em', textTransform: 'uppercase' }}>
           {tag}
         </span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '.7rem', marginBottom: '.8rem' }}>
-        <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(248, 146, 3,.1)', border: '1px solid rgba(248, 146, 3,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <Icon size={18} style={{ color: '#f89203' }} />
+        <div style={{ width: 38, height: 38, borderRadius: 10, background: 'rgba(234, 128, 37,.1)', border: '1px solid rgba(234, 128, 37,.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <Icon size={18} style={{ color: '#ea8025' }} />
         </div>
         <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(.86rem,3.6vw,.95rem)', fontWeight: 800, color: T.textMain, lineHeight: 1.25, letterSpacing: '-.02em', margin: 0 }}>
           {title}
@@ -998,7 +999,7 @@ function DomaineCard({ n, Icon, title, desc, tag, href, index, inView }) {
         {desc}
       </p>
       {href && (
-        <Link href={href} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 700, color: '#f89203', textDecoration: 'none' }}>
+        <Link href={href} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 700, color: '#ea8025', textDecoration: 'none' }}>
           En savoir plus <ArrowRight size={12} />
         </Link>
       )}
@@ -1072,7 +1073,7 @@ function PricingCallout() {
           {Object.entries(PRICING).map(([k, v]) => (
             <motion.button key={k} onClick={() => setTab(k)}
               whileTap={{ scale: 0.96 }}
-              style={{ padding: '.5rem 1.2rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? '#f89203' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.78rem', fontWeight: 900, cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
+              style={{ padding: '.5rem 1.2rem', borderRadius: 100, border: '1px solid', borderColor: tab === k ? T.green : T.border, background: tab === k ? '#ea8025' : 'transparent', color: tab === k ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontSize: '.78rem', fontWeight: 900, cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
               {v.label}
             </motion.button>
           ))}
@@ -1086,25 +1087,25 @@ function PricingCallout() {
               const wa = encodeURIComponent(`Bonjour Agro Véto Services, je suis intéressé par l'offre ${plan.badge} à ${plan.price}`)
               return (
                 <motion.div key={plan.badge}
-                  style={{ position: 'relative', borderRadius: 18, overflow: 'hidden', background: plan.popular ? 'rgba(248, 146, 3, 0.12)' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(248, 146, 3,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(248, 146, 3,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 1.8rem' : '1.8rem' }}>
+                  style={{ position: 'relative', borderRadius: 18, overflow: 'hidden', background: plan.popular ? 'rgba(234, 128, 37, 0.12)' : T.light ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,.04)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: plan.popular ? '1px solid rgba(234, 128, 37,.5)' : `1px solid ${T.light ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'}`, boxShadow: plan.popular ? '0 8px 40px rgba(234, 128, 37,.2),inset 0 1px 0 rgba(255,255,255,.15)' : T.light ? '0 4px 24px rgba(0,0,0,.08)' : '0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)', padding: plan.popular ? '0 0 1.8rem' : '1.8rem' }}>
                   {plan.popular && (
-                    <div style={{ padding: '.45rem', background: '#f89203', textAlign: 'center', fontFamily: "'Poppins', sans-serif", fontSize: '.58rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem' }}>
+                    <div style={{ padding: '.45rem', background: '#ea8025', textAlign: 'center', fontFamily: "'Poppins', sans-serif", fontSize: '.58rem', fontWeight: 700, color: '#fff', letterSpacing: '.1em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem' }}>
                       <Zap size={10} />LE PLUS POPULAIRE
                     </div>
                   )}
                   <div style={{ padding: plan.popular ? '1.6rem 1.8rem 0' : 0, position: 'relative' }}>
                     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'transparent', pointerEvents: 'none' }} />
-                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', fontWeight: 600, color: plan.popular ? '#f89203' : T.textMuted, textTransform: 'uppercase', marginBottom: '.5rem' }}>{plan.badge}</div>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', fontWeight: 600, color: plan.popular ? '#ea8025' : T.textMuted, textTransform: 'uppercase', marginBottom: '.5rem' }}>{plan.badge}</div>
                     <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.3rem,6vw,1.6rem)', fontWeight: 900, color: T.textMain, marginBottom: '.2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>{plan.price}</div>
                     <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: T.textMuted, marginBottom: '1.4rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                       <Timer size={11} style={{ color: T.green }} />{plan.del}
                     </div>
-                    <div style={{ height: 1, background: plan.popular ? 'rgba(248, 146, 3,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.2rem' }} />
+                    <div style={{ height: 1, background: plan.popular ? 'rgba(234, 128, 37,.25)' : 'rgba(255,255,255,.08)', marginBottom: '1.2rem' }} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '.6rem', marginBottom: '1.6rem' }}>
                       {plan.features.map(f => (
                         <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '.55rem', fontSize: '.8rem', color: T.textSub, lineHeight: 1.5 }}>
-                          <div style={{ width: 16, height: 16, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(248, 146, 3,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Check size={10} style={{ color: '#f89203' }} />
+                          <div style={{ width: 16, height: 16, borderRadius: '50%', flexShrink: 0, marginTop: 1, background: plan.popular ? 'rgba(234, 128, 37,.2)' : 'rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Check size={10} style={{ color: '#ea8025' }} />
                           </div>
                           {f}
                         </div>
@@ -1122,9 +1123,9 @@ function PricingCallout() {
         </AnimatePresence>
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .25 }}
-          style={{ marginTop: '2rem', padding: '1rem 1.2rem', borderRadius: 14, background: 'rgba(248, 146, 3,.04)', border: '1px solid rgba(248, 146, 3,.15)', display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '.8rem' }}>
+          style={{ marginTop: '2rem', padding: '1rem 1.2rem', borderRadius: 14, background: 'rgba(234, 128, 37,.04)', border: '1px solid rgba(234, 128, 37,.15)', display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '.8rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
-            <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#f89203', boxShadow: '0 0 8px rgba(248, 146, 3,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
+            <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#ea8025', boxShadow: '0 0 8px rgba(234, 128, 37,.8)', animation: 'dot-blink 1.4s ease-in-out infinite', flexShrink: 0 }} />
             <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', color: T.textSub, letterSpacing: '.03em', margin: 0 }}>
               <span style={{ color: '#fdba74', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
                 <Timer size={11} /> Arrivages réguliers de poussins
@@ -1161,9 +1162,9 @@ function FlagBadge({ code, primary }) {
     AO: ['#c8102e','#000000','#fcd116'],
     FR: ['#002395','#fff','#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#f89203','#fff','#f89203']
+  const [c1, c2, c3] = colors[code] || ['#ea8025','#fff','#ea8025']
   return (
-    <div style={{ width: 34, height: 34, borderRadius: 9, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(248, 146, 3,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(248, 146, 3,.2)' : 'none' }}>
+    <div style={{ width: 34, height: 34, borderRadius: 9, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(234, 128, 37,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(234, 128, 37,.2)' : 'none' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />
@@ -1196,10 +1197,10 @@ function GeoSectionHome() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', gap: '.7rem' }}>
           {GEO_PAYS.map(({ code, name, note, primary }, i) => (
             <motion.div key={name} initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * .06 }}
-              style={{ padding: '.85rem 1rem', borderRadius: 13, background: primary ? 'rgba(248, 146, 3, 0.08)' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(248, 146, 3,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.65rem' }}>
+              style={{ padding: '.85rem 1rem', borderRadius: 13, background: primary ? 'rgba(234, 128, 37, 0.08)' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(234, 128, 37,.3)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.65rem' }}>
               <FlagBadge code={code} primary={primary} />
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.78rem', color: primary ? '#f89203' : T.textMain }}>{name}</div>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.78rem', color: primary ? '#ea8025' : T.textMain }}>{name}</div>
                 <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: T.textMuted }}>{note}</div>
               </div>
             </motion.div>
@@ -1220,7 +1221,7 @@ function CompanyPresentationSection() {
     <section ref={ref} style={{ padding: 'clamp(3rem,8vw,5rem) 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden', borderBottom: `1px solid ${T.border}` }}>
       <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ marginBottom: '2rem', textAlign: 'center' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(248, 146, 3,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', fontWeight: 600, color: '#f89203', marginBottom: '.8rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(234, 128, 37,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', fontWeight: 600, color: '#ea8025', marginBottom: '.8rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
             Partenaire stratégique agropastoral & QHSE
           </div>
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', margin: '0 0 1rem' }}>
@@ -1232,7 +1233,7 @@ function CompanyPresentationSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.1 }}
             style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#f89203' }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(234, 128, 37,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#ea8025' }}>
               <Globe size={20} />
             </div>
             <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.05rem', fontWeight: 800, color: T.textMain, marginBottom: '.6rem' }}>
@@ -1245,7 +1246,7 @@ function CompanyPresentationSection() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2 }}
             style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#f89203' }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(234, 128, 37,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#ea8025' }}>
               <Award size={20} />
             </div>
             <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.05rem', fontWeight: 800, color: T.textMain, marginBottom: '.6rem' }}>
@@ -1258,7 +1259,7 @@ function CompanyPresentationSection() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.3 }}
             style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(248, 146, 3,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#f89203' }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(234, 128, 37,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#ea8025' }}>
               <ShieldCheck size={20} />
             </div>
             <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.05rem', fontWeight: 800, color: T.textMain, marginBottom: '.6rem' }}>
@@ -1286,7 +1287,7 @@ function ProjectFormHome() {
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
   const inputStyle = { width: '100%', padding: '.6rem 0', background: 'transparent', border: 'none', borderBottom: `1px solid ${T.border}`, borderRadius: 0, color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '1rem', outline: 'none', transition: 'border-color .25s', boxSizing: 'border-box', colorScheme: T.light ? 'light' : 'dark' }
-  const focusOn = e => { e.target.style.borderBottomColor = '#f89203' }
+  const focusOn = e => { e.target.style.borderBottomColor = '#ea8025' }
   const focusOff = e => { e.target.style.borderBottomColor = T.border }
 
   const handleSubmit = async () => {
@@ -1336,8 +1337,8 @@ function ProjectFormHome() {
           <AnimatePresence mode="wait">
             {sent ? (
               <motion.div key="success" initial={{ opacity: 0, scale: .9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '1.5rem .5rem' }}>
-                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 58, height: 58, borderRadius: '50%', border: '1.5px solid rgba(248, 146, 3,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.4rem' }}>
-                  <Check size={26} style={{ color: '#f89203' }} />
+                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} style={{ width: 58, height: 58, borderRadius: '50%', border: '1.5px solid rgba(234, 128, 37,.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.4rem' }}>
+                  <Check size={26} style={{ color: '#ea8025' }} />
                 </motion.div>
                 <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.1rem', color: T.textMain, marginBottom: '.7rem' }}>Message envoyé !</h3>
                 <p style={{ color: T.textSub, fontSize: '.85rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. On répond en moins de 24h directement par email — à très vite !</p>
@@ -1443,9 +1444,9 @@ function FAQSectionHome() {
                 <span style={{
                   width: 32, height: 32, flexShrink: 0, borderRadius: 9,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: isOpen ? 'rgba(248, 146, 3,.16)' : 'rgba(248, 146, 3,.08)',
-                  border: `1px solid ${isOpen ? 'rgba(248, 146, 3,.45)' : 'rgba(248, 146, 3,.2)'}`,
-                  color: '#f89203', transition: 'background .25s, border-color .25s',
+                  background: isOpen ? 'rgba(234, 128, 37,.16)' : 'rgba(234, 128, 37,.08)',
+                  border: `1px solid ${isOpen ? 'rgba(234, 128, 37,.45)' : 'rgba(234, 128, 37,.2)'}`,
+                  color: '#ea8025', transition: 'background .25s, border-color .25s',
                 }}>
                   <HelpCircle size={15} />
                 </span>
