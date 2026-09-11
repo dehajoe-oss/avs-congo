@@ -1246,12 +1246,19 @@ function CompanyPresentationSection() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2 }}
             style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(234, 128, 37,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', color: '#ea8025' }}>
-              <Award size={20} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.9rem', marginBottom: '1rem' }}>
+              <div style={{ width: 50, height: 50, borderRadius: '50%', overflow: 'hidden', border: '2px solid #ea8025', flexShrink: 0, boxShadow: '0 0 12px rgba(234, 128, 37,.3)' }}>
+                <img src="/images/dr_poutya.jpeg" alt="Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />
+              </div>
+              <div>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1rem', fontWeight: 800, color: T.textMain, margin: 0, lineHeight: 1.25 }}>
+                  Direction Scientifique & QHSE
+                </h3>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', color: '#ea8025', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.05em' }}>
+                  Dr POUTYA — Fondatrice & DG
+                </span>
+              </div>
             </div>
-            <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.05rem', fontWeight: 800, color: T.textMain, marginBottom: '.6rem' }}>
-              Direction Scientifique & QHSE
-            </h3>
             <p style={{ fontSize: '.84rem', color: T.textSub, lineHeight: 1.7, margin: 0 }}>
               Fondée et dirigée par le <strong>Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié</strong>, Docteure en Médecine Vétérinaire et Spécialiste en Management QHSE & Sécurité Sanitaire des Aliments, l'entreprise combine rigueur scientifique, expertise de terrain et maîtrise des standards internationaux pour offrir des solutions intégrées aux défis du monde rural, industriel et institutionnel.
             </p>

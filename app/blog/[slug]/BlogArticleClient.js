@@ -113,7 +113,7 @@ export default function BlogArticleClient({ slug }) {
               <img
                 src="/images/dr_poutya.jpeg"
                 alt="Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU"
-                style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover', border: `1px solid ${T.border}`, flexShrink: 0 }}
+                style={{ width: 48, height: 48, borderRadius: '50%', objectFit: 'cover', objectPosition: 'center 20%', border: '2px solid #ea8025', flexShrink: 0 }}
               />
               <div>
                 <div style={{ fontSize: '.85rem', fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif" }}>

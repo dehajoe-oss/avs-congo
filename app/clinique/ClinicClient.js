@@ -199,7 +199,7 @@ export default function ClinicClient() {
               <img 
                 src="/images/dr_poutya.jpeg" 
                 alt="Dr POUTYA" 
-                style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${T.green}` }}
+                style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', objectPosition: 'center 20%', border: `2px solid ${T.green}`, boxShadow: '0 0 12px rgba(234, 128, 37,.25)' }}
               />
               <div>
                 <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>

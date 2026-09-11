@@ -414,7 +414,7 @@ function FounderSection() {
                 <LazyImg
                   src={cld('/images/dr_poutya.jpeg')}
                   alt="Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
                   placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Users size={48} style={{ color: 'rgba(234, 128, 37,.3)' }} /></div>}
                 />
               </div>
@@ -529,7 +529,7 @@ function DirectorWordSection() {
                 </div>
               </div>
               <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid #ea8025' }}>
-                <LazyImg src={cld('/images/dr_poutya.jpeg')} alt="Signature Dr POUTYA" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <LazyImg src={cld('/images/dr_poutya.jpeg')} alt="Signature Dr POUTYA" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />
               </div>
             </div>
           </div>

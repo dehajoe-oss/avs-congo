@@ -1644,12 +1644,19 @@ function CompanyPresentationSection() {
 
           <BlurReveal delay={0.2} direction="up">
             <div className="sku-card" style={{ padding: '2.2rem', height: '100%', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
-              <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(234, 128, 37,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#ea8025' }}>
-                <Award size={22} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' }}>
+                <div style={{ width: 56, height: 56, borderRadius: '50%', overflow: 'hidden', border: '2px solid #ea8025', flexShrink: 0, boxShadow: '0 0 14px rgba(234, 128, 37,.3)' }}>
+                  <img src="/images/dr_poutya.jpeg" alt="Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />
+                </div>
+                <div>
+                  <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: T.textMain, margin: 0, lineHeight: 1.25 }}>
+                    Direction Scientifique & QHSE
+                  </h3>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: '#ea8025', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+                    Dr POUTYA — Fondatrice & DG
+                  </span>
+                </div>
               </div>
-              <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: T.textMain, marginBottom: '.8rem' }}>
-                Direction Scientifique & QHSE
-              </h3>
               <p style={{ fontSize: '.9rem', color: T.textSub, lineHeight: 1.75, margin: 0 }}>
                 Fondée et dirigée par le <strong>Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié</strong>, Docteure en Médecine Vétérinaire et Spécialiste en Management QHSE & Sécurité Sanitaire des Aliments, l'entreprise combine rigueur scientifique, expertise de terrain et maîtrise des standards internationaux pour offrir des solutions intégrées aux défis du monde rural, industriel et institutionnel.
               </p>

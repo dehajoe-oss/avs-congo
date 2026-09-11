@@ -94,7 +94,7 @@ function HeroAbout() {
         {/* Photo fondatrice */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .2 }}
           style={{ borderRadius: 18, overflow: 'hidden', border: '1px solid rgba(234, 128, 37,.25)', boxShadow: '0 8px 24px rgba(0,0,0,.3)', height: 280 }}>
-          <LazyImg src={cld('/images/dr_poutya.jpeg')} alt="Dr POUTYA - Directrice Générale AVS Congo" style={{ width:'100%',height:'100%',objectFit:'cover',objectPosition:'center 15%' }}
+          <LazyImg src={cld('/images/dr_poutya.jpeg')} alt="Dr POUTYA - Directrice Générale AVS Congo" style={{ width:'100%',height:'100%',objectFit:'cover',objectPosition:'center 20%' }}
             placeholder={<div style={{ height:'100%',background:'#1c1917',display:'flex',alignItems:'center',justifyContent:'center' }}><Users size={36} style={{color:'rgba(234, 128, 37,.3)'}}/></div>} />
         </motion.div>
       </div>
@@ -256,7 +256,7 @@ function FounderSection() {
             <LazyImg
               src={cld('/images/dr_poutya.jpeg')}
               alt="Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
               placeholder={<div style={{ width: 62, height: 62, background: 'rgba(234, 128, 37,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ea8025', fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.1rem' }}>E</div>}
             />
           </div>
