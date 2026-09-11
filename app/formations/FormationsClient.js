@@ -14,7 +14,11 @@ import {
   Clock, 
   Sparkles,
   MessageCircle,
-  Briefcase
+  Briefcase,
+  Target,
+  Layers,
+  Tractor,
+  BadgeCheck
 } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { PageCTA } from '@/components/ui/index'
@@ -253,13 +257,15 @@ export default function FormationsClient() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.2rem' }}>
               {[
-                { title: 'Diagnostic des Besoins', desc: 'Audit des équipes et identification précise des écarts de compétences et exigences normatives.', icon: '🎯' },
-                { title: 'Ingénierie Pédagogique', desc: 'Conception de référentiels, supports didactiques et cas pratiques contextualisés au Congo.', icon: '📐' },
-                { title: 'Immersion & Pratique', desc: 'Sessions en fermes-écoles, ateliers ou directement sur vos lignes de production et cheptels.', icon: '🚜' },
-                { title: 'Certification & Suivi', desc: 'Attestations certifiées AVS Congo et accompagnement post-formation sur la performance réelle.', icon: '📜' },
+                { title: 'Diagnostic des Besoins', desc: 'Audit des équipes et identification précise des écarts de compétences et exigences normatives.', Icon: Target },
+                { title: 'Ingénierie Pédagogique', desc: 'Conception de référentiels, supports didactiques et cas pratiques contextualisés au Congo.', Icon: Layers },
+                { title: 'Immersion & Pratique', desc: 'Sessions en fermes-écoles, ateliers ou directement sur vos lignes de production et cheptels.', Icon: Tractor },
+                { title: 'Certification & Suivi', desc: 'Attestations certifiées AVS Congo et accompagnement post-formation sur la performance réelle.', Icon: BadgeCheck },
               ].map((step, i) => (
                 <div key={i} style={{ padding: '1.5rem', borderRadius: 16, background: T.light ? '#ffffff' : '#122415', border: `1px solid ${T.border}` }}>
-                  <div style={{ fontSize: '1.8rem', marginBottom: '.6rem' }}>{step.icon}</div>
+                  <div style={{ width: 44, height: 44, borderRadius: 12, background: T.light ? 'rgba(234, 88, 12,.1)' : 'rgba(248, 146, 3,.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.green, marginBottom: '1rem' }}>
+                    <step.Icon size={22} />
+                  </div>
                   <h4 style={{ margin: '0 0 .4rem', fontSize: '.95rem', fontWeight: 800, fontFamily: "'Poppins', sans-serif", color: T.textMain }}>{step.title}</h4>
                   <p style={{ margin: 0, fontSize: '.78rem', color: T.textMuted, lineHeight: 1.5 }}>{step.desc}</p>
                 </div>
