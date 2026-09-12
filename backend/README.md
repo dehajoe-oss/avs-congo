@@ -101,6 +101,17 @@ backend/
 - `GET /api/invoices/:id` : Détail d'une facture *(Admin / Staff)*.
 - `PATCH /api/invoices/:id/status` : Mettre à jour le statut de paiement *(Admin / Staff)*.
 
+### 💳 Paiements (KKiaPay & Mobile Money Congo)
+- `POST /api/payments/kkiapay/verify` : Valider une transaction KKiaPay et passer la commande en `PAID`.
+- `POST /api/payments/kkiapay/webhook` : Webhook de notification instantanée KKiaPay.
+- `POST /api/payments/momo/initiate` : Initier une demande de paiement Mobile Money (Airtel Money ou MTN MoMo Congo).
+
+### 📬 Contact & Devis Express
+- `POST /api/contact` : Soumission du formulaire de contact avec calcul automatique du score de prospect.
+
+### 🖼️ Médias & Téléversement
+- `POST /api/uploads/image` : Téléversement et optimisation d'image sur Cloudinary (ou fallback local).
+
 ### 📊 Statistiques & Dashboard
 - `GET /api/stats/dashboard` : KPIs consolidés (ventes, commandes, leads qualifiés, visites) *(Admin / Staff)*.
 - `POST /api/stats/track` : Enregistrement des pages vues depuis le frontend.

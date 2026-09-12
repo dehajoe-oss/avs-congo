@@ -6,6 +6,11 @@
     "dev": "NODE_OPTIONS=\"--dns-result-order=ipv4first\" next dev -p 3003",
     "build": "NODE_OPTIONS=\"--dns-result-order=ipv4first\" next build",
     "start": "NODE_OPTIONS=\"--dns-result-order=ipv4first\" next start",
+    "backend:dev": "npm --prefix backend run dev",
+    "backend:start": "npm --prefix backend start",
+    "backend:seed": "npm --prefix backend run prisma:seed",
+    "backend:push": "npx --prefix backend prisma db push",
+    "backend:studio": "npm --prefix backend run prisma:studio",
     "postinstall": "prisma generate",
     "upload-images": "node scripts/upload-cloudinary.js"
   },

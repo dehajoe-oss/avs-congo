@@ -13,6 +13,9 @@ const healthRoutes = require('./routes/healthRoutes')
 const authRoutes = require('./routes/authRoutes')
 const productRoutes = require('./routes/productRoutes')
 const orderRoutes = require('./routes/orderRoutes')
+const paymentRoutes = require('./routes/paymentRoutes')
+const contactRoutes = require('./routes/contactRoutes')
+const uploadRoutes = require('./routes/uploadRoutes')
 const leadRoutes = require('./routes/leadRoutes')
 const appointmentRoutes = require('./routes/appointmentRoutes')
 const formationRoutes = require('./routes/formationRoutes')
@@ -31,6 +34,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:3002',
+  'http://localhost:3003',
   'https://agrovetoservices.cg',
   'https://www.agrovetoservices.cg',
 ].filter(Boolean)
@@ -77,6 +81,9 @@ app.use('/api/health', healthRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/payments', paymentRoutes)
+app.use('/api/contact', contactRoutes)
+app.use('/api/uploads', uploadRoutes)
 app.use('/api/leads', leadRoutes)
 app.use('/api/appointments', appointmentRoutes)
 app.use('/api/formations', formationRoutes)
