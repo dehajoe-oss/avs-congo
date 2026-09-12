@@ -53,7 +53,8 @@
   gap: 9px;
 }
 
-/* ── Bouton Panier du Header ── */
+/* ── Boutons Thème & Panier du Header ── */
+.sm-header-theme-btn,
 .sm-header-cart-btn {
   position: relative;
   width: 38px;
@@ -70,10 +71,12 @@
   transition: background 0.2s, border-color 0.2s, transform 0.15s;
 }
 
+.sm-header-theme-btn:active,
 .sm-header-cart-btn:active {
   transform: scale(0.94);
 }
 
+.light-mode .sm-header-theme-btn,
 .light-mode .sm-header-cart-btn {
   background: rgba(0, 0, 0, 0.04);
   border-color: rgba(0, 0, 0, 0.12);

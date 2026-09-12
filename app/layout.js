@@ -148,7 +148,7 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/manifest.json" />
         <SitewideStructuredData organization={ORG_JSON_LD} />
       </head>
-      <body className={poppins.className}>
+      <body className={`${poppins.className} light-mode`}>
         <ThemeProvider>
           <PageTransitionProvider>
             <BlobTransitionProvider>
