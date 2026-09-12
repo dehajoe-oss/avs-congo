@@ -28,6 +28,7 @@ const poppins = Poppins({
   style: ['normal'],
   display: 'swap',
   variable: '--font-poppins',
+  preload: false,
 })
 
 const SITE_URL = 'https://agrovetoservices.cg'

@@ -24,7 +24,6 @@
 .aka-pt-block {
   background: #c47b2d;
   margin: -0.5px; /* évite les liserés de 1px entre cellules au rendu */
-  will-change: clip-path, transform;
   transform: translateZ(0);
   min-width: 100%;
   min-height: 100%;

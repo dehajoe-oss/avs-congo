@@ -45,7 +45,8 @@ html { scroll-behavior: smooth; overscroll-behavior-y: none; }
   display: inline-flex;
   white-space: nowrap;
 }
-.hst-char { display: inline-block; will-change: transform, opacity; }
+.hst-char { display: inline-block; }
+.hst-root:hover .hst-char { will-change: transform, opacity; }
 .hst-b { pointer-events: none; }
 
 body, html, input, button, textarea, select {

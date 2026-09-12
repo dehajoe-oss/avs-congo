@@ -1,4 +1,4 @@
-﻿/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    TrustStacksMarquee.css
    Remplace le MarqueeStrip après ArchiveTunnelSection /
    ProjectsSection. Deux bandes "sticker" tournées en 2D
@@ -41,7 +41,7 @@
   overflow: hidden;
   padding: 1.05rem 0;
 }
-.ts-band-track { display: flex; width: max-content; gap: 2.6rem; will-change: transform; }
+.ts-band-track { display: flex; width: max-content; gap: 2.6rem; }
 .ts-band-set { display: flex; align-items: center; gap: 2.6rem; flex-shrink: 0; }
 
 .ts-band--stack {

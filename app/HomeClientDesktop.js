@@ -1209,7 +1209,6 @@ function ArchiveTunnelSection() {
           }
           .projects-marquee-track {
             animation: projectsMarquee 85s linear infinite;
-            will-change: transform;
           }
         `}</style>
         <div className="projects-marquee-track" style={{ display: 'flex', gap: '1.5rem', width: 'max-content', paddingBottom: '1rem' }}>

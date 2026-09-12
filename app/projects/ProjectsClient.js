@@ -307,7 +307,7 @@ function StackedRealisations() {
         }
         .fcx-track {
           display: flex; height: 100vh; flex-shrink: 0;
-          will-change: transform; list-style: none; margin: 0; padding: 0;
+          list-style: none; margin: 0; padding: 0;
           transition: transform 60ms linear;
         }
         .fcx-slide {
@@ -325,7 +325,7 @@ function StackedRealisations() {
           position: absolute; bottom: 28px; left: 8vw; right: 8vw; height: 2px;
           z-index: 5; border-radius: 2px; overflow: hidden;
         }
-        .fcx-progress-fill { height: 100%; will-change: width; }
+        .fcx-progress-fill { height: 100%; }
 
         .fc-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 6vw; align-items: center; }
         .fc-mockups { position: relative; }

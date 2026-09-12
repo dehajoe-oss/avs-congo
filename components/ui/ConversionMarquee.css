@@ -1,4 +1,4 @@
-﻿/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    ConversionMarquee.css
    Remplace le MarqueeStrip après WhyUs / Process.
    Bande d'urgence qui défile + CTA fixe et pulsant
@@ -43,7 +43,6 @@
   gap: 3rem;
   padding: 1.35rem 0;
   animation: cctaScroll 22s linear infinite;
-  will-change: transform;
 }
 .ccta-track-wrap:hover .ccta-track { animation-play-state: paused; }
 
