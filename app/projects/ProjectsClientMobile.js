@@ -4,7 +4,6 @@ import {
   motion,
   useScroll,
   useTransform,
-  useMotionTemplate,
   AnimatePresence,
   useInView,
 } from 'framer-motion'
@@ -83,15 +82,14 @@ function HeroRealisations() {
    utiliser les hooks useTransform)
 ──────────────────────────────────────────────── */
 function StackedCard({ project, index, total, scrollYProgress, T }) {
+  const isLast   = index === total - 1
   const segStart = index / total
   const segEnd   = Math.min((index + 1) / total, 1)
 
-  // La carte s'aplatit / recule quand la suivante arrive
-  const scale   = useTransform(scrollYProgress, [segStart, segEnd], [1, 0.86])
-  const y       = useTransform(scrollYProgress, [segStart, segEnd], [0, -60])
-  const opacity = useTransform(scrollYProgress, [segStart + (segEnd - segStart) * .65, segEnd], [1, 0.4])
-  const blurVal = useTransform(scrollYProgress, [segStart + (segEnd - segStart) * .5, segEnd], [0, 5])
-  const filter  = useMotionTemplate`blur(${blurVal}px)`
+  // La carte recule très légèrement quand la suivante arrive (la dernière reste à 100% stable, nette et visible)
+  const scale   = useTransform(scrollYProgress, [segStart, segEnd], isLast ? [1, 1] : [1, 0.94])
+  const y       = useTransform(scrollYProgress, [segStart, segEnd], isLast ? [0, 0] : [0, -35])
+  const opacity = useTransform(scrollYProgress, [segStart + (segEnd - segStart) * .7, segEnd], isLast ? [1, 1] : [1, 0.85])
 
   // La carte entre depuis le bas (pour les cards 1+)
   const enterY  = useTransform(
@@ -119,7 +117,6 @@ function StackedCard({ project, index, total, scrollYProgress, T }) {
           scale,
           y: index === 0 ? y : enterY,
           opacity,
-          filter,
           width: '100%',
           maxWidth: 780,
           transformOrigin: 'top center',
