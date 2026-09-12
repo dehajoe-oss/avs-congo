@@ -91,28 +91,77 @@ export default function HeroBackgroundSlider({
             key={slide.id || idx}
             style={{
               position: 'absolute',
-              inset: '-4%',
-              width: '108%',
-              height: '108%',
+              inset: 0,
+              width: '100%',
+              height: '100%',
               opacity: isActive ? 1 : 0,
-              transform: isActive ? 'scale(1.03)' : 'scale(1.08)',
-              transition: 'opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), transform 6.5s ease-out',
+              transition: 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
               pointerEvents: 'none',
               zIndex: isActive ? 2 : 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
             }}
           >
-            <img
-              src={slide.url}
-              alt={slide.title || ''}
+            {/* 1. Couche d'ambiance en arrière-plan : flou doux pour habiller l'écran avec les couleurs du slide */}
+            <div
               style={{
+                position: 'absolute',
+                inset: '-10%',
+                width: '120%',
+                height: '120%',
+                overflow: 'hidden',
+                pointerEvents: 'none',
+              }}
+            >
+              <img
+                src={slide.url}
+                alt=""
+                aria-hidden="true"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center center',
+                  filter: 'blur(40px) brightness(0.32) saturate(1.25)',
+                  transform: 'scale(1.14)',
+                }}
+              />
+            </div>
+
+            {/* 2. Image principale nette : 100% visible en entier, AUCUN rognage, parfaitement centrée */}
+            <div
+              style={{
+                position: 'relative',
                 width: '100%',
                 height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center 42%',
-                display: 'block',
-                filter: 'brightness(0.92) contrast(1.05)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 'clamp(60px, 9vh, 90px) 4% clamp(90px, 13vh, 130px)',
+                boxSizing: 'border-box',
+                zIndex: 2,
               }}
-            />
+            >
+              <img
+                src={slide.url}
+                alt={slide.title || ''}
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  width: 'auto',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  objectPosition: 'center center',
+                  display: 'block',
+                  filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.75)) brightness(0.96) contrast(1.04)',
+                  borderRadius: '14px',
+                  transition: 'transform 6.5s ease-out',
+                  transform: isActive ? 'scale(1.02)' : 'scale(1)',
+                }}
+              />
+            </div>
           </div>
         )
       })}
@@ -123,7 +172,7 @@ export default function HeroBackgroundSlider({
           position: 'absolute',
           inset: 0,
           zIndex: 3,
-          background: `radial-gradient(ellipse at center, rgba(12, 10, 9, ${overlayOpacity - 0.12}) 0%, rgba(12, 10, 9, ${overlayOpacity + 0.18}) 100%)`,
+          background: `radial-gradient(ellipse at center, rgba(12, 10, 9, ${overlayOpacity - 0.15}) 0%, rgba(12, 10, 9, ${overlayOpacity + 0.12}) 100%)`,
           pointerEvents: 'none',
         }}
       />
@@ -132,7 +181,7 @@ export default function HeroBackgroundSlider({
           position: 'absolute',
           inset: 0,
           zIndex: 4,
-          background: 'linear-gradient(180deg, rgba(8, 7, 6, 0.7) 0%, rgba(12, 10, 9, 0.35) 45%, rgba(12, 10, 9, 0.82) 100%)',
+          background: 'linear-gradient(180deg, rgba(8, 7, 6, 0.65) 0%, rgba(12, 10, 9, 0.25) 45%, rgba(12, 10, 9, 0.78) 100%)',
           pointerEvents: 'none',
         }}
       />

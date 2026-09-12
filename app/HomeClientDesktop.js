@@ -259,9 +259,9 @@ function Hero() {
     <section id="home-hero" ref={wrapRef} style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, zIndex: 1, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingBottom: 'clamp(70px, 9vh, 100px)' }}>
 
       <div ref={bgScrollRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
-        <div ref={layerBgRef} suppressHydrationWarning style={{ position: 'absolute', inset: '-8%', width: '116%', height: '116%', transition: 'transform .1s ease-out' }}>
-          <HeroBackgroundSlider overlayOpacity={0.52} indicatorsBottom="148px" />
-          <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .13, pointerEvents: 'none', zIndex: 5 }} />
+        <div ref={layerBgRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', transition: 'transform .1s ease-out' }}>
+          <HeroBackgroundSlider overlayOpacity={0.42} indicatorsBottom="148px" />
+          <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .09, pointerEvents: 'none', zIndex: 5 }} />
         </div>
       </div>
 
