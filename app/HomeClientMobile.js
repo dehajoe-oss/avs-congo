@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { motion, useInView, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useReducedMotion } from '@/lib/useReducedMotion'
 import Link from 'next/link'
 import { cld } from '@/lib/cloudinary'
 import {
