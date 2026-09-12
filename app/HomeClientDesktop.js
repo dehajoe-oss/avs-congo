@@ -22,7 +22,6 @@ import TrustStacksMarquee from '@/components/ui/TrustStacksMarquee'
 import ConversionMarquee from '@/components/ui/ConversionMarquee'
 import { SERVICES, PROJECTS, TESTIMONIALS, FAQ_ITEMS, PRICING } from '@/lib/data'
 import { AvatarGroup, Avatar, AvatarImage, AvatarFallback, AvatarGroupTooltip, AvatarGroupTooltipArrow } from '@/components/ui/AvatarGroup'
-import HeroBackgroundSlider from '@/components/ui/HeroBackgroundSlider'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -259,8 +258,14 @@ function Hero() {
     <section id="home-hero" ref={wrapRef} style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, zIndex: 1, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingBottom: 'clamp(70px, 9vh, 100px)' }}>
 
       <div ref={bgScrollRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
-        <div ref={layerBgRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', transition: 'transform .1s ease-out' }}>
-          <HeroBackgroundSlider overlayOpacity={0.42} indicatorsBottom="148px" />
+        <div ref={layerBgRef} suppressHydrationWarning style={{ position: 'absolute', inset: '-4%', width: '108%', height: '108%', transition: 'transform .1s ease-out' }}>
+          <img
+            src="https://res.cloudinary.com/dzxesa3wi/image/upload/f_auto,q_auto/v1789211616/Farmer_Plowing_Background_Paddy_Green_Poster_Background_Image_And_Wallpaper_for_Free_Download_ores7l.jpg"
+            alt="Agro Véto Services Congo"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(12, 10, 9, 0.42) 0%, rgba(12, 10, 9, 0.72) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8, 7, 6, 0.68) 0%, rgba(12, 10, 9, 0.25) 45%, rgba(12, 10, 9, 0.85) 100%)' }} />
           <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .09, pointerEvents: 'none', zIndex: 5 }} />
         </div>
       </div>

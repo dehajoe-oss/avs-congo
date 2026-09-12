@@ -17,7 +17,6 @@ import TrustStacksMarquee from '@/components/ui/TrustStacksMarquee'
 import ConversionMarquee from '@/components/ui/ConversionMarquee'
 import { PROJECTS, TESTIMONIALS, FAQ_ITEMS, PRICING } from '@/lib/data'
 import { AvatarGroup, Avatar, AvatarImage, AvatarFallback, AvatarGroupTooltip, AvatarGroupTooltipArrow } from '@/components/ui/AvatarGroup'
-import HeroBackgroundSlider from '@/components/ui/HeroBackgroundSlider'
 
 // ── TILT 3D CARD — parallaxe souris native ──────────────────
 function TiltCard({ children, style = {}, className = '', intensity = 14, perspective = 900 }) {
@@ -303,8 +302,14 @@ function Hero() {
     <section id="home-hero" ref={wrapRef} style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, zIndex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingTop: '68px', paddingBottom: '60px', boxSizing: 'border-box' }}>
 
       <div ref={bgScrollRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
-        <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
-          <HeroBackgroundSlider overlayOpacity={0.42} indicatorsBottom="76px" />
+        <div style={{ position: 'absolute', inset: '-4%', width: '108%', height: '108%' }}>
+          <img
+            src="https://res.cloudinary.com/dzxesa3wi/image/upload/f_auto,q_auto/v1789211616/Farmer_Plowing_Background_Paddy_Green_Poster_Background_Image_And_Wallpaper_for_Free_Download_ores7l.jpg"
+            alt="Agro Véto Services Congo"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(12, 10, 9, 0.42) 0%, rgba(12, 10, 9, 0.72) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8, 7, 6, 0.68) 0%, rgba(12, 10, 9, 0.25) 45%, rgba(12, 10, 9, 0.85) 100%)' }} />
           <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .09, pointerEvents: 'none', zIndex: 5 }} />
         </div>
       </div>
