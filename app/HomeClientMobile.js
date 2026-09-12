@@ -17,6 +17,7 @@ import TrustStacksMarquee from '@/components/ui/TrustStacksMarquee'
 import ConversionMarquee from '@/components/ui/ConversionMarquee'
 import { PROJECTS, TESTIMONIALS, FAQ_ITEMS, PRICING } from '@/lib/data'
 import { AvatarGroup, Avatar, AvatarImage, AvatarFallback, AvatarGroupTooltip, AvatarGroupTooltipArrow } from '@/components/ui/AvatarGroup'
+import HeroBackgroundSlider from '@/components/ui/HeroBackgroundSlider'
 
 // ── TILT 3D CARD — parallaxe souris native ──────────────────
 function TiltCard({ children, style = {}, className = '', intensity = 14, perspective = 900 }) {
@@ -303,9 +304,8 @@ function Hero() {
 
       <div ref={bgScrollRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
         <div style={{ position: 'absolute', inset: '-8%', width: '116%', height: '116%' }}>
-          <img src={cld('/images/hero-bg.webp')} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'blur(2px)', transform: 'scale(1.02)' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.52)' }} />
-          <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .13, pointerEvents: 'none' }} />
+          <HeroBackgroundSlider overlayOpacity={0.55} indicatorsBottom="76px" />
+          <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .13, pointerEvents: 'none', zIndex: 5 }} />
         </div>
       </div>
 
