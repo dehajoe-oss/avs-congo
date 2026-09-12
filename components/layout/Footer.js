@@ -297,12 +297,12 @@ export default function Footer() {
       {/* ── Copyright bar ──────────────────────────────────────── */}
       <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '1.2rem 5% 1.6rem', fontSize: '.7rem', color: muted }}>
         © {year}{' '}
-        <TransitionLink href="/" style={{ color: 'rgba(196, 123, 45,.8)' }}><HoverSlideText text="AGRO VÉTO SERVICES CONGO S.A.R.L.U." /></TransitionLink>
+        <TransitionLink href="/" style={{ color: 'rgba(180, 112, 39,.8)' }}><HoverSlideText text="AGRO VÉTO SERVICES CONGO S.A.R.L.U." /></TransitionLink>
         {' '} · Pointe-Noire, République du Congo
         <br />
         <span style={{ fontSize: '.68rem' }}>
           Développé par{' '}
-          <a href="https://johaodev.vercel.app" target="_blank" rel="noopener noreferrer" style={{ color: '#c47b2d', fontWeight: 700, textDecoration: 'none' }}>
+          <a href="https://johaodev.vercel.app" target="_blank" rel="noopener noreferrer" style={{ color: '#b47027', fontWeight: 700, textDecoration: 'none' }}>
             Johao
           </a>
         </span>

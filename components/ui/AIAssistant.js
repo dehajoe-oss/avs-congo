@@ -167,14 +167,14 @@ function PortfolioButton({ url }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: '#c47b2d',
+        background: '#b47027',
         color: '#fff', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
-        boxShadow: '0 2px 8px rgba(196, 123, 45,.3)',
+        boxShadow: '0 2px 8px rgba(180, 112, 39,.3)',
         transition: 'transform .15s, box-shadow .15s',
       }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(196, 123, 45,.4)' }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(196, 123, 45,.3)' }}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(180, 112, 39,.4)' }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(180, 112, 39,.3)' }}
     >
       <Globe size={15} />
       Prendre RDV en Clinique
@@ -271,13 +271,13 @@ function LinkButton({ url, label }) {
       style={{
         display: 'inline-flex', alignItems: 'center', gap: '.5rem',
         padding: '.55rem 1rem', borderRadius: 10,
-        background: 'rgba(196, 123, 45,.15)', border: '1px solid rgba(196, 123, 45,.3)',
-        color: '#c47b2d', fontSize: '.8rem', fontWeight: 600,
+        background: 'rgba(180, 112, 39,.15)', border: '1px solid rgba(180, 112, 39,.3)',
+        color: '#b47027', fontSize: '.8rem', fontWeight: 600,
         textDecoration: 'none', margin: '.3rem 0',
         transition: 'transform .15s, background .15s',
       }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.background = 'rgba(196, 123, 45,.25)' }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = 'rgba(196, 123, 45,.15)' }}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.background = 'rgba(180, 112, 39,.25)' }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = 'rgba(180, 112, 39,.15)' }}
     >
       <ExternalLink size={15} />
       {label}
@@ -507,7 +507,7 @@ export default function AIAssistant() {
           <div style={{
             padding: '1rem 4.2rem 1rem 1.2rem', display: 'flex', alignItems: 'center', gap: '.7rem',
             borderBottom: `2px solid ${T.green}`,
-            background: T.light ? 'rgba(196, 123, 45,.07)' : 'rgba(196, 123, 45,.06)',
+            background: T.light ? 'rgba(180, 112, 39,.07)' : 'rgba(180, 112, 39,.06)',
             flexShrink: 0,
           }}>
             <div style={{
@@ -587,7 +587,7 @@ export default function AIAssistant() {
               aria-label="Envoyer"
               style={{
                 width: 44, height: 44, minWidth: 44, borderRadius: 6, flexShrink: 0,
-                background: streaming || !input.trim() ? (T.light ? 'rgba(196, 123, 45,.2)' : '#1a3320') : T.green,
+                background: streaming || !input.trim() ? (T.light ? 'rgba(180, 112, 39,.2)' : '#1a3320') : T.green,
                 border: '2px solid #050505',
                 boxShadow: '3px 3px 0px #050505',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',

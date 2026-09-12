@@ -147,7 +147,7 @@ export default function StaggeredMenu({ items = [], isActive: externalIsActive, 
             onClick={closeMenu}
           >
             {currentUser ? (
-              <UserCheck size={16} style={{ color: '#c47b2d' }} />
+              <UserCheck size={16} style={{ color: '#b47027' }} />
             ) : (
               <User size={16} />
             )}

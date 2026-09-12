@@ -74,8 +74,8 @@ export default function CookieConsent() {
           className="cookie-consent-card"
         >
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '.7rem', marginBottom: '.7rem' }}>
-            <div style={{ width: 34, height: 34, borderRadius: 10, background: 'rgba(196, 123, 45,.16)', border: '2px solid rgba(196, 123, 45,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <Cookie size={18} color="#c47b2d" />
+            <div style={{ width: 34, height: 34, borderRadius: 10, background: 'rgba(180, 112, 39,.16)', border: '2px solid rgba(180, 112, 39,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Cookie size={18} color="#b47027" />
             </div>
             <h2 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.15rem', color: cardText, letterSpacing: '-.01em', paddingTop: '.2rem' }}>
               On peut parler cookies deux secondes ?
@@ -181,7 +181,7 @@ function PrefRow({ title, desc, value, onChange, locked = false, cardText, cardS
         style={{
           flexShrink: 0, marginTop: 2,
           width: 36, height: 20, borderRadius: 100,
-          background: (locked || value) ? '#c47b2d' : 'rgba(255,255,255,.15)',
+          background: (locked || value) ? '#b47027' : 'rgba(255,255,255,.15)',
           border: 'none', position: 'relative',
           cursor: locked ? 'default' : 'pointer',
           opacity: locked ? .6 : 1,

@@ -72,7 +72,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
         <span key={i} ref={el => { wordsRef.current[i] = el }}
           style={{ display: 'inline-block', marginRight: '0.28em', opacity: 0.08,
             filter: 'blur(9px)',
-            color: green.has(word) ? '#c47b2d' : 'inherit' }}>
+            color: green.has(word) ? '#b47027' : 'inherit' }}>
           {word}
         </span>
       ))}
@@ -214,7 +214,7 @@ function HeroAbout() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#c47b2d', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#b47027', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -229,7 +229,7 @@ function HeroAbout() {
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #c47b2d;
+          margin-left: .15em; font-size: .3em; color: #b47027;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
@@ -237,7 +237,7 @@ function HeroAbout() {
         }
         .hr-kicker {
           font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
-          color: #c47b2d; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          color: #b47027; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -289,7 +289,7 @@ function AboutStatsSlide() {
       position: 'sticky', top: '14vh',
       display: 'flex', flexDirection: 'column', gap: '1.4rem',
       paddingTop: '.4rem',
-      borderTop: '1px solid rgba(196, 123, 45,.18)',
+      borderTop: '1px solid rgba(180, 112, 39,.18)',
     }}>
       {/* compteur */}
       <div>
@@ -306,10 +306,10 @@ function AboutStatsSlide() {
         <p style={{ fontSize: '.74rem', lineHeight: 1.5, color: T.textMuted, opacity: .75, margin: 0, maxWidth: 190 }}>{cur.sub}</p>
       </div>
       {/* barre de progression */}
-      <div style={{ width: '100%', height: 2, borderRadius: 2, background: 'rgba(196, 123, 45,.16)', overflow: 'hidden', marginTop: '.4rem' }}>
+      <div style={{ width: '100%', height: 2, borderRadius: 2, background: 'rgba(180, 112, 39,.16)', overflow: 'hidden', marginTop: '.4rem' }}>
         <span key={i} style={{
           display: 'block', height: '100%', width: '100%',
-          background: '#c47b2d',
+          background: '#b47027',
           transformOrigin: 'left center',
           transform: 'scaleX(0)',
           animation: `aboutStatsProgress ${SLIDE_MS}ms linear forwards`,
@@ -332,7 +332,7 @@ function VisionMissionSection() {
     <section ref={sectionRef} style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto 3rem', textAlign: 'center' }}>
         <BlurReveal delay={0.12}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(196, 123, 45,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: '#c47b2d', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(180, 112, 39,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: '#b47027', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
             Orientation Stratégique & Engagements
           </div>
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.2rem,6vw,5.2rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
@@ -352,7 +352,7 @@ function VisionMissionSection() {
         <BlurReveal direction="right" delay={0.15}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div className="sku-card" style={{ padding: '2.4rem', borderRadius: 20, border: `1px solid ${T.border}`, background: T.surface }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', padding: '.25rem .75rem', borderRadius: 100, background: 'rgba(196, 123, 45,.12)', color: '#c47b2d', fontFamily: "'Poppins', sans-serif", fontSize: '.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '1rem' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', padding: '.25rem .75rem', borderRadius: 100, background: 'rgba(180, 112, 39,.12)', color: '#b47027', fontFamily: "'Poppins', sans-serif", fontSize: '.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '1rem' }}>
                 <Target size={14} /> Notre Vision
               </div>
               <blockquote style={{ margin: 0, fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.1rem,2vw,1.35rem)', fontWeight: 700, fontStyle: 'italic', color: T.textMain, lineHeight: 1.55 }}>
@@ -361,7 +361,7 @@ function VisionMissionSection() {
             </div>
 
             <div className="sku-card" style={{ padding: '2.4rem', borderRadius: 20, border: `1px solid ${T.border}`, background: T.surface }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', padding: '.25rem .75rem', borderRadius: 100, background: 'rgba(196, 123, 45,.12)', color: '#c47b2d', fontFamily: "'Poppins', sans-serif", fontSize: '.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '1rem' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', padding: '.25rem .75rem', borderRadius: 100, background: 'rgba(180, 112, 39,.12)', color: '#b47027', fontFamily: "'Poppins', sans-serif", fontSize: '.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '1rem' }}>
                 <Rocket size={14} /> Notre Mission
               </div>
               <blockquote style={{ margin: 0, fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.1rem,2vw,1.35rem)', fontWeight: 700, fontStyle: 'italic', color: T.textMain, lineHeight: 1.55 }}>
@@ -397,7 +397,7 @@ function FounderSection() {
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <BlurReveal delay={0.12}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(196, 123, 45,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: '#c47b2d', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(180, 112, 39,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: '#b47027', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
               Leadership & Gouvernance
             </div>
             <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.2rem,6vw,5.2rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain }}>
@@ -410,25 +410,25 @@ function FounderSection() {
         <div style={{ display: 'grid', gridTemplateColumns: '360px 1fr', gap: '3.5rem', alignItems: 'start' }}>
           <BlurReveal direction="left">
             <div style={{ borderRadius: 24, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.surface, padding: '1.2rem', boxShadow: '0 12px 36px rgba(0,0,0,.25)' }}>
-              <div style={{ height: 420, borderRadius: 18, overflow: 'hidden', position: 'relative', border: '1px solid rgba(196, 123, 45,.2)' }}>
+              <div style={{ height: 420, borderRadius: 18, overflow: 'hidden', position: 'relative', border: '1px solid rgba(180, 112, 39,.2)' }}>
                 <LazyImg
                   src={cld('/images/dr_poutya.jpeg')}
                   alt="Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
-                  placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Users size={48} style={{ color: 'rgba(196, 123, 45,.3)' }} /></div>}
+                  placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Users size={48} style={{ color: 'rgba(180, 112, 39,.3)' }} /></div>}
                 />
               </div>
               <div style={{ padding: '1.4rem .4rem .4rem' }}>
                 <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontSize: '1.15rem', color: T.textMain, lineHeight: 1.25, marginBottom: '.3rem' }}>
                   Dr POUTYA SAIZONOU Marie-Rose Edwige Rakié
                 </div>
-                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 700, color: '#c47b2d', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '1rem' }}>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 700, color: '#b47027', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '1rem' }}>
                   Fondatrice & Directrice Générale
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem', marginBottom: '1.2rem' }}>
-                  <span style={{ padding: '.25rem .6rem', borderRadius: 6, background: 'rgba(196, 123, 45,.08)', border: `1px solid ${T.border}`, fontSize: '.68rem', color: T.textSub, fontWeight: 600 }}>Docteur Vétérinaire</span>
-                  <span style={{ padding: '.25rem .6rem', borderRadius: 6, background: 'rgba(196, 123, 45,.08)', border: `1px solid ${T.border}`, fontSize: '.68rem', color: T.textSub, fontWeight: 600 }}>Spécialiste QHSE</span>
-                  <span style={{ padding: '.25rem .6rem', borderRadius: 6, background: 'rgba(196, 123, 45,.08)', border: `1px solid ${T.border}`, fontSize: '.68rem', color: T.textSub, fontWeight: 600 }}>Expert HACCP & ISO</span>
+                  <span style={{ padding: '.25rem .6rem', borderRadius: 6, background: 'rgba(180, 112, 39,.08)', border: `1px solid ${T.border}`, fontSize: '.68rem', color: T.textSub, fontWeight: 600 }}>Docteur Vétérinaire</span>
+                  <span style={{ padding: '.25rem .6rem', borderRadius: 6, background: 'rgba(180, 112, 39,.08)', border: `1px solid ${T.border}`, fontSize: '.68rem', color: T.textSub, fontWeight: 600 }}>Spécialiste QHSE</span>
+                  <span style={{ padding: '.25rem .6rem', borderRadius: 6, background: 'rgba(180, 112, 39,.08)', border: `1px solid ${T.border}`, fontSize: '.68rem', color: T.textSub, fontWeight: 600 }}>Expert HACCP & ISO</span>
                 </div>
                 <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', padding: '.75rem 1rem', fontSize: '.84rem' }}>
                   <HoverSlideText text="Échanger directement" /> <ExternalLink size={14} />
@@ -440,7 +440,7 @@ function FounderSection() {
           <BlurReveal direction="right" delay={0.15}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
               <div className="sku-card" style={{ padding: '2rem 2.2rem', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
-                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: '#c47b2d', marginBottom: '.8rem', display: 'flex', alignItems: 'center', gap: '.6rem' }}>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: '#b47027', marginBottom: '.8rem', display: 'flex', alignItems: 'center', gap: '.6rem' }}>
                   <Award size={18} /> Pratique clinique & Gestion agropastorale
                 </h3>
                 <p style={{ fontSize: '.95rem', color: T.textSub, lineHeight: 1.8, margin: 0 }}>
@@ -449,7 +449,7 @@ function FounderSection() {
               </div>
 
               <div className="sku-card" style={{ padding: '2rem 2.2rem', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
-                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: '#c47b2d', marginBottom: '.8rem', display: 'flex', alignItems: 'center', gap: '.6rem' }}>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: '#b47027', marginBottom: '.8rem', display: 'flex', alignItems: 'center', gap: '.6rem' }}>
                   <ShieldCheck size={18} /> Rigueur scientifique & Standards internationaux
                 </h3>
                 <p style={{ fontSize: '.95rem', color: T.textSub, lineHeight: 1.8, margin: 0 }}>
@@ -458,7 +458,7 @@ function FounderSection() {
               </div>
 
               <div className="sku-card" style={{ padding: '2rem 2.2rem', borderRadius: 18, border: `1px solid ${T.border}`, background: T.surface }}>
-                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: '#c47b2d', marginBottom: '.8rem', display: 'flex', alignItems: 'center', gap: '.6rem' }}>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', fontWeight: 800, color: '#b47027', marginBottom: '.8rem', display: 'flex', alignItems: 'center', gap: '.6rem' }}>
                   <GraduationCap size={18} /> Conseil stratégique & Transmission de compétences
                 </h3>
                 <p style={{ fontSize: '.95rem', color: T.textSub, lineHeight: 1.8, margin: 0 }}>
@@ -488,22 +488,22 @@ function DirectorWordSection() {
       <div style={{ maxWidth: 1000, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <BlurReveal delay={0.12}>
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(196, 123, 45,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: '#c47b2d', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(180, 112, 39,.1)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', fontWeight: 600, color: '#b47027', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '.08em' }}>
               Message institutionnel
             </div>
             <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.8rem,5.5vw,4.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, margin: '0 0 1rem' }}>
               <GhostTitle text="MOT DE LA DIRECTION" />
               Mot de la <GreenUnderline><span className="text-gradient">Direction</span></GreenUnderline>
             </h2>
-            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontStyle: 'italic', fontWeight: 700, color: '#c47b2d', maxWidth: 700, margin: '0 auto' }}>
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontStyle: 'italic', fontWeight: 700, color: '#b47027', maxWidth: 700, margin: '0 auto' }}>
               « Bâtir un avenir agropastoral fort, durable et conforme aux standards mondiaux. »
             </p>
           </div>
         </BlurReveal>
 
         <BlurReveal delay={0.2} direction="up">
-          <div style={{ padding: 'clamp(2rem,4vw,3.5rem)', borderRadius: 24, border: `1px solid rgba(196, 123, 45,.25)`, background: T.surface, boxShadow: '0 20px 50px rgba(0,0,0,.15)', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '1.5rem', left: '2rem', fontSize: '5rem', color: 'rgba(196, 123, 45,.15)', fontFamily: 'serif', lineHeight: 1, pointerEvents: 'none' }}>“</div>
+          <div style={{ padding: 'clamp(2rem,4vw,3.5rem)', borderRadius: 24, border: `1px solid rgba(180, 112, 39,.25)`, background: T.surface, boxShadow: '0 20px 50px rgba(0,0,0,.15)', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: '1.5rem', left: '2rem', fontSize: '5rem', color: 'rgba(180, 112, 39,.15)', fontFamily: 'serif', lineHeight: 1, pointerEvents: 'none' }}>“</div>
             <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '1.5rem', fontSize: '1.02rem', lineHeight: 1.85, color: T.textMain }}>
               <p style={{ margin: 0 }}>
                 L'agriculture, l'élevage et l'agroalimentaire sont les piliers indispensables de l'indépendance économique et de la souveraineté alimentaire de notre pays. Pourtant, les acteurs de ces filières font face à des défis majeurs : précarité sanitaire du cheptel, faible accès aux intrants de qualité, absence de formation pratique adaptée et méconnaissance des exigences réglementaires et de sécurité sanitaire.
@@ -511,7 +511,7 @@ function DirectorWordSection() {
               <p style={{ margin: 0 }}>
                 <strong>AGRO VÉTO SERVICES CONGO</strong> est née pour apporter des réponses concrètes, professionnelles et durables à ces défis. Nous ne sommes pas seulement des prestataires de services ; nous sommes des partenaires de terrain. Que vous soyez un petit éleveur désireux d'améliorer la rentabilité de sa bande, un transformateur agroalimentaire cherchant à structurer sa démarche qualité, ou une entreprise industrielle ayant besoin d'externaliser son management QHSE, notre équipe s'engage à vos côtés avec rigueur, intégrité et passion.
               </p>
-              <p style={{ margin: 0, fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, fontStyle: 'italic', color: '#c47b2d' }}>
+              <p style={{ margin: 0, fontFamily: "'Poppins', sans-serif", fontSize: '1.15rem', fontWeight: 800, fontStyle: 'italic', color: '#b47027' }}>
                 Ensemble, élevons les standards. Ensemble, construisons l'excellence.
               </p>
             </div>
@@ -524,11 +524,11 @@ function DirectorWordSection() {
                 <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.76rem', color: T.textMuted }}>
                   Docteure en Médecine Vétérinaire & Spécialiste QHSE
                 </div>
-                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: '#c47b2d', fontWeight: 600 }}>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.72rem', color: '#b47027', fontWeight: 600 }}>
                   Fondatrice & Directrice Générale — AGRO VÉTO SERVICES CONGO S.A.R.L.U.
                 </div>
               </div>
-              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid #c47b2d' }}>
+              <div style={{ width: 52, height: 52, borderRadius: '50%', overflow: 'hidden', border: '2px solid #b47027' }}>
                 <LazyImg src={cld('/images/dr_poutya.jpeg')} alt="Signature Dr POUTYA" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }} />
               </div>
             </div>
@@ -545,7 +545,7 @@ function ValuesSection() {
   const dirs = ['right', 'up', 'left', 'up']
   return (
     <section style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(10rem,18vw,18rem)', fontWeight: 900, color: T.light ? 'rgba(196, 123, 45,.04)' : 'rgba(196, 123, 45,.03)', lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>VALUES</div>
+      <div style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(10rem,18vw,18rem)', fontWeight: 900, color: T.light ? 'rgba(180, 112, 39,.04)' : 'rgba(180, 112, 39,.03)', lineHeight: 1, pointerEvents: 'none', userSelect: 'none' }}>VALUES</div>
       <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         {/* h2 — trait rouge, aligné à gauche */}
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -561,7 +561,7 @@ function ValuesSection() {
             <BlurReveal key={title} delay={i * 0.1} direction={dirs[i % dirs.length]}>
               <motion.div className="sku-card" whileHover={{ y: -5 }} style={{ padding: '2rem', height: '100%', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', top: 0, right: 0, width: 80, height: 80, background: 'none', pointerEvents: 'none' }} />
-                <div style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(196, 123, 45,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem' }}>
+                <div style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(180, 112, 39,.1)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem' }}>
                   <Icon size={24} style={{ color: T.green }} />
                 </div>
                 <h3 style={{ fontSize: '1rem', fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", marginBottom: '.5rem' }}>{title}</h3>
@@ -606,8 +606,8 @@ function SkillsSection() {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem' }}>
             {SKILLS.map((s, i) => (
               <motion.span key={s} initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .3 + i * .04 }}
-                whileHover={{ y: -2, background: 'rgba(196, 123, 45,.15)' }}
-                style={{ padding: '.35rem .85rem', background: 'rgba(196, 123, 45,.07)', border: `1px solid ${T.border}`, borderRadius: 100, fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em', cursor: 'default', transition: 'all .2s' }}>
+                whileHover={{ y: -2, background: 'rgba(180, 112, 39,.15)' }}
+                style={{ padding: '.35rem .85rem', background: 'rgba(180, 112, 39,.07)', border: `1px solid ${T.border}`, borderRadius: 100, fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em', cursor: 'default', transition: 'all .2s' }}>
                 {s}
               </motion.span>
             ))}
@@ -617,7 +617,7 @@ function SkillsSection() {
           <TiltCard intensity={10} style={{ borderRadius: 16 }}>
             <div style={{ borderRadius: 16, overflow: 'hidden', border: `1px solid ${T.border}`, boxShadow: '8px 8px 32px rgba(0,0,0,.3)', height: 400 }}>
               <LazyImg src={'https://images.unsplash.com/photo-1441122456239-401e92b73c65?auto=format&fit=crop&w=800&q=80'} alt="Clinique Vétérinaire AVS" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Award size={48} style={{ color: 'rgba(196, 123, 45,.3)' }} /></div>} />
+                placeholder={<div style={{ height: '100%', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Award size={48} style={{ color: 'rgba(180, 112, 39,.3)' }} /></div>} />
             </div>
           </TiltCard>
         </BlurReveal>
@@ -645,9 +645,9 @@ function FlagBadge({ code, primary }) {
     AO: ['#c8102e', '#000000', '#fcd116'],
     FR: ['#002395', '#fff',     '#ed2939'],
   }
-  const [c1, c2, c3] = colors[code] || ['#c47b2d', '#fff', '#c47b2d']
+  const [c1, c2, c3] = colors[code] || ['#b47027', '#fff', '#b47027']
   return (
-    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(196, 123, 45,.5)' : '1px solid rgba(255,255,255,.12)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(196, 123, 45,.2)' : '0 2px 8px rgba(0,0,0,.2)' }}>
+    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(180, 112, 39,.5)' : '1px solid rgba(255,255,255,.12)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(180, 112, 39,.2)' : '0 2px 8px rgba(0,0,0,.2)' }}>
       <div style={{ flex: 1, background: c1 }} />
       <div style={{ flex: 1, background: c2 }} />
       <div style={{ flex: 1, background: c3 }} />
@@ -676,7 +676,7 @@ function RayonSection() {
             />
             <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
               {['Pointe-Noire & Kouilou', 'Interventions en Ferme', 'Urgences 24/7', 'FCFA (XAF)'].map(b => (
-                <span key={b} style={{ padding: '.3rem .85rem', borderRadius: 100, background: 'rgba(196, 123, 45,.08)', border: '1px solid rgba(196, 123, 45,.2)', fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 600, color: '#c47b2d' }}>{b}</span>
+                <span key={b} style={{ padding: '.3rem .85rem', borderRadius: 100, background: 'rgba(180, 112, 39,.08)', border: '1px solid rgba(180, 112, 39,.2)', fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 600, color: '#b47027' }}>{b}</span>
               ))}
             </div>
           </BlurReveal>
@@ -687,11 +687,11 @@ function RayonSection() {
                   initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   transition={{ delay: i * .06, duration: .45, ease: [.22,1,.36,1] }}
                   whileHover={{ y: -4 }}
-                  style={{ padding: '1.1rem 1.2rem', borderRadius: 14, background: primary ? 'rgba(196, 123, 45, 0.08)' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(196, 123, 45,.35)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.8rem', position: 'relative', overflow: 'hidden' }}>
+                  style={{ padding: '1.1rem 1.2rem', borderRadius: 14, background: primary ? 'rgba(180, 112, 39, 0.08)' : (T.light ? 'rgba(0,0,0,.03)' : 'rgba(255,255,255,.03)'), border: `1px solid ${primary ? 'rgba(180, 112, 39,.35)' : T.border}`, display: 'flex', alignItems: 'center', gap: '.8rem', position: 'relative', overflow: 'hidden' }}>
                   {primary && <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, background: 'none', pointerEvents: 'none' }} />}
                   <FlagBadge code={code} primary={primary} />
                   <div>
-                    <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.82rem', color: primary ? '#c47b2d' : T.textMain }}>{name}</div>
+                    <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '.82rem', color: primary ? '#b47027' : T.textMain }}>{name}</div>
                     <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: T.textMuted }}>{note}</div>
                   </div>
                 </motion.div>

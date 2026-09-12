@@ -232,7 +232,7 @@ export default function CartDrawer() {
           maxWidth: '520px',
           height: '100%',
           background: T.light ? '#ffffff' : '#0a120c',
-          borderLeft: '1px solid rgba(196, 123, 45, 0.3)',
+          borderLeft: '1px solid rgba(180, 112, 39, 0.3)',
           display: 'flex',
           flexDirection: 'column',
           boxShadow: '-20px 0 50px rgba(0,0,0,0.8)',
@@ -258,8 +258,8 @@ export default function CartDrawer() {
                 width: '38px',
                 height: '38px',
                 borderRadius: '12px',
-                background: 'rgba(196, 123, 45, 0.15)',
-                color: '#c47b2d',
+                background: 'rgba(180, 112, 39, 0.15)',
+                color: '#b47027',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -304,8 +304,8 @@ export default function CartDrawer() {
                   width: '68px',
                   height: '68px',
                   borderRadius: '50%',
-                  background: 'rgba(196, 123, 45, 0.18)',
-                  color: '#c47b2d',
+                  background: 'rgba(180, 112, 39, 0.18)',
+                  color: '#b47027',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -326,9 +326,9 @@ export default function CartDrawer() {
                 style={{
                   padding: '12px 20px',
                   borderRadius: '12px',
-                  background: 'rgba(196, 123, 45, 0.12)',
-                  border: '1px dashed #c47b2d',
-                  color: '#c47b2d',
+                  background: 'rgba(180, 112, 39, 0.12)',
+                  border: '1px dashed #b47027',
+                  color: '#b47027',
                   fontSize: '1.1rem',
                   fontWeight: 900,
                   letterSpacing: '0.06em',
@@ -356,7 +356,7 @@ export default function CartDrawer() {
                 <div><strong>Total :</strong> {orderCompleted.totalAmount.toLocaleString('fr-FR')} FCFA</div>
                 <div>
                   <strong>Statut paiement :</strong>{' '}
-                  <span style={{ color: orderCompleted.paymentStatus === 'PAID' ? '#c47b2d' : '#f59e0b', fontWeight: 700 }}>
+                  <span style={{ color: orderCompleted.paymentStatus === 'PAID' ? '#b47027' : '#f59e0b', fontWeight: 700 }}>
                     {orderCompleted.paymentStatus === 'PAID' ? 'PAYÉ VIA KKIAPAY' : 'EN ATTENTE'}
                   </span>
                 </div>
@@ -372,7 +372,7 @@ export default function CartDrawer() {
                   padding: '12px 20px',
                   borderRadius: '100px',
                   border: 'none',
-                  background: '#c47b2d',
+                  background: '#b47027',
                   color: '#ffffff',
                   fontSize: '0.88rem',
                   fontWeight: 700,
@@ -411,9 +411,9 @@ export default function CartDrawer() {
                 style={{
                   padding: '10px 22px',
                   borderRadius: '100px',
-                  border: '1px solid #c47b2d',
-                  background: 'rgba(196, 123, 45, 0.1)',
-                  color: '#c47b2d',
+                  border: '1px solid #b47027',
+                  background: 'rgba(180, 112, 39, 0.1)',
+                  color: '#b47027',
                   fontSize: '0.82rem',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -431,8 +431,8 @@ export default function CartDrawer() {
                   style={{
                     padding: '10px 14px',
                     borderRadius: '12px',
-                    background: 'rgba(196, 123, 45, 0.1)',
-                    border: '1px solid rgba(196, 123, 45, 0.25)',
+                    background: 'rgba(180, 112, 39, 0.1)',
+                    border: '1px solid rgba(180, 112, 39, 0.25)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -446,7 +446,7 @@ export default function CartDrawer() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#c47b2d',
+                      color: '#b47027',
                       fontWeight: 700,
                       cursor: 'pointer',
                       textDecoration: 'underline',
@@ -478,7 +478,7 @@ export default function CartDrawer() {
                   >
                     <div style={{ flex: 1 }}>
                       <div style={{ fontWeight: 700, fontSize: '0.88rem', marginBottom: '2px' }}>{item.name}</div>
-                      <div style={{ fontSize: '0.78rem', color: '#c47b2d', fontWeight: 600 }}>
+                      <div style={{ fontSize: '0.78rem', color: '#b47027', fontWeight: 600 }}>
                         {item.price.toLocaleString('fr-FR')} FCFA <span style={{ opacity: 0.7 }}>/ unité</span>
                       </div>
                     </div>
@@ -636,8 +636,8 @@ export default function CartDrawer() {
                       style={{
                         padding: '12px',
                         borderRadius: '12px',
-                        border: `2px solid ${paymentMethod === 'kkiapay' ? '#c47b2d' : 'rgba(255,255,255,0.08)'}`,
-                        background: paymentMethod === 'kkiapay' ? 'rgba(196, 123, 45, 0.12)' : (T.light ? '#f9fafb' : '#0e1710'),
+                        border: `2px solid ${paymentMethod === 'kkiapay' ? '#b47027' : 'rgba(255,255,255,0.08)'}`,
+                        background: paymentMethod === 'kkiapay' ? 'rgba(180, 112, 39, 0.12)' : (T.light ? '#f9fafb' : '#0e1710'),
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
@@ -649,20 +649,20 @@ export default function CartDrawer() {
                           width: '18px',
                           height: '18px',
                           borderRadius: '50%',
-                          border: `2px solid ${paymentMethod === 'kkiapay' ? '#c47b2d' : 'rgba(255,255,255,0.3)'}`,
+                          border: `2px solid ${paymentMethod === 'kkiapay' ? '#b47027' : 'rgba(255,255,255,0.3)'}`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}
                       >
                         {paymentMethod === 'kkiapay' && (
-                          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#c47b2d' }} />
+                          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#b47027' }} />
                         )}
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontWeight: 800, fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
                           <span>💳 KKiaPay (Mobile Money & Carte)</span>
-                          <span style={{ fontSize: '0.65rem', padding: '2px 6px', borderRadius: '100px', background: '#c47b2d', color: '#fff' }}>
+                          <span style={{ fontSize: '0.65rem', padding: '2px 6px', borderRadius: '100px', background: '#b47027', color: '#fff' }}>
                             Instantané
                           </span>
                         </div>
@@ -678,8 +678,8 @@ export default function CartDrawer() {
                       style={{
                         padding: '12px',
                         borderRadius: '12px',
-                        border: `2px solid ${paymentMethod === 'whatsapp' ? '#c47b2d' : 'rgba(255,255,255,0.08)'}`,
-                        background: paymentMethod === 'whatsapp' ? 'rgba(196, 123, 45, 0.12)' : (T.light ? '#f9fafb' : '#0e1710'),
+                        border: `2px solid ${paymentMethod === 'whatsapp' ? '#b47027' : 'rgba(255,255,255,0.08)'}`,
+                        background: paymentMethod === 'whatsapp' ? 'rgba(180, 112, 39, 0.12)' : (T.light ? '#f9fafb' : '#0e1710'),
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
@@ -691,14 +691,14 @@ export default function CartDrawer() {
                           width: '18px',
                           height: '18px',
                           borderRadius: '50%',
-                          border: `2px solid ${paymentMethod === 'whatsapp' ? '#c47b2d' : 'rgba(255,255,255,0.3)'}`,
+                          border: `2px solid ${paymentMethod === 'whatsapp' ? '#b47027' : 'rgba(255,255,255,0.3)'}`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}
                       >
                         {paymentMethod === 'whatsapp' && (
-                          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#c47b2d' }} />
+                          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#b47027' }} />
                         )}
                       </div>
                       <div style={{ flex: 1 }}>
@@ -715,8 +715,8 @@ export default function CartDrawer() {
                       style={{
                         padding: '12px',
                         borderRadius: '12px',
-                        border: `2px solid ${paymentMethod === 'cash' ? '#c47b2d' : 'rgba(255,255,255,0.08)'}`,
-                        background: paymentMethod === 'cash' ? 'rgba(196, 123, 45, 0.12)' : (T.light ? '#f9fafb' : '#0e1710'),
+                        border: `2px solid ${paymentMethod === 'cash' ? '#b47027' : 'rgba(255,255,255,0.08)'}`,
+                        background: paymentMethod === 'cash' ? 'rgba(180, 112, 39, 0.12)' : (T.light ? '#f9fafb' : '#0e1710'),
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
@@ -728,14 +728,14 @@ export default function CartDrawer() {
                           width: '18px',
                           height: '18px',
                           borderRadius: '50%',
-                          border: `2px solid ${paymentMethod === 'cash' ? '#c47b2d' : 'rgba(255,255,255,0.3)'}`,
+                          border: `2px solid ${paymentMethod === 'cash' ? '#b47027' : 'rgba(255,255,255,0.3)'}`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}
                       >
                         {paymentMethod === 'cash' && (
-                          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#c47b2d' }} />
+                          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#b47027' }} />
                         )}
                       </div>
                       <div style={{ flex: 1 }}>
@@ -768,7 +768,7 @@ export default function CartDrawer() {
               textAlign: 'center',
             }}
           >
-            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(196, 123, 45, 0.2)', color: '#c47b2d', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(180, 112, 39, 0.2)', color: '#b47027', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
               <CreditCard size={28} />
             </div>
             <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: '0 0 0.5rem' }}>
@@ -786,7 +786,7 @@ export default function CartDrawer() {
                   padding: '12px',
                   borderRadius: '12px',
                   border: 'none',
-                  background: '#c47b2d',
+                  background: '#b47027',
                   color: '#ffffff',
                   fontWeight: 800,
                   fontSize: '0.85rem',
@@ -825,7 +825,7 @@ export default function CartDrawer() {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
               <span style={{ fontSize: '0.9rem', color: T.light ? '#6b7280' : '#9ca3af', fontWeight: 600 }}>Total de la commande :</span>
-              <span style={{ fontSize: '1.4rem', fontWeight: 900, color: '#c47b2d' }}>
+              <span style={{ fontSize: '1.4rem', fontWeight: 900, color: '#b47027' }}>
                 {cartTotal.toLocaleString('fr-FR')} FCFA
               </span>
             </div>
@@ -839,7 +839,7 @@ export default function CartDrawer() {
                 padding: '14px 24px',
                 borderRadius: '100px',
                 border: 'none',
-                background: '#c47b2d',
+                background: '#b47027',
                 color: '#ffffff',
                 fontSize: '0.92rem',
                 fontWeight: 800,
@@ -849,7 +849,7 @@ export default function CartDrawer() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '8px',
-                boxShadow: '0 10px 25px -5px rgba(196, 123, 45, 0.4)',
+                boxShadow: '0 10px 25px -5px rgba(180, 112, 39, 0.4)',
               }}
             >
               {isSubmitting ? (

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 /* ═══════════════════════════════════════════════════════════════
    GrainientHero — Grainient Engine (port WebGL2 → WebGL1 natif)
-   Palette AKATech : noir #030806 · vert forêt #0d2415 · émeraude #c47b2d
+   Palette AKATech : noir #030806 · vert forêt #0d2415 · émeraude #b47027
    Warp + noise + grain (style Nexura) — influence souris conservée
    Props :
      labels  – [{ text, x, y, delay? }]
@@ -240,7 +240,7 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
     gl.uniform2f(u.uCenterOffset,  0.0, 0.0)
     /* Palette AKATech — émeraude, sans noir pur */
     gl.uniform3fv(u.uColor1, hex('#fdba74'))  /* mint lumineux         */
-    gl.uniform3fv(u.uColor2, hex('#c47b2d'))  /* émeraude AKATech      */
+    gl.uniform3fv(u.uColor2, hex('#b47027'))  /* émeraude AKATech      */
     gl.uniform3fv(u.uColor3, hex('#0d2415'))  /* vert très sombre (≠ noir pur) */
 
     /* ── Souris → uCenterOffset ── */
@@ -301,7 +301,7 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
       {/* ── Ligne de scan — émeraude ── */}
       <div style={{
         position: 'absolute', left: 0, right: 0, height: 1,
-        background: 'rgba(196, 123, 45, 0.45)',
+        background: 'rgba(180, 112, 39, 0.45)',
         animation: 'grainient-scan 9s linear infinite',
         pointerEvents: 'none', zIndex: 2,
       }} />
@@ -331,17 +331,17 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
             display: 'flex', alignItems: 'center', gap: 6,
             padding: '5px 12px', borderRadius: 100,
             background: 'rgba(3,8,6,0.72)',
-            border: '1px solid rgba(196, 123, 45,.28)',
+            border: '1px solid rgba(180, 112, 39,.28)',
             backdropFilter: 'blur(10px)',
-            boxShadow: '0 0 16px rgba(196, 123, 45,.15)',
+            boxShadow: '0 0 16px rgba(180, 112, 39,.15)',
             pointerEvents: 'none',
           }}
           className="aurora-pill"
         >
           <span style={{
             width: 6, height: 6, borderRadius: '50%',
-            background: '#c47b2d',
-            boxShadow: '0 0 8px rgba(196, 123, 45,.9)',
+            background: '#b47027',
+            boxShadow: '0 0 8px rgba(180, 112, 39,.9)',
             display: 'inline-block',
             animation: 'dot-blink 2s ease-in-out infinite',
             animationDelay: `${i * 0.3}s`,

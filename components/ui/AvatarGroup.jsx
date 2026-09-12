@@ -45,7 +45,7 @@ export function AvatarGroup({ children, className = '', max, spacing = -10 }) {
           position: absolute; inset: 0;
           display: flex; align-items: center; justify-content: center;
           border-radius: 50%;
-          font-size: 12px; font-weight: 800; color: #c47b2d;
+          font-size: 12px; font-weight: 800; color: #b47027;
           background: #1c1917;
           font-family: 'Poppins', sans-serif; letter-spacing: -.02em;
         }
@@ -58,22 +58,22 @@ export function AvatarGroup({ children, className = '', max, spacing = -10 }) {
         }
         .agp-avatar:hover .agp-tooltip-wrap { opacity: 1; transform: translateX(-50%) translateY(0); }
         .agp-tooltip-inner {
-          background: #030806; border: 1px solid rgba(196, 123, 45,.35); border-radius: 8px;
+          background: #030806; border: 1px solid rgba(180, 112, 39,.35); border-radius: 8px;
           padding: 5px 10px; font-size: 11px; font-weight: 700; color: rgba(255,255,255,.9);
           font-family: 'Poppins', sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,.4);
         }
         .agp-tooltip-arrow { position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 10px; height: 5px; overflow: hidden; }
         .agp-tooltip-arrow::before {
           content: ''; position: absolute; width: 8px; height: 8px;
-          background: #030806; border: 1px solid rgba(196, 123, 45,.35);
+          background: #030806; border: 1px solid rgba(180, 112, 39,.35);
           transform: rotate(45deg); top: -4px; left: 50%; margin-left: -4px;
         }
 
         .agp-overflow {
           width: 34px; height: 34px; border-radius: 50%;
-          border: 2.5px solid #030806; background: rgba(196, 123, 45,.2);
+          border: 2.5px solid #030806; background: rgba(180, 112, 39,.2);
           display: flex; align-items: center; justify-content: center;
-          font-size: 10px; font-weight: 800; color: #c47b2d;
+          font-size: 10px; font-weight: 800; color: #b47027;
           font-family: 'Poppins', sans-serif;
           margin-left: var(--agp-spacing, -10px); flex-shrink: 0;
         }

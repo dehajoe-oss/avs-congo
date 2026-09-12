@@ -66,7 +66,7 @@ const DASH_THEME_DARK = {
   textMain: '#e8eaed',
   textSub: '#9aa0a6',
   textMuted: '#80868b',
-  green: '#c47b2d',
+  green: '#b47027',
   greenSub: '#6fb03f',
   border: '#3c4043',
   border2: '#5f6368',
@@ -94,8 +94,8 @@ const STATUS_LABELS = {
   CONVERTED: 'Converti', LOST: 'Perdu', ACTIVE: 'Actif', ENDED: 'Terminé',
 }
 const STATUS_COLORS = {
-  NEW: '#5b8def', QUALIFIED: '#c47b2d', CONTACTED: '#e0a83e',
-  CONVERTED: '#3ee08a', LOST: '#e05e5e', ACTIVE: '#c47b2d', ENDED: 'rgba(255,255,255,.4)',
+  NEW: '#5b8def', QUALIFIED: '#b47027', CONTACTED: '#e0a83e',
+  CONVERTED: '#3ee08a', LOST: '#e05e5e', ACTIVE: '#b47027', ENDED: 'rgba(255,255,255,.4)',
 }
 
 function StatusPill({ status, T }) {
@@ -200,7 +200,7 @@ function DetailModal({ conversation, onClose, T }) {
         </div>
         <div style={{ padding: '1.2rem 1.4rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 10 }}>
           {conversation.lead && (
-            <div style={{ background: 'rgba(196, 123, 45,.06)', border: `1px solid ${T.border2}`, borderRadius: 10, padding: '.8rem 1rem', marginBottom: 4 }}>
+            <div style={{ background: 'rgba(180, 112, 39,.06)', border: `1px solid ${T.border2}`, borderRadius: 10, padding: '.8rem 1rem', marginBottom: 4 }}>
               <div style={{ fontSize: '.7rem', fontWeight: 700, color: T.green, marginBottom: 4 }}>LEAD · SCORE {conversation.lead.score}/100</div>
               <div style={{ fontSize: '.8rem', color: T.textMain }}>{conversation.lead.name} — {conversation.lead.contact}</div>
             </div>

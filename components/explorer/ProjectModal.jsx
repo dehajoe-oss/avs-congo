@@ -59,8 +59,8 @@ export default function ProjectModal({ project, onClose }) {
               <span>
                 <em style={{
                   width: 6, height: 6, borderRadius: '50%', fontStyle: 'normal',
-                  background: status.offline ? 'rgba(255,255,255,.35)' : '#c47b2d',
-                  boxShadow: status.offline ? 'none' : '0 0 6px 1px rgba(196, 123, 45,.7)',
+                  background: status.offline ? 'rgba(255,255,255,.35)' : '#b47027',
+                  boxShadow: status.offline ? 'none' : '0 0 6px 1px rgba(180, 112, 39,.7)',
                   display: 'inline-block',
                 }} />
                 {status.label}

@@ -50,8 +50,8 @@ async function sendLeadEmail(lead) {
     subject: `🤖 Lead assistant IA — ${safeName} (${projectLabel})`,
     html: `
       <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;background:#0a120c;">
-        <div style="padding:28px 32px;background:#1c1917;border-bottom:1px solid rgba(196, 123, 45,.25);">
-          <div style="font-family:'Poppins', sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:#c47b2d;text-transform:uppercase;">
+        <div style="padding:28px 32px;background:#1c1917;border-bottom:1px solid rgba(180, 112, 39,.25);">
+          <div style="font-family:'Poppins', sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:#b47027;text-transform:uppercase;">
             Agro Véto Services Congo · Assistant IA
           </div>
           <div style="margin-top:4px;font-size:11px;color:rgba(255,255,255,.4);">
@@ -60,14 +60,14 @@ async function sendLeadEmail(lead) {
         </div>
         <div style="padding:32px;">
           <h2 style="margin:0 0 6px;color:#f2ede8;font-size:20px;font-weight:800;">${safeName}</h2>
-          <div style="display:inline-block;padding:5px 12px;border-radius:100px;background:rgba(196, 123, 45,.12);border:1px solid rgba(196, 123, 45,.3);font-size:12px;font-weight:700;color:#fdba74;margin-bottom:24px;">
+          <div style="display:inline-block;padding:5px 12px;border-radius:100px;background:rgba(180, 112, 39,.12);border:1px solid rgba(180, 112, 39,.3);font-size:12px;font-weight:700;color:#fdba74;margin-bottom:24px;">
             ${projectLabel}
           </div>
           <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
             <tr>
               <td style="padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px 0 0 10px;border-right:none;">
                 <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:5px;">Contact</div>
-                <span style="font-size:13px;color:#c47b2d;font-weight:600;">${safeContact}</span>
+                <span style="font-size:13px;color:#b47027;font-weight:600;">${safeContact}</span>
               </td>
               <td style="padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:0 10px 10px 0;">
                 <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:5px;">Budget</div>
@@ -86,7 +86,7 @@ async function sendLeadEmail(lead) {
           <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px;">
             Résumé du besoin
           </div>
-          <p style="color:#e8e4df;line-height:1.7;font-size:14px;background:rgba(196, 123, 45,.05);padding:18px;border-radius:10px;border-left:3px solid #c47b2d;margin:0 0 8px;">
+          <p style="color:#e8e4df;line-height:1.7;font-size:14px;background:rgba(180, 112, 39,.05);padding:18px;border-radius:10px;border-left:3px solid #b47027;margin:0 0 8px;">
             ${safeSummary}
           </p>
         </div>

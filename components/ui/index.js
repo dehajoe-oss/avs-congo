@@ -39,7 +39,7 @@ export function LaserBeam({ position = 'right', intensity = 'medium', style = {}
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: '#c47b2d',
+        background: '#b47027',
         borderRadius: 2,
         filter: 'blur(0.4px)',
       }} />
@@ -51,7 +51,7 @@ export function LaserBeam({ position = 'right', intensity = 'medium', style = {}
         transform: 'translateX(-50%)',
         width: glowMap[intensity],
         height: '100%',
-        background: 'rgba(196, 123, 45, 0.22)',
+        background: 'rgba(180, 112, 39, 0.22)',
         filter: 'blur(28px)',
         borderRadius: '50%',
       }} />
@@ -65,7 +65,7 @@ export function LaserBeam({ position = 'right', intensity = 'medium', style = {}
         height: 6,
         borderRadius: '50%',
         background: '#aaffd4',
-        boxShadow: '0 0 12px 4px rgba(196, 123, 45,.7), 0 0 28px 10px rgba(196, 123, 45,.3)',
+        boxShadow: '0 0 12px 4px rgba(180, 112, 39,.7), 0 0 28px 10px rgba(180, 112, 39,.3)',
         animation: 'laserSpark 3.2s ease-in-out infinite',
       }} />
     </div>
@@ -240,9 +240,9 @@ export function MicroCursor() {
         width: hovering ? 36 : 8,
         height: hovering ? 36 : 8,
         borderRadius: '50%',
-        background: hovering ? 'transparent' : '#c47b2d',
-        border: hovering ? '2px solid rgba(196, 123, 45,.6)' : 'none',
-        boxShadow: hovering ? '0 0 14px rgba(196, 123, 45,.3)' : '0 0 8px rgba(196, 123, 45,.7)',
+        background: hovering ? 'transparent' : '#b47027',
+        border: hovering ? '2px solid rgba(180, 112, 39,.6)' : 'none',
+        boxShadow: hovering ? '0 0 14px rgba(180, 112, 39,.3)' : '0 0 8px rgba(180, 112, 39,.7)',
         pointerEvents: 'none',
         zIndex: 99999,
         transition: 'width .2s, height .2s, left .05s, top .05s, background .2s',
@@ -276,7 +276,7 @@ export function BackToTop() {
       initial={{ opacity: 0, scale: .6, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: .6, y: 20 }}
-      whileHover={{ scale: 1.08, rotate: -4, boxShadow: '6px 8px 0px #050505, 0 0 24px rgba(196, 123, 45,.45)' }}
+      whileHover={{ scale: 1.08, rotate: -4, boxShadow: '6px 8px 0px #050505, 0 0 24px rgba(180, 112, 39,.45)' }}
       whileTap={{ scale: .94, rotate: 0, boxShadow: '2px 2px 0px #050505' }}
       transition={{ type: 'spring', stiffness: 400, damping: 18 }}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -284,7 +284,7 @@ export function BackToTop() {
       style={{
         position: 'fixed', bottom: '6.5rem', right: '2rem', zIndex: 8999,
         width: 48, height: 48, borderRadius: 999,
-        background: '#c47b2d',
+        background: '#b47027',
         border: '3px solid #050505',
         boxShadow: '4px 4px 0px #050505',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -355,7 +355,7 @@ export function FloatingWA() {
           width: 54, height: 54, borderRadius: 999,
           background: '#25d366',
           border: '3px solid #050505',
-          boxShadow: hov ? '6px 8px 0px #050505, 0 0 22px rgba(196, 123, 45,.4)' : '4px 4px 0px #050505',
+          boxShadow: hov ? '6px 8px 0px #050505, 0 0 22px rgba(180, 112, 39,.4)' : '4px 4px 0px #050505',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           transform: hov ? 'translate(-2px, -4px) rotate(-3deg) scale(1.06)' : 'translate(0, 0) rotate(0deg) scale(1)',
           transition: 'transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s cubic-bezier(.34,1.56,.64,1)',
@@ -467,7 +467,7 @@ export function PageCTA({ message, cta, href = 'https://wa.me/242069677567' }) {
 // Soulignement animé vert ondulé qui se dessine de gauche à droite
 // puis pulse en boucle. S'adapte à la largeur du texte.
 // Usage : <GreenUnderline>Votre texte vert</GreenUnderline>
-export function GreenUnderline({ children, style = {}, color = '#c47b2d' }) {
+export function GreenUnderline({ children, style = {}, color = '#b47027' }) {
   const uid = useRef(`gu${Math.random().toString(36).slice(2,6)}`).current
   const totalLen = 380 // longueur approximative du nouveau path (02 / Original Path B)
   const pathD = "M5 24.2592C26.233 20.2879 47.7083 16.9968 69.135 13.8421C98.0469 9.5853 128.407 4.02322 158.059 5.14674C172.583 5.69708 187.686 8.66104 201.598 11.9696C207.232 13.3093 215.437 14.9471 220.137 18.3619C224.401 21.4596 220.737 25.6575 217.184 27.6168C208.309 32.5097 197.199 34.281 186.698 34.8486C183.159 35.0399 147.197 36.2657 155.105 26.5837C158.11 22.9053 162.993 20.6229 167.764 18.7924C178.386 14.7164 190.115 12.1115 201.624 10.3984C218.367 7.90626 235.528 7.06127 252.521 7.49276C258.455 7.64343 264.389 7.92791 270.295 8.41825C280.321 9.25056 296 10.8932 305 13.0242"

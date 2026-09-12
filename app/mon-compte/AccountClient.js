@@ -45,7 +45,7 @@ export default function AccountClient() {
             maxWidth: '480px',
             width: '100%',
             background: T.light ? '#ffffff' : '#0e1710',
-            border: '1px solid rgba(196, 123, 45, 0.35)',
+            border: '1px solid rgba(180, 112, 39, 0.35)',
             borderRadius: '24px',
             padding: '2.5rem',
             textAlign: 'center',
@@ -57,8 +57,8 @@ export default function AccountClient() {
               width: '64px',
               height: '64px',
               borderRadius: '50%',
-              background: 'rgba(196, 123, 45, 0.15)',
-              color: '#c47b2d',
+              background: 'rgba(180, 112, 39, 0.15)',
+              color: '#b47027',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -84,7 +84,7 @@ export default function AccountClient() {
                 padding: '13px 20px',
                 borderRadius: '100px',
                 border: 'none',
-                background: '#c47b2d',
+                background: '#b47027',
                 color: '#ffffff',
                 fontSize: '0.9rem',
                 fontWeight: 800,
@@ -140,7 +140,7 @@ export default function AccountClient() {
         <div
           style={{
             background: T.light ? '#ffffff' : '#0e1710',
-            border: '1px solid rgba(196, 123, 45, 0.3)',
+            border: '1px solid rgba(180, 112, 39, 0.3)',
             borderRadius: '24px',
             padding: '2rem',
             display: 'flex',
@@ -158,7 +158,7 @@ export default function AccountClient() {
                 width: '64px',
                 height: '64px',
                 borderRadius: '20px',
-                background: '#c47b2d',
+                background: '#b47027',
                 color: '#ffffff',
                 display: 'flex',
                 alignItems: 'center',
@@ -179,9 +179,9 @@ export default function AccountClient() {
                   style={{
                     padding: '3px 10px',
                     borderRadius: '100px',
-                    background: 'rgba(196, 123, 45, 0.15)',
-                    border: '1px solid rgba(196, 123, 45, 0.3)',
-                    color: '#c47b2d',
+                    background: 'rgba(180, 112, 39, 0.15)',
+                    border: '1px solid rgba(180, 112, 39, 0.3)',
+                    color: '#b47027',
                     fontSize: '0.72rem',
                     fontWeight: 700,
                   }}
@@ -191,7 +191,7 @@ export default function AccountClient() {
               </div>
 
               {currentUser.companyName && (
-                <div style={{ fontSize: '0.85rem', color: '#c47b2d', fontWeight: 600, marginTop: '2px' }}>
+                <div style={{ fontSize: '0.85rem', color: '#b47027', fontWeight: 600, marginTop: '2px' }}>
                   {currentUser.companyName}
                 </div>
               )}
@@ -240,7 +240,7 @@ export default function AccountClient() {
               padding: '10px 18px',
               borderRadius: '100px',
               border: 'none',
-              background: '#c47b2d',
+              background: '#b47027',
               color: '#ffffff',
               fontSize: '0.82rem',
               fontWeight: 700,
@@ -265,7 +265,7 @@ export default function AccountClient() {
               textAlign: 'center',
             }}
           >
-            <Package size={40} color="#c47b2d" style={{ margin: '0 auto 1rem', opacity: 0.7 }} />
+            <Package size={40} color="#b47027" style={{ margin: '0 auto 1rem', opacity: 0.7 }} />
             <h3 style={{ fontSize: '1.15rem', fontWeight: 700, margin: '0 0 0.5rem' }}>
               Aucune commande enregistrée pour le moment
             </h3>
@@ -280,7 +280,7 @@ export default function AccountClient() {
                 gap: '8px',
                 padding: '11px 22px',
                 borderRadius: '100px',
-                background: '#c47b2d',
+                background: '#b47027',
                 color: '#ffffff',
                 fontSize: '0.85rem',
                 fontWeight: 700,
@@ -300,7 +300,7 @@ export default function AccountClient() {
                   key={order.id || order.orderNumber}
                   style={{
                     background: T.light ? '#ffffff' : '#0e1710',
-                    border: `1px solid ${isPaid ? 'rgba(196, 123, 45, 0.4)' : 'rgba(255,255,255,0.08)'}`,
+                    border: `1px solid ${isPaid ? 'rgba(180, 112, 39, 0.4)' : 'rgba(255,255,255,0.08)'}`,
                     borderRadius: '20px',
                     padding: '1.6rem',
                     boxShadow: '0 6px 20px rgba(0,0,0,0.2)',
@@ -320,7 +320,7 @@ export default function AccountClient() {
                   >
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <span style={{ fontSize: '1.05rem', fontWeight: 900, color: '#c47b2d' }}>
+                        <span style={{ fontSize: '1.05rem', fontWeight: 900, color: '#b47027' }}>
                           {order.orderNumber}
                         </span>
                         <span
@@ -329,9 +329,9 @@ export default function AccountClient() {
                             borderRadius: '100px',
                             fontSize: '0.7rem',
                             fontWeight: 800,
-                            background: isPaid ? 'rgba(196, 123, 45, 0.15)' : 'rgba(245, 158, 11, 0.15)',
-                            color: isPaid ? '#c47b2d' : '#f59e0b',
-                            border: `1px solid ${isPaid ? 'rgba(196, 123, 45, 0.3)' : 'rgba(245, 158, 11, 0.3)'}`,
+                            background: isPaid ? 'rgba(180, 112, 39, 0.15)' : 'rgba(245, 158, 11, 0.15)',
+                            color: isPaid ? '#b47027' : '#f59e0b',
+                            border: `1px solid ${isPaid ? 'rgba(180, 112, 39, 0.3)' : 'rgba(245, 158, 11, 0.3)'}`,
                           }}
                         >
                           {isPaid ? '✓ PAYÉ VIA KKIAPAY' : '⏳ EN ATTENTE DE RÈGLEMENT'}
@@ -345,7 +345,7 @@ export default function AccountClient() {
                     </div>
 
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '1.3rem', fontWeight: 900, color: '#c47b2d' }}>
+                      <div style={{ fontSize: '1.3rem', fontWeight: 900, color: '#b47027' }}>
                         {Number(order.totalAmount).toLocaleString('fr-FR')} FCFA
                       </div>
                       <div style={{ fontSize: '0.72rem', color: T.light ? '#6b7280' : '#9ca3af' }}>
@@ -370,7 +370,7 @@ export default function AccountClient() {
                         }}
                       >
                         <span>
-                          {it.name} <strong style={{ color: '#c47b2d' }}>x{it.quantity}</strong>
+                          {it.name} <strong style={{ color: '#b47027' }}>x{it.quantity}</strong>
                         </span>
                         <span style={{ fontWeight: 600 }}>
                           {(it.price * it.quantity).toLocaleString('fr-FR')} FCFA
@@ -386,7 +386,7 @@ export default function AccountClient() {
                         marginTop: '1rem',
                         padding: '8px 12px',
                         borderRadius: '10px',
-                        background: 'rgba(196, 123, 45, 0.08)',
+                        background: 'rgba(180, 112, 39, 0.08)',
                         fontSize: '0.75rem',
                         color: T.light ? '#4b5563' : '#9ca3af',
                         display: 'flex',
@@ -394,7 +394,7 @@ export default function AccountClient() {
                         gap: '6px',
                       }}
                     >
-                      <ShieldCheck size={14} color="#c47b2d" />
+                      <ShieldCheck size={14} color="#b47027" />
                       <span>Réf. transaction KKiaPay : <code>{order.transactionId}</code></span>
                     </div>
                   )}

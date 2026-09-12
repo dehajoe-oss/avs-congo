@@ -9,7 +9,7 @@ import {
 
 const ROLES = [
   { id: 'ADMIN', label: 'Administrateur', color: '#ef4444', desc: 'Accès total au système, gestion des droits et finances' },
-  { id: 'STAFF', label: 'Équipe AVS (Staff)', color: '#c47b2d', desc: 'Gestion des produits, commandes, clinique et leads' },
+  { id: 'STAFF', label: 'Équipe AVS (Staff)', color: '#b47027', desc: 'Gestion des produits, commandes, clinique et leads' },
   { id: 'CLIENT', label: 'Client / Éleveur', color: '#3b82f6', desc: 'Accès boutique et historique de ses commandes' },
 ]
 
@@ -144,9 +144,9 @@ export default function UsersTab({ T, CARD }) {
           onClick={() => setIsModalOpen(true)}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: '#c47b2d', color: '#fff', border: 'none', borderRadius: 12,
+            background: '#b47027', color: '#fff', border: 'none', borderRadius: 12,
             padding: '.65rem 1.3rem', fontFamily: "'Poppins', sans-serif", fontWeight: 700,
-            fontSize: '.85rem', cursor: 'pointer', boxShadow: '0 4px 14px rgba(196, 123, 45, 0.35)',
+            fontSize: '.85rem', cursor: 'pointer', boxShadow: '0 4px 14px rgba(180, 112, 39, 0.35)',
           }}
         >
           <UserPlus size={18} /> Ajouter un utilisateur
@@ -335,7 +335,7 @@ export default function UsersTab({ T, CARD }) {
                 <button
                   type="submit"
                   disabled={saving}
-                  style={{ background: '#c47b2d', color: '#fff', border: 'none', borderRadius: 10, padding: '.6rem 1.4rem', fontWeight: 700, cursor: saving ? 'default' : 'pointer' }}
+                  style={{ background: '#b47027', color: '#fff', border: 'none', borderRadius: 10, padding: '.6rem 1.4rem', fontWeight: 700, cursor: saving ? 'default' : 'pointer' }}
                 >
                   {saving ? 'Création...' : 'Créer l’accès'}
                 </button>

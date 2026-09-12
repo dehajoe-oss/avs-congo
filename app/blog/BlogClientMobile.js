@@ -74,7 +74,7 @@ function HeroBlog() {
       {/* Layer FORE — particules */}
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#c47b2d', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#b47027', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -98,14 +98,14 @@ function FeaturedPost() {
           <div style={{ position: 'relative', minHeight: 280 }}>
             <img src={post.img} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.25)' }} />
-            <div className="no-pill-mobile" style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(196, 123, 45,.2)', backdropFilter: 'blur(8px)', border: '1px solid rgba(196, 123, 45,.35)', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#c47b2d' }}>
+            <div className="no-pill-mobile" style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '.3rem .9rem', borderRadius: 100, background: 'rgba(180, 112, 39,.2)', backdropFilter: 'blur(8px)', border: '1px solid rgba(180, 112, 39,.35)', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: '#b47027' }}>
               ⭐ Article vedette
             </div>
           </div>
           {/* Content */}
           <div style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.8rem', marginBottom: '1rem' }}>
-              <span style={{ padding: '.25rem .8rem', borderRadius: 100, background: T.light ? 'rgba(169, 106, 38,.08)' : 'rgba(196, 123, 45,.08)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em' }}>
+              <span style={{ padding: '.25rem .8rem', borderRadius: 100, background: T.light ? 'rgba(169, 106, 38,.08)' : 'rgba(180, 112, 39,.08)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em' }}>
                 {post.category}
               </span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '.3rem', fontSize: '.72rem', color: T.textMuted }}>
@@ -158,13 +158,13 @@ function BlogGrid() {
           <motion.p initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .1 }}
             style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1rem,3.6vw,1.2rem)', fontWeight: 700, lineHeight: 1.5, color: T.textMain }}>
             {'Stratégie '}
-            <span style={{ color: '#c47b2d' }}>digitale</span>
+            <span style={{ color: '#b47027' }}>digitale</span>
             {', '}
-            <span style={{ color: '#c47b2d' }}>SEO</span>
+            <span style={{ color: '#b47027' }}>SEO</span>
             {', '}
-            <span style={{ color: '#c47b2d' }}>e-commerce</span>
+            <span style={{ color: '#b47027' }}>e-commerce</span>
             {' — des contenus concrets pour les '}
-            <span style={{ color: '#c47b2d' }}>entrepreneurs</span>
+            <span style={{ color: '#b47027' }}>entrepreneurs</span>
             {' congolais.'}
           </motion.p>
         </motion.div>
@@ -174,7 +174,7 @@ function BlogGrid() {
           <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
             {CATEGORIES.map(cat => (
               <button key={cat} onClick={() => setActiveCategory(cat)}
-                style={{ padding: '.45rem 1.1rem', borderRadius: 100, border: '1px solid', cursor: 'pointer', fontFamily: "'Poppins', sans-serif", fontSize: '.8rem', fontWeight: 600, transition: 'all .2s', borderColor: activeCategory === cat ? T.green : T.border, background: activeCategory === cat ? '#c47b2d' : 'transparent', color: activeCategory === cat ? '#fff' : T.textSub }}>
+                style={{ padding: '.45rem 1.1rem', borderRadius: 100, border: '1px solid', cursor: 'pointer', fontFamily: "'Poppins', sans-serif", fontSize: '.8rem', fontWeight: 600, transition: 'all .2s', borderColor: activeCategory === cat ? T.green : T.border, background: activeCategory === cat ? '#b47027' : 'transparent', color: activeCategory === cat ? '#fff' : T.textSub }}>
                 {cat}
               </button>
             ))}
@@ -183,10 +183,10 @@ function BlogGrid() {
           <div style={{ position: 'relative' }}>
             <Search size={14} style={{ position: 'absolute', left: '.9rem', top: '50%', transform: 'translateY(-50%)', color: T.textMuted, pointerEvents: 'none' }} />
             <input
-              style={{ padding: '.6rem 1rem .6rem 2.4rem', borderRadius: 100, border: `1px solid ${T.border}`, background: T.light ? '#f5f5f5' : 'rgba(196, 123, 45,.04)', color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', outline: 'none', width: 220 }}
+              style={{ padding: '.6rem 1rem .6rem 2.4rem', borderRadius: 100, border: `1px solid ${T.border}`, background: T.light ? '#f5f5f5' : 'rgba(180, 112, 39,.04)', color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', outline: 'none', width: 220 }}
               placeholder="Rechercher..."
               value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-              onFocus={e => e.target.style.borderColor = '#c47b2d'}
+              onFocus={e => e.target.style.borderColor = '#b47027'}
               onBlur={e => e.target.style.borderColor = T.border}
             />
           </div>
@@ -216,7 +216,7 @@ function BlogGrid() {
                   {/* Content */}
                   <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '.7rem', marginBottom: '.9rem' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem .75rem', borderRadius: 100, background: T.light ? 'rgba(169, 106, 38,.07)' : 'rgba(196, 123, 45,.07)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem .75rem', borderRadius: 100, background: T.light ? 'rgba(169, 106, 38,.07)' : 'rgba(180, 112, 39,.07)', border: `1px solid ${T.border}`, fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.06em' }}>
                         <CatIcon size={10} />{post.category}
                       </span>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '.3rem', fontSize: '.7rem', color: T.textMuted }}>
@@ -269,7 +269,7 @@ function Newsletter() {
     <section ref={ref} style={{ padding: '5rem 5%', background: T.bgAlt }}>
       <div style={{ maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}>
-          <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(196, 123, 45,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+          <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(180, 112, 39,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
             <Zap size={24} style={{ color: T.green }} />
           </div>
           <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.7rem' }}>
@@ -281,14 +281,14 @@ function Newsletter() {
           </p>
           {done ? (
             <motion.div initial={{ scale: .8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-              style={{ padding: '1.2rem 2rem', borderRadius: 14, background: 'rgba(196, 123, 45,.08)', border: `1px solid ${T.border}`, color: T.green, fontFamily: "'Poppins', sans-serif", fontWeight: 700 }}>
+              style={{ padding: '1.2rem 2rem', borderRadius: 14, background: 'rgba(180, 112, 39,.08)', border: `1px solid ${T.border}`, color: T.green, fontFamily: "'Poppins', sans-serif", fontWeight: 700 }}>
               ✅ Merci ! Vous êtes abonné.
             </motion.div>
           ) : (
             <div style={{ display: 'flex', gap: '.8rem' }}>
               <input type="email" placeholder="votre@email.com" value={email} onChange={e => setEmail(e.target.value)}
-                style={{ flex: 1, padding: '.85rem 1rem', borderRadius: 10, border: `1px solid ${T.border}`, background: T.light ? '#f5f5f5' : 'rgba(196, 123, 45,.04)', color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '.88rem', outline: 'none' }}
-                onFocus={e => e.target.style.borderColor = '#c47b2d'}
+                style={{ flex: 1, padding: '.85rem 1rem', borderRadius: 10, border: `1px solid ${T.border}`, background: T.light ? '#f5f5f5' : 'rgba(180, 112, 39,.04)', color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '.88rem', outline: 'none' }}
+                onFocus={e => e.target.style.borderColor = '#b47027'}
                 onBlur={e => e.target.style.borderColor = T.border}
               />
               <button className="btn-raised" onClick={() => email && setDone(true)} style={{ flexShrink: 0, padding: '.85rem 1.4rem', fontSize: '.84rem' }}>

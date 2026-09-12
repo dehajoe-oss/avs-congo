@@ -65,7 +65,7 @@ function HeroRealisations() {
 
       <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', transition: 'transform .1s ease-out' }}>
         {[{left:'8%',top:'25%',s:4,op:.18,dur:3.8,dy:0},{left:'22%',top:'68%',s:3,op:.11,dur:5.1,dy:1.2},{left:'60%',top:'22%',s:4,op:.20,dur:4.4,dy:0.6},{left:'75%',top:'70%',s:3,op:.09,dur:6.2,dy:1.8},{left:'88%',top:'15%',s:4,op:.15,dur:3.2,dy:0.3}].map((p,i) => (
-          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#c47b2d', left:p.left, top:p.top, opacity:p.op }}
+          <motion.div key={i} style={{ position:'absolute', width:p.s, height:p.s, borderRadius:'50%', background:'#b47027', left:p.left, top:p.top, opacity:p.op }}
             animate={{ y:[0,-18,0] }} transition={{ duration:p.dur, repeat:Infinity, ease:'easeInOut', delay:p.dy }} />
         ))}
       </div>
@@ -80,7 +80,7 @@ function HeroRealisations() {
         }
         .hr-star {
           display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #c47b2d;
+          margin-left: .15em; font-size: .3em; color: #b47027;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
@@ -88,7 +88,7 @@ function HeroRealisations() {
         }
         .hr-kicker {
           font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
-          color: #c47b2d; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
+          color: #b47027; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
         .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
       `}</style>
@@ -154,7 +154,7 @@ function ProjectScrollSlide({ project, index, total, T }) {
                   className="fc-screen-img"
                   placeholder={
                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Code size={40} style={{ color: 'rgba(196, 123, 45,.2)' }} />
+                      <Code size={40} style={{ color: 'rgba(180, 112, 39,.2)' }} />
                     </div>
                   }
                 />
@@ -186,7 +186,7 @@ function ProjectScrollSlide({ project, index, total, T }) {
             <h3 className="fc-sub">{project.subtitle}</h3>
           </div>
 
-          <div className="fc-meta" style={{ borderColor: 'rgba(196, 123, 45,.25)' }}>
+          <div className="fc-meta" style={{ borderColor: 'rgba(180, 112, 39,.25)' }}>
             <div className="fc-meta-row"><span className="fc-ml" style={{ color: T.textMuted }}>Type</span><span className="fc-mv" style={{ color: T.textMain }}>{PROJECT_TYPE_BADGE(project.type, project.live)}</span></div>
             <div className="fc-meta-row"><span className="fc-ml" style={{ color: T.textMuted }}>Marché</span><span className="fc-mv" style={{ color: T.textMain }}>République du Congo</span></div>
             <div className="fc-meta-row"><span className="fc-ml" style={{ color: T.textMuted }}>Expertise AVS</span><span className="fc-mv" style={{ color: T.textMain }}>Santé & Qualité</span></div>
@@ -275,7 +275,7 @@ function StackedRealisations() {
 
         {/* Heading flottant dans le sticky */}
         <div className="fcx-section-label">
-          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 700, color: '#c47b2d', letterSpacing: '.45em', textTransform: 'uppercase', marginBottom: '.6rem' }}>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', fontWeight: 700, color: '#b47027', letterSpacing: '.45em', textTransform: 'uppercase', marginBottom: '.6rem' }}>
             // Scroll pour parcourir
           </p>
           <h2 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.1rem,1.8vw,1.6rem)', color: T.textMain, letterSpacing: '-.02em', margin: 0 }}>
@@ -289,8 +289,8 @@ function StackedRealisations() {
           ))}
         </ul>
 
-        <div className="fcx-progress-track" style={{ background: 'rgba(196, 123, 45,.12)' }}>
-          <div ref={fillRef} className="fcx-progress-fill" style={{ width: 0, background: '#c47b2d' }} />
+        <div className="fcx-progress-track" style={{ background: 'rgba(180, 112, 39,.12)' }}>
+          <div ref={fillRef} className="fcx-progress-fill" style={{ width: 0, background: '#b47027' }} />
         </div>
       </div>
 
@@ -320,7 +320,7 @@ function StackedRealisations() {
           font-family: 'Poppins', sans-serif; font-size: .68rem;
           letter-spacing: .1em; color: ${T.textMuted}; pointer-events: none;
         }
-        .fcx-counter strong { color: #c47b2d; }
+        .fcx-counter strong { color: #b47027; }
         .fcx-progress-track {
           position: absolute; bottom: 28px; left: 8vw; right: 8vw; height: 2px;
           z-index: 5; border-radius: 2px; overflow: hidden;
@@ -344,12 +344,12 @@ function StackedRealisations() {
         .fc-mobile-notch { width: 40%; height: 6px; border-radius: 0 0 6px 6px; margin: 0 auto; }
         .fc-mobile-screen { aspect-ratio: 9/18; overflow: hidden; position: relative; }
         .fc-mobile-home { height: 20px; display: flex; align-items: center; justify-content: center; }
-        .fc-mobile-home::after { content: ''; width: 32px; height: 4px; background: rgba(196, 123, 45,.4); border-radius: 3px; }
+        .fc-mobile-home::after { content: ''; width: 32px; height: 4px; background: rgba(180, 112, 39,.4); border-radius: 3px; }
         .fc-resp-badge {
           display: inline-flex; align-items: center; gap: 6px; margin-top: 12px;
           font-family: 'Poppins', sans-serif; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
-          color: #c47b2d; border: 1px solid rgba(196, 123, 45,.35); border-radius: 20px;
-          padding: 5px 12px; background: rgba(196, 123, 45,.08);
+          color: #b47027; border: 1px solid rgba(180, 112, 39,.35); border-radius: 20px;
+          padding: 5px 12px; background: rgba(180, 112, 39,.08);
         }
         .fc-glow {
           position: absolute; bottom: -40px; left: 10%; width: 60%; height: 120px;
@@ -358,7 +358,7 @@ function StackedRealisations() {
         }
         .fc-info { display: flex; flex-direction: column; gap: 2.2rem; min-height: 420px; }
         .fc-name { font-family: 'Poppins', sans-serif; font-size: clamp(2rem,3.5vw,3.2rem); font-weight: 800; letter-spacing: -.02em; line-height: 1; }
-        .fc-sub { font-family: 'Poppins', sans-serif; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: #c47b2d; margin-top: .4rem; }
+        .fc-sub { font-family: 'Poppins', sans-serif; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: #b47027; margin-top: .4rem; }
         .fc-meta { display: flex; flex-direction: column; gap: .55rem; border-left: 2px solid; padding-left: 1.2rem; }
         .fc-meta-row { display: flex; gap: 1rem; font-size: .78rem; }
         .fc-ml { font-family: 'Poppins', sans-serif; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; min-width: 80px; }
@@ -366,10 +366,10 @@ function StackedRealisations() {
         .fc-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
         .fc-tag {
           font-family: 'Poppins', sans-serif; font-size: .6rem; letter-spacing: .08em; text-transform: uppercase;
-          padding: 4px 12px; border-radius: 20px; border: 1.5px solid rgba(196, 123, 45,.3);
-          color: #c47b2d; background: rgba(196, 123, 45,.07); transition: background .2s, border-color .2s;
+          padding: 4px 12px; border-radius: 20px; border: 1.5px solid rgba(180, 112, 39,.3);
+          color: #b47027; background: rgba(180, 112, 39,.07); transition: background .2s, border-color .2s;
         }
-        .fc-tag:hover { background: rgba(196, 123, 45,.16); border-color: rgba(196, 123, 45,.6); }
+        .fc-tag:hover { background: rgba(180, 112, 39,.16); border-color: rgba(180, 112, 39,.6); }
         .fc-desc { font-size: .9rem; line-height: 1.7; max-width: 44ch; font-weight: 400; }
 
         @media (max-width: 1100px) {

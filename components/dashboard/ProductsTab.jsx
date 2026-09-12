@@ -185,9 +185,9 @@ export default function ProductsTab({ T, CARD }) {
           onClick={openCreateModal}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: '#c47b2d', color: '#fff', border: 'none', borderRadius: 12,
+            background: '#b47027', color: '#fff', border: 'none', borderRadius: 12,
             padding: '.65rem 1.3rem', fontFamily: "'Poppins', sans-serif", fontWeight: 700,
-            fontSize: '.85rem', cursor: 'pointer', boxShadow: '0 4px 14px rgba(196, 123, 45, 0.35)',
+            fontSize: '.85rem', cursor: 'pointer', boxShadow: '0 4px 14px rgba(180, 112, 39, 0.35)',
           }}
         >
           <Plus size={18} /> Ajouter un produit
@@ -202,7 +202,7 @@ export default function ProductsTab({ T, CARD }) {
           <Package size={40} color={T.textMuted} style={{ marginBottom: 12 }} />
           <div style={{ fontSize: '1rem', fontWeight: 700, color: T.textMain, marginBottom: 4 }}>Aucun produit trouvé</div>
           <p style={{ fontSize: '.82rem', color: T.textSub, marginBottom: 16 }}>Cliquez sur "Ajouter un produit" pour enrichir le catalogue AVS.</p>
-          <button onClick={openCreateModal} style={{ background: '#c47b2d', color: '#fff', border: 'none', borderRadius: 10, padding: '.5rem 1.2rem', fontWeight: 700, cursor: 'pointer' }}>
+          <button onClick={openCreateModal} style={{ background: '#b47027', color: '#fff', border: 'none', borderRadius: 10, padding: '.5rem 1.2rem', fontWeight: 700, cursor: 'pointer' }}>
             Créer un produit
           </button>
         </div>
@@ -230,7 +230,7 @@ export default function ProductsTab({ T, CARD }) {
                     style={{ width: 68, height: 68, borderRadius: 12, objectFit: 'cover', background: T.border, flexShrink: 0 }}
                   />
                   <div style={{ minWidth: 0, flex: 1 }}>
-                    <div style={{ fontSize: '.68rem', fontWeight: 700, color: '#c47b2d', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: 2 }}>
+                    <div style={{ fontSize: '.68rem', fontWeight: 700, color: '#b47027', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: 2 }}>
                       {p.category}
                     </div>
                     <h4 style={{ fontSize: '.92rem', fontWeight: 800, color: T.textMain, lineHeight: 1.3, marginBottom: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -401,7 +401,7 @@ export default function ProductsTab({ T, CARD }) {
                 <button
                   type="submit"
                   disabled={saving}
-                  style={{ background: '#c47b2d', color: '#fff', border: 'none', borderRadius: 10, padding: '.6rem 1.4rem', fontWeight: 700, cursor: saving ? 'default' : 'pointer' }}
+                  style={{ background: '#b47027', color: '#fff', border: 'none', borderRadius: 10, padding: '.6rem 1.4rem', fontWeight: 700, cursor: saving ? 'default' : 'pointer' }}
                 >
                   {saving ? 'Enregistrement...' : editingProduct ? 'Mettre à jour' : 'Créer le produit'}
                 </button>

@@ -5,7 +5,7 @@
  * Port du tunnel WebGL "Mes projets" (App.jsx / elvis-portfolio) :
  * débris texturés avec les images des projets AKATech (PROJECTS), poussière
  * d'étoiles + étoiles filantes, raycasting pour le survol/clic.
- * Reskinné en vert AKATech (#c47b2d), données 100% lib/data.js.
+ * Reskinné en vert AKATech (#b47027), données 100% lib/data.js.
  *
  * ── Différences volontaires vs la version portfolio ──
  * 1. Pas de ScrollTrigger `pin:true`. Le pin GSAP reparente la
