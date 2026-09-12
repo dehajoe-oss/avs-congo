@@ -211,7 +211,6 @@ export default function StaggeredMenu({ items = [], isActive: externalIsActive, 
                     className={'sm-quick-pill' + (isActive('/mon-compte') ? ' sm-quick-pill--active' : '')}
                     onClick={closeMenu}
                   >
-                    <span className="sm-quick-pill-dot" />
                     <span className="sm-quick-pill-label">
                       {currentUser ? currentUser.fullName.split(' ')[0] : 'Mon Compte'}
                     </span>
@@ -270,7 +269,6 @@ export default function StaggeredMenu({ items = [], isActive: externalIsActive, 
                           onClick={closeMenu}
                         >
                           <span className="sm-link-label">{link.label}</span>
-                          {active && <span className="sm-link-active-dot" />}
                         </TransitionLink>
                       )
                     })}
@@ -279,11 +277,8 @@ export default function StaggeredMenu({ items = [], isActive: externalIsActive, 
 
                 {/* ── Permanence Vétérinaire ── */}
                 <div className="sm-security-card">
-                  <span className="sm-security-dot" />
-                  <div>
-                    <div className="sm-security-title">Clinique Vétérinaire 24h/24 & 7j/7</div>
-                    <div className="sm-security-sub">Permanence continue & soins d'urgence à Pointe-Noire</div>
-                  </div>
+                  <div className="sm-security-title">Clinique Vétérinaire 24h/24 & 7j/7</div>
+                  <div className="sm-security-sub">Permanence continue & soins d'urgence à Pointe-Noire</div>
                 </div>
               </div>
 

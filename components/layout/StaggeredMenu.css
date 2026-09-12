@@ -277,7 +277,8 @@
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 8px;
   padding: 8px 12px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.04);
@@ -313,18 +314,8 @@
   border-color: #b47027;
 }
 
-.sm-quick-pill-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #b47027;
-  margin-right: 6px;
-  flex-shrink: 0;
-}
-
 .sm-quick-pill-label {
-  flex: 1;
-  text-align: left;
+  text-align: center;
 }
 
 .sm-quick-pill-count {
@@ -497,32 +488,12 @@
   font-size: 0.82rem;
 }
 
-.sm-link-active-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #b47027;
-  flex-shrink: 0;
-}
-
 /* ── Carte Permanence & Urgences ── */
 .sm-security-card {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
+  padding: 10px 14px;
   border-radius: 11px;
   background: rgba(180, 112, 39, 0.06);
   border: 1px solid rgba(180, 112, 39, 0.2);
-}
-
-.sm-security-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #b47027;
-  box-shadow: 0 0 6px rgba(180, 112, 39, 0.8);
-  flex-shrink: 0;
 }
 
 .sm-security-title {
@@ -534,7 +505,7 @@
 .sm-security-sub {
   font-size: 0.65rem;
   color: rgba(255, 255, 255, 0.55);
-  margin-top: 1px;
+  margin-top: 2px;
 }
 
 .light-mode .sm-security-sub {
