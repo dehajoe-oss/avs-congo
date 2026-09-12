@@ -26,14 +26,20 @@ import {
   Mail,
   MapPin,
   Shield,
-  Sun,
-  Moon,
   Save,
   Trash2,
   Eye,
   Check,
   Building,
   UserCheck,
+  GraduationCap,
+  Award,
+  Star,
+  BookOpen,
+  MessageSquare,
+  UserPlus,
+  ShieldAlert,
+  X,
 } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import api from '@/lib/api-client'
@@ -41,7 +47,7 @@ import api from '@/lib/api-client'
 export default function AdminClient() {
   const T = useTheme()
 
-  // ── État d'authentification ──
+  // ── Authentification ──
   const [token, setToken] = useState(null)
   const [adminUser, setAdminUser] = useState(null)
   const [authLoading, setAuthLoading] = useState(true)
@@ -52,23 +58,29 @@ export default function AdminClient() {
   const [loginError, setLoginError] = useState('')
   const [isLoggingIn, setIsLoggingIn] = useState(false)
 
-  // ── Onglet actif ──
-  const [activeTab, setActiveTab] = useState('dashboard') // 'dashboard' | 'orders' | 'products' | 'appointments' | 'leads'
+  // ── Onglet Actif ──
+  // 'dashboard' | 'orders' | 'products' | 'formations' | 'testimonials' | 'users' | 'appointments' | 'leads'
+  const [activeTab, setActiveTab] = useState('dashboard')
 
-  // ── Données du Backend ──
+  // ── Données Backend ──
   const [dashboardData, setDashboardData] = useState(null)
   const [orders, setOrders] = useState([])
   const [products, setProducts] = useState([])
+  const [formations, setFormations] = useState([])
+  const [registrations, setRegistrations] = useState([])
+  const [testimonials, setTestimonials] = useState([])
+  const [users, setUsers] = useState([])
   const [appointments, setAppointments] = useState([])
   const [leads, setLeads] = useState([])
   const [loadingData, setLoadingData] = useState(false)
   const [toast, setToast] = useState(null)
 
-  // ── Filtres et Recherche ──
+  // ── Filtres & Recherche ──
   const [orderFilter, setOrderFilter] = useState('ALL')
-  const [searchQuery, setSearchQuery] = useState('')
+  const [formationTab, setFormationTab] = useState('catalog') // 'catalog' | 'registrations'
+  const [userRoleFilter, setUserRoleFilter] = useState('ALL')
 
-  // ── Formulaire d'ajout de produit ──
+  // ── Modals & Formulaires ──
   const [showAddProduct, setShowAddProduct] = useState(false)
   const [newProduct, setNewProduct] = useState({
     title: '',
@@ -81,6 +93,43 @@ export default function AdminClient() {
     badge: 'Nouveau',
   })
 
+  const [showAddFormation, setShowAddFormation] = useState(false)
+  const [newFormation, setNewFormation] = useState({
+    title: '',
+    category: 'Santé Animale',
+    duration: '4 Jours (24h) - Terrain',
+    price: '70 000 FCFA',
+    priceAmount: 70000,
+    target: 'Éleveurs, techniciens vétérinaires',
+    nextSession: 'Sessions bimensuelles',
+    description: '',
+    modulesCovered: '',
+    image: '/images/ferme_ecole_avicole_1789164251928.jpg',
+  })
+
+  const [showAddTestimonial, setShowAddTestimonial] = useState(false)
+  const [newTestimonial, setNewTestimonial] = useState({
+    name: '',
+    role: 'Éleveur Avicole',
+    project: 'Poussins & Provenderie',
+    rating: 5,
+    text: '',
+    result: '↑ Mortalité réduite',
+    img: '',
+    isApproved: true,
+  })
+
+  const [showAddUser, setShowAddUser] = useState(false)
+  const [newUser, setNewUser] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    role: 'CLIENT',
+    userType: 'individual',
+    companyName: '',
+  })
+
   const showNotification = (message, type = 'success') => {
     setToast({ message, type, id: Date.now() })
     setTimeout(() => setToast(null), 3500)
@@ -89,35 +138,44 @@ export default function AdminClient() {
   // ── 1. Vérification session Admin ──
   useEffect(() => {
     const savedToken = typeof window !== 'undefined' ? localStorage.getItem('avs_token') : null
-    if (savedToken) {
-      setToken(savedToken)
-      api.auth.me()
-        .then(res => {
-          const user = res?.data?.user
-          if (user && (user.role === 'ADMIN' || user.role === 'STAFF')) {
-            setAdminUser(user)
-          } else {
-            // Pas les droits admin
-            setToken(null)
-          }
-        })
-        .catch(() => {
-          setToken(null)
-        })
-        .finally(() => setAuthLoading(false))
-    } else {
-      setAuthLoading(false)
+    const savedUser = typeof window !== 'undefined' ? localStorage.getItem('avs_user') : null
+
+    if (savedToken && savedUser) {
+      try {
+        const parsed = JSON.parse(savedUser)
+        if (parsed.role === 'ADMIN' || parsed.role === 'STAFF') {
+          setToken(savedToken)
+          setAdminUser(parsed)
+        }
+      } catch (err) {
+        console.error('Erreur parsing session:', err)
+      }
     }
+    setAuthLoading(false)
   }, [])
 
-  // ── 2. Chargement des données ──
+  // ── 2. Chargement de toutes les données du Backend ──
   const loadAllData = useCallback(async () => {
     setLoadingData(true)
     try {
-      const [dashRes, ordersRes, prodsRes, apptsRes, leadsRes] = await Promise.allSettled([
+      const [
+        dashRes,
+        ordersRes,
+        prodsRes,
+        formsRes,
+        regisRes,
+        testsRes,
+        usersRes,
+        apptsRes,
+        leadsRes,
+      ] = await Promise.allSettled([
         api.stats.getDashboard(),
         api.orders.getAll({ limit: 100 }),
         api.products.getAll({ limit: 100 }),
+        api.formations.getAll({ all: 'true' }),
+        api.formations.getRegistrations(),
+        api.testimonials.getAllAdmin(),
+        api.users.getAll(),
         api.appointments.getAll(),
         api.leads.getAll(),
       ])
@@ -130,6 +188,18 @@ export default function AdminClient() {
       }
       if (prodsRes.status === 'fulfilled' && prodsRes.value?.data) {
         setProducts(prodsRes.value.data)
+      }
+      if (formsRes.status === 'fulfilled' && formsRes.value?.data) {
+        setFormations(formsRes.value.data)
+      }
+      if (regisRes.status === 'fulfilled' && regisRes.value?.data) {
+        setRegistrations(regisRes.value.data)
+      }
+      if (testsRes.status === 'fulfilled' && testsRes.value?.data) {
+        setTestimonials(testsRes.value.data)
+      }
+      if (usersRes.status === 'fulfilled' && usersRes.value?.data) {
+        setUsers(usersRes.value.data)
       }
       if (apptsRes.status === 'fulfilled' && apptsRes.value?.data) {
         setAppointments(apptsRes.value.data)
@@ -151,7 +221,7 @@ export default function AdminClient() {
     }
   }, [adminUser, loadAllData])
 
-  // ── 3. Connexion Admin ──
+  // ── 3. Connexion & Déconnexion ──
   const handleLogin = async (e) => {
     e.preventDefault()
     setLoginError('')
@@ -178,103 +248,235 @@ export default function AdminClient() {
         setAdminUser(user)
         showNotification(`Connecté en tant que ${user.name}`)
       } else {
-        setLoginError('Réponse invalide du serveur.')
+        setLoginError('Réponse serveur invalide.')
       }
     } catch (err) {
-      setLoginError(err.message || 'Identifiants administrateur invalides.')
+      setLoginError(err.message || 'Identifiants invalides')
     } finally {
       setIsLoggingIn(false)
     }
   }
 
   const handleLogout = () => {
-    api.auth.logout()
+    localStorage.removeItem('avs_token')
+    localStorage.removeItem('avs_user')
     setToken(null)
     setAdminUser(null)
-    setDashboardData(null)
-    showNotification('Déconnexion réussie', 'info')
   }
 
   // ── 4. Actions Commandes ──
-  const handleUpdateOrderStatus = async (orderId, status) => {
+  const handleUpdateOrderStatus = async (orderId, newStatus) => {
     try {
-      await api.orders.updateStatus(orderId, { status })
-      setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status } : o))
-      showNotification(`Commande mise à jour : ${status}`)
+      await api.orders.updateStatus(orderId, { status: newStatus })
+      setOrders(prev => prev.map(o => (o.id === orderId ? { ...o, status: newStatus } : o)))
+      showNotification(`Commande mise à jour : ${newStatus}`)
     } catch (err) {
-      showNotification(err.message || 'Erreur lors de la mise à jour', 'error')
+      showNotification(err.message || 'Échec de mise à jour', 'error')
     }
   }
 
-  // ── 5. Actions Produits & Stocks ──
-  const handleUpdateStock = async (productId, delta) => {
-    const currentProd = products.find(p => p.id === productId)
-    if (!currentProd) return
-    const nextStock = Math.max(0, (currentProd.stock || 0) + delta)
-
+  // ── 5. Actions Produits ──
+  const handleStockAdjust = async (productId, delta) => {
+    const prod = products.find(p => p.id === productId)
+    if (!prod) return
+    const newStock = Math.max(0, (prod.stock || 0) + delta)
     try {
-      await api.products.update(productId, { stock: nextStock, inStock: nextStock > 0 })
-      setProducts(prev => prev.map(p => p.id === productId ? { ...p, stock: nextStock, inStock: nextStock > 0 } : p))
-      showNotification(`Stock ajusté : ${currentProd.title} (${nextStock})`)
+      await api.products.update(productId, { stock: newStock })
+      setProducts(prev => prev.map(p => (p.id === productId ? { ...p, stock: newStock } : p)))
+      showNotification(`Stock ajusté : ${newStock} ${prod.unit}`)
     } catch (err) {
-      showNotification(err.message || 'Erreur mise à jour stock', 'error')
+      showNotification('Erreur mise à jour stock', 'error')
     }
   }
 
-  const handleCreateProduct = async (e) => {
+  const handleAddProductSubmit = async (e) => {
     e.preventDefault()
-    if (!newProduct.title.trim() || !newProduct.price) {
-      showNotification('Veuillez remplir le nom et le prix', 'warning')
-      return
-    }
-
     try {
       const res = await api.products.create({
         ...newProduct,
-        price: parseFloat(newProduct.price),
-        stock: parseInt(newProduct.stock, 10) || 0,
+        price: Number(newProduct.price),
+        stock: Number(newProduct.stock),
       })
       if (res?.data) {
         setProducts(prev => [res.data, ...prev])
         setShowAddProduct(false)
-        setNewProduct({
-          title: '',
-          description: '',
-          price: '',
-          stock: 100,
-          unit: 'sac 50kg',
-          categorySlug: 'provenderie-nutrition',
-          image: '/images/products/aliment-demarrage.jpg',
-          badge: 'Nouveau',
-        })
-        showNotification('Nouveau produit ajouté au catalogue !')
+        showNotification(`Produit "${res.data.title}" créé avec succès`)
       }
     } catch (err) {
       showNotification(err.message || 'Erreur création produit', 'error')
     }
   }
 
-  // ── 6. Actions Rendez-vous Vétérinaires ──
-  const handleUpdateAppointment = async (apptId, status) => {
+  // ── 6. Actions Formations ──
+  const handleCreateFormationSubmit = async (e) => {
+    e.preventDefault()
     try {
-      await api.appointments.updateStatus(apptId, status)
-      setAppointments(prev => prev.map(a => a.id === apptId ? { ...a, status } : a))
-      showNotification(`Rendez-vous mis à jour : ${status}`)
+      const modulesArr = newFormation.modulesCovered
+        ? newFormation.modulesCovered.split('\n').filter(Boolean)
+        : []
+
+      const res = await api.formations.create({
+        ...newFormation,
+        priceAmount: Number(newFormation.priceAmount) || 0,
+        modulesCovered: modulesArr,
+      })
+
+      if (res?.data) {
+        setFormations(prev => [res.data, ...prev])
+        setShowAddFormation(false)
+        setNewFormation({
+          title: '',
+          category: 'Santé Animale',
+          duration: '4 Jours (24h) - Terrain',
+          price: '70 000 FCFA',
+          priceAmount: 70000,
+          target: '',
+          nextSession: 'Sessions bimensuelles',
+          description: '',
+          modulesCovered: '',
+          image: '/images/ferme_ecole_avicole_1789164251928.jpg',
+        })
+        showNotification(`Formation "${res.data.title}" ajoutée au catalogue AVS`)
+      }
     } catch (err) {
-      showNotification(err.message || 'Erreur mise à jour rendez-vous', 'error')
+      showNotification(err.message || 'Erreur création formation', 'error')
     }
   }
 
-  // ── Écran de chargement initial ──
-  if (authLoading) {
-    return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: T.bg, color: T.textMain, fontFamily: "'Poppins', sans-serif" }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-          <div className="spinner" style={{ width: 44, height: 44, border: '4px solid rgba(180, 112, 39, 0.2)', borderTopColor: '#b47027', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
-          <p style={{ fontSize: '0.9rem', color: T.textMuted }}>Connexion au Back-Office AVS...</p>
-        </div>
-      </div>
-    )
+  const handleToggleFormationStatus = async (formId, currentActive) => {
+    try {
+      await api.formations.update(formId, { isActive: !currentActive })
+      setFormations(prev => prev.map(f => (f.id === formId ? { ...f, isActive: !currentActive } : f)))
+      showNotification(!currentActive ? 'Formation activée' : 'Formation masquée du site public')
+    } catch (err) {
+      showNotification('Erreur statut formation', 'error')
+    }
+  }
+
+  const handleDeleteFormation = async (formId) => {
+    if (!confirm('Voulez-vous vraiment supprimer cette formation ?')) return
+    try {
+      await api.formations.delete(formId)
+      setFormations(prev => prev.filter(f => f.id !== formId))
+      showNotification('Formation supprimée avec succès')
+    } catch (err) {
+      showNotification('Erreur suppression formation', 'error')
+    }
+  }
+
+  const handleUpdateRegistrationStatus = async (regId, status) => {
+    try {
+      await api.formations.updateRegistrationStatus(regId, { status })
+      setRegistrations(prev => prev.map(r => (r.id === regId ? { ...r, status } : r)))
+      showNotification(`Statut inscription : ${status}`)
+    } catch (err) {
+      showNotification('Erreur mise à jour inscription', 'error')
+    }
+  }
+
+  // ── 7. Actions Témoignages ──
+  const handleCreateTestimonialSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await api.testimonials.create({
+        ...newTestimonial,
+        rating: Number(newTestimonial.rating) || 5,
+        isApproved: true,
+      })
+      if (res?.data) {
+        setTestimonials(prev => [res.data, ...prev])
+        setShowAddTestimonial(false)
+        setNewTestimonial({
+          name: '',
+          role: 'Éleveur Avicole',
+          project: 'Poussins & Provenderie',
+          rating: 5,
+          text: '',
+          result: '↑ Mortalité réduite',
+          img: '',
+          isApproved: true,
+        })
+        showNotification('Témoignage publié avec succès')
+      }
+    } catch (err) {
+      showNotification(err.message || 'Erreur publication avis', 'error')
+    }
+  }
+
+  const handleToggleTestimonialApproval = async (testId, currentApproved) => {
+    try {
+      await api.testimonials.toggleApproval(testId, !currentApproved)
+      setTestimonials(prev => prev.map(t => (t.id === testId ? { ...t, isApproved: !currentApproved } : t)))
+      showNotification(!currentApproved ? 'Avis client approuvé et visible' : 'Avis masqué du site')
+    } catch (err) {
+      showNotification('Erreur statut avis', 'error')
+    }
+  }
+
+  const handleDeleteTestimonial = async (testId) => {
+    if (!confirm('Supprimer définitivement ce témoignage ?')) return
+    try {
+      await api.testimonials.delete(testId)
+      setTestimonials(prev => prev.filter(t => t.id !== testId))
+      showNotification('Témoignage supprimé')
+    } catch (err) {
+      showNotification('Erreur suppression avis', 'error')
+    }
+  }
+
+  // ── 8. Actions Utilisateurs ──
+  const handleCreateUserSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await api.users.create(newUser)
+      if (res?.data) {
+        setUsers(prev => [res.data, ...prev])
+        setShowAddUser(false)
+        setNewUser({
+          name: '',
+          email: '',
+          phone: '',
+          password: '',
+          role: 'CLIENT',
+          userType: 'individual',
+          companyName: '',
+        })
+        showNotification(`Utilisateur ${res.data.name} créé avec succès`)
+      }
+    } catch (err) {
+      showNotification(err.message || 'Erreur création utilisateur', 'error')
+    }
+  }
+
+  const handleToggleUserStatus = async (userId) => {
+    try {
+      const res = await api.users.toggleStatus(userId)
+      setUsers(prev => prev.map(u => (u.id === userId ? { ...u, isActive: res.data.isActive } : u)))
+      showNotification(res.message || 'Statut utilisateur mis à jour')
+    } catch (err) {
+      showNotification(err.message || 'Erreur statut utilisateur', 'error')
+    }
+  }
+
+  const handleUpdateUserRole = async (userId, newRole) => {
+    try {
+      await api.users.update(userId, { role: newRole })
+      setUsers(prev => prev.map(u => (u.id === userId ? { ...u, role: newRole } : u)))
+      showNotification(`Rôle modifié : ${newRole}`)
+    } catch (err) {
+      showNotification('Erreur mise à jour rôle', 'error')
+    }
+  }
+
+  const handleDeleteUser = async (userId) => {
+    if (!confirm('Voulez-vous supprimer définitivement ce compte utilisateur ?')) return
+    try {
+      await api.users.delete(userId)
+      setUsers(prev => prev.filter(u => u.id !== userId))
+      showNotification('Compte utilisateur supprimé')
+    } catch (err) {
+      showNotification(err.message || 'Erreur suppression', 'error')
+    }
   }
 
   // ── Écran de Connexion Admin ──
@@ -290,7 +492,7 @@ export default function AdminClient() {
               Back-Office AVS Congo
             </h1>
             <p style={{ fontSize: '0.82rem', color: T.textMuted, margin: 0 }}>
-              Accès réservé à la direction et au personnel autorisé
+              Accès sécurisé réservé à la direction et au personnel autorisé
             </p>
           </div>
 
@@ -329,7 +531,7 @@ export default function AdminClient() {
                 style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, fontSize: '0.9rem', outline: 'none' }}
               />
               <div style={{ fontSize: '0.7rem', color: T.textMuted, marginTop: '0.3rem' }}>
-                Identifiant démo préconfiguré : <code>Admin@Avs2026!</code>
+                Identifiant prédéfini : <code>Admin@Avs2026!</code>
               </div>
             </div>
 
@@ -353,30 +555,9 @@ export default function AdminClient() {
     )
   }
 
-  // ── Tableau de Bord Administrateur Authentifié ──
-  const kpis = dashboardData?.kpis || {
-    revenue: orders.filter(o => o.paymentStatus === 'PAID').reduce((sum, o) => sum + o.totalAmount, 0),
-    ordersCount: orders.length,
-    leadsCount: leads.length,
-    qualifiedLeads: leads.filter(l => l.status === 'QUALIFIED').length,
-    appointmentsCount: appointments.length,
-  }
-
-  const lowStock = dashboardData?.lowStockProducts || products.filter(p => (p.stock || 0) <= 200)
-
-  // Filtrage des commandes
-  const filteredOrders = orders.filter(o => {
-    const matchStatus = orderFilter === 'ALL' || o.status === orderFilter
-    const matchSearch =
-      o.orderNumber?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      o.customerName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      o.customerPhone?.includes(searchQuery)
-    return matchStatus && matchSearch
-  })
-
   return (
     <div style={{ minHeight: '100vh', background: T.bg, color: T.textMain, fontFamily: "'Poppins', sans-serif" }}>
-      {/* ── Toast de notification ── */}
+      {/* ── Toast de confirmation ── */}
       {toast && (
         <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999, padding: '12px 20px', borderRadius: '12px', background: toast.type === 'error' ? '#ef4444' : '#10b981', color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, boxShadow: '0 10px 30px rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <CheckCircle2 size={18} />
@@ -393,11 +574,11 @@ export default function AdminClient() {
             </div>
             <div>
               <div style={{ fontSize: '0.95rem', fontWeight: 800, letterSpacing: '-0.02em', color: T.textMain }}>
-                DIRECTION & GESTION
+                DIRECTION & GESTION GÉNÉRALE
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.7rem', color: '#10b981' }}>
                 <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
-                API Backend Connectée (Port 5000)
+                PostgreSQL & API en Ligne (Port 5000)
               </div>
             </div>
           </div>
@@ -409,7 +590,7 @@ export default function AdminClient() {
             title="Rafraîchir les données"
             style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${T.border}`, background: 'transparent', color: T.textMain, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
           >
-            <RefreshCw size={16} className={loadingData ? 'spin-anim' : ''} />
+            <RefreshCw size={16} />
           </button>
 
           <Link
@@ -439,8 +620,11 @@ export default function AdminClient() {
           { id: 'dashboard', label: 'Vue d’ensemble', icon: LayoutDashboard, count: null },
           { id: 'orders', label: 'Commandes', icon: ShoppingCart, count: orders.length },
           { id: 'products', label: 'Catalogue & Stocks', icon: Package, count: products.length },
+          { id: 'formations', label: 'Formations & Inscriptions', icon: GraduationCap, count: formations.length },
+          { id: 'testimonials', label: 'Témoignages & Avis', icon: Award, count: testimonials.length },
+          { id: 'users', label: 'Utilisateurs & Éleveurs', icon: Users, count: users.length },
           { id: 'appointments', label: 'Rendez-vous Clinique', icon: Calendar, count: appointments.length },
-          { id: 'leads', label: 'Leads & Devis', icon: Users, count: leads.length },
+          { id: 'leads', label: 'Prospects & Devis', icon: Mail, count: leads.length },
         ].map(tab => {
           const Icon = tab.icon
           const isActive = activeTab === tab.id
@@ -461,13 +645,22 @@ export default function AdminClient() {
                 fontWeight: isActive ? 700 : 500,
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                transition: 'all 0.2s',
+                transition: 'all 0.15s',
               }}
             >
               <Icon size={16} />
               <span>{tab.label}</span>
               {tab.count !== null && (
-                <span style={{ fontSize: '0.7rem', padding: '1px 6px', borderRadius: 10, background: isActive ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.08)', color: isActive ? '#fff' : T.textMuted }}>
+                <span
+                  style={{
+                    padding: '2px 6px',
+                    borderRadius: '100px',
+                    fontSize: '0.7rem',
+                    fontWeight: 700,
+                    background: isActive ? 'rgba(255,255,255,0.25)' : 'rgba(180, 112, 39, 0.15)',
+                    color: isActive ? '#ffffff' : '#b47027',
+                  }}
+                >
                   {tab.count}
                 </span>
               )}
@@ -476,153 +669,86 @@ export default function AdminClient() {
         })}
       </nav>
 
-      {/* ── Contenu Principal selon l'onglet ── */}
-      <main style={{ maxWidth: '1400px', margin: '0 auto', padding: '1.8rem 1.5rem 4rem' }}>
-        
+      {/* ── Contenu de la Vue ── */}
+      <main style={{ padding: '2rem 1.5rem', maxWidth: '1440px', margin: '0 auto' }}>
         {/* ══════════════════════════════════════════════════
-            ONGLET 1 : TABLEAU DE BORD (VUE D'ENSEMBLE)
+            ONGLET 1 : DASHBOARD & STATISTIQUES
         ══════════════════════════════════════════════════ */}
         {activeTab === 'dashboard' && (
           <div>
-            {/* 4 KPIs Clés */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
-              <div style={{ padding: '1.4rem', borderRadius: '16px', background: T.surface, border: `1px solid ${T.border}` }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
-                  <span style={{ fontSize: '0.78rem', color: T.textMuted, fontWeight: 600 }}>Chiffre d’Affaires Réalisé</span>
-                  <div style={{ width: 34, height: 34, borderRadius: 8, background: 'rgba(16, 185, 129, 0.12)', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <TrendingUp size={18} />
-                  </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.2rem', marginBottom: '2rem' }}>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', background: T.surface, border: `1px solid ${T.border}` }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: T.textMuted, fontSize: '0.82rem' }}>
+                  <span>Chiffre d’Affaires</span>
+                  <CreditCard size={18} color="#b47027" />
                 </div>
-                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: T.textMain, letterSpacing: '-0.02em' }}>
-                  {Number(kpis.revenue || 0).toLocaleString('fr-FR')} <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#b47027' }}>FCFA</span>
+                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#b47027', marginTop: '0.6rem' }}>
+                  {(dashboardData?.kpis?.revenue || 0).toLocaleString('fr-FR')} FCFA
                 </div>
-                <div style={{ fontSize: '0.72rem', color: T.textSub, marginTop: '0.3rem' }}>
-                  Total encaissé (KKiaPay, Vente directe)
+                <div style={{ fontSize: '0.75rem', color: '#10b981', marginTop: '0.3rem' }}>
+                  Paiements KKiaPay & espèces validés
                 </div>
               </div>
 
-              <div style={{ padding: '1.4rem', borderRadius: '16px', background: T.surface, border: `1px solid ${T.border}` }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
-                  <span style={{ fontSize: '0.78rem', color: T.textMuted, fontWeight: 600 }}>Commandes Traitées</span>
-                  <div style={{ width: 34, height: 34, borderRadius: 8, background: 'rgba(180, 112, 39, 0.12)', color: '#b47027', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <ShoppingCart size={18} />
-                  </div>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', background: T.surface, border: `1px solid ${T.border}` }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: T.textMuted, fontSize: '0.82rem' }}>
+                  <span>Commandes Total</span>
+                  <ShoppingCart size={18} color="#b47027" />
                 </div>
-                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: T.textMain, letterSpacing: '-0.02em' }}>
-                  {kpis.ordersCount || 0}
+                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: T.textMain, marginTop: '0.6rem' }}>
+                  {dashboardData?.kpis?.ordersCount || orders.length}
                 </div>
-                <div style={{ fontSize: '0.72rem', color: T.textSub, marginTop: '0.3rem' }}>
-                  Dont {orders.filter(o => o.status === 'PENDING').length} en attente de livraison
+                <div style={{ fontSize: '0.75rem', color: T.textMuted, marginTop: '0.3rem' }}>
+                  Intrants, provendes & poussins
                 </div>
               </div>
 
-              <div style={{ padding: '1.4rem', borderRadius: '16px', background: T.surface, border: `1px solid ${T.border}` }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
-                  <span style={{ fontSize: '0.78rem', color: T.textMuted, fontWeight: 600 }}>Rendez-vous Vétérinaires</span>
-                  <div style={{ width: 34, height: 34, borderRadius: 8, background: 'rgba(59, 130, 246, 0.12)', color: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Calendar size={18} />
-                  </div>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', background: T.surface, border: `1px solid ${T.border}` }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: T.textMuted, fontSize: '0.82rem' }}>
+                  <span>Formations & Apprenants</span>
+                  <GraduationCap size={18} color="#10b981" />
                 </div>
-                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: T.textMain, letterSpacing: '-0.02em' }}>
-                  {kpis.appointmentsCount || 0}
+                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: T.textMain, marginTop: '0.6rem' }}>
+                  {formations.length} <span style={{ fontSize: '0.9rem', color: T.textMuted, fontWeight: 500 }}>({registrations.length} inscrits)</span>
                 </div>
-                <div style={{ fontSize: '0.72rem', color: T.textSub, marginTop: '0.3rem' }}>
-                  Consultations et suivis de cheptel
+                <div style={{ fontSize: '0.75rem', color: '#10b981', marginTop: '0.3rem' }}>
+                  Ferme-École & Ateliers AVS
                 </div>
               </div>
 
-              <div style={{ padding: '1.4rem', borderRadius: '16px', background: T.surface, border: `1px solid ${T.border}` }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
-                  <span style={{ fontSize: '0.78rem', color: T.textMuted, fontWeight: 600 }}>Prospets & Leads Qualifiés</span>
-                  <div style={{ width: 34, height: 34, borderRadius: 8, background: 'rgba(168, 85, 247, 0.12)', color: '#a855f7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Users size={18} />
-                  </div>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', background: T.surface, border: `1px solid ${T.border}` }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: T.textMuted, fontSize: '0.82rem' }}>
+                  <span>Utilisateurs & Éleveurs</span>
+                  <Users size={18} color="#3b82f6" />
                 </div>
-                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: T.textMain, letterSpacing: '-0.02em' }}>
-                  {kpis.qualifiedLeads || 0} <span style={{ fontSize: '0.85rem', color: T.textMuted, fontWeight: 500 }}>/ {kpis.leadsCount || 0}</span>
+                <div style={{ fontSize: '1.8rem', fontWeight: 900, color: T.textMain, marginTop: '0.6rem' }}>
+                  {users.length}
                 </div>
-                <div style={{ fontSize: '0.72rem', color: T.textSub, marginTop: '0.3rem' }}>
-                  Scoring automatique d'opportunités
+                <div style={{ fontSize: '0.75rem', color: '#3b82f6', marginTop: '0.3rem' }}>
+                  Fermes et clients référencés
                 </div>
               </div>
             </div>
 
-            {/* Alertes de Stock Bas */}
-            {lowStock.length > 0 && (
-              <div style={{ marginBottom: '2rem', padding: '1.2rem 1.4rem', borderRadius: '16px', background: 'rgba(234, 179, 8, 0.08)', border: '1px solid rgba(234, 179, 8, 0.3)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#eab308', fontWeight: 700, fontSize: '0.9rem', marginBottom: '0.6rem' }}>
+            {/* Alertes de Stock Faible */}
+            {dashboardData?.lowStockProducts && dashboardData.lowStockProducts.length > 0 && (
+              <div style={{ padding: '1.5rem', borderRadius: '18px', background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.3)', marginBottom: '2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ef4444', fontWeight: 700, marginBottom: '0.8rem' }}>
                   <AlertTriangle size={18} />
-                  <span>Alertes de Stock Bas ({lowStock.length} articles sous le seuil d'alerte)</span>
+                  <span>Alertes de Réapprovisionnement de Stock</span>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.8rem' }}>
-                  {lowStock.map(item => (
-                    <div key={item.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.7rem 1rem', borderRadius: '10px', background: T.surface, border: `1px solid ${T.border}` }}>
-                      <div>
-                        <div style={{ fontSize: '0.82rem', fontWeight: 700, color: T.textMain }}>{item.title}</div>
-                        <div style={{ fontSize: '0.72rem', color: '#eab308' }}>Stock restant : <strong>{item.stock} {item.unit || 'unités'}</strong></div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+                  {dashboardData.lowStockProducts.map(p => (
+                    <div key={p.id} style={{ background: T.surface, padding: '1rem', borderRadius: '12px', border: `1px solid ${T.border}` }}>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: T.textMain }}>{p.title}</div>
+                      <div style={{ fontSize: '0.78rem', color: '#ef4444', fontWeight: 600, marginTop: '4px' }}>
+                        Reste : {p.stock} {p.unit}
                       </div>
-                      <button
-                        onClick={() => handleUpdateStock(item.id, 50)}
-                        style={{ padding: '5px 10px', borderRadius: '6px', border: 'none', background: '#b47027', color: '#fff', fontSize: '0.72rem', fontWeight: 700, cursor: 'pointer' }}
-                      >
-                        +50 Réappro
-                      </button>
                     </div>
                   ))}
                 </div>
               </div>
             )}
-
-            {/* Deux Colonnes : Commandes récentes & Demandes récentes */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem' }}>
-              {/* Dernières Commandes */}
-              <div style={{ padding: '1.4rem', borderRadius: '16px', background: T.surface, border: `1px solid ${T.border}` }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: 800, margin: 0, color: T.textMain }}>Dernières Commandes</h3>
-                  <button onClick={() => setActiveTab('orders')} style={{ fontSize: '0.75rem', color: '#b47027', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600 }}>
-                    Voir toutes →
-                  </button>
-                </div>
-                {orders.slice(0, 5).map(order => (
-                  <div key={order.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: `1px solid ${T.border}` }}>
-                    <div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: T.textMain }}>{order.orderNumber}</div>
-                      <div style={{ fontSize: '0.75rem', color: T.textMuted }}>{order.customerName} · {order.customerPhone}</div>
-                    </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#b47027' }}>{order.totalAmount?.toLocaleString('fr-FR')} FCFA</div>
-                      <span style={{ fontSize: '0.65rem', padding: '2px 8px', borderRadius: 10, background: order.status === 'CONFIRMED' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(234, 179, 8, 0.15)', color: order.status === 'CONFIRMED' ? '#10b981' : '#eab308', fontWeight: 700 }}>
-                        {order.status}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Derniers Rendez-vous */}
-              <div style={{ padding: '1.4rem', borderRadius: '16px', background: T.surface, border: `1px solid ${T.border}` }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: 800, margin: 0, color: T.textMain }}>Rendez-vous Vétérinaires Récents</h3>
-                  <button onClick={() => setActiveTab('appointments')} style={{ fontSize: '0.75rem', color: '#b47027', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600 }}>
-                    Gérer la clinique →
-                  </button>
-                </div>
-                {appointments.slice(0, 5).map(appt => (
-                  <div key={appt.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: `1px solid ${T.border}` }}>
-                    <div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: T.textMain }}>{appt.clientName || appt.name}</div>
-                      <div style={{ fontSize: '0.75rem', color: T.textMuted }}>{appt.animalType || 'Cheptel'} · {appt.reason || 'Consultation'}</div>
-                    </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '0.78rem', color: T.textMain, fontWeight: 600 }}>{new Date(appt.date || appt.createdAt).toLocaleDateString('fr-FR')}</div>
-                      <span style={{ fontSize: '0.65rem', padding: '2px 8px', borderRadius: 10, background: appt.urgent ? 'rgba(239, 68, 68, 0.15)' : 'rgba(59, 130, 246, 0.15)', color: appt.urgent ? '#ef4444' : '#3b82f6', fontWeight: 700 }}>
-                        {appt.urgent ? 'URGENCE 24/7' : appt.status || 'PROGRAMMÉ'}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         )}
 
@@ -631,151 +757,95 @@ export default function AdminClient() {
         ══════════════════════════════════════════════════ */}
         {activeTab === 'orders' && (
           <div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <div>
-                <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: T.textMain }}>Gestion des Commandes</h2>
-                <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>Suivi des livraisons et validation des paiements KKiaPay / Airtel Money</p>
+                <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: T.textMain }}>Commandes & Règlements</h2>
+                <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>Suivi des livraisons et des paiements KKiaPay</p>
               </div>
 
-              {/* Barre de recherche et filtres */}
-              <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-                <div style={{ position: 'relative' }}>
-                  <input
-                    type="text"
-                    placeholder="Rechercher réf, client, tel..."
-                    value={searchQuery}
-                    onChange={e => setSearchQuery(e.target.value)}
-                    style={{ padding: '8px 12px 8px 34px', borderRadius: '10px', border: `1px solid ${T.border}`, background: T.surface, color: T.textMain, fontSize: '0.85rem' }}
-                  />
-                  <Search size={15} style={{ position: 'absolute', left: 10, top: 11, color: T.textMuted }} />
-                </div>
-
-                <select
-                  value={orderFilter}
-                  onChange={e => setOrderFilter(e.target.value)}
-                  style={{ padding: '8px 12px', borderRadius: '10px', border: `1px solid ${T.border}`, background: T.surface, color: T.textMain, fontSize: '0.85rem' }}
-                >
-                  <option value="ALL">Tous les statuts</option>
-                  <option value="PENDING">En attente (PENDING)</option>
-                  <option value="CONFIRMED">Confirmée (CONFIRMED)</option>
-                  <option value="SHIPPED">Expédiée (SHIPPED)</option>
-                  <option value="DELIVERED">Livrée (DELIVERED)</option>
-                  <option value="CANCELLED">Annulée (CANCELLED)</option>
-                </select>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                {['ALL', 'PENDING', 'CONFIRMED', 'DELIVERED', 'CANCELLED'].map(st => (
+                  <button
+                    key={st}
+                    onClick={() => setOrderFilter(st)}
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: '8px',
+                      border: `1px solid ${orderFilter === st ? '#b47027' : T.border}`,
+                      background: orderFilter === st ? '#b47027' : 'transparent',
+                      color: orderFilter === st ? '#fff' : T.textSub,
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {st === 'ALL' ? 'Toutes' : st}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Tableau des commandes */}
             <div style={{ background: T.surface, borderRadius: '16px', border: `1px solid ${T.border}`, overflow: 'hidden' }}>
               <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.84rem' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
                   <thead>
-                    <tr style={{ background: T.light ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.02)', borderBottom: `1px solid ${T.border}`, color: T.textMuted }}>
-                      <th style={{ padding: '12px 16px' }}>RÉFÉRENCE</th>
-                      <th style={{ padding: '12px 16px' }}>CLIENT & CONTACT</th>
-                      <th style={{ padding: '12px 16px' }}>LIVRAISON</th>
-                      <th style={{ padding: '12px 16px' }}>ARTICLES</th>
-                      <th style={{ padding: '12px 16px' }}>MONTANT TOTAL</th>
-                      <th style={{ padding: '12px 16px' }}>STATUT</th>
-                      <th style={{ padding: '12px 16px', textAlign: 'right' }}>ACTIONS RAPIDES</th>
+                    <tr style={{ background: T.bg, borderBottom: `1px solid ${T.border}`, color: T.textMuted }}>
+                      <th style={{ padding: '12px 16px' }}>N° Commande</th>
+                      <th style={{ padding: '12px 16px' }}>Client</th>
+                      <th style={{ padding: '12px 16px' }}>Montant</th>
+                      <th style={{ padding: '12px 16px' }}>Paiement</th>
+                      <th style={{ padding: '12px 16px' }}>Statut Commande</th>
+                      <th style={{ padding: '12px 16px', textAlign: 'right' }}>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredOrders.length === 0 ? (
+                    {orders.length === 0 ? (
                       <tr>
-                        <td colSpan={7} style={{ padding: '3rem', textAlign: 'center', color: T.textMuted }}>
-                          Aucune commande ne correspond aux filtres sélectionnés.
+                        <td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: T.textMuted }}>
+                          Aucune commande enregistrée.
                         </td>
                       </tr>
                     ) : (
-                      filteredOrders.map(order => (
-                        <tr key={order.id} style={{ borderBottom: `1px solid ${T.border}` }}>
-                          <td style={{ padding: '14px 16px', fontWeight: 800, color: '#b47027' }}>
-                            {order.orderNumber}
-                            <div style={{ fontSize: '0.7rem', color: T.textMuted, fontWeight: 400 }}>
-                              {new Date(order.createdAt).toLocaleString('fr-FR')}
-                            </div>
-                          </td>
-                          <td style={{ padding: '14px 16px' }}>
-                            <div style={{ fontWeight: 700, color: T.textMain }}>{order.customerName}</div>
-                            <a href={`tel:${order.customerPhone}`} style={{ fontSize: '0.75rem', color: '#b47027', textDecoration: 'none' }}>
-                              {order.customerPhone}
-                            </a>
-                          </td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.8rem', color: T.textSub }}>
-                            {order.customerAddress || 'Retrait au siège'}
-                            {order.customerCity && ` (${order.customerCity})`}
-                          </td>
-                          <td style={{ padding: '14px 16px' }}>
-                            <div style={{ fontSize: '0.78rem', color: T.textMain }}>
-                              {order.items?.map((it, idx) => (
-                                <div key={idx}>
-                                  {it.quantity}× {it.title}
-                                </div>
-                              ))}
-                            </div>
-                          </td>
-                          <td style={{ padding: '14px 16px', fontWeight: 900, color: T.textMain }}>
-                            {order.totalAmount?.toLocaleString('fr-FR')} FCFA
-                            <div style={{ fontSize: '0.68rem', color: order.paymentStatus === 'PAID' ? '#10b981' : '#eab308' }}>
-                              {order.paymentStatus === 'PAID' ? '✓ Payé' : 'Non payé'}
-                            </div>
-                          </td>
-                          <td style={{ padding: '14px 16px' }}>
-                            <span style={{
-                              padding: '4px 10px',
-                              borderRadius: 12,
-                              fontSize: '0.7rem',
-                              fontWeight: 700,
-                              background:
-                                order.status === 'DELIVERED' ? 'rgba(16, 185, 129, 0.15)' :
-                                order.status === 'SHIPPED' ? 'rgba(59, 130, 246, 0.15)' :
-                                order.status === 'CONFIRMED' ? 'rgba(180, 112, 39, 0.15)' :
-                                order.status === 'CANCELLED' ? 'rgba(239, 68, 68, 0.15)' :
-                                'rgba(234, 179, 8, 0.15)',
-                              color:
-                                order.status === 'DELIVERED' ? '#10b981' :
-                                order.status === 'SHIPPED' ? '#3b82f6' :
-                                order.status === 'CONFIRMED' ? '#b47027' :
-                                order.status === 'CANCELLED' ? '#ef4444' :
-                                '#eab308',
-                            }}>
-                              {order.status}
-                            </span>
-                          </td>
-                          <td style={{ padding: '14px 16px', textAlign: 'right' }}>
-                            <div style={{ display: 'flex', gap: '4px', justifyContent: 'flex-end' }}>
-                              {order.status !== 'CONFIRMED' && (
-                                <button
-                                  onClick={() => handleUpdateOrderStatus(order.id, 'CONFIRMED')}
-                                  title="Confirmer la commande"
-                                  style={{ padding: '4px 8px', borderRadius: 6, border: 'none', background: '#b47027', color: '#fff', fontSize: '0.72rem', cursor: 'pointer' }}
-                                >
-                                  Confirmer
-                                </button>
-                              )}
-                              {order.status !== 'DELIVERED' && (
-                                <button
-                                  onClick={() => handleUpdateOrderStatus(order.id, 'DELIVERED')}
-                                  title="Marquer comme livrée"
-                                  style={{ padding: '4px 8px', borderRadius: 6, border: 'none', background: '#10b981', color: '#fff', fontSize: '0.72rem', cursor: 'pointer' }}
-                                >
-                                  Livrée
-                                </button>
-                              )}
-                              {order.status !== 'CANCELLED' && (
-                                <button
-                                  onClick={() => handleUpdateOrderStatus(order.id, 'CANCELLED')}
-                                  title="Annuler la commande"
-                                  style={{ padding: '4px 8px', borderRadius: 6, border: 'none', background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', fontSize: '0.72rem', cursor: 'pointer' }}
-                                >
-                                  Annuler
-                                </button>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
-                      ))
+                      orders
+                        .filter(o => orderFilter === 'ALL' || o.status === orderFilter)
+                        .map(order => (
+                          <tr key={order.id} style={{ borderBottom: `1px solid ${T.border}` }}>
+                            <td style={{ padding: '14px 16px', fontWeight: 800, color: '#b47027' }}>
+                              {order.orderNumber}
+                            </td>
+                            <td style={{ padding: '14px 16px' }}>
+                              <div style={{ fontWeight: 600, color: T.textMain }}>{order.customerName}</div>
+                              <div style={{ fontSize: '0.72rem', color: T.textMuted }}>{order.customerPhone}</div>
+                            </td>
+                            <td style={{ padding: '14px 16px', fontWeight: 700 }}>
+                              {Number(order.totalAmount).toLocaleString('fr-FR')} FCFA
+                            </td>
+                            <td style={{ padding: '14px 16px' }}>
+                              <span style={{ padding: '3px 8px', borderRadius: 8, fontSize: '0.7rem', fontWeight: 700, background: order.paymentStatus === 'PAID' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)', color: order.paymentStatus === 'PAID' ? '#10b981' : '#f59e0b' }}>
+                                {order.paymentStatus}
+                              </span>
+                            </td>
+                            <td style={{ padding: '14px 16px' }}>
+                              <span style={{ padding: '3px 8px', borderRadius: 8, fontSize: '0.7rem', fontWeight: 700, background: order.status === 'DELIVERED' ? 'rgba(16, 185, 129, 0.15)' : order.status === 'CANCELLED' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(180, 112, 39, 0.15)', color: order.status === 'DELIVERED' ? '#10b981' : order.status === 'CANCELLED' ? '#ef4444' : '#b47027' }}>
+                                {order.status}
+                              </span>
+                            </td>
+                            <td style={{ padding: '14px 16px', textAlign: 'right' }}>
+                              <select
+                                value={order.status}
+                                onChange={e => handleUpdateOrderStatus(order.id, e.target.value)}
+                                style={{ padding: '4px 8px', borderRadius: 8, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, fontSize: '0.75rem', outline: 'none' }}
+                              >
+                                <option value="PENDING">En attente</option>
+                                <option value="CONFIRMED">Confirmée</option>
+                                <option value="PROCESSING">Préparation</option>
+                                <option value="SHIPPED">En livraison</option>
+                                <option value="DELIVERED">Livrée</option>
+                                <option value="CANCELLED">Annulée</option>
+                              </select>
+                            </td>
+                          </tr>
+                        ))
                     )}
                   </tbody>
                 </table>
@@ -785,149 +855,60 @@ export default function AdminClient() {
         )}
 
         {/* ══════════════════════════════════════════════════
-            ONGLET 3 : GESTION DES PRODUITS & DU STOCK
+            ONGLET 3 : CATALOGUE PRODUITS & STOCKS
         ══════════════════════════════════════════════════ */}
         {activeTab === 'products' && (
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <div>
-                <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: T.textMain }}>Catalogue & Gestion des Stocks</h2>
-                <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>Mise à jour immédiate des prix et disponibilités en base PostgreSQL</p>
+                <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: T.textMain }}>Catalogue Produits & Intrants</h2>
+                <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>Gérez les prix, disponibilités et stocks en temps réel</p>
               </div>
 
               <button
                 onClick={() => setShowAddProduct(true)}
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '9px 18px', borderRadius: '100px', border: 'none', background: '#b47027', color: '#fff', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer' }}
+                style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer' }}
               >
                 <Plus size={16} />
-                Ajouter un Produit
+                Nouveau Produit
               </button>
             </div>
 
-            {/* Modal Ajout Produit */}
-            {showAddProduct && (
-              <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-                <div style={{ width: '100%', maxWidth: '520px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', boxShadow: '0 25px 60px rgba(0,0,0,0.5)' }}>
-                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: '0 0 1rem', color: T.textMain }}>Nouveau Produit au Catalogue</h3>
-                  <form onSubmit={handleCreateProduct} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
-                    <div>
-                      <label style={{ fontSize: '0.75rem', fontWeight: 600, color: T.textMain }}>Nom de l’intrant / produit</label>
-                      <input
-                        type="text"
-                        required
-                        value={newProduct.title}
-                        onChange={e => setNewProduct(prev => ({ ...prev, title: e.target.value }))}
-                        placeholder="Ex: Poussins Cobb 500 ou Provende Finition"
-                        style={{ width: '100%', padding: '10px', borderRadius: 8, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, fontSize: '0.85rem' }}
-                      />
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem' }}>
-                      <div>
-                        <label style={{ fontSize: '0.75rem', fontWeight: 600, color: T.textMain }}>Prix (FCFA)</label>
-                        <input
-                          type="number"
-                          required
-                          value={newProduct.price}
-                          onChange={e => setNewProduct(prev => ({ ...prev, price: e.target.value }))}
-                          placeholder="650"
-                          style={{ width: '100%', padding: '10px', borderRadius: 8, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, fontSize: '0.85rem' }}
-                        />
-                      </div>
-                      <div>
-                        <label style={{ fontSize: '0.75rem', fontWeight: 600, color: T.textMain }}>Stock Initial</label>
-                        <input
-                          type="number"
-                          required
-                          value={newProduct.stock}
-                          onChange={e => setNewProduct(prev => ({ ...prev, stock: e.target.value }))}
-                          placeholder="1000"
-                          style={{ width: '100%', padding: '10px', borderRadius: 8, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, fontSize: '0.85rem' }}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label style={{ fontSize: '0.75rem', fontWeight: 600, color: T.textMain }}>Description</label>
-                      <textarea
-                        rows={2}
-                        value={newProduct.description}
-                        onChange={e => setNewProduct(prev => ({ ...prev, description: e.target.value }))}
-                        placeholder="Caractéristiques et recommandations d'élevage..."
-                        style={{ width: '100%', padding: '10px', borderRadius: 8, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, fontSize: '0.85rem' }}
-                      />
-                    </div>
-                    <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'flex-end', marginTop: '1rem' }}>
-                      <button
-                        type="button"
-                        onClick={() => setShowAddProduct(false)}
-                        style={{ padding: '8px 16px', borderRadius: 8, border: `1px solid ${T.border}`, background: 'transparent', color: T.textMain, cursor: 'pointer' }}
-                      >
-                        Annuler
-                      </button>
-                      <button
-                        type="submit"
-                        style={{ padding: '8px 20px', borderRadius: 8, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer' }}
-                      >
-                        Enregistrer
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            )}
-
-            {/* Grille des produits */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.2rem' }}>
-              {products.map(p => (
-                <div key={p.id} style={{ padding: '1.2rem', borderRadius: '16px', background: T.surface, border: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.2rem' }}>
+              {products.map(prod => (
+                <div key={prod.id} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: '16px', padding: '1.2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.8rem' }}>
-                      <div>
-                        <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#b47027', textTransform: 'uppercase' }}>
-                          {p.category?.name || 'Intrant AVS'}
-                        </span>
-                        <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: T.textMain, margin: '0.2rem 0 0' }}>
-                          {p.title}
-                        </h4>
-                      </div>
-                      <span style={{ fontSize: '0.68rem', padding: '3px 8px', borderRadius: 10, background: p.stock > 0 ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)', color: p.stock > 0 ? '#10b981' : '#ef4444', fontWeight: 700 }}>
-                        {p.stock > 0 ? 'En Stock' : 'Rupture'}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.6rem' }}>
+                      <span style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: 6, background: 'rgba(180, 112, 39, 0.15)', color: '#b47027', fontWeight: 700 }}>
+                        {prod.unit}
+                      </span>
+                      <span style={{ fontSize: '0.72rem', fontWeight: 700, color: prod.stock > 50 ? '#10b981' : '#ef4444' }}>
+                        {prod.stock > 0 ? `${prod.stock} en stock` : 'Rupture'}
                       </span>
                     </div>
 
-                    <div style={{ fontSize: '1.2rem', fontWeight: 900, color: T.textMain, marginBottom: '0.8rem' }}>
-                      {Number(p.promoPrice || p.price).toLocaleString('fr-FR')} FCFA <span style={{ fontSize: '0.75rem', fontWeight: 400, color: T.textMuted }}>/ {p.unit || 'unité'}</span>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 800, margin: '0 0 0.4rem', color: T.textMain }}>
+                      {prod.title}
+                    </h3>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#b47027', marginBottom: '0.8rem' }}>
+                      {Number(prod.price).toLocaleString('fr-FR')} FCFA
                     </div>
-
-                    <p style={{ fontSize: '0.78rem', color: T.textSub, lineHeight: 1.5, margin: '0 0 1.2rem' }}>
-                      {p.description?.slice(0, 100)}...
-                    </p>
                   </div>
 
-                  {/* Contrôle du Stock */}
-                  <div style={{ padding: '0.8rem 1rem', borderRadius: 12, background: T.bg, border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div>
-                      <div style={{ fontSize: '0.7rem', color: T.textMuted }}>Stock disponible</div>
-                      <div style={{ fontSize: '1.05rem', fontWeight: 900, color: p.stock <= 200 ? '#eab308' : T.textMain }}>
-                        {p.stock} <span style={{ fontSize: '0.72rem', fontWeight: 500 }}>{p.unit || 'unités'}</span>
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', gap: '6px' }}>
-                      <button
-                        onClick={() => handleUpdateStock(p.id, -10)}
-                        title="-10 unités"
-                        style={{ width: 32, height: 32, borderRadius: 8, border: `1px solid ${T.border}`, background: T.surface, color: T.textMain, fontWeight: 800, cursor: 'pointer' }}
-                      >
-                        -10
-                      </button>
-                      <button
-                        onClick={() => handleUpdateStock(p.id, +50)}
-                        title="+50 unités"
-                        style={{ width: 36, height: 32, borderRadius: 8, border: 'none', background: '#b47027', color: '#fff', fontWeight: 800, cursor: 'pointer' }}
-                      >
-                        +50
-                      </button>
-                    </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', paddingTop: '1rem', borderTop: `1px solid ${T.border}` }}>
+                    <span style={{ fontSize: '0.75rem', color: T.textMuted }}>Ajuster stock :</span>
+                    <button
+                      onClick={() => handleStockAdjust(prod.id, -10)}
+                      style={{ padding: '4px 10px', borderRadius: 6, border: `1px solid ${T.border}`, background: 'transparent', color: T.textMain, cursor: 'pointer' }}
+                    >
+                      -10
+                    </button>
+                    <button
+                      onClick={() => handleStockAdjust(prod.id, 50)}
+                      style={{ padding: '4px 10px', borderRadius: 6, border: 'none', background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', fontWeight: 700, cursor: 'pointer' }}
+                    >
+                      +50
+                    </button>
                   </div>
                 </div>
               ))}
@@ -936,73 +917,457 @@ export default function AdminClient() {
         )}
 
         {/* ══════════════════════════════════════════════════
-            ONGLET 4 : RENDEZ-VOUS VÉTÉRINAIRES
+            ONGLET 4 : FORMATIONS & INSCRIPTIONS (NOUVEAU)
         ══════════════════════════════════════════════════ */}
-        {activeTab === 'appointments' && (
+        {activeTab === 'formations' && (
           <div>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: T.textMain }}>Clinique Vétérinaire 24/7 & Visites de Fermes</h2>
-              <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>Planning des interventions zootechniques et consultations sous la direction du Dr POUTYA</p>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+              <div>
+                <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: T.textMain }}>
+                  Formations & Fermes-Écoles
+                </h2>
+                <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>
+                  Pilotage des 8 modules certifiants et gestion des inscriptions apprenants
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+                <div style={{ display: 'flex', background: T.surface, padding: '3px', borderRadius: '10px', border: `1px solid ${T.border}` }}>
+                  <button
+                    onClick={() => setFormationTab('catalog')}
+                    style={{ padding: '6px 14px', borderRadius: '8px', border: 'none', background: formationTab === 'catalog' ? '#b47027' : 'transparent', color: formationTab === 'catalog' ? '#fff' : T.textSub, fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer' }}
+                  >
+                    Catalogue ({formations.length})
+                  </button>
+                  <button
+                    onClick={() => setFormationTab('registrations')}
+                    style={{ padding: '6px 14px', borderRadius: '8px', border: 'none', background: formationTab === 'registrations' ? '#b47027' : 'transparent', color: formationTab === 'registrations' ? '#fff' : T.textSub, fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer' }}
+                  >
+                    Pré-inscriptions ({registrations.length})
+                  </button>
+                </div>
+
+                <button
+                  onClick={() => setShowAddFormation(true)}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer' }}
+                >
+                  <Plus size={16} />
+                  Nouvelle Formation
+                </button>
+              </div>
+            </div>
+
+            {/* Vue 1 : Catalogue des Formations */}
+            {formationTab === 'catalog' && (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.4rem' }}>
+                {formations.map(f => (
+                  <div
+                    key={f.id}
+                    style={{
+                      background: T.surface,
+                      border: `1px solid ${T.border}`,
+                      borderRadius: '18px',
+                      padding: '1.5rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      opacity: f.isActive ? 1 : 0.6,
+                    }}
+                  >
+                    <div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
+                        <span style={{ fontSize: '0.7rem', padding: '3px 9px', borderRadius: 6, background: 'rgba(180, 112, 39, 0.15)', color: '#b47027', fontWeight: 700 }}>
+                          {f.category}
+                        </span>
+                        <span style={{ fontSize: '0.72rem', padding: '3px 8px', borderRadius: 6, background: f.isActive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)', color: f.isActive ? '#10b981' : '#ef4444', fontWeight: 700 }}>
+                          {f.isActive ? 'Active' : 'Masquée'}
+                        </span>
+                      </div>
+
+                      <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0 0 0.5rem', color: T.textMain, lineHeight: 1.4 }}>
+                        {f.title}
+                      </h3>
+
+                      <div style={{ fontSize: '1.15rem', fontWeight: 900, color: '#b47027', marginBottom: '0.6rem' }}>
+                        {f.price}
+                      </div>
+
+                      <div style={{ fontSize: '0.78rem', color: T.textSub, marginBottom: '0.4rem' }}>
+                        ⏱️ <strong>Durée :</strong> {f.duration}
+                      </div>
+                      <div style={{ fontSize: '0.78rem', color: T.textSub, marginBottom: '0.8rem' }}>
+                        📅 <strong>Session :</strong> {f.nextSession}
+                      </div>
+
+                      {f.description && (
+                        <p style={{ fontSize: '0.78rem', color: T.textMuted, lineHeight: 1.5, margin: '0 0 1rem' }}>
+                          {f.description}
+                        </p>
+                      )}
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '8px', paddingTop: '1rem', borderTop: `1px solid ${T.border}` }}>
+                      <button
+                        onClick={() => handleToggleFormationStatus(f.id, f.isActive)}
+                        style={{ flex: 1, padding: '7px', borderRadius: 8, border: `1px solid ${T.border}`, background: 'transparent', color: T.textMain, fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
+                      >
+                        {f.isActive ? 'Masquer' : 'Activer'}
+                      </button>
+                      <button
+                        onClick={() => handleDeleteFormation(f.id)}
+                        style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', cursor: 'pointer' }}
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Vue 2 : Liste des Pré-inscriptions */}
+            {formationTab === 'registrations' && (
+              <div style={{ background: T.surface, borderRadius: '16px', border: `1px solid ${T.border}`, overflow: 'hidden' }}>
+                <div style={{ overflowX: 'auto' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
+                    <thead>
+                      <tr style={{ background: T.bg, borderBottom: `1px solid ${T.border}`, color: T.textMuted }}>
+                        <th style={{ padding: '12px 16px' }}>Candidat</th>
+                        <th style={{ padding: '12px 16px' }}>Module Choisi</th>
+                        <th style={{ padding: '12px 16px' }}>Participants</th>
+                        <th style={{ padding: '12px 16px' }}>Statut</th>
+                        <th style={{ padding: '12px 16px', textAlign: 'right' }}>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {registrations.length === 0 ? (
+                        <tr>
+                          <td colSpan={5} style={{ padding: '3rem', textAlign: 'center', color: T.textMuted }}>
+                            Aucune inscription enregistrée pour le moment.
+                          </td>
+                        </tr>
+                      ) : (
+                        registrations.map(reg => (
+                          <tr key={reg.id} style={{ borderBottom: `1px solid ${T.border}` }}>
+                            <td style={{ padding: '14px 16px' }}>
+                              <div style={{ fontWeight: 700, color: T.textMain }}>{reg.fullName}</div>
+                              <div style={{ fontSize: '0.72rem', color: T.textMuted }}>📞 {reg.phone} {reg.email && `• ${reg.email}`}</div>
+                            </td>
+                            <td style={{ padding: '14px 16px', fontWeight: 600, color: '#b47027' }}>
+                              {reg.formationType}
+                            </td>
+                            <td style={{ padding: '14px 16px' }}>
+                              {reg.participantsCount || 1} personne(s)
+                            </td>
+                            <td style={{ padding: '14px 16px' }}>
+                              <span style={{ padding: '3px 8px', borderRadius: 8, fontSize: '0.7rem', fontWeight: 700, background: reg.status === 'CONFIRMED' ? 'rgba(16, 185, 129, 0.15)' : reg.status === 'CANCELLED' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(245, 158, 11, 0.15)', color: reg.status === 'CONFIRMED' ? '#10b981' : reg.status === 'CANCELLED' ? '#ef4444' : '#f59e0b' }}>
+                                {reg.status}
+                              </span>
+                            </td>
+                            <td style={{ padding: '14px 16px', textAlign: 'right' }}>
+                              <div style={{ display: 'flex', gap: '6px', justifyContent: 'flex-end', alignItems: 'center' }}>
+                                <a
+                                  href={`https://wa.me/${(reg.phone || '').replace(/[^0-9]/g, '')}?text=Bonjour%20${encodeURIComponent(reg.fullName)}%2C%20Agro%20V%C3%A9to%20Services%20vous%20contacte%20concernant%20votre%20inscription...`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  style={{ padding: '5px 10px', borderRadius: 6, background: '#25D366', color: '#fff', fontSize: '0.72rem', fontWeight: 700, textDecoration: 'none' }}
+                                >
+                                  WhatsApp
+                                </a>
+                                <button
+                                  onClick={() => handleUpdateRegistrationStatus(reg.id, 'CONFIRMED')}
+                                  style={{ padding: '5px 10px', borderRadius: 6, border: 'none', background: '#10b981', color: '#fff', fontSize: '0.72rem', fontWeight: 700, cursor: 'pointer' }}
+                                >
+                                  Confirmer
+                                </button>
+                                <button
+                                  onClick={() => handleUpdateRegistrationStatus(reg.id, 'CANCELLED')}
+                                  style={{ padding: '5px 8px', borderRadius: 6, border: '1px solid rgba(239, 68, 68, 0.3)', background: 'transparent', color: '#ef4444', fontSize: '0.72rem', cursor: 'pointer' }}
+                                >
+                                  Annuler
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════
+            ONGLET 5 : TÉMOIGNAGES & AVIS CLIENTS (NOUVEAU)
+        ══════════════════════════════════════════════════ */}
+        {activeTab === 'testimonials' && (
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+              <div>
+                <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: T.textMain }}>
+                  Témoignages & Avis Clients
+                </h2>
+                <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>
+                  Modération et publication des retours d’expérience des éleveurs et partenaires
+                </p>
+              </div>
+
+              <button
+                onClick={() => setShowAddTestimonial(true)}
+                style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer' }}
+              >
+                <Plus size={16} />
+                Ajouter un Témoignage
+              </button>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.4rem' }}>
+              {testimonials.map(t => (
+                <div
+                  key={t.id}
+                  style={{
+                    background: T.surface,
+                    border: `1px solid ${t.isApproved ? T.border : 'rgba(245, 158, 11, 0.4)'}`,
+                    borderRadius: '18px',
+                    padding: '1.5rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.8rem' }}>
+                      <div style={{ display: 'flex', gap: '2px' }}>
+                        {[...Array(t.rating || 5)].map((_, i) => (
+                          <Star key={i} size={14} fill="#b47027" color="#b47027" />
+                        ))}
+                      </div>
+
+                      <span style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: 6, background: t.isApproved ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)', color: t.isApproved ? '#10b981' : '#f59e0b', fontWeight: 700 }}>
+                        {t.isApproved ? '✓ Approuvé & Public' : '⏳ En attente'}
+                      </span>
+                    </div>
+
+                    <blockquote style={{ fontSize: '0.88rem', color: T.textMain, fontStyle: 'italic', lineHeight: 1.6, margin: '0 0 1.2rem' }}>
+                      "{t.text}"
+                    </blockquote>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.8rem' }}>
+                      <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(180, 112, 39, 0.15)', color: '#b47027', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>
+                        {t.name[0]}
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '0.88rem', fontWeight: 800, color: T.textMain }}>{t.name}</div>
+                        <div style={{ fontSize: '0.72rem', color: T.textMuted }}>{t.role}</div>
+                      </div>
+                    </div>
+
+                    {t.result && (
+                      <div style={{ display: 'inline-block', fontSize: '0.7rem', fontWeight: 700, color: '#b47027', background: 'rgba(180, 112, 39, 0.1)', padding: '3px 8px', borderRadius: 6, marginBottom: '1rem' }}>
+                        {t.result}
+                      </div>
+                    )}
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '8px', paddingTop: '1rem', borderTop: `1px solid ${T.border}` }}>
+                    <button
+                      onClick={() => handleToggleTestimonialApproval(t.id, t.isApproved)}
+                      style={{ flex: 1, padding: '7px', borderRadius: 8, border: 'none', background: t.isApproved ? 'rgba(245, 158, 11, 0.15)' : 'rgba(16, 185, 129, 0.15)', color: t.isApproved ? '#f59e0b' : '#10b981', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer' }}
+                    >
+                      {t.isApproved ? 'Masquer' : 'Approuver'}
+                    </button>
+                    <button
+                      onClick={() => handleDeleteTestimonial(t.id)}
+                      style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', cursor: 'pointer' }}
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════
+            ONGLET 6 : GESTION DES UTILISATEURS (NOUVEAU)
+        ══════════════════════════════════════════════════ */}
+        {activeTab === 'users' && (
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+              <div>
+                <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: T.textMain }}>
+                  Comptes Utilisateurs & Éleveurs
+                </h2>
+                <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>
+                  Gestion des accès éleveurs, fermes partenaires, techniciens et administrateurs
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: '0.4rem' }}>
+                  {['ALL', 'CLIENT', 'STAFF', 'ADMIN'].map(r => (
+                    <button
+                      key={r}
+                      onClick={() => setUserRoleFilter(r)}
+                      style={{
+                        padding: '6px 12px',
+                        borderRadius: '8px',
+                        border: `1px solid ${userRoleFilter === r ? '#b47027' : T.border}`,
+                        background: userRoleFilter === r ? '#b47027' : 'transparent',
+                        color: userRoleFilter === r ? '#fff' : T.textSub,
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {r === 'ALL' ? 'Tous' : r}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setShowAddUser(true)}
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer' }}
+                >
+                  <UserPlus size={16} />
+                  Créer un Compte
+                </button>
+              </div>
             </div>
 
             <div style={{ background: T.surface, borderRadius: '16px', border: `1px solid ${T.border}`, overflow: 'hidden' }}>
               <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.84rem' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
                   <thead>
-                    <tr style={{ background: T.light ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.02)', borderBottom: `1px solid ${T.border}`, color: T.textMuted }}>
-                      <th style={{ padding: '12px 16px' }}>CLIENT / ÉLEVEUR</th>
-                      <th style={{ padding: '12px 16px' }}>ANIMAL / CHEPTEL</th>
-                      <th style={{ padding: '12px 16px' }}>MOTIF / SYMPTÔMES</th>
-                      <th style={{ padding: '12px 16px' }}>DATE SOUHAITÉE</th>
-                      <th style={{ padding: '12px 16px' }}>URGENCE</th>
-                      <th style={{ padding: '12px 16px', textAlign: 'right' }}>ACTIONS CLINIQUE</th>
+                    <tr style={{ background: T.bg, borderBottom: `1px solid ${T.border}`, color: T.textMuted }}>
+                      <th style={{ padding: '12px 16px' }}>Utilisateur</th>
+                      <th style={{ padding: '12px 16px' }}>Type de Compte</th>
+                      <th style={{ padding: '12px 16px' }}>Rôle Système</th>
+                      <th style={{ padding: '12px 16px' }}>État du Compte</th>
+                      <th style={{ padding: '12px 16px', textAlign: 'right' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users
+                      .filter(u => userRoleFilter === 'ALL' || u.role === userRoleFilter)
+                      .map(user => (
+                        <tr key={user.id} style={{ borderBottom: `1px solid ${T.border}` }}>
+                          <td style={{ padding: '14px 16px' }}>
+                            <div style={{ fontWeight: 700, color: T.textMain }}>{user.name}</div>
+                            <div style={{ fontSize: '0.72rem', color: T.textMuted }}>
+                              {user.email} • {user.phone || 'Sans tél'}
+                            </div>
+                          </td>
+                          <td style={{ padding: '14px 16px' }}>
+                            <span style={{ padding: '3px 8px', borderRadius: 6, fontSize: '0.72rem', background: user.userType === 'company' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(107, 114, 128, 0.15)', color: user.userType === 'company' ? '#3b82f6' : T.textSub, fontWeight: 600 }}>
+                              {user.companyName ? `🏢 ${user.companyName}` : '👨‍🌾 Éleveur Individuel'}
+                            </span>
+                          </td>
+                          <td style={{ padding: '14px 16px' }}>
+                            <span style={{ padding: '3px 9px', borderRadius: 8, fontSize: '0.7rem', fontWeight: 800, background: user.role === 'ADMIN' ? 'rgba(239, 68, 68, 0.15)' : user.role === 'STAFF' ? 'rgba(180, 112, 39, 0.15)' : 'rgba(16, 185, 129, 0.15)', color: user.role === 'ADMIN' ? '#ef4444' : user.role === 'STAFF' ? '#b47027' : '#10b981' }}>
+                              {user.role}
+                            </span>
+                          </td>
+                          <td style={{ padding: '14px 16px' }}>
+                            <span style={{ padding: '3px 8px', borderRadius: 8, fontSize: '0.7rem', fontWeight: 700, background: user.isActive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)', color: user.isActive ? '#10b981' : '#ef4444' }}>
+                              {user.isActive ? 'Actif' : 'Suspendu'}
+                            </span>
+                          </td>
+                          <td style={{ padding: '14px 16px', textAlign: 'right' }}>
+                            <div style={{ display: 'flex', gap: '6px', justifyContent: 'flex-end' }}>
+                              <select
+                                value={user.role}
+                                onChange={e => handleUpdateUserRole(user.id, e.target.value)}
+                                style={{ padding: '4px 6px', borderRadius: 6, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, fontSize: '0.72rem' }}
+                              >
+                                <option value="CLIENT">Client</option>
+                                <option value="STAFF">Staff AVS</option>
+                                <option value="ADMIN">Direction</option>
+                              </select>
+
+                              <button
+                                onClick={() => handleToggleUserStatus(user.id)}
+                                style={{ padding: '4px 8px', borderRadius: 6, border: `1px solid ${T.border}`, background: 'transparent', color: user.isActive ? '#ef4444' : '#10b981', fontSize: '0.72rem', cursor: 'pointer' }}
+                              >
+                                {user.isActive ? 'Bloquer' : 'Activer'}
+                              </button>
+
+                              <button
+                                onClick={() => handleDeleteUser(user.id)}
+                                style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', cursor: 'pointer' }}
+                              >
+                                <Trash2 size={13} />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════
+            ONGLET 7 : RENDEZ-VOUS CLINIQUE VÉTÉRINAIRE
+        ══════════════════════════════════════════════════ */}
+        {activeTab === 'appointments' && (
+          <div>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: T.textMain }}>Clinique & Suivi Sanitaire</h2>
+              <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>Consultations au cabinet et urgences vétérinaires 24h/24</p>
+            </div>
+
+            <div style={{ background: T.surface, borderRadius: '16px', border: `1px solid ${T.border}`, overflow: 'hidden' }}>
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
+                  <thead>
+                    <tr style={{ background: T.bg, borderBottom: `1px solid ${T.border}`, color: T.textMuted }}>
+                      <th style={{ padding: '12px 16px' }}>Client</th>
+                      <th style={{ padding: '12px 16px' }}>Animal / Élevage</th>
+                      <th style={{ padding: '12px 16px' }}>Date</th>
+                      <th style={{ padding: '12px 16px' }}>Type</th>
+                      <th style={{ padding: '12px 16px', textAlign: 'right' }}>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {appointments.length === 0 ? (
                       <tr>
-                        <td colSpan={6} style={{ padding: '3rem', textAlign: 'center', color: T.textMuted }}>
-                          Aucune demande de consultation vétérinaire enregistrée.
+                        <td colSpan={5} style={{ padding: '2rem', textAlign: 'center', color: T.textMuted }}>
+                          Aucun rendez-vous enregistré.
                         </td>
                       </tr>
                     ) : (
                       appointments.map(appt => (
                         <tr key={appt.id} style={{ borderBottom: `1px solid ${T.border}` }}>
                           <td style={{ padding: '14px 16px' }}>
-                            <div style={{ fontWeight: 700, color: T.textMain }}>{appt.clientName || appt.name}</div>
-                            <a href={`tel:${appt.clientPhone || appt.phone}`} style={{ fontSize: '0.75rem', color: '#b47027', textDecoration: 'none' }}>
-                              {appt.clientPhone || appt.phone}
-                            </a>
+                            <div style={{ fontWeight: 700, color: T.textMain }}>{appt.clientName}</div>
+                            <div style={{ fontSize: '0.72rem', color: T.textMuted }}>📞 {appt.clientPhone}</div>
                           </td>
-                          <td style={{ padding: '14px 16px', fontWeight: 600, color: T.textMain }}>
+                          <td style={{ padding: '14px 16px', fontWeight: 600 }}>
                             {appt.animalType || 'Cheptel avicole'}
                           </td>
-                          <td style={{ padding: '14px 16px', fontSize: '0.8rem', color: T.textSub, maxWidth: '240px' }}>
-                            {appt.reason || appt.notes || 'Visite zootechnique préventive'}
-                          </td>
                           <td style={{ padding: '14px 16px', color: T.textMain }}>
-                            {new Date(appt.date || appt.createdAt).toLocaleDateString('fr-FR')}
+                            {new Date(appt.appointmentDate || appt.createdAt).toLocaleDateString('fr-FR')}
                           </td>
                           <td style={{ padding: '14px 16px' }}>
-                            <span style={{ padding: '3px 8px', borderRadius: 8, fontSize: '0.7rem', fontWeight: 700, background: appt.urgent ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)', color: appt.urgent ? '#ef4444' : '#10b981' }}>
-                              {appt.urgent ? 'URGENCE' : 'Standard'}
+                            <span style={{ padding: '3px 8px', borderRadius: 8, fontSize: '0.7rem', fontWeight: 700, background: 'rgba(180, 112, 39, 0.15)', color: '#b47027' }}>
+                              {appt.serviceType || 'Consultation'}
                             </span>
                           </td>
                           <td style={{ padding: '14px 16px', textAlign: 'right' }}>
-                            <div style={{ display: 'flex', gap: '4px', justifyContent: 'flex-end' }}>
-                              <button
-                                onClick={() => handleUpdateAppointment(appt.id, 'CONFIRMED')}
-                                style={{ padding: '4px 8px', borderRadius: 6, border: 'none', background: '#10b981', color: '#fff', fontSize: '0.72rem', cursor: 'pointer' }}
-                              >
-                                Confirmer
-                              </button>
-                              <button
-                                onClick={() => handleUpdateAppointment(appt.id, 'COMPLETED')}
-                                style={{ padding: '4px 8px', borderRadius: 6, border: 'none', background: '#b47027', color: '#fff', fontSize: '0.72rem', cursor: 'pointer' }}
-                              >
-                                Fait
-                              </button>
-                            </div>
+                            <a
+                              href={`https://wa.me/${(appt.clientPhone || '').replace(/[^0-9]/g, '')}?text=Bonjour%20${encodeURIComponent(appt.clientName)}%2C%20Dr%20POUTYA%20d%27Agro%20V%C3%A9to%20Services...`}
+                              target="_blank"
+                              rel="noreferrer"
+                              style={{ padding: '5px 10px', borderRadius: 6, background: '#25D366', color: '#fff', fontSize: '0.72rem', fontWeight: 700, textDecoration: 'none' }}
+                            >
+                              WhatsApp
+                            </a>
                           </td>
                         </tr>
                       ))
@@ -1015,7 +1380,7 @@ export default function AdminClient() {
         )}
 
         {/* ══════════════════════════════════════════════════
-            ONGLET 5 : LEADS & OPPORTUNITÉS
+            ONGLET 8 : PROSPECTS & DEVIS
         ══════════════════════════════════════════════════ */}
         {activeTab === 'leads' && (
           <div>
@@ -1043,7 +1408,7 @@ export default function AdminClient() {
                     </div>
 
                     <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#b47027', marginBottom: '0.4rem' }}>
-                      Besoin : {lead.subject || lead.service || 'Accompagnement agropastoral'}
+                      Besoin : {lead.service || 'Accompagnement agropastoral'}
                     </div>
 
                     <p style={{ fontSize: '0.78rem', color: T.textSub, lineHeight: 1.5, margin: '0 0 1.2rem' }}>
@@ -1073,6 +1438,196 @@ export default function AdminClient() {
           </div>
         )}
       </main>
+
+      {/* ── MODAL 1 : AJOUT PRODUIT ── */}
+      {showAddProduct && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div style={{ width: '100%', maxWidth: '500px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Nouveau Produit au Catalogue</h3>
+              <button onClick={() => setShowAddProduct(false)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
+            </div>
+            <form onSubmit={handleAddProductSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Titre du Produit</label>
+                <input required type="text" value={newProduct.title} onChange={e => setNewProduct(prev => ({ ...prev, title: e.target.value }))} placeholder="Ex: Aliment Pondeuse Sac 50kg" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Prix unitaire (FCFA)</label>
+                <input required type="number" value={newProduct.price} onChange={e => setNewProduct(prev => ({ ...prev, price: e.target.value }))} placeholder="Ex: 21500" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Stock Initial</label>
+                  <input required type="number" value={newProduct.stock} onChange={e => setNewProduct(prev => ({ ...prev, stock: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Conditionnement</label>
+                  <input required type="text" value={newProduct.unit} onChange={e => setNewProduct(prev => ({ ...prev, unit: e.target.value }))} placeholder="sac 50kg, unité, etc." style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+              </div>
+              <button type="submit" style={{ width: '100%', padding: '12px', borderRadius: 10, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer', marginTop: '1rem' }}>
+                Enregistrer le Produit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ── MODAL 2 : NOUVELLE FORMATION ── */}
+      {showAddFormation && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div style={{ width: '100%', maxWidth: '520px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Nouvelle Formation Certifiante</h3>
+              <button onClick={() => setShowAddFormation(false)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
+            </div>
+            <form onSubmit={handleCreateFormationSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Intitulé de la formation</label>
+                <input required type="text" value={newFormation.title} onChange={e => setNewFormation(prev => ({ ...prev, title: e.target.value }))} placeholder="Ex: Conduite Pratique de l'Élevage Porcin" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Catégorie</label>
+                  <select value={newFormation.category} onChange={e => setNewFormation(prev => ({ ...prev, category: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }}>
+                    <option value="Santé Animale">Santé Animale</option>
+                    <option value="Conduite d'Élevage">Conduite d'Élevage</option>
+                    <option value="Hygiène Alimentaire">Hygiène Alimentaire</option>
+                    <option value="HACCP & Qualité">HACCP & Qualité</option>
+                    <option value="Sécurité au Travail">Sécurité au Travail</option>
+                    <option value="Fabrication Détergents">Fabrication Détergents</option>
+                    <option value="Cosmétique & Artisanat">Cosmétique & Artisanat</option>
+                    <option value="Sur-Mesure & Conseil">Sur-Mesure & Conseil</option>
+                  </select>
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Tarif (Texte)</label>
+                  <input required type="text" value={newFormation.price} onChange={e => setNewFormation(prev => ({ ...prev, price: e.target.value }))} placeholder="75 000 FCFA" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Durée</label>
+                  <input required type="text" value={newFormation.duration} onChange={e => setNewFormation(prev => ({ ...prev, duration: e.target.value }))} placeholder="5 Jours (30h) - Terrain" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Prochaine Session</label>
+                  <input required type="text" value={newFormation.nextSession} onChange={e => setNewFormation(prev => ({ ...prev, nextSession: e.target.value }))} placeholder="Sessions bimensuelles" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Public Cible</label>
+                <input type="text" value={newFormation.target} onChange={e => setNewFormation(prev => ({ ...prev, target: e.target.value }))} placeholder="Éleveurs, techniciens, entrepreneurs" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Modules / Compétences (1 par ligne)</label>
+                <textarea rows={3} value={newFormation.modulesCovered} onChange={e => setNewFormation(prev => ({ ...prev, modulesCovered: e.target.value }))} placeholder="Module 1&#10;Module 2&#10;Module 3" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, resize: 'vertical' }} />
+              </div>
+              <button type="submit" style={{ width: '100%', padding: '12px', borderRadius: 10, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer', marginTop: '0.5rem' }}>
+                Créer la Formation AVS
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ── MODAL 3 : AJOUT TÉMOIGNAGE ── */}
+      {showAddTestimonial && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div style={{ width: '100%', maxWidth: '480px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Nouveau Témoignage Éleveur</h3>
+              <button onClick={() => setShowAddTestimonial(false)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
+            </div>
+            <form onSubmit={handleCreateTestimonialSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Nom du client / Éleveur</label>
+                <input required type="text" value={newTestimonial.name} onChange={e => setNewTestimonial(prev => ({ ...prev, name: e.target.value }))} placeholder="Ex: Jean-Paul Moukoko" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Rôle ou Ferme</label>
+                <input required type="text" value={newTestimonial.role} onChange={e => setNewTestimonial(prev => ({ ...prev, role: e.target.value }))} placeholder="Gérant · Ferme Avicole du Kouilou" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Projet / Prestation</label>
+                  <input required type="text" value={newTestimonial.project} onChange={e => setNewTestimonial(prev => ({ ...prev, project: e.target.value }))} placeholder="Poussins & Provenderie" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Badge Résultat</label>
+                  <input type="text" value={newTestimonial.result} onChange={e => setNewTestimonial(prev => ({ ...prev, result: e.target.value }))} placeholder="↑ Mortalité réduite à 1.6%" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Commentaire / Avis</label>
+                <textarea required rows={4} value={newTestimonial.text} onChange={e => setNewTestimonial(prev => ({ ...prev, text: e.target.value }))} placeholder="Retour d'expérience détaillé sur les services d'Agro Véto Services..." style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, resize: 'vertical' }} />
+              </div>
+              <button type="submit" style={{ width: '100%', padding: '12px', borderRadius: 10, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer', marginTop: '0.5rem' }}>
+                Publier le Témoignage
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ── MODAL 4 : CRÉATION UTILISATEUR ── */}
+      {showAddUser && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div style={{ width: '100%', maxWidth: '480px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Créer un Compte Utilisateur</h3>
+              <button onClick={() => setShowAddUser(false)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
+            </div>
+            <form onSubmit={handleCreateUserSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Nom complet</label>
+                <input required type="text" value={newUser.name} onChange={e => setNewUser(prev => ({ ...prev, name: e.target.value }))} placeholder="Ex: Paul Ngoma" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Email</label>
+                  <input required type="email" value={newUser.email} onChange={e => setNewUser(prev => ({ ...prev, email: e.target.value }))} placeholder="paul@ferme.cg" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Téléphone</label>
+                  <input required type="tel" value={newUser.phone} onChange={e => setNewUser(prev => ({ ...prev, phone: e.target.value }))} placeholder="+242 06 123 45 67" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Rôle Système</label>
+                  <select value={newUser.role} onChange={e => setNewUser(prev => ({ ...prev, role: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }}>
+                    <option value="CLIENT">Client / Éleveur</option>
+                    <option value="STAFF">Staff Technique</option>
+                    <option value="ADMIN">Direction Générale</option>
+                  </select>
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Type de structure</label>
+                  <select value={newUser.userType} onChange={e => setNewUser(prev => ({ ...prev, userType: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }}>
+                    <option value="individual">Éleveur Individuel</option>
+                    <option value="company">Ferme / Entreprise</option>
+                  </select>
+                </div>
+              </div>
+              {newUser.userType === 'company' && (
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Nom de la Ferme / Entreprise</label>
+                  <input type="text" value={newUser.companyName} onChange={e => setNewUser(prev => ({ ...prev, companyName: e.target.value }))} placeholder="Ferme Avicole Espoir" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+              )}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Mot de passe initial</label>
+                <input required type="password" value={newUser.password} onChange={e => setNewUser(prev => ({ ...prev, password: e.target.value }))} placeholder="Au moins 6 caractères" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+              </div>
+              <button type="submit" style={{ width: '100%', padding: '12px', borderRadius: 10, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer', marginTop: '0.5rem' }}>
+                Créer l'Utilisateur
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

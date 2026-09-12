@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import { 
@@ -23,12 +23,14 @@ import {
 import { useTheme } from '@/lib/theme'
 import { PageCTA } from '@/components/ui/index'
 import { TRAINING_MODULES } from '@/lib/data'
+import api from '@/lib/api-client'
 
 export default function FormationsClient() {
   const T = useTheme()
   const heroRef = useRef(null)
   const isHeroInView = useInView(heroRef, { once: true })
 
+  const [modules, setModules] = useState(TRAINING_MODULES)
   const [selectedModule, setSelectedModule] = useState(TRAINING_MODULES[0])
   const [showModal, setShowModal] = useState(false)
   const [formData, setFormData] = useState({
@@ -39,6 +41,21 @@ export default function FormationsClient() {
     notes: ''
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // Chargement en direct du catalogue de formations depuis PostgreSQL
+  useEffect(() => {
+    api.formations.getAll()
+      .then((res) => {
+        if (res?.data && Array.isArray(res.data) && res.data.length > 0) {
+          setModules(res.data)
+          setSelectedModule(res.data[0])
+        }
+      })
+      .catch((err) => {
+        console.warn('[Formations] Utilisation du catalogue local AVS:', err.message)
+      })
+  }, [])
 
   const handleOpenRegister = (module) => {
     setSelectedModule(module)
@@ -46,8 +63,26 @@ export default function FormationsClient() {
     setSubmitted(false)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsSubmitting(true)
+
+    // 1. Enregistrement systématique dans la base de données PostgreSQL
+    try {
+      await api.formations.register({
+        fullName: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        formationId: selectedModule.id,
+        formationType: selectedModule.title,
+        participantsCount: Number(formData.participantsCount) || 1,
+        notes: formData.notes,
+      })
+    } catch (backendErr) {
+      console.warn('[Formations] Échec enregistrement API, transmission WhatsApp directe:', backendErr.message)
+    }
+
+    // 2. Préparation du message WhatsApp officiel AVS
     let message = `🎓 *PRÉ-INSCRIPTION FORMATION CERTIFIANTE - AVS CONGO*\n\n`
     message += `📚 *Module :* ${selectedModule.title}\n`
     message += `👤 *Candidat :* ${formData.name}\n`
@@ -63,6 +98,7 @@ export default function FormationsClient() {
     const whatsappUrl = `https://wa.me/242069677567?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
     setSubmitted(true)
+    setIsSubmitting(false)
   }
 
   return (
@@ -166,9 +202,9 @@ export default function FormationsClient() {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-          {TRAINING_MODULES.map((mod) => (
+          {modules.map((mod) => (
             <div 
-              key={mod.id}
+              key={mod.id || mod.slug}
               className="sku-card"
               style={{ padding: '2rem', borderRadius: 20, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', border: `1.5px solid ${T.border}` }}
             >

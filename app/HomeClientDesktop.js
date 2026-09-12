@@ -22,6 +22,7 @@ import TrustStacksMarquee from '@/components/ui/TrustStacksMarquee'
 import ConversionMarquee from '@/components/ui/ConversionMarquee'
 import { SERVICES, PROJECTS, TESTIMONIALS, FAQ_ITEMS, PRICING } from '@/lib/data'
 import { AvatarGroup, Avatar, AvatarImage, AvatarFallback, AvatarGroupTooltip, AvatarGroupTooltipArrow } from '@/components/ui/AvatarGroup'
+import api from '@/lib/api-client'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -807,18 +808,33 @@ function WhyUs() {
   )
 }
 
-// ── TESTIMONIALS (inchangé) ───────────────────────────────────
+// ── TESTIMONIALS (dynamique backend) ───────────────────────────
 function Testimonials() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
+  const [list, setList] = useState(TESTIMONIALS)
   const [idx, setIdx] = useState(0)
-  const t = TESTIMONIALS[idx]
 
   useEffect(() => {
-    const timer = setInterval(() => setIdx(i => (i + 1) % TESTIMONIALS.length), 5000)
-    return () => clearInterval(timer)
+    api.testimonials.getAll()
+      .then(res => {
+        if (res?.data && Array.isArray(res.data) && res.data.length > 0) {
+          setList(res.data)
+        }
+      })
+      .catch(err => {
+        console.warn('Fallback local TESTIMONIALS:', err.message)
+      })
   }, [])
+
+  const t = list[idx] || list[0] || TESTIMONIALS[0]
+
+  useEffect(() => {
+    if (list.length <= 1) return
+    const timer = setInterval(() => setIdx(i => (i + 1) % list.length), 5000)
+    return () => clearInterval(timer)
+  }, [list.length])
 
   return (
     <section ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt, position: 'relative', overflow: 'hidden' }}>
@@ -857,13 +873,15 @@ function Testimonials() {
                 <div style={{ fontWeight: 700, color: T.textMain, fontFamily: "'Poppins', sans-serif", fontSize: '.9rem' }}>{t.name}</div>
                 <div style={{ fontSize: '.72rem', color: T.textMuted, fontFamily: "'Poppins', sans-serif" }}>{t.role}</div>
               </div>
-              <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(180, 112, 39,.12)', border: '1px solid rgba(180, 112, 39,.25)', color: '#b47027', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
+              {t.result && (
+                <span className="no-pill-mobile" style={{ marginLeft: 'auto', padding: '.3rem .8rem', borderRadius: 100, background: 'rgba(180, 112, 39,.12)', border: '1px solid rgba(180, 112, 39,.25)', color: '#b47027', fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600 }}>{t.result}</span>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '.5rem', marginTop: '1.5rem' }}>
-          {TESTIMONIALS.map((_, i) => (
+          {list.map((_, i) => (
             <button key={i} onClick={() => setIdx(i)}
               style={{ width: i === idx ? 24 : 8, height: 8, borderRadius: 4, background: i === idx ? '#b47027' : 'rgba(180, 112, 39,.2)', border: 'none', cursor: 'pointer', transition: 'all .3s' }} />
           ))}
