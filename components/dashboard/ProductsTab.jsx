@@ -68,7 +68,7 @@ export default function ProductsTab({ T, CARD }) {
       promoPrice: '',
       stock: '100',
       unit: 'sac 50kg',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      image: '/images/products/aliment-finition.jpg',
       badge: 'Nouveau',
       description: '',
     })
@@ -225,7 +225,7 @@ export default function ProductsTab({ T, CARD }) {
               <div>
                 <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start', marginBottom: 12 }}>
                   <img
-                    src={p.image || 'https://images.unsplash.com/photo-1546272989-40c92939c6c2?auto=format&fit=crop&w=400&q=80'}
+                    src={p.image || '/images/products/poussins-cobb500.jpg'}
                     alt={p.title}
                     style={{ width: 68, height: 68, borderRadius: 12, objectFit: 'cover', background: T.border, flexShrink: 0 }}
                   />

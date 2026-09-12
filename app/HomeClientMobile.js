@@ -934,7 +934,7 @@ const DOMAINES = [
     desc:  "Accompagnement aux certifications ISO, hygiène et sécurité au travail, évaluation des risques et formule novatrice « QHSE Partagé ».",
     tag:   'Pôle 2',
     href:  '/services/management-qhse-externalisation',
-    img:   'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+    img:   '/images/qhse-laboratoire.jpg',
   },
   {
     n: '03', Icon: Package,
@@ -942,7 +942,7 @@ const DOMAINES = [
     desc:  "Transformation locale de produits agricoles, formulation de farines infantiles, séchage, valorisation et contrôle qualité strict.",
     tag:   'Pôle 3',
     href:  '/services/transformation-agroalimentaire',
-    img:   'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+    img:   '/images/transformation-agroalimentaire.jpg',
   },
   {
     n: '04', Icon: Sparkles,
@@ -950,7 +950,7 @@ const DOMAINES = [
     desc:  "Fabrication locale de détergents professionnels, savons liquides, savons solides saponifiés à froid et valorisation végétale.",
     tag:   'Pôle 4',
     href:  '/services/cosmetique-hygiene-artisanat',
-    img:   'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80',
+    img:   '/images/savon-artisanal.jpg',
   },
   {
     n: '05', Icon: GraduationCap,
@@ -958,7 +958,7 @@ const DOMAINES = [
     desc:  "Formations professionnelles pratiques en élevage, agriculture, démarche QHSE, hygiène et transformation pour éleveurs et entreprises.",
     tag:   'Pôle 5',
     href:  '/services/centre-de-formation',
-    img:   'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80',
+    img:   '/images/formation-ferme-ecole.jpg',
   },
   {
     n: '06', Icon: Globe,

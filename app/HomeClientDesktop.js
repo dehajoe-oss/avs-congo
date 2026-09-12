@@ -537,10 +537,10 @@ function AnimatedBeamGrid({ containerRef, nodeIds, connections }) {
 // ═══════════════════════════════════════════════════════════════
 const SERVICES_SKEW = [
   { n: '01', Icon: Award,         title: 'Santé Animale & Intrants Agropastoraux',        desc: "Clinique vétérinaire 24/7, pharmacie vétérinaire, provenderie certifiée, poussins d'un jour Cobb 500 et géniteurs sélectionnés.", price: 'Clinique 24/7 & Intrants', del: 'Permanent', img: 'https://images.unsplash.com/photo-1441122456239-401e92b73c65?auto=format&fit=crop&w=800&q=80', slug: 'sante-animale-agropastoral' },
-  { n: '02', Icon: ShieldCheck,   title: 'Management QHSE & Externalisation',             desc: "Conseil en management QHSE, audits de conformité, formule innovante de QHSE partagé pour PME et plans de maîtrise sanitaire.", price: 'Sur devis', del: 'Accompagnement continu', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', slug: 'management-qhse-externalisation' },
-  { n: '03', Icon: Package,       title: 'Transformation Agroalimentaire & Sécurité',     desc: "Technologies de transformation locale, conception d'ateliers et abattoirs, PMS, HACCP et analyses physico-chimiques / microbiologiques.", price: 'Audit & Conseil', del: 'Intervention sur site', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80', slug: 'transformation-agroalimentaire' },
-  { n: '04', Icon: Sparkles,      title: 'Cosmétique, Hygiène & Artisanat',               desc: "Formulation et fabrication locale de détergents professionnels, désinfectants d'élevage et savons artisanaux saponifiés à froid.", price: 'Gamme professionnelle', del: 'Disponible au siège', img: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80', slug: 'cosmetique-hygiene-artisanat' },
-  { n: '05', Icon: GraduationCap, title: 'Centre de Formation & Capacités',               desc: "Formations pratiques certifiantes en ferme-école et ateliers, accompagnement d'éleveurs et ingénierie de formation pour entreprises et ONG.", price: 'Sessions certifiantes', del: 'Inscriptions ouvertes', img: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80', slug: 'centre-de-formation' },
+  { n: '02', Icon: ShieldCheck,   title: 'Management QHSE & Externalisation',             desc: "Conseil en management QHSE, audits de conformité, formule innovante de QHSE partagé pour PME et plans de maîtrise sanitaire.", price: 'Sur devis', del: 'Accompagnement continu', img: '/images/qhse-laboratoire.jpg', slug: 'management-qhse-externalisation' },
+  { n: '03', Icon: Package,       title: 'Transformation Agroalimentaire & Sécurité',     desc: "Technologies de transformation locale, conception d'ateliers et abattoirs, PMS, HACCP et analyses physico-chimiques / microbiologiques.", price: 'Audit & Conseil', del: 'Intervention sur site', img: '/images/transformation-agroalimentaire.jpg', slug: 'transformation-agroalimentaire' },
+  { n: '04', Icon: Sparkles,      title: 'Cosmétique, Hygiène & Artisanat',               desc: "Formulation et fabrication locale de détergents professionnels, désinfectants d'élevage et savons artisanaux saponifiés à froid.", price: 'Gamme professionnelle', del: 'Disponible au siège', img: '/images/savon-artisanal.jpg', slug: 'cosmetique-hygiene-artisanat' },
+  { n: '05', Icon: GraduationCap, title: 'Centre de Formation & Capacités',               desc: "Formations pratiques certifiantes en ferme-école et ateliers, accompagnement d'éleveurs et ingénierie de formation pour entreprises et ONG.", price: 'Sessions certifiantes', del: 'Inscriptions ouvertes', img: '/images/formation-ferme-ecole.jpg', slug: 'centre-de-formation' },
   { n: '06', Icon: Target,        title: 'Événementiel & Commerce Général',               desc: "Organisation de foires agropastorales, salons techniques, fourniture d'équipements spécialisés et négoce d'intrants certifiés.", price: 'Sur consultation', del: 'Sur calendrier', img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80', slug: 'evenementiel-commerce-general' },
 ]
 
@@ -759,11 +759,11 @@ function ServicesPreview() {
 // ═══════════════════════════════════════════════════════════════
 const WHY_PANELS = [
   { n: '01', title: 'Diagnostic &\nVisite Sanitaire', sub: 'Écoute & Analyse terrain', desc: "Échange approfondi sur votre cheptel ou unité agroalimentaire. Diagnostic zootechnique et sanitaire sur site par le Dr POUTYA.", img: 'https://images.unsplash.com/photo-1441122456239-401e92b73c65?auto=format&fit=crop&w=800&q=80' },
-  { n: '02', title: 'Protocole &\nDevis Sur-Mesure', sub: 'Plan clair et chiffré', desc: "Formulation des rations, calendrier de prophylaxie vaccinale ou programme d'audit QHSE adapté à votre budget et vos objectifs.", img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80' },
-  { n: '03', title: 'Intrants &\nAliments Certifiés', sub: 'Arrivages sécurisés', desc: "Fourniture de poussins Cobb 500 vaccinés au couvoir et aliments provenderie haute énergie testés en laboratoire bromatologique.", img: 'https://images.unsplash.com/photo-1546272989-40c92939c6c2?auto=format&fit=crop&w=800&q=80' },
-  { n: '04', title: 'Biosécurité &\nProphylaxie', sub: 'Protection sanitaire', desc: "Installation des pédiluves, désinfection des bâtiments d'élevage et administration rigoureuse du calendrier vaccinal.", img: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80' },
-  { n: '05', title: 'Suivi Vétérinaire\nContinu', sub: 'Sur le terrain & 24/7', desc: "Visites périodiques, contrôle des indices de consommation et permanence d'urgence 24h/24 et 7j/7 sur appel direct.", img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80' },
-  { n: '06', title: 'Formation &\nAutonomie', sub: 'Pratique 100% ferme-école', desc: "Montée en compétences de vos équipes sur cheptel vivant pour pérenniser vos résultats et éviter les erreurs courantes.", img: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80' },
+  { n: '02', title: 'Protocole &\nDevis Sur-Mesure', sub: 'Plan clair et chiffré', desc: "Formulation des rations, calendrier de prophylaxie vaccinale ou programme d'audit QHSE adapté à votre budget et vos objectifs.", img: '/images/qhse-laboratoire.jpg' },
+  { n: '03', title: 'Intrants &\nAliments Certifiés', sub: 'Arrivages sécurisés', desc: "Fourniture de poussins Cobb 500 vaccinés au couvoir et aliments provenderie haute énergie testés en laboratoire bromatologique.", img: '/images/products/poussins-cobb500.jpg' },
+  { n: '04', title: 'Biosécurité &\nProphylaxie', sub: 'Protection sanitaire', desc: "Installation des pédiluves, désinfection des bâtiments d'élevage et administration rigoureuse du calendrier vaccinal.", img: '/images/products/desinfectant-5l.jpg' },
+  { n: '05', title: 'Suivi Vétérinaire\nContinu', sub: 'Sur le terrain & 24/7', desc: "Visites périodiques, contrôle des indices de consommation et permanence d'urgence 24h/24 et 7j/7 sur appel direct.", img: '/images/products/kit-prophylaxie.jpg' },
+  { n: '06', title: 'Formation &\nAutonomie', sub: 'Pratique 100% ferme-école', desc: "Montée en compétences de vos équipes sur cheptel vivant pour pérenniser vos résultats et éviter les erreurs courantes.", img: '/images/formation-ferme-ecole.jpg' },
   { n: '07', title: 'Excellence &\nRentabilité', sub: 'De la ferme à l\'assiette', desc: "Conformité aux normes ISO / HACCP, réduction de la mortalité sous les 2% et valorisation optimale de votre production.", img: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80' },
 ]
 
@@ -890,35 +890,35 @@ const DOMAINES = [
     title: 'Provenderie & Nutrition Animale',
     desc:  "Aliments complets et équilibrés pour volailles (démarrage 21%, finition, ponte), porcs et poissons, contrôlés en laboratoire bromatologique.",
     tag:   'Provenderie',
-    img:   'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+    img:   '/images/products/aliment-finition.jpg',
   },
   {
     n: '03', Icon: Target,
     title: "Poussins d'un Jour & Intrants",
     desc:  "Souches à haute performance Cobb 500 (chair) et Lohmann Brown (ponte), vaccinées dès l'écloserie avec suivi de démarrage offert.",
     tag:   'Poussins Cobb 500',
-    img:   'https://images.unsplash.com/photo-1546272989-40c92939c6c2?auto=format&fit=crop&w=800&q=80',
+    img:   '/images/products/poussins-cobb500.jpg',
   },
   {
     n: '04', Icon: ShieldCheck,
     title: 'Management QHSE, RSE & Normes ISO',
     desc:  "Audits ISO 9001/14001/45001/22000, mise en place de la méthode HACCP et formule novatrice « QHSE Partagé » pour les PME congolaises.",
     tag:   'QHSE & ISO',
-    img:   'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+    img:   '/images/qhse-laboratoire.jpg',
   },
   {
     n: '05', Icon: GraduationCap,
     title: 'Centre de Formation & Ferme-École',
     desc:  "Formations certifiantes 100% pratiques : conduite d'élevage avicole, hygiène alimentaire HACCP, fabrication de savon et auditeur interne.",
     tag:   'Formations',
-    img:   'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80',
+    img:   '/images/formation-ferme-ecole.jpg',
   },
   {
     n: '06', Icon: Sparkles,
     title: 'Cosmétique, Hygiène & Biosécurité',
     desc:  "Formulation locale de désinfectants virucides pour bâtiments d'élevage, détergents multi-surfaces et savons noirs saponifiés à froid.",
     tag:   'Biosécurité',
-    img:   'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=800&q=80',
+    img:   '/images/savon-artisanal.jpg',
   },
 ]
 
