@@ -335,7 +335,6 @@ export default function Loader() {
                 boxShadow: '0 0 60px 10px rgba(196, 123, 45,.45), inset 0 0 40px rgba(196, 123, 45,.25)',
                 zIndex: 2,
                 pointerEvents: 'none',
-                willChange: 'width, height, border-radius, opacity, transform',
               }}
             />
           )}

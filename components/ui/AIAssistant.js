@@ -613,7 +613,7 @@ export default function AIAssistant() {
           border: '3px solid #050505',
           boxShadow: '4px 4px 0px #050505',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          cursor: 'pointer', color: '#08120a', padding: 0, willChange: 'transform',
+          cursor: 'pointer', color: '#08120a', padding: 0,
         }}
       >
         {open ? <X size={24} /> : <Bot size={26} />}

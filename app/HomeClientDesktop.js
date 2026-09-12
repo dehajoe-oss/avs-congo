@@ -252,7 +252,7 @@ function Hero() {
     <div ref={wrapRef} style={{ position: 'relative', height: `${HERO_VH + 200}dvh` }}>
     <section id="home-hero" style={{ height: `${HERO_VH}dvh`, maxHeight: `${HERO_VH}dvh`, width: '100%', position: 'sticky', top: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingBottom: 'clamp(110px, 12vh, 150px)' }}>
 
-      <div ref={layerBgRef} style={{ position: 'absolute', zIndex: 1, width: '115%', height: '115%', willChange: 'transform, filter', transition: 'transform .1s ease-out', pointerEvents: 'none' }}>
+      <div ref={layerBgRef} style={{ position: 'absolute', zIndex: 1, width: '115%', height: '115%', transition: 'transform .1s ease-out', pointerEvents: 'none' }}>
         <img src={cld('/images/hero-bg.webp')} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'blur(3px)', transform: 'scale(1.04)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.50)' }} />
         <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .13, pointerEvents: 'none' }} />
@@ -265,7 +265,7 @@ function Hero() {
         <div className="halftone-bg" style={{ position: 'absolute', top: 0, right: 0, width: '45%', height: '55%', opacity: .14, WebkitMaskImage: 'none', maskImage: 'none' }} />
       </div>
 
-      <div ref={layerMidRef} style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '5.5rem 5% 0', willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out', textAlign: 'center' }}>
+      <div ref={layerMidRef} style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '5.5rem 5% 0', transition: 'transform .1s ease-out', textAlign: 'center' }}>
 
         
 
@@ -335,13 +335,13 @@ function Hero() {
           layerMidRef) pour porter les mutations impératives parallax/
           scroll sans entrer en conflit avec l'anim Framer d'entrée,
           isolée sur le motion.div enfant. */}
-      <div ref={galleryRef} style={{ position: 'absolute', left: 0, right: 0, bottom: '-123px', zIndex: 11, willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
+      <div ref={galleryRef} style={{ position: 'absolute', left: 0, right: 0, bottom: '-123px', zIndex: 11, transition: 'transform .1s ease-out' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .55 }}>
           <CircularProjectsGallery />
         </motion.div>
       </div>
 
-      <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
+      <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', transition: 'transform .1s ease-out' }}>
         {[
           { left: '12%', top: '22%', s: 4, op: .22, dur: 3.8, dy: 0 },
           { left: '28%', top: '65%', s: 3, op: .12, dur: 5.1, dy: 1.2 },
@@ -446,7 +446,7 @@ function WordRevealP({ text, greenWords = [], sectionRef, extraStyle = {} }) {
       {text.split(' ').map((word, i) => (
         <span key={i} ref={el => { wordsRef.current[i] = el }}
           style={{ display: 'inline-block', marginRight: '0.28em', opacity: 0.08,
-            filter: 'blur(9px)', willChange: 'opacity, filter',
+            filter: 'blur(9px)',
             color: green.has(word) ? T.green : 'inherit' }}>
           {word}
         </span>
@@ -646,7 +646,6 @@ function GhostScrollShowcase({ items }) {
                 position: 'absolute', top: 0, left: 0, width: '100%', height: '200%',
                 backgroundSize: 'cover', backgroundPosition: 'center 18%', backgroundRepeat: 'no-repeat',
                 filter: 'brightness(.38) saturate(1.1)',
-                willChange: 'transform',
               }}
             />
             <div aria-hidden="true" style={{
@@ -662,7 +661,7 @@ function GhostScrollShowcase({ items }) {
                 textTransform: 'uppercase', whiteSpace: 'nowrap', lineHeight: 1,
                 fontSize: 'clamp(4.5rem, 13vw, 11.5rem)',
                 color: 'transparent', WebkitTextStroke: '1.5px rgba(196, 123, 45,.4)',
-                willChange: 'transform', userSelect: 'none', pointerEvents: 'none',
+                userSelect: 'none', pointerEvents: 'none',
               }}
             >
               {ghostText}
@@ -1028,7 +1027,6 @@ function DomaineCard({ n, Icon, title, desc, tag, img, index, inView }) {
           transition: 'opacity .22s ease, transform .18s cubic-bezier(.22,1,.36,1)',
           boxShadow: '0 24px 70px rgba(0,0,0,.55)',
           border: '1.5px solid rgba(196, 123, 45,.35)',
-          willChange: 'transform, opacity',
         }}>
           <img
             src={img}
@@ -1137,7 +1135,6 @@ function DomainesSection() {
                   marginRight: '0.28em',
                   opacity: 0.08,
                   filter: 'blur(9px)',
-                  willChange: 'opacity, filter',
                   color: DOM_GREEN.has(word) ? '#c47b2d' : 'inherit',
                 }}
               >

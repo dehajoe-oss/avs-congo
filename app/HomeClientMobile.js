@@ -70,7 +70,7 @@ function TiltCard({ children, style = {}, className = '', intensity = 14, perspe
     <div
       ref={ref}
       className={className}
-      style={{ ...style, willChange: 'transform', transformStyle: 'preserve-3d', position: 'relative' }}
+      style={{ ...style, transformStyle: 'preserve-3d', position: 'relative' }}
       onMouseMove={e => applyTilt(e.clientX, e.clientY)}
       onMouseLeave={resetTilt}
     >
@@ -321,13 +321,13 @@ function Hero() {
     <div ref={wrapRef} style={{ position: 'relative', height: '200dvh' }}>
     <section id="home-hero" style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingTop: '68px', paddingBottom: '60px', boxSizing: 'border-box' }}>
 
-      <div ref={layerBgRef} style={{ position: 'absolute', zIndex: 1, width: '115%', height: '115%', willChange: 'transform, filter', transition: 'transform .1s ease-out', pointerEvents: 'none' }}>
+      <div ref={layerBgRef} style={{ position: 'absolute', zIndex: 1, width: '115%', height: '115%', transition: 'transform .1s ease-out', pointerEvents: 'none' }}>
         <img src={cld('/images/hero-bg.webp')} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'blur(3px)', transform: 'scale(1.04)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.50)' }} />
         <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .13, pointerEvents: 'none' }} />
       </div>
 
-      <div ref={layerMidRef} style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '0 5%', willChange: 'transform, opacity, filter', transition: 'transform .1s ease-out', textAlign: 'center' }}>
+      <div ref={layerMidRef} style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '0 5%', transition: 'transform .1s ease-out', textAlign: 'center' }}>
 
         <HeroSloganCycle />
 
@@ -388,13 +388,13 @@ function Hero() {
       </div>
 
       {/* Aperçu de la CIRCULAR PROJECTS GALLERY ancrée en bas */}
-      <div ref={galleryRef} style={{ position: 'absolute', left: 0, right: 0, bottom: '-75px', zIndex: 11, willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
+      <div ref={galleryRef} style={{ position: 'absolute', left: 0, right: 0, bottom: '-75px', zIndex: 11, transition: 'transform .1s ease-out' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .55 }}>
           <CircularProjectsGallery />
         </motion.div>
       </div>
 
-      <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', willChange: 'transform, opacity', transition: 'transform .1s ease-out' }}>
+      <div ref={layerForeRef} style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', transition: 'transform .1s ease-out' }}>
         {[
           { left: '12%', top: '22%', s: 4, op: .22, dur: 3.8, dy: 0 },
           { left: '28%', top: '65%', s: 3, op: .12, dur: 5.1, dy: 1.2 },

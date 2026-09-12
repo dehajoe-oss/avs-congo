@@ -46,7 +46,6 @@ html { scroll-behavior: smooth; overscroll-behavior-y: none; }
   white-space: nowrap;
 }
 .hst-char { display: inline-block; }
-.hst-root:hover .hst-char { will-change: transform, opacity; }
 .hst-b { pointer-events: none; }
 
 body, html, input, button, textarea, select {
@@ -806,11 +805,6 @@ body.light-mode .cta-circle-btn:hover .cta-circle-label { color: #9a5f22; }
 /* Espacement bas pour laisser la place au train */
 .train-host {
   padding-bottom: 14px;
-}
-
-/* Ensure animateMotion works on g elements */
-svg[style*="bottom: -10px"] g {
-  will-change: transform;
 }
 
 

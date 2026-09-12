@@ -1,4 +1,4 @@
-﻿/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    ProjectGlobe.css — mode Explorer AKATech
    Globe Fibonacci immersif (port DOM 3D de l'état
    "FIBONACCI GLOBE" de la démo), habillé aux couleurs
@@ -92,7 +92,6 @@
 .pg-world {
   position: relative; width: 0; height: 0;
   transform-style: preserve-3d;
-  will-change: transform;
 }
 
 .pg-node {
@@ -107,7 +106,6 @@
   transform-style: preserve-3d;
   transform: translate3d(var(--x), var(--y), var(--z)) rotateY(var(--ry)) rotateX(var(--rx));
   transition: border-color .3s ease, box-shadow .3s ease, transform .25s ease;
-  will-change: transform;
 }
 .pg-node:hover {
   border-color: rgba(196, 123, 45, 0.95);
