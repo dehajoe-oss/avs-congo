@@ -10,13 +10,14 @@ const nextConfig = {
     ],
   },
   async headers() {
+    const isProd = process.env.NODE_ENV === 'production'
     return [
       {
         source: '/images/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: isProd ? 'public, max-age=31536000, immutable' : 'no-cache, no-store, must-revalidate',
           },
         ],
       },
@@ -25,7 +26,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: isProd ? 'public, max-age=31536000, immutable' : 'no-cache, no-store, must-revalidate',
           },
         ],
       },
