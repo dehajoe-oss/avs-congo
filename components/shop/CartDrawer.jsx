@@ -19,6 +19,7 @@ import {
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
 import { openKkiapayPayment } from '@/lib/kkiapay'
+import api from '@/lib/api-client'
 
 export default function CartDrawer() {
   const {
@@ -76,34 +77,48 @@ export default function CartDrawer() {
     setIsSubmitting(true)
 
     try {
-      // 1. Enregistrement initial de la commande dans le backend
+      // 1. Enregistrement initial de la commande dans le backend Node.js
       const orderPayload = {
         userId: currentUser?.id || null,
         customerName: name,
         customerPhone: phone,
         customerAddress: address,
         notes: customerInfo.notes.trim() || null,
-        items: cartItems,
+        items: cartItems.map(item => ({
+          productId: item.id,
+          id: item.id,
+          slug: item.slug,
+          name: item.name || item.title,
+          quantity: item.quantity,
+          price: item.price,
+        })),
         totalAmount: cartTotal,
-        paymentMethod,
+        paymentMethod: paymentMethod === 'kkiapay' ? 'KKIAPAY' : paymentMethod === 'whatsapp' ? 'WHATSAPP' : 'CASH',
         paymentStatus: 'UNPAID',
       }
 
-      const res = await fetch('/api/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderPayload),
-      })
+      let order
+      try {
+        const res = await api.orders.create(orderPayload)
+        order = res?.data?.order || res?.data || res?.order || res
+      } catch (backendErr) {
+        console.warn('Tentative fallback local /api/orders...', backendErr.message)
+        const res = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderPayload),
+        })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error || 'Erreur lors de la commande')
+        order = data.order
+      }
 
-      const data = await res.json()
-
-      if (!res.ok) {
-        showToast(data.error || 'Erreur lors de la commande', 'error')
+      if (!order) {
+        showToast('Erreur lors de la validation de la commande', 'error')
         setIsSubmitting(false)
         return
       }
 
-      const order = data.order
       addLocalOrder(order)
 
       // 2. Traitement selon le mode de paiement
@@ -118,7 +133,7 @@ export default function CartDrawer() {
         msg += `\n📦 *ARTICLES COMMANDÉS :*\n`
         cartItems.forEach((item, idx) => {
           const itemTotal = item.price * item.quantity
-          msg += `${idx + 1}. *${item.name}* (x${item.quantity}) = ${itemTotal.toLocaleString('fr-FR')} FCFA\n`
+          msg += `${idx + 1}. *${item.name || item.title}* (x${item.quantity}) = ${itemTotal.toLocaleString('fr-FR')} FCFA\n`
         })
         msg += `\n💰 *TOTAL À PAYER : ${cartTotal.toLocaleString('fr-FR')} FCFA*\n`
         msg += `_Commande effectuée sur le site officiel agrovetoservices.cg_`
@@ -148,22 +163,14 @@ export default function CartDrawer() {
           onSuccess: async (response) => {
             // Validation côté serveur
             try {
-              const verifyRes = await fetch('/api/payments/kkiapay/verify', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  orderId: order.id,
-                  transactionId: response?.transactionId || response?.reference || 'kkiapay_' + Date.now(),
-                  paymentDetails: response,
-                }),
+              const verifyData = await api.payments.verifyKKiaPay({
+                orderId: order.id,
+                transactionId: response?.transactionId || response?.reference || 'kkiapay_' + Date.now(),
+                paymentDetails: response,
               })
-              const verifyData = await verifyRes.json()
-              if (verifyData.order) {
-                addLocalOrder(verifyData.order)
-                setOrderCompleted(verifyData.order)
-              } else {
-                setOrderCompleted({ ...order, paymentStatus: 'PAID' })
-              }
+              const updated = verifyData?.data?.order || verifyData?.order || { ...order, paymentStatus: 'PAID' }
+              addLocalOrder(updated)
+              setOrderCompleted(updated)
             } catch {
               setOrderCompleted({ ...order, paymentStatus: 'PAID' })
             }

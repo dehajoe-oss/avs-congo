@@ -115,6 +115,26 @@ export default function AccountClient() {
             >
               Retourner à la boutique
             </Link>
+
+            <Link
+              href="/admin"
+              style={{
+                marginTop: '0.8rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                color: '#b47027',
+                fontSize: '0.78rem',
+                fontWeight: 600,
+                textDecoration: 'underline',
+                textUnderlineOffset: '3px',
+                opacity: 0.85,
+              }}
+            >
+              <ShieldCheck size={14} />
+              <span>Accès réservé Direction & Staff (Back-Office)</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -179,14 +199,14 @@ export default function AccountClient() {
                   style={{
                     padding: '3px 10px',
                     borderRadius: '100px',
-                    background: 'rgba(180, 112, 39, 0.15)',
-                    border: '1px solid rgba(180, 112, 39, 0.3)',
-                    color: '#b47027',
+                    background: (currentUser.role === 'ADMIN' || currentUser.role === 'STAFF') ? 'rgba(239, 68, 68, 0.15)' : 'rgba(180, 112, 39, 0.15)',
+                    border: (currentUser.role === 'ADMIN' || currentUser.role === 'STAFF') ? '1px solid rgba(239, 68, 68, 0.4)' : '1px solid rgba(180, 112, 39, 0.3)',
+                    color: (currentUser.role === 'ADMIN' || currentUser.role === 'STAFF') ? '#ef4444' : '#b47027',
                     fontSize: '0.72rem',
                     fontWeight: 700,
                   }}
                 >
-                  {isCompany ? 'Compte Ferme / Entreprise' : 'Compte Éleveur'}
+                  {currentUser.role === 'ADMIN' ? '👑 Administrateur Direction' : currentUser.role === 'STAFF' ? '🛡️ Équipe Technique AVS' : isCompany ? 'Compte Ferme / Entreprise' : 'Compte Éleveur'}
                 </span>
               </div>
 
@@ -202,25 +222,49 @@ export default function AccountClient() {
             </div>
           </div>
 
-          <button
-            onClick={logout}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '9px 18px',
-              borderRadius: '100px',
-              border: '1px solid rgba(239, 68, 68, 0.3)',
-              background: 'rgba(239, 68, 68, 0.1)',
-              color: '#ef4444',
-              fontSize: '0.8rem',
-              fontWeight: 700,
-              cursor: 'pointer',
-            }}
-          >
-            <LogOut size={15} />
-            <span>Déconnexion</span>
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            {(currentUser.role === 'ADMIN' || currentUser.role === 'STAFF') && (
+              <Link
+                href="/admin"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '9px 18px',
+                  borderRadius: '100px',
+                  background: 'linear-gradient(135deg, #b47027, #8f551b)',
+                  color: '#ffffff',
+                  fontSize: '0.82rem',
+                  fontWeight: 800,
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 15px rgba(180, 112, 39, 0.35)',
+                }}
+              >
+                <ShieldCheck size={16} />
+                <span>Espace Back-Office Admin</span>
+              </Link>
+            )}
+
+            <button
+              onClick={logout}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '9px 18px',
+                borderRadius: '100px',
+                border: '1px solid rgba(239, 68, 68, 0.3)',
+                background: 'rgba(239, 68, 68, 0.1)',
+                color: '#ef4444',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+              }}
+            >
+              <LogOut size={15} />
+              <span>Déconnexion</span>
+            </button>
+          </div>
         </div>
 
         {/* Section Commandes */}

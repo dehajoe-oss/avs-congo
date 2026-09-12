@@ -131,7 +131,7 @@ export default function Footer() {
   const border = 'rgba(255,255,255,.16)'
   const muted = 'rgba(255,255,255,.5)'
 
-  if (pathname?.startsWith('/explorer')) return null
+  if (pathname?.startsWith('/explorer') || pathname?.startsWith('/admin')) return null
 
   const lk = {
     fontSize: '.92rem', color: muted, transition: 'color .2s, padding-left .2s',

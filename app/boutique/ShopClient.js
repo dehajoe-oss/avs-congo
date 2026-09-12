@@ -20,6 +20,7 @@ import { useTheme } from '@/lib/theme'
 import { GhostTitle, GreenUnderline, HoverSlideText } from '@/components/ui/index'
 import AuroraHero from '@/components/ui/AuroraHero'
 import { PRODUCTS_CATALOG, PRODUCT_CATEGORIES } from '@/lib/products'
+import api from '@/lib/api-client'
 
 /* ────────────────────────────────────────────────
    HERO BOUTIQUE — Gabarit signature Helious / Services
@@ -159,11 +160,49 @@ export default function ShopClient() {
   const T = useTheme()
   const { addToCart, openCart, cartCount, cartTotal, currentUser, openAuthModal } = useShop()
 
+  const [products, setProducts] = useState(PRODUCTS_CATALOG)
   const [selectedCat, setSelectedCat] = useState('all')
   const [search, setSearch] = useState('')
   const [quantities, setQuantities] = useState({})
 
-  const filtered = PRODUCTS_CATALOG.filter(p => {
+  // Chargement en temps réel depuis PostgreSQL via le backend Node.js
+  useEffect(() => {
+    let isMounted = true
+    api.products.getAll({ limit: 50 })
+      .then(res => {
+        if (isMounted && res?.data && Array.isArray(res.data) && res.data.length > 0) {
+          const normalized = res.data.map(p => ({
+            id: p.id,
+            slug: p.slug,
+            name: p.title,
+            category: p.category?.slug?.includes('poussin') ? 'poussins'
+              : p.category?.slug?.includes('provende') ? 'provenderie'
+              : p.category?.slug?.includes('sante') ? 'sante'
+              : p.category?.slug?.includes('hygiene') ? 'hygiene'
+              : p.category?.slug?.includes('materiel') ? 'materiel'
+              : 'provenderie',
+            categoryLabel: p.category?.name || 'Intrants Agropastoraux',
+            price: p.promoPrice || p.price,
+            priceUnit: `FCFA / ${p.unit || 'unité'}`,
+            minOrder: 1,
+            inStock: p.inStock && p.stock > 0,
+            stock: p.stock,
+            badge: p.badge || (p.stock > 0 ? 'En stock' : 'Sur commande'),
+            image: p.image,
+            fallbackImage: p.image,
+            description: p.description,
+            specs: p.features || [],
+          }))
+          setProducts(normalized)
+        }
+      })
+      .catch(err => {
+        console.warn('[Shop] Fallback catalogue local:', err.message)
+      })
+    return () => { isMounted = false }
+  }, [])
+
+  const filtered = products.filter(p => {
     const matchCat = selectedCat === 'all' || p.category === selectedCat
     const matchSearch =
       p.name.toLowerCase().includes(search.toLowerCase()) ||

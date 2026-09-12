@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { X, User, Phone, Lock, Building, CheckCircle2, ArrowRight } from 'lucide-react'
+import { X, User, Phone, Lock, Building, CheckCircle2, ArrowRight, Mail } from 'lucide-react'
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
+import api from '@/lib/api-client'
 
 export default function AuthModal() {
   const { isAuthModalOpen, closeAuthModal, login, showToast } = useShop()
@@ -13,6 +14,7 @@ export default function AuthModal() {
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
+    email: '',
     password: '',
     companyName: '',
     userType: 'breeder', // 'breeder' (éleveur) | 'company' (entreprise)
@@ -27,12 +29,17 @@ export default function AuthModal() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!formData.phone.trim() || !formData.password.trim()) {
-      showToast('Veuillez renseigner votre téléphone et mot de passe', 'warning')
+    const phone = formData.phone.trim()
+    const password = formData.password.trim()
+    const fullName = formData.fullName.trim()
+    const email = formData.email.trim()
+
+    if (!phone || !password) {
+      showToast('Veuillez renseigner votre téléphone / email et mot de passe', 'warning')
       return
     }
 
-    if (isRegister && !formData.fullName.trim()) {
+    if (isRegister && !fullName) {
       showToast('Veuillez renseigner votre nom complet ou raison sociale', 'warning')
       return
     }
@@ -40,40 +47,37 @@ export default function AuthModal() {
     setLoading(true)
 
     try {
-      const endpoint = isRegister ? '/api/auth/register' : '/api/auth/login'
-      const payload = isRegister
-        ? {
-            fullName: formData.fullName.trim(),
-            phone: formData.phone.trim(),
-            password: formData.password.trim(),
-            companyName: formData.companyName.trim(),
-            userType: formData.userType,
-          }
-        : {
-            phone: formData.phone.trim(),
-            password: formData.password.trim(),
-          }
-
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) {
-        showToast(data.error || 'Une erreur est survenue', 'error')
-        setLoading(false)
-        return
+      let result
+      if (isRegister) {
+        result = await api.auth.register({
+          name: fullName,
+          fullName,
+          phone,
+          email: email || undefined,
+          password,
+        })
+      } else {
+        result = await api.auth.login({
+          identifier: phone,
+          email: phone.includes('@') ? phone : undefined,
+          phone: !phone.includes('@') ? phone : undefined,
+          password,
+        })
       }
 
-      login(data.user)
-      closeAuthModal()
-      setFormData({ fullName: '', phone: '', password: '', companyName: '', userType: 'breeder' })
+      const user = result?.data?.user || result?.user
+      const token = result?.data?.token || result?.token
+
+      if (user) {
+        login(user, token)
+        closeAuthModal()
+        setFormData({ fullName: '', phone: '', email: '', password: '', companyName: '', userType: 'breeder' })
+      } else {
+        showToast(result?.message || 'Connexion réussie', 'success')
+      }
     } catch (err) {
-      console.error('Erreur auth:', err)
-      showToast('Impossible de contacter le serveur', 'error')
+      console.error('Erreur auth backend:', err)
+      showToast(err.message || 'Identifiants invalides ou impossible de contacter le serveur', 'error')
     } finally {
       setLoading(false)
     }

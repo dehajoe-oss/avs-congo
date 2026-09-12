@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import api from '@/lib/api-client'
 
 const ShopContext = createContext(null)
 
@@ -106,32 +107,70 @@ export function ShopProvider({ children }) {
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
   // Actions Auth
-  const login = useCallback((userData) => {
+  const login = useCallback((userData, token) => {
     setCurrentUser(userData)
-    showToast(`Bienvenue, ${userData.fullName} !`, 'success')
+    if (token && typeof window !== 'undefined') {
+      localStorage.setItem('avs_token', token)
+      localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(userData))
+    }
+    const displayName = userData.fullName || userData.name || 'Client AVS'
+    showToast(`Bienvenue, ${displayName} !`, 'success')
   }, [showToast])
 
   const logout = useCallback(() => {
     setCurrentUser(null)
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('avs_token')
+      localStorage.removeItem(USER_STORAGE_KEY)
+    }
     showToast('Vous êtes déconnecté', 'info')
   }, [showToast])
 
-  // Synchronisation des commandes depuis le serveur
+  // Synchronisation des commandes depuis le serveur backend
   const refreshOrders = useCallback(async () => {
-    if (!currentUser?.phone) return
     try {
-      const res = await fetch(`/api/orders?phone=${encodeURIComponent(currentUser.phone)}`)
-      const data = await res.json()
-      if (data.orders) {
-        setOrders(data.orders)
+      const token = typeof window !== 'undefined' ? localStorage.getItem('avs_token') : null
+      if (token) {
+        const data = await api.orders.getMyOrders()
+        if (data?.data) {
+          setOrders(data.data)
+          return
+        }
+      }
+      if (currentUser?.phone) {
+        const res = await fetch(`/api/orders?phone=${encodeURIComponent(currentUser.phone)}`)
+        const data = await res.json()
+        if (data.orders) {
+          setOrders(data.orders)
+        }
       }
     } catch (err) {
-      console.warn('Erreur chargement commandes:', err)
+      console.warn('[Shop] Erreur chargement commandes:', err.message)
     }
   }, [currentUser])
 
+  // Vérification de validité de session au démarrage
   useEffect(() => {
-    if (currentUser?.phone) {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('avs_token') : null
+    if (token) {
+      api.auth.me()
+        .then(res => {
+          if (res?.data?.user) {
+            setCurrentUser(res.data.user)
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(res.data.user))
+          }
+        })
+        .catch(() => {
+          // Token expiré ou invalide
+          if (typeof window !== 'undefined') {
+            localStorage.removeItem('avs_token')
+          }
+        })
+    }
+  }, [])
+
+  useEffect(() => {
+    if (currentUser) {
       refreshOrders()
     }
   }, [currentUser, refreshOrders])
