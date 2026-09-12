@@ -101,9 +101,8 @@ function CircularProjectsGallery() {
             />
             <div style={{
               position: 'absolute', inset: 0,
-              background: isActive
-                ? 'rgba(0, 0, 0, 0.70)'
-                : 'rgba(0, 0, 0, 0.55)',
+              background: 'linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.25) 35%, transparent 60%)',
+              pointerEvents: 'none',
             }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '.7rem 1rem' }}>
               <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.8rem', fontWeight: 700, color: '#fff', letterSpacing: '-.01em', lineHeight: 1.2 }}><HoverSlideText text={p.title} /></div>

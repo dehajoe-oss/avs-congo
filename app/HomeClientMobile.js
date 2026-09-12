@@ -82,7 +82,7 @@ function TiltCard({ children, style = {}, className = '', intensity = 14, perspe
 }
 
 // ── CIRCULAR PROJECTS GALLERY — adapté mobile (ratio 16:9, largeur réduite) ──
-function CircularProjectsGallery({ items, draggable = false, cardW = 220, intervalMs = 2800 }) {
+function CircularProjectsGallery({ items, draggable = false, cardW = 220, cardH, intervalMs = 2800 }) {
   const T = useTheme()
   const DEFAULT_ITEMS = [
     ...PROJECTS.filter(p => p.id === 15 || p.id === 18),
@@ -110,16 +110,11 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
     return rel
   })
 
-  // Dimensions mobiles : cartes plus petites, ratio natif 1600×815
+  // Dimensions mobiles : format valorisant pour les photos (ratio clair et lisible)
   const CARD_W = cardW
-  const CARD_H = Math.round(CARD_W * (815 / 1600))
-  const STEP   = CARD_W * 0.68
+  const CARD_H = cardH || (cardW >= 250 ? Math.round(cardW * 0.72) : Math.round(cardW * 0.62))
+  const STEP   = Math.round(CARD_W * 0.70)
 
-  // Glissement manuel (mobile) — une seule poignée invisible plutôt que
-  // de rendre chaque carte draggable (elles ont déjà leur propre anim
-  // x/rotate scriptée par `active`, les deux entreraient en conflit).
-  // Relâchement : offset ou vitesse suffisants → avance/recule d'une carte,
-  // sinon ça "rebondit" élastiquement (dragElastic) et reprend l'auto-scroll.
   const onDragEnd = (e, info) => {
     pausedRef.current = false
     const { offset, velocity } = info
@@ -131,73 +126,162 @@ function CircularProjectsGallery({ items, draggable = false, cardW = 220, interv
   }
 
   return (
-    <div style={{ position: 'relative', height: CARD_H + 48, width: '100%', maxWidth: '100vw', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: 900, marginTop: '1.2rem' }}>
-      {draggable && (
-        <motion.div
-          drag="x"
-          dragElastic={0.5}
-          dragConstraints={{ left: 0, right: 0 }}
-          onDragStart={() => { pausedRef.current = true }}
-          onDragEnd={onDragEnd}
-          style={{ position: 'absolute', inset: 0, zIndex: 20, touchAction: 'pan-y' }}
-        />
-      )}
-      {GALLERY_ITEMS.map((p, i) => {
-        const rel    = order[i]
-        const abs    = Math.abs(rel)
-        const x      = rel * STEP
-        const y      = abs * 10
-        const rot    = rel * 7
-        const scale  = 1 - abs * 0.13
-        const opacity = abs > 2 ? 0 : 1 - abs * 0.20
-        const isActive = rel === 0
+    <div style={{ position: 'relative', width: '100%', maxWidth: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1.2rem' }}>
+      <div style={{ position: 'relative', height: CARD_H + 48, width: '100%', maxWidth: '100vw', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: 900 }}>
+        {draggable && (
+          <motion.div
+            drag="x"
+            dragElastic={0.5}
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragStart={() => { pausedRef.current = true }}
+            onDragEnd={onDragEnd}
+            style={{ position: 'absolute', inset: 0, zIndex: 20, touchAction: 'pan-y' }}
+          />
+        )}
+        {GALLERY_ITEMS.map((p, i) => {
+          const rel    = order[i]
+          const abs    = Math.abs(rel)
+          const x      = rel * STEP
+          const y      = abs * 10
+          const rot    = rel * 6
+          const scale  = 1 - abs * 0.12
+          const opacity = abs > 2 ? 0 : 1 - abs * 0.15
+          const isActive = rel === 0
 
-        return (
-          <motion.div key={p.id}
-            animate={{ x, y, rotate: rot, scale, opacity }}
-            transition={{ duration: .9, ease: [.22,1,.36,1] }}
-            onClick={() => setActive(i)}
-            style={{
-              position: 'absolute',
-              width: CARD_W,
-              height: CARD_H,
-              borderRadius: 8,
-              overflow: 'hidden',
-              zIndex: 10 - abs,
-              cursor: 'pointer',
-              border: isActive ? '1.5px solid rgba(180, 112, 39,.6)' : '1px solid rgba(255,255,255,.1)',
-              boxShadow: isActive ? '0 0 0 3px rgba(180, 112, 39,.15), 0 8px 24px rgba(0,0,0,.6)' : '0 4px 14px rgba(0,0,0,.4)',
-              transformStyle: 'preserve-3d',
-            }}>
-            <LazyImg
-              src={p.img}
-              alt={p.title}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 50%' }}
-            />
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: isActive
-                ? 'rgba(0, 0, 0, 0.70)'
-                : 'rgba(0, 0, 0, 0.55)',
-            }} />
-            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '.45rem .7rem' }}>
-              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 700, color: '#fff', letterSpacing: '-.01em', lineHeight: 1.2 }}>{p.title}</div>
-              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.55rem', color: 'rgba(180, 112, 39,.9)', marginTop: '.05rem' }}>{p.type}</div>
-            </div>
-            {draggable && isActive && p.url && (
-              <a href={p.url} target="_blank" rel="noreferrer" onClick={e => e.stopPropagation()}
+          return (
+            <motion.div key={p.id}
+              animate={{ x, y, rotate: rot, scale, opacity }}
+              transition={{ duration: .7, ease: [.22,1,.36,1] }}
+              onClick={() => setActive(i)}
+              style={{
+                position: 'absolute',
+                width: CARD_W,
+                height: CARD_H,
+                borderRadius: 14,
+                overflow: 'hidden',
+                zIndex: 10 - abs,
+                cursor: 'pointer',
+                border: isActive
+                  ? '2px solid rgba(180, 112, 39, 0.9)'
+                  : '1px solid rgba(180, 112, 39, 0.25)',
+                boxShadow: isActive
+                  ? '0 0 0 3px rgba(180, 112, 39,.25), 0 16px 36px rgba(0,0,0,.35)'
+                  : '0 6px 18px rgba(0,0,0,.2)',
+                transformStyle: 'preserve-3d',
+                background: '#0d1611',
+              }}>
+              <LazyImg
+                src={p.img}
+                alt={p.title}
                 style={{
-                  position: 'absolute', top: '.5rem', right: '.5rem', zIndex: 21,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  width: 26, height: 26, borderRadius: '50%',
-                  background: 'rgba(180, 112, 39,.92)', color: '#04140a',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  filter: isActive ? 'brightness(1.02) contrast(1.04)' : 'brightness(0.92)',
+                  transition: 'filter 0.3s ease',
+                }}
+              />
+              {/* Dégradé léger uniquement au bas pour la lisibilité du texte — l'image reste 100% claire et lumineuse */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.25) 35%, transparent 60%)',
+                pointerEvents: 'none',
+              }} />
+
+              {/* Badge résultat ou type en haut */}
+              {isActive && p.result && (
+                <div style={{
+                  position: 'absolute', top: '.6rem', left: '.65rem', zIndex: 12,
+                  padding: '.22rem .6rem', borderRadius: 100,
+                  background: 'rgba(3, 8, 6, 0.75)', backdropFilter: 'blur(6px)',
+                  border: '1px solid rgba(180, 112, 39, 0.45)',
+                  fontFamily: "'Poppins', sans-serif", fontSize: '.58rem', fontWeight: 700,
+                  color: '#e5a95d',
                 }}>
-                <ExternalLink size={12} />
-              </a>
-            )}
-          </motion.div>
-        )
-      })}
+                  {p.result}
+                </div>
+              )}
+
+              {/* Titre et détails au bas */}
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '.65rem .85rem', zIndex: 11, pointerEvents: 'none' }}>
+                <div style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: CARD_W >= 250 ? '.82rem' : '.68rem',
+                  fontWeight: 700,
+                  color: '#ffffff',
+                  letterSpacing: '-.01em',
+                  lineHeight: 1.25,
+                  textShadow: '0 1px 3px rgba(0,0,0,0.9)',
+                }}>
+                  {p.title}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '.35rem', marginTop: '.15rem' }}>
+                  <span style={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: '.58rem',
+                    color: '#e5a95d',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '.05em',
+                  }}>
+                    {p.type}
+                  </span>
+                  {p.subtitle && CARD_W >= 250 && (
+                    <span style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: '.56rem',
+                      color: 'rgba(255, 255, 255, 0.8)',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                    }}>
+                      · {p.subtitle}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {draggable && isActive && p.url && (
+                <a href={p.url} target="_blank" rel="noreferrer" onClick={e => e.stopPropagation()}
+                  style={{
+                    position: 'absolute', top: '.55rem', right: '.55rem', zIndex: 21,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    width: 28, height: 28, borderRadius: '50%',
+                    background: '#b47027', color: '#04140a',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                  }}>
+                  <ExternalLink size={13} />
+                </a>
+              )}
+            </motion.div>
+          )
+        })}
+      </div>
+
+      {/* Puces de navigation interactives sous la galerie */}
+      {draggable && GALLERY_ITEMS.length > 1 && (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.45rem', marginTop: '.85rem', position: 'relative', zIndex: 25 }}>
+          {GALLERY_ITEMS.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-label={`Aller à la réalisation ${i + 1}`}
+              style={{
+                width: i === active ? 22 : 7,
+                height: 7,
+                borderRadius: 4,
+                background: i === active ? '#b47027' : (T.light ? 'rgba(0,0,0,0.22)' : 'rgba(255,255,255,0.25)'),
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all .25s ease',
+                padding: 0,
+              }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -808,7 +892,7 @@ function ProjectsSection() {
       </motion.div>
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .15 }} style={{ position: 'relative', zIndex: 1 }}>
-        <CircularProjectsGallery items={ITEMS} draggable cardW={260} intervalMs={10000} />
+        <CircularProjectsGallery items={ITEMS} draggable cardW={290} cardH={210} intervalMs={8000} />
       </motion.div>
 
       {/* CTA */}

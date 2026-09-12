@@ -164,7 +164,7 @@ function StackedCard({ project, index, total, scrollYProgress, T }) {
                   </div>
                 }
               />
-              <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.85)' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, transparent 50%)', pointerEvents: 'none' }} />
 
               {/* Badges */}
               <div className="no-pill-mobile" style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '.5rem', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
