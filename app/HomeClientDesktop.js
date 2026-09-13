@@ -136,10 +136,10 @@ function HeroSlogan() {
 }
 
 const HERO_SLOGANS = [
-  { before: 'L’Excellence Vétérinaire, Agropastorale & ', highlight: 'QHSE au Congo' },
-  { before: 'De la santé animale à l’excellence ', highlight: 'QHSE' },
-  { before: 'Poussins d’un jour & provenderie ', highlight: 'certifiée' },
-  { before: 'Urgences cliniques vétérinaires ', highlight: '24h/24 & 7j/7' },
+  { before: 'Excellence Vétérinaire & ', highlight: 'QHSE au Congo' },
+  { before: 'Santé animale & excellence ', highlight: 'QHSE' },
+  { before: 'Poussins & provenderie ', highlight: 'certifiée' },
+  { before: 'Urgences vétérinaires ', highlight: '24h/24 & 7j/7' },
 ]
 
 function HeroSloganCycle() {
@@ -283,7 +283,7 @@ function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
           style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.02rem', color: 'rgba(255,255,255,.78)', maxWidth: 680, margin: '0 auto 1.7rem', lineHeight: 1.6 }}>
-          Soins vétérinaires, solutions agropastorales, contrôle qualité, conseil en management QHSE et formations pratiques : nous accompagnons les éleveurs, producteurs, PME, entreprises et institutions vers la performance, la conformité et la durabilité.
+          Clinique vétérinaire 24/7, provenderie certifiée, poussins Cobb 500 et conseil QHSE à Pointe-Noire.
         </motion.p>
 
         <motion.div
