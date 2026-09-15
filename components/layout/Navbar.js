@@ -22,7 +22,7 @@ export default function Navbar() {
   const isActive = (href) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
-  if (pathname?.startsWith('/explorer') || pathname?.startsWith('/admin')) return null
+  if (pathname?.startsWith('/explorer') || pathname?.startsWith('/admin') || pathname?.startsWith('/connexion') || pathname?.startsWith('/inscription')) return null
 
   return (
     <>

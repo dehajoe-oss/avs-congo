@@ -95,7 +95,7 @@ export default function ClinicClient() {
               <a href="#rdv-form" className="btn-raised" style={{ padding: '.85rem 1.8rem' }}>
                 Prendre rendez-vous <ArrowRight size={14} />
               </a>
-              <a href="tel:+242069677567" className="btn-ghost" style={{ padding: '.85rem 1.6rem', display: 'inline-flex', alignItems: 'center', gap: '.5rem', color: '#ff5555', borderColor: 'rgba(255,85,85,.3)' }}>
+              <a href="tel:+242069677567" className="btn-ghost" style={{ padding: '.85rem 1.6rem', display: 'inline-flex', alignItems: 'center', gap: '.5rem', color: '#ff8080', borderColor: 'rgba(255,85,85,.65)', background: 'rgba(30,8,8,.6)', backdropFilter: 'blur(6px)', textShadow: '0 1px 8px rgba(0,0,0,.8)' }}>
                 <PhoneCall size={15} />
                 Ligne Urgences 24/7
               </a>

@@ -310,9 +310,9 @@ function HeroSloganCycle() {
         <motion.p key={index}
           initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
           transition={{ duration: .4, ease: 'easeOut' }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.22rem, 5vw, 1.55rem)', lineHeight: 1.22, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '3px 3px 0px rgba(0,0,0,.55)', textAlign: 'center', margin: 0 }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.22rem, 5vw, 1.55rem)', lineHeight: 1.22, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '3px 3px 0px rgba(0,0,0,.68), 0 2px 20px rgba(0,0,0,.85)', textAlign: 'center', margin: 0 }}>
           {before}
-          <span style={{ display: 'inline-block', background: '#b47027', color: '#050505', padding: '.08em .32em', border: '2px solid #050505', borderRadius: '.18em', boxShadow: '4px 4px 0px #fff, 0 0 20px rgba(180, 112, 39, 0.4)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
+          <span style={{ display: 'inline-block', background: '#b47027', color: '#050505', padding: '.08em .32em', border: '2px solid #050505', borderRadius: '.18em', boxShadow: '4px 4px 0px rgba(0,0,0,.7), 0 0 20px rgba(180, 112, 39, 0.4)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
             {highlight}
           </span>
         </motion.p>
@@ -391,21 +391,21 @@ function Hero() {
           <img
             src="https://res.cloudinary.com/dzxesa3wi/image/upload/f_auto,q_auto/v1789211616/Farmer_Plowing_Background_Paddy_Green_Poster_Background_Image_And_Wallpaper_for_Free_Download_ores7l.jpg"
             alt="Agro Véto Services Congo"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block', filter: 'brightness(1.15) contrast(1.05) saturate(1.12)' }}
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(12, 10, 9, 0.42) 0%, rgba(12, 10, 9, 0.72) 100%)' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8, 7, 6, 0.68) 0%, rgba(12, 10, 9, 0.25) 45%, rgba(12, 10, 9, 0.85) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(12, 10, 9, 0.20) 0%, rgba(12, 10, 9, 0.52) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8, 7, 6, 0.42) 0%, rgba(12, 10, 9, 0.10) 45%, rgba(12, 10, 9, 0.62) 100%)' }} />
           <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .09, pointerEvents: 'none', zIndex: 5 }} />
         </div>
       </div>
 
-      <div ref={midScrollRef} suppressHydrationWarning style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '0 5%', textAlign: 'center' }}>
+      <div ref={midScrollRef} suppressHydrationWarning style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '0 5% 1rem', textAlign: 'center', background: 'radial-gradient(ellipse at center, rgba(0,0,0,.42) 0%, rgba(0,0,0,.22) 55%, transparent 78%)' }}>
 
         <HeroSloganCycle />
 
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.84rem', color: 'rgba(255,255,255,.78)', maxWidth: 420, margin: '0 auto 1.2rem', lineHeight: 1.5 }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.84rem', color: '#fff', maxWidth: 420, margin: '0 auto 1.2rem', lineHeight: 1.5, textShadow: '0 1px 12px rgba(0,0,0,.95), 0 0 3px rgba(0,0,0,.9)' }}>
           Clinique vétérinaire 24/7, provenderie certifiée, poussins Cobb 500 et conseil QHSE à Pointe-Noire.
         </motion.p>
 
@@ -422,10 +422,10 @@ function Hero() {
             ))}
           </AvatarGroup>
           <div style={{ textAlign: 'left' }}>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.75rem', color: '#fff', lineHeight: 1.15 }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.75rem', color: '#fff', lineHeight: 1.15, textShadow: '0 1px 10px rgba(0,0,0,.9)' }}>
               Éleveurs & PME partenaires
             </div>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: '#b47027' }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', color: '#f0b35e', fontWeight: 700, textShadow: '0 1px 10px rgba(0,0,0,.9)' }}>
               {PROJECTS.length}+ réalisations & intrants de pointe
             </div>
           </div>
@@ -451,7 +451,7 @@ function Hero() {
             whileTap={{ scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#b47027', background: 'transparent', border: '2.5px solid #b47027', borderRadius: 999, padding: 'calc(.72rem - 2.5px) calc(1.35rem - 2.5px)' }}>
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#f5c57a', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', border: '2.5px solid #b47027', borderRadius: 999, padding: 'calc(.72rem - 2.5px) calc(1.35rem - 2.5px)', textShadow: '0 1px 8px rgba(0,0,0,.8)' }}>
               <HoverSlideText text="Nous contacter" />
             </Link>
           </motion.div>

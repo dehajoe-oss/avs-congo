@@ -90,7 +90,7 @@ function HeroShopDesktop() {
               target="_blank"
               rel="noreferrer"
               className="btn-ghost"
-              style={{ fontSize: '0.95rem' }}
+              style={{ fontSize: '0.95rem', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', color: '#f5c57a', borderColor: '#b47027', textShadow: '0 1px 8px rgba(0,0,0,.8)' }}
             >
               <HoverSlideText text="WhatsApp Pro" />
               <MessageCircle size={16} />
@@ -115,13 +115,13 @@ function HeroShopMobile() {
       <AuroraHero labels={[]} />
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1, padding: '72px 5% 0' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
-          <h1 style={{ position: 'relative', fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: 'rgba(255,255,255,.88)', letterSpacing: '-.04em', lineHeight: 1.1, marginBottom: '1.2rem' }}>
+          <h1 style={{ position: 'relative', fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: '#fff', letterSpacing: '-.04em', lineHeight: 1.1, marginBottom: '1.2rem', textShadow: '0 2px 16px rgba(0,0,0,.85)' }}>
             <GhostTitle text="NOTRE BOUTIQUE" />
             NOTRE{' '}
-            <GreenUnderline><span className="text-gradient">BOUTIQUE</span></GreenUnderline>
+            <GreenUnderline><span style={{ color: '#f5c57a', textShadow: '0 2px 18px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.9)' }}>BOUTIQUE</span></GreenUnderline>
           </h1>
           <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,.55)', lineHeight: 1.75, maxWidth: 620, margin: '0 auto 2.5rem' }}>
-            Poussins d'un jour Cobb 500 certifiés, provendes industrielles équilibrées et intrants d'élevage de pointe sous contrôle vétérinaire à Pointe-Noire.
+            Poussins Cobb 500, provenderie et intrants certifiés.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
             <a href="#catalogue" className="btn-raised" style={{ fontSize: '1rem' }}>
@@ -132,7 +132,7 @@ function HeroShopMobile() {
               target="_blank"
               rel="noreferrer"
               className="btn-ghost"
-              style={{ fontSize: '1rem' }}
+              style={{ fontSize: '1rem', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', color: '#f5c57a', borderColor: '#b47027', textShadow: '0 1px 8px rgba(0,0,0,.8)' }}
             >
               <HoverSlideText text="WhatsApp Pro" /> <MessageCircle size={16} />
             </a>

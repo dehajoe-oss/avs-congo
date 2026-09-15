@@ -131,7 +131,7 @@ export default function FormationsClient() {
               <a href="#catalogue" className="btn-raised" style={{ padding: '.85rem 1.8rem' }}>
                 Découvrir nos formations <ArrowRight size={14} />
               </a>
-              <a href="https://wa.me/242069677567?text=Bonjour,%20je%20souhaite%20des%20renseignements%20sur%20les%20formations%20AVS" target="_blank" rel="noreferrer" className="btn-ghost" style={{ padding: '.85rem 1.6rem', display: 'inline-flex', alignItems: 'center', gap: '.5rem' }}>
+              <a href="https://wa.me/242069677567?text=Bonjour,%20je%20souhaite%20des%20renseignements%20sur%20les%20formations%20AVS" target="_blank" rel="noreferrer" className="btn-ghost" style={{ padding: '.85rem 1.6rem', display: 'inline-flex', alignItems: 'center', gap: '.5rem', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', color: '#f5c57a', borderColor: '#b47027', textShadow: '0 1px 8px rgba(0,0,0,.8)' }}>
                 <MessageCircle size={15} />
                 Conseiller Pédagogique WhatsApp
               </a>

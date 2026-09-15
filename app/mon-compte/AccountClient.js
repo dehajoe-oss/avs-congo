@@ -21,7 +21,7 @@ import { useTheme } from '@/lib/theme'
 
 export default function AccountClient() {
   const T = useTheme()
-  const { currentUser, logout, openAuthModal, orders } = useShop()
+  const { currentUser, logout, orders } = useShop()
   const [activeTab, setActiveTab] = useState('orders')
 
   if (!currentUser) {
@@ -77,8 +77,8 @@ export default function AccountClient() {
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <button
-              onClick={openAuthModal}
+            <Link
+              href="/connexion"
               style={{
                 width: '100%',
                 padding: '13px 20px',
@@ -93,11 +93,13 @@ export default function AccountClient() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '8px',
+                textDecoration: 'none',
+                boxSizing: 'border-box',
               }}
             >
               <span>Se Connecter / Créer un Compte</span>
               <ArrowRight size={16} />
-            </button>
+            </Link>
 
             <Link
               href="/boutique"

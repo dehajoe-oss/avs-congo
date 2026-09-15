@@ -34,19 +34,19 @@ function HeroServices() {
       <AuroraHero labels={[]} />
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1, padding: '72px 5% 0' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
-          <h1 style={{ position: 'relative', fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: 'rgba(255,255,255,.88)', letterSpacing: '-.04em', lineHeight: 1.1, marginBottom: '1.2rem' }}>
+          <h1 style={{ position: 'relative', fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: '#fff', letterSpacing: '-.04em', lineHeight: 1.1, marginBottom: '1.2rem', textShadow: '0 2px 16px rgba(0,0,0,.85)' }}>
             <GhostTitle text="NOS PRESTATIONS" />
             NOS{' '}
-            <GreenUnderline><span className="text-gradient">PRESTATIONS</span></GreenUnderline>
+            <GreenUnderline><span style={{ color: '#f5c57a', textShadow: '0 2px 18px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.9)' }}>PRESTATIONS</span></GreenUnderline>
           </h1>
           <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,.55)', lineHeight: 1.75, maxWidth: 620, margin: '0 auto 2.5rem' }}>
-            De la consultation vétérinaire à l'audit d'usine, chaque pôle est conçu pour répondre aux réalités agropastorales et sanitaires du Congo.
+            6 pôles d'expertise, du soin animal à l'audit QHSE.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
             <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '1rem' }}>
               <HoverSlideText text="Devis gratuit" /> <MessageCircle size={16} />
             </a>
-            <a href="#services-list" className="btn-ghost" style={{ fontSize: '1rem' }}>
+            <a href="#services-list" className="btn-ghost" style={{ fontSize: '1rem', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', color: '#f5c57a', borderColor: '#b47027', textShadow: '0 1px 8px rgba(0,0,0,.8)' }}>
               <HoverSlideText text="Voir les services" />
             </a>
           </div>
