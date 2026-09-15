@@ -2,14 +2,13 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useShop } from '@/lib/shopContext'
 import api from '@/lib/api-client'
 
 // ── Palette AVS (reprend les codes du site : ocre #b47027 sur fond sombre) ──
 const PRIMARY = '#b47027'
 const PRIMARY_LIGHT = '#f0b35e'
-const WHATSAPP_URL = 'https://wa.me/242069677567'
 
 function EyeIcon({ open }) {
   return (
@@ -45,6 +44,13 @@ export default function AuthContainer({ initialMode = 'signin' }) {
 
   const { login, currentUser } = useShop()
   const router = useRouter()
+  const searchParams = useSearchParams()
+  // Redirection post-login (?redirect=, posée par l'auto-logout 401).
+  // On n'accepte que des chemins internes pour éviter l'open-redirect.
+  const redirectParam = searchParams.get('redirect') || ''
+  const redirectTo = redirectParam.startsWith('/') && !redirectParam.startsWith('//')
+    ? redirectParam
+    : '/mon-compte'
 
   useEffect(() => {
     setIsSignUp(initialMode === 'signup')
@@ -52,8 +58,8 @@ export default function AuthContainer({ initialMode = 'signin' }) {
 
   // Déjà connecté → retour à l'espace client
   useEffect(() => {
-    if (currentUser) router.replace('/mon-compte')
-  }, [currentUser, router])
+    if (currentUser) router.replace(redirectTo)
+  }, [currentUser, router, redirectTo])
 
   // ── États connexion ──
   const [loginId, setLoginId] = useState('')
@@ -102,7 +108,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
       const token = result?.data?.token || result?.token
       if (user) {
         login(user, token)
-        router.push('/mon-compte')
+        router.push(redirectTo)
       } else {
         setLoginErr(result?.message || 'Connexion réussie.')
       }
@@ -126,6 +132,9 @@ export default function AuthContainer({ initialMode = 'signin' }) {
     }
     if (!regForm.password) fe.password = 'Le mot de passe est obligatoire.'
     else if (regForm.password.length < 8) fe.password = 'Minimum 8 caractères.'
+    else if (!/[A-Za-z]/.test(regForm.password) || !/[0-9]/.test(regForm.password)) {
+      fe.password = 'Lettres et chiffres requis.'
+    }
     if (!regForm.password2) fe.password2 = 'Veuillez confirmer le mot de passe.'
     else if (regForm.password !== regForm.password2) {
       fe.password2 = 'Les mots de passe ne correspondent pas.'
@@ -155,7 +164,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
       const token = result?.data?.token || result?.token
       if (user) {
         login(user, token)
-        router.push('/mon-compte')
+        router.push(redirectTo)
       } else {
         setRegErr(result?.message || 'Compte créé avec succès.')
       }
@@ -487,9 +496,9 @@ export default function AuthContainer({ initialMode = 'signin' }) {
               </div>
 
               <div style={styles.forgotRow}>
-                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" style={styles.link}>
-                  Mot de passe oublié ? Écrivez-nous sur WhatsApp
-                </a>
+                <Link href="/mot-de-passe-oublie" style={styles.link}>
+                  Mot de passe oublié ?
+                </Link>
               </div>
 
               <button style={styles.button} type="submit" disabled={loginLoading}>

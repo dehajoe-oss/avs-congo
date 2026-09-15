@@ -15,9 +15,159 @@ import {
   CheckCircle2,
   AlertCircle,
   ExternalLink,
+  Camera,
+  Save,
+  Lock,
 } from 'lucide-react'
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
+import api from '@/lib/api-client'
+import ImageUploadButton from '@/components/admin/ImageUploadButton'
+
+// ── Onglet Profil : avatar, infos, mot de passe ─────────────────────────────
+function ProfileTab({ user }) {
+  const T = useTheme()
+  const { refreshProfile, showToast } = useShop()
+  const [name, setName] = useState(user.name || user.fullName || '')
+  const [phone, setPhone] = useState(user.phone || '')
+  const [avatar, setAvatar] = useState(user.avatar || '')
+  const [saving, setSaving] = useState(false)
+  const [currentPwd, setCurrentPwd] = useState('')
+  const [newPwd, setNewPwd] = useState('')
+  const [newPwd2, setNewPwd2] = useState('')
+  const [pwdMsg, setPwdMsg] = useState(null)
+
+  const card = {
+    background: T.light ? '#ffffff' : '#0e1710',
+    border: '1px solid rgba(255,255,255,0.08)',
+    borderRadius: '20px',
+    padding: '1.6rem',
+    marginBottom: '1.2rem',
+  }
+  const input = {
+    width: '100%', padding: '10px 14px', borderRadius: 10,
+    border: `1px solid ${T.light ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.15)'}`,
+    background: T.light ? '#f9fafb' : '#080d09',
+    color: T.light ? '#111827' : '#f3f4f6',
+    fontSize: '0.85rem', outline: 'none', boxSizing: 'border-box',
+  }
+  const label = { display: 'block', fontSize: '0.75rem', fontWeight: 600, marginBottom: '4px', opacity: 0.85 }
+
+  const handleSaveInfos = async (e) => {
+    e.preventDefault()
+    if (!name.trim()) {
+      showToast('Le nom est obligatoire', 'warning')
+      return
+    }
+    setSaving(true)
+    try {
+      await api.auth.updateProfile({ name: name.trim(), phone: phone.trim() || null, avatar: avatar || null })
+      await refreshProfile()
+      showToast('Profil mis à jour', 'success')
+    } catch (err) {
+      showToast(err.message || 'Mise à jour impossible', 'error')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handlePassword = async (e) => {
+    e.preventDefault()
+    setPwdMsg(null)
+    if (!currentPwd || !newPwd) {
+      setPwdMsg({ type: 'error', text: 'Renseignez le mot de passe actuel et le nouveau.' })
+      return
+    }
+    if (newPwd.length < 8) {
+      setPwdMsg({ type: 'error', text: 'Minimum 8 caractères, lettres et chiffres.' })
+      return
+    }
+    if (newPwd !== newPwd2) {
+      setPwdMsg({ type: 'error', text: 'La confirmation ne correspond pas.' })
+      return
+    }
+    try {
+      const res = await api.auth.updatePassword({ currentPassword: currentPwd, newPassword: newPwd })
+      setPwdMsg({ type: 'success', text: res?.message || 'Mot de passe modifié.' })
+      setCurrentPwd('')
+      setNewPwd('')
+      setNewPwd2('')
+    } catch (err) {
+      setPwdMsg({ type: 'error', text: err.message || 'Modification impossible.' })
+    }
+  }
+
+  return (
+    <div>
+      <div style={card}>
+        <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0 0 1.2rem' }}>Photo & informations</h3>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem', flexWrap: 'wrap' }}>
+          <div style={{ width: '72px', height: '72px', borderRadius: '20px', overflow: 'hidden', background: '#b47027', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.8rem', fontWeight: 900, flexShrink: 0 }}>
+            {avatar
+              ? <img src={avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.style.display = 'none' }} />
+              : (name?.charAt(0).toUpperCase() || 'U')}
+          </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+              <Camera size={15} color="#b47027" />
+              <span style={{ fontSize: '0.8rem', fontWeight: 700 }}>Photo de profil</span>
+            </div>
+            <ImageUploadButton folder="avs-avatars" onUploaded={(url) => setAvatar(url)} />
+          </div>
+        </div>
+        <form onSubmit={handleSaveInfos} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+          <div>
+            <label style={label}>Nom complet</label>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} style={input} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+            <div>
+              <label style={label}>Téléphone WhatsApp</label>
+              <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} style={input} />
+            </div>
+            <div>
+              <label style={label}>Email</label>
+              <input type="text" value={user.email || ''} disabled style={{ ...input, opacity: 0.6 }} />
+            </div>
+          </div>
+          <button type="submit" disabled={saving} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '11px 22px', borderRadius: '100px', border: 'none', background: '#b47027', color: '#fff', fontSize: '0.85rem', fontWeight: 800, cursor: 'pointer', opacity: saving ? 0.7 : 1, alignSelf: 'flex-start' }}>
+            <Save size={15} /> {saving ? 'Enregistrement…' : 'Enregistrer'}
+          </button>
+        </form>
+      </div>
+
+      <div style={card}>
+        <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0 0 1.2rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Lock size={16} color="#b47027" /> Changer le mot de passe
+        </h3>
+        {pwdMsg && (
+          <div style={{ background: pwdMsg.type === 'error' ? 'rgba(220,38,38,0.07)' : 'rgba(16,185,129,0.08)', border: `1px solid ${pwdMsg.type === 'error' ? 'rgba(220,38,38,0.2)' : 'rgba(16,185,129,0.25)'}`, borderRadius: '10px', padding: '8px 12px', fontSize: '12px', color: pwdMsg.type === 'error' ? '#dc2626' : '#10b981', marginBottom: '12px' }}>
+            {pwdMsg.text}
+          </div>
+        )}
+        <form onSubmit={handlePassword} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+          <div>
+            <label style={label}>Mot de passe actuel</label>
+            <input type="password" value={currentPwd} onChange={(e) => setCurrentPwd(e.target.value)} style={input} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+            <div>
+              <label style={label}>Nouveau (8 min., lettres + chiffres)</label>
+              <input type="password" value={newPwd} onChange={(e) => setNewPwd(e.target.value)} style={input} />
+            </div>
+            <div>
+              <label style={label}>Confirmation</label>
+              <input type="password" value={newPwd2} onChange={(e) => setNewPwd2(e.target.value)} style={input} />
+            </div>
+          </div>
+          <button type="submit" style={{ padding: '11px 22px', borderRadius: '100px', border: '1px solid rgba(180, 112, 39, 0.4)', background: 'transparent', color: '#b47027', fontSize: '0.85rem', fontWeight: 800, cursor: 'pointer', alignSelf: 'flex-start' }}>
+            Modifier le mot de passe
+          </button>
+        </form>
+      </div>
+    </div>
+  )
+}
 
 export default function AccountClient() {
   const T = useTheme()
@@ -144,6 +294,7 @@ export default function AccountClient() {
   }
 
   const isCompany = currentUser.userType === 'company'
+  const displayName = currentUser.fullName || currentUser.name || 'Client AVS'
 
   return (
     <div
@@ -180,6 +331,7 @@ export default function AccountClient() {
                 width: '64px',
                 height: '64px',
                 borderRadius: '20px',
+                overflow: 'hidden',
                 background: '#b47027',
                 color: '#ffffff',
                 display: 'flex',
@@ -187,15 +339,18 @@ export default function AccountClient() {
                 justifyContent: 'center',
                 fontSize: '1.6rem',
                 fontWeight: 900,
+                flexShrink: 0,
               }}
             >
-              {currentUser.fullName?.charAt(0).toUpperCase() || 'U'}
+              {currentUser.avatar
+                ? <img src={currentUser.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                : displayName.charAt(0).toUpperCase()}
             </div>
 
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <h1 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0 }}>
-                  {currentUser.fullName}
+                  {displayName}
                 </h1>
                 <span
                   style={{
@@ -269,6 +424,37 @@ export default function AccountClient() {
           </div>
         </div>
 
+        {/* Onglets Commandes / Profil */}
+        <div style={{ display: 'flex', gap: '8px', marginBottom: '1.8rem' }}>
+          {[
+            { id: 'orders', label: 'Mes commandes', icon: ShoppingBag },
+            { id: 'profile', label: 'Mon profil', icon: User },
+          ].map(tab => {
+            const Icon = tab.icon
+            const isActive = activeTab === tab.id
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '8px',
+                  padding: '10px 20px', borderRadius: '100px',
+                  border: isActive ? 'none' : '1px solid rgba(255,255,255,0.12)',
+                  background: isActive ? '#b47027' : 'transparent',
+                  color: isActive ? '#fff' : 'inherit',
+                  fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer',
+                }}
+              >
+                <Icon size={15} /> {tab.label}
+              </button>
+            )
+          })}
+        </div>
+
+        {activeTab === 'profile' ? (
+          <ProfileTab user={currentUser} />
+        ) : (
+        <>
         {/* Section Commandes */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
           <div>
@@ -448,6 +634,8 @@ export default function AccountClient() {
               )
             })}
           </div>
+        )}
+        </>
         )}
       </div>
     </div>

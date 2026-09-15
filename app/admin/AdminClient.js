@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import {
   LayoutDashboard,
   Package,
@@ -39,10 +40,14 @@ import {
   MessageSquare,
   UserPlus,
   ShieldAlert,
+  Pencil,
+  Sun,
+  Moon,
   X,
 } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import api from '@/lib/api-client'
+import ImageUploadButton from '@/components/admin/ImageUploadButton'
 
 export default function AdminClient() {
   const T = useTheme()
@@ -60,7 +65,11 @@ export default function AdminClient() {
 
   // ── Onglet Actif ──
   // 'dashboard' | 'orders' | 'products' | 'formations' | 'testimonials' | 'users' | 'appointments' | 'leads'
-  const [activeTab, setActiveTab] = useState('dashboard')
+  // ?tab= permet d'arriver directement sur l'onglet concerné (retour des pages de création)
+  const searchParams = useSearchParams()
+  const requestedTab = searchParams.get('tab')
+  const VALID_TABS = ['dashboard', 'orders', 'products', 'formations', 'testimonials', 'users', 'appointments', 'leads']
+  const [activeTab, setActiveTab] = useState(VALID_TABS.includes(requestedTab) ? requestedTab : 'dashboard')
 
   // ── Données Backend ──
   const [dashboardData, setDashboardData] = useState(null)
@@ -79,55 +88,33 @@ export default function AdminClient() {
   const [orderFilter, setOrderFilter] = useState('ALL')
   const [formationTab, setFormationTab] = useState('catalog') // 'catalog' | 'registrations'
   const [userRoleFilter, setUserRoleFilter] = useState('ALL')
+  const [userSearch, setUserSearch] = useState('')
 
   // ── Modals & Formulaires ──
-  const [showAddProduct, setShowAddProduct] = useState(false)
-  const [newProduct, setNewProduct] = useState({
+  const [editingProduct, setEditingProduct] = useState(null)
+  const [editProductForm, setEditProductForm] = useState({
     title: '',
     description: '',
     price: '',
-    stock: 100,
-    unit: 'sac 50kg',
-    categorySlug: 'provenderie-nutrition',
-    image: '/images/products/aliment-demarrage.jpg',
-    badge: 'Nouveau',
+    promoPrice: '',
+    stock: 0,
+    unit: '',
+    image: '',
+    badge: '',
   })
 
-  const [showAddFormation, setShowAddFormation] = useState(false)
-  const [newFormation, setNewFormation] = useState({
+  const [editingFormation, setEditingFormation] = useState(null)
+  const [editFormationForm, setEditFormationForm] = useState({
     title: '',
     category: 'Santé Animale',
-    duration: '4 Jours (24h) - Terrain',
-    price: '70 000 FCFA',
-    priceAmount: 70000,
-    target: 'Éleveurs, techniciens vétérinaires',
-    nextSession: 'Sessions bimensuelles',
+    duration: '',
+    price: '',
+    priceAmount: 0,
+    target: '',
+    nextSession: '',
     description: '',
     modulesCovered: '',
-    image: '/images/ferme_ecole_avicole_1789164251928.jpg',
-  })
-
-  const [showAddTestimonial, setShowAddTestimonial] = useState(false)
-  const [newTestimonial, setNewTestimonial] = useState({
-    name: '',
-    role: 'Éleveur Avicole',
-    project: 'Poussins & Provenderie',
-    rating: 5,
-    text: '',
-    result: '↑ Mortalité réduite',
-    img: '',
-    isApproved: true,
-  })
-
-  const [showAddUser, setShowAddUser] = useState(false)
-  const [newUser, setNewUser] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    role: 'CLIENT',
-    userType: 'individual',
-    companyName: '',
+    image: '',
   })
 
   const showNotification = (message, type = 'success') => {
@@ -289,60 +276,54 @@ export default function AdminClient() {
     }
   }
 
-  const handleAddProductSubmit = async (e) => {
+  const openEditProduct = (prod) => {
+    setEditProductForm({
+      title: prod.title || '',
+      description: prod.description || '',
+      price: prod.price ?? '',
+      promoPrice: prod.promoPrice ?? '',
+      stock: prod.stock ?? 0,
+      unit: prod.unit || '',
+      image: prod.image || '',
+      badge: prod.badge || '',
+    })
+    setEditingProduct(prod)
+  }
+
+  const handleEditProductSubmit = async (e) => {
     e.preventDefault()
+    if (!editingProduct) return
     try {
-      const res = await api.products.create({
-        ...newProduct,
-        price: Number(newProduct.price),
-        stock: Number(newProduct.stock),
+      const res = await api.products.update(editingProduct.id, {
+        ...editProductForm,
+        price: Number(editProductForm.price),
+        stock: Number(editProductForm.stock),
+        promoPrice: editProductForm.promoPrice === '' || editProductForm.promoPrice === null
+          ? null
+          : Number(editProductForm.promoPrice),
       })
       if (res?.data) {
-        setProducts(prev => [res.data, ...prev])
-        setShowAddProduct(false)
-        showNotification(`Produit "${res.data.title}" créé avec succès`)
+        setProducts(prev => prev.map(p => (p.id === editingProduct.id ? res.data : p)))
+        setEditingProduct(null)
+        showNotification(`Produit "${res.data.title}" mis à jour`)
       }
     } catch (err) {
-      showNotification(err.message || 'Erreur création produit', 'error')
+      showNotification(err.message || 'Erreur mise à jour produit', 'error')
+    }
+  }
+
+  const handleDeleteProduct = async (prodId, prodTitle) => {
+    if (!confirm(`Voulez-vous vraiment supprimer "${prodTitle}" du catalogue ?`)) return
+    try {
+      await api.products.delete(prodId)
+      setProducts(prev => prev.filter(p => p.id !== prodId))
+      showNotification('Produit supprimé avec succès')
+    } catch (err) {
+      showNotification(err.message || 'Erreur suppression produit', 'error')
     }
   }
 
   // ── 6. Actions Formations ──
-  const handleCreateFormationSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const modulesArr = newFormation.modulesCovered
-        ? newFormation.modulesCovered.split('\n').filter(Boolean)
-        : []
-
-      const res = await api.formations.create({
-        ...newFormation,
-        priceAmount: Number(newFormation.priceAmount) || 0,
-        modulesCovered: modulesArr,
-      })
-
-      if (res?.data) {
-        setFormations(prev => [res.data, ...prev])
-        setShowAddFormation(false)
-        setNewFormation({
-          title: '',
-          category: 'Santé Animale',
-          duration: '4 Jours (24h) - Terrain',
-          price: '70 000 FCFA',
-          priceAmount: 70000,
-          target: '',
-          nextSession: 'Sessions bimensuelles',
-          description: '',
-          modulesCovered: '',
-          image: '/images/ferme_ecole_avicole_1789164251928.jpg',
-        })
-        showNotification(`Formation "${res.data.title}" ajoutée au catalogue AVS`)
-      }
-    } catch (err) {
-      showNotification(err.message || 'Erreur création formation', 'error')
-    }
-  }
-
   const handleToggleFormationStatus = async (formId, currentActive) => {
     try {
       await api.formations.update(formId, { isActive: !currentActive })
@@ -364,6 +345,44 @@ export default function AdminClient() {
     }
   }
 
+  const openEditFormation = (f) => {
+    setEditFormationForm({
+      title: f.title || '',
+      category: f.category || 'Santé Animale',
+      duration: f.duration || '',
+      price: f.price || '',
+      priceAmount: f.priceAmount ?? 0,
+      target: f.target || '',
+      nextSession: f.nextSession || '',
+      description: f.description || '',
+      modulesCovered: Array.isArray(f.modulesCovered) ? f.modulesCovered.join('\n') : (f.modulesCovered || ''),
+      image: f.image || '',
+    })
+    setEditingFormation(f)
+  }
+
+  const handleEditFormationSubmit = async (e) => {
+    e.preventDefault()
+    if (!editingFormation) return
+    try {
+      const modulesArr = editFormationForm.modulesCovered
+        ? editFormationForm.modulesCovered.split('\n').map(s => s.trim()).filter(Boolean)
+        : []
+      const res = await api.formations.update(editingFormation.id, {
+        ...editFormationForm,
+        priceAmount: Number(editFormationForm.priceAmount) || 0,
+        modulesCovered: modulesArr,
+      })
+      if (res?.data) {
+        setFormations(prev => prev.map(f => (f.id === editingFormation.id ? res.data : f)))
+        setEditingFormation(null)
+        showNotification(`Formation "${res.data.title}" mise à jour`)
+      }
+    } catch (err) {
+      showNotification(err.message || 'Erreur mise à jour formation', 'error')
+    }
+  }
+
   const handleUpdateRegistrationStatus = async (regId, status) => {
     try {
       await api.formations.updateRegistrationStatus(regId, { status })
@@ -375,33 +394,7 @@ export default function AdminClient() {
   }
 
   // ── 7. Actions Témoignages ──
-  const handleCreateTestimonialSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const res = await api.testimonials.create({
-        ...newTestimonial,
-        rating: Number(newTestimonial.rating) || 5,
-        isApproved: true,
-      })
-      if (res?.data) {
-        setTestimonials(prev => [res.data, ...prev])
-        setShowAddTestimonial(false)
-        setNewTestimonial({
-          name: '',
-          role: 'Éleveur Avicole',
-          project: 'Poussins & Provenderie',
-          rating: 5,
-          text: '',
-          result: '↑ Mortalité réduite',
-          img: '',
-          isApproved: true,
-        })
-        showNotification('Témoignage publié avec succès')
-      }
-    } catch (err) {
-      showNotification(err.message || 'Erreur publication avis', 'error')
-    }
-  }
+  // ── 7b. Actions Témoignages : approbation / suppression ──
 
   const handleToggleTestimonialApproval = async (testId, currentApproved) => {
     try {
@@ -425,30 +418,15 @@ export default function AdminClient() {
   }
 
   // ── 8. Actions Utilisateurs ──
-  const handleCreateUserSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      const res = await api.users.create(newUser)
-      if (res?.data) {
-        setUsers(prev => [res.data, ...prev])
-        setShowAddUser(false)
-        setNewUser({
-          name: '',
-          email: '',
-          phone: '',
-          password: '',
-          role: 'CLIENT',
-          userType: 'individual',
-          companyName: '',
-        })
-        showNotification(`Utilisateur ${res.data.name} créé avec succès`)
-      }
-    } catch (err) {
-      showNotification(err.message || 'Erreur création utilisateur', 'error')
-    }
-  }
+  // Garde anti auto-dégradation (façon AFI) : on ne se bloque / rétrograde /
+  // supprime jamais son propre compte admin depuis cette interface.
+  const isSelf = (userId) => adminUser && userId === adminUser.id
 
   const handleToggleUserStatus = async (userId) => {
+    if (isSelf(userId)) {
+      showNotification('Vous ne pouvez pas suspendre votre propre compte.', 'error')
+      return
+    }
     try {
       const res = await api.users.toggleStatus(userId)
       setUsers(prev => prev.map(u => (u.id === userId ? { ...u, isActive: res.data.isActive } : u)))
@@ -459,6 +437,9 @@ export default function AdminClient() {
   }
 
   const handleUpdateUserRole = async (userId, newRole) => {
+    if (isSelf(userId) && newRole !== 'ADMIN') {
+      if (!confirm('Attention : en quittant le rôle Direction, vous perdrez l’accès à ce back-office. Continuer ?')) return
+    }
     try {
       await api.users.update(userId, { role: newRole })
       setUsers(prev => prev.map(u => (u.id === userId ? { ...u, role: newRole } : u)))
@@ -469,6 +450,10 @@ export default function AdminClient() {
   }
 
   const handleDeleteUser = async (userId) => {
+    if (isSelf(userId)) {
+      showNotification('Vous ne pouvez pas supprimer votre propre compte.', 'error')
+      return
+    }
     if (!confirm('Voulez-vous supprimer définitivement ce compte utilisateur ?')) return
     try {
       await api.users.delete(userId)
@@ -569,8 +554,8 @@ export default function AdminClient() {
       <header style={{ position: 'sticky', top: 0, zIndex: 100, background: T.surface, borderBottom: `1px solid ${T.border}`, padding: '0.9rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <div style={{ width: 34, height: 34, borderRadius: 10, background: '#b47027', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 900 }}>
-              AVS
+            <div style={{ height: 40, padding: '4px 12px', borderRadius: 10, background: '#ffffff', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center' }}>
+              <img src="/images/logo.webp" alt="Agro Véto Services Congo" style={{ height: '100%', width: 'auto', display: 'block' }} />
             </div>
             <div>
               <div style={{ fontSize: '0.95rem', fontWeight: 800, letterSpacing: '-0.02em', color: T.textMain }}>
@@ -585,6 +570,13 @@ export default function AdminClient() {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+          <button
+            onClick={T.toggle}
+            title={T.light ? 'Passer en mode sombre' : 'Passer en mode clair'}
+            style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${T.border}`, background: 'transparent', color: '#b47027', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+          >
+            {T.light ? <Moon size={16} /> : <Sun size={16} />}
+          </button>
           <button
             onClick={loadAllData}
             title="Rafraîchir les données"
@@ -865,18 +857,23 @@ export default function AdminClient() {
                 <p style={{ fontSize: '0.8rem', color: T.textMuted, margin: '0.2rem 0 0' }}>Gérez les prix, disponibilités et stocks en temps réel</p>
               </div>
 
-              <button
-                onClick={() => setShowAddProduct(true)}
-                style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer' }}
+              <Link
+                href="/admin/produits/nouveau"
+                style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer', textDecoration: 'none' }}
               >
                 <Plus size={16} />
                 Nouveau Produit
-              </button>
+              </Link>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.2rem' }}>
               {products.map(prod => (
                 <div key={prod.id} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: '16px', padding: '1.2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  {prod.image && (
+                    <div style={{ marginBottom: '0.8rem', borderRadius: '12px', overflow: 'hidden', background: T.bg, height: '150px' }}>
+                      <img src={prod.image} alt={prod.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                    </div>
+                  )}
                   <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.6rem' }}>
                       <span style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: 6, background: 'rgba(180, 112, 39, 0.15)', color: '#b47027', fontWeight: 700 }}>
@@ -908,6 +905,23 @@ export default function AdminClient() {
                       style={{ padding: '4px 10px', borderRadius: 6, border: 'none', background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', fontWeight: 700, cursor: 'pointer' }}
                     >
                       +50
+                    </button>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '8px', marginTop: '0.6rem' }}>
+                    <button
+                      onClick={() => openEditProduct(prod)}
+                      style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '7px', borderRadius: 8, border: `1px solid ${T.border}`, background: 'transparent', color: T.textMain, fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
+                    >
+                      <Pencil size={13} />
+                      Modifier
+                    </button>
+                    <button
+                      onClick={() => handleDeleteProduct(prod.id, prod.title)}
+                      title="Supprimer ce produit"
+                      style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', cursor: 'pointer' }}
+                    >
+                      <Trash2 size={14} />
                     </button>
                   </div>
                 </div>
@@ -947,13 +961,13 @@ export default function AdminClient() {
                   </button>
                 </div>
 
-                <button
-                  onClick={() => setShowAddFormation(true)}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer' }}
+                <Link
+                  href="/admin/formations/nouveau"
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer', textDecoration: 'none' }}
                 >
                   <Plus size={16} />
                   Nouvelle Formation
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -974,6 +988,11 @@ export default function AdminClient() {
                       opacity: f.isActive ? 1 : 0.6,
                     }}
                   >
+                    {f.image && (
+                      <div style={{ marginBottom: '0.8rem', borderRadius: '12px', overflow: 'hidden', background: T.bg || '#f1f5f9', height: '150px' }}>
+                        <img src={f.image} alt={f.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                      </div>
+                    )}
                     <div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
                         <span style={{ fontSize: '0.7rem', padding: '3px 9px', borderRadius: 6, background: 'rgba(180, 112, 39, 0.15)', color: '#b47027', fontWeight: 700 }}>
@@ -1007,6 +1026,13 @@ export default function AdminClient() {
                     </div>
 
                     <div style={{ display: 'flex', gap: '8px', paddingTop: '1rem', borderTop: `1px solid ${T.border}` }}>
+                      <button
+                        onClick={() => openEditFormation(f)}
+                        style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '7px', borderRadius: 8, border: `1px solid ${T.border}`, background: 'transparent', color: T.textMain, fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
+                      >
+                        <Pencil size={13} />
+                        Modifier
+                      </button>
                       <button
                         onClick={() => handleToggleFormationStatus(f.id, f.isActive)}
                         style={{ flex: 1, padding: '7px', borderRadius: 8, border: `1px solid ${T.border}`, background: 'transparent', color: T.textMain, fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
@@ -1114,13 +1140,13 @@ export default function AdminClient() {
                 </p>
               </div>
 
-              <button
-                onClick={() => setShowAddTestimonial(true)}
-                style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer' }}
+              <Link
+                href="/admin/temoignages/nouveau"
+                style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer', textDecoration: 'none' }}
               >
                 <Plus size={16} />
                 Ajouter un Témoignage
-              </button>
+              </Link>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.4rem' }}>
@@ -1206,7 +1232,17 @@ export default function AdminClient() {
                 </p>
               </div>
 
-              <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                <div style={{ position: 'relative' }}>
+                  <Search size={14} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: T.textMuted }} />
+                  <input
+                    type="text"
+                    value={userSearch}
+                    onChange={(e) => setUserSearch(e.target.value)}
+                    placeholder="Nom, email, téléphone…"
+                    style={{ padding: '7px 12px 7px 30px', borderRadius: '8px', border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, fontSize: '0.78rem', outline: 'none', width: '200px' }}
+                  />
+                </div>
                 <div style={{ display: 'flex', gap: '0.4rem' }}>
                   {['ALL', 'CLIENT', 'STAFF', 'ADMIN'].map(r => (
                     <button
@@ -1228,13 +1264,13 @@ export default function AdminClient() {
                   ))}
                 </div>
 
-                <button
-                  onClick={() => setShowAddUser(true)}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer' }}
+                <Link
+                  href="/admin/utilisateurs/nouveau"
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '9px 16px', borderRadius: '10px', background: '#b47027', color: '#fff', fontSize: '0.82rem', fontWeight: 700, border: 'none', cursor: 'pointer', textDecoration: 'none' }}
                 >
                   <UserPlus size={16} />
                   Créer un Compte
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -1253,6 +1289,11 @@ export default function AdminClient() {
                   <tbody>
                     {users
                       .filter(u => userRoleFilter === 'ALL' || u.role === userRoleFilter)
+                      .filter(u => {
+                        const q = userSearch.trim().toLowerCase()
+                        if (!q) return true
+                        return [u.name, u.email, u.phone].filter(Boolean).some(v => String(v).toLowerCase().includes(q))
+                      })
                       .map(user => (
                         <tr key={user.id} style={{ borderBottom: `1px solid ${T.border}` }}>
                           <td style={{ padding: '14px 16px' }}>
@@ -1439,58 +1480,84 @@ export default function AdminClient() {
         )}
       </main>
 
-      {/* ── MODAL 1 : AJOUT PRODUIT ── */}
-      {showAddProduct && (
+      {/* ── MODAL 4 : ÉDITION PRODUIT ── */}
+      {editingProduct && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <div style={{ width: '100%', maxWidth: '500px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
+          <div style={{ width: '100%', maxWidth: '520px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Nouveau Produit au Catalogue</h3>
-              <button onClick={() => setShowAddProduct(false)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Modifier le Produit</h3>
+              <button onClick={() => setEditingProduct(null)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
             </div>
-            <form onSubmit={handleAddProductSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <form onSubmit={handleEditProductSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Titre du Produit</label>
-                <input required type="text" value={newProduct.title} onChange={e => setNewProduct(prev => ({ ...prev, title: e.target.value }))} placeholder="Ex: Aliment Pondeuse Sac 50kg" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                <input required type="text" value={editProductForm.title} onChange={e => setEditProductForm(prev => ({ ...prev, title: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Prix unitaire (FCFA)</label>
-                <input required type="number" value={newProduct.price} onChange={e => setNewProduct(prev => ({ ...prev, price: e.target.value }))} placeholder="Ex: 21500" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Description</label>
+                <textarea rows={3} value={editProductForm.description} onChange={e => setEditProductForm(prev => ({ ...prev, description: e.target.value }))} placeholder="Description détaillée du produit..." style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, resize: 'vertical' }} />
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Stock Initial</label>
-                  <input required type="number" value={newProduct.stock} onChange={e => setNewProduct(prev => ({ ...prev, stock: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Prix (FCFA)</label>
+                  <input required type="number" min="0" value={editProductForm.price} onChange={e => setEditProductForm(prev => ({ ...prev, price: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Prix promo (vide = aucun)</label>
+                  <input type="number" min="0" value={editProductForm.promoPrice} onChange={e => setEditProductForm(prev => ({ ...prev, promoPrice: e.target.value }))} placeholder="Optionnel" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Stock</label>
+                  <input required type="number" min="0" value={editProductForm.stock} onChange={e => setEditProductForm(prev => ({ ...prev, stock: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
                 </div>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Conditionnement</label>
-                  <input required type="text" value={newProduct.unit} onChange={e => setNewProduct(prev => ({ ...prev, unit: e.target.value }))} placeholder="sac 50kg, unité, etc." style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                  <input type="text" value={editProductForm.unit} onChange={e => setEditProductForm(prev => ({ ...prev, unit: e.target.value }))} placeholder="sac 50kg, unité, etc." style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
                 </div>
               </div>
-              <button type="submit" style={{ width: '100%', padding: '12px', borderRadius: 10, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer', marginTop: '1rem' }}>
-                Enregistrer le Produit
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Image (chemin / URL)</label>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                  <input type="text" value={editProductForm.image} onChange={e => setEditProductForm(prev => ({ ...prev, image: e.target.value }))} placeholder="/images/products/..." style={{ width: '100%', flex: 1, padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                  <ImageUploadButton folder="avs-produits" onUploaded={(url) => setEditProductForm(prev => ({ ...prev, image: url }))} />
+                </div>
+                {editProductForm.image && (
+                  <div style={{ marginTop: '8px', borderRadius: '10px', overflow: 'hidden', background: T.bg, height: '140px', border: `1px solid ${T.border}` }}>
+                    <img src={editProductForm.image} alt="Aperçu produit" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                  </div>
+                )}
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Badge (vide = aucun)</label>
+                <input type="text" value={editProductForm.badge} onChange={e => setEditProductForm(prev => ({ ...prev, badge: e.target.value }))} placeholder="Nouveau, Promo, Top vente..." style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+              </div>
+              <button type="submit" style={{ width: '100%', padding: '12px', borderRadius: 10, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer', marginTop: '0.5rem' }}>
+                Enregistrer les Modifications
               </button>
             </form>
           </div>
         </div>
       )}
 
-      {/* ── MODAL 2 : NOUVELLE FORMATION ── */}
-      {showAddFormation && (
+      {/* ── MODAL 5 : ÉDITION FORMATION ── */}
+      {editingFormation && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <div style={{ width: '100%', maxWidth: '520px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
+          <div style={{ width: '100%', maxWidth: '540px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Nouvelle Formation Certifiante</h3>
-              <button onClick={() => setShowAddFormation(false)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Modifier la Formation</h3>
+              <button onClick={() => setEditingFormation(null)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
             </div>
-            <form onSubmit={handleCreateFormationSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <form onSubmit={handleEditFormationSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Intitulé de la formation</label>
-                <input required type="text" value={newFormation.title} onChange={e => setNewFormation(prev => ({ ...prev, title: e.target.value }))} placeholder="Ex: Conduite Pratique de l'Élevage Porcin" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                <input required type="text" value={editFormationForm.title} onChange={e => setEditFormationForm(prev => ({ ...prev, title: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Catégorie</label>
-                  <select value={newFormation.category} onChange={e => setNewFormation(prev => ({ ...prev, category: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }}>
+                  <select value={editFormationForm.category} onChange={e => setEditFormationForm(prev => ({ ...prev, category: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }}>
                     <option value="Santé Animale">Santé Animale</option>
                     <option value="Conduite d'Élevage">Conduite d'Élevage</option>
                     <option value="Hygiène Alimentaire">Hygiène Alimentaire</option>
@@ -1503,126 +1570,51 @@ export default function AdminClient() {
                 </div>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Tarif (Texte)</label>
-                  <input required type="text" value={newFormation.price} onChange={e => setNewFormation(prev => ({ ...prev, price: e.target.value }))} placeholder="75 000 FCFA" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                  <input required type="text" value={editFormationForm.price} onChange={e => setEditFormationForm(prev => ({ ...prev, price: e.target.value }))} placeholder="75 000 FCFA" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
                 </div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Durée</label>
-                  <input required type="text" value={newFormation.duration} onChange={e => setNewFormation(prev => ({ ...prev, duration: e.target.value }))} placeholder="5 Jours (30h) - Terrain" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Montant (FCFA, calculs)</label>
+                  <input required type="number" min="0" value={editFormationForm.priceAmount} onChange={e => setEditFormationForm(prev => ({ ...prev, priceAmount: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
                 </div>
                 <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Durée</label>
+                  <input type="text" value={editFormationForm.duration} onChange={e => setEditFormationForm(prev => ({ ...prev, duration: e.target.value }))} placeholder="5 Jours (30h) - Terrain" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div>
                   <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Prochaine Session</label>
-                  <input required type="text" value={newFormation.nextSession} onChange={e => setNewFormation(prev => ({ ...prev, nextSession: e.target.value }))} placeholder="Sessions bimensuelles" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                  <input type="text" value={editFormationForm.nextSession} onChange={e => setEditFormationForm(prev => ({ ...prev, nextSession: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Public Cible</label>
+                  <input type="text" value={editFormationForm.target} onChange={e => setEditFormationForm(prev => ({ ...prev, target: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
                 </div>
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Public Cible</label>
-                <input type="text" value={newFormation.target} onChange={e => setNewFormation(prev => ({ ...prev, target: e.target.value }))} placeholder="Éleveurs, techniciens, entrepreneurs" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Description</label>
+                <textarea rows={3} value={editFormationForm.description} onChange={e => setEditFormationForm(prev => ({ ...prev, description: e.target.value }))} placeholder="Présentation détaillée de la formation..." style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, resize: 'vertical' }} />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Modules / Compétences (1 par ligne)</label>
-                <textarea rows={3} value={newFormation.modulesCovered} onChange={e => setNewFormation(prev => ({ ...prev, modulesCovered: e.target.value }))} placeholder="Module 1&#10;Module 2&#10;Module 3" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, resize: 'vertical' }} />
+                <textarea rows={3} value={editFormationForm.modulesCovered} onChange={e => setEditFormationForm(prev => ({ ...prev, modulesCovered: e.target.value }))} placeholder="Module 1&#10;Module 2&#10;Module 3" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, resize: 'vertical' }} />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Image (chemin / URL)</label>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                  <input type="text" value={editFormationForm.image} onChange={e => setEditFormationForm(prev => ({ ...prev, image: e.target.value }))} placeholder="/images/..." style={{ width: '100%', flex: 1, padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
+                  <ImageUploadButton folder="avs-formations" onUploaded={(url) => setEditFormationForm(prev => ({ ...prev, image: url }))} />
+                </div>
+                {editFormationForm.image && (
+                  <div style={{ marginTop: '8px', borderRadius: '10px', overflow: 'hidden', background: T.bg, height: '140px', border: `1px solid ${T.border}` }}>
+                    <img src={editFormationForm.image} alt="Aperçu formation" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                  </div>
+                )}
               </div>
               <button type="submit" style={{ width: '100%', padding: '12px', borderRadius: 10, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer', marginTop: '0.5rem' }}>
-                Créer la Formation AVS
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* ── MODAL 3 : AJOUT TÉMOIGNAGE ── */}
-      {showAddTestimonial && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <div style={{ width: '100%', maxWidth: '480px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Nouveau Témoignage Éleveur</h3>
-              <button onClick={() => setShowAddTestimonial(false)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
-            </div>
-            <form onSubmit={handleCreateTestimonialSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Nom du client / Éleveur</label>
-                <input required type="text" value={newTestimonial.name} onChange={e => setNewTestimonial(prev => ({ ...prev, name: e.target.value }))} placeholder="Ex: Jean-Paul Moukoko" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Rôle ou Ferme</label>
-                <input required type="text" value={newTestimonial.role} onChange={e => setNewTestimonial(prev => ({ ...prev, role: e.target.value }))} placeholder="Gérant · Ferme Avicole du Kouilou" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Projet / Prestation</label>
-                  <input required type="text" value={newTestimonial.project} onChange={e => setNewTestimonial(prev => ({ ...prev, project: e.target.value }))} placeholder="Poussins & Provenderie" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
-                </div>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Badge Résultat</label>
-                  <input type="text" value={newTestimonial.result} onChange={e => setNewTestimonial(prev => ({ ...prev, result: e.target.value }))} placeholder="↑ Mortalité réduite à 1.6%" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
-                </div>
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Commentaire / Avis</label>
-                <textarea required rows={4} value={newTestimonial.text} onChange={e => setNewTestimonial(prev => ({ ...prev, text: e.target.value }))} placeholder="Retour d'expérience détaillé sur les services d'Agro Véto Services..." style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain, resize: 'vertical' }} />
-              </div>
-              <button type="submit" style={{ width: '100%', padding: '12px', borderRadius: 10, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer', marginTop: '0.5rem' }}>
-                Publier le Témoignage
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* ── MODAL 4 : CRÉATION UTILISATEUR ── */}
-      {showAddUser && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <div style={{ width: '100%', maxWidth: '480px', background: T.surface, border: `1px solid ${T.border}`, borderRadius: '20px', padding: '2rem', maxHeight: '90vh', overflowY: 'auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: T.textMain }}>Créer un Compte Utilisateur</h3>
-              <button onClick={() => setShowAddUser(false)} style={{ background: 'transparent', border: 'none', color: T.textMuted, cursor: 'pointer' }}><X size={20} /></button>
-            </div>
-            <form onSubmit={handleCreateUserSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Nom complet</label>
-                <input required type="text" value={newUser.name} onChange={e => setNewUser(prev => ({ ...prev, name: e.target.value }))} placeholder="Ex: Paul Ngoma" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Email</label>
-                  <input required type="email" value={newUser.email} onChange={e => setNewUser(prev => ({ ...prev, email: e.target.value }))} placeholder="paul@ferme.cg" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
-                </div>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Téléphone</label>
-                  <input required type="tel" value={newUser.phone} onChange={e => setNewUser(prev => ({ ...prev, phone: e.target.value }))} placeholder="+242 06 123 45 67" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
-                </div>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Rôle Système</label>
-                  <select value={newUser.role} onChange={e => setNewUser(prev => ({ ...prev, role: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }}>
-                    <option value="CLIENT">Client / Éleveur</option>
-                    <option value="STAFF">Staff Technique</option>
-                    <option value="ADMIN">Direction Générale</option>
-                  </select>
-                </div>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Type de structure</label>
-                  <select value={newUser.userType} onChange={e => setNewUser(prev => ({ ...prev, userType: e.target.value }))} style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }}>
-                    <option value="individual">Éleveur Individuel</option>
-                    <option value="company">Ferme / Entreprise</option>
-                  </select>
-                </div>
-              </div>
-              {newUser.userType === 'company' && (
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Nom de la Ferme / Entreprise</label>
-                  <input type="text" value={newUser.companyName} onChange={e => setNewUser(prev => ({ ...prev, companyName: e.target.value }))} placeholder="Ferme Avicole Espoir" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
-                </div>
-              )}
-              <div>
-                <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '4px' }}>Mot de passe initial</label>
-                <input required type="password" value={newUser.password} onChange={e => setNewUser(prev => ({ ...prev, password: e.target.value }))} placeholder="Au moins 6 caractères" style={{ width: '100%', padding: '10px 14px', borderRadius: 10, border: `1px solid ${T.border}`, background: T.bg, color: T.textMain }} />
-              </div>
-              <button type="submit" style={{ width: '100%', padding: '12px', borderRadius: 10, border: 'none', background: '#b47027', color: '#fff', fontWeight: 700, cursor: 'pointer', marginTop: '0.5rem' }}>
-                Créer l'Utilisateur
+                Enregistrer les Modifications
               </button>
             </form>
           </div>

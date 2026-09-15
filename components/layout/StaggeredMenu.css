@@ -306,6 +306,10 @@
   color: #b47027;
 }
 
+.sm-quick-pill--logged {
+  border-color: rgba(16, 185, 129, 0.55);
+}
+
 .light-mode .sm-quick-pill {
   background: rgba(0, 0, 0, 0.03);
   border-color: rgba(0, 0, 0, 0.08);

@@ -126,6 +126,21 @@ export function ShopProvider({ children }) {
     showToast('Vous êtes déconnecté', 'info')
   }, [showToast])
 
+  // Recharge le profil depuis le backend (après modification avatar/infos)
+  const refreshProfile = useCallback(async () => {
+    try {
+      const res = await api.auth.me()
+      const user = res?.data?.user || res?.data
+      if (user) {
+        setCurrentUser(user)
+        return user
+      }
+    } catch (err) {
+      console.warn('[Shop] Erreur rafraîchissement profil:', err.message)
+    }
+    return null
+  }, [])
+
   // Synchronisation des commandes depuis le serveur backend
   const refreshOrders = useCallback(async () => {
     try {
@@ -195,6 +210,7 @@ export function ShopProvider({ children }) {
       currentUser,
       login,
       logout,
+      refreshProfile,
       isAuthModalOpen,
       setIsAuthModalOpen,
       openAuthModal: () => setIsAuthModalOpen(true),

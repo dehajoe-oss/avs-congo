@@ -1,6 +1,6 @@
 // app/api/track/route.js
 import { cookies, headers } from 'next/headers'
-import { upsertVisitor, getOrCreateVisitSession, recordPageView, updateSessionConsent } from '@/lib/db'
+import { upsertVisitor, recordPageView, updateSessionConsent } from '@/lib/db'
 
 export const runtime = 'nodejs'
 
@@ -24,28 +24,29 @@ export async function POST(request) {
 
     const cookieStore = await cookies()
     const visitorId = cookieStore.get('akatech_visitor')?.value
-    const sessionId = cookieStore.get('akatech_session')?.value
     const isNewSession = !!cookieStore.get('akatech_session_new')?.value
 
     // Sans cookies (bloqués par le navigateur, ou requête hors navigation
     // normale), on ignore silencieusement plutôt que de renvoyer une erreur :
     // le tracking est un bonus, pas une fonctionnalité critique du site.
-    if (!visitorId || !sessionId || !process.env.DATABASE_URL) {
+    if (!visitorId || !process.env.DATABASE_URL) {
       return Response.json({ ok: true, tracked: false })
     }
 
     const headerList = await headers()
     const userAgent = headerList.get('user-agent') || ''
 
-    const visitor = await upsertVisitor(visitorId)
-    const session = await getOrCreateVisitSession(sessionId, visitor.id, {
-      device: isNewSession ? getDevice(userAgent) : undefined,
-      referrer: isNewSession ? (referrer || null) : undefined,
-      userAgent: isNewSession ? userAgent : undefined,
-    })
+    const visitor = await upsertVisitor(visitorId, { isNewSession })
 
-    if (hasPath) await recordPageView(session.id, path)
-    if (hasConsent) await updateSessionConsent(session.id, consent)
+    if (hasPath) {
+      await recordPageView({
+        visitorId: visitor.id,
+        path,
+        referrer: referrer || null,
+        device: getDevice(userAgent),
+      })
+    }
+    if (hasConsent) await updateSessionConsent()
 
     return Response.json({ ok: true, tracked: true })
   } catch (error) {

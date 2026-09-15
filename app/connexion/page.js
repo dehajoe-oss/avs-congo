@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import AuthContainer from '@/components/auth/AuthContainer'
 
 export const metadata = {
@@ -7,5 +8,9 @@ export const metadata = {
 }
 
 export default function ConnexionPage() {
-  return <AuthContainer initialMode="signin" />
+  return (
+    <Suspense>
+      <AuthContainer initialMode="signin" />
+    </Suspense>
+  )
 }

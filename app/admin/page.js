@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import AdminClient from './AdminClient'
 
 export const metadata = {
@@ -10,5 +11,9 @@ export const metadata = {
 }
 
 export default function AdminPage() {
-  return <AdminClient />
+  return (
+    <Suspense>
+      <AdminClient />
+    </Suspense>
+  )
 }

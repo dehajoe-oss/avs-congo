@@ -219,11 +219,14 @@ export default function StaggeredMenu({ items = [], isActive: externalIsActive, 
                 <div className="sm-quick-row">
                   <TransitionLink
                     href="/mon-compte"
-                    className={'sm-quick-pill' + (isActive('/mon-compte') ? ' sm-quick-pill--active' : '')}
+                    className={'sm-quick-pill' + (isActive('/mon-compte') ? ' sm-quick-pill--active' : '') + (currentUser ? ' sm-quick-pill--logged' : '')}
                     onClick={closeMenu}
                   >
+                    {currentUser && (
+                      <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981', display: 'inline-block', flexShrink: 0 }} />
+                    )}
                     <span className="sm-quick-pill-label">
-                      {currentUser ? currentUser.fullName.split(' ')[0] : 'Mon Compte'}
+                      {currentUser ? ((currentUser.fullName || currentUser.name || 'Mon Compte').split(' ')[0]) : 'Mon Compte'}
                     </span>
                   </TransitionLink>
 

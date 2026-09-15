@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
-import { Moon, Sun, Orbit, ShoppingCart, User, UserCheck } from 'lucide-react'
+import { Moon, Sun, Orbit, ShoppingCart, User } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { useShop } from '@/lib/shopContext'
 import { HoverSlideText } from '@/components/ui/index'
@@ -199,19 +199,40 @@ export default function CardNav() {
               )}
             </button>
 
-            {/* Bouton Compte Client — icône seule */}
-            <TransitionLink
-              href="/mon-compte"
-              className="aka-nav-pill aka-nav-pill--icon-only"
-              title={currentUser ? `Connecté : ${currentUser.fullName}` : "Mon Compte Éleveur"}
-              aria-label={currentUser ? `Connecté : ${currentUser.fullName}` : "Mon Compte Éleveur"}
-            >
-              {currentUser ? (
-                <UserCheck size={16} className="aka-nav-pill-icon aka-user-active" />
-              ) : (
-                <User size={16} className="aka-nav-pill-icon" />
-              )}
-            </TransitionLink>
+            {/* Bouton Compte Client — avatar + prénom bien visibles si connecté */}
+            {(() => {
+              const displayName = currentUser?.fullName || currentUser?.name || ''
+              const firstName = displayName.split(' ')[0] || ''
+              if (!currentUser) {
+                return (
+                  <TransitionLink
+                    href="/mon-compte"
+                    className="aka-nav-pill aka-nav-pill--icon-only"
+                    title="Mon Compte Éleveur"
+                    aria-label="Mon Compte Éleveur"
+                  >
+                    <User size={16} className="aka-nav-pill-icon" />
+                  </TransitionLink>
+                )
+              }
+              return (
+                <TransitionLink
+                  href="/mon-compte"
+                  className="aka-nav-pill"
+                  title={`Connecté : ${displayName}`}
+                  aria-label={`Connecté : ${displayName} — Mon compte`}
+                  style={{ borderColor: 'rgba(16, 185, 129, 0.55)', paddingRight: '14px' }}
+                >
+                  <span style={{ position: 'relative', width: 24, height: 24, borderRadius: '50%', overflow: 'hidden', background: '#b47027', color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: 900, flexShrink: 0 }}>
+                    {currentUser.avatar
+                      ? <img src={currentUser.avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                      : firstName.charAt(0).toUpperCase()}
+                    <span style={{ position: 'absolute', bottom: -1, right: -1, width: 9, height: 9, borderRadius: '50%', background: '#10b981', border: '2px solid #0c0a09' }} />
+                  </span>
+                  <span className="aka-nav-pill-label" style={{ fontWeight: 800 }}>{firstName}</span>
+                </TransitionLink>
+              )
+            })()}
 
             <button
               onClick={handleExplorerToggle}
