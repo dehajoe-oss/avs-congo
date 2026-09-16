@@ -14,7 +14,7 @@ import {
   MessageCircle, Target, Code, Timer, ChevronLeft, ChevronRight,
   Monitor, ShoppingBag, LayoutDashboard, Cog, Image,
   Send, Zap, Lock, Mail, Phone, Check, HelpCircle, ChevronDown,
-  ShieldCheck, GraduationCap, Sparkles, Package
+  ShieldCheck, GraduationCap, Sparkles, Package, Sprout, Stethoscope
 } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { GhostTitle, AnimatedCounter, LazyImg, PageCTA, GreenUnderline, HoverSlideText } from '@/components/ui/index'
@@ -897,46 +897,25 @@ function Testimonials() {
 // ═══════════════════════════════════════════════════════════════
 const DOMAINES = [
   {
-    n: '01', Icon: Award,
-    title: 'Santé Animale & Clinique Vétérinaire',
-    desc:  "Soins médicaux, chirurgies, vaccinations, urgences 24/7 et visites sanitaires d'élevage à Pointe-Noire et dans tout le Kouilou.",
-    tag:   'Clinique 24/7',
+    n: '01', Icon: Sprout,
+    title: 'Domaine AGRO — Végétal, Transformation & Artisanat',
+    desc:  "Productions vivrières & maraîchage périurbain, transformation agroalimentaire, séchage, formulation de bio-cosmétiques, irrigation moderne et artisanat éco-responsable.",
+    tag:   'Domaine AGRO',
+    img:   '/images/transformation-agroalimentaire.jpg',
+  },
+  {
+    n: '02', Icon: Stethoscope,
+    title: 'Domaine VÉTO — Clinique 24/7, Provenderie & Élevage',
+    desc:  "Consultations, chirurgies et urgences 24h/24, provenderie certifiée haute énergie, poussins d'un jour Cobb 500 et laboratoire d'analyses bromatologiques de pointe.",
+    tag:   'Domaine VÉTO',
     img:   'https://images.unsplash.com/photo-1441122456239-401e92b73c65?auto=format&fit=crop&w=800&q=80',
   },
   {
-    n: '02', Icon: Package,
-    title: 'Provenderie & Nutrition Animale',
-    desc:  "Aliments complets et équilibrés pour volailles (démarrage 21%, finition, ponte), porcs et poissons, contrôlés en laboratoire bromatologique.",
-    tag:   'Provenderie',
-    img:   '/images/products/aliment-finition.jpg',
-  },
-  {
-    n: '03', Icon: Target,
-    title: "Poussins d'un Jour & Intrants",
-    desc:  "Souches à haute performance Cobb 500 (chair) et Lohmann Brown (ponte), vaccinées dès l'écloserie avec suivi de démarrage offert.",
-    tag:   'Poussins Cobb 500',
-    img:   '/images/products/poussins-cobb500.jpg',
-  },
-  {
-    n: '04', Icon: ShieldCheck,
-    title: 'Management QHSE, RSE & Normes ISO',
-    desc:  "Audits ISO 9001/14001/45001/22000, mise en place de la méthode HACCP et formule novatrice « QHSE Partagé » pour les PME congolaises.",
-    tag:   'QHSE & ISO',
+    n: '03', Icon: ShieldCheck,
+    title: 'Domaine SERVICES — QHSE, Formations, Salons & Commerce',
+    desc:  "Conseil et audits ISO / HACCP, formule novatrice de « QHSE Partagé », fermes-écoles d'immersion, organisation de foires agropastorales et commerce général import-export.",
+    tag:   'Domaine SERVICES',
     img:   '/images/qhse-laboratoire.jpg',
-  },
-  {
-    n: '05', Icon: GraduationCap,
-    title: 'Centre de Formation & Ferme-École',
-    desc:  "Formations certifiantes 100% pratiques : conduite d'élevage avicole, hygiène alimentaire HACCP, fabrication de savon et auditeur interne.",
-    tag:   'Formations',
-    img:   '/images/formation-ferme-ecole.jpg',
-  },
-  {
-    n: '06', Icon: Sparkles,
-    title: 'Cosmétique, Hygiène & Biosécurité',
-    desc:  "Formulation locale de désinfectants virucides pour bâtiments d'élevage, détergents multi-surfaces et savons noirs saponifiés à froid.",
-    tag:   'Biosécurité',
-    img:   '/images/savon-artisanal.jpg',
   },
 ]
 
@@ -1067,8 +1046,8 @@ function DomainesSection() {
   const sectionRef  = useRef(null)
   const domTextRef  = useRef(null)
   const domWordsRef = useRef([])
-  const DOM_TEXT = "De la santé animale à la provenderie certifiée, des poussins Cobb 500 aux audits QHSE — nous intervenons sur l'ensemble de la filière agropastorale pour garantir votre rentabilité."
-  const DOM_GREEN = new Set(['santé', 'animale', 'provenderie', 'Cobb', '500', 'QHSE', 'filière', 'agropastorale', 'rentabilité.'])
+  const DOM_TEXT = "De la santé animale à la provenderie certifiée, des productions agricoles au management QHSE — nous intervenons sur 3 domaines d'excellence pour garantir votre rentabilité."
+  const DOM_GREEN = new Set(['santé', 'animale', 'provenderie', 'productions', 'agricoles', 'QHSE', '3', 'domaines', 'rentabilité.'])
 
   useEffect(() => {
     const container = sectionRef.current
@@ -1125,9 +1104,9 @@ function DomainesSection() {
               color: T.textMain,
               lineHeight: 1,
             }}>
-              <GhostTitle text="DANS QUEL PÔLE S'INSCRIT VOTRE PROJET D'ÉLEVAGE ?" />
-              Dans quel pôle agropastoral{' '}
-              <GreenUnderline><span className="text-gradient">s'inscrit votre besoin ?</span></GreenUnderline>
+              <GhostTitle text="3 DOMAINES STRATÉGIQUES D'EXCELLENCE" />
+              Dans quel domaine d'excellence{' '}
+              <GreenUnderline><span className="text-gradient">s'inscrit votre projet ?</span></GreenUnderline>
             </h2>
           </BlurReveal>
           <p

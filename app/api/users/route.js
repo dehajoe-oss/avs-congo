@@ -41,11 +41,12 @@ export async function POST(request) {
     }
 
     const cleanPhone = phone ? phone.replace(/[\s.-]/g, '') : null
+    const finalEmail = (email || `${(cleanPhone || Date.now())}@agrovetoservices.cg`).trim().toLowerCase()
 
     const user = await prisma.user.create({
       data: {
         name: userName.trim(),
-        email: email ? email.trim().toLowerCase() : null,
+        email: finalEmail,
         phone: cleanPhone,
         password,
         role,

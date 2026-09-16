@@ -10,36 +10,29 @@
 - **Permanence** : Clinique vétérinaire ouverte du lundi au samedi (08h00-18h00) avec service d'urgence médicale et chirurgicale 24h/24 et 7j/7.
 - **Paiements acceptés** : MTN Mobile Money, Airtel Money, virement bancaire et espèces.
 
-## Les 6 Pôles d'Expertise
+## Les 3 Domaines Stratégiques d'Activité
 
-1. **Pôle Santé Animale & Clinique Vétérinaire 24/7**
-   - Consultations médicales générales, chirurgies d'urgence, vaccinations et pharmacie vétérinaire.
-   - Visites sanitaires de cheptel et suivi zootechnique direct en exploitation.
-   - Autopsies aviaires et analyses microbiologiques de laboratoire.
+1. **Domaine AGRO**
+   - **Productions agricoles** : cultures vivrières, maraîchage périurbain, semences sélectionnées, arboriculture et conseil agronomique.
+   - **Transformation agroalimentaire & bio-cosmétique** : séchage solaire/thermique, pasteurisation, conservation, emballage et formulation de soins cosmétiques naturels et savons surgras.
+   - **Équipements & matériels agricoles** : motopompes, systèmes d'irrigation goutte-à-goutte, pulvérisateurs professionnels et outillage.
+   - **Artisanat & valorisation locale** : valorisation des ressources et sous-produits congolais, recyclage écologique et artisanat utilitaire.
 
-2. **Pôle Production & Provenderie Industrielle**
-   - Vente de poussins d'un jour vigoureux : chair (souche Cobb 500) et ponte (souche Lohmann Brown), vaccinés au couvoir.
-   - Aliments complets pour volailles (Démarrage, Croissance, Finition), porcs et bétail, contrôlés en laboratoire bromatologique.
-   - Œufs à couver (OAC) à haute fertilité.
+2. **Domaine VÉTO**
+   - **Productions animales (Élevage)** : poussins d'un jour haute performance (Cobb 500 pour la chair, Lohmann Brown pour la ponte), géniteurs porcins sélectionnés et petits ruminants.
+   - **Provenderie (Unité d'aliments certifiés)** : aliments équilibrés et contrôlés en laboratoire pour volailles (Démarrage 21.5%, Croissance, Finition, Ponte), porcs et poissons.
+   - **Pharmacie & clinique vétérinaire 24/7** : médecine préventive et curative, interventions chirurgicales d'urgence 24h/24 & 7j/7, pharmacie vétérinaire agréée et visites de cheptel.
+   - **Équipements & matériels de production** : abreuvoirs automatiques, mangeoires anti-gaspillage, couveuses/éclosoirs, radiants et kits de biosécurité.
+   - **Laboratoire d'analyses bromatologiques & zootechnie** : contrôle de la teneur en protéines, cendres et humidité, détection des mycotoxines, autopsies aviaires diagnostiques et coprologie.
 
-3. **Pôle Management QHSE, RSE & Externalisation**
-   - Conseil et audits normatifs : ISO 9001, ISO 14001, ISO 45001, ISO 22000 et démarche HACCP.
-   - Formule « QHSE Partagé » pour les PME : un cadre QHSE expert à coût maîtrisé.
-   - Plans de Maîtrise Sanitaire (PMS) et études d'impact environnemental.
-
-4. **Pôle Agroalimentaire & Qualité Sanitaire**
-   - Audit de traçabilité et conformité Sanitaire et Phytosanitaire (SPS).
-   - Optimisation des procédés de séchage, pasteurisation et conservation.
-
-5. **Pôle Cosmétique, Hygiène & Artisanat**
-   - Formulation et fabrication locale de savons noirs purifiants à froid et détergents multi-surfaces professionnels.
-   - Gammes de désinfection et biosécurité pour fermes, abattoirs et restaurants.
-
-6. **Pôle Centre de Formation & Fermes-Écoles**
-   - Modules certifiants en conduite d'élevage avicole (5 jours / 30h).
-   - Formation certifiante méthode HACCP & Hygiène Sanitaire des Aliments (3 jours / 18h).
-   - Ateliers pratiques de fabrication de savons et détergents (4 jours / 24h).
-   - Cursus Auditeur Interne QHSE & ISO 19011 (5 jours / 30h).
+3. **Domaine SERVICES**
+   - **Management QHSE & « QHSE Partagé »** : conseil et audits ISO 9001, 14001, 45001, 22000, méthode HACCP, formule novatrice de responsable qualité à temps partagé pour PME, RSE et EIES.
+   - **Suivi & accompagnement transversal** : encadrement intégré terrain combinant agronomie, santé animale et assurance qualité pour sécuriser les investissements.
+   - **Fermes-écoles** : centres pilotes d'application pratique et immersion en élevage et maraîchage modernes.
+   - **Formations professionnelles & qualifiantes** : formations certifiantes en aviculture, porciculture, HACCP, sécurité au travail et savonnerie.
+   - **Services aux entreprises** : études de faisabilité, dimensionnement de fermes et d'ateliers, assistance technique et dossiers d'agrément.
+   - **Foires & Salons** : organisation de salons professionnels, foires agricoles régionales, séminaires et colloques techniques.
+   - **Commerce général, Distribution & Import/Export** : négoce d'intrants et matériels homologués, représentation commerciale et distribution.
 
 ## Tarifs Indicatifs
 

@@ -1,204 +1,50 @@
 'use client'
 /**
- * PageTransition.jsx — AKATech
+ * PageTransition.jsx — Agro Véto Services Congo
  * ─────────────────────────────────────────────────────────
- * Transition "Vertical Strip" — port du projet barba-js
- * "vertical-strip-transition-10" (inspiré Inkfish/SOTD),
- * adapté Next.js 14 App Router (au lieu de Barba.js).
- *
- * Mécanique (identique à l'original, juste le déclencheur qui
- * change) : une grille plein écran de cellules (8 colonnes × 5
- * lignes desktop, 4×7 mobile), chacune une simple div de couleur
- * unie. Chaque cellule est animée individuellement via
- * clip-path: inset(), en stagger aléatoire :
- *   - IN  (couvre l'écran) : inset(101% 0% 0% 0%) → inset(0% 0% 0% 0%)
- *     la cellule "descend" depuis le haut jusqu'à occuper sa
- *     case en entier.
- *   - OUT (révèle la page) : inset(0% 0% 0% 0%) → inset(0% 0% 101% 0%)
- *     la cellule continue son mouvement et s'enfonce hors écran
- *     par le bas, révélant le contenu derrière elle.
- * Le tout en une seule teinte unie (vert AKATech), pas d'alternance
- * de couleurs entre cellules.
- *
- * Différence avec Barba.js (qui swap lui-même le container DOM) :
- *   - Ici, au midpoint (grille 100% IN, écran totalement couvert),
- *     on déclenche router.push(href) : Next démonte/remonte la
- *     page. On attend la confirmation que la nouvelle route est
- *     montée (changement de pathname) + une marge de sécurité
- *     avant de lancer le OUT, pour ne jamais laisser apparaître
- *     un flash de l'ancienne page ou un trou pendant le chargement
- *     RSC.
- *
- * Usage :
- *   <PageTransitionProvider> ... </PageTransitionProvider>  (dans layout.js)
- *   const navigate = useNavTransition()
- *   navigate('/about')   → à utiliser à la place de router.push direct
- *                           sur tous les liens internes (CardNav,
- *                           StaggeredMenu, Footer).
- *
- * Le hook gère lui-même les clics : si la cible est externe
- * (http..., mailto:, tel:, target=_blank) il faut laisser le
- * <a> natif faire son travail — ne PAS appeler navigate() dans
- * ce cas (voir les wrappers de nav qui filtrent déjà ce cas).
+ * Barre de progression ultra-légère en haut d'écran (top-loader).
+ * Remplace l'ancien système de 40 blocs DOM clipPath qui retardait
+ * la navigation de plus de 500ms.
+ * Navigation instantanée sans blocage du thread principal.
  */
 
-import { createContext, useCallback, useContext, useEffect, useRef } from 'react'
+import { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { gsap } from 'gsap'
 import './PageTransition.css'
 
-/* ── Grille ── */
-const GRID_COLS_DESKTOP = 8
-const GRID_ROWS_DESKTOP = 5
-const GRID_COLS_MOBILE  = 4
-const GRID_ROWS_MOBILE  = 7
-const MOBILE_BREAKPOINT = 720
-
-/* ── Timings ultra-rapides et fluides (~0.2s, aucune latence ressentie) ── */
-const IN_DUR   = 0.16
-const IN_STAG  = 0.06
-const OUT_DUR  = 0.18
-const OUT_STAG = 0.06
-const EASE_IN  = 'power2.out'
-const EASE_OUT = 'power2.out'
-
-/* Délai de sécurité minime pour laisser Next.js monter la route préchargée */
-const SETTLE_MS = 25
-/* Garde-fou rapide pour ne jamais bloquer l'interface */
-const MAX_WAIT_MS = 400
-
 const PageTransitionCtx = createContext(null)
-
-function gridSize() {
-  if (typeof window === 'undefined') return { cols: GRID_COLS_DESKTOP, rows: GRID_ROWS_DESKTOP }
-  const mobile = window.innerWidth <= MOBILE_BREAKPOINT
-  return mobile
-    ? { cols: GRID_COLS_MOBILE, rows: GRID_ROWS_MOBILE }
-    : { cols: GRID_COLS_DESKTOP, rows: GRID_ROWS_DESKTOP }
-}
 
 export function PageTransitionProvider({ children }) {
   const router = useRouter()
   const pathname = usePathname()
+  const [loading, setLoading] = useState(false)
 
-  const layerRef = useRef(null)
-  const blocksRef = useRef([])
-  const runningRef = useRef(false)
-  const pendingTargetPathRef = useRef(null)
-  const settledRef = useRef(null) // callback à appeler quand la route a changé
-
-  /* ── Construit (une fois) le layer + sa grille de cellules, jamais
-     retiré du DOM entre deux transitions : on la laisse hors-écran
-     (inset 101% en haut) en idle. ── */
+  // Dès que le pathname change, on éteint la barre de progression
   useEffect(() => {
-    const { cols, rows } = gridSize()
-    const layer = document.createElement('div')
-    layer.className = 'aka-pt-layer'
-    layer.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`
-
-    const blocks = []
-    for (let i = 0; i < cols * rows; i++) {
-      const block = document.createElement('div')
-      block.className = 'aka-pt-block'
-      layer.appendChild(block)
-      blocks.push(block)
-    }
-    gsap.set(blocks, { clipPath: 'inset(101% 0% 0% 0%)' })
-
-    document.body.appendChild(layer)
-    layerRef.current = layer
-    blocksRef.current = blocks
-
-    return () => { layer.remove() }
-  }, [])
-
-  /* ── Quand la route change réellement (Next a fini de naviguer),
-     on prévient le runner qui attend ce signal pour lancer le OUT. ── */
-  useEffect(() => {
-    if (settledRef.current && pathname === pendingTargetPathRef.current) {
-      const cb = settledRef.current
-      settledRef.current = null
-      cb()
-    }
+    setLoading(false)
   }, [pathname])
 
   const runTransition = useCallback((href) => {
-    if (runningRef.current) return
     if (!href || href === pathname) return
-
-    runningRef.current = true
-    /* On ne garde que le path (sans query/hash) pour la comparaison
-       avec usePathname(), qui ne renvoie jamais ces deux parties. */
-    pendingTargetPathRef.current = href.split('?')[0].split('#')[0]
-
-    const blocks = blocksRef.current
-    if (!blocks.length) {
-      // Sécurité : layer pas encore prêt → navigation directe sans effet
-      router.push(href)
-      runningRef.current = false
-      return
-    }
-
-    function playOut() {
-      gsap.to(blocks, {
-        clipPath: 'inset(0% 0% 101% 0%)',
-        duration: OUT_DUR,
-        stagger: { amount: OUT_STAG, from: 'random' },
-        ease: EASE_OUT,
-        onComplete: () => {
-          gsap.set(blocks, { clipPath: 'inset(101% 0% 0% 0%)' })
-          runningRef.current = false
-        },
-      })
-    }
-
-    /* ── IN : la grille couvre l'écran en stagger aléatoire ── */
-    gsap.to(blocks, {
-      clipPath: 'inset(0% 0% 0% 0%)',
-      duration: IN_DUR,
-      stagger: { amount: IN_STAG, from: 'random' },
-      ease: EASE_IN,
-      onComplete: () => {
-        /* ── Midpoint : écran entièrement couvert → on lance la navigation ── */
-        router.push(href)
-
-        let settled = false
-        const fireOut = () => {
-          if (settled) return
-          settled = true
-          playOut()
-        }
-
-        // Le useEffect ci-dessus appellera settledRef.current dès que
-        // pathname === pendingTargetPathRef.current. On y ajoute la
-        // marge SETTLE_MS avant de réellement lancer le OUT.
-        settledRef.current = () => setTimeout(fireOut, SETTLE_MS)
-        // Garde-fou anti-blocage si le pathname ne change jamais
-        setTimeout(fireOut, MAX_WAIT_MS)
-      },
-    })
+    setLoading(true)
+    router.push(href)
   }, [pathname, router])
 
   return (
     <PageTransitionCtx.Provider value={runTransition}>
+      {/* Barre de progression ultra-rapide en haut d'écran */}
+      <div
+        className={`aka-top-loader ${loading ? 'is-loading' : ''}`}
+        aria-hidden="true"
+      />
       {children}
     </PageTransitionCtx.Provider>
   )
 }
 
-/**
- * useNavTransition — retourne navigate(href).
- * À appeler dans le onClick d'un lien interne à la place de
- * laisser le <Link> Next.js naviguer normalement :
- *
- *   <Link href={href} onClick={(e) => { e.preventDefault(); navigate(href) }}>
- */
 export function useNavTransition() {
   const ctx = useContext(PageTransitionCtx)
-  if (!ctx) {
-    // Pas de provider monté (ne devrait pas arriver, RootLayout le monte
-    // toujours) → fallback navigation native silencieuse.
-    return (href) => { window.location.href = href }
-  }
+  const router = useRouter()
+  if (!ctx) return (href) => router.push(href)
   return ctx
 }

@@ -146,9 +146,19 @@ export function ShopProvider({ children }) {
     try {
       const token = typeof window !== 'undefined' ? localStorage.getItem('avs_token') : null
       if (token) {
-        const data = await api.orders.getMyOrders()
-        if (data?.data) {
-          setOrders(data.data)
+        try {
+          const data = await api.orders.getMyOrders()
+          if (data?.data) {
+            setOrders(data.data)
+            return
+          }
+        } catch (e) {
+          // Token expiré ou invalide : purge gracieuse
+          if (typeof window !== 'undefined') {
+            localStorage.removeItem('avs_token')
+            localStorage.removeItem(USER_STORAGE_KEY)
+          }
+          setCurrentUser(null)
           return
         }
       }
@@ -179,7 +189,9 @@ export function ShopProvider({ children }) {
           // Token expiré ou invalide
           if (typeof window !== 'undefined') {
             localStorage.removeItem('avs_token')
+            localStorage.removeItem(USER_STORAGE_KEY)
           }
+          setCurrentUser(null)
         })
     }
   }, [])

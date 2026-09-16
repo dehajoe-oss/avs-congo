@@ -24,7 +24,7 @@ if (!cloudName || !apiKey || !apiSecret) {
   process.exit(1);
 }
 
-const BASE_FOLDER = 'akatech/images';
+const BASE_FOLDER = process.env.CLOUDINARY_FOLDER || 'avs/images';
 const imagesDir = path.join(__dirname, '..', 'public', 'images');
 const manifestPath = path.join(__dirname, '.cloudinary-manifest.json');
 const FORCE = process.argv.includes('--force');

@@ -63,11 +63,11 @@ export function middleware(request) {
   }
 
   const response = NextResponse.next()
-  const hasVisitor = request.cookies.get('akatech_visitor')
-  const hasSession = request.cookies.get('akatech_session')
+  const hasVisitor = request.cookies.get('avs_visitor') || request.cookies.get('akatech_visitor')
+  const hasSession = request.cookies.get('avs_session') || request.cookies.get('akatech_session')
 
   if (!hasVisitor) {
-    response.cookies.set('akatech_visitor', crypto.randomUUID(), {
+    response.cookies.set('avs_visitor', crypto.randomUUID(), {
       maxAge: 60 * 60 * 24 * 365, // 1 an
       httpOnly: true,
       sameSite: 'lax',
@@ -76,13 +76,13 @@ export function middleware(request) {
   }
 
   if (!hasSession) {
-    response.cookies.set('akatech_session', crypto.randomUUID(), {
+    response.cookies.set('avs_session', crypto.randomUUID(), {
       maxAge: 60 * 30, // 30 min glissantes
       httpOnly: true,
       sameSite: 'lax',
       secure: process.env.NODE_ENV === 'production',
     })
-    response.cookies.set('akatech_session_new', '1', {
+    response.cookies.set('avs_session_new', '1', {
       maxAge: 60 * 30,
       httpOnly: false, // lisible côté client pour transmettre device/referrer à /api/track
       sameSite: 'lax',
@@ -90,7 +90,7 @@ export function middleware(request) {
     })
   } else {
     // Session existante : on la prolonge de 30 min à chaque page vue.
-    response.cookies.set('akatech_session', hasSession.value, {
+    response.cookies.set('avs_session', hasSession.value, {
       maxAge: 60 * 30,
       httpOnly: true,
       sameSite: 'lax',

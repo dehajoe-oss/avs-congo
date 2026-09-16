@@ -9,7 +9,8 @@ import {
   Globe, ShoppingCart, Cpu, Server, Palette, Wrench, Map, MapPin,
   Monitor, ShoppingBag, LayoutDashboard, Cog, Image,
   Zap, Timer, Check, HelpCircle, Send, Lock,
-  ShieldCheck, GraduationCap, Sparkles, Package, Award, Target
+  ShieldCheck, GraduationCap, Sparkles, Package, Award, Target,
+  Sprout, Stethoscope
 } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { GhostTitle, AnimatedCounter, LazyImg, PageCTA, GreenUnderline, HoverSlideText } from '@/components/ui/index'
@@ -1006,55 +1007,31 @@ function RevealParagraph({ text, greenWords = [], extraStyle = {}, inView }) {
   )
 }
 
-// ── DOMAINES D'INTERVENTION — 6 Pôles d'Activités Officiels ──
+// ── DOMAINES D'INTERVENTION — 3 Domaines Stratégiques Officiels ──
 const DOMAINES = [
   {
-    n: '01', Icon: Award,
-    title: 'Santé animale & intrants agropastoraux',
-    desc:  "Consultations cliniques, chirurgies, urgences 24/7, pharmacie vétérinaire, provenderie et distribution d'intrants d'élevage certifiés.",
-    tag:   'Pôle 1',
-    href:  '/services/sante-animale-agropastoral',
-    img:   'https://images.unsplash.com/photo-1441122456239-401e92b73c65?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    n: '02', Icon: ShieldCheck,
-    title: 'Management QHSE & Externalisation',
-    desc:  "Accompagnement aux certifications ISO, hygiène et sécurité au travail, évaluation des risques et formule novatrice « QHSE Partagé ».",
-    tag:   'Pôle 2',
-    href:  '/services/management-qhse-externalisation',
-    img:   '/images/qhse-laboratoire.jpg',
-  },
-  {
-    n: '03', Icon: Package,
-    title: 'Transformation agroalimentaire & sécurité sanitaire',
-    desc:  "Transformation locale de produits agricoles, formulation de farines infantiles, séchage, valorisation et contrôle qualité strict.",
-    tag:   'Pôle 3',
-    href:  '/services/transformation-agroalimentaire',
+    n: '01', Icon: Sprout,
+    title: 'Domaine AGRO',
+    desc:  "Productions vivrières & maraîchères, transformation agroalimentaire, séchage, formulation cosmétique bio et équipements d'irrigation.",
+    tag:   'Domaine AGRO',
+    href:  '/services#agro',
     img:   '/images/transformation-agroalimentaire.jpg',
   },
   {
-    n: '04', Icon: Sparkles,
-    title: 'Cosmétique, hygiène & artisanat',
-    desc:  "Fabrication locale de détergents professionnels, savons liquides, savons solides saponifiés à froid et valorisation végétale.",
-    tag:   'Pôle 4',
-    href:  '/services/cosmetique-hygiene-artisanat',
-    img:   '/images/savon-artisanal.jpg',
+    n: '02', Icon: Stethoscope,
+    title: 'Domaine VÉTO',
+    desc:  "Clinique vétérinaire 24/7, chirurgie, provenderie certifiée haute énergie, poussins Cobb 500 et laboratoire d'analyses bromatologiques.",
+    tag:   'Domaine VÉTO',
+    href:  '/services#veto',
+    img:   'https://images.unsplash.com/photo-1441122456239-401e92b73c65?auto=format&fit=crop&w=800&q=80',
   },
   {
-    n: '05', Icon: GraduationCap,
-    title: 'Centre de formation & renforcement des capacités',
-    desc:  "Formations professionnelles pratiques en élevage, agriculture, démarche QHSE, hygiène et transformation pour éleveurs et entreprises.",
-    tag:   'Pôle 5',
-    href:  '/services/centre-de-formation',
-    img:   '/images/formation-ferme-ecole.jpg',
-  },
-  {
-    n: '06', Icon: Globe,
-    title: 'Événementiel & commerce général',
-    desc:  "Organisation de foires agropastorales, salons professionnels, traiteur responsable, négoce et import-export d'intrants spécialisés.",
-    tag:   'Pôle 6',
-    href:  '/services/evenementiel-commerce-general',
-    img:   'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+    n: '03', Icon: ShieldCheck,
+    title: 'Domaine SERVICES',
+    desc:  "Management QHSE, audits ISO / HACCP, formule novatrice de « QHSE Partagé », fermes-écoles d'immersion, foires et commerce général.",
+    tag:   'Domaine SERVICES',
+    href:  '/services#services',
+    img:   '/images/qhse-laboratoire.jpg',
   },
 ]
 

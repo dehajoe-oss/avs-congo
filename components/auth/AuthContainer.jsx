@@ -262,7 +262,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
 
             {regErr && <div style={styles.errorBox}>{regErr}</div>}
 
-            <form style={styles.form} onSubmit={handleRegisterSubmit}>
+            <form style={styles.form} onSubmit={handleRegisterSubmit} suppressHydrationWarning>
               {/* Type de compte */}
               <div style={styles.row}>
                 <button
@@ -290,6 +290,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
               <div style={styles.fieldGroup}>
                 <label style={styles.label}>Nom complet ou raison sociale *</label>
                 <input
+                  suppressHydrationWarning
                   style={{
                     ...styles.input,
                     ...(regFieldErrs.fullName ? styles.inputError : {}),
@@ -306,6 +307,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
                 <div style={styles.fieldGroup}>
                   <label style={styles.label}>Nom de l’exploitation (optionnel)</label>
                   <input
+                    suppressHydrationWarning
                     style={styles.input}
                     type="text"
                     placeholder="Ex : Ferme Avicole de Tié-Tié"
@@ -319,6 +321,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
                 <div style={styles.fieldGroup}>
                   <label style={styles.label}>Téléphone WhatsApp *</label>
                   <input
+                    suppressHydrationWarning
                     style={{
                       ...styles.input,
                       ...(regFieldErrs.phone ? styles.inputError : {}),
@@ -333,6 +336,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
                 <div style={styles.fieldGroup}>
                   <label style={styles.label}>Email (optionnel)</label>
                   <input
+                    suppressHydrationWarning
                     style={{
                       ...styles.input,
                       ...(regFieldErrs.email ? styles.inputError : {}),
@@ -351,6 +355,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
                   <label style={styles.label}>Mot de passe *</label>
                   <div style={styles.inputWrap}>
                     <input
+                      suppressHydrationWarning
                       style={{
                         ...styles.input,
                         paddingRight: '38px',
@@ -377,6 +382,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
                   <label style={styles.label}>Confirmation *</label>
                   <div style={styles.inputWrap}>
                     <input
+                      suppressHydrationWarning
                       style={{
                         ...styles.input,
                         paddingRight: '38px',
@@ -461,10 +467,11 @@ export default function AuthContainer({ initialMode = 'signin' }) {
 
             {loginErr && <div style={styles.errorBox}>{loginErr}</div>}
 
-            <form style={styles.form} onSubmit={handleLoginSubmit}>
+            <form style={styles.form} onSubmit={handleLoginSubmit} suppressHydrationWarning>
               <div style={styles.fieldGroup}>
                 <label style={styles.label}>Téléphone WhatsApp ou Email *</label>
                 <input
+                  suppressHydrationWarning
                   style={styles.input}
                   type="text"
                   placeholder="06 123 45 67 ou vous@email.com"
@@ -478,6 +485,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
                 <label style={styles.label}>Mot de passe *</label>
                 <div style={styles.inputWrap}>
                   <input
+                    suppressHydrationWarning
                     style={{ ...styles.input, paddingRight: '38px' }}
                     type={showLogPwd ? 'text' : 'password'}
                     placeholder="Votre mot de passe"

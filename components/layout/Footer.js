@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Phone, Send } from 'lucide-react'
 import Logo from '@/components/ui/Logo'
-import AuroraHero from '@/components/ui/AuroraHero'
 import { HoverSlideText } from '@/components/ui/index'
 import { useTheme } from '@/lib/theme'
 import TransitionLink from './TransitionLink'
@@ -148,8 +147,8 @@ export default function Footer() {
   const NAV = [
     ['Accueil', '/'],
     ['À Propos', '/about'],
-    ['Nos 6 Pôles', '/services'],
-    ['Boutique & Tarifs', '/pricing'],
+    ['Nos Domaines', '/services'],
+    ['Boutique', '/boutique'],
     ['Clinique Vétérinaire', '/clinique'],
     ['Formations Certifiantes', '/formations'],
     ['Réalisations', '/projects'],
@@ -158,12 +157,12 @@ export default function Footer() {
   ]
 
   const SERVICES = [
-    ['Santé Animale & Intrants', '/services'],
-    ['Management QHSE & RSE', '/services'],
-    ['Transformation Agroalimentaire', '/services'],
-    ['Cosmétique & Hygiène', '/services'],
-    ['Centre de Formation', '/formations'],
-    ['Événementiel & Commerce', '/services'],
+    ['Domaine Agro (Cultures & Bio)', '/services#agro'],
+    ['Domaine Véto (Clinique & Élevage)', '/services#veto'],
+    ['Domaine Services (QHSE & Formations)', '/services#services'],
+    ['Poussins Cobb 500 & Provenderie', '/boutique'],
+    ['Clinique Vétérinaire 24/7', '/clinique'],
+    ['Fermes-Écoles & Cursus', '/formations'],
   ]
 
   return (
@@ -176,16 +175,14 @@ export default function Footer() {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      {/* ── Fond — vrai shader AuroraHero, partagé avec le reste du site ── */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        <AuroraHero labels={[]} overlay={0.85} />
-        {/* Scrim — le footer porte du contenu dense sur toute sa hauteur,
-            contrairement aux autres pages où AuroraHero n'habille qu'un
-            bandeau hero. */}
+      {/* ── Fond émeraude optimisé (CSS pur, 0 surcharge GPU/WebGL) ── */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 0,
+        background: 'radial-gradient(ellipse at 50% 15%, rgba(180, 112, 39, 0.18) 0%, rgba(3, 8, 6, 0.95) 70%), #020504',
+      }}>
+        {/* Scrim & fondu */}
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(2,5,4,.55)' }} />
-        {/* Fondu bas — assombrit progressivement pour que le wordmark
-            géant se détache proprement en bas, comme dans la référence. */}
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.9)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.85)' }} />
       </div>
 
       {/* ── Header : logo + slogan rotatif ─────────────────────── */}
@@ -226,7 +223,7 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h3 style={{ fontSize: '.72rem', textTransform: 'uppercase', letterSpacing: '.14em', marginBottom: '1.1rem', fontWeight: 700, color: '#fff', fontFamily: "'Poppins', sans-serif" }}>
-              Nos 6 Pôles
+              Nos 3 Domaines
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {SERVICES.map(([label, href]) => (

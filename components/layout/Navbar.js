@@ -6,7 +6,7 @@ import StaggeredMenu from './StaggeredMenu'
 const NAV_LINKS = [
   { label: 'Accueil',      href: '/'           },
   { label: 'À Propos',     href: '/about'      },
-  { label: 'Nos 6 Pôles',  href: '/services'   },
+  { label: 'Nos Domaines', href: '/services'   },
   { label: 'Boutique',     href: '/boutique'   },
   { label: 'Clinique',     href: '/clinique'   },
   { label: 'Formations',   href: '/formations' },

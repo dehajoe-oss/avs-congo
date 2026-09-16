@@ -23,8 +23,8 @@ export async function POST(request) {
     }
 
     const cookieStore = await cookies()
-    const visitorId = cookieStore.get('akatech_visitor')?.value
-    const isNewSession = !!cookieStore.get('akatech_session_new')?.value
+    const visitorId = cookieStore.get('avs_visitor')?.value || cookieStore.get('akatech_visitor')?.value
+    const isNewSession = !!cookieStore.get('avs_session_new')?.value || !!cookieStore.get('akatech_session_new')?.value
 
     // Sans cookies (bloqués par le navigateur, ou requête hors navigation
     // normale), on ignore silencieusement plutôt que de renvoyer une erreur :

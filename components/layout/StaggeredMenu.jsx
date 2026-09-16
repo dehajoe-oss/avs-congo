@@ -28,10 +28,10 @@ const PRIMARY_SERVICES = [
   },
   {
     num: '03',
-    label: 'Nos 6 Pôles d’Activité',
-    sub: 'Santé, nutrition, biosécurité, audits QHSE',
+    label: 'Nos 3 Domaines d’Activité',
+    sub: 'Agro, Véto & Services d\'excellence intégrés',
     href: '/services',
-    badge: null,
+    badge: '3 Domaines',
   },
   {
     num: '04',

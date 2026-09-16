@@ -73,7 +73,7 @@ export const metadata = {
 }
 
 export const viewport = {
-  themeColor: '#b47027',
+  themeColor: '#5a8738',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
@@ -85,7 +85,7 @@ export const viewport = {
    • SEO  : rich snippets Google (note, adresse, horaires)
    • AEO  : permet aux moteurs de réponse (Google AI Overviews,
             assistants vocaux) de citer Agro Véto Services directement
-            comme réponse à "qui fait des sites web à Pointe-Noire"
+            comme réponse à "vétérinaire ou provenderie à Pointe-Noire"
    • GEO  : structure factuelle exploitable par les LLM
             (ChatGPT, Perplexity...) pour recommander Agro Véto Services
    ════════════════════════════════════════════════════════════ */
@@ -125,14 +125,11 @@ const ORG_JSON_LD = {
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Les 6 Pôles d\'activités AGRO VÉTO SERVICES CONGO',
+    name: 'Les 3 Domaines d\'activités AGRO VÉTO SERVICES CONGO',
     itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pôle 1 — Santé animale & intrants agropastoraux' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pôle 2 — Management QHSE & Externalisation' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pôle 3 — Transformation agroalimentaire & sécurité sanitaire' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pôle 4 — Cosmétique, hygiène & artisanat' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pôle 5 — Centre de formation & renforcement des capacités' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pôle 6 — Événementiel & commerce général' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Domaine AGRO — Productions agricoles, transformation agroalimentaire & bio-cosmétique, équipements agricoles, artisanat' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Domaine VÉTO — Productions animales, provenderie certifiée, pharmacie & clinique vétérinaire, équipements, laboratoire bromatologique' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Domaine SERVICES — Management QHSE, suivi transversal, fermes-écoles, formations, services aux entreprises, salons, commerce général & import-export' } },
     ],
   },
 }

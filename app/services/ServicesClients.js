@@ -2,37 +2,33 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, Check, Globe, ShoppingCart, Cpu, Server, Palette, Wrench, Zap, Timer, MessageCircle, Map, MapPin } from 'lucide-react'
+import { 
+  ArrowRight, Check, Globe, ShoppingCart, Cpu, Server, Palette, Wrench, 
+  Zap, Timer, MessageCircle, Map, MapPin, Sprout, Stethoscope, ShieldCheck, 
+  Award, Package, Sparkles, GraduationCap, Layers, ChevronRight 
+} from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { GhostTitle, LazyImg, PageCTA, LaserBeam, GreenUnderline, HoverSlideText } from '@/components/ui/index'
 import ConversionMarquee from '@/components/ui/ConversionMarquee'
 import AuroraHero from '@/components/ui/AuroraHero'
-import { SERVICES } from '@/lib/data'
+import { DOMAINS, SERVICES } from '@/lib/data'
 
-
-
-
-const ICON_MAP = { Globe, ShoppingCart, Cpu, Server, Palette, Wrench, Map, MapPin }
-
-const PROCESS_STEPS = [
-  { n: '01', title: 'Prise de contact & Écoute', desc: 'Échange gratuit pour cerner vos besoins d’élevage, provenderie ou diagnostic normatif.' },
-  { n: '02', title: 'Devis & Protocole clair', desc: 'Proposition chiffrée avec calendrier de livraison, protocole vétérinaire ou programme d’audit.' },
-  { n: '03', title: 'Livraison & Accompagnement', desc: 'Arrivage des intrants certifiés, intervention clinique vétérinaire ou audit sur votre site.' },
-  { n: '04', title: 'Suivi continu & Conseils', desc: 'Permanence d’urgence 24h/24 & 7j/7, suivi zootechnique et pérennisation des résultats.' },
-]
+const ICON_MAP = { 
+  Globe, ShoppingCart, Cpu, Server, Palette, Wrench, Map, MapPin,
+  Sprout, Stethoscope, ShieldCheck, Award, Package, Sparkles, GraduationCap, Layers
+}
 
 const TECH_STACK = [
-  { cat: 'Santé Animale', items: ['Clinique Vétérinaire', 'Chirurgie', 'Urgences 24/7', 'Vaccination Couvoir'] },
-  { cat: 'Provenderie & Labo', items: ['Analyses Bromatologiques', 'Aliment Démarrage 21%', 'Aliment Finition', 'Sécurité SPS'] },
-  { cat: 'Normes & Audits', items: ['ISO 9001', 'ISO 22000', 'Méthode HACCP', 'QHSE Partagé PME'] },
-  { cat: 'Formation & Savoir', items: ['Ferme-École', 'Pratique 100%', 'Biosécurité Élevage', 'Fabrication Savons'] },
+  { cat: 'Domaine Agro', items: ['Maraîchage & Vivrier', 'Séchage & Conservation', 'Cosmétique Naturelle', 'Irrigation Goutte-à-Goutte'] },
+  { cat: 'Domaine Véto', items: ['Clinique 24/7 & Chirurgie', 'Poussins Cobb 500', 'Provenderie Haute Énergie', 'Analyses Bromatologiques'] },
+  { cat: 'Domaine Services', items: ['ISO 9001 / 22000', 'Démarche HACCP & PMS', 'Fermes-Écoles Pilotes', 'Commerce & Import/Export'] },
+  { cat: 'Formations & Compétences', items: ['Conduite d\'Élevage', 'Hygiène Alimentaire', 'Sécurité au Travail (HSE)', 'Fabrication Détergents'] },
 ]
 
 /* ────────────────────────────────────────────────
-   HERO
+   HERO — Gabarit Helious "Page Title"
 ──────────────────────────────────────────────── */
 function HeroServices() {
-  const T = useTheme()
   const layerBgRef   = useRef(null)
   const layerMidRef  = useRef(null)
   const layerForeRef = useRef(null)
@@ -67,22 +63,27 @@ function HeroServices() {
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(12, 10, 9, 0.85)' }} />
       </div>
 
-      {/* Titre géant bas-gauche + bloc texte centré verticalement à droite — gabarit hero "page title" (réf. Helious) */}
+      {/* Titre géant bas-gauche + bloc texte centré verticalement à droite */}
       <div ref={layerMidRef} className="hr-row" style={{ transition: 'transform .1s ease-out' }}>
         <motion.h1 className="hr-title" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, ease: 'easeOut' }}>
-          <GhostTitle text="SERVICES" />
-          SERVICES
-          
+          <GhostTitle text="DOMAINES" />
+          DOMAINES
         </motion.h1>
 
         <div className="hr-side">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .2 }}>
-            <p className="hr-kicker">De la ferme à l'assiette</p>
-            <p className="hr-desc">Chaque prestation est conçue pour répondre aux réalités agropastorales et sanitaires du Congo — rigueur médicale, provenderie certifiée et excellence QHSE.</p>
+            <p className="hr-kicker">3 Piliers Stratégiques</p>
+            <p className="hr-desc">
+              <strong>Agro · Véto · Services</strong> — Une architecture intégrée pour bâtir une agriculture moderne, sécuriser la santé animale et hisser les entreprises vers les standards internationaux de qualité.
+            </p>
           </motion.div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
-            
-            
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '1.5rem' }}>
+            <a href="#domaines-showcase" className="btn-raised" style={{ fontSize: '0.9rem' }}>
+              <HoverSlideText text="Explorer les 3 domaines" /> <ArrowRight size={14} />
+            </a>
+            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '0.9rem', color: '#f5c57a', borderColor: '#b47027' }}>
+              <HoverSlideText text="Conseil direct" /> <MessageCircle size={14} />
+            </a>
           </div>
         </div>
       </div>
@@ -99,27 +100,243 @@ function HeroServices() {
         .hr-title {
           position: absolute; left: 8vw; bottom: 4.5rem; margin: 0;
           font-family: 'Poppins', sans-serif; font-weight: 800;
-          font-size: clamp(4.5rem, 13vw, 15rem); line-height: .92; letter-spacing: -.04em;
+          font-size: clamp(4rem, 11vw, 13rem); line-height: .92; letter-spacing: -.04em;
           color: rgba(255,255,255,.95);
-        }
-        .hr-star {
-          display: inline-block; position: relative; top: -.5em;
-          margin-left: .15em; font-size: .3em; color: #b47027;
         }
         .hr-side {
           position: absolute; right: 8vw; top: 0; bottom: 0;
-          margin: auto 0; max-width: 360px; height: fit-content;
+          margin: auto 0; max-width: 380px; height: fit-content;
         }
         .hr-kicker {
-          font-family: 'Poppins', sans-serif; font-size: .62rem; font-weight: 700;
+          font-family: 'Poppins', sans-serif; font-size: .65rem; font-weight: 700;
           color: #b47027; letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
         }
-        .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
+        .hr-desc { font-size: .95rem; color: rgba(255,255,255,.68); line-height: 1.7; margin: 0; }
       `}</style>
     </section>
   )
 }
 
+/* ────────────────────────────────────────────────
+   LES 3 DOMAINES STRATÉGIQUES (SHOWCASE INTERACTIF)
+──────────────────────────────────────────────── */
+function DomainesShowcase() {
+  const T = useTheme()
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const [activeDomainIndex, setActiveDomainIndex] = useState(0)
+
+  const activeDomain = DOMAINS[activeDomainIndex] || DOMAINS[0]
+  const IconActive = ICON_MAP[activeDomain.icon] || Award
+
+  return (
+    <section id="domaines-showcase" ref={ref} style={{ padding: '7rem 5%', background: T.bg, scrollMarginTop: '80px' }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto' }}>
+        
+        {/* En-tête */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.75rem', fontWeight: 700, color: '#b47027', letterSpacing: '.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+            Architecture d'Activités & Marques AVS Congo
+          </div>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.6rem,5.5vw,4.5rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', lineHeight: 1.1 }}>
+            <GhostTitle text="3 DOMAINES D'EXCELLENCE" />
+            Nos 3 Domaines <GreenUnderline><span className="text-gradient">d'Excellence</span></GreenUnderline>
+          </h2>
+          <p style={{ maxWidth: 700, margin: '1.2rem auto 0', color: T.textSub, fontSize: '0.95rem', lineHeight: 1.7 }}>
+            Cliquez sur un domaine pour explorer ses divisions, ses filières de production et ses prestations de terrain.
+          </p>
+        </motion.div>
+
+        {/* Sélecteur des 3 Domaines (Cartes onglets hautes performances) */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', marginBottom: '3.5rem' }}>
+          {DOMAINS.map((dom, i) => {
+            const isSelected = activeDomainIndex === i
+            const DomIcon = ICON_MAP[dom.icon] || Award
+            return (
+              <button
+                key={dom.id}
+                onClick={() => setActiveDomainIndex(i)}
+                style={{
+                  textAlign: 'left',
+                  padding: '1.6rem 1.8rem',
+                  borderRadius: 20,
+                  border: isSelected ? `2px solid ${dom.color}` : `1px solid ${T.border}`,
+                  background: isSelected 
+                    ? (T.light ? 'rgba(255,255,255,0.98)' : 'rgba(28,25,23,0.98)') 
+                    : (T.light ? 'rgba(255,255,255,0.45)' : 'rgba(18,15,13,0.45)'),
+                  boxShadow: isSelected ? `0 12px 36px ${dom.color}25` : 'none',
+                  cursor: 'pointer',
+                  transition: 'all .25s ease',
+                  transform: isSelected ? 'translateY(-3px)' : 'none',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.8rem',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <div style={{
+                    width: 46, height: 46, borderRadius: 12,
+                    background: isSelected ? dom.color : 'rgba(180, 112, 39, 0.1)',
+                    color: isSelected ? '#fff' : dom.color,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    transition: 'all .25s',
+                  }}>
+                    <DomIcon size={22} />
+                  </div>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.7rem', fontWeight: 800, color: isSelected ? dom.color : T.textMuted, letterSpacing: '.15em' }}>
+                    {dom.n}
+                  </span>
+                </div>
+
+                <div>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.25rem', fontWeight: 900, color: T.textMain, marginBottom: '4px' }}>
+                    {dom.title}
+                  </div>
+                  <div style={{ fontSize: '0.78rem', color: T.textSub, lineHeight: 1.45 }}>
+                    {dom.tagline}
+                  </div>
+                </div>
+
+                <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.75rem', fontWeight: 700, color: isSelected ? dom.color : T.textMuted }}>
+                  <span>{dom.branches.length} divisions d'activité</span>
+                  <ChevronRight size={14} style={{ transform: isSelected ? 'rotate(90deg)' : 'none', transition: 'transform .2s' }} />
+                </div>
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Détail du Domaine Actif */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeDomain.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.35 }}
+            style={{
+              padding: '2.5rem',
+              borderRadius: 24,
+              background: T.card,
+              border: `1px solid ${T.border}`,
+              boxShadow: '0 20px 60px rgba(0,0,0,.25)',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          >
+            {/* Bannière titre du domaine */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', marginBottom: '2.5rem', paddingBottom: '1.8rem', borderBottom: `1px solid ${T.border}` }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+                <div style={{ width: 62, height: 62, borderRadius: 16, background: `${activeDomain.color}22`, border: `1px solid ${activeDomain.color}55`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: activeDomain.color }}>
+                  <IconActive size={32} />
+                </div>
+                <div>
+                  <span style={{ fontSize: '0.7rem', fontWeight: 800, color: activeDomain.color, letterSpacing: '.15em', textTransform: 'uppercase' }}>
+                    Pôle Stratégique {activeDomain.code}
+                  </span>
+                  <h3 style={{ fontSize: '2rem', fontWeight: 900, color: T.textMain, margin: '2px 0 0', fontFamily: "'Poppins', sans-serif" }}>
+                    {activeDomain.title}
+                  </h3>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
+                <a
+                  href={`https://wa.me/242069677567?text=${encodeURIComponent(`Bonjour Dr POUTYA, je souhaite des informations sur les activités du ${activeDomain.title}.`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-raised"
+                  style={{ fontSize: '0.85rem' }}
+                >
+                  <HoverSlideText text={`Échanger sur le ${activeDomain.code}`} /> <ArrowRight size={14} />
+                </a>
+                <Link
+                  href="/contact"
+                  className="btn-ghost"
+                  style={{ fontSize: '0.85rem' }}
+                >
+                  <HoverSlideText text="Demander un devis" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Description générale du domaine */}
+            <p style={{ fontSize: '1.02rem', color: T.textSub, lineHeight: 1.8, maxWidth: 900, marginBottom: '2.5rem' }}>
+              {activeDomain.desc}
+            </p>
+
+            {/* Grille des divisions / branches du domaine */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.4rem' }}>
+              {activeDomain.branches.map((branch, bi) => (
+                <motion.div
+                  key={branch.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: bi * 0.06 }}
+                  style={{
+                    padding: '1.6rem',
+                    borderRadius: 16,
+                    background: T.light ? '#ffffff' : '#141110',
+                    border: `1px solid ${T.border}`,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.8rem' }}>
+                      <span style={{ width: 8, height: 8, borderRadius: '50%', background: activeDomain.color }} />
+                      <h4 style={{ fontSize: '1.12rem', fontWeight: 800, color: T.textMain, margin: 0, fontFamily: "'Poppins', sans-serif" }}>
+                        {branch.title}
+                      </h4>
+                    </div>
+
+                    <p style={{ fontSize: '0.83rem', color: T.textSub, lineHeight: 1.6, marginBottom: '1.2rem' }}>
+                      {branch.desc}
+                    </p>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1.4rem' }}>
+                      {branch.items.map((item, ii) => (
+                        <div key={ii} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.78rem', color: T.textSub }}>
+                          <Check size={13} style={{ color: activeDomain.color, flexShrink: 0 }} />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <a
+                    href={`https://wa.me/242069677567?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite échanger sur la division : ${branch.title}`)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontSize: '0.78rem',
+                      fontWeight: 700,
+                      color: activeDomain.color,
+                      textDecoration: 'none',
+                      marginTop: '0.5rem',
+                    }}
+                  >
+                    <span>En savoir plus / Devis</span>
+                    <ArrowRight size={13} />
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+      </div>
+    </section>
+  )
+}
+
+/* ────────────────────────────────────────────────
+   LISTE DES SERVICES & PRESTATIONS DÉTAILLÉES
+──────────────────────────────────────────────── */
 function ServicesList() {
   const T = useTheme()
   const ref = useRef(null)
@@ -132,20 +349,39 @@ function ServicesList() {
     <section id="services-list" ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.08 }}>
-            <GhostTitle text="CHOISISSEZ VOTRE SOLUTION" />
-            Choisissez votre <GreenUnderline><span className="text-gradient">solution</span></GreenUnderline>
+          <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.75rem', fontWeight: 700, color: '#b47027', letterSpacing: '.2em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+            Prestations de Terrain & Devis Immédiats
+          </div>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.6rem,5.5vw,4.5rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.08 }}>
+            <GhostTitle text="PRESTATIONS DÉTAILLÉES" />
+            Prestations & <GreenUnderline><span className="text-gradient">Interventions</span></GreenUnderline>
           </h2>
         </motion.div>
 
-        {/* Tabs */}
+        {/* Onglets des prestations */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem', justifyContent: 'center', marginBottom: '3rem' }}>
           {SERVICES.map((s, i) => {
             const Ic = ICON_MAP[s.icon] || Globe
+            const isActive = active === i
             return (
-              <button key={s.title} onClick={() => setActive(i)}
-                style={{ display: 'flex', alignItems: 'center', gap: '.4rem', padding: '.5rem 1.1rem', borderRadius: 100, border: '1px solid', borderColor: active === i ? T.green : T.border, background: active === i ? '#b47027' : 'transparent', color: active === i ? '#fff' : T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', fontWeight: 600, cursor: 'pointer', transition: 'all .22s' }}>
-                <Ic size={14} />{s.title}
+              <button 
+                key={s.title} 
+                onClick={() => setActive(i)}
+                style={{ 
+                  display: 'flex', alignItems: 'center', gap: '.45rem', 
+                  padding: '.55rem 1.2rem', borderRadius: 100, 
+                  border: '1px solid', borderColor: isActive ? T.green : T.border, 
+                  background: isActive ? '#b47027' : 'transparent', 
+                  color: isActive ? '#fff' : T.textSub, 
+                  fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', 
+                  fontWeight: 600, cursor: 'pointer', transition: 'all .22s' 
+                }}
+              >
+                <Ic size={14} />
+                <span>{s.title}</span>
+                <span style={{ fontSize: '.65rem', opacity: 0.7, padding: '1px 5px', borderRadius: 4, background: isActive ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.08)' }}>
+                  {s.domainCode}
+                </span>
               </button>
             )
           })}
@@ -160,7 +396,7 @@ function ServicesList() {
           }
         `}</style>
 
-        {/* Service Detail */}
+        {/* Détail de la prestation sélectionnée */}
         <AnimatePresence mode="wait">
           <motion.div key={active}
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: .35 }}
@@ -171,19 +407,23 @@ function ServicesList() {
                 placeholder={<div style={{ aspectRatio: '1 / 1', background: '#1c1917', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={48} style={{ color: 'rgba(180, 112, 39,.3)' }} /></div>} />
             </div>
 
-            {/* Content */}
+            {/* Contenu */}
             <div className="svc-detail-body">
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.2rem' }}>
                 <div style={{ width: 54, height: 54, borderRadius: 14, background: 'rgba(180, 112, 39,.12)', border: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Icon size={24} style={{ color: T.green }} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.greenSub, letterSpacing: '.1em' }}>{svc.n}</div>
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: T.textMain, fontFamily: "'Poppins', sans-serif" }}>{svc.title}</h3>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', fontWeight: 700, color: T.greenSub, letterSpacing: '.1em', textTransform: 'uppercase' }}>
+                    {svc.n} · {svc.domainTitle}
+                  </div>
+                  <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: T.textMain, fontFamily: "'Poppins', sans-serif", margin: '2px 0 0' }}>
+                    {svc.title}
+                  </h3>
                 </div>
               </div>
 
-              <p style={{ fontSize: '.9rem', color: T.textSub, lineHeight: 1.75, marginBottom: '1.5rem' }}>{svc.desc}</p>
+              <p style={{ fontSize: '.92rem', color: T.textSub, lineHeight: 1.75, marginBottom: '1.5rem' }}>{svc.desc}</p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem', marginBottom: '1.8rem' }}>
                 {svc.features.map(f => (
@@ -200,7 +440,7 @@ function ServicesList() {
                     <Timer size={10} style={{ color: T.green }} />Délai : {svc.del}
                   </div>
                 </div>
-                <a href={`https://wa.me/242069677567?text=Bonjour Agro Véto Services, je suis intéressé par ${svc.title}`} target="_blank" rel="noreferrer" className="btn-raised">
+                <a href={`https://wa.me/242069677567?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite commander / demander un devis pour : ${svc.title}`)}`} target="_blank" rel="noreferrer" className="btn-raised">
                   <HoverSlideText text="Demander un devis" /> <ArrowRight size={14} />
                 </a>
               </div>
@@ -212,31 +452,32 @@ function ServicesList() {
   )
 }
 
-
-
 function TechSection() {
   const T = useTheme()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
   return (
-    <section ref={ref} style={{ padding: '7rem 5%', background: T.bgAlt }}>
+    <section ref={ref} style={{ padding: '7rem 5%', background: T.bg }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(3.4rem,6.5vw,5.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.08 }}>
-            <GhostTitle text="DES TECHNOLOGIES ÉPROUVÉES" />
-            Des technologies <GreenUnderline><span className="text-gradient">éprouvées</span></GreenUnderline>
+          <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.6rem,5.5vw,4.5rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.04em', lineHeight: 1.08 }}>
+            <GhostTitle text="NORMES & STANDARDS" />
+            Normes & <GreenUnderline><span className="text-gradient">Standards Éprouvés</span></GreenUnderline>
           </h2>
+          <p style={{ maxWidth: 640, margin: '1rem auto 0', color: T.textSub, fontSize: '0.9rem' }}>
+            Une exigence scientifique rigoureuse certifiée par le laboratoire et validée sur les fermes partenaires du Kouilou.
+          </p>
         </motion.div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: '1rem' }}>
           {TECH_STACK.map(({ cat, items }, i) => (
             <motion.div key={cat} className="sku-card"
               initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * .08 }}
-              style={{ padding: '1.4rem' }}>
-              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', fontWeight: 600, color: T.green, letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: '1rem', borderBottom: `1px solid ${T.border}`, paddingBottom: '.6rem' }}>{cat}</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '.4rem' }}>
+              style={{ padding: '1.5rem', borderRadius: 16, border: `1px solid ${T.border}`, background: T.card }}>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.75rem', fontWeight: 800, color: T.green, letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: '1rem', borderBottom: `1px solid ${T.border}`, paddingBottom: '.6rem' }}>{cat}</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '.45rem' }}>
                 {items.map(item => (
                   <span key={item} style={{ fontSize: '.82rem', color: T.textSub, display: 'flex', alignItems: 'center', gap: '.4rem' }}>
-                    <span style={{ width: 4, height: 4, borderRadius: '50%', background: T.green, flexShrink: 0 }} />{item}
+                    <span style={{ width: 5, height: 5, borderRadius: '50%', background: T.green, flexShrink: 0 }} />{item}
                   </span>
                 ))}
               </div>
@@ -252,10 +493,11 @@ export default function ServicesPage() {
   return (
     <div>
       <HeroServices />
+      <DomainesShowcase />
       <ServicesList />
       <ConversionMarquee />
       <TechSection />
-      <PageCTA message="Prêt à lancer votre projet ? Obtenez un devis gratuit en 24h." cta="Obtenir mon devis" />
+      <PageCTA message="Prêt à développer votre projet agropastoral ou certifier votre entreprise ? Obtenez un accompagnement sur-mesure." cta="Obtenir mon devis" />
     </div>
   )
 }

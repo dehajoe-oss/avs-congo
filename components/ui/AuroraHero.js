@@ -48,8 +48,18 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
     }
     resize()
     const resizeDeferred = setTimeout(resize, 150)
+    let isVisible = true
     const ro = new ResizeObserver(resize)
     ro.observe(cv)
+
+    const io = new IntersectionObserver(([entry]) => {
+      const prev = isVisible
+      isVisible = entry.isIntersecting
+      if (!prev && isVisible && glRef.current) {
+        rafRef.current = requestAnimationFrame(render)
+      }
+    }, { threshold: 0.05 })
+    io.observe(cv)
 
     /* ─────────────────────────────────────────────────────────
        Vertex — plein écran via TRIANGLE_STRIP
@@ -152,9 +162,9 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
     const parentEl = cv.parentElement
     parentEl?.addEventListener('mousemove', handleMouseMove)
 
-    /* ── Boucle de rendu — 60 fps cappé ── */
+    /* ── Boucle de rendu — 60 fps cappé, mise en pause si hors écran ── */
     const render = ts => {
-      if (!glRef.current) return
+      if (!glRef.current || !isVisible) return
       rafRef.current = requestAnimationFrame(render)
       if (ts - lastTs.current < INTERVAL) return
       lastTs.current = ts
@@ -174,6 +184,7 @@ export default function AuroraHero({ labels = [], overlay = 0.50 }) {
       cancelAnimationFrame(rafRef.current)
       clearTimeout(resizeDeferred)
       ro.disconnect()
+      io.disconnect()
       parentEl?.removeEventListener('mousemove', handleMouseMove)
       glRef.current = null
     }

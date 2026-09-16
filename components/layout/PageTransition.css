@@ -1,30 +1,25 @@
 /* ════════════════════════════════════════════════
-   PageTransition.css — AKATech
-   Transition "Vertical Strip" — grille de cellules
-   en clip-path, déclenchée à chaque changement de
-   route interne (CardNav, StaggeredMenu, Footer).
-   Port du projet barba-js "vertical-strip-transition-10"
-   (inspiré Inkfish/SOTD) vers Next.js App Router.
-   Couleur : vert AKATech uni (#b47027), aucune
-   alternance de teinte entre cellules — un seul aplat.
-   Le nombre de colonnes/lignes change en JS selon la
-   largeur d'écran (cf. GRID_*_MOBILE dans PageTransition.jsx).
+   PageTransition.css — Agro Véto Services
+   Top loading indicator ultra-fin et fluide
    ════════════════════════════════════════════════ */
 
-.aka-pt-layer {
+.aka-top-loader {
   position: fixed;
-  inset: 0;
-  z-index: 999998; /* sous le Loader (99999) mais au-dessus de tout le reste */
-  display: grid;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: linear-gradient(90deg, #b47027, #e09945, #5a8738);
+  box-shadow: 0 0 10px rgba(180, 112, 39, 0.8), 0 0 4px #b47027;
+  z-index: 999999;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease, opacity 0.3s ease;
   pointer-events: none;
-  overflow: hidden;
-  touch-action: none;
+  opacity: 0;
 }
 
-.aka-pt-block {
-  background: #b47027;
-  margin: -0.5px; /* évite les liserés de 1px entre cellules au rendu */
-  transform: translateZ(0);
-  min-width: 100%;
-  min-height: 100%;
+.aka-top-loader.is-loading {
+  opacity: 1;
+  transform: translateX(-15%);
+  transition: transform 0.4s cubic-bezier(0.1, 0.8, 0.2, 1);
 }

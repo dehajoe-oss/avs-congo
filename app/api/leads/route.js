@@ -24,19 +24,16 @@ export async function GET(request) {
     if (search) {
       where.OR = [
         { name: { contains: search, mode: 'insensitive' } },
-        { contact: { contains: search, mode: 'insensitive' } },
-        { summary: { contains: search, mode: 'insensitive' } },
+        { email: { contains: search, mode: 'insensitive' } },
+        { phone: { contains: search, mode: 'insensitive' } },
+        { service: { contains: search, mode: 'insensitive' } },
+        { message: { contains: search, mode: 'insensitive' } },
       ]
     }
 
     const [leads, total] = await Promise.all([
       prisma.lead.findMany({
         where,
-        include: {
-          conversation: {
-            select: { id: true, sessionId: true, createdAt: true, messageCount: true },
-          },
-        },
         orderBy: { score: 'desc' },
         skip,
         take: limit,
@@ -44,9 +41,17 @@ export async function GET(request) {
       prisma.lead.count({ where }),
     ])
 
+    const formattedLeads = leads.map(l => ({
+      ...l,
+      contact: l.phone + (l.email ? ` · ${l.email}` : ''),
+      summary: l.message,
+      project_type: l.service,
+    }))
+
     return NextResponse.json({
-      leads,
+      leads: formattedLeads,
       pagination: { page, limit, total, pages: Math.ceil(total / limit) },
+      dbConnected: true,
     })
   } catch (error) {
     console.warn('[API Leads] DB non accessible ou erreur:', error?.message)

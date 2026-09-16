@@ -14,12 +14,15 @@ import {
   CreditCard,
   User,
   MessageCircle,
+  Sprout,
+  Stethoscope,
+  Layers,
 } from 'lucide-react'
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
 import { GhostTitle, GreenUnderline, HoverSlideText } from '@/components/ui/index'
 import AuroraHero from '@/components/ui/AuroraHero'
-import { PRODUCTS_CATALOG, PRODUCT_CATEGORIES } from '@/lib/products'
+import { PRODUCTS_CATALOG, PRODUCT_CATEGORIES, DOMAINS_FILTER } from '@/lib/products'
 import api from '@/lib/api-client'
 
 /* ────────────────────────────────────────────────
@@ -161,6 +164,7 @@ export default function ShopClient() {
   const { addToCart, openCart, cartCount, cartTotal, currentUser, openAuthModal } = useShop()
 
   const [products, setProducts] = useState(PRODUCTS_CATALOG)
+  const [selectedDomain, setSelectedDomain] = useState('all')
   const [selectedCat, setSelectedCat] = useState('all')
   const [search, setSearch] = useState('')
   const [quantities, setQuantities] = useState({})
@@ -171,28 +175,41 @@ export default function ShopClient() {
     api.products.getAll({ limit: 50 })
       .then(res => {
         if (isMounted && res?.data && Array.isArray(res.data) && res.data.length > 0) {
-          const normalized = res.data.map(p => ({
-            id: p.id,
-            slug: p.slug,
-            name: p.title,
-            category: p.category?.slug?.includes('poussin') ? 'poussins'
-              : p.category?.slug?.includes('provende') ? 'provenderie'
-              : p.category?.slug?.includes('sante') ? 'sante'
-              : p.category?.slug?.includes('hygiene') ? 'hygiene'
-              : p.category?.slug?.includes('materiel') ? 'materiel'
-              : 'provenderie',
-            categoryLabel: p.category?.name || 'Intrants Agropastoraux',
-            price: p.promoPrice || p.price,
-            priceUnit: `FCFA / ${p.unit || 'unité'}`,
-            minOrder: 1,
-            inStock: p.inStock && p.stock > 0,
-            stock: p.stock,
-            badge: p.badge || (p.stock > 0 ? 'En stock' : 'Sur commande'),
-            image: p.image,
-            fallbackImage: p.image,
-            description: p.description,
-            specs: p.features || [],
-          }))
+          const normalized = res.data.map(p => {
+            const catSlug = (p.category?.slug || '').toLowerCase()
+            const category = catSlug.includes('poussin') ? 'poussins'
+              : catSlug.includes('provende') ? 'provenderie'
+              : catSlug.includes('sante') ? 'sante'
+              : catSlug.includes('hygiene') ? 'hygiene'
+              : catSlug.includes('materiel') ? 'materiel'
+              : catSlug.includes('agro') ? 'agro-equipement'
+              : catSlug.includes('cosmetique') ? 'bio-cosmetique'
+              : catSlug.includes('formation') ? 'formations'
+              : 'provenderie'
+
+            const domain = catSlug.includes('agro') || catSlug.includes('cosmetique') ? 'agro'
+              : catSlug.includes('formation') || catSlug.includes('service') || catSlug.includes('audit') ? 'services'
+              : 'veto'
+
+            return {
+              id: p.id,
+              slug: p.slug,
+              name: p.title,
+              domain,
+              category,
+              categoryLabel: p.category?.name || 'Intrants Agropastoraux',
+              price: p.promoPrice || p.price,
+              priceUnit: `FCFA / ${p.unit || 'unité'}`,
+              minOrder: 1,
+              inStock: p.inStock && p.stock > 0,
+              stock: p.stock,
+              badge: p.badge || (p.stock > 0 ? 'En stock' : 'Sur commande'),
+              image: p.image,
+              fallbackImage: p.image,
+              description: p.description,
+              specs: p.features || [],
+            }
+          })
           setProducts(normalized)
         }
       })
@@ -203,11 +220,12 @@ export default function ShopClient() {
   }, [])
 
   const filtered = products.filter(p => {
+    const matchDomain = selectedDomain === 'all' || p.domain === selectedDomain
     const matchCat = selectedCat === 'all' || p.category === selectedCat
     const matchSearch =
       p.name.toLowerCase().includes(search.toLowerCase()) ||
       p.description.toLowerCase().includes(search.toLowerCase())
-    return matchCat && matchSearch
+    return matchDomain && matchCat && matchSearch
   })
 
   const getQty = (id, min = 1) => quantities[id] || min
@@ -407,30 +425,73 @@ export default function ShopClient() {
             />
           </div>
 
-          {/* Catégories pills */}
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            {PRODUCT_CATEGORIES.map(cat => {
-              const active = selectedCat === cat.id
+          {/* Sélecteur de Domaines (Agro · Véto · Services) */}
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#b47027', letterSpacing: '.1em', textTransform: 'uppercase', marginRight: '4px' }}>
+              Domaine :
+            </span>
+            {DOMAINS_FILTER.map(df => {
+              const active = selectedDomain === df.id
               return (
                 <button
-                  key={cat.id}
-                  onClick={() => setSelectedCat(cat.id)}
+                  key={df.id}
+                  onClick={() => {
+                    setSelectedDomain(df.id)
+                    setSelectedCat('all')
+                  }}
                   style={{
-                    padding: '8px 16px',
+                    padding: '7px 15px',
                     borderRadius: '100px',
-                    border: `1px solid ${active ? '#b47027' : 'rgba(255,255,255,0.1)'}`,
-                    background: active ? '#b47027' : (T.light ? '#ffffff' : 'rgba(255,255,255,0.04)'),
-                    color: active ? '#ffffff' : 'inherit',
+                    border: `1.5px solid ${active ? (df.color || '#b47027') : 'rgba(255,255,255,0.12)'}`,
+                    background: active 
+                      ? (df.color ? `${df.color}25` : '#b47027')
+                      : (T.light ? '#ffffff' : 'rgba(255,255,255,0.04)'),
+                    color: active ? (df.color || '#ffffff') : T.textSub,
                     fontSize: '0.8rem',
-                    fontWeight: 700,
+                    fontWeight: 800,
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
                   }}
                 >
-                  {cat.label}
+                  {df.id === 'agro' && <Sprout size={14} style={{ color: df.color }} />}
+                  {df.id === 'veto' && <Stethoscope size={14} style={{ color: df.color }} />}
+                  {df.id === 'services' && <ShieldCheck size={14} style={{ color: df.color }} />}
+                  {df.id === 'all' && <Layers size={14} />}
+                  <span>{df.label}</span>
                 </button>
               )
             })}
+          </div>
+
+          {/* Catégories pills adaptées au domaine */}
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {PRODUCT_CATEGORIES
+              .filter(cat => selectedDomain === 'all' || cat.id === 'all' || cat.domain === selectedDomain)
+              .map(cat => {
+                const active = selectedCat === cat.id
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCat(cat.id)}
+                    style={{
+                      padding: '8px 16px',
+                      borderRadius: '100px',
+                      border: `1px solid ${active ? '#b47027' : 'rgba(255,255,255,0.1)'}`,
+                      background: active ? '#b47027' : (T.light ? '#ffffff' : 'rgba(255,255,255,0.04)'),
+                      color: active ? '#ffffff' : 'inherit',
+                      fontSize: '0.8rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    {cat.label}
+                  </button>
+                )
+              })}
           </div>
         </div>
 

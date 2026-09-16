@@ -15,9 +15,9 @@ import './CardNav.css'
 /* ── Slogans cycle — navJAX ─────────────────────────── */
 const NAV_SLOGANS = [
   "De la santé animale à\nl'excellence QHSE.",
-  "L'expertise au service de la santé\nanimale et du QHSE.",
+  "L'expertise au service des 3\ndomaines : Agro, Véto, Services.",
   "Clinique vétérinaire 24/7\n& Provenderie certifiée.",
-  "6 Pôles d'expertise intégrés\nà Pointe-Noire (Congo).",
+  "3 Domaines d'excellence intégrés\nà Pointe-Noire (Congo).",
 ]
 
 function NavSlogan() {
@@ -277,7 +277,7 @@ export default function CardNav() {
           <div className="aka-nav-card aka-card-3" ref={el => cardsRef.current[2] = el}>
             <div className="aka-card-label">L'Entreprise</div>
             <div className="aka-card-links">
-              <CardLinkWithGhost href="/services" label="Nos 6 Pôles" sub="Santé, Provende, QHSE" onClick={closeNav} />
+              <CardLinkWithGhost href="/services" label="Nos Domaines" sub="Agro · Véto · Services" onClick={closeNav} />
               <CardLinkWithGhost href="/about" label="À Propos" sub="Dr POUTYA & Direction" onClick={closeNav} />
               <CardLinkWithGhost href="/projects" label="Réalisations" sub="Cas clients & Résultats" onClick={closeNav} />
               <CardLinkWithGhost href="/blog" label="Blog" sub="Conseils & Guides d'élevage" onClick={closeNav} />
