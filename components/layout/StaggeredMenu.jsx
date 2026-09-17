@@ -13,17 +13,16 @@ import {
   ChevronRight,
   Stethoscope,
   ShoppingBag,
-  Wheat,
+  Layers,
   GraduationCap,
   Home,
   Award,
-  Newspaper,
+  FileText,
   MapPin,
   Phone,
-  ShieldCheck,
   Clock,
   ExternalLink,
-  Sparkles,
+  Building2,
   X,
 } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
@@ -31,49 +30,41 @@ import { useShop } from '@/lib/shopContext'
 import TransitionLink from './TransitionLink'
 import './StaggeredMenu.css'
 
-/* ── Pôles Stratégiques AVS Congo (Grille 2x2) ── */
+/* ── Pôles Stratégiques AVS Congo (Grille 2x2 Professionnelle — Zéro Badge) ── */
 const STRATEGIC_POLES = [
   {
     icon: ShoppingBag,
     title: 'Boutique & Intrants',
     desc: 'Poussins Cobb 500, provenderie & matériel',
     href: '/boutique',
-    badge: 'En stock',
-    accentColor: '#d97706',
   },
   {
     icon: Stethoscope,
     title: 'Clinique Vétérinaire',
     desc: 'Soins, chirurgie & urgences 24/7',
     href: '/clinique',
-    badge: '24h/24',
-    accentColor: '#10b981',
   },
   {
-    icon: Wheat,
+    icon: Layers,
     title: 'Nos 3 Domaines',
     desc: 'Agro, Véto & Services intégrés',
     href: '/services',
-    badge: 'Stratégie',
-    accentColor: '#f59e0b',
   },
   {
     icon: GraduationCap,
-    title: 'Formations Ferme',
-    desc: 'Ferme-école, aviculture & certificats',
+    title: 'Formations Ferme-École',
+    desc: 'Aviculture pratique & certificats',
     href: '/formations',
-    badge: 'Certifiante',
-    accentColor: '#8b5cf6',
   },
 ]
 
-/* ── Liens de navigation principale ── */
+/* ── Liens de navigation principale (Icônes Professionnelles) ── */
 const MAIN_NAV_LINKS = [
   { label: 'Accueil', href: '/', icon: Home },
-  { label: 'À Propos d’AVS Congo', href: '/about', icon: Sparkles, desc: 'Dr POUTYA & Mission' },
+  { label: 'À Propos d’AVS Congo', href: '/about', icon: Building2, desc: 'Direction Dr POUTYA & Mission' },
   { label: 'Réalisations & Partenariats', href: '/projects', icon: Award, desc: 'Cas clients & Fermes suivies' },
-  { label: 'Blog & Fiches Conseils', href: '/blog', icon: Newspaper, desc: 'Techniques d’élevage & biosécurité' },
-  { label: 'Contact & Siège Social', href: '/contact', icon: MapPin, desc: 'Socoprise, Pointe-Noire' },
+  { label: 'Blog & Fiches Conseils', href: '/blog', icon: FileText, desc: 'Guides d’élevage & biosécurité' },
+  { label: 'Contact & Siège Social', href: '/contact', icon: MapPin, desc: 'Quartier Socoprise, Pointe-Noire' },
 ]
 
 export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange }) {
@@ -101,12 +92,12 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
     })
   }, [onOpenChange])
 
-  // Fermeture automatique lors d'une navigation
+  // Fermeture automatique lors d'un changement de route
   useEffect(() => {
     closeMenu()
   }, [pathname, closeMenu])
 
-  // Verrouillage du défilement de la page quand le menu est déployé
+  // Verrouillage du scroll quand le menu est ouvert
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden'
@@ -116,7 +107,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  // Fermeture à la touche Échap
+  // Fermeture avec la touche Échap
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') closeMenu()
@@ -125,7 +116,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [closeMenu])
 
-  // Détection du scroll pour effet verre sur le header
+  // Détection du scroll pour effet de surface sur le header
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 25)
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -149,10 +140,10 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
   return (
     <>
       {/* ═════════════════════════════════════════════════════════════
-          1. HEADER MOBILE PERMANENT (Fixe 60px — Épuré & Équilibré)
+          1. HEADER MOBILE FIXE (60px — Épuré, Élégant, Pro)
           ═════════════════════════════════════════════════════════════ */}
       <header className={`sm-header ${scrolled ? 'sm-header--scrolled' : ''}`}>
-        {/* Brand identity (Logo + Titre AVS CONGO) */}
+        {/* Identité de Marque */}
         <TransitionLink
           href="/"
           className="sm-header-brand"
@@ -170,17 +161,14 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
             />
           </div>
           <div className="sm-header-brand-meta">
-            <div className="sm-header-brand-title">
-              <span>AVS CONGO</span>
-              <span className="sm-header-brand-dot" />
-            </div>
+            <span className="sm-header-brand-title">AVS CONGO</span>
             <span className="sm-header-brand-tagline">AGRO · VÉTO · SERVICES</span>
           </div>
         </TransitionLink>
 
-        {/* Actions à droite : Panier + Profil/Connexion + Hamburger */}
+        {/* Actions à Droite : Panier + Profil + Menu */}
         <div className="sm-header-actions">
-          {/* Bouton Panier avec Badge interactif */}
+          {/* Bouton Panier */}
           <button
             onClick={handleOpenCart}
             className="sm-icon-btn sm-cart-btn"
@@ -188,15 +176,15 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
             type="button"
             aria-label={`Panier d'achat, ${cartCount} articles`}
           >
-            <ShoppingCart size={18} />
+            <ShoppingCart size={18} strokeWidth={1.75} />
             {cartCount > 0 && (
-              <span className="sm-badge sm-badge--cart">
+              <span className="sm-cart-count">
                 {cartCount > 99 ? '99+' : cartCount}
               </span>
             )}
           </button>
 
-          {/* Bouton Compte Client : Avatar avec indicateur en ligne si connecté */}
+          {/* Bouton Compte Client */}
           {currentUser ? (
             <TransitionLink
               href="/mon-compte"
@@ -229,11 +217,11 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
               aria-label="Connexion à l'espace client"
               onClick={closeMenu}
             >
-              <User size={18} />
+              <User size={18} strokeWidth={1.75} />
             </TransitionLink>
           )}
 
-          {/* Bouton Hamburger animé moderne (morphing en X) */}
+          {/* Bouton Hamburger Pro Animé */}
           <button
             onClick={toggleMenu}
             className={`sm-hamburger-btn ${open ? 'sm-hamburger-btn--open' : ''}`}
@@ -249,24 +237,24 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
       </header>
 
       {/* ═════════════════════════════════════════════════════════════
-          2. MENU DÉROULANT / TIROIR MOBILE (Full-Height Drawer)
+          2. TIROIR MOBILE (Full-Height Drawer — Zéro Badge)
           ═════════════════════════════════════════════════════════════ */}
       <AnimatePresence>
         {open && (
           <div className="sm-portal-container">
-            {/* Arrière-plan flou d'atténuation */}
+            {/* Arrière-plan flou */}
             <motion.div
               key="sm-backdrop"
               className="sm-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.22 }}
               onClick={closeMenu}
               aria-hidden="true"
             />
 
-            {/* Panneau coulissant du Menu */}
+            {/* Panneau coulissant */}
             <motion.aside
               key="sm-drawer"
               id="sm-drawer-panel"
@@ -277,18 +265,21 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
               aria-label="Menu de navigation mobile"
             >
-              {/* En-tête du tiroir */}
+              {/* Barre supérieure du tiroir */}
               <div className="sm-drawer-topbar">
-                <div className="sm-drawer-brand-badge">
-                  <div className="sm-live-indicator">
-                    <span className="sm-live-ping" />
-                    <span className="sm-live-core" />
-                  </div>
-                  <span>COMPLEXE AGROPASTORAL & VÉTO</span>
+                <div className="sm-drawer-top-brand">
+                  <Image
+                    src="/images/logo.webp"
+                    alt="AVS"
+                    width={26}
+                    height={28}
+                    className="sm-drawer-logo-img"
+                  />
+                  <span className="sm-drawer-title">Menu Principal</span>
                 </div>
 
                 <div className="sm-drawer-topbar-right">
-                  {/* Sélecteur de thème Clair / Sombre */}
+                  {/* Bascule Clair / Sombre */}
                   <button
                     onClick={T.toggle}
                     className="sm-drawer-icon-btn"
@@ -296,10 +287,10 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                     type="button"
                     aria-label="Basculer le thème"
                   >
-                    {T.light ? <Moon size={16} /> : <Sun size={16} />}
+                    {T.light ? <Moon size={16} strokeWidth={1.75} /> : <Sun size={16} strokeWidth={1.75} />}
                   </button>
 
-                  {/* Bouton Fermer (Croix) */}
+                  {/* Bouton Fermer */}
                   <button
                     onClick={closeMenu}
                     className="sm-drawer-icon-btn sm-drawer-close-btn"
@@ -307,12 +298,12 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                     type="button"
                     aria-label="Fermer le menu"
                   >
-                    <X size={18} />
+                    <X size={18} strokeWidth={1.75} />
                   </button>
                 </div>
               </div>
 
-              {/* Corps défilable du tiroir */}
+              {/* Corps défilable */}
               <div className="sm-drawer-scroll">
                 {/* ── Bloc Utilisateur / Authentification ── */}
                 {currentUser ? (
@@ -335,17 +326,9 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                       </div>
 
                       <div className="sm-profile-text">
-                        <div className="sm-profile-name-row">
-                          <span className="sm-profile-name">{displayName}</span>
-                          {(currentUser.role === 'ADMIN' || currentUser.role === 'STAFF') && (
-                            <span className="sm-profile-role-tag">
-                              <ShieldCheck size={11} />
-                              {currentUser.role}
-                            </span>
-                          )}
-                        </div>
+                        <span className="sm-profile-name">{displayName}</span>
                         <span className="sm-profile-sub">
-                          {currentUser.phone || currentUser.email || 'Session active'}
+                          {currentUser.email || currentUser.phone || 'Compte client vérifié'}
                         </span>
                       </div>
                     </div>
@@ -356,7 +339,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                         className="sm-profile-btn sm-profile-btn--primary"
                         onClick={closeMenu}
                       >
-                        <User size={14} />
+                        <User size={14} strokeWidth={1.75} />
                         <span>Mon Espace & Commandes</span>
                       </TransitionLink>
 
@@ -366,7 +349,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                         className="sm-profile-btn sm-profile-btn--logout"
                         title="Se déconnecter"
                       >
-                        <LogOut size={14} />
+                        <LogOut size={14} strokeWidth={1.75} />
                         <span>Quitter</span>
                       </button>
                     </div>
@@ -374,10 +357,9 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                 ) : (
                   <div className="sm-guest-card">
                     <div className="sm-guest-header">
-                      <div className="sm-guest-badge">ESPACE CLIENT & ÉLEVEURS</div>
-                      <h3 className="sm-guest-title">Bienvenue chez AVS Congo</h3>
+                      <h3 className="sm-guest-title">Espace Client & Éleveurs</h3>
                       <p className="sm-guest-desc">
-                        Suivez vos commandes de poussins Cobb 500, provenderie et devis en temps réel.
+                        Suivez vos commandes de poussins Cobb 500, provenderie et devis.
                       </p>
                     </div>
                     <div className="sm-guest-actions">
@@ -386,7 +368,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                         className="sm-guest-btn sm-guest-btn--login"
                         onClick={closeMenu}
                       >
-                        <LogIn size={15} />
+                        <LogIn size={15} strokeWidth={1.75} />
                         <span>Se connecter</span>
                       </TransitionLink>
                       <TransitionLink
@@ -394,18 +376,17 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                         className="sm-guest-btn sm-guest-btn--register"
                         onClick={closeMenu}
                       >
-                        <User size={15} />
+                        <User size={15} strokeWidth={1.75} />
                         <span>Créer un compte</span>
                       </TransitionLink>
                     </div>
                   </div>
                 )}
 
-                {/* ── Pôles Stratégiques (Grille 2x2 Moderne) ── */}
+                {/* ── Pôles Stratégiques (Grille 2x2 — Zéro Badge, Icônes Pro) ── */}
                 <div className="sm-section">
                   <div className="sm-section-header">
                     <span className="sm-section-title">NOS PÔLES STRATÉGIQUES</span>
-                    <span className="sm-section-subtitle">Excellence agropastorale</span>
                   </div>
 
                   <div className="sm-poles-grid">
@@ -419,11 +400,8 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                           className={`sm-pole-card ${active ? 'sm-pole-card--active' : ''}`}
                           onClick={closeMenu}
                         >
-                          <div className="sm-pole-top">
-                            <div className="sm-pole-icon-wrap" style={{ color: pole.accentColor }}>
-                              <Icon size={20} />
-                            </div>
-                            <span className="sm-pole-badge">{pole.badge}</span>
+                          <div className="sm-pole-icon-wrap">
+                            <Icon size={20} strokeWidth={1.75} />
                           </div>
                           <div className="sm-pole-meta">
                             <span className="sm-pole-title">{pole.title}</span>
@@ -435,7 +413,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                   </div>
                 </div>
 
-                {/* ── Navigation Principale & Informations ── */}
+                {/* ── Navigation Principale (Icônes Pro) ── */}
                 <div className="sm-section">
                   <div className="sm-section-header">
                     <span className="sm-section-title">NAVIGATION GÉNÉRALE</span>
@@ -454,7 +432,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                         >
                           <div className="sm-nav-row-left">
                             <div className="sm-nav-row-icon">
-                              <Icon size={16} />
+                              <Icon size={16} strokeWidth={1.75} />
                             </div>
                             <div className="sm-nav-row-text">
                               <span className="sm-nav-row-label">{item.label}</span>
@@ -463,31 +441,32 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                               )}
                             </div>
                           </div>
-                          <ChevronRight size={16} className="sm-nav-row-chevron" />
+                          <ChevronRight size={16} strokeWidth={1.75} className="sm-nav-row-chevron" />
                         </TransitionLink>
                       )
                     })}
                   </div>
                 </div>
 
-                {/* ── Permanence Clinique Vétérinaire 24h/24 ── */}
+                {/* ── Permanence Clinique Vétérinaire ── */}
                 <div className="sm-clinic-banner">
-                  <div className="sm-clinic-badge">
-                    <Clock size={12} />
-                    <span>PERMANENCE CONTINUE 24H/24 & 7J/7</span>
+                  <div className="sm-clinic-icon-box">
+                    <Clock size={18} strokeWidth={1.75} />
                   </div>
                   <div className="sm-clinic-body">
-                    <strong>Clinique & Urgences Vétérinaires</strong>
-                    <p>Soins intensifs, chirurgie d’urgence et pharmacie de garde à Pointe-Noire (Quartier Socoprise).</p>
+                    <strong className="sm-clinic-title">Clinique Vétérinaire 24h/24 & 7j/7</strong>
+                    <p className="sm-clinic-desc">
+                      Soins intensifs, chirurgie et pharmacie de garde à Pointe-Noire (Socoprise).
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* ═══════════════════════════════════════════════════════
-                  3. PIED DE PAGE FIXE (Action rapide & WhatsApp)
+                  3. PIED DE PAGE (Contact Pro & WhatsApp)
                   ═══════════════════════════════════════════════════════ */}
               <div className="sm-drawer-footer">
-                {/* Bouton WhatsApp Vert Officiel */}
+                {/* Bouton WhatsApp Officiel */}
                 <a
                   href="https://wa.me/242069677567"
                   target="_blank"
@@ -495,9 +474,9 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                   className="sm-footer-whatsapp-btn"
                   onClick={closeMenu}
                 >
-                  <Phone size={17} />
+                  <Phone size={16} strokeWidth={1.8} />
                   <span>COMMANDES & URGENCE WHATSAPP</span>
-                  <ExternalLink size={13} className="sm-btn-ext-icon" />
+                  <ExternalLink size={13} strokeWidth={1.8} className="sm-btn-ext-icon" />
                 </a>
 
                 {/* Appel direct & adresse */}
@@ -506,7 +485,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
                     Standard : (+242) 06 967 75 67 / 05 633 70 50
                   </a>
                   <p className="sm-footer-address">
-                    Avenue Nelson Mandela, Socoprise, Pointe-Noire (Congo)
+                    Avenue Nelson Mandela, Socoprise, Pointe-Noire
                   </p>
                 </div>
               </div>
