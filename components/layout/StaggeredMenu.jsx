@@ -143,7 +143,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
           1. HEADER MOBILE FIXE (60px — Épuré, Élégant, Pro)
           ═════════════════════════════════════════════════════════════ */}
       <header className={`sm-header ${scrolled ? 'sm-header--scrolled' : ''}`}>
-        {/* Identité de Marque */}
+        {/* Identité de Marque (Logo uniquement) */}
         <TransitionLink
           href="/"
           className="sm-header-brand"
@@ -154,15 +154,11 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
             <Image
               src="/images/logo.webp"
               alt="Logo Agro Véto Services"
-              width={34}
-              height={36}
+              width={40}
+              height={42}
               priority
               className="sm-header-logo-img"
             />
-          </div>
-          <div className="sm-header-brand-meta">
-            <span className="sm-header-brand-title">AVS CONGO</span>
-            <span className="sm-header-brand-tagline">AGRO · VÉTO · SERVICES</span>
           </div>
         </TransitionLink>
 

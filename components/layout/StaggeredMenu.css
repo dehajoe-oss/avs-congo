@@ -42,64 +42,34 @@
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* ── Identité de Marque ── */
+/* ── Identité de Marque (Logo seul) ── */
 .sm-header-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
-  min-width: 0;
-  flex-shrink: 1;
+  flex-shrink: 0;
 }
 
 .sm-header-logo-box {
   position: relative;
-  width: 34px;
-  height: 36px;
+  width: 40px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  filter: drop-shadow(0 0 8px rgba(180, 112, 39, 0.3));
+  filter: drop-shadow(0 0 10px rgba(180, 112, 39, 0.35));
+  transition: transform 0.15s ease;
+}
+
+.sm-header-brand:active .sm-header-logo-box {
+  transform: scale(0.95);
 }
 
 .sm-header-logo-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-.sm-header-brand-meta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-}
-
-.sm-header-brand-title {
-  font-size: 0.92rem;
-  font-weight: 900;
-  letter-spacing: 0.03em;
-  color: #f2ede8;
-  line-height: 1.15;
-  white-space: nowrap;
-}
-
-.light-mode .sm-header-brand-title {
-  color: #1c1917;
-}
-
-.sm-header-brand-tagline {
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.11em;
-  color: #b47027;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.light-mode .sm-header-brand-tagline {
-  color: #9a5f22;
 }
 
 /* ── Actions à Droite ── */
