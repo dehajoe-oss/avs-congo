@@ -1,89 +1,157 @@
-/* ═══════════════════════════════════════════════════
-   StaggeredMenu.css — Menu Mobile Épuré & Professionnel
-   Agro Véto Services Congo
-   ═══════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   StaggeredMenu.css — Navigation & Menu Mobile Haute Définition
+   Agro Véto Services Congo (A.V.S. CONGO S.A.R.L.U.)
+   ═══════════════════════════════════════════════════════════════ */
 
-/* ── Header Mobile Fixe (58px) ── */
+/* ── 1. HEADER MOBILE PERMANENT (Fixe 60px) ── */
 .sm-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 58px;
+  height: 60px;
   z-index: 9400;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
-  background: rgba(12, 10, 9, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-  transition: background 0.3s ease, border-color 0.3s ease;
+  padding: 0 14px;
+  background: rgba(13, 11, 10, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .sm-header--scrolled {
-  background: rgba(8, 7, 6, 0.96);
-  border-bottom-color: rgba(180, 112, 39, 0.25);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
+  background: rgba(10, 8, 7, 0.96);
+  border-bottom-color: rgba(180, 112, 39, 0.3);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.55);
 }
 
 .light-mode .sm-header {
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .light-mode .sm-header--scrolled {
   background: rgba(255, 255, 255, 0.98);
   border-bottom-color: rgba(180, 112, 39, 0.35);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
 }
 
-.sm-header-logo {
+/* ── Identité de Marque dans le Header ── */
+.sm-header-brand {
   display: inline-flex;
   align-items: center;
+  gap: 10px;
   text-decoration: none;
-  flex-shrink: 0;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
-.sm-header-right {
+.sm-header-logo-box {
+  position: relative;
+  width: 36px;
+  height: 38px;
   display: flex;
   align-items: center;
-  gap: 9px;
+  justify-content: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(180, 112, 39, 0.35));
 }
 
-/* ── Boutons Thème & Panier du Header ── */
-.sm-header-theme-btn,
-.sm-header-cart-btn {
-  position: relative;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+.sm-header-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sm-header-brand-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.sm-header-brand-title {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  gap: 5px;
+  font-size: 0.92rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
   color: #f2ede8;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
-.sm-header-theme-btn:active,
-.sm-header-cart-btn:active {
-  transform: scale(0.94);
-}
-
-.light-mode .sm-header-theme-btn,
-.light-mode .sm-header-cart-btn {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.12);
+.light-mode .sm-header-brand-title {
   color: #1c1917;
 }
 
-.sm-cart-badge {
+.sm-header-brand-dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+  flex-shrink: 0;
+}
+
+.sm-header-brand-tagline {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  color: #b47027;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.light-mode .sm-header-brand-tagline {
+  color: #9a5f22;
+}
+
+/* ── Actions à Droite du Header ── */
+.sm-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Boutons icônes génériques du header (Panier & Compte) */
+.sm-icon-btn {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f2ede8;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sm-icon-btn:active {
+  transform: scale(0.92);
+}
+
+.light-mode .sm-icon-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #1c1917;
+}
+
+/* Badge Panier */
+.sm-badge {
   position: absolute;
   top: -4px;
   right: -4px;
@@ -92,61 +160,27 @@
   border-radius: 999px;
   font-size: 0.62rem;
   font-weight: 900;
-  width: 17px;
-  height: 17px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  border: 1.5px solid #0d0b0a;
 }
 
-/* ── Bouton Utilisateur Connecté / Visiteur dans le Header ── */
-.sm-header-user-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 38px;
-  padding: 0 10px 0 6px;
-  border-radius: 999px;
-  background: rgba(180, 112, 39, 0.12);
-  border: 1.5px solid rgba(16, 185, 129, 0.65);
-  color: #f2ede8;
-  text-decoration: none;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.74rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
+.light-mode .sm-badge {
+  border-color: #ffffff;
 }
 
-.sm-header-user-btn:active {
-  transform: scale(0.95);
+/* Avatar utilisateur dans le header */
+.sm-user-btn--logged {
+  border-color: rgba(16, 185, 129, 0.55);
+  background: rgba(16, 185, 129, 0.08);
 }
 
-.light-mode .sm-header-user-btn {
-  background: rgba(180, 112, 39, 0.08);
-  color: #1c1917;
-  border-color: rgba(16, 185, 129, 0.75);
-}
-
-.sm-header-user-btn--guest {
-  width: 38px;
-  padding: 0;
-  justify-content: center;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.light-mode .sm-header-user-btn--guest {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.12);
-  color: #1c1917;
-}
-
-.sm-header-user-avatar {
+.sm-user-avatar-wrap {
   position: relative;
   width: 26px;
   height: 26px;
@@ -158,86 +192,97 @@
   justify-content: center;
   font-size: 0.72rem;
   font-weight: 800;
-  flex-shrink: 0;
 }
 
-.sm-header-user-avatar img {
+.sm-user-avatar-img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.sm-header-user-dot {
+.sm-online-pip {
   position: absolute;
   bottom: -1px;
   right: -1px;
-  width: 8.5px;
-  height: 8.5px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #10b981;
-  border: 2px solid #0c0a09;
+  border: 2px solid #0d0b0a;
   box-shadow: 0 0 5px #10b981;
 }
 
-.light-mode .sm-header-user-dot {
+.light-mode .sm-online-pip {
   border-color: #ffffff;
 }
 
-.sm-header-user-name {
-  max-width: 60px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-@media (max-width: 400px) {
-  .sm-header-user-name {
-    display: none;
-  }
-  .sm-header-user-btn--logged {
-    padding: 0;
-    width: 38px;
-    justify-content: center;
-    border-radius: 10px;
-  }
-}
-
-/* ── Bouton Toggle "Menu / Fermer" ── */
-.sm-toggle-btn {
-  display: inline-flex;
+/* ── Bouton Hamburger Animé Moderne ── */
+.sm-hamburger-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  border-radius: 999px;
-  background: #b47027;
-  color: #050505;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 800;
-  font-style: italic;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border: 2px solid #050505;
-  box-shadow: 2.5px 2.5px 0px #050505;
+  justify-content: center;
+  gap: 4.5px;
+  background: rgba(180, 112, 39, 0.15);
+  border: 1.5px solid rgba(180, 112, 39, 0.45);
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
+  padding: 0;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
 }
 
-.sm-toggle-btn:active {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px #050505;
+.sm-hamburger-btn:active {
+  transform: scale(0.92);
 }
 
-.sm-toggle-btn--open {
+.light-mode .sm-hamburger-btn {
+  background: rgba(180, 112, 39, 0.12);
+  border-color: rgba(180, 112, 39, 0.4);
+}
+
+.sm-hamburger-bar {
+  display: block;
+  width: 19px;
+  height: 2.2px;
+  border-radius: 2px;
+  background: #f2ede8;
+  transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
+.light-mode .sm-hamburger-bar {
+  background: #1c1917;
+}
+
+/* Animation vers la croix (X) */
+.sm-hamburger-btn--open {
   background: #b47027;
-  color: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 2.5px 2.5px 0px #050505;
+  border-color: #b47027;
 }
 
-/* ── Backdrop flou & sombre ── */
-.sm-portal-root {
+.sm-hamburger-btn--open .sm-hamburger-bar {
+  background: #050505;
+}
+
+.sm-hamburger-btn--open .sm-hamburger-bar--top {
+  transform: translateY(6.7px) rotate(45deg);
+}
+
+.sm-hamburger-btn--open .sm-hamburger-bar--mid {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.sm-hamburger-btn--open .sm-hamburger-bar--bot {
+  transform: translateY(-6.7px) rotate(-45deg);
+}
+
+/* ── 2. PORTAL & DRAWER OVERLAY ── */
+.sm-portal-container {
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -246,25 +291,25 @@
 .sm-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 9998;
 }
 
-/* ── Tiroir / Drawer mobile ── */
+/* ── Panneau coulissant du Tiroir ── */
 .sm-drawer {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 360px;
+  max-width: 385px;
   height: 100dvh;
   z-index: 9999;
   background: #0d0b0a;
   border-left: 1.5px solid rgba(180, 112, 39, 0.25);
-  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.65);
+  box-shadow: -12px 0 45px rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -272,156 +317,173 @@
 }
 
 .light-mode .sm-drawer {
-  background: #ffffff;
-  border-left-color: rgba(180, 112, 39, 0.3);
-  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.12);
+  background: #fafaf9;
+  border-left-color: rgba(180, 112, 39, 0.25);
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.12);
 }
 
-/* ── Top Header du Drawer ── */
-.sm-drawer-header {
+/* ── Barre supérieure du Tiroir ── */
+.sm-drawer-topbar {
   height: 58px;
   padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   flex-shrink: 0;
 }
 
-.light-mode .sm-drawer-header {
+.light-mode .sm-drawer-topbar {
   border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
-.sm-drawer-brand {
+.sm-drawer-brand-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  text-decoration: none;
-}
-
-.sm-drawer-badge {
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  padding: 2px 7px;
+  gap: 7px;
+  padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(180, 112, 39, 0.14);
-  color: #b47027;
+  background: rgba(180, 112, 39, 0.12);
   border: 1px solid rgba(180, 112, 39, 0.28);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #b47027;
 }
 
-.sm-drawer-actions {
+.sm-live-indicator {
+  position: relative;
+  width: 7px;
+  height: 7px;
+}
+
+.sm-live-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #10b981;
+  animation: sm-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.sm-live-core {
+  position: relative;
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+@keyframes sm-ping {
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.sm-drawer-topbar-right {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.sm-drawer-theme-btn,
-.sm-drawer-close {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
+.sm-drawer-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #f2ede8;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.sm-drawer-close {
-  background: rgba(180, 112, 39, 0.1);
-  border-color: rgba(180, 112, 39, 0.3);
-  color: #b47027;
-}
-
-.sm-drawer-close:active,
-.sm-drawer-theme-btn:active {
+.sm-drawer-icon-btn:active {
   transform: scale(0.92);
 }
 
-.light-mode .sm-drawer-theme-btn {
+.light-mode .sm-drawer-icon-btn {
   background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.1);
   color: #1c1917;
 }
 
-.light-mode .sm-drawer-close {
+.sm-drawer-close-btn {
   background: rgba(180, 112, 39, 0.12);
   border-color: rgba(180, 112, 39, 0.35);
-  color: #8c5218;
+  color: #b47027;
 }
 
-/* ── Corps défilable ── */
-.sm-drawer-body {
+/* ── Corps Défilable ── */
+.sm-drawer-scroll {
   flex: 1;
   overflow-y: auto;
-  padding: 14px 16px 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   -webkit-overflow-scrolling: touch;
 }
 
-.sm-drawer-body::-webkit-scrollbar {
-  width: 3px;
+.sm-drawer-scroll::-webkit-scrollbar {
+  width: 4px;
 }
-.sm-drawer-body::-webkit-scrollbar-thumb {
-  background: rgba(180, 112, 39, 0.3);
+.sm-drawer-scroll::-webkit-scrollbar-thumb {
+  background: rgba(180, 112, 39, 0.25);
   border-radius: 999px;
 }
 
-/* ── Carte Utilisateur Mobile dans le Drawer ── */
-.sm-drawer-user-card {
+/* ── Carte Profil Connecté ── */
+.sm-profile-card {
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(180, 112, 39, 0.12) 0%, rgba(16, 185, 129, 0.08) 100%);
+  border: 1.5px solid rgba(180, 112, 39, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.light-mode .sm-profile-card {
+  background: linear-gradient(135deg, rgba(180, 112, 39, 0.09) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border-color: rgba(180, 112, 39, 0.3);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.sm-profile-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(180, 112, 39, 0.12), rgba(16, 185, 129, 0.08));
-  border: 1.5px solid rgba(16, 185, 129, 0.45);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  gap: 12px;
 }
 
-.light-mode .sm-drawer-user-card {
-  background: linear-gradient(135deg, rgba(180, 112, 39, 0.08), rgba(16, 185, 129, 0.05));
-  border-color: rgba(16, 185, 129, 0.55);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-}
-
-.sm-drawer-user-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
-
-.sm-drawer-avatar-wrap {
+.sm-profile-avatar-box {
   position: relative;
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: #b47027;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 800;
+  box-shadow: 0 2px 10px rgba(180, 112, 39, 0.4);
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(180, 112, 39, 0.4);
 }
 
-.sm-drawer-avatar-img {
+.sm-profile-avatar-img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.sm-drawer-online-dot {
+.sm-profile-status-dot {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -429,29 +491,29 @@
   height: 11px;
   border-radius: 50%;
   background: #10b981;
-  border: 2px solid #0c0a09;
+  border: 2px solid #0d0b0a;
   box-shadow: 0 0 6px #10b981;
 }
 
-.light-mode .sm-drawer-online-dot {
-  border-color: #ffffff;
+.light-mode .sm-profile-status-dot {
+  border-color: #fafaf9;
 }
 
-.sm-drawer-user-details {
+.sm-profile-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
   min-width: 0;
+  gap: 2px;
 }
 
-.sm-drawer-user-title {
+.sm-profile-name-row {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.sm-drawer-user-fullname {
-  font-size: 0.85rem;
+.sm-profile-name {
+  font-size: 0.9rem;
   font-weight: 800;
   color: #f2ede8;
   overflow: hidden;
@@ -459,352 +521,454 @@
   white-space: nowrap;
 }
 
-.light-mode .sm-drawer-user-fullname {
+.light-mode .sm-profile-name {
   color: #1c1917;
 }
 
-.sm-drawer-badge-admin {
+.sm-profile-role-tag {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 800;
-  padding: 1px 6px;
+  padding: 1.5px 7px;
   border-radius: 999px;
   background: #b47027;
   color: #ffffff;
+  letter-spacing: 0.04em;
 }
 
-.sm-drawer-user-sub {
-  font-size: 0.7rem;
-  opacity: 0.7;
-  color: #f2ede8;
+.sm-profile-sub {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.6);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.light-mode .sm-drawer-user-sub {
-  color: #4b5563;
+.light-mode .sm-profile-sub {
+  color: #6b7280;
 }
 
-.sm-drawer-user-btn-main {
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: #b47027;
-  color: #050505;
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-decoration: none;
-  border: 1.5px solid #050505;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: transform 0.15s;
-}
-
-.sm-drawer-user-btn-main:active {
-  transform: scale(0.95);
-}
-
-/* ── Bannière Invité dans le Drawer ── */
-.sm-drawer-guest-banner {
+.sm-profile-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 11px 13px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 8px;
 }
 
-.light-mode .sm-drawer-guest-banner {
-  background: rgba(0, 0, 0, 0.03);
-  border-color: rgba(0, 0, 0, 0.08);
-}
-
-.sm-drawer-guest-title {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #f2ede8;
-}
-
-.light-mode .sm-drawer-guest-title {
-  color: #1c1917;
-}
-
-.sm-drawer-guest-sub {
-  font-size: 0.68rem;
-  opacity: 0.65;
-}
-
-.sm-drawer-guest-cta {
+.sm-profile-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: #b47027;
-  color: #050505;
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-/* ── Ligne d'accès rapide (Compte & Panier) ── */
-.sm-quick-row {
-  display: flex;
-  gap: 8px;
-}
-
-.sm-quick-pill {
-  flex: 1;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   padding: 8px 12px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  text-decoration: none;
-  color: #f2ede8;
+  font-size: 0.74rem;
+  font-weight: 700;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.76rem;
-  font-weight: 600;
-  transition: background 0.2s, border-color 0.2s;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.sm-quick-pill:active {
-  background: rgba(180, 112, 39, 0.08);
-  border-color: rgba(180, 112, 39, 0.3);
+.sm-profile-btn:active {
+  transform: scale(0.96);
 }
 
-.sm-quick-pill--active {
-  border-color: #b47027;
-  background: rgba(180, 112, 39, 0.08);
-  color: #b47027;
+.sm-profile-btn--primary {
+  flex: 1;
+  background: #b47027;
+  color: #050505;
+  border: 1.5px solid #050505;
 }
 
-.sm-quick-pill--logged {
-  border-color: rgba(16, 185, 129, 0.55);
+.light-mode .sm-profile-btn--primary {
+  border-color: #9a5f22;
 }
 
-.light-mode .sm-quick-pill {
-  background: rgba(0, 0, 0, 0.03);
+.sm-profile-btn--logout {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* ── Carte Invité (Non connecté) ── */
+.sm-guest-card {
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.light-mode .sm-guest-card {
+  background: rgba(0, 0, 0, 0.025);
   border-color: rgba(0, 0, 0, 0.08);
+}
+
+.sm-guest-badge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  color: #b47027;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.sm-guest-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #f2ede8;
+}
+
+.light-mode .sm-guest-title {
   color: #1c1917;
 }
 
-.light-mode .sm-quick-pill--active {
-  color: #8c5218;
-  border-color: #b47027;
+.sm-guest-desc {
+  margin: 4px 0 0;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.45;
 }
 
-.sm-quick-pill-label {
-  text-align: center;
+.light-mode .sm-guest-desc {
+  color: #6b7280;
 }
 
-.sm-quick-pill-count {
-  font-size: 0.64rem;
+.sm-guest-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.sm-guest-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 0.76rem;
   font-weight: 800;
-  padding: 1px 7px;
-  border-radius: 999px;
-  background: rgba(180, 112, 39, 0.2);
-  color: #b47027;
+  text-decoration: none;
+  transition: transform 0.15s ease;
 }
 
-/* ── Sections du menu ── */
+.sm-guest-btn:active {
+  transform: scale(0.96);
+}
+
+.sm-guest-btn--login {
+  background: #b47027;
+  color: #050505;
+  border: 1.5px solid #050505;
+}
+
+.sm-guest-btn--register {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f2ede8;
+}
+
+.light-mode .sm-guest-btn--register {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #1c1917;
+}
+
+/* ── Section & Headers ── */
 .sm-section {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
-.sm-section-label {
-  font-size: 0.62rem;
+.sm-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.sm-section-title {
+  font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.11em;
   color: #b47027;
   text-transform: uppercase;
-  margin-bottom: 2px;
-  padding-left: 2px;
 }
 
-.sm-services-list {
+.sm-section-subtitle {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.light-mode .sm-section-subtitle {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+/* ── Grille 2x2 des Pôles Stratégiques ── */
+.sm-poles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+
+.sm-pole-card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-/* ── Item de service clé (Numéro + Titre + Sous-titre) ── */
-.sm-service-item {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  padding: 9px 12px;
-  border-radius: 11px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  justify-content: space-between;
+  padding: 12px 11px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   text-decoration: none;
-  color: #f2ede8;
-  transition: background 0.18s, border-color 0.18s, transform 0.12s;
+  min-height: 100px;
+  transition: transform 0.15s ease, background 0.18s ease, border-color 0.18s ease;
 }
 
-.sm-service-item:active {
-  transform: scale(0.99);
-  background: rgba(180, 112, 39, 0.08);
-  border-color: rgba(180, 112, 39, 0.35);
-}
-
-.sm-service-item--active {
-  background: rgba(180, 112, 39, 0.09);
+.sm-pole-card:active {
+  transform: scale(0.97);
+  background: rgba(180, 112, 39, 0.1);
   border-color: rgba(180, 112, 39, 0.4);
 }
 
-.light-mode .sm-service-item {
-  background: rgba(0, 0, 0, 0.02);
-  border-color: rgba(0, 0, 0, 0.07);
-  color: #1c1917;
+.sm-pole-card--active {
+  background: rgba(180, 112, 39, 0.12);
+  border-color: rgba(180, 112, 39, 0.5);
 }
 
-.light-mode .sm-service-item--active {
-  background: rgba(180, 112, 39, 0.08);
+.light-mode .sm-pole-card {
+  background: rgba(0, 0, 0, 0.025);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .sm-pole-card--active {
+  background: rgba(180, 112, 39, 0.1);
   border-color: #b47027;
 }
 
-.sm-service-num {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.74rem;
-  font-weight: 900;
-  color: #b47027;
-  letter-spacing: 0.04em;
-  opacity: 0.88;
-  flex-shrink: 0;
-  min-width: 20px;
-}
-
-.sm-service-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.sm-service-top {
+.sm-pole-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6px;
+  margin-bottom: 8px;
 }
 
-.sm-service-title {
-  font-size: 0.84rem;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.25;
+.sm-pole-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.light-mode .sm-service-title {
-  color: #111111;
+.light-mode .sm-pole-icon-wrap {
+  background: rgba(0, 0, 0, 0.04);
 }
 
-.sm-service-badge {
+.sm-pole-badge {
   font-size: 0.56rem;
   font-weight: 800;
-  padding: 1px 6px;
+  padding: 1.5px 6px;
   border-radius: 999px;
   background: rgba(180, 112, 39, 0.16);
   color: #b47027;
-  border: 1px solid rgba(180, 112, 39, 0.28);
-  flex-shrink: 0;
+  border: 1px solid rgba(180, 112, 39, 0.3);
 }
 
-.sm-service-sub {
-  display: block;
-  font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.5);
-  margin-top: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.light-mode .sm-service-sub {
-  color: rgba(0, 0, 0, 0.52);
-}
-
-/* ── Liste de liens secondaires ── */
-.sm-links-list {
+.sm-pole-meta {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.sm-link-item {
+.sm-pole-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #f2ede8;
+  line-height: 1.25;
+}
+
+.light-mode .sm-pole-title {
+  color: #111111;
+}
+
+.sm-pole-desc {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.light-mode .sm-pole-desc {
+  color: #6b7280;
+}
+
+/* ── Liste de Navigation Générale ── */
+.sm-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sm-nav-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 10px;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.82rem;
-  font-weight: 500;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
 }
 
-.sm-link-item:active {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.sm-link-item--active {
-  color: #b47027;
+.sm-nav-row:active {
+  transform: scale(0.98);
   background: rgba(180, 112, 39, 0.08);
-  font-weight: 700;
+  border-color: rgba(180, 112, 39, 0.3);
 }
 
-.light-mode .sm-link-item {
-  color: rgba(0, 0, 0, 0.75);
+.sm-nav-row--active {
+  background: rgba(180, 112, 39, 0.1);
+  border-color: rgba(180, 112, 39, 0.45);
 }
 
-.light-mode .sm-link-item--active {
-  color: #8c5218;
+.light-mode .sm-nav-row {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.light-mode .sm-nav-row--active {
   background: rgba(180, 112, 39, 0.08);
+  border-color: #b47027;
 }
 
-.sm-link-label {
-  font-size: 0.82rem;
+.sm-nav-row-left {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
 }
 
-/* ── Carte Permanence & Urgences ── */
-.sm-security-card {
-  padding: 10px 14px;
-  border-radius: 11px;
-  background: rgba(180, 112, 39, 0.06);
-  border: 1px solid rgba(180, 112, 39, 0.2);
-}
-
-.sm-security-title {
-  font-size: 0.75rem;
-  font-weight: 700;
+.sm-nav-row-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: rgba(180, 112, 39, 0.14);
   color: #b47027;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.sm-security-sub {
+.sm-nav-row-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sm-nav-row-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #f2ede8;
+}
+
+.light-mode .sm-nav-row-label {
+  color: #1c1917;
+}
+
+.sm-nav-row-sub {
   font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.55);
-  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.light-mode .sm-security-sub {
-  color: rgba(0, 0, 0, 0.55);
+.light-mode .sm-nav-row-sub {
+  color: #71717a;
 }
 
-/* ── Footer Fixe du Drawer ── */
+.sm-nav-row-chevron {
+  color: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.light-mode .sm-nav-row-chevron {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.sm-nav-row:active .sm-nav-row-chevron {
+  transform: translateX(2px);
+}
+
+/* ── Bannière Clinique 24h/24 ── */
+.sm-clinic-banner {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.light-mode .sm-clinic-banner {
+  background: rgba(16, 185, 129, 0.04);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.sm-clinic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #10b981;
+}
+
+.sm-clinic-body strong {
+  display: block;
+  font-size: 0.78rem;
+  color: #f2ede8;
+  margin-bottom: 2px;
+}
+
+.light-mode .sm-clinic-body strong {
+  color: #1c1917;
+}
+
+.sm-clinic-body p {
+  margin: 0;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.45;
+}
+
+.light-mode .sm-clinic-body p {
+  color: #4b5563;
+}
+
+/* ── 3. PIED DU TIROIR (Thumb Zone) ── */
 .sm-drawer-footer {
-  padding: 12px 16px 14px;
+  padding: 14px 16px 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: #0d0b0a;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   flex-shrink: 0;
 }
 
@@ -813,41 +977,56 @@
   border-top-color: rgba(0, 0, 0, 0.08);
 }
 
-.sm-whatsapp-cta {
+/* Bouton WhatsApp Officiel */
+.sm-footer-whatsapp-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: #b47027;
-  color: #050505;
+  padding: 11px 16px;
+  border-radius: 12px;
+  background: #25d366;
+  color: #ffffff;
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
   font-size: 0.76rem;
-  font-style: italic;
   text-decoration: none;
-  letter-spacing: 0.03em;
-  border: 2px solid #ffffff;
-  box-shadow: 2.5px 2.5px 0px #050505;
-  transition: transform 0.15s;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.sm-whatsapp-cta:active {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px #050505;
+.sm-footer-whatsapp-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
 }
 
-.sm-footer-info {
+.sm-btn-ext-icon {
+  opacity: 0.8;
+}
+
+.sm-footer-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
   text-align: center;
-  margin-top: 6px;
-  margin-bottom: 0;
+}
+
+.sm-footer-phone-link {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #b47027;
+  text-decoration: none;
+}
+
+.sm-footer-address {
+  margin: 0;
   font-size: 0.62rem;
   color: rgba(255, 255, 255, 0.45);
 }
 
-.light-mode .sm-footer-info {
-  color: rgba(0, 0, 0, 0.5);
+.light-mode .sm-footer-address {
+  color: #6b7280;
 }
-
