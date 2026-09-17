@@ -267,26 +267,6 @@ export default function AccountClient() {
             >
               Retourner à la boutique
             </Link>
-
-            <Link
-              href="/admin"
-              style={{
-                marginTop: '0.8rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                color: '#b47027',
-                fontSize: '0.78rem',
-                fontWeight: 600,
-                textDecoration: 'underline',
-                textUnderlineOffset: '3px',
-                opacity: 0.85,
-              }}
-            >
-              <ShieldCheck size={14} />
-              <span>Accès réservé Direction & Staff (Back-Office)</span>
-            </Link>
           </div>
         </div>
       </div>
