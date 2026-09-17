@@ -162,8 +162,19 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
           </div>
         </TransitionLink>
 
-        {/* Actions à Droite : Panier + Profil + Menu */}
+        {/* Actions à Droite : Thème + Panier + Profil + Menu */}
         <div className="sm-header-actions">
+          {/* Bascule Thème Clair / Sombre */}
+          <button
+            onClick={T.toggle}
+            className="sm-icon-btn sm-theme-btn"
+            title={T.light ? 'Passer en mode sombre' : 'Passer en mode clair'}
+            type="button"
+            aria-label="Basculer le thème"
+          >
+            {T.light ? <Moon size={17} strokeWidth={1.75} /> : <Sun size={17} strokeWidth={1.75} />}
+          </button>
+
           {/* Bouton Panier */}
           <button
             onClick={handleOpenCart}
