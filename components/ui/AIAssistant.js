@@ -40,6 +40,26 @@ const SITE_REGEX = /https:\/\/agrovetoservices\.cg\/?/g
 const LINKEDIN_REGEX = /https:\/\/www\.linkedin\.com\/in\/[^\s]+/g
 const GITHUB_REGEX = /https:\/\/github\.com\/[^\s]+/g
 
+/* Nettoie et formate le texte pour éliminer les astérisques ** et styliser les éléments */
+function formatMessageText(text) {
+  if (!text) return ''
+  // Découper selon le pattern **gras**
+  const segments = text.split(/(\*\*.*?\*\*)/g)
+  return segments.map((seg, idx) => {
+    if (seg.startsWith('**') && seg.endsWith('**') && seg.length >= 4) {
+      const inner = seg.slice(2, -2)
+      return (
+        <strong key={idx} style={{ fontWeight: 700, color: 'inherit' }}>
+          {inner}
+        </strong>
+      )
+    }
+    // Nettoie tout astérisque résiduel isolé
+    const cleaned = seg.replace(/\*\*/g, '')
+    return cleaned
+  })
+}
+
 /* Détecte et transforme les liens en boutons cliquables */
 function renderMessageContent(text) {
   if (!text) return text
@@ -121,12 +141,36 @@ function renderMessageContent(text) {
       return <LinkButton key={i} url={url} label="Voir le lien" />
     }
 
-    // Texte normal
-    if (part.trim()) {
-      return <span key={i}>{part}</span>
+    // Texte normal ou liste à puces
+    const trimmed = part.trim()
+    if (trimmed) {
+      if (trimmed.startsWith('- ') || trimmed.startsWith('* ') || trimmed.startsWith('• ')) {
+        const bulletContent = trimmed.replace(/^[-*•]\s+/, '')
+        return (
+          <div
+            key={i}
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '8px',
+              margin: '3px 0 3px 6px',
+              lineHeight: 1.55,
+            }}
+          >
+            <span style={{ color: '#b47027', fontWeight: 800, lineHeight: 1.3, flexShrink: 0 }}>•</span>
+            <span style={{ flex: 1 }}>{formatMessageText(bulletContent)}</span>
+          </div>
+        )
+      }
+
+      return (
+        <span key={i} style={{ display: 'block', margin: '3px 0', lineHeight: 1.55 }}>
+          {formatMessageText(part)}
+        </span>
+      )
     }
 
-    return <br key={i} />
+    return <div key={i} style={{ height: '7px' }} />
   })
 }
 
