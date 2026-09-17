@@ -17,6 +17,7 @@ import { PROJECT_TYPE_LABELS } from '@/lib/data'
 import { getOrCreateConversation, saveMessage, saveLead } from '@/lib/db'
 
 export const runtime = 'nodejs'
+export const maxDuration = 60
 
 /* ── Rate limiting en mémoire ── */
 const { isRateLimited, pruneOldEntries } = createRateLimiter(60_000, 15)
@@ -290,6 +291,7 @@ export async function POST(request) {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'no-cache, no-transform',
+      'X-Accel-Buffering': 'no',
     },
   })
 }
