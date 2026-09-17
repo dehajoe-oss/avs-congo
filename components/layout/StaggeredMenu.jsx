@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import {
-  Moon, Sun, ShoppingCart, X, Menu, ArrowRight
+  Moon, Sun, ShoppingCart, X, Menu, ArrowRight, User, ShieldCheck
 } from 'lucide-react'
 import Logo from '@/components/ui/Logo'
 import { useTheme } from '@/lib/theme'
@@ -146,6 +146,43 @@ export default function StaggeredMenu({ items = [], isActive: externalIsActive, 
             )}
           </button>
 
+          {/* Bouton Compte Client (Mobile) — Avatar + prénom si connecté */}
+          {currentUser ? (
+            <TransitionLink
+              href="/mon-compte"
+              className="sm-header-user-btn sm-header-user-btn--logged"
+              title={`Connecté : ${currentUser.fullName || currentUser.name || 'Mon Compte'}`}
+              aria-label={`Compte connecté : ${currentUser.fullName || currentUser.name || 'Mon Compte'}`}
+              onClick={closeMenu}
+            >
+              <span className="sm-header-user-avatar">
+                {currentUser.avatar ? (
+                  <img
+                    src={currentUser.avatar}
+                    alt=""
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  />
+                ) : (
+                  ((currentUser.fullName || currentUser.name || 'U').charAt(0).toUpperCase())
+                )}
+                <span className="sm-header-user-dot" />
+              </span>
+              <span className="sm-header-user-name">
+                {((currentUser.fullName || currentUser.name || 'Compte').split(' ')[0])}
+              </span>
+            </TransitionLink>
+          ) : (
+            <TransitionLink
+              href="/connexion"
+              className="sm-header-user-btn sm-header-user-btn--guest"
+              title="Se connecter à mon compte"
+              aria-label="Se connecter à mon compte"
+              onClick={closeMenu}
+            >
+              <User size={16} />
+            </TransitionLink>
+          )}
+
           {/* Bouton Menu Toggle */}
           <button
             className={'sm-toggle-btn' + (open ? ' sm-toggle-btn--open' : '')}
@@ -215,18 +252,77 @@ export default function StaggeredMenu({ items = [], isActive: externalIsActive, 
 
               {/* Drawer Scrollable Content */}
               <div className="sm-drawer-body">
-                {/* ── Accès Rapide : Compte & Panier épuré ── */}
+                {/* ── Profil Utilisateur Mobile (Connecté vs Visiteur) ── */}
+                {currentUser ? (
+                  <div className="sm-drawer-user-card">
+                    <div className="sm-drawer-user-left">
+                      <div className="sm-drawer-avatar-wrap">
+                        {currentUser.avatar ? (
+                          <img
+                            src={currentUser.avatar}
+                            alt=""
+                            className="sm-drawer-avatar-img"
+                            onError={(e) => { e.currentTarget.style.display = 'none' }}
+                          />
+                        ) : (
+                          <span className="sm-drawer-avatar-char">
+                            {((currentUser.fullName || currentUser.name || 'U').charAt(0).toUpperCase())}
+                          </span>
+                        )}
+                        <span className="sm-drawer-online-dot" />
+                      </div>
+                      <div className="sm-drawer-user-details">
+                        <div className="sm-drawer-user-title">
+                          <span className="sm-drawer-user-fullname">
+                            {currentUser.fullName || currentUser.name || 'Client AVS'}
+                          </span>
+                          {(currentUser.role === 'ADMIN' || currentUser.role === 'STAFF') && (
+                            <span className="sm-drawer-badge-admin">
+                              <ShieldCheck size={11} />
+                              {currentUser.role}
+                            </span>
+                          )}
+                        </div>
+                        <div className="sm-drawer-user-sub">
+                          {currentUser.phone || currentUser.email || 'Session active'}
+                        </div>
+                      </div>
+                    </div>
+
+                    <TransitionLink
+                      href="/mon-compte"
+                      className="sm-drawer-user-btn-main"
+                      onClick={closeMenu}
+                    >
+                      Mon Espace
+                    </TransitionLink>
+                  </div>
+                ) : (
+                  <div className="sm-drawer-guest-banner">
+                    <div className="sm-drawer-guest-info">
+                      <div className="sm-drawer-guest-title">Espace Client Éleveur</div>
+                      <div className="sm-drawer-guest-sub">Suivez vos commandes, poussins & devis</div>
+                    </div>
+                    <TransitionLink
+                      href="/connexion"
+                      className="sm-drawer-guest-cta"
+                      onClick={closeMenu}
+                    >
+                      <User size={14} />
+                      <span>Connexion</span>
+                    </TransitionLink>
+                  </div>
+                )}
+
+                {/* ── Accès Rapide : Compte & Panier ── */}
                 <div className="sm-quick-row">
                   <TransitionLink
                     href="/mon-compte"
-                    className={'sm-quick-pill' + (isActive('/mon-compte') ? ' sm-quick-pill--active' : '') + (currentUser ? ' sm-quick-pill--logged' : '')}
+                    className={'sm-quick-pill' + (isActive('/mon-compte') ? ' sm-quick-pill--active' : '')}
                     onClick={closeMenu}
                   >
-                    {currentUser && (
-                      <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981', display: 'inline-block', flexShrink: 0 }} />
-                    )}
                     <span className="sm-quick-pill-label">
-                      {currentUser ? ((currentUser.fullName || currentUser.name || 'Mon Compte').split(' ')[0]) : 'Mon Compte'}
+                      {currentUser ? 'Mes Commandes & Profil' : 'Mon Compte'}
                     </span>
                   </TransitionLink>
 
