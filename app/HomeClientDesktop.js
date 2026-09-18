@@ -30,91 +30,7 @@ if (typeof window !== 'undefined') {
 
 const ICON_MAP = { Globe, ShoppingCart, Cpu, Server, Palette, Wrench, Map, MapPin }
 
-// ── HERO (inchangé) ───────────────────────────────────────────
-// ── CIRCULAR PROJECTS GALLERY (inspiré Aeline/Catalis) ────────
-function CircularProjectsGallery() {
-  const T = useTheme()
-  const GALLERY_ITEMS = [
-    ...PROJECTS.filter(p => p.id === 15 || p.id === 18),
-    ...PROJECTS.filter(p => p.id === 17 || p.id === 16),
-    ...PROJECTS.filter(p => p.id === 12),
-    ...PROJECTS.filter(p => p.id === 19),
-  ]
-  const [active, setActive] = useState(0)
-  const reduceMotion = useReducedMotion()
-
-  useEffect(() => {
-    if (reduceMotion) return // pas de rotation auto si l'utilisateur préfère moins de mouvement
-    const id = setInterval(() => setActive(a => (a + 1) % GALLERY_ITEMS.length), 2800)
-    return () => clearInterval(id)
-  }, [GALLERY_ITEMS.length, reduceMotion])
-
-  // Position relative de chaque carte par rapport à `active` (-2..-1..0..1..2)
-  const order = GALLERY_ITEMS.map((_, i) => {
-    let rel = i - active
-    if (rel > GALLERY_ITEMS.length / 2) rel -= GALLERY_ITEMS.length
-    if (rel < -GALLERY_ITEMS.length / 2) rel += GALLERY_ITEMS.length
-    return rel
-  })
-
-  // Ratio natif 1600×815 ≈ 1.96:1
-  const CARD_W = 340
-  const CARD_H = Math.round(340 * (815 / 1600))  // ≈ 173px
-  const STEP   = CARD_W * 0.72                    // espacement entre centres
-
-  return (
-    <div style={{ position: 'relative', height: CARD_H + 60, width: '100%', maxWidth: '100vw', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: 1200 }}>
-      {GALLERY_ITEMS.map((p, i) => {
-        const rel    = order[i]
-        const abs    = Math.abs(rel)
-        const x      = rel * STEP
-        const y      = abs * 14
-        const rot    = rel * 8
-        const scale  = 1 - abs * 0.13
-        const opacity = abs > 2 ? 0 : 1 - abs * 0.18
-        const isActive = rel === 0
-
-        return (
-          <motion.div key={p.id}
-            animate={{ x, y, rotate: rot, scale, opacity }}
-            transition={{ duration: .9, ease: [.22,1,.36,1] }}
-            onClick={() => setActive(i)}
-            style={{
-              position: 'absolute',
-              width: CARD_W,
-              height: CARD_H,
-              borderRadius: 10,
-              overflow: 'hidden',
-              zIndex: 10 - abs,
-              cursor: 'pointer',
-              border: isActive
-                ? '1.5px solid rgba(180, 112, 39,.6)'
-                : '1px solid rgba(255,255,255,.1)',
-              boxShadow: isActive
-                ? '0 0 0 3px rgba(180, 112, 39,.15), 0 12px 36px rgba(0,0,0,.6)'
-                : '0 6px 20px rgba(0,0,0,.4)',
-              transformStyle: 'preserve-3d',
-            }}>
-            <LazyImg
-              src={p.img}
-              alt={p.title}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 50%' }}
-            />
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.25) 35%, transparent 60%)',
-              pointerEvents: 'none',
-            }} />
-            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '.7rem 1rem' }}>
-              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.8rem', fontWeight: 700, color: '#fff', letterSpacing: '-.01em', lineHeight: 1.2 }}><HoverSlideText text={p.title} /></div>
-              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.65rem', color: 'rgba(180, 112, 39,.9)', marginTop: '.1rem' }}>{p.type}</div>
-            </div>
-          </motion.div>
-        )
-      })}
-    </div>
-  )
-}
+// ── HERO ─────────────────────────────────────────────────────
 
 
 // ── Slogan Hero — accroche fixe et bénéfice-driven (plus de cycle),
@@ -175,7 +91,6 @@ function Hero() {
   const midScrollRef       = useRef(null)
   const layerMidRef        = useRef(null)
   const layerForeRef       = useRef(null)
-  const galleryRef         = useRef(null)
   const scrollIndicatorRef = useRef(null)
 
   useEffect(() => {
@@ -196,7 +111,6 @@ function Hero() {
       }
       apply(layerBgRef.current,   0.15)
       apply(layerMidRef.current,  0.35, true)
-      apply(galleryRef.current,   0.25, true)
     }
     window.addEventListener('mousemove', onMouse)
     return () => window.removeEventListener('mousemove', onMouse)
@@ -239,10 +153,6 @@ function Hero() {
           layerForeRef.current.style.transform = `translate3d(0, ${(-scrollY * 0.35).toFixed(1)}px, 0)`
           layerForeRef.current.style.opacity = String(Math.max(0, 1 - progress * 2.2))
         }
-        // Galerie circulaire d'aperçu
-        if (galleryRef.current) {
-          galleryRef.current.style.opacity = String(Math.max(0, 1 - progress * 2.2))
-        }
         // Indicateur Scroll
         if (scrollIndicatorRef.current) {
           scrollIndicatorRef.current.style.opacity = String(Math.max(0, 0.32 - progress * 3.5))
@@ -255,7 +165,7 @@ function Hero() {
   }, [])
 
   return (
-    <section id="home-hero" ref={wrapRef} style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, zIndex: 1, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingBottom: 'clamp(70px, 9vh, 100px)' }}>
+    <section id="home-hero" ref={wrapRef} style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, zIndex: 1, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingBottom: '2rem' }}>
 
       <div ref={bgScrollRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
         <div ref={layerBgRef} suppressHydrationWarning style={{ position: 'absolute', inset: '-4%', width: '108%', height: '108%', transition: 'transform .1s ease-out' }}>
@@ -337,13 +247,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* Aperçu de la CIRCULAR PROJECTS GALLERY ancrée en bas du Hero */}
-      <div ref={galleryRef} suppressHydrationWarning style={{ position: 'absolute', left: 0, right: 0, bottom: '-123px', zIndex: 11, transition: 'transform .1s ease-out' }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .55 }}>
-          <CircularProjectsGallery />
-        </motion.div>
-      </div>
-
       <div ref={layerForeRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', transition: 'transform .1s ease-out' }}>
         {[
           { left: '12%', top: '22%', s: 4, op: .22, dur: 3.8, dy: 0 },
@@ -361,7 +264,7 @@ function Hero() {
         ))}
       </div>
 
-      <div ref={scrollIndicatorRef} suppressHydrationWarning style={{ position: 'absolute', bottom: '140px', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: .28, zIndex: 15, pointerEvents: 'none' }}>
+      <div ref={scrollIndicatorRef} suppressHydrationWarning style={{ position: 'absolute', bottom: '1.8rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: .28, zIndex: 15, pointerEvents: 'none' }}>
         <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: '.4rem', color: '#fff' }}>Scroll</span>
         <motion.div animate={{ scaleY: [1, 1.4, 1], opacity: [.5, 1, .5] }} transition={{ duration: 1.6, repeat: Infinity }}
           style={{ width: 1, height: 36, background: 'rgba(255, 255, 255, 0.3)' }} />

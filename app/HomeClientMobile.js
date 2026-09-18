@@ -329,7 +329,6 @@ function Hero() {
   const bgScrollRef        = useRef(null)
   const midScrollRef       = useRef(null)
   const layerForeRef       = useRef(null)
-  const galleryRef         = useRef(null)
   const scrollIndicatorRef = useRef(null)
 
   useEffect(() => {
@@ -364,10 +363,6 @@ function Hero() {
           midScrollRef.current.style.transform = `translate3d(0, ${(-scrollY * 0.14).toFixed(1)}px, 0) scale(${scale.toFixed(3)})`
           midScrollRef.current.style.opacity = String(Math.max(0, 1 - progress * 1.5))
         }
-        // Galerie circulaire d'aperçu
-        if (galleryRef.current) {
-          galleryRef.current.style.opacity = String(Math.max(0, 1 - progress * 2.2))
-        }
         // Particules d'avant-plan
         if (layerForeRef.current) {
           layerForeRef.current.style.transform = `translate3d(0, ${(-scrollY * 0.28).toFixed(1)}px, 0)`
@@ -385,7 +380,7 @@ function Hero() {
   }, [])
 
   return (
-    <section id="home-hero" ref={wrapRef} style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, zIndex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingTop: '68px', paddingBottom: '60px', boxSizing: 'border-box' }}>
+    <section id="home-hero" ref={wrapRef} style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, zIndex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingTop: '68px', paddingBottom: '20px', boxSizing: 'border-box' }}>
 
       <div ref={bgScrollRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
         <div style={{ position: 'absolute', inset: '-4%', width: '108%', height: '108%' }}>
@@ -458,13 +453,6 @@ function Hero() {
           </motion.div>
         </motion.div>
 
-      </div>
-
-      {/* Aperçu de la CIRCULAR PROJECTS GALLERY ancrée en bas */}
-      <div ref={galleryRef} suppressHydrationWarning style={{ position: 'absolute', left: 0, right: 0, bottom: '-75px', zIndex: 11, transition: 'transform .1s ease-out' }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .55 }}>
-          <CircularProjectsGallery />
-        </motion.div>
       </div>
 
       <div ref={layerForeRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', transition: 'transform .1s ease-out' }}>
