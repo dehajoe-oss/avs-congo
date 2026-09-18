@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useEffect, useState, useCallback } from 'react'
+import { useRef, useEffect, useState, useCallback, useId } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
@@ -468,7 +468,8 @@ export function PageCTA({ message, cta, href = 'https://wa.me/242069677567' }) {
 // puis pulse en boucle. S'adapte à la largeur du texte.
 // Usage : <GreenUnderline>Votre texte vert</GreenUnderline>
 export function GreenUnderline({ children, style = {}, color = '#b47027' }) {
-  const uid = useRef(`gu${Math.random().toString(36).slice(2,6)}`).current
+  const reactId = useId()
+  const uid = reactId.replace(/[^a-zA-Z0-9_-]/g, '')
   const totalLen = 380 // longueur approximative du nouveau path (02 / Original Path B)
   const pathD = "M5 24.2592C26.233 20.2879 47.7083 16.9968 69.135 13.8421C98.0469 9.5853 128.407 4.02322 158.059 5.14674C172.583 5.69708 187.686 8.66104 201.598 11.9696C207.232 13.3093 215.437 14.9471 220.137 18.3619C224.401 21.4596 220.737 25.6575 217.184 27.6168C208.309 32.5097 197.199 34.281 186.698 34.8486C183.159 35.0399 147.197 36.2657 155.105 26.5837C158.11 22.9053 162.993 20.6229 167.764 18.7924C178.386 14.7164 190.115 12.1115 201.624 10.3984C218.367 7.90626 235.528 7.06127 252.521 7.49276C258.455 7.64343 264.389 7.92791 270.295 8.41825C280.321 9.25056 296 10.8932 305 13.0242"
 
