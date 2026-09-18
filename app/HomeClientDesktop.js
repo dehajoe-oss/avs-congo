@@ -72,7 +72,7 @@ function HeroSloganCycle() {
         <motion.p key={index}
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
           transition={{ duration: .45, ease: 'easeOut' }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.9rem,4.4vw,3.2rem)', lineHeight: 1.18, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '4px 4px 0px rgba(0,0,0,.68), 0 2px 28px rgba(0,0,0,.85)', textAlign: 'left', margin: 0 }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.9rem,4.4vw,3.2rem)', lineHeight: 1.18, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textAlign: 'left', margin: 0 }}>
           {before}
           <span style={{ display: 'inline-block', background: '#b47027', color: '#050505', padding: '.1em .35em', border: '3px solid #050505', borderRadius: '.18em', boxShadow: '5px 5px 0px rgba(0,0,0,.7), 0 0 32px var(--pop-lime-glow)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
             {highlight}
@@ -185,14 +185,14 @@ function Hero() {
         <div className="halftone-bg" style={{ position: 'absolute', top: 0, right: 0, width: '45%', height: '55%', opacity: .12, WebkitMaskImage: 'none', maskImage: 'none' }} />
       </div>
 
-      <div ref={midScrollRef} suppressHydrationWarning style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '5rem 5% 2rem', textAlign: 'left', background: 'radial-gradient(ellipse at 30% 50%, rgba(0,0,0,.55) 0%, rgba(0,0,0,.22) 65%, transparent 85%)' }}>
+      <div ref={midScrollRef} suppressHydrationWarning style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '5rem 5% 2rem', textAlign: 'left', background: 'transparent' }}>
         <div ref={layerMidRef} suppressHydrationWarning style={{ transition: 'transform .1s ease-out' }}>
 
         <HeroSloganCycle />
 
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.02rem', color: '#fff', maxWidth: 680, margin: '0 0 1.7rem', textAlign: 'left', lineHeight: 1.6, textShadow: '0 1px 14px rgba(0,0,0,.95), 0 0 3px rgba(0,0,0,.9)' }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.02rem', color: '#fff', maxWidth: 680, margin: '0 0 1.7rem', textAlign: 'left', lineHeight: 1.6 }}>
           Clinique vétérinaire 24/7, provenderie certifiée, poussins Cobb 500 et conseil QHSE à Pointe-Noire.
         </motion.p>
 
@@ -209,10 +209,10 @@ function Hero() {
             ))}
           </AvatarGroup>
           <div style={{ textAlign: 'left' }}>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.85rem', color: '#fff', lineHeight: 1.15, textShadow: '0 1px 10px rgba(0,0,0,.9)' }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontStyle: 'italic', fontWeight: 900, fontSize: '.85rem', color: '#fff', lineHeight: 1.15 }}>
               Éleveurs & PME partenaires
             </div>
-            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', color: '#f0b35e', fontWeight: 700, textShadow: '0 1px 10px rgba(0,0,0,.9)' }}>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.68rem', color: '#f0b35e', fontWeight: 700 }}>
               {PROJECTS.length}+ réalisations & intrants de pointe
             </div>
           </div>
@@ -238,7 +238,7 @@ function Hero() {
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             style={{ display: 'inline-block', borderRadius: 999 }}>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#f5c57a', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', border: '3px solid #b47027', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)', textShadow: '0 1px 8px rgba(0,0,0,.8)' }}>
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#f5c57a', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', border: '3px solid #b47027', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
               <HoverSlideText text="Nous contacter" />
             </Link>
           </motion.div>
