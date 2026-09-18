@@ -871,3 +871,30 @@ body.light-mode .cta-circle-btn:hover .cta-circle-label { color: #9a5f22; }
   color: var(--pop-orange, #b47027); letter-spacing: .3em; text-transform: uppercase; margin: 0 0 .9rem;
 }
 .hr-desc { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.7; margin: 0; }
+
+/* ══════════════════════════════════════
+   STATS SECTION LAYOUTS
+══════════════════════════════════════ */
+.stats-quinconce {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto auto;
+  row-gap: 1rem;
+  column-gap: 0;
+}
+@media (max-width: 760px) {
+  .stats-quinconce {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: unset;
+  }
+  .stats-quinconce > div {
+    grid-column: span 1 !important;
+    grid-row: unset !important;
+  }
+}
+
+.stats-editorial-mobile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}

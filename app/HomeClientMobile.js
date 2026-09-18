@@ -590,13 +590,6 @@ function StatsSection() {
       <div style={{ position: 'absolute', top: 0, left: '5%', right: '5%', height: 1, background: T.border }} />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
-        <style>{`
-          .stats-editorial-mobile {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-          }
-        `}</style>
         <div className="stats-editorial-mobile">
           {HOME_STATS.map((s, i) => (
             <motion.div key={s.label}

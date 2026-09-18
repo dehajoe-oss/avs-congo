@@ -1190,26 +1190,6 @@ function StatsSection() {
       <div style={{ position: 'absolute', top: 0, left: '5%', right: '5%', height: 1, background: T.border }} />
 
       <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <style>{`
-          .stats-quinconce {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: auto auto;
-            row-gap: 1rem;
-            column-gap: 0;
-          }
-          @media (max-width: 760px) {
-            .stats-quinconce {
-              grid-template-columns: 1fr 1fr;
-              grid-template-rows: unset;
-            }
-            .stats-quinconce > div {
-              grid-column: span 1 !important;
-              grid-row: unset !important;
-            }
-          }
-        `}</style>
-
         <div className="stats-quinconce">
           {HOME_STATS.map((s, i) => (
             <motion.div
