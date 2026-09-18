@@ -67,12 +67,12 @@ function HeroSloganCycle() {
   const { before, highlight } = HERO_SLOGANS[index]
 
   return (
-    <div style={{ marginBottom: '2.2rem', maxWidth: 800, marginLeft: 'auto', marginRight: 'auto', minHeight: 'clamp(4.5rem,11vw,7.6rem)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ marginBottom: '2.2rem', maxWidth: 800, marginLeft: 0, marginRight: 'auto', minHeight: 'clamp(4.5rem,11vw,7.6rem)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
       <AnimatePresence mode="wait">
         <motion.p key={index}
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
           transition={{ duration: .45, ease: 'easeOut' }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.9rem,4.4vw,3.2rem)', lineHeight: 1.18, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '4px 4px 0px rgba(0,0,0,.68), 0 2px 28px rgba(0,0,0,.85)', textAlign: 'center', margin: 0 }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(1.9rem,4.4vw,3.2rem)', lineHeight: 1.18, letterSpacing: '-.02em', textTransform: 'uppercase', color: '#fff', textShadow: '4px 4px 0px rgba(0,0,0,.68), 0 2px 28px rgba(0,0,0,.85)', textAlign: 'left', margin: 0 }}>
           {before}
           <span style={{ display: 'inline-block', background: '#b47027', color: '#050505', padding: '.1em .35em', border: '3px solid #050505', borderRadius: '.18em', boxShadow: '5px 5px 0px rgba(0,0,0,.7), 0 0 32px var(--pop-lime-glow)', textShadow: 'none', transform: 'rotate(-2deg)' }}>
             {highlight}
@@ -185,20 +185,20 @@ function Hero() {
         <div className="halftone-bg" style={{ position: 'absolute', top: 0, right: 0, width: '45%', height: '55%', opacity: .12, WebkitMaskImage: 'none', maskImage: 'none' }} />
       </div>
 
-      <div ref={midScrollRef} suppressHydrationWarning style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '5rem 5% 2rem', textAlign: 'center', background: 'radial-gradient(ellipse at center, rgba(0,0,0,.42) 0%, rgba(0,0,0,.22) 55%, transparent 78%)' }}>
+      <div ref={midScrollRef} suppressHydrationWarning style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '5rem 5% 2rem', textAlign: 'left', background: 'radial-gradient(ellipse at 30% 50%, rgba(0,0,0,.55) 0%, rgba(0,0,0,.22) 65%, transparent 85%)' }}>
         <div ref={layerMidRef} suppressHydrationWarning style={{ transition: 'transform .1s ease-out' }}>
 
         <HeroSloganCycle />
 
         <motion.p
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .35 }}
-          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.02rem', color: '#fff', maxWidth: 680, margin: '0 auto 1.7rem', lineHeight: 1.6, textShadow: '0 1px 14px rgba(0,0,0,.95), 0 0 3px rgba(0,0,0,.9)' }}>
+          style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.02rem', color: '#fff', maxWidth: 680, margin: '0 0 1.7rem', textAlign: 'left', lineHeight: 1.6, textShadow: '0 1px 14px rgba(0,0,0,.95), 0 0 3px rgba(0,0,0,.9)' }}>
           Clinique vétérinaire 24/7, provenderie certifiée, poussins Cobb 500 et conseil QHSE à Pointe-Noire.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .4 }}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.85rem', marginBottom: '1.9rem' }}>
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '.85rem', marginBottom: '1.9rem' }}>
           <AvatarGroup spacing={-11}>
             {TESTIMONIALS.map(c => (
               <Avatar key={c.name}>
@@ -220,7 +220,7 @@ function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .45 }}
-          style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center', position: 'relative', zIndex: 30 }}>
+          style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'flex-start', position: 'relative', zIndex: 30 }}>
           <motion.div
             initial={{ boxShadow: '5px 5px 0px #050505' }}
             whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(180, 112, 39,.45)' }}
