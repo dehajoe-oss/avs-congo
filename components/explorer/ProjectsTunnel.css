@@ -1,4 +1,4 @@
-﻿/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    ProjectsTunnel.css — mode Explorer AKATech
    Port du tunnel WebGL (App.jsx / elvis-portfolio),
    reskinné aux couleurs et à la police du site.
@@ -127,5 +127,5 @@
   background: #b47027;
   color: #04140a; font-family: 'Poppins', sans-serif;
   font-weight: 700; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase;
-  padding: .85rem 1.6rem; border-radius: 999px; text-decoration: none;
+  padding: .85rem 1.6rem; border-radius: 8px; text-decoration: none;
 }

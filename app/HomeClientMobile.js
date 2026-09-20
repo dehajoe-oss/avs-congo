@@ -1392,7 +1392,7 @@ function ProjectFormHome() {
                 </motion.div>
                 <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.1rem', color: T.textMain, marginBottom: '.7rem' }}>Message envoyé !</h3>
                 <p style={{ color: T.textSub, fontSize: '.85rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. On répond en moins de 24h directement par email — à très vite !</p>
-                <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' }) }} style={{ marginTop: '1.4rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.5rem 1.2rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.76rem', cursor: 'pointer' }}>Envoyer un autre message</button>
+                <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' }) }} style={{ marginTop: '1.4rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 6, padding: '.5rem 1.2rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.76rem', cursor: 'pointer' }}>Envoyer un autre message</button>
               </motion.div>
             ) : (
               <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

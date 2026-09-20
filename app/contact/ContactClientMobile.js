@@ -272,7 +272,7 @@ function ProjectForm() {
                     Votre message a bien été transmis à l'équipe AVS Congo. Nous vous répondrons dans les plus brefs délais.
                   </p>
                   <button type="button" onClick={() => { setSent(false); setForm({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' }) }}
-                    style={{ marginTop: '1.5rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.6rem 1.4rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.8rem', cursor: 'pointer' }}>
+                    style={{ marginTop: '1.5rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 6, padding: '.6rem 1.4rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.8rem', cursor: 'pointer' }}>
                     Envoyer une autre demande
                   </button>
                 </motion.div>

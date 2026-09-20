@@ -123,8 +123,8 @@ body.light-mode .sku-card:hover {
   font-weight: 900;
   font-style: italic;
   font-size: .88rem;
-  border-radius: 999px;
-  border: 3px solid #fff;
+  border-radius: 8px;
+  border: 3px solid var(--pop-black);
   cursor: pointer;
   box-shadow: 4px 4px 0px var(--pop-black);
   transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s cubic-bezier(.34,1.56,.64,1);
@@ -153,7 +153,7 @@ body.light-mode .sku-card:hover {
   font-weight: 900;
   font-style: italic;
   font-size: .88rem;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 3px solid var(--pop-lime);
   box-shadow: 4px 4px 0px var(--pop-black);
   cursor: pointer;
@@ -169,6 +169,7 @@ body.light-mode .sku-card:hover {
   padding: .5rem 1.15rem;
   font-size: .7rem;
   gap: .4rem;
+  border-radius: 6px;
   box-shadow: 2px 2px 0px var(--pop-black);
 }
 .btn-raised.btn-sm:hover, .btn-ghost.btn-sm:hover { box-shadow: 4px 5px 0px var(--pop-black), 0 0 18px var(--pop-lime-glow); }
@@ -183,6 +184,7 @@ body.light-mode .btn-raised.btn-sm:active, body.light-mode .btn-ghost.btn-sm:act
   padding: 1.35rem 2.8rem;
   font-size: clamp(1rem, 1.7vw, 1.32rem);
   gap: .8rem;
+  border-radius: 10px;
   border-width: 3px;
   box-shadow: 6px 6px 0px var(--pop-black);
 }
@@ -237,11 +239,11 @@ body.light-mode .btn-ghost:active {
 }
 
 /* Sous 1024px (seuil du switch Desktop/Mobile) : même identité que le
-   desktop (pilule complète, contour + ombre noirs) — juste sans le
+   desktop (rectangle arrondi, contour + ombre noirs) — juste sans le
    rebond/rotation ressort au survol, pensé souris, pas tactile. */
 @media (max-width: 1023px) {
   .btn-raised {
-    border-radius: 999px;
+    border-radius: 6px;
     border: 3px solid var(--pop-black);
     box-shadow: 3px 3px 0px var(--pop-black);
     background: #b47027;
@@ -254,7 +256,7 @@ body.light-mode .btn-ghost:active {
   .btn-raised:active { transform: translateY(0); box-shadow: 2px 2px 0px var(--pop-black); }
 
   .btn-ghost {
-    border-radius: 999px;
+    border-radius: 6px;
     border: 3px solid var(--pop-lime);
     box-shadow: 3px 3px 0px var(--pop-black);
     color: var(--pop-lime);
@@ -410,8 +412,8 @@ body.light-mode .ghost-title-wrap {
   width: 100%;
   text-align: center;
   padding: .78rem 1rem;
-  border-radius: 999px;
-  border: 3px solid #fff;
+  border-radius: 8px;
+  border: 3px solid var(--pop-black);
   box-shadow: 3px 3px 0px var(--pop-black);
   font-family: 'Poppins', sans-serif;
   font-weight: 900;

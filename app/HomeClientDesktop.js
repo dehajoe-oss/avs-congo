@@ -1136,7 +1136,7 @@ function ArchiveTunnelSection() {
                       <ArrowRight size={16} />
                     </a>
                   ) : (
-                    <div style={{ width: '100%', maxWidth: 260, textAlign: 'center', padding: '.95rem 1rem', borderRadius: 999, border: '2px solid #050505', boxShadow: '4px 4px 0px #050505', background: 'rgba(255,255,255,.12)', color: '#fff', fontFamily: "'Poppins', sans-serif", fontSize: '.79rem' }}>
+                    <div style={{ width: '100%', maxWidth: 260, textAlign: 'center', padding: '.95rem 1rem', borderRadius: 8, border: '2px solid #050505', boxShadow: '4px 4px 0px #050505', background: 'rgba(255,255,255,.12)', color: '#fff', fontFamily: "'Poppins', sans-serif", fontSize: '.79rem' }}>
                       Bientôt en ligne
                     </div>
                   )}
@@ -1600,7 +1600,7 @@ function ProjectFormHome() {
                   </motion.div>
                   <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.3rem', color: T.textMain, marginBottom: '.8rem' }}>Message envoyé !</h3>
                   <p style={{ color: T.textSub, fontSize: '.88rem', lineHeight: 1.7 }}>Votre demande a bien été reçue. Notre équipe vous répond sous 24h ouvrées — à très vite !</p>
-                  <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' }) }} style={{ marginTop: '1.6rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 999, padding: '.55rem 1.3rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', cursor: 'pointer' }}>Envoyer un autre message</button>
+                  <button type="button" onClick={() => { setSent(false); setError(''); setForm({ name: '', organization: '', email: '', phone: '', service: '', message: '', website_trap: '' }) }} style={{ marginTop: '1.6rem', background: 'transparent', border: `1px solid ${T.border}`, borderRadius: 8, padding: '.55rem 1.3rem', color: T.textSub, fontFamily: "'Poppins', sans-serif", fontSize: '.78rem', cursor: 'pointer' }}>Envoyer un autre message</button>
                 </motion.div>
               ) : (
                 <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
