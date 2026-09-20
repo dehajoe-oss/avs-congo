@@ -226,9 +226,9 @@ function Hero() {
             whileHover={{ x: -3, y: -6, rotate: -1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(180, 112, 39,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-            style={{ display: 'inline-block', borderRadius: 999 }}>
+            style={{ display: 'inline-block', borderRadius: 8 }}>
             <Link href="/services"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#b47027', padding: '1rem 2.1rem', borderRadius: 999, border: '3px solid #fff' }}>
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#050505', background: '#b47027', padding: '1rem 2.1rem', borderRadius: 8, border: '3px solid #050505' }}>
               <HoverSlideText text="Découvrir nos services" /> <ArrowRight size={16} />
             </Link>
           </motion.div>
@@ -237,8 +237,8 @@ function Hero() {
             whileHover={{ x: -3, y: -6, rotate: 1.5, scale: 1.04, boxShadow: '8px 11px 0px #050505, 0 0 32px rgba(180, 112, 39,.45)' }}
             whileTap={{ x: 1, y: 1, rotate: 0, scale: .97, boxShadow: '2px 2px 0px #050505' }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-            style={{ display: 'inline-block', borderRadius: 999 }}>
-            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#f5c57a', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', border: '3px solid #b47027', borderRadius: 999, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
+            style={{ display: 'inline-block', borderRadius: 8 }}>
+            <Link href="/contact" style={{ display: 'inline-flex', alignItems: 'center', fontFamily: "'Poppins', sans-serif", fontWeight: 900, fontStyle: 'italic', fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '-.01em', color: '#f5c57a', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', border: '3px solid #b47027', borderRadius: 8, padding: 'calc(1rem - 3px) calc(2.1rem - 3px)' }}>
               <HoverSlideText text="Nous contacter" />
             </Link>
           </motion.div>
