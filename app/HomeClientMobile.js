@@ -322,68 +322,15 @@ function HeroSloganCycle() {
   )
 }
 
-// ── HERO (identique au desktop — pin scroll 200vh + parallaxe souris) ──
+// ── HERO (optimisé mobile — flux naturel, scroll 60/120fps fluide sans scroll-jacking) ──
 function Hero() {
   const T = useTheme()
-  const wrapRef            = useRef(null)
-  const bgScrollRef        = useRef(null)
-  const midScrollRef       = useRef(null)
-  const layerForeRef       = useRef(null)
-  const scrollIndicatorRef = useRef(null)
-
-  useEffect(() => {
-    let raf = null
-    const onScroll = () => {
-      if (raf) return
-      raf = requestAnimationFrame(() => {
-        raf = null
-        const scrollY = window.scrollY || window.pageYOffset || 0
-        const winH = window.visualViewport?.height || window.innerHeight || 600
-        const progress = Math.min(1, Math.max(0, scrollY / winH))
-
-        if (wrapRef.current) {
-          if (scrollY > winH * 1.05) {
-            wrapRef.current.style.visibility = 'hidden'
-            wrapRef.current.style.pointerEvents = 'none'
-            return
-          } else {
-            wrapRef.current.style.visibility = 'visible'
-            wrapRef.current.style.pointerEvents = 'auto'
-          }
-        }
-
-        // Parallax arrière-plan doux
-        if (bgScrollRef.current) {
-          bgScrollRef.current.style.transform = `translate3d(0, ${(scrollY * 0.22).toFixed(1)}px, 0)`
-          bgScrollRef.current.style.opacity = String(Math.max(0.35, 1 - progress * 0.65))
-        }
-        // Contenu Hero : glissement doux vers le haut, micro-recul et fondu délicat
-        if (midScrollRef.current) {
-          const scale = 1 - progress * 0.05
-          midScrollRef.current.style.transform = `translate3d(0, ${(-scrollY * 0.14).toFixed(1)}px, 0) scale(${scale.toFixed(3)})`
-          midScrollRef.current.style.opacity = String(Math.max(0, 1 - progress * 1.5))
-        }
-        // Particules d'avant-plan
-        if (layerForeRef.current) {
-          layerForeRef.current.style.transform = `translate3d(0, ${(-scrollY * 0.28).toFixed(1)}px, 0)`
-          layerForeRef.current.style.opacity = String(Math.max(0, 1 - progress * 2.2))
-        }
-        // Indicateur Scroll
-        if (scrollIndicatorRef.current) {
-          scrollIndicatorRef.current.style.opacity = String(Math.max(0, 0.32 - progress * 3.5))
-        }
-      })
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
-    return () => { window.removeEventListener('scroll', onScroll); if (raf) cancelAnimationFrame(raf) }
-  }, [])
 
   return (
-    <section id="home-hero" ref={wrapRef} style={{ height: '100dvh', maxHeight: '100dvh', width: '100%', position: 'sticky', top: 0, zIndex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingTop: '68px', paddingBottom: '20px', boxSizing: 'border-box' }}>
+    <section id="home-hero" style={{ minHeight: '100dvh', width: '100%', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#030806', paddingTop: '68px', paddingBottom: '28px', boxSizing: 'border-box' }}>
 
-      <div ref={bgScrollRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
-        <div style={{ position: 'absolute', inset: '-4%', width: '108%', height: '108%' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
           <img
             src="https://res.cloudinary.com/dzxesa3wi/image/upload/f_auto,q_auto/v1789211616/Farmer_Plowing_Background_Paddy_Green_Poster_Background_Image_And_Wallpaper_for_Free_Download_ores7l.jpg"
             alt="Agro Véto Services Congo"
@@ -395,7 +342,7 @@ function Hero() {
         </div>
       </div>
 
-      <div ref={midScrollRef} suppressHydrationWarning style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '0 5% 1rem', textAlign: 'left', background: 'transparent' }}>
+      <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: 1100, padding: '0 5% 1rem', textAlign: 'left', background: 'transparent' }}>
 
         <HeroSloganCycle />
 
@@ -455,7 +402,7 @@ function Hero() {
 
       </div>
 
-      <div ref={layerForeRef} suppressHydrationWarning style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none', transition: 'transform .1s ease-out' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none' }}>
         {[
           { left: '12%', top: '22%', s: 4, op: .22, dur: 3.8, dy: 0 },
           { left: '28%', top: '65%', s: 3, op: .12, dur: 5.1, dy: 1.2 },
@@ -472,7 +419,7 @@ function Hero() {
         ))}
       </div>
 
-      <div ref={scrollIndicatorRef} suppressHydrationWarning style={{ position: 'absolute', bottom: '1.5rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: .28, zIndex: 15, pointerEvents: 'none' }}>
+      <div style={{ position: 'absolute', bottom: '1.2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: .28, zIndex: 15, pointerEvents: 'none' }}>
         <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.6rem', letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: '.4rem', color: '#fff' }}>Scroll</span>
         <motion.div animate={{ scaleY: [1, 1.4, 1], opacity: [.5, 1, .5] }} transition={{ duration: 1.6, repeat: Infinity }}
           style={{ width: 1, height: 36, background: 'rgba(255, 255, 255, 0.3)' }} />
@@ -850,8 +797,7 @@ function Process() {
 // swipe tactile, cartes avec badges type / live / result
 function ProjectsSection() {
   const T = useTheme()
-  const ref     = useRef(null)
-  const inView  = useInView(ref, { once: true, margin: '-60px' })
+  const ref = useRef(null)
 
   const ITEMS = [
     ...PROJECTS.filter(p => p.id === 15 || p.id === 18),
@@ -861,10 +807,10 @@ function ProjectsSection() {
   ]
 
   return (
-    <section ref={ref} style={{ background: T.bg, position: 'relative', padding: '7rem 5% 5rem' }}>
+    <section ref={ref} style={{ background: T.bg, position: 'relative', padding: '3.5rem 5% 4rem' }}>
       <div className="grid-bg" style={{ position: 'absolute', inset: 0, opacity: .18 }} />
 
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+      <div style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
         <h2 className="section-title-big" style={{ position: 'relative', textAlign: 'center', fontSize: 'clamp(2.3rem,8.5vw,3.6rem)', fontWeight: 900, fontStyle: 'italic', fontFamily: "'Poppins', sans-serif", color: T.textMain, letterSpacing: '-.03em', marginBottom: '.6rem' }}>
           <GhostTitle text="NOS DERNIÈRES RÉALISATIONS" />
           Nos dernières <GreenUnderline><span className="text-gradient">réalisations</span></GreenUnderline>
@@ -872,19 +818,17 @@ function ProjectsSection() {
         <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.75rem', color: T.textMuted, letterSpacing: '.04em' }}>
           — glissez pour naviguer
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .15 }} style={{ position: 'relative', zIndex: 1 }}>
+      <div style={{ position: 'relative', zIndex: 1 }}>
         <CircularProjectsGallery items={ITEMS} draggable cardW={290} cardH={210} intervalMs={8000} />
-      </motion.div>
+      </div>
 
       {/* CTA */}
-      <div style={{ padding: '2.5rem 0 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: .3 }}>
-          <Link href="/projects" className="btn-ghost" style={{ fontSize: '.88rem', padding: '.8rem 1.8rem' }}>
-            <HoverSlideText text="Toutes les réalisations" /> <ArrowRight size={13} />
-          </Link>
-        </motion.div>
+      <div style={{ padding: '2rem 0 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+        <Link href="/projects" className="btn-ghost" style={{ fontSize: '.88rem', padding: '.8rem 1.8rem' }}>
+          <HoverSlideText text="Toutes les réalisations" /> <ArrowRight size={13} />
+        </Link>
       </div>
     </section>
   )
@@ -1523,15 +1467,7 @@ export default function HomePageMobile() {
   return (
     <div style={{ paddingTop: 0, background: T.bg }}>
       <Hero />
-      <div style={{
-        position: 'relative',
-        zIndex: 10,
-        background: T.bg,
-        borderRadius: '24px 24px 0 0',
-        boxShadow: T.light ? '0 -10px 30px rgba(0,0,0,0.06)' : '0 -18px 45px rgba(0,0,0,0.6)',
-        borderTop: T.light ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(180, 112, 39, 0.22)',
-        overflow: 'hidden',
-      }}>
+      <div style={{ position: 'relative', background: T.bg }}>
         <ProjectsSection />
         <StatsSection />
         <DomainesSection />
