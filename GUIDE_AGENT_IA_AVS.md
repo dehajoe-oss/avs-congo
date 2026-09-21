@@ -20,10 +20,14 @@ Date de sauvegarde : 19 Septembre 2026
 ---
 
 ## 2. OBJECTIFS DU SYSTÈME AUTOMATISÉ
-1. **Lancement de la page Facebook AVS Congo** (actuellement 0 post) avec une chronologie de marque claire et rassurante pour l'audience.
-2. **Contrôle humain (Human-in-the-loop)** : L'IA prépare les textes, Joseph relit et modifie tranquillement sur son téléphone/ordinateur, et change le statut en "Validé".
-3. **Publication automatique** : Make.com détecte la ligne validée et la publie sur la page Facebook officielle.
-4. **Futurs ajouts** : Publication multi-canale (LinkedIn & Instagram) et agent répondeur pour les questions en commentaires et DMs.
+1. **Lancement de la page Facebook AVS Congo** avec un contenu authentique, professionnel et humain.
+2. **Contrôle humain (Human-in-the-loop)** : L'IA prépare les textes, Joseph relit et valide tranquillement sur son téléphone/ordinateur en passant le statut à "Validé".
+3. **Publication automatique** : Make.com détecte la ligne validée et la publie aux heures programmées (matin et soir).
+4. **RÈGLE ÉDITORIALE STRICTE (ZÉRO CLICHÉ IA)** :
+   - Strictement AUCUNE icône IA (interdiction de ✨, 🤖, 🌟, 🚀, 💡, 🔮).
+   - Style sobre, direct, professionnel et naturel.
+   - Doit refléter fidèlement la voix humaine d'un cabinet vétérinaire et agropastoral de référence au Congo (Dr Marie-Rose Edwige).
+5. **Agent répondeur** : Réponse personnalisée et humaine aux commentaires et messages privés 24/7.
 
 ---
 
@@ -43,37 +47,37 @@ Date de sauvegarde : 19 Septembre 2026
 
 ---
 
-## 4. LE POST 1 (PRÉ-REMPLI DANS GOOGLE SHEETS)
+## 4. LE POST 1 (VERSION HUMAINE SANS ICÔNES IA)
 ```text
-🇨🇬 Bienvenue sur la page officielle d’AGRO VÉTO SERVICES CONGO (A.V.S.) !
+Bienvenue sur la page officielle d’Agro Véto Services Congo (A.V.S.).
 
-Fondé et dirigé par le Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU (Médecin Vétérinaire Praticienne & Spécialiste QHSE), notre complexe vétérinaire et agropastoral basé à Pointe-Noire s'engage au quotidien pour le développement d'une agriculture performante, d'un élevage rentable et d'une alimentation saine.
+Fondé et dirigé par le Dr Marie-Rose Edwige Rakié POUTYA SAIZONOU, Médecin Vétérinaire et Spécialiste QHSE, notre complexe agropastoral basé à Pointe-Noire accompagne au quotidien les éleveurs, les producteurs et les familles congolaises pour un élevage sain, rentable et durable.
 
-🌟 Notre expertise intégrée s'articule autour de 3 domaines d'excellence :
+Notre action s'articule autour de trois pôles complémentaires :
 
-1️⃣ Le Domaine VÉTO :
-• Clinique Vétérinaire & Soins d'Urgence 24h/24 et 7j/7 (chirurgie, vaccination, pharmacie).
-• Provenderie industrielle certifiée pour vos élevages (volailles, porcs, ruminants).
-• Poussins d'un jour Cobb 500 certifiés à forte croissance.
+1. Pôle Vétérinaire & Élevage :
+- Clinique vétérinaire ouverte 24h/24 et 7j/7 (urgences, consultations, chirurgie, pharmacie).
+- Provenderie certifiée avec aliments complets pour volailles, porcs et bétail.
+- Fourniture de poussins d'un jour de souche Cobb 500 certifiés.
 
-2️⃣ Le Domaine AGRO :
-• Productions agricoles durables et transformation locale de qualité.
+2. Pôle Agricole & Transformation :
+- Productions végétales et valorisation de produits agroalimentaires locaux.
 
-3️⃣ Le Domaine SERVICES :
-• Formations pratiques et fermes-écoles pour professionnaliser vos exploitations.
-• Accompagnement qualité, hygiène et biosécurité (QHSE / HACCP).
+3. Pôle Formations & QHSE :
+- Formations pratiques pour éleveurs et porteurs de projets agropastoraux.
+- Accompagnement en biosécurité, hygiène et normes HACCP.
 
-📍 Où nous trouver ?
-Quartier Socoprise, Avenue Nelson Mandela, Rue Bissoute — Pointe-Noire, Congo.
+Pour nous rencontrer :
+Quartier Socoprise, Avenue Nelson Mandela, Rue Bissoute — Pointe-Noire.
 
-📞 Contacts & Urgences :
-• WhatsApp direct : +242 06 967 75 67
-• Téléphone : +242 05 633 70 50
-• Site web : https://agrovetoservices.cg
+Urgences et renseignements :
+- Téléphone : +242 05 633 70 50
+- WhatsApp : +242 06 967 75 67
+- Site internet : https://agrovetoservices.cg
 
-Abonnez-vous à notre page pour suivre nos conseils vétérinaires, nos actualités et nos arrivages ! 🤝
+Suivez notre page pour nos conseils d'élevage, nos diagnostics et nos arrivages réguliers.
 
-#AgroVetoServices #PointeNoire #Congo #CliniqueVeterinaire #ElevageCongo #Cobb500 #Agrobusiness #SanteAnimale
+#AgroVetoServices #PointeNoire #Congo #ElevageCongo #CliniqueVeterinaire #Cobb500
 ```
 
 ---
