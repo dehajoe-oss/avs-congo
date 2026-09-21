@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useShop } from '@/lib/shopContext'
+import { Mail } from 'lucide-react'
 import api from '@/lib/api-client'
 
 // ── Palette AVS (reprend les codes du site : ocre #b47027 sur fond sombre) ──
@@ -67,8 +68,9 @@ export default function AuthContainer({ initialMode = 'signin' }) {
   const [showLogPwd, setShowLogPwd] = useState(false)
   const [loginErr, setLoginErr] = useState('')
   const [loginLoading, setLoginLoading] = useState(false)
+  const [loginUnverifiedEmail, setLoginUnverifiedEmail] = useState('')
 
-  // ── États inscription (champs alignés sur l'API AVS : nom + téléphone) ──
+  // ── États inscription (champs alignés sur l'API AVS : nom + téléphone + email obligatoire) ──
   const [regForm, setRegForm] = useState({
     fullName: '', phone: '', email: '', password: '', password2: '',
   })
@@ -81,12 +83,46 @@ export default function AuthContainer({ initialMode = 'signin' }) {
   const [regLoading, setRegLoading] = useState(false)
   const [terms, setTerms] = useState(false)
 
+  // ── État confirmation par email obligatoire ──
+  const [verificationPendingEmail, setVerificationPendingEmail] = useState('')
+  const [resendStatus, setResendStatus] = useState({ loading: false, message: '', error: '' })
+
   const handleRegSet = (k) => (e) => {
     setRegForm((f) => ({ ...f, [k]: e.target.value }))
     if (regFieldErrs[k]) setRegFieldErrs((fe) => ({ ...fe, [k]: '' }))
   }
 
   const strength = getStrength(regForm.password)
+
+  const handleResendVerification = async (targetEmail) => {
+    const emailToSend = (targetEmail || verificationPendingEmail || loginUnverifiedEmail || loginId).trim()
+    if (!emailToSend) return
+    setResendStatus({ loading: true, message: '', error: '' })
+    try {
+      let res
+      try {
+        res = await api.auth.resendVerification(emailToSend)
+      } catch (apiErr) {
+        const fallback = await fetch('/api/auth/resend-verification', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: emailToSend, identifier: emailToSend }),
+        })
+        res = await fallback.json()
+      }
+      setResendStatus({
+        loading: false,
+        message: res?.message || `Un nouveau lien de validation a été envoyé à ${emailToSend}.`,
+        error: '',
+      })
+    } catch (err) {
+      setResendStatus({
+        loading: false,
+        message: '',
+        error: err.message || 'Impossible de renvoyer l’email pour le moment.',
+      })
+    }
+  }
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault()
@@ -97,6 +133,9 @@ export default function AuthContainer({ initialMode = 'signin' }) {
     }
     setLoginLoading(true)
     setLoginErr('')
+    setLoginUnverifiedEmail('')
+    setResendStatus({ loading: false, message: '', error: '' })
+
     try {
       const result = await api.auth.login({
         identifier,
@@ -113,7 +152,12 @@ export default function AuthContainer({ initialMode = 'signin' }) {
         setLoginErr(result?.message || 'Connexion réussie.')
       }
     } catch (err) {
-      setLoginErr(err.message || 'Identifiants invalides ou serveur injoignable.')
+      const msg = err.message || ''
+      const lower = msg.toLowerCase()
+      if (lower.includes('valid') || lower.includes('activ') || lower.includes('confirm')) {
+        setLoginUnverifiedEmail(identifier.includes('@') ? identifier : '')
+      }
+      setLoginErr(msg || 'Identifiants invalides ou serveur injoignable.')
     } finally {
       setLoginLoading(false)
     }
@@ -127,7 +171,9 @@ export default function AuthContainer({ initialMode = 'signin' }) {
     const fe = {}
     if (!regForm.fullName.trim()) fe.fullName = 'Le nom complet est obligatoire.'
     if (!regForm.phone.trim()) fe.phone = 'Le téléphone WhatsApp est obligatoire.'
-    if (regForm.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email.trim())) {
+    if (!regForm.email.trim()) {
+      fe.email = 'L’adresse email est obligatoire pour activer votre compte.'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regForm.email.trim())) {
       fe.email = 'Adresse email invalide.'
     }
     if (!regForm.password) fe.password = 'Le mot de passe est obligatoire.'
@@ -153,21 +199,18 @@ export default function AuthContainer({ initialMode = 'signin' }) {
       const displayName = userType === 'company' && companyName.trim()
         ? `${regForm.fullName.trim()} — ${companyName.trim()}`
         : regForm.fullName.trim()
+      const emailToRegister = regForm.email.trim()
+
       const result = await api.auth.register({
         name: displayName,
         fullName: displayName,
         phone: regForm.phone.trim(),
-        email: regForm.email.trim() || undefined,
+        email: emailToRegister,
         password: regForm.password,
       })
-      const user = result?.data?.user || result?.user
-      const token = result?.data?.token || result?.token
-      if (user) {
-        login(user, token)
-        router.push(redirectTo)
-      } else {
-        setRegErr(result?.message || 'Compte créé avec succès.')
-      }
+
+      // L'utilisateur doit impérativement valider son email avant de se connecter
+      setVerificationPendingEmail(emailToRegister)
     } catch (err) {
       setRegErr(err.message || 'Inscription impossible pour le moment.')
     } finally {
@@ -255,199 +298,277 @@ export default function AuthContainer({ initialMode = 'signin' }) {
           }}
         >
           <div className="auth-form-content" style={styles.formContent}>
-            <h2 style={styles.title}>Créer un compte</h2>
-            <p style={styles.subtitle}>
-              Rejoignez les éleveurs & partenaires AVS à Pointe-Noire.
-            </p>
-
-            {regErr && <div style={styles.errorBox}>{regErr}</div>}
-
-            <form style={styles.form} onSubmit={handleRegisterSubmit} suppressHydrationWarning>
-              {/* Type de compte */}
-              <div style={styles.row}>
-                <button
-                  type="button"
-                  onClick={() => setUserType('breeder')}
-                  style={{
-                    ...styles.typeBtn,
-                    ...(userType === 'breeder' ? styles.typeBtnActive : {}),
-                  }}
-                >
-                  🐥 Éleveur
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setUserType('company')}
-                  style={{
-                    ...styles.typeBtn,
-                    ...(userType === 'company' ? styles.typeBtnActive : {}),
-                  }}
-                >
-                  🏢 Entreprise
-                </button>
-              </div>
-
-              <div style={styles.fieldGroup}>
-                <label style={styles.label}>Nom complet ou raison sociale *</label>
-                <input
-                  suppressHydrationWarning
-                  style={{
-                    ...styles.input,
-                    ...(regFieldErrs.fullName ? styles.inputError : {}),
-                  }}
-                  type="text"
-                  placeholder="Ex : Jean Bissooua ou Ferme de Loandjili"
-                  value={regForm.fullName}
-                  onChange={handleRegSet('fullName')}
-                />
-                {regFieldErrs.fullName && <span style={styles.fieldErr}>{regFieldErrs.fullName}</span>}
-              </div>
-
-              {userType === 'company' && (
-                <div style={styles.fieldGroup}>
-                  <label style={styles.label}>Nom de l’exploitation (optionnel)</label>
-                  <input
-                    suppressHydrationWarning
-                    style={styles.input}
-                    type="text"
-                    placeholder="Ex : Ferme Avicole de Tié-Tié"
-                    value={companyName}
-                    onChange={(e) => setCompanyName(e.target.value)}
-                  />
+            {verificationPendingEmail ? (
+              <div style={{ textAlign: 'center', padding: '12px 0' }}>
+                <div style={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '50%',
+                  background: 'rgba(180, 112, 39, 0.15)',
+                  border: '1px solid rgba(180, 112, 39, 0.35)',
+                  color: '#b47027',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 16px',
+                }}>
+                  <Mail size={32} />
                 </div>
-              )}
+                <h2 style={{ ...styles.title, marginBottom: '6px' }}>Vérifiez votre boîte mail !</h2>
+                <p style={{ ...styles.subtitle, marginBottom: '14px' }}>
+                  Un lien d’activation a été envoyé à l’adresse :
+                </p>
+                <div style={{
+                  padding: '9px 14px',
+                  background: 'rgba(180, 112, 39, 0.12)',
+                  border: '1px solid rgba(180, 112, 39, 0.28)',
+                  borderRadius: '10px',
+                  fontWeight: 700,
+                  color: '#b47027',
+                  display: 'inline-block',
+                  marginBottom: '16px',
+                  fontSize: '13px',
+                  wordBreak: 'break-all',
+                }}>
+                  {verificationPendingEmail}
+                </div>
+                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, marginBottom: '20px' }}>
+                  Cliquez sur le lien contenu dans l’email pour valider votre adresse et activer votre compte. Pensez à vérifier également votre dossier de courriers indésirables (spams).
+                </p>
 
-              <div style={styles.row}>
-                <div style={styles.fieldGroup}>
-                  <label style={styles.label}>Téléphone WhatsApp *</label>
-                  <input
-                    suppressHydrationWarning
+                {resendStatus.message && (
+                  <div style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)', color: '#10b981', padding: '8px 12px', borderRadius: '8px', fontSize: '12px', marginBottom: '16px' }}>
+                    {resendStatus.message}
+                  </div>
+                )}
+                {resendStatus.error && (
+                  <div style={{ background: 'rgba(220,38,38,0.1)', border: '1px solid rgba(220,38,38,0.3)', color: '#ef4444', padding: '8px 12px', borderRadius: '8px', fontSize: '12px', marginBottom: '16px' }}>
+                    {resendStatus.error}
+                  </div>
+                )}
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <button
+                    type="button"
+                    onClick={() => handleResendVerification(verificationPendingEmail)}
+                    disabled={resendStatus.loading}
                     style={{
-                      ...styles.input,
-                      ...(regFieldErrs.phone ? styles.inputError : {}),
+                      ...styles.button,
+                      background: 'transparent',
+                      border: '1px solid #b47027',
+                      color: '#b47027',
+                      cursor: resendStatus.loading ? 'default' : 'pointer',
                     }}
-                    type="tel"
-                    placeholder="06 123 45 67"
-                    value={regForm.phone}
-                    onChange={handleRegSet('phone')}
-                  />
-                  {regFieldErrs.phone && <span style={styles.fieldErr}>{regFieldErrs.phone}</span>}
-                </div>
-                <div style={styles.fieldGroup}>
-                  <label style={styles.label}>Email (optionnel)</label>
-                  <input
-                    suppressHydrationWarning
-                    style={{
-                      ...styles.input,
-                      ...(regFieldErrs.email ? styles.inputError : {}),
-                    }}
-                    type="email"
-                    placeholder="vous@email.com"
-                    value={regForm.email}
-                    onChange={handleRegSet('email')}
-                  />
-                  {regFieldErrs.email && <span style={styles.fieldErr}>{regFieldErrs.email}</span>}
+                  >
+                    {resendStatus.loading ? 'Envoi en cours…' : 'Renvoyer l’email d’activation'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={switchToSignIn}
+                    style={styles.button}
+                  >
+                    Accéder à la connexion
+                  </button>
                 </div>
               </div>
+            ) : (
+              <>
+                <h2 style={styles.title}>Créer un compte</h2>
+                <p style={styles.subtitle}>
+                  Rejoignez les éleveurs & partenaires AVS à Pointe-Noire.
+                </p>
 
-              <div style={styles.row}>
-                <div style={styles.fieldGroup}>
-                  <label style={styles.label}>Mot de passe *</label>
-                  <div style={styles.inputWrap}>
+                {regErr && <div style={styles.errorBox}>{regErr}</div>}
+
+                <form style={styles.form} onSubmit={handleRegisterSubmit} suppressHydrationWarning>
+                  {/* Type de compte */}
+                  <div style={styles.row}>
+                    <button
+                      type="button"
+                      onClick={() => setUserType('breeder')}
+                      style={{
+                        ...styles.typeBtn,
+                        ...(userType === 'breeder' ? styles.typeBtnActive : {}),
+                      }}
+                    >
+                      🐥 Éleveur
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setUserType('company')}
+                      style={{
+                        ...styles.typeBtn,
+                        ...(userType === 'company' ? styles.typeBtnActive : {}),
+                      }}
+                    >
+                      🏢 Entreprise
+                    </button>
+                  </div>
+
+                  <div style={styles.fieldGroup}>
+                    <label style={styles.label}>Nom complet ou raison sociale *</label>
                     <input
                       suppressHydrationWarning
                       style={{
                         ...styles.input,
-                        paddingRight: '38px',
-                        ...(regFieldErrs.password ? styles.inputError : {}),
+                        ...(regFieldErrs.fullName ? styles.inputError : {}),
                       }}
-                      type={showRegPwd ? 'text' : 'password'}
-                      placeholder="••••••••"
-                      value={regForm.password}
-                      onChange={handleRegSet('password')}
+                      type="text"
+                      placeholder="Ex : Jean Bissooua ou Ferme de Loandjili"
+                      value={regForm.fullName}
+                      onChange={handleRegSet('fullName')}
                     />
-                    <button
-                      type="button"
-                      style={styles.eyeBtn}
-                      onClick={() => setShowRegPwd(!showRegPwd)}
-                      aria-label="Afficher le mot de passe"
-                    >
-                      <EyeIcon open={showRegPwd} />
-                    </button>
+                    {regFieldErrs.fullName && <span style={styles.fieldErr}>{regFieldErrs.fullName}</span>}
                   </div>
-                  {regFieldErrs.password && <span style={styles.fieldErr}>{regFieldErrs.password}</span>}
-                </div>
 
-                <div style={styles.fieldGroup}>
-                  <label style={styles.label}>Confirmation *</label>
-                  <div style={styles.inputWrap}>
-                    <input
-                      suppressHydrationWarning
-                      style={{
-                        ...styles.input,
-                        paddingRight: '38px',
-                        ...(regFieldErrs.password2 ? styles.inputError : {}),
-                      }}
-                      type={showRegPwd2 ? 'text' : 'password'}
-                      placeholder="••••••••"
-                      value={regForm.password2}
-                      onChange={handleRegSet('password2')}
-                    />
-                    <button
-                      type="button"
-                      style={styles.eyeBtn}
-                      onClick={() => setShowRegPwd2(!showRegPwd2)}
-                      aria-label="Afficher la confirmation"
-                    >
-                      <EyeIcon open={showRegPwd2} />
-                    </button>
-                  </div>
-                  {regFieldErrs.password2 && <span style={styles.fieldErr}>{regFieldErrs.password2}</span>}
-                </div>
-              </div>
-
-              {regForm.password && (
-                <div style={styles.strengthBox}>
-                  <div style={styles.strengthBars}>
-                    {[1, 2, 3, 4].map((level) => (
-                      <div
-                        key={level}
-                        style={{
-                          ...styles.strengthBar,
-                          background: level <= strength
-                            ? STRENGTH_COLORS[strength]
-                            : 'rgba(180, 112, 39, 0.2)',
-                        }}
+                  {userType === 'company' && (
+                    <div style={styles.fieldGroup}>
+                      <label style={styles.label}>Nom de l’exploitation (optionnel)</label>
+                      <input
+                        suppressHydrationWarning
+                        style={styles.input}
+                        type="text"
+                        placeholder="Ex : Ferme Avicole de Tié-Tié"
+                        value={companyName}
+                        onChange={(e) => setCompanyName(e.target.value)}
                       />
-                    ))}
+                    </div>
+                  )}
+
+                  <div style={styles.row}>
+                    <div style={styles.fieldGroup}>
+                      <label style={styles.label}>Téléphone WhatsApp *</label>
+                      <input
+                        suppressHydrationWarning
+                        style={{
+                          ...styles.input,
+                          ...(regFieldErrs.phone ? styles.inputError : {}),
+                        }}
+                        type="tel"
+                        placeholder="06 123 45 67"
+                        value={regForm.phone}
+                        onChange={handleRegSet('phone')}
+                      />
+                      {regFieldErrs.phone && <span style={styles.fieldErr}>{regFieldErrs.phone}</span>}
+                    </div>
+                    <div style={styles.fieldGroup}>
+                      <label style={styles.label}>Adresse email (activation requise) *</label>
+                      <input
+                        suppressHydrationWarning
+                        style={{
+                          ...styles.input,
+                          ...(regFieldErrs.email ? styles.inputError : {}),
+                        }}
+                        type="email"
+                        placeholder="vous@email.com"
+                        value={regForm.email}
+                        onChange={handleRegSet('email')}
+                      />
+                      {regFieldErrs.email && <span style={styles.fieldErr}>{regFieldErrs.email}</span>}
+                    </div>
                   </div>
-                  <span style={{ ...styles.strengthText, color: STRENGTH_COLORS[strength] }}>
-                    {STRENGTH_LABELS[strength]}
-                  </span>
-                </div>
-              )}
 
-              <label style={styles.termsLabel}>
-                <input
-                  type="checkbox"
-                  checked={terms}
-                  onChange={(e) => setTerms(e.target.checked)}
-                  style={styles.checkbox}
-                />
-                <span>
-                  J&apos;accepte les <Link href="/contact" style={styles.termsLink}>conditions d&apos;utilisation</Link> d&apos;Agro Véto Services.
-                </span>
-              </label>
+                  <div style={styles.row}>
+                    <div style={styles.fieldGroup}>
+                      <label style={styles.label}>Mot de passe *</label>
+                      <div style={styles.inputWrap}>
+                        <input
+                          suppressHydrationWarning
+                          style={{
+                            ...styles.input,
+                            paddingRight: '38px',
+                            ...(regFieldErrs.password ? styles.inputError : {}),
+                          }}
+                          type={showRegPwd ? 'text' : 'password'}
+                          placeholder="••••••••"
+                          value={regForm.password}
+                          onChange={handleRegSet('password')}
+                        />
+                        <button
+                          type="button"
+                          style={styles.eyeBtn}
+                          onClick={() => setShowRegPwd(!showRegPwd)}
+                          aria-label="Afficher le mot de passe"
+                        >
+                          <EyeIcon open={showRegPwd} />
+                        </button>
+                      </div>
+                      {regFieldErrs.password && <span style={styles.fieldErr}>{regFieldErrs.password}</span>}
+                    </div>
 
-              <button style={styles.button} type="submit" disabled={regLoading}>
-                {regLoading ? 'Inscription en cours...' : "S'inscrire"}
-              </button>
+                    <div style={styles.fieldGroup}>
+                      <label style={styles.label}>Confirmation *</label>
+                      <div style={styles.inputWrap}>
+                        <input
+                          suppressHydrationWarning
+                          style={{
+                            ...styles.input,
+                            paddingRight: '38px',
+                            ...(regFieldErrs.password2 ? styles.inputError : {}),
+                          }}
+                          type={showRegPwd2 ? 'text' : 'password'}
+                          placeholder="••••••••"
+                          value={regForm.password2}
+                          onChange={handleRegSet('password2')}
+                        />
+                        <button
+                          type="button"
+                          style={styles.eyeBtn}
+                          onClick={() => setShowRegPwd2(!showRegPwd2)}
+                          aria-label="Afficher la confirmation"
+                        >
+                          <EyeIcon open={showRegPwd2} />
+                        </button>
+                      </div>
+                      {regFieldErrs.password2 && <span style={styles.fieldErr}>{regFieldErrs.password2}</span>}
+                    </div>
+                  </div>
 
-              <div className="auth-mobile-toggle" style={styles.mobileToggle}>
-                Déjà un compte ? <span className="auth-mobile-toggle-btn" style={styles.mobileToggleBtn} onClick={switchToSignIn}>Se connecter</span>
-              </div>
-            </form>
+                  {regForm.password && (
+                    <div style={styles.strengthBox}>
+                      <div style={styles.strengthBars}>
+                        {[1, 2, 3, 4].map((level) => (
+                          <div
+                            key={level}
+                            style={{
+                              ...styles.strengthBar,
+                              background: level <= strength
+                                ? STRENGTH_COLORS[strength]
+                                : 'rgba(180, 112, 39, 0.2)',
+                            }}
+                          />
+                        ))}
+                      </div>
+                      <span style={{ ...styles.strengthText, color: STRENGTH_COLORS[strength] }}>
+                        {STRENGTH_LABELS[strength]}
+                      </span>
+                    </div>
+                  )}
+
+                  <label style={styles.termsLabel}>
+                    <input
+                      type="checkbox"
+                      checked={terms}
+                      onChange={(e) => setTerms(e.target.checked)}
+                      style={styles.checkbox}
+                    />
+                    <span>
+                      J&apos;accepte les <Link href="/contact" style={styles.termsLink}>conditions d&apos;utilisation</Link> d&apos;Agro Véto Services.
+                    </span>
+                  </label>
+
+                  <button style={styles.button} type="submit" disabled={regLoading}>
+                    {regLoading ? 'Inscription en cours...' : "S'inscrire"}
+                  </button>
+
+                  <div className="auth-mobile-toggle" style={styles.mobileToggle}>
+                    Déjà un compte ? <span className="auth-mobile-toggle-btn" style={styles.mobileToggleBtn} onClick={switchToSignIn}>Se connecter</span>
+                  </div>
+                </form>
+              </>
+            )}
           </div>
+
         </div>
 
         {/* FORMULAIRE CONNEXION */}
@@ -465,7 +586,37 @@ export default function AuthContainer({ initialMode = 'signin' }) {
             <h2 style={styles.title}>Connexion</h2>
             <p style={styles.subtitle}>Bon retour dans votre espace éleveur AVS.</p>
 
-            {loginErr && <div style={styles.errorBox}>{loginErr}</div>}
+            {loginErr && (
+              <div style={styles.errorBox}>
+                <div style={{ marginBottom: loginUnverifiedEmail ? '8px' : 0 }}>{loginErr}</div>
+                {loginUnverifiedEmail && (
+                  <div style={{ marginTop: '8px', borderTop: '1px dashed rgba(220,38,38,0.3)', paddingTop: '8px' }}>
+                    <button
+                      type="button"
+                      onClick={() => handleResendVerification(loginUnverifiedEmail)}
+                      disabled={resendStatus.loading}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: '#b47027',
+                        fontWeight: 700,
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                        fontSize: '12px',
+                        padding: 0,
+                      }}
+                    >
+                      {resendStatus.loading ? 'Envoi en cours…' : 'Renvoyer le lien de validation'}
+                    </button>
+                    {resendStatus.message && (
+                      <div style={{ color: '#10b981', marginTop: '6px', fontSize: '11px', fontWeight: 600 }}>
+                        {resendStatus.message}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
 
             <form style={styles.form} onSubmit={handleLoginSubmit} suppressHydrationWarning>
               <div style={styles.fieldGroup}>

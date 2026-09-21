@@ -1,24 +1,29 @@
 // app/api/auth/login/route.js
 import { NextResponse } from 'next/server'
-import { findUserByPhone } from '@/lib/db'
+import { findUserByIdentifier, findUserByPhone } from '@/lib/db'
 
 export const runtime = 'nodejs'
 
 export async function POST(request) {
   try {
-    const { phone, password } = await request.json()
+    const { identifier, phone, email, password } = await request.json()
+    const loginId = (identifier || phone || email || '').trim()
 
-    if (!phone?.trim() || !password?.trim()) {
+    if (!loginId || !password?.trim()) {
       return NextResponse.json(
-        { error: 'Numéro de téléphone et mot de passe requis' },
+        { error: 'Identifiant (email ou téléphone) et mot de passe requis' },
         { status: 400 }
       )
     }
 
-    const user = await findUserByPhone(phone)
+    let user = await findUserByIdentifier(loginId)
+    if (!user) {
+      user = await findUserByPhone(loginId)
+    }
+
     if (!user) {
       return NextResponse.json(
-        { error: 'Aucun compte associé à ce numéro de téléphone' },
+        { error: 'Aucun compte associé à cet identifiant' },
         { status: 404 }
       )
     }
@@ -30,13 +35,28 @@ export async function POST(request) {
       )
     }
 
+    // Blocage si l'adresse email n'a pas encore été vérifiée
+    if (user.emailVerified === false) {
+      return NextResponse.json(
+        {
+          error: 'Veuillez valider votre adresse email avant d’accéder à votre compte. Un lien d’activation vous a été envoyé par email.',
+          requiresVerification: true,
+          email: user.email,
+        },
+        { status: 403 }
+      )
+    }
+
     const safeUser = {
       id: user.id,
-      fullName: user.fullName,
+      fullName: user.name || user.fullName,
+      name: user.name || user.fullName,
       phone: user.phone,
       email: user.email,
       companyName: user.companyName,
       userType: user.userType,
+      role: user.role,
+      emailVerified: true,
       createdAt: user.createdAt,
     }
 
