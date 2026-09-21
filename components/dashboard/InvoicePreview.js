@@ -52,9 +52,16 @@ const InvoicePreview = forwardRef(function InvoicePreview({
       <div className="ak-bar" />
 
       <div className="ak-header">
-        <div className="ak-brand">
-          <h2 className="ak-brand-name">AGRO VÉTO SERVICES</h2>
-          <div className="ak-brand-tag">Complexe Agropastoral & Clinique Vétérinaire — Pointe-Noire, Congo</div>
+        <div className="ak-brand" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <img
+            src="/images/logo.webp"
+            alt="AVS Congo Logo"
+            style={{ width: '56px', height: '56px', objectFit: 'contain', flexShrink: 0 }}
+          />
+          <div>
+            <h2 className="ak-brand-name">AGRO VÉTO SERVICES</h2>
+            <div className="ak-brand-tag">Complexe Agropastoral & Clinique Vétérinaire — Pointe-Noire, Congo</div>
+          </div>
         </div>
         <div className="ak-meta">
           <div className="ak-label">// Facture</div>
