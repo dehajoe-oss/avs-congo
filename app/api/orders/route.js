@@ -1,6 +1,7 @@
 // app/api/orders/route.js
 import { NextResponse } from 'next/server'
 import { createOrder, listOrders } from '@/lib/db'
+import { sendMail, orderReceiptEmail } from '@/lib/mailer'
 
 export const runtime = 'nodejs'
 
@@ -36,6 +37,20 @@ export async function POST(request) {
       transactionId: data.transactionId || null,
       status: data.paymentStatus === 'PAID' ? 'CONFIRMED' : 'PENDING',
     })
+
+    // Envoi automatique du reçu ou de la confirmation par email
+    if (order.customerEmail) {
+      try {
+        const mailContent = orderReceiptEmail({ order })
+        await sendMail({
+          to: order.customerEmail,
+          subject: mailContent.subject,
+          html: mailContent.html,
+        })
+      } catch (mailErr) {
+        console.error('[Orders POST] Échec envoi email:', mailErr.message)
+      }
+    }
 
     return NextResponse.json({
       success: true,

@@ -18,11 +18,13 @@ import {
   Camera,
   Save,
   Lock,
+  FileText,
 } from 'lucide-react'
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
 import api from '@/lib/api-client'
 import ImageUploadButton from '@/components/admin/ImageUploadButton'
+import OrderReceiptModal from '@/components/account/OrderReceiptModal'
 
 // ── Onglet Profil : avatar, infos, mot de passe ─────────────────────────────
 function ProfileTab({ user }) {
@@ -173,6 +175,7 @@ export default function AccountClient() {
   const T = useTheme()
   const { currentUser, logout, orders } = useShop()
   const [activeTab, setActiveTab] = useState('orders')
+  const [selectedOrderReceipt, setSelectedOrderReceipt] = useState(null)
 
   if (!currentUser) {
     return (
@@ -610,6 +613,46 @@ export default function AccountClient() {
                       <span>Réf. transaction KKiaPay : <code>{order.transactionId}</code></span>
                     </div>
                   )}
+
+                  {/* Bouton de téléchargement du reçu officiel */}
+                  <div
+                    style={{
+                      marginTop: '1.2rem',
+                      paddingTop: '1rem',
+                      borderTop: '1px solid rgba(255,255,255,0.06)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                      gap: '10px',
+                    }}
+                  >
+                    <div style={{ fontSize: '0.75rem', color: T.light ? '#6b7280' : '#9ca3af' }}>
+                      Reçu officiel AVS Congo certifié conforme aux normes sanitaires & fiscales
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setSelectedOrderReceipt(order)}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        padding: '8px 18px',
+                        borderRadius: '100px',
+                        background: 'rgba(180, 112, 39, 0.12)',
+                        border: '1px solid rgba(180, 112, 39, 0.35)',
+                        color: '#b47027',
+                        fontSize: '0.82rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                      }}
+                    >
+                      <FileText size={15} />
+                      <span>Télécharger mon reçu (PDF)</span>
+                    </button>
+                  </div>
                 </div>
               )
             })}
@@ -618,6 +661,14 @@ export default function AccountClient() {
         </>
         )}
       </div>
+
+      {/* Modale de prévisualisation et téléchargement du reçu PDF */}
+      {selectedOrderReceipt && (
+        <OrderReceiptModal
+          order={selectedOrderReceipt}
+          onClose={() => setSelectedOrderReceipt(null)}
+        />
+      )}
     </div>
   )
 }

@@ -1,6 +1,7 @@
 // app/api/payments/kkiapay/verify/route.js
 import { NextResponse } from 'next/server'
 import { updateOrderPaymentStatus, getOrderById } from '@/lib/db'
+import { sendMail, orderReceiptEmail } from '@/lib/mailer'
 
 export const runtime = 'nodejs'
 
@@ -28,6 +29,21 @@ export async function POST(request) {
       transactionId,
       paymentDetails,
     })
+
+    // Envoi automatique du reçu par email si une adresse est associée
+    const recipientEmail = updated?.customerEmail || order?.customerEmail
+    if (recipientEmail) {
+      try {
+        const mailContent = orderReceiptEmail({ order: updated || order })
+        await sendMail({
+          to: recipientEmail,
+          subject: mailContent.subject,
+          html: mailContent.html,
+        })
+      } catch (mailErr) {
+        console.error('[KKiaPay Verify] Échec envoi email de reçu:', mailErr.message)
+      }
+    }
 
     return NextResponse.json({
       success: true,
