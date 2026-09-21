@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useShop } from '@/lib/shopContext'
 import { Mail } from 'lucide-react'
 import api from '@/lib/api-client'
+import GoogleAuthButton from './GoogleAuthButton'
 
 // ── Palette AVS (reprend les codes du site : ocre #b47027 sur fond sombre) ──
 const PRIMARY = '#b47027'
@@ -404,6 +405,18 @@ export default function AuthContainer({ initialMode = 'signin' }) {
                   Rejoignez les éleveurs & partenaires AVS à Pointe-Noire.
                 </p>
 
+                <GoogleAuthButton
+                  mode="signup"
+                  text="S'inscrire avec Google"
+                  redirectTo={redirectTo}
+                />
+
+                <div style={styles.divider}>
+                  <div style={styles.dividerLine} />
+                  <span style={styles.dividerText}>ou avec votre numéro / email</span>
+                  <div style={styles.dividerLine} />
+                </div>
+
                 {regErr && <div style={styles.errorBox}>{regErr}</div>}
 
                 <form style={styles.form} onSubmit={handleRegisterSubmit} suppressHydrationWarning>
@@ -611,6 +624,18 @@ export default function AuthContainer({ initialMode = 'signin' }) {
           <div className="auth-form-content" style={styles.formContent}>
             <h2 style={styles.title}>Connexion</h2>
             <p style={styles.subtitle}>Bon retour dans votre espace éleveur AVS.</p>
+
+            <GoogleAuthButton
+              mode="signin"
+              text="Se connecter avec Google"
+              redirectTo={redirectTo}
+            />
+
+            <div style={styles.divider}>
+              <div style={styles.dividerLine} />
+              <span style={styles.dividerText}>ou avec votre identifiant</span>
+              <div style={styles.dividerLine} />
+            </div>
 
             {loginErr && (
               <div style={styles.errorBox}>
@@ -861,6 +886,25 @@ const styles = {
     color: '#64748b',
     margin: '0 0 16px',
     fontWeight: 400,
+  },
+  divider: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    margin: '10px 0 16px',
+    gap: '12px',
+  },
+  dividerLine: {
+    flex: 1,
+    height: '1px',
+    background: '#e2e8f0',
+  },
+  dividerText: {
+    fontSize: '11px',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    color: '#94a3b8',
+    fontWeight: 600,
   },
   errorBox: {
     background: 'rgba(220,38,38,0.07)',

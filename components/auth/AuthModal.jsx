@@ -5,6 +5,7 @@ import { X, User, Phone, Lock, Building, CheckCircle2, ArrowRight, Mail, Loader2
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
 import api from '@/lib/api-client'
+import GoogleAuthButton from './GoogleAuthButton'
 
 export default function AuthModal() {
   const { isAuthModalOpen, closeAuthModal, login, showToast } = useShop()
@@ -392,6 +393,40 @@ export default function AuthModal() {
               >
                 Connexion
               </button>
+            </div>
+
+            {/* Connexion / Inscription rapide avec Google */}
+            <GoogleAuthButton
+              mode={isRegister ? 'signup' : 'signin'}
+              text={isRegister ? "S'inscrire avec Google" : "Se connecter avec Google"}
+              theme={T.light ? 'outline' : 'filled_black'}
+              onSuccess={() => {
+                closeAuthModal()
+              }}
+            />
+
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%',
+                margin: '0.6rem 0 1rem',
+                gap: '10px',
+              }}
+            >
+              <div style={{ flex: 1, height: '1px', background: T.light ? '#e5e7eb' : 'rgba(255,255,255,0.1)' }} />
+              <span
+                style={{
+                  fontSize: '0.7rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  color: T.light ? '#9ca3af' : '#6b7280',
+                  fontWeight: 600,
+                }}
+              >
+                ou {isRegister ? 'avec votre téléphone' : 'avec vos identifiants'}
+              </span>
+              <div style={{ flex: 1, height: '1px', background: T.light ? '#e5e7eb' : 'rgba(255,255,255,0.1)' }} />
             </div>
 
             {/* Alerte compte non vérifié à la connexion */}
