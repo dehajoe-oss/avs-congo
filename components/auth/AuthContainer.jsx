@@ -85,6 +85,7 @@ export default function AuthContainer({ initialMode = 'signin' }) {
 
   // ── État confirmation par email obligatoire ──
   const [verificationPendingEmail, setVerificationPendingEmail] = useState('')
+  const [devVerifyUrl, setDevVerifyUrl] = useState('')
   const [resendStatus, setResendStatus] = useState({ loading: false, message: '', error: '' })
 
   const handleRegSet = (k) => (e) => {
@@ -110,6 +111,8 @@ export default function AuthContainer({ initialMode = 'signin' }) {
         })
         res = await fallback.json()
       }
+      const devUrl = res?.data?.devVerifyUrl || res?.devVerifyUrl
+      if (devUrl) setDevVerifyUrl(devUrl)
       setResendStatus({
         loading: false,
         message: res?.message || `Un nouveau lien de validation a été envoyé à ${emailToSend}.`,
@@ -210,6 +213,8 @@ export default function AuthContainer({ initialMode = 'signin' }) {
       })
 
       // L'utilisateur doit impérativement valider son email avant de se connecter
+      const devUrl = result?.data?.devVerifyUrl || result?.devVerifyUrl
+      if (devUrl) setDevVerifyUrl(devUrl)
       setVerificationPendingEmail(emailToRegister)
     } catch (err) {
       setRegErr(err.message || 'Inscription impossible pour le moment.')
@@ -344,6 +349,27 @@ export default function AuthContainer({ initialMode = 'signin' }) {
                 {resendStatus.error && (
                   <div style={{ background: 'rgba(220,38,38,0.1)', border: '1px solid rgba(220,38,38,0.3)', color: '#ef4444', padding: '8px 12px', borderRadius: '8px', fontSize: '12px', marginBottom: '16px' }}>
                     {resendStatus.error}
+                  </div>
+                )}
+
+                {devVerifyUrl && (
+                  <div style={{
+                    margin: '0 0 16px',
+                    padding: '12px 14px',
+                    background: 'rgba(180, 112, 39, 0.12)',
+                    border: '1px dashed #b47027',
+                    borderRadius: '10px',
+                    textAlign: 'center',
+                  }}>
+                    <div style={{ fontSize: '11px', color: '#b47027', fontWeight: 700, marginBottom: '6px' }}>
+                      ⚡ Lien d’activation direct (mode test) :
+                    </div>
+                    <Link
+                      href={devVerifyUrl}
+                      style={{ fontSize: '12px', color: '#ffffff', textDecoration: 'underline', fontWeight: 600, wordBreak: 'break-all' }}
+                    >
+                      Valider mon adresse email maintenant &rarr;
+                    </Link>
                   </div>
                 )}
 

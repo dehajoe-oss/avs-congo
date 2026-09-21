@@ -65,9 +65,15 @@ export async function POST(request) {
       console.error('[Auth Resend Verification] Erreur envoi email:', mailErr)
     }
 
+    let devVerifyUrl = null
+    if (!process.env.RESEND_API_KEY) {
+      devVerifyUrl = verifyUrl
+    }
+
     return NextResponse.json({
       success: true,
       message: `Un nouveau lien de validation a été envoyé à ${user.email}.`,
+      ...(devVerifyUrl ? { devVerifyUrl } : {}),
     })
   } catch (err) {
     console.error('[API Resend Verification Error]', err)

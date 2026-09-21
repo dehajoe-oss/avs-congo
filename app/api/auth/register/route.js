@@ -82,11 +82,17 @@ export async function POST(request) {
       console.error('[Auth Register] Erreur lors de l’envoi de l’email de validation:', mailErr)
     }
 
+    let devVerifyUrl = null
+    if (!process.env.RESEND_API_KEY) {
+      devVerifyUrl = verifyUrl
+    }
+
     return NextResponse.json({
       success: true,
       requiresVerification: true,
       email: user.email,
       message: `Compte créé avec succès ! Un lien de confirmation a été envoyé à ${user.email}. Veuillez vérifier votre boîte de réception pour l'activer.`,
+      ...(devVerifyUrl ? { devVerifyUrl } : {}),
       user: {
         id: user.id,
         name: user.name,

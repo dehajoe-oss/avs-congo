@@ -22,6 +22,7 @@ export default function AuthModal() {
 
   // ── État confirmation par email ──
   const [verificationPendingEmail, setVerificationPendingEmail] = useState('')
+  const [devVerifyUrl, setDevVerifyUrl] = useState('')
   const [unverifiedLoginEmail, setUnverifiedLoginEmail] = useState('')
   const [resendLoading, setResendLoading] = useState(false)
   const [resendMsg, setResendMsg] = useState('')
@@ -53,6 +54,8 @@ export default function AuthModal() {
         })
         res = await fallback.json()
       }
+      const devUrl = res?.data?.devVerifyUrl || res?.devVerifyUrl
+      if (devUrl) setDevVerifyUrl(devUrl)
       setResendMsg(res?.message || `Un nouveau lien a été envoyé à ${emailToSend}.`)
       showToast('Lien de validation renvoyé !', 'success')
     } catch (err) {
@@ -105,6 +108,8 @@ export default function AuthModal() {
         })
 
         // L'utilisateur DOIT valider son compte par email
+        const devUrl = result?.data?.devVerifyUrl || result?.devVerifyUrl
+        if (devUrl) setDevVerifyUrl(devUrl)
         setVerificationPendingEmail(email)
         showToast('Compte créé ! Vérifiez votre boîte mail pour l’activer.', 'success')
       } else {
@@ -249,6 +254,27 @@ export default function AuthModal() {
             {resendMsg && (
               <div style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)', color: '#10b981', padding: '8px 12px', borderRadius: '8px', fontSize: '0.78rem', marginBottom: '1rem' }}>
                 {resendMsg}
+              </div>
+            )}
+
+            {devVerifyUrl && (
+              <div style={{
+                margin: '0 0 1.2rem',
+                padding: '10px 14px',
+                background: 'rgba(180, 112, 39, 0.12)',
+                border: '1px dashed #b47027',
+                borderRadius: '10px',
+                textAlign: 'center',
+              }}>
+                <div style={{ fontSize: '11px', color: '#b47027', fontWeight: 700, marginBottom: '4px' }}>
+                  ⚡ Lien direct (mode test) :
+                </div>
+                <a
+                  href={devVerifyUrl}
+                  style={{ fontSize: '12px', color: '#ffffff', textDecoration: 'underline', fontWeight: 600, wordBreak: 'break-all' }}
+                >
+                  Valider mon adresse email &rarr;
+                </a>
               </div>
             )}
 
