@@ -13,7 +13,7 @@ import {
   Sprout, Stethoscope
 } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
-import { GhostTitle, AnimatedCounter, LazyImg, PageCTA, GreenUnderline, HoverSlideText } from '@/components/ui/index'
+import { GhostTitle, AnimatedCounter, LazyImg, PageCTA, GreenUnderline, HoverSlideText, FlagBadge } from '@/components/ui/index'
 import TrustStacksMarquee from '@/components/ui/TrustStacksMarquee'
 import ConversionMarquee from '@/components/ui/ConversionMarquee'
 import { PROJECTS, TESTIMONIALS, FAQ_ITEMS, PRICING } from '@/lib/data'
@@ -723,7 +723,7 @@ function ServicesPreview() {
                     </div>
                   ))}
                 </div>
-                <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.78rem', padding: '.7rem 1.3rem', width: '100%', justifyContent: 'center' }}>
+                <a href="https://wa.me/242056337050" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.78rem', padding: '.7rem 1.3rem', width: '100%', justifyContent: 'center' }}>
                   <HoverSlideText text="Demander un devis" /> <ArrowRight size={13} />
                 </a>
               </div>
@@ -1025,7 +1025,7 @@ function DomainesSection() {
           <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.82rem', color: T.textMuted, marginBottom: '1rem' }}>
             Votre projet ne rentre dans aucune case ? On s'adapte.
           </p>
-          <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.85rem', padding: '.8rem 1.6rem' }}>
+          <a href="https://wa.me/242056337050" target="_blank" rel="noreferrer" className="btn-raised" style={{ fontSize: '.85rem', padding: '.8rem 1.6rem' }}>
             <HoverSlideText text="Discuter de mon projet" /> <ArrowRight size={13} />
           </a>
         </motion.div>
@@ -1099,8 +1099,8 @@ function PricingCallout() {
                       ))}
                     </div>
                     {plan.popular
-                      ? <a href={`https://wa.me/242069677567?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
-                      : <a href={`https://wa.me/242069677567?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
+                      ? <a href={`https://wa.me/242056337050?text=${wa}`} target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
+                      : <a href={`https://wa.me/242056337050?text=${wa}`} target="_blank" rel="noreferrer" className="btn-ghost" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}><HoverSlideText text="Commander →" /></a>
                     }
                   </div>
                 </motion.div>
@@ -1120,7 +1120,7 @@ function PricingCallout() {
               {' '}— réservations recommandées pour les lots hebdomadaires de poussins Cobb 500 et Lohmann.
             </p>
           </div>
-          <a href="https://wa.me/242069677567?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
+          <a href="https://wa.me/242056337050?text=Bonjour+Agro+Véto+Services,+je+souhaite+réserver+un+lot+!" target="_blank" rel="noreferrer"
             className="btn-raised" style={{ padding: '.7rem 1.2rem', fontSize: '.8rem', justifyContent: 'center', display: 'flex' }}>
             <HoverSlideText text="Commander mon lot →" />
           </a>
@@ -1132,32 +1132,13 @@ function PricingCallout() {
 
 // ── OÙ INTERVENONS-NOUS — badges pays (miroir desktop) ──
 const GEO_PAYS = [
-  { code: 'CG', name: "Congo", note: 'Siège — Socoprise Pointe-Noire', primary: true },
-  { code: 'CD', name: 'RD Congo', note: 'Kinshasa & Régions' },
+  { code: 'CG', name: "Congo (Brazzaville)", note: 'Siège — Socoprise Pointe-Noire', primary: true },
+  { code: 'CD', name: 'RD Congo (Kinshasa)', note: 'Partenariats & Régions' },
   { code: 'GA', name: 'Gabon', note: 'Partenariats Intrants' },
   { code: 'CM', name: 'Cameroun', note: 'Échanges Élevage' },
   { code: 'AO', name: 'Angola', note: 'Cabinda & Frontière' },
   { code: 'FR', name: 'International', note: 'Partenariats & Diaspora' },
 ]
-
-function FlagBadge({ code, primary }) {
-  const colors = {
-    CG: ['#009543','#fbde4a','#dc241f'],
-    CD: ['#007fff','#f7d618','#ce1021'],
-    GA: ['#009e60','#fcd116','#3a75c4'],
-    CM: ['#007a5e','#ce1126','#fcd116'],
-    AO: ['#c8102e','#000000','#fcd116'],
-    FR: ['#002395','#fff','#ed2939'],
-  }
-  const [c1, c2, c3] = colors[code] || ['#b47027','#fff','#b47027']
-  return (
-    <div style={{ width: 34, height: 34, borderRadius: 9, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(180, 112, 39,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(180, 112, 39,.2)' : 'none' }}>
-      <div style={{ flex: 1, background: c1 }} />
-      <div style={{ flex: 1, background: c2 }} />
-      <div style={{ flex: 1, background: c3 }} />
-    </div>
-  )
-}
 
 function GeoSectionHome() {
   const T = useTheme()

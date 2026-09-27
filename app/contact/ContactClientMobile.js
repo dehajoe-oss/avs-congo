@@ -97,9 +97,9 @@ function ContactChannels() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   const CHANNELS = [
-    { icon: MessageCircle, label: 'WhatsApp', val: '+242 06 967 75 67', href: 'https://wa.me/242069677567', color: '#25d366', desc: 'Réponse en moins de 2h' },
+    { icon: MessageCircle, label: 'WhatsApp', val: '+242 05 633 70 50', href: 'https://wa.me/242056337050', color: '#25d366', desc: 'Réponse en moins de 2h' },
     { icon: Mail, label: 'Email', val: 'agrovetoservicescongo@gmail.com', href: 'mailto:agrovetoservicescongo@gmail.com', color: '#b47027', desc: 'Réponse sous 24h' },
-    { icon: Phone, label: 'Téléphone', val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242069677567', color: '#b47027', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
+    { icon: Phone, label: 'Téléphone', val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242056337050', color: '#b47027', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
     { icon: MapPin, label: 'Localisation', val: "Quartier Socoprise, Av. Nelson Mandela, Rue Bissoute, Pointe-Noire", href: null, color: '#b47027', desc: 'Déplacements possibles en exploitation' },
   ]
 
@@ -155,7 +155,7 @@ function ContactChannels() {
           <div style={{ display: 'flex', gap: '.6rem' }}>
             {[
               { Icon: FacebookIcon, href: 'https://web.facebook.com/profile.php?id=61577494705852', label: 'Facebook', color: '#1877f2' },
-              { Icon: WhatsAppIcon, href: 'https://wa.me/242069677567', label: 'WhatsApp', color: '#25d366' },
+              { Icon: WhatsAppIcon, href: 'https://wa.me/242056337050', label: 'WhatsApp', color: '#25d366' },
               { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#b47027' },
             ].map(({ Icon, href, label, color }) => (
               <a key={label} href={href} target="_blank" rel="noreferrer" title={label}

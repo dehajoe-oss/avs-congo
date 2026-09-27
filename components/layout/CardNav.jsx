@@ -247,7 +247,7 @@ export default function CardNav() {
             <button onClick={T.toggle} className="aka-theme-btn" title={T.light ? 'Mode sombre' : 'Mode clair'} type="button">
               {T.light ? <Moon size={13} /> : <Sun size={13} />}
             </button>
-            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised btn-sm">
+            <a href="https://wa.me/242056337050" target="_blank" rel="noreferrer" className="btn-raised btn-sm">
               <HoverSlideText text="WHATSAPP" />
             </a>
           </div>

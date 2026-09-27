@@ -45,7 +45,7 @@ function HeroServices() {
             <a href="#domaines-section" className="btn-raised" style={{ fontSize: '0.9rem', padding: '.75rem 1.4rem' }}>
               <HoverSlideText text="Explorer les domaines" /> <ArrowRight size={15} />
             </a>
-            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '0.9rem', padding: '.75rem 1.4rem', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', color: '#f5c57a', borderColor: '#b47027' }}>
+            <a href="https://wa.me/242056337050" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '0.9rem', padding: '.75rem 1.4rem', background: 'rgba(3,8,6,.55)', backdropFilter: 'blur(6px)', color: '#f5c57a', borderColor: '#b47027' }}>
               <HoverSlideText text="WhatsApp Direct" /> <MessageCircle size={15} />
             </a>
           </div>
@@ -175,7 +175,7 @@ function DomainesSectionMobile() {
           </div>
 
           <a
-            href={`https://wa.me/242069677567?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite échanger avec le Dr POUTYA sur le ${activeDom.title}`)}`}
+            href={`https://wa.me/242056337050?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite échanger avec le Dr POUTYA sur le ${activeDom.title}`)}`}
             target="_blank"
             rel="noreferrer"
             className="btn-raised"
@@ -277,7 +277,7 @@ function ServicesListMobile() {
         </div>
 
         <a
-          href={`https://wa.me/242069677567?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite un devis pour : ${svc.title}`)}`}
+          href={`https://wa.me/242056337050?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite un devis pour : ${svc.title}`)}`}
           target="_blank"
           rel="noreferrer"
           className="btn-raised"

@@ -9,7 +9,7 @@ Date de sauvegarde : 19 Septembre 2026
 * **Siège social :** Quartier Socoprise, Avenue Nelson Mandela, Rue Bissoute, Pointe-Noire, République du Congo.
 * **Contacts officiels :**
   - Téléphone direct : +242 05 633 70 50
-  - WhatsApp officiel : +242 06 967 75 67
+  - WhatsApp officiel : +242 05 633 70 50
   - Email : agrovetoservicescongo@gmail.com
   - Site internet : https://agrovetoservices.cg
 * **Piliers d'excellence (3 Domaines) :**
@@ -72,7 +72,7 @@ Quartier Socoprise, Avenue Nelson Mandela, Rue Bissoute — Pointe-Noire.
 
 Urgences et renseignements :
 - Téléphone : +242 05 633 70 50
-- WhatsApp : +242 06 967 75 67
+- WhatsApp : +242 05 633 70 50
 - Site internet : https://agrovetoservices.cg
 
 Suivez notre page pour nos conseils d'élevage, nos diagnostics et nos arrivages réguliers.

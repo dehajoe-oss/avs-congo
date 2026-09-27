@@ -89,7 +89,7 @@ function HeroShopDesktop() {
             </a>
 
             <a
-              href="https://wa.me/242069677567?text=Bonjour%20AGRO%20V%C3%89TO%20SERVICES%2C%20je%20souhaite%20commander%20des%20poussins%20ou%20intrants."
+              href="https://wa.me/242056337050?text=Bonjour%20AGRO%20V%C3%89TO%20SERVICES%2C%20je%20souhaite%20commander%20des%20poussins%20ou%20intrants."
               target="_blank"
               rel="noreferrer"
               className="btn-ghost"
@@ -131,7 +131,7 @@ function HeroShopMobile() {
               <HoverSlideText text="Explorer le catalogue" /> <ArrowRight size={16} />
             </a>
             <a
-              href="https://wa.me/242069677567?text=Bonjour%20AGRO%20V%C3%89TO%20SERVICES%2C%20je%20souhaite%20commander%20des%20poussins%20ou%20intrants."
+              href="https://wa.me/242056337050?text=Bonjour%20AGRO%20V%C3%89TO%20SERVICES%2C%20je%20souhaite%20commander%20des%20poussins%20ou%20intrants."
               target="_blank"
               rel="noreferrer"
               className="btn-ghost"
@@ -300,10 +300,10 @@ export default function ShopClient() {
               </div>
               <div>
                 <div style={{ fontSize: '0.88rem', fontWeight: 800, color: T.textMain, marginBottom: '3px' }}>
-                  Paiement Mobile Money KKiaPay
+                  Commande & Devis WhatsApp Direct
                 </div>
                 <div style={{ fontSize: '0.75rem', color: T.textSub, lineHeight: 1.45 }}>
-                  MTN MoMo, Airtel Money, CB sécurisé ou règlement cash à la livraison.
+                  Échange direct au +242 05 633 70 50, conseils d'experts ou retrait au siège.
                 </div>
               </div>
             </div>

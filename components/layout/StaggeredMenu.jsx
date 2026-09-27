@@ -475,7 +475,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
               <div className="sm-drawer-footer">
                 {/* Bouton WhatsApp Officiel */}
                 <a
-                  href="https://wa.me/242069677567"
+                  href="https://wa.me/242056337050"
                   target="_blank"
                   rel="noreferrer"
                   className="sm-footer-whatsapp-btn"
@@ -488,7 +488,7 @@ export default function StaggeredMenu({ isActive: externalIsActive, onOpenChange
 
                 {/* Appel direct & adresse */}
                 <div className="sm-footer-contacts">
-                  <a href="tel:+242069677567" className="sm-footer-phone-link">
+                  <a href="tel:+242056337050" className="sm-footer-phone-link">
                     Standard : (+242) 06 967 75 67 / 05 633 70 50
                   </a>
                   <p className="sm-footer-address">

@@ -15,7 +15,7 @@ const ITEMS = [
   { Icon: PhoneCall, pre: 'Devis QHSE & Audits sous ', strong: '24h à 48h', post: '' },
 ]
 
-const WA_HREF = "https://wa.me/242069677567?text=Bonjour+Agro+V%C3%A9to+Services,+je+souhaite+des+renseignements+!"
+const WA_HREF = "https://wa.me/242056337050?text=Bonjour+Agro+V%C3%A9to+Services,+je+souhaite+des+renseignements+!"
 
 function TickerSet({ hidden }) {
   return (

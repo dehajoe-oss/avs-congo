@@ -564,7 +564,12 @@ export default function AccountClient() {
                         {Number(order.totalAmount).toLocaleString('fr-FR')} FCFA
                       </div>
                       <div style={{ fontSize: '0.72rem', color: T.light ? '#6b7280' : '#9ca3af' }}>
-                        Mode : {order.paymentMethod === 'kkiapay' ? 'KKiaPay Mobile Money' : order.paymentMethod === 'whatsapp' ? 'WhatsApp' : 'Comptoir Siège'}
+                        Mode : {
+                          order.paymentMethod === 'MTN_MOMO' || order.paymentMethod === 'MTN_MOMO_COG' ? 'MTN Mobile Money' :
+                          order.paymentMethod === 'AIRTEL_MONEY' || order.paymentMethod === 'AIRTEL_COG' ? 'Airtel Money' :
+                          order.paymentMethod === 'kkiapay' ? 'KKiaPay Mobile Money' :
+                          order.paymentMethod === 'whatsapp' ? 'WhatsApp' : 'Comptoir Siège'
+                        }
                       </div>
                     </div>
                   </div>

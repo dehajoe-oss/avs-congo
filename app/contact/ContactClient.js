@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import { useTheme } from '@/lib/theme'
-import { GhostTitle, GreenUnderline, PageCTA } from '@/components/ui/index'
+import { GhostTitle, GreenUnderline, PageCTA, FlagBadge } from '@/components/ui/index'
 import ConversionMarquee from '@/components/ui/ConversionMarquee'
 import AuroraHero from '@/components/ui/AuroraHero'
 
@@ -301,9 +301,9 @@ function HeroContact() {
 // ── CONTACT CHANNELS — AnimatedBeamGrid + TiltCard ───────────
 // ═══════════════════════════════════════════════════════════════
 const CHANNELS = [
-  { id: 'cnt-n-0', icon: MessageCircle, label: 'WhatsApp', val: '+242 06 967 75 67', href: 'https://wa.me/242069677567', color: '#25d366', desc: 'Réponse en moins de 2h' },
+  { id: 'cnt-n-0', icon: MessageCircle, label: 'WhatsApp', val: '+242 05 633 70 50', href: 'https://wa.me/242056337050', color: '#25d366', desc: 'Réponse en moins de 2h' },
   { id: 'cnt-n-1', icon: Mail,          label: 'Email',    val: 'agrovetoservicescongo@gmail.com', href: 'mailto:agrovetoservicescongo@gmail.com', color: '#b47027', desc: 'Réponse sous 24h' },
-  { id: 'cnt-n-2', icon: Phone,         label: 'Téléphone',val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242069677567', color: '#b47027', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
+  { id: 'cnt-n-2', icon: Phone,         label: 'Téléphone',val: '+242 05 633 70 50 / +242 06 967 75 67', href: 'tel:+242056337050', color: '#b47027', desc: 'Bureau: Lun–Sam 8h–18h | Urgences 24/7' },
   { id: 'cnt-n-3', icon: MapPin,        label: 'Localisation', val: "Quartier Socoprise, Av. Nelson Mandela, Rue Bissoute, Pointe-Noire", href: null, color: '#b47027', desc: 'Déplacements possibles en exploitation' },
 ]
 
@@ -434,7 +434,7 @@ function ContactChannels() {
             <div style={{ display: 'flex', gap: '.6rem' }}>
               {[
                 { Icon: FacebookIcon, href: 'https://web.facebook.com/profile.php?id=61577494705852', label: 'Facebook', color: '#1877f2' },
-                { Icon: WhatsAppIcon, href: 'https://wa.me/242069677567', label: 'WhatsApp', color: '#25d366' },
+                { Icon: WhatsAppIcon, href: 'https://wa.me/242056337050', label: 'WhatsApp', color: '#25d366' },
                 { Icon: Globe, href: 'https://agrovetoservices.cg', label: 'Site officiel', color: '#b47027' },
               ].map(({ Icon, href, label, color }) => (
                 <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
@@ -460,31 +460,12 @@ function ContactChannels() {
 // ═══════════════════════════════════════════════════════════════
 const GEO_PAYS = [
   { code: 'CG', name: "République du Congo", note: 'Siège — Socoprise Pointe-Noire', primary: true },
-  { code: 'CD', name: 'RD Congo',       note: 'Kinshasa & Régions'           },
+  { code: 'CD', name: 'RD Congo (Kinshasa)', note: 'Partenariats & Régions' },
   { code: 'GA', name: 'Gabon',          note: 'Partenariats Intrants'        },
   { code: 'CM', name: 'Cameroun',       note: 'Échanges Élevage'             },
   { code: 'AO', name: 'Angola',         note: 'Cabinda & Frontière'          },
   { code: 'FR', name: 'International',  note: 'Partenariats & Diaspora'      },
 ]
-
-function FlagBadge({ code, primary }) {
-  const colors = {
-    CG: ['#009543','#fbde4a','#dc241f'],
-    CD: ['#007fff','#f7d618','#ce1021'],
-    GA: ['#009e60','#fcd116','#3a75c4'],
-    CM: ['#007a5e','#ce1126','#fcd116'],
-    AO: ['#c8102e','#000000','#fcd116'],
-    FR: ['#002395','#fff','#ed2939'],
-  }
-  const [c1, c2, c3] = colors[code] || ['#b47027','#fff','#b47027']
-  return (
-    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(180, 112, 39,.5)' : '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(180, 112, 39,.2)' : 'none' }}>
-      <div style={{ flex: 1, background: c1 }} />
-      <div style={{ flex: 1, background: c2 }} />
-      <div style={{ flex: 1, background: c3 }} />
-    </div>
-  )
-}
 
 // ═══════════════════════════════════════════════════════════════
 // ── FORMULAIRE DE CONTACT (DESKTOP) ───────────────────────────

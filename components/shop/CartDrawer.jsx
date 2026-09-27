@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   X,
   Trash2,
@@ -8,6 +8,7 @@ import {
   Minus,
   ShoppingCart,
   CreditCard,
+  Smartphone,
   Phone,
   MapPin,
   CheckCircle2,
@@ -15,10 +16,12 @@ import {
   ShieldCheck,
   MessageSquare,
   Sparkles,
+  Loader2,
+  AlertCircle,
+  RefreshCw,
 } from 'lucide-react'
 import { useShop } from '@/lib/shopContext'
 import { useTheme } from '@/lib/theme'
-import { openKkiapayPayment } from '@/lib/kkiapay'
 import api from '@/lib/api-client'
 
 export default function CartDrawer() {
@@ -45,12 +48,14 @@ export default function CartDrawer() {
     address: '',
     notes: '',
   })
-  const [paymentMethod, setPaymentMethod] = useState('kkiapay') // 'kkiapay' | 'whatsapp' | 'cash'
+  const [paymentMethod, setPaymentMethod] = useState('whatsapp') // 'whatsapp' | 'cash' | 'pawapay'
+  const [momoOperator, setMomoOperator] = useState('MTN_MOMO_COG') // 'MTN_MOMO_COG' | 'AIRTEL_COG'
+  const [momoPhoneOverride, setMomoPhoneOverride] = useState('')
+  const [pawaPaySession, setPawaPaySession] = useState(null)
+  const [pawaPayStatus, setPawaPayStatus] = useState(null) // 'ACCEPTED' | 'COMPLETED' | 'FAILED'
+  const [pawaPayError, setPawaPayError] = useState(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [orderCompleted, setOrderCompleted] = useState(null)
-  const [showSandboxFallback, setShowSandboxFallback] = useState(false)
-
-  if (!isCartOpen) return null
 
   // Pré-remplissage avec l'utilisateur connecté s'il existe
   const activeName = customerInfo.name || currentUser?.fullName || ''
@@ -59,6 +64,40 @@ export default function CartDrawer() {
   const handleInputChange = (e) => {
     setCustomerInfo(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
+
+  // Polling automatique de la validation pawaPay
+  useEffect(() => {
+    if (!pawaPaySession?.depositId || pawaPayStatus === 'COMPLETED' || pawaPayStatus === 'FAILED') {
+      return
+    }
+
+    const interval = setInterval(async () => {
+      try {
+        const res = await api.payments.getPawaPayStatus(pawaPaySession.depositId)
+        if (res?.status === 'COMPLETED') {
+          setPawaPayStatus('COMPLETED')
+          const updated = {
+            ...pawaPaySession.order,
+            paymentStatus: 'PAID',
+            paymentMethod: pawaPaySession.operator === 'MTN_MOMO_COG' ? 'MTN_MOMO' : 'AIRTEL_MONEY',
+            paymentRef: pawaPaySession.depositId,
+          }
+          addLocalOrder(updated)
+          setOrderCompleted(updated)
+          clearCart()
+          showToast('Paiement Mobile Money validé avec succès !', 'success')
+        } else if (res?.status === 'FAILED') {
+          setPawaPayStatus('FAILED')
+          setPawaPayError(res?.failureReason?.failureMessage || 'Paiement non approuvé ou rejeté sur votre téléphone.')
+          showToast('Paiement Mobile Money non abouti', 'error')
+        }
+      } catch (err) {
+        console.warn('[pawaPay Polling Error]', err)
+      }
+    }, 2500)
+
+    return () => clearInterval(interval)
+  }, [pawaPaySession, pawaPayStatus])
 
   const handleCheckout = async (e) => {
     e.preventDefault()
@@ -78,6 +117,10 @@ export default function CartDrawer() {
 
     try {
       // 1. Enregistrement initial de la commande dans le backend Node.js
+      const paymentLabel = paymentMethod === 'pawapay'
+        ? (momoOperator === 'MTN_MOMO_COG' ? 'MTN_MOMO' : 'AIRTEL_MONEY')
+        : paymentMethod === 'whatsapp' ? 'WHATSAPP' : 'CASH'
+
       const orderPayload = {
         userId: currentUser?.id || null,
         customerName: name,
@@ -93,7 +136,7 @@ export default function CartDrawer() {
           price: item.price,
         })),
         totalAmount: cartTotal,
-        paymentMethod: paymentMethod === 'kkiapay' ? 'KKIAPAY' : paymentMethod === 'whatsapp' ? 'WHATSAPP' : 'CASH',
+        paymentMethod: paymentLabel,
         paymentStatus: 'UNPAID',
       }
 
@@ -138,7 +181,7 @@ export default function CartDrawer() {
         msg += `\n💰 *TOTAL À PAYER : ${cartTotal.toLocaleString('fr-FR')} FCFA*\n`
         msg += `_Commande effectuée sur le site officiel agrovetoservices.cg_`
 
-        const waUrl = `https://wa.me/242069677567?text=${encodeURIComponent(msg)}`
+        const waUrl = `https://wa.me/242056337050?text=${encodeURIComponent(msg)}`
         window.open(waUrl, '_blank')
 
         setOrderCompleted(order)
@@ -150,42 +193,31 @@ export default function CartDrawer() {
         clearCart()
         showToast('Commande validée ! Règlement prévu au siège Socoprise.', 'success')
       } else {
-        // Mode KKiaPay
-        showToast('Ouverture du portail de paiement sécurisé KKiaPay...', 'info')
+        // Mode pawaPay Mobile Money Congo (MTN MoMo ou Airtel Money)
+        const targetPhone = momoPhoneOverride.trim() || phone
+        showToast('Envoi de l’invite de paiement sur votre téléphone...', 'info')
 
-        const opened = await openKkiapayPayment({
-          amount: cartTotal,
-          name,
-          phone,
-          orderNumber: order.orderNumber,
-          data: order.id,
-          sandbox: true,
-          onSuccess: async (response) => {
-            // Validation côté serveur
-            try {
-              const verifyData = await api.payments.verifyKKiaPay({
-                orderId: order.id,
-                transactionId: response?.transactionId || response?.reference || 'kkiapay_' + Date.now(),
-                paymentDetails: response,
-              })
-              const updated = verifyData?.data?.order || verifyData?.order || { ...order, paymentStatus: 'PAID' }
-              addLocalOrder(updated)
-              setOrderCompleted(updated)
-            } catch {
-              setOrderCompleted({ ...order, paymentStatus: 'PAID' })
-            }
-            clearCart()
-            showToast('Paiement KKiaPay validé avec succès !', 'success')
-          },
-          onFailed: (err) => {
-            showToast('Paiement non finalisé. Vous pouvez réessayer.', 'warning')
-          },
+        const initRes = await api.payments.initiatePawaPay({
+          orderId: order.id,
+          phone: targetPhone,
+          provider: momoOperator,
         })
 
-        if (!opened) {
-          // Si le SDK Kkiapay CDN est bloqué ou ne s'ouvre pas, proposer le simulateur sandbox
-          setShowSandboxFallback(order)
+        if (!initRes?.success) {
+          showToast(initRes?.error || 'Échec lors de l’envoi de la demande Mobile Money', 'error')
+          setIsSubmitting(false)
+          return
         }
+
+        setPawaPayStatus('ACCEPTED')
+        setPawaPayError(null)
+        setPawaPaySession({
+          order,
+          depositId: initRes.depositId,
+          operator: momoOperator,
+          phone: initRes.phone || targetPhone,
+          isMock: initRes.isMock,
+        })
       }
     } catch (err) {
       console.error('Erreur checkout:', err)
@@ -195,29 +227,32 @@ export default function CartDrawer() {
     }
   }
 
-  // Simulation directe pour validation sandbox locale
-  const handleSimulateSandboxKkiapay = async (order) => {
+  // Action pour tester manuellement en mode Sandbox
+  const handleSimulatePawaPayAction = async (action) => {
+    if (!pawaPaySession?.depositId) return
     try {
-      const verifyRes = await fetch('/api/payments/kkiapay/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          orderId: order.id,
-          transactionId: 'KKIA-SANDBOX-' + Date.now(),
-          paymentDetails: { provider: 'MTN Mobile Money Congo', mode: 'sandbox', status: 'SUCCESS' },
-        }),
-      })
-      const verifyData = await verifyRes.json()
-      const updated = verifyData.order || { ...order, paymentStatus: 'PAID' }
-      addLocalOrder(updated)
-      setOrderCompleted(updated)
-      setShowSandboxFallback(false)
-      clearCart()
-      showToast('Simulation de paiement KKiaPay réussie !', 'success')
-    } catch {
-      showToast('Erreur lors de la validation', 'error')
+      if (action === 'fail') {
+        await api.payments.simulatePawaPay({
+          depositId: pawaPaySession.depositId,
+          action: 'fail',
+        })
+        setPawaPayStatus('FAILED')
+        setPawaPayError('Paiement rejeté (simulation d’échec Sandbox)')
+        showToast('Simulation de rejet effectuée', 'info')
+      } else {
+        await api.payments.simulatePawaPay({
+          depositId: pawaPaySession.depositId,
+          action: 'complete',
+        })
+        showToast('Validation instantanée simulée !', 'success')
+      }
+    } catch (err) {
+      console.error('Erreur simulation pawaPay:', err)
+      showToast('Erreur simulation', 'error')
     }
   }
+
+  if (!isCartOpen) return null
 
   return (
     <div
@@ -637,14 +672,14 @@ export default function CartDrawer() {
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {/* KKiaPay */}
+                    {/* WhatsApp (Option principale active) */}
                     <div
-                      onClick={() => setPaymentMethod('kkiapay')}
+                      onClick={() => setPaymentMethod('whatsapp')}
                       style={{
-                        padding: '12px',
+                        padding: '14px',
                         borderRadius: '12px',
-                        border: `2px solid ${paymentMethod === 'kkiapay' ? '#b47027' : 'rgba(255,255,255,0.08)'}`,
-                        background: paymentMethod === 'kkiapay' ? 'rgba(180, 112, 39, 0.12)' : (T.light ? '#f9fafb' : '#0e1710'),
+                        border: `2px solid ${paymentMethod === 'whatsapp' ? '#25d366' : 'rgba(255,255,255,0.08)'}`,
+                        background: paymentMethod === 'whatsapp' ? 'rgba(37, 211, 102, 0.1)' : (T.light ? '#f9fafb' : '#0e1710'),
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
@@ -656,62 +691,26 @@ export default function CartDrawer() {
                           width: '18px',
                           height: '18px',
                           borderRadius: '50%',
-                          border: `2px solid ${paymentMethod === 'kkiapay' ? '#b47027' : 'rgba(255,255,255,0.3)'}`,
+                          border: `2px solid ${paymentMethod === 'whatsapp' ? '#25d366' : 'rgba(255,255,255,0.3)'}`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
+                          flexShrink: 0,
                         }}
                       >
-                        {paymentMethod === 'kkiapay' && (
-                          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#b47027' }} />
+                        {paymentMethod === 'whatsapp' && (
+                          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#25d366' }} />
                         )}
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontWeight: 800, fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span>💳 KKiaPay (Mobile Money & Carte)</span>
-                          <span style={{ fontSize: '0.65rem', padding: '2px 6px', borderRadius: '100px', background: '#b47027', color: '#fff' }}>
-                            Instantané
+                          <span>💬 Commander via WhatsApp Pro</span>
+                          <span style={{ fontSize: '0.65rem', padding: '2px 7px', borderRadius: '100px', background: '#25d366', color: '#050505', fontWeight: 800 }}>
+                            +242 05 633 70 50
                           </span>
                         </div>
-                        <div style={{ fontSize: '0.72rem', opacity: 0.7 }}>
-                          MTN Mobile Money, Airtel Money, Moov ou Carte bancaire
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* WhatsApp */}
-                    <div
-                      onClick={() => setPaymentMethod('whatsapp')}
-                      style={{
-                        padding: '12px',
-                        borderRadius: '12px',
-                        border: `2px solid ${paymentMethod === 'whatsapp' ? '#b47027' : 'rgba(255,255,255,0.08)'}`,
-                        background: paymentMethod === 'whatsapp' ? 'rgba(180, 112, 39, 0.12)' : (T.light ? '#f9fafb' : '#0e1710'),
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '12px',
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: '18px',
-                          height: '18px',
-                          borderRadius: '50%',
-                          border: `2px solid ${paymentMethod === 'whatsapp' ? '#b47027' : 'rgba(255,255,255,0.3)'}`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}
-                      >
-                        {paymentMethod === 'whatsapp' && (
-                          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#b47027' }} />
-                        )}
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 800, fontSize: '0.85rem' }}>💬 Commander via WhatsApp Pro</div>
-                        <div style={{ fontSize: '0.72rem', opacity: 0.7 }}>
-                          Finalisation directe avec notre conseiller commercial AVS
+                        <div style={{ fontSize: '0.72rem', opacity: 0.75, marginTop: '2px' }}>
+                          Confirmation rapide de disponibilité, conseils vétérinaires et livraison
                         </div>
                       </div>
                     </div>
@@ -739,6 +738,7 @@ export default function CartDrawer() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
+                          flexShrink: 0,
                         }}
                       >
                         {paymentMethod === 'cash' && (
@@ -748,7 +748,7 @@ export default function CartDrawer() {
                       <div style={{ flex: 1 }}>
                         <div style={{ fontWeight: 800, fontSize: '0.85rem' }}>🏢 Paiement au Siège / Comptoir</div>
                         <div style={{ fontSize: '0.72rem', opacity: 0.7 }}>
-                          Règlement à la clinique vétérinaire de Socoprise
+                          Règlement à la clinique vétérinaire de Socoprise (Pointe-Noire)
                         </div>
                       </div>
                     </div>
@@ -759,15 +759,16 @@ export default function CartDrawer() {
           )}
         </div>
 
-        {/* Modal de secours simulation Sandbox KKiaPay si le CDN est bloqué */}
-        {showSandboxFallback && (
+        {/* Modal interactif d'attente de validation pawaPay Mobile Money */}
+        {pawaPaySession && (
           <div
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'rgba(0,0,0,0.85)',
-              zIndex: 10,
-              padding: '2rem',
+              background: 'rgba(0,0,0,0.88)',
+              backdropFilter: 'blur(6px)',
+              zIndex: 20,
+              padding: '1.5rem',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -775,49 +776,139 @@ export default function CartDrawer() {
               textAlign: 'center',
             }}
           >
-            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(180, 112, 39, 0.2)', color: '#b47027', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-              <CreditCard size={28} />
+            <div
+              style={{
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                background: pawaPayStatus === 'FAILED' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(180, 112, 39, 0.2)',
+                color: pawaPayStatus === 'FAILED' ? '#EF4444' : '#b47027',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem',
+              }}
+            >
+              {pawaPayStatus === 'FAILED' ? (
+                <AlertCircle size={32} />
+              ) : (
+                <Smartphone size={32} className="animate-pulse" />
+              )}
             </div>
-            <h4 style={{ fontSize: '1.2rem', fontWeight: 800, margin: '0 0 0.5rem' }}>
-              Guichet KKiaPay Sandbox
+
+            <h4 style={{ fontSize: '1.15rem', fontWeight: 800, margin: '0 0 0.4rem', color: '#ffffff' }}>
+              {pawaPayStatus === 'FAILED' ? 'Paiement non abouti' : 'Validation sur votre mobile...'}
             </h4>
-            <p style={{ fontSize: '0.82rem', color: '#9ca3af', marginBottom: '1.5rem', lineHeight: 1.5 }}>
-              Montant à régler : <strong>{showSandboxFallback.totalAmount.toLocaleString('fr-FR')} FCFA</strong><br />
-              Commande : <code>{showSandboxFallback.orderNumber}</code>
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '320px' }}>
-              <button
-                type="button"
-                onClick={() => handleSimulateSandboxKkiapay(showSandboxFallback)}
-                style={{
-                  padding: '12px',
-                  borderRadius: '12px',
-                  border: 'none',
-                  background: '#b47027',
-                  color: '#ffffff',
-                  fontWeight: 800,
-                  fontSize: '0.85rem',
-                  cursor: 'pointer',
-                }}
-              >
-                Valider le paiement de test (Succès)
-              </button>
-              <button
-                type="button"
-                onClick={() => setShowSandboxFallback(false)}
-                style={{
-                  padding: '10px',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  background: 'transparent',
-                  color: '#9ca3af',
-                  fontSize: '0.8rem',
-                  cursor: 'pointer',
-                }}
-              >
-                Annuler
-              </button>
+
+            <div style={{ fontSize: '0.85rem', color: '#e5e7eb', marginBottom: '1rem', lineHeight: 1.5 }}>
+              Montant : <strong style={{ color: '#b47027', fontSize: '1.05rem' }}>{pawaPaySession.order.totalAmount.toLocaleString('fr-FR')} FCFA</strong><br />
+              Réseau : <strong>{pawaPaySession.operator === 'MTN_MOMO_COG' ? '🟡 MTN MoMo Congo' : '🔴 Airtel Money Congo'}</strong><br />
+              Numéro : <code>{pawaPaySession.phone}</code>
             </div>
+
+            {pawaPayStatus === 'FAILED' ? (
+              <div style={{ width: '100%', maxWidth: '320px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ fontSize: '0.78rem', color: '#fca5a5', padding: '10px', background: 'rgba(239, 68, 68, 0.1)', borderRadius: '8px' }}>
+                  {pawaPayError || 'Le paiement a été refusé ou a expiré.'}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setPawaPaySession(null)}
+                  style={{
+                    padding: '11px',
+                    borderRadius: '10px',
+                    border: 'none',
+                    background: '#b47027',
+                    color: '#ffffff',
+                    fontWeight: 700,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Réessayer
+                </button>
+              </div>
+            ) : (
+              <div style={{ width: '100%', maxWidth: '340px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '0.78rem', color: '#9ca3af' }}>
+                  <Loader2 size={16} className="animate-spin" />
+                  <span>En attente de saisie de votre code PIN...</span>
+                </div>
+
+                {/* Panneau Sandbox de test */}
+                <div
+                  style={{
+                    background: 'rgba(255,255,255,0.06)',
+                    border: '1px dashed rgba(180, 112, 39, 0.4)',
+                    borderRadius: '10px',
+                    padding: '12px',
+                    textAlign: 'left',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#b47027', textTransform: 'uppercase' }}>
+                      🧪 Simulateur Sandbox pawaPay
+                    </span>
+                    <span style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Auto-succès (4s)</span>
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#d1d5db', marginBottom: '8px' }}>
+                    Vous pouvez laisser le simulateur valider automatiquement ou tester manuellement :
+                  </div>
+                  <div style={{ display: 'flex', gap: '6px' }}>
+                    <button
+                      type="button"
+                      onClick={() => handleSimulatePawaPayAction('complete')}
+                      style={{
+                        flex: 1,
+                        padding: '7px 8px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        background: '#15803d',
+                        color: '#ffffff',
+                        fontSize: '0.7rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      ✓ Simuler Succès
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleSimulatePawaPayAction('fail')}
+                      style={{
+                        flex: 1,
+                        padding: '7px 8px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        background: '#b91c1c',
+                        color: '#ffffff',
+                        fontSize: '0.7rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      ✗ Simuler Refus
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setPawaPaySession(null)}
+                  style={{
+                    padding: '8px',
+                    borderRadius: '8px',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    background: 'transparent',
+                    color: '#9ca3af',
+                    fontSize: '0.75rem',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Annuler la transaction
+                </button>
+              </div>
+            )}
           </div>
         )}
 
@@ -846,8 +937,8 @@ export default function CartDrawer() {
                 padding: '14px 24px',
                 borderRadius: '100px',
                 border: 'none',
-                background: '#b47027',
-                color: '#ffffff',
+                background: paymentMethod === 'whatsapp' ? '#25d366' : '#b47027',
+                color: paymentMethod === 'whatsapp' ? '#050505' : '#ffffff',
                 fontSize: '0.92rem',
                 fontWeight: 800,
                 cursor: isSubmitting ? 'default' : 'pointer',
@@ -856,19 +947,14 @@ export default function CartDrawer() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '8px',
-                boxShadow: '0 10px 25px -5px rgba(180, 112, 39, 0.4)',
+                boxShadow: paymentMethod === 'whatsapp' ? '0 10px 25px -5px rgba(37, 211, 102, 0.4)' : '0 10px 25px -5px rgba(180, 112, 39, 0.4)',
               }}
             >
               {isSubmitting ? (
                 'Traitement en cours...'
-              ) : paymentMethod === 'kkiapay' ? (
-                <>
-                  <span>Payer {cartTotal.toLocaleString('fr-FR')} FCFA via KKiaPay</span>
-                  <ArrowRight size={18} />
-                </>
               ) : paymentMethod === 'whatsapp' ? (
                 <>
-                  <span>Envoyer la Commande sur WhatsApp</span>
+                  <span>Envoyer la Commande sur WhatsApp (+242 05 633 70 50)</span>
                   <ArrowRight size={18} />
                 </>
               ) : (

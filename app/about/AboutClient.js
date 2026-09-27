@@ -4,6 +4,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { Users, Monitor, Code, Check, Award, Heart, Globe, Zap, Star, Target, Rocket, MessageCircle, ExternalLink, ShieldCheck, GraduationCap } from 'lucide-react'
 import TrustStacksMarquee from '@/components/ui/TrustStacksMarquee'
+import { FlagBadge } from '@/components/ui/index'
 
 /* ─── BlurReveal ─────────────────────────────────────────── */
 function BlurReveal({ children, delay = 0, direction = 'up', style = {}, once = true }) {
@@ -430,7 +431,7 @@ function FounderSection() {
                   <span style={{ padding: '.25rem .6rem', borderRadius: 6, background: 'rgba(180, 112, 39,.08)', border: `1px solid ${T.border}`, fontSize: '.68rem', color: T.textSub, fontWeight: 600 }}>Spécialiste QHSE</span>
                   <span style={{ padding: '.25rem .6rem', borderRadius: 6, background: 'rgba(180, 112, 39,.08)', border: `1px solid ${T.border}`, fontSize: '.68rem', color: T.textSub, fontWeight: 600 }}>Expert HACCP & ISO</span>
                 </div>
-                <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', padding: '.75rem 1rem', fontSize: '.84rem' }}>
+                <a href="https://wa.me/242056337050" target="_blank" rel="noreferrer" className="btn-raised" style={{ width: '100%', justifyContent: 'center', padding: '.75rem 1rem', fontSize: '.84rem' }}>
                   <HoverSlideText text="Échanger directement" /> <ExternalLink size={14} />
                 </a>
               </div>
@@ -635,25 +636,6 @@ const PAYS = [
   { code: 'AO', name: 'Angola (Cabinda)', note: 'Coopération frontalière' },
   { code: 'FR', name: 'International', note: 'Partenariats & Diaspora' },
 ]
-
-function FlagBadge({ code, primary }) {
-  const colors = {
-    CG: ['#009543', '#fbde4a', '#dc241f'],
-    CD: ['#007fff', '#f7d618', '#ce1021'],
-    GA: ['#009e60', '#fcd116', '#3a75c4'],
-    CM: ['#007a5e', '#ce1126', '#fcd116'],
-    AO: ['#c8102e', '#000000', '#fcd116'],
-    FR: ['#002395', '#fff',     '#ed2939'],
-  }
-  const [c1, c2, c3] = colors[code] || ['#b47027', '#fff', '#b47027']
-  return (
-    <div style={{ width: 36, height: 36, borderRadius: 10, overflow: 'hidden', flexShrink: 0, border: primary ? '1.5px solid rgba(180, 112, 39,.5)' : '1px solid rgba(255,255,255,.12)', display: 'flex', flexDirection: 'column', boxShadow: primary ? '0 0 10px rgba(180, 112, 39,.2)' : '0 2px 8px rgba(0,0,0,.2)' }}>
-      <div style={{ flex: 1, background: c1 }} />
-      <div style={{ flex: 1, background: c2 }} />
-      <div style={{ flex: 1, background: c3 }} />
-    </div>
-  )
-}
 
 function RayonSection() {
   const T = useTheme()

@@ -274,7 +274,14 @@ export default function OrderReceiptModal({ order, onClose }) {
                   </span>
                 </div>
                 <div style={{ fontSize: '11px', color: '#475569', marginTop: '4px' }}>
-                  Mode : {order.paymentMethod === 'kkiapay' ? 'Mobile Money (KKiaPay)' : order.paymentMethod || 'Comptoir'}
+                  Mode : {
+                    order.paymentMethod === 'MTN_MOMO' || order.paymentMethod === 'MTN_MOMO_COG' ? 'MTN Mobile Money' :
+                    order.paymentMethod === 'AIRTEL_MONEY' || order.paymentMethod === 'AIRTEL_COG' ? 'Airtel Money' :
+                    order.paymentMethod === 'kkiapay' ? 'Mobile Money (KKiaPay)' :
+                    order.paymentMethod === 'whatsapp' || order.paymentMethod === 'WHATSAPP' ? 'WhatsApp Pro' :
+                    order.paymentMethod === 'cash' || order.paymentMethod === 'CASH' ? 'Comptoir Siège' :
+                    order.paymentMethod || 'Mobile Money'
+                  }
                 </div>
                 <div style={{ fontSize: '11px', color: '#475569', marginTop: '2px' }}>
                   📍 {order.customerAddress || 'Retrait au siège AVS'}

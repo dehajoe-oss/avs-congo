@@ -12,7 +12,8 @@
     "backend:push": "npx --prefix ../avs-backend prisma db push",
     "backend:studio": "npm --prefix ../avs-backend run prisma:studio",
     "postinstall": "prisma generate",
-    "upload-images": "node scripts/upload-cloudinary.js"
+    "upload-images": "node scripts/upload-cloudinary.js",
+    "db:secure-rls": "NODE_OPTIONS=\"--dns-result-order=ipv4first\" node scripts/fix-supabase-rls.js"
   },
   "dependencies": {
     "@google/genai": "^2.11.0",

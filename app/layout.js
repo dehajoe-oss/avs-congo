@@ -115,7 +115,7 @@ const ORG_JSON_LD = {
   email: 'agrovetoservicescongo@gmail.com',
   sameAs: [
     'https://facebook.com/agrovetoservicescongo',
-    'https://wa.me/242069677567',
+    'https://wa.me/242056337050',
   ],
   knowsAbout: [
     'Médecine vétérinaire', 'Santé animale & intrants agropastoraux', 'Provenderie certifiée',
@@ -168,7 +168,6 @@ export default function RootLayout({ children }) {
             </BlobTransitionProvider>
           </PageTransitionProvider>
         </ThemeProvider>
-        <Script src="https://cdn.kkiapay.me/k.js" strategy="lazyOnload" />
       </body>
     </html>
   )

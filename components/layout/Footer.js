@@ -141,7 +141,7 @@ export default function Footer() {
   const SOCIALS = [
     { label: 'LinkedIn', href: 'https://linkedin.com/company/agrovetoservicescongo' },
     { label: 'Facebook', href: 'https://facebook.com/agrovetoservicescongo' },
-    { label: 'WhatsApp', href: 'https://wa.me/242069677567' },
+    { label: 'WhatsApp', href: 'https://wa.me/242056337050' },
   ]
 
   const NAV = [
@@ -264,7 +264,7 @@ export default function Footer() {
                 Contact & Siège
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '.4rem' }}>
-                <a href="tel:+242069677567" style={lk}
+                <a href="tel:+242056337050" style={lk}
                   onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.paddingLeft = '4px' }}
                   onMouseLeave={e => { e.currentTarget.style.color = muted; e.currentTarget.style.paddingLeft = '0' }}>
                   <Phone size={12} style={{ flexShrink: 0 }} /><HoverSlideText text="+242 06 967 75 67" />
@@ -279,7 +279,7 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '.8rem', padding: '.7rem 1.6rem' }}>
+            <a href="https://wa.me/242056337050" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '.8rem', padding: '.7rem 1.6rem' }}>
               <Send size={14} /> <HoverSlideText text="Contacter sur WhatsApp" />
             </a>
           </div>

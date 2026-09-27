@@ -81,7 +81,7 @@ function HeroServices() {
             <a href="#domaines-showcase" className="btn-raised" style={{ fontSize: '0.9rem' }}>
               <HoverSlideText text="Explorer les 3 domaines" /> <ArrowRight size={14} />
             </a>
-            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '0.9rem', color: '#f5c57a', borderColor: '#b47027' }}>
+            <a href="https://wa.me/242056337050" target="_blank" rel="noreferrer" className="btn-ghost" style={{ fontSize: '0.9rem', color: '#f5c57a', borderColor: '#b47027' }}>
               <HoverSlideText text="Conseil direct" /> <MessageCircle size={14} />
             </a>
           </div>
@@ -242,7 +242,7 @@ function DomainesShowcase() {
 
               <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
                 <a
-                  href={`https://wa.me/242069677567?text=${encodeURIComponent(`Bonjour Dr POUTYA, je souhaite des informations sur les activités du ${activeDomain.title}.`)}`}
+                  href={`https://wa.me/242056337050?text=${encodeURIComponent(`Bonjour Dr POUTYA, je souhaite des informations sur les activités du ${activeDomain.title}.`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-raised"
@@ -306,7 +306,7 @@ function DomainesShowcase() {
                   </div>
 
                   <a
-                    href={`https://wa.me/242069677567?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite échanger sur la division : ${branch.title}`)}`}
+                    href={`https://wa.me/242056337050?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite échanger sur la division : ${branch.title}`)}`}
                     target="_blank"
                     rel="noreferrer"
                     style={{
@@ -440,7 +440,7 @@ function ServicesList() {
                     <Timer size={10} style={{ color: T.green }} />Délai : {svc.del}
                   </div>
                 </div>
-                <a href={`https://wa.me/242069677567?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite commander / demander un devis pour : ${svc.title}`)}`} target="_blank" rel="noreferrer" className="btn-raised">
+                <a href={`https://wa.me/242056337050?text=${encodeURIComponent(`Bonjour Agro Véto Services, je souhaite commander / demander un devis pour : ${svc.title}`)}`} target="_blank" rel="noreferrer" className="btn-raised">
                   <HoverSlideText text="Demander un devis" /> <ArrowRight size={14} />
                 </a>
               </div>

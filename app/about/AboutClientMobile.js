@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Users, Heart, Zap, Star, Target, MessageCircle, ExternalLink, ShieldCheck, GraduationCap, Award, Rocket, Check } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
-import { GhostTitle, AnimatedCounter, LazyImg, PageCTA, GreenUnderline, HoverSlideText } from '@/components/ui/index'
+import { GhostTitle, AnimatedCounter, LazyImg, PageCTA, GreenUnderline, HoverSlideText, FlagBadge } from '@/components/ui/index'
 import TrustStacksMarquee from '@/components/ui/TrustStacksMarquee'
 import AuroraHero from '@/components/ui/AuroraHero'
 import { STATS, PROJECTS } from '@/lib/data'
@@ -46,30 +46,13 @@ const VALUES = [
 ]
 
 const PAYS = [
-  { code: 'CG', name: "Congo", note: 'Siège — Socoprise Pointe-Noire', primary: true },
-  { code: 'CD', name: 'RD Congo', note: 'Kinshasa & Régions' },
+  { code: 'CG', name: "Congo (Brazzaville)", note: 'Siège — Socoprise Pointe-Noire', primary: true },
+  { code: 'CD', name: 'RD Congo (Kinshasa)', note: 'Partenariats & Régions' },
   { code: 'GA', name: 'Gabon', note: 'Partenariats Intrants' },
   { code: 'CM', name: 'Cameroun', note: 'Échanges Élevage' },
   { code: 'AO', name: 'Angola', note: 'Cabinda & Frontière' },
   { code: 'FR', name: 'International', note: 'Partenariats & Diaspora' },
 ]
-
-function FlagBadge({ code, primary }) {
-  const colors = {
-    CG: ['#009543','#fbde4a','#dc241f'],
-    CD: ['#007fff','#f7d618','#ce1021'],
-    GA: ['#009e60','#fcd116','#3a75c4'],
-    CM: ['#007a5e','#ce1126','#fcd116'],
-    AO: ['#c8102e','#000000','#fcd116'],
-    FR: ['#002395','#fff','#ed2939'],
-  }
-  const [c1,c2,c3] = colors[code] || ['#b47027','#fff','#b47027']
-  return (
-    <div style={{ width:32,height:32,borderRadius:8,overflow:'hidden',flexShrink:0,border:primary?'1.5px solid rgba(180, 112, 39,.5)':'1px solid rgba(255,255,255,.12)',display:'flex',flexDirection:'column',boxShadow:primary?'0 0 10px rgba(180, 112, 39,.2)':'none' }}>
-      <div style={{flex:1,background:c1}}/><div style={{flex:1,background:c2}}/><div style={{flex:1,background:c3}}/>
-    </div>
-  )
-}
 
 // ── 1. HERO ──────────────────────────────────────────────────
 function HeroAbout() {
@@ -267,7 +250,7 @@ function FounderSection() {
             <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '.62rem', color: '#b47027', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.45rem' }}>
               Fondatrice & Directrice Générale
             </div>
-            <a href="https://wa.me/242069677567" target="_blank" rel="noreferrer" className="btn-ghost btn-sm" style={{ padding: '.3rem .7rem', fontSize: '.68rem' }}>
+            <a href="https://wa.me/242056337050" target="_blank" rel="noreferrer" className="btn-ghost btn-sm" style={{ padding: '.3rem .7rem', fontSize: '.68rem' }}>
               <ExternalLink size={11} /> <HoverSlideText text="Échanger en direct" />
             </a>
           </div>
