@@ -52,7 +52,7 @@ export const metadata = {
   category: 'agriculture & veterinary',
   alternates: { canonical: '/' },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'Atkii4N1CVjqxFb1-sIzTu1utD8Fkl4rjFTqRfCuiUM',
   },
   robots: {
     index: true, follow: true,
