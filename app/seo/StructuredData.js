@@ -1,7 +1,10 @@
-const SITE_URL = 'https://agrovetoservices.cg'
+import { SITE_URL } from '@/lib/site'
 
 const MAIN_NAVIGATION = [
   { name: 'Accueil', url: `${SITE_URL}/` },
+  { name: 'Boutique', url: `${SITE_URL}/boutique` },
+  { name: 'Clinique', url: `${SITE_URL}/clinique` },
+  { name: 'Formations', url: `${SITE_URL}/formations` },
   { name: 'Services', url: `${SITE_URL}/services` },
   { name: 'Réalisations', url: `${SITE_URL}/projects` },
   { name: 'Tarifs', url: `${SITE_URL}/pricing` },

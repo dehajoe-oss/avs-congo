@@ -1,6 +1,4 @@
-export const dynamic = 'force-static'
-
-const SITE_URL = 'https://agrovetoservices.cg'
+import { SITE_URL } from '@/lib/site'
 
 export default function robots() {
   return {

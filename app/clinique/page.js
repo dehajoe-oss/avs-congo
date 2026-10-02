@@ -1,5 +1,6 @@
 import ClinicClient from './ClinicClient'
 import { BreadcrumbJsonLd } from '../seo/StructuredData'
+import { SITE_URL } from '@/lib/site'
 
 export const metadata = {
   title: 'Clinique Vétérinaire & Urgences 24/7 — Agro Véto Services Congo',
@@ -11,7 +12,7 @@ export const metadata = {
     locale: 'fr_CG',
     type: 'website',
     siteName: 'Agro Véto Services',
-    url: 'https://agrovetoservices.cg/clinique',
+    url: `${SITE_URL}/clinique`,
   },
 }
 
@@ -19,8 +20,8 @@ export default function Page() {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: 'Accueil', url: 'https://agrovetoservices.cg/' },
-        { name: 'Clinique Vétérinaire', url: 'https://agrovetoservices.cg/clinique' },
+        { name: 'Accueil', url: `${SITE_URL}/` },
+        { name: 'Clinique Vétérinaire', url: `${SITE_URL}/clinique` },
       ]} />
       <ClinicClient />
     </>

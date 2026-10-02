@@ -1,11 +1,12 @@
 import ServicesResponsive from './ServicesResponsive'
 import { BreadcrumbJsonLd } from '../seo/StructuredData'
+import { SITE_URL } from '@/lib/site'
 
 export const metadata = {
   title: 'Nos 3 Domaines d’Activité — Agro · Véto · Services | Pointe-Noire, Congo',
   description: "3 domaines d'excellence intégrés : Agro (cultures, transformation, artisanat), Véto (clinique 24/7, provenderie certifiée, élevage, labo) et Services (management QHSE, formations, salons, commerce) à Pointe-Noire.",
   alternates: { canonical: '/services' },
-  openGraph: { title: 'Nos 3 Domaines d’Activité — Agro Véto Services Congo', description: "Complexe agropastoral, vétérinaire et QHSE de référence au Congo : 3 domaines d'excellence intégrés.", locale: 'fr_CG', type: 'website', siteName: 'Agro Véto Services', url: 'https://agrovetoservices.cg/services' },
+  openGraph: { title: 'Nos 3 Domaines d’Activité — Agro Véto Services Congo', description: "Complexe agropastoral, vétérinaire et QHSE de référence au Congo : 3 domaines d'excellence intégrés.", locale: 'fr_CG', type: 'website', siteName: 'Agro Véto Services', url: `${SITE_URL}/services` },
 }
 
 const SERVICES_JSON_LD = {
@@ -41,8 +42,8 @@ export default function Page() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_JSON_LD) }} />
       <BreadcrumbJsonLd items={[
-        { name: 'Accueil', url: 'https://agrovetoservices.cg/' },
-        { name: 'Services', url: 'https://agrovetoservices.cg/services' },
+        { name: 'Accueil', url: `${SITE_URL}/` },
+        { name: 'Services', url: `${SITE_URL}/services` },
       ]} />
       <ServicesResponsive />
     </>

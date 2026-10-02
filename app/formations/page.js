@@ -1,5 +1,6 @@
 import FormationsClient from './FormationsClient'
 import { BreadcrumbJsonLd } from '../seo/StructuredData'
+import { SITE_URL } from '@/lib/site'
 
 export const metadata = {
   title: 'Centre de Formation & Fermes-Écoles — Agro Véto Services Congo',
@@ -11,7 +12,7 @@ export const metadata = {
     locale: 'fr_CG',
     type: 'website',
     siteName: 'Agro Véto Services',
-    url: 'https://agrovetoservices.cg/formations',
+    url: `${SITE_URL}/formations`,
   },
 }
 
@@ -19,8 +20,8 @@ export default function Page() {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: 'Accueil', url: 'https://agrovetoservices.cg/' },
-        { name: 'Formations', url: 'https://agrovetoservices.cg/formations' },
+        { name: 'Accueil', url: `${SITE_URL}/` },
+        { name: 'Formations', url: `${SITE_URL}/formations` },
       ]} />
       <FormationsClient />
     </>

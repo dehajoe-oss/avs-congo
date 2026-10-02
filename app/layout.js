@@ -31,7 +31,7 @@ const poppins = Poppins({
   preload: false,
 })
 
-const SITE_URL = 'https://agrovetoservices.cg'
+import { SITE_URL } from '@/lib/site'
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -51,6 +51,9 @@ export const metadata = {
   publisher: 'Agro Véto Services',
   category: 'agriculture & veterinary',
   alternates: { canonical: '/' },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+  },
   robots: {
     index: true, follow: true,
     googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },

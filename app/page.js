@@ -1,7 +1,6 @@
 import HomeResponsive from './HomeResponsive'
 import { FAQ_ITEMS } from '@/lib/data'
-
-const SITE_URL = 'https://agrovetoservices.cg'
+import { SITE_URL } from '@/lib/site'
 
 export const metadata = {
   title: "AGRO VÉTO SERVICES CONGO — De la santé animale à l'excellence QHSE",

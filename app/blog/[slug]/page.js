@@ -1,8 +1,7 @@
 import BlogArticleClient from './BlogArticleClient'
 import { BLOG_POSTS } from '@/lib/data'
 import { BreadcrumbJsonLd } from '../../seo/StructuredData'
-
-const SITE_URL = 'https://agrovetoservices.cg'
+import { SITE_URL } from '@/lib/site'
 
 export function generateStaticParams() {
   return BLOG_POSTS.map(p => ({ slug: p.slug }))
